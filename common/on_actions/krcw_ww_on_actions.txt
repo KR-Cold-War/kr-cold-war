@@ -1,0 +1,43 @@
+on_actions = {
+	on_capitulation = {
+		effect = {
+			if = {
+				limit = { has_global_flag = KRCW_world_war }
+				if = {
+					limit = {
+						FROM = { OR = { tag = FRA is_in_faction_with = FRA } }
+						ROOT = { OR = { tag = SOV is_in_faction_with = SOV } }
+					}
+					save_global_event_target_as = krcw_ww_loser
+					if = {
+						limit = { OR = { original_tag = SOV original_tag = USA original_tag = DDR } }
+						FRA = { country_event = { id = krcw_ww.20 days = 1 } }
+					}
+					else = {
+						FRA = { puppet = ROOT }
+						set_politics = { ruling_party = trotskyism elections_allowed = no }
+						add_popularity = { ideology = trotskyism popularity = 0.30 }
+					}
+					if = { limit = { original_tag = SOV } news_event = { id = krcw_ww.30 days = 2 } }
+				}
+				if = {
+					limit = {
+						FROM = { OR = { tag = SOV is_in_faction_with = SOV } }
+						ROOT = { OR = { tag = FRA is_in_faction_with = FRA } }
+					}
+					save_global_event_target_as = krcw_ww_loser
+					if = {
+						limit = { OR = { original_tag = FRA original_tag = ENG original_tag = CHI original_tag = WCA original_tag = WGR } }
+						SOV = { country_event = { id = krcw_ww.21 days = 1 } }
+					}
+					else = {
+						SOV = { puppet = ROOT }
+						set_politics = { ruling_party = nationalist elections_allowed = no }
+						add_popularity = { ideology = nationalist popularity = 0.30 }
+					}
+					if = { limit = { original_tag = FRA } news_event = { id = krcw_ww.31 days = 2 } }
+				}
+			}
+		}
+	}
+}

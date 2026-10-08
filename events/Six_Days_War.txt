@@ -1,0 +1,1432 @@
+# KRCW (build/patch_residue.py): 39 OTL events dropped while KRCW_active
+add_namespace = SIX_DAYS_WAR
+#Egyptian communications prep
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.100
+ immediate = { }
+	title = SIX_DAYS_WAR.100.t
+	desc = SIX_DAYS_WAR.100.d
+	#picture = GFX_Egyptian_Communications
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.100.a
+	}
+	option = {
+		name = SIX_DAYS_WAR.100.b
+		add_political_power = -50
+		add_timed_idea = {
+			idea = comms_construction
+			days = 100
+		}
+		set_variable = { THIS.idea_len_@token:comms_construction = 100 }
+		set_variable = { THIS.idea_date_@token:comms_construction = global.num_days }
+		set_country_flag = UAR_Upgraded_Communications
+	}
+}
+#Israeli prompt to launch (trigger in common/scripted_effects/IC_scripted_effects.txt)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.0
+ immediate = { }
+	title = SIX_DAYS_WAR.0.t
+	desc = SIX_DAYS_WAR.0.d
+	#picture =
+	is_triggered_only = yes
+	#fire_only_once = yes
+
+	immediate= { set_country_flag = six_days_war_started }
+
+	option = {
+		name = SIX_DAYS_WAR.0.a
+		custom_effect_tooltip = Launch_Airstrikes_on_Egypt_TT
+		hidden_effect = {
+			if = {
+				limit = {
+					EGY = { has_country_flag = UAR_Upgraded_Communications }
+				}
+				EGY = { country_event = SIX_DAYS_WAR.17 }#initial Israeli attack fails
+				news_event = SIX_DAYS_WAR.31
+			}
+			else = {
+				ISR = { country_event = SIX_DAYS_WAR.1 } #Egypt attacked unprepared (Israeli perspective)
+				EGY = { country_event = SIX_DAYS_WAR.2 } #Egypt calls Syria and Jordan for help
+				news_event = SIX_DAYS_WAR.30
+			}
+		}
+	}
+	option = {
+		name = SIX_DAYS_WAR.0.b
+		hidden_effect = {
+			EGY = { country_event = SIX_DAYS_WAR.25 } #Egypt launches attack
+		}
+	}
+}
+#Egypt attacked unprepared (Israeli perspective)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.1
+ immediate = { }
+	title = SIX_DAYS_WAR.1.t
+	desc = SIX_DAYS_WAR.1.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.1.a
+		EGY = { complete_national_focus = UAR_The_Six_Days_War }
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 1296
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.28 #Israel Seizes the Sinai and Gaza (Israel Perspective) - ends event chain
+				on_lose = SIX_DAYS_WAR.27 #Failed initial Israeli Offensive in the Sinai (Israel Perspective) - ends event chain
+				on_cancel = Indochina_War.4
+			}
+
+			defender = {
+				state = 805
+				num_provinces = 4
+				on_win = Indochina_War.4
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+		}
+		set_border_war_data = {
+			attacker = 1296
+			defender = 805
+			attacker_modifier = 0.30
+		}
+
+	}
+}
+#Egypt calls Syria and Jordan for help
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.2
+ immediate = { }
+	title = SIX_DAYS_WAR.2.t
+	desc = SIX_DAYS_WAR.2.d
+	#picture = GFX_Informing_Jordan_and_Syria
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.2.a
+		if = {
+			limit = {
+				EGY = { owns_state = 759 } #golan heights
+				ISR = { owns_state = 994 }
+			}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 759
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.35
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+
+				defender = {
+					state = 994
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.4 #Israeli Perspective Counter-Attacking Syria
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+			}
+			set_border_war_data = {
+				attacker = 759
+				defender = 994
+				attacker_modifier = -0.30
+			}
+		}
+		if = {
+			limit = {
+				EGY = { owns_state = 781 } #west bank
+				ISR = { owns_state = 921 }
+			}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 781
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.5 #Arab victory - Jordan annexes Jezreel - event chain ends
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+
+				defender = {
+					state = 921
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.41 #Israeli Perspective Counter-Attacking Jordan
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+			}
+			set_border_war_data = {
+				attacker = 781
+				defender = 921
+				attacker_modifier = -0.30
+			}
+		}
+		JOR = {
+			country_event = SIX_DAYS_WAR.3 #Syria and Jordan counterattack after Egypt lies
+		}
+		SYR = {
+			country_event = SIX_DAYS_WAR.3
+			complete_national_focus = SYR_sixdaywar
+		}
+	}
+	option = {
+		name = SIX_DAYS_WAR.2.b
+		JOR = {
+			country_event = SIX_DAYS_WAR.8 #Syria and Jordan have the choice to counterattack or end their participation
+		}
+		SYR = {
+			country_event = SIX_DAYS_WAR.8
+			complete_national_focus = SYR_sixdaywar
+		}
+		if = {
+			limit = {
+				EGY = { owns_state = 759 } #golan heights
+				ISR = { owns_state = 994 }
+			}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 759
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.35
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+
+				defender = {
+					state = 994
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.4 #Israeli Perspective Counter-Attacking Syria
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+			}
+			set_border_war_data = {
+				attacker = 759
+				defender = 994
+				attacker_modifier = -0.30
+			}
+		}
+		if = {
+			limit = {
+				EGY = { owns_state = 781 } #west bank
+				ISR = { owns_state = 921 }
+			}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 781
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.5 #Arab victory - Jordan annexes Jezreel - event chain ends
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+
+				defender = {
+					state = 921
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.41 #Israeli Perspective Counter-Attacking Jordan
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+			}
+			set_border_war_data = {
+				attacker = 781
+				defender = 921
+				attacker_modifier = -0.30
+			}
+		}
+	}
+		
+}
+#Syria and Jordan counterattack after Egypt lies
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.3
+ immediate = { }
+	title = SIX_DAYS_WAR.3.t
+	desc = SIX_DAYS_WAR.3.d
+	#picture = GFX_Offensives_Launched_Against_Israel
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.3.a
+		if = {
+			limit = {
+				tag = SYR
+				SYR = { owns_state = 759 }
+			}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 759
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.35 #Arab victory - Jordan annexes Jezreel - event chain ends
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+
+				defender = {
+					state = 994
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.4 #Israeli Perspective Counter-Attacking Syria
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+			}
+			set_border_war_data = {
+				attacker = 759
+				defender = 994
+				attacker_modifier = -0.30
+			}
+		}
+		if = {
+			limit = {
+				tag = JOR
+			}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 781
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.5 #Arab victory - Jordan annexes Jezreel - event chain ends
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+
+				defender = {
+					state = 921
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.41 #Israeli Perspective Counter-Attacking Jordan
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+			}
+			set_border_war_data = {
+				attacker = 781
+				defender = 921
+				attacker_modifier = -0.30
+			}
+		}
+	}
+}
+#Israeli Perspective Counter-Attacking Syria
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.4
+ immediate = { }
+	title = SIX_DAYS_WAR.4.t
+	desc = SIX_DAYS_WAR.4.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.4.a
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 994
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.151 #Israeli Perspective Seizes Golan Heights - ends event chain
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+
+			defender = {
+				state = 759
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.6 #Failed Counter-Attack (Israeli Perspective) - ends event chain
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+		}
+		set_border_war_data = {
+			attacker = 994
+			defender = 759
+			attacker_modifier = 0.30
+		}
+	}
+}
+#Israeli Perspective Counter-Attacking Jordan
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.41
+ immediate = { }
+	title = SIX_DAYS_WAR.41.t
+	desc = SIX_DAYS_WAR.41.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.41.a
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 921
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.15 #Israeli Perspective Seizes the West Bank - ends event chain
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+
+			defender = {
+				state = 781
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.6 #Failed Counter-Attack (Israeli Perspective) - ends event chain
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+		}
+		set_border_war_data = {
+			attacker = 921
+			defender = 781
+			attacker_modifier = 0.30
+		}
+	}
+}
+#Arab victory - Jordan annexes Jezreel - event chain ends
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.5
+ immediate = { }
+	title = SIX_DAYS_WAR.5.t
+	desc = SIX_DAYS_WAR.5.d
+	#picture = GFX_Israel_offensive_failed
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.5.a
+		if = {
+			limit = {
+				 owns_state = 781
+			}
+			transfer_state = 1297 #Jordan annexes Jezreel
+			news_event = SIX_DAYS_WAR.36
+		}
+	}
+}
+#Failed Counter-Attack (Israeli Perspective) - ends event chain
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.6
+ immediate = { }
+	title = SIX_DAYS_WAR.6.t
+	desc = SIX_DAYS_WAR.6.d
+	#picture = GFX_Israel_offensive_failed
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.6.a
+
+	}
+}
+#Israel Perspective Launch Offensives Against Syria/Israel (Jordan and Syria did not attack first)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.7
+ immediate = { }
+	title = SIX_DAYS_WAR.7.t
+	desc = SIX_DAYS_WAR.7.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.7.a
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 921
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.15 #Israeli Perspective Seizes the West Bank - ends event chain
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+
+			defender = {
+				state = 781
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.14 #Syria and Jordan counterattack
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+		}
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 994
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.151 #Israeli Perspective Seizes Golan Heights - ends event chain
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+
+			defender = {
+				state = 759
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.14 #Syria and Jordan counterattack
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+		}
+	}
+	option = {
+		name = SIX_DAYS_WAR.7.b
+		SYR = { country_event = SIX_DAYS_WAR.8 } #Syria and Jordan have the choice to counterattack or end their participation
+		JOR = { country_event = SIX_DAYS_WAR.8 }
+	}
+}
+#Syria and Jordan have the choice to counterattack or end their participation
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.8
+ immediate = { }
+	title = SIX_DAYS_WAR.8.t
+	desc = SIX_DAYS_WAR.8.d
+	#picture = GFX_Arab-Israeli_War
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.8.a
+		trigger = {
+			tag = JOR
+			owns_state = 781
+		}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 781
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.5 #Arab victory - Jordan annexes Jezreel - event chain ends
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+
+				defender = {
+					state = 921
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.111 #Israeli Perspective Counter-Attacking Jordan
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+			}
+	}
+	option = {
+		name = SIX_DAYS_WAR.8.b
+		trigger = {
+			tag = JOR
+		}
+	}
+	option = {
+		name = SIX_DAYS_WAR.8.c
+		trigger = {
+			tag = SYR
+			owns_state = 759
+		}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 759
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.35 #Arab victory
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+
+				defender = {
+					state = 994
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.11 #Israeli Perspective Counter-Attacking Syria
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+			}
+	}
+	option = {
+		name = SIX_DAYS_WAR.8.d
+		trigger = {
+			tag = SYR
+		}
+	}
+}
+#Failed Counter-Attack (Syrian/Jordanian Perspective) - ends event chain
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.9
+ immediate = { }
+	title = SIX_DAYS_WAR.9.t
+	desc = SIX_DAYS_WAR.6.d #this is a description written from an Israeli perspective even though it is an event received by Arab nations
+	#picture = GFX_Failed_Anti-Israeli_Counter_Offensive
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.9.a
+
+	}
+}
+#Israeli Perspective Counter-Attacking Syria
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.11
+ immediate = { }
+	title = SIX_DAYS_WAR.11.t
+	desc = SIX_DAYS_WAR.4.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.11.a
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 994
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.151 #Israeli Perspective Seizes Golan Heights - ends event chain
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+
+			defender = {
+				state = 759
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.6 #Failed Counter-Attack (Israeli Perspective) - ends event chain
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+		}
+
+	}
+}
+#Israeli Perspective Counter-Attacking Jordan
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.111
+ immediate = { }
+	title = SIX_DAYS_WAR.111.t
+	desc = SIX_DAYS_WAR.41.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.111.a
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 921
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.15 #Israeli Perspective Seizes the West Bank - ends event chain
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+
+			defender = {
+				state = 781
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.6 #Failed Counter-Attack (Israeli Perspective) - ends event chain
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+		}
+
+	}
+}
+#Syria and Jordan counterattack
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.14
+ immediate = { }
+	title = SIX_DAYS_WAR.14.t
+	desc = SIX_DAYS_WAR.3.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.14.a
+		if = {
+			limit = {
+				tag = SYR
+				owns_state = 759
+			}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 759
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.35 #Arab victory
+					on_lose = SIX_DAYS_WAR.9 #Failed Counter-Attack (Syrian/Jordanian Perspective) - ends event chain
+					on_cancel = Indochina_War.4
+				}
+
+				defender = {
+					state = 805
+					num_provinces = 4
+					on_win = Indochina_War.4
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+			}
+
+		}
+		if = {
+			limit = {
+				tag = JOR
+				owns_state = 781
+			}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 781
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.5 #Arab victory - Jordan annexes Jezreel - event chain ends
+					on_lose = SIX_DAYS_WAR.9 #Failed Counter-Attack (Syrian/Jordanian Perspective) - ends event chain
+					on_cancel = Indochina_War.4
+				}
+
+				defender = {
+					state = 921
+					num_provinces = 4
+					on_win = Indochina_War.4
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+			}
+
+		}
+	}
+}
+#Israeli Perspective Seizes the West Bank - ends event chain
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.15
+ immediate = { }
+	title = SIX_DAYS_WAR.15.t
+	desc = SIX_DAYS_WAR.15.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.15.a
+		ISR = {
+			transfer_state = 781
+			transfer_state = 1303
+			news_event = SIX_DAYS_WAR.42
+		}
+	}
+}
+#Israeli Perspective Seizes Golan Heights - ends event chain
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.151
+ immediate = { }
+	title = SIX_DAYS_WAR.151.t
+	desc = SIX_DAYS_WAR.151.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.151.a
+		ISR = {
+			transfer_state = 759
+			news_event = SIX_DAYS_WAR.40
+		}
+		SYR = {
+			complete_national_focus = SYR_arabdefeat
+		}
+	}
+}
+#initial Israeli attack fails
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.17
+ immediate = { }
+	title = SIX_DAYS_WAR.17.t
+	desc = SIX_DAYS_WAR.17.d
+	#picture = GFX_Offensives_Launched_Against_Israel
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.17.a
+		EGY = { complete_national_focus = UAR_The_Six_Days_War }
+		SYR = {
+			country_event = SIX_DAYS_WAR.18 #Jordan and Syria counterattack
+		}
+		JOR =  {
+			country_event = SIX_DAYS_WAR.18
+		}
+		if = {
+			limit = {
+				EGY = { owns_state = 805 }
+				ISR = { owns_state = 1296 }
+			}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 805
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.21 #Egypt seizes Eilat
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+
+				defender = {
+					state = 1296
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.19 #Israeli Perspective Counter-Attacking Syria (OP Focus Failed)
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+			}
+		}
+		if = {
+			limit = {
+				EGY = { owns_state = 781 }
+				ISR = { owns_state = 921 }
+			}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 781
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.5 #Arab victory - Jordan annexes Jezreel - event chain ends
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+
+				defender = {
+					state = 921
+					num_provinces = 4
+					on_win = Indochina_War.4
+					on_lose = SIX_DAYS_WAR.191 #Israeli Perspective Counter-Attacking Jordan (OP Focus Failed)
+					on_cancel = Indochina_War.4
+				}
+			}
+		}
+		if = {
+			limit = {
+				EGY = { owns_state = 759 }
+				ISR = { owns_state = 994 }
+			}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 759
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.35
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+
+				defender = {
+					state = 994
+					num_provinces = 4
+					on_win = Indochina_War.4
+					on_lose = SIX_DAYS_WAR.19 #Israeli Perspective Counter-Attacking Syria (OP Focus Failed)
+					on_cancel = Indochina_War.4
+				}
+			}
+		}
+	}
+}
+#Jordan and Syria counterattack
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.18
+ immediate = { }
+	title = SIX_DAYS_WAR.18.t
+	desc = SIX_DAYS_WAR.18.d
+	#picture = GFX_Offensives_Launched_Against_Israel
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.18.a
+		trigger = {
+			tag = JOR
+		}
+		if = {
+			limit = {
+				JOR = { owns_state = 781 }
+				ISR = { owns_state = 921 }
+			}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 781
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.5 #Arab victory - Jordan annexes Jezreel - event chain ends
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+
+				defender = {
+					state = 921
+					num_provinces = 4
+					on_win = Indochina_War.4
+					on_lose = SIX_DAYS_WAR.191 #Israeli Perspective Counter-Attacking Jordan (OP Focus Failed)
+					on_cancel = Indochina_War.4
+				}
+			}
+		}
+	}
+	option = {
+		name = SIX_DAYS_WAR.18.b
+		trigger = {
+			tag = JOR
+		}
+		country_event = SIX_DAYS_WAR.9 #Failed Counter-Attack (Syrian/Jordanian Perspective) - ends event chain
+	}
+	option = {
+		name = SIX_DAYS_WAR.18.c
+		trigger = {
+			tag = SYR
+		}
+		if = {
+			limit = {
+				SYR = { owns_state = 759 }
+				ISR = { owns_state = 994 }
+			}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 759
+					num_provinces = 4
+					on_win = SIX_DAYS_WAR.35 #Arab victory
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+
+				defender = {
+					state = 994
+					num_provinces = 4
+					on_win = Indochina_War.4
+					on_lose = SIX_DAYS_WAR.19 #Israeli Perspective Counter-Attacking Syria (OP Focus Failed)
+					on_cancel = Indochina_War.4
+				}
+			}
+		}
+	}
+	option = {
+		name = SIX_DAYS_WAR.18.d
+		trigger = {
+			tag = SYR
+		}
+		country_event = SIX_DAYS_WAR.9 #Failed Counter-Attack (Syrian/Jordanian Perspective) - ends event chain
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.19
+ immediate = { }
+	title = SIX_DAYS_WAR.19.t
+	desc = SIX_DAYS_WAR.19.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.19.a
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 994
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.151 #Israeli Perspective Seizes Golan Heights - ends event chain
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+
+			defender = {
+				state = 759
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.6 #Failed Counter-Attack (Israeli Perspective) - ends event chain
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+		}
+		set_border_war_data = {
+			attacker = 994
+			defender = 759
+			attacker_modifier = -0.15
+		}
+	}
+}
+#Israeli Perspective Counter-Attacking Jordan (OP Focus Failed)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.191
+ immediate = { }
+	title = SIX_DAYS_WAR.191.t
+	desc = SIX_DAYS_WAR.191.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.191.a
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 921
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.15 #Israeli Perspective Seizes the West Bank - ends event chain
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+
+			defender = {
+				state = 781
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.6 #Failed Counter-Attack (Israeli Perspective) - ends event chain
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+		}
+		set_border_war_data = {
+			attacker = 921
+			defender = 781
+			attacker_modifier = -0.15
+		}
+	}
+}
+#Israeli Perspective Counter-Attack into Sinai #How is this triggered???
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.192
+ immediate = { }
+	title = SIX_DAYS_WAR.192.t
+	desc = SIX_DAYS_WAR.192.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.192.a
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 1296
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.28 #Israel Seizes the Sinai and Gaza (Israel Perspective) - ends event chain
+				on_lose = SIX_DAYS_WAR.27 #Failed initial Israeli Offensive in the Sinai (Israel Perspective) - ends event chain
+				on_cancel = Indochina_War.4
+			}
+
+			defender = {
+				state = 805
+				num_provinces = 4
+				on_win = Indochina_War.4
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+		}
+		set_border_war_data = {
+			attacker = 1296
+			defender = 805
+			attacker_modifier = -0.15
+		}
+
+	}
+}
+#Egypt seizes Eilat
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.21
+ immediate = { }
+	title = SIX_DAYS_WAR.21.t
+	desc = SIX_DAYS_WAR.21.d
+	#picture = GFX_Egypt_Occupies_Eilat
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.21.a
+		EGY = {
+			transfer_state = 1296
+			transfer_state = 755
+		}
+		ISR = { country_event = SIX_DAYS_WAR.22 } #Launch Counter-Attack to Retake Eilat after initial Israeli loss (Israeli Perspective)
+	}
+}
+#Launch Counter-Attack to Retake Eilat after initial Israeli loss (Israeli Perspective)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.22
+ immediate = { }
+	title = SIX_DAYS_WAR.22.t
+	desc = SIX_DAYS_WAR.22.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.22.a
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 803
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.23 # Eilat Retaken (Israeli Perspective) - ends event chain
+				on_lose = SIX_DAYS_WAR.24 # Eilat Counter-Offensive Fails - ends event chain
+				on_cancel = Indochina_War.4
+			}
+
+			defender = {
+				state = 755
+				num_provinces = 4
+				on_win = Indochina_War.4
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+		}
+		set_border_war_data = {
+			attacker = 803
+			defender = 755
+			attacker_modifier = -0.15
+		}
+
+	}
+}
+# Eilat Retaken (Israeli Perspective) - ends event chain
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.23
+ immediate = { }
+	title = SIX_DAYS_WAR.23.t
+	desc = SIX_DAYS_WAR.23.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.23.a
+		EGY = { complete_national_focus = UAR_an_Naksah }
+		ISR = {
+			transfer_state = 755
+		}
+		news_event = SIX_DAYS_WAR.37
+	}
+}
+# Eilat Counter-Offensive Fails - ends event chain
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.24
+ immediate = { }
+	title = SIX_DAYS_WAR.24.t
+	desc = SIX_DAYS_WAR.24.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.24.a
+		EGY = { complete_national_focus = UAR_The_Partial_Liberation_of_Palestine }
+		news_event = SIX_DAYS_WAR.38
+	}
+}
+#Egypt launches attack
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.25
+ immediate = { }
+	title = SIX_DAYS_WAR.25.t
+	desc = SIX_DAYS_WAR.25.d
+	#picture = GFX_Offensives_Launched_Against_Israel
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.25.a
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 805
+				num_provinces = 4
+				on_win = Indochina_War.4
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+
+			defender = {
+				state = 1296
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.26 #Israeli Counter-Offensive into the Sinai after initial Israeli victory (Israel Perspective)
+				on_lose = SIX_DAYS_WAR.21 #Egypt seizes Eilat
+				on_cancel = Indochina_War.4
+			}
+		}
+	}
+}
+#Israeli Counter-Offensive into the Sinai after initial Israeli victory (Israel Perspective)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.26
+ immediate = { }
+	title = SIX_DAYS_WAR.26.t
+	desc = SIX_DAYS_WAR.26.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.26.a
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 1296
+				num_provinces = 4
+				on_win = SIX_DAYS_WAR.28 #Israel Seizes the Sinai and Gaza (Israel Perspective) - ends event chain
+				on_lose = SIX_DAYS_WAR.27 #Failed initial Israeli Offensive in the Sinai (Israel Perspective) - ends event chain
+				on_cancel = Indochina_War.4
+			}
+
+			defender = {
+				state = 805
+				num_provinces = 4
+				on_win = Indochina_War.4
+				on_lose = Indochina_War.4
+				on_cancel = Indochina_War.4
+			}
+		}
+	}
+}
+#Failed initial Israeli Offensive in the Sinai (Israel Perspective) - ends event chain
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.27
+ immediate = { }
+	title = SIX_DAYS_WAR.27.t
+	desc = SIX_DAYS_WAR.27.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.27.a
+		EGY = { complete_national_focus = UAR_an_Naksah }
+
+	}
+}
+#Israel Seizes the Sinai and Gaza (Israel Perspective) - event chain ends.
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.28
+ immediate = { }
+	title = SIX_DAYS_WAR.28.t
+	desc = SIX_DAYS_WAR.28.d
+	#picture =
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.28.a
+		ISR = {
+			transfer_state = 801
+			transfer_state = 805
+			transfer_state = 453
+			transfer_state = 1279
+			news_event = SIX_DAYS_WAR.39
+		}
+		EGY = { complete_national_focus = UAR_an_Naksah }
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.30
+ immediate = { }
+	title = SIX_DAYS_WAR.30.t
+	desc = SIX_DAYS_WAR.30.d
+	#picture =
+	major = yes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.30.a
+
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.31
+ immediate = { }
+	title = SIX_DAYS_WAR.31.t
+	desc = SIX_DAYS_WAR.31.d
+	#picture =
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.31.a
+
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.35
+ immediate = { }
+	title = SIX_DAYS_WAR.35.t
+	desc = SIX_DAYS_WAR.35.d
+	#picture = GFX_Kurdish_Syrian_Six_Days_War_3
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.35.a
+			SYR = { complete_national_focus = SYR_arabvictory }
+
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.36
+ immediate = { }
+	title = SIX_DAYS_WAR.36.t
+	desc = SIX_DAYS_WAR.36.d
+	picture = GFX_Jordanian_Victory_Six_Day_War
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.36.a
+
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.37
+ immediate = { }
+	title = SIX_DAYS_WAR.37.t
+	desc = SIX_DAYS_WAR.37.d
+	#picture =
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.37.a
+
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.38
+ immediate = { }
+	title = SIX_DAYS_WAR.38.t
+	desc = SIX_DAYS_WAR.38.d
+	#picture =
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.38.a
+
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.39
+ immediate = { }
+	title = SIX_DAYS_WAR.39.t
+	desc = SIX_DAYS_WAR.39.d
+	#picture =
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.39.a
+
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.40
+ immediate = { }
+	title = SIX_DAYS_WAR.40.t
+	desc = SIX_DAYS_WAR.40.d
+	#picture =
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.40.a
+
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SIX_DAYS_WAR.42
+ immediate = { }
+	title = SIX_DAYS_WAR.42.t
+	desc = SIX_DAYS_WAR.42.d
+	#picture =
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = SIX_DAYS_WAR.42.a
+
+	}
+}

@@ -1,0 +1,619 @@
+# KRCW (build/patch_residue.py): 19 OTL events dropped while KRCW_active
+add_namespace = swfs
+add_namespace = por_decolonial
+add_namespace = Carnation_Revolution
+add_namespace = POR
+add_namespace = por
+
+
+country_event = {
+	id = por.1 
+ immediate = { }
+	title = por.1.t2
+	desc = portugal_elections.1.d
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = POR
+		date > 1951.5.1
+		date < 1952.1.1
+	}
+
+	immediate = {
+		##complete_national_focus = POR_Presidential_Elections_of_1951
+	}
+
+	# keep salazar
+	option = {
+		name = por.1.a2
+		#complete_national_focus = POR_Francisco_Craveiro_Lopes
+		set_politics = {
+			ruling_party = fascism
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 70
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+		name = por.1.b2
+		#complete_national_focus = POR_Manuel_Quintao_Meireles
+		create_country_leader = {
+			name = "Manuel Quintao Meireles"
+			picture = "Manuel_Quintao_Meireles_50s.dds"
+			ideology = military_junta
+		}
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 30
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = por.2 
+ immediate = { }
+	title = por.2.t2
+	desc = portugal_elections.2.d
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = POR
+		date > 1958.1.1
+		date < 1959.1.1
+	}
+
+	immediate = {
+		#complete_national_focus = POR_1958_Presidential_Election
+	}
+
+	# Charles de Gaulle
+	option = {
+		name = por.2.a2
+		#complete_national_focus = POR_Americo_Tomas
+		set_politics = {
+			ruling_party = fascism
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 70
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+		name = por.2.b2
+		#complete_national_focus = POR_Delgade_1958
+		create_country_leader = {
+			name = "Humberto Delgado"
+			picture = "Humberto_Delgado_50s.dds"
+			ideology = military_junta
+		}
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 30
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = por.3 
+ immediate = { }
+	title = por.3.t2
+	desc = por.3.d2
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		#complete_national_focus = POR_1958_Presidential_Election
+	}
+
+	option = {
+		name = por.3.a2
+		#complete_national_focus = POR_PM_Soares
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+	option = {
+		name = por.3.b2
+		#complete_national_focus = POR_PM_Delgado
+		create_country_leader = {
+			name = "Humberto Delgado"
+			picture = "Humberto_Delgado_50s.dds"
+			ideology = Independent
+		}
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = POR.850 
+ immediate = { }
+	title = POR.850.t2
+	desc = POR.850.d2
+
+	is_triggered_only = yes
+
+	# Get Annexed
+	option = {
+		name = POR.850.a2
+		ai_chance = {
+		  factor = 60
+		}
+	}
+	option = {
+		name = POR.850.b2
+		POR = {
+			transfer_state = 1219
+			transfer_state = 281
+			transfer_state = 1239
+			transfer_state = 707
+			transfer_state = 704
+			transfer_state = 703
+
+			annex_country = {
+				target = BHR
+				transfer_troops = no
+			}
+			annex_country = {
+				target = GHA
+				transfer_troops = no
+			}
+			annex_country = {
+				target = SRL
+				transfer_troops = no
+			}
+			annex_country = {
+				target = SIE
+				transfer_troops = no
+			}
+		}
+		ai_chance = {
+			factor = 40
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = POR.851 
+ immediate = { }
+	title = POR.851.t2
+	desc = POR.851.d2
+
+	is_triggered_only = yes
+
+	# Get Annexed
+	option = {
+		name = POR.851.a2
+		ai_chance = {
+		  factor = 60
+		}
+	}
+	option = {
+		name = POR.851.b2
+		POR = {
+			annex_country = {
+				target = ZIM
+				transfer_troops = yes
+			}
+			annex_country = {
+				target = ZAM
+				transfer_troops = yes
+			}
+		}
+		ai_chance = {
+		  factor = 40
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = POR.855 
+ immediate = { }
+	title = POR.855.t2
+	desc = POR.855.d2
+
+	is_triggered_only = yes
+
+	# Get Annexed
+	option = {
+		name = POR.855.a2
+		ai_chance = {
+		  factor = 20
+		}
+	}
+	option = {
+		name = POR.855.b2
+		POR = {
+		transfer_state = 930
+		transfer_state = 178
+		}
+		ai_chance = {
+		  factor = 80
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = POR.856 
+ immediate = { }
+	title = POR.856.t2
+	desc = POR.856.d2
+
+	is_triggered_only = yes
+
+	# Get Annexed
+	option = {
+		name = POR.856.a2
+		ai_chance = {
+		  factor = 50
+		}
+	}
+	option = {
+		name = POR.856.b2
+		POR = {
+		transfer_state = 171
+		}
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = POR.900 
+ immediate = { }
+	title = POR.900.t2
+	desc = POR.900.d2
+
+	is_triggered_only = yes
+
+	# Get Annexed
+	option = {
+		name = POR.900.a2
+		POR = {
+			#complete_national_focus = POR_Success_of_Coup
+		}
+		set_politics = {
+			ruling_party = monarchism
+			elections_allowed = no
+		}
+		ai_chance = {
+		  factor = 55
+		}
+	}
+	option = {
+		name = POR.900.b2
+		POR = {
+		#complete_national_focus = POR_Failure_of_the_Coup
+		}
+
+		ai_chance = {
+		  factor = 45
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = POR.901 
+ immediate = { }
+	title = POR.901.t2
+	desc = POR.901.d2
+
+	is_triggered_only = yes
+
+	# Get Annexed
+	option = {
+		name = POR.901.a2
+
+		POR = {
+			#complete_national_focus = POR_Brazil_Accepts
+			set_cosmetic_tag = DUAL_POR
+			annex_country = {
+				target = BRA
+				transfer_troops = yes
+			}
+					280 = {
+							add_core_of = POR
+						}
+					981 = {
+							add_core_of = POR
+						}
+					1104 = {
+							add_core_of = POR
+						}
+					503 = {
+							add_core_of = POR
+						}
+					504 = {
+							add_core_of = POR
+						}
+					500 = {
+							add_core_of = POR
+						}
+					501 = {
+							add_core_of = POR
+						}
+					502 = {
+							add_core_of = POR
+						}
+					499 = {
+							add_core_of = POR
+						}
+					498 = {
+							add_core_of = POR
+						}
+					495 = {
+							add_core_of = POR
+						}
+					496 = {
+							add_core_of = POR
+						}
+					497 = {
+							add_core_of = POR
+						}
+					1064 = {
+							add_core_of = POR
+						}
+		}
+		ai_chance = {
+		  factor = 80
+		}
+	}
+	option = {
+		name = POR.901.b2
+		POR = {
+		#complete_national_focus = POR_Brazil_Rejects
+		}
+		ai_chance = {
+		  factor = 20
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = swfs.16 
+ immediate = { }
+	title = swfs.16.t2
+	desc = swfs.16.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = swfs.16.a2
+		POR = {
+		annex_country = { target = BRA }
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 0
+		}
+		name = swfs.16.b2
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = por_decolonial.1 
+ immediate = { }
+	title = por_decolonial.1.t2
+	desc = por_decolonial.1.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = por_decolonial.1.a2
+		release_puppet = ANG
+		release_puppet = MZB
+		release_puppet = GNB
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = por_decolonial.2 
+ immediate = { }
+	title = por_decolonial.2.t2
+	desc = por_decolonial.2.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = por_decolonial.2.a2
+		set_autonomy = { target = ANG autonomy_state = autonomy_free }
+		set_autonomy = { target = MZB autonomy_state = autonomy_free }
+		set_autonomy = { target = GNB autonomy_state = autonomy_free }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = por_decolonial.10 
+ immediate = { }
+	title = por_decolonial.10.t2
+	desc = por_decolonial.10.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = por_decolonial.10.a2
+		release = ANG
+		release = MZB
+		release = GNB
+		release = TIM
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Carnation_Revolution.10000
+ immediate = { }
+	title = Carnation_Revolution.1.t
+	desc = Carnation_Revolution.1.d
+
+	is_triggered_only = yes
+
+	option = { # Fight them
+		name = Carnation_Revolution.10000.a2
+		set_politics = {
+			ruling_party = socialist
+			elections_allowed = yes
+		}
+	}
+
+	option = { # Give in to their demands + civil war
+		name = Carnation_Revolution.10000.b2
+		start_civil_war = {
+			ruling_party = fascism
+			ideology = socialist
+			size = 0.65
+		}
+		hidden_effect = {
+			set_country_flag = suppress_carnation_revolution
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }       #death of oscar carmona
+	id = por.4 
+	immediate = { }
+	title = por.4.t
+	desc = por.4.d
+	picture = GFX_death_of_carmona
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	
+	option = {
+		name = por.4.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }   ########marcelo caetano becomes PM
+	id = por.5 
+	immediate = { }
+	title = por.5.t
+	desc = por.5.d
+	picture = GFX_salazar_country_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = por.5.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Marcelo Caetano"
+			desc = "POLITICS_MARCELO_CAETANO_DESC"
+			picture = "Marcelo_Caetano_60s.dds"
+			ideology = salazarism
+			traits = { modern_liberalizer unpopular_heir disliked_by_the_military }
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = por.6 
+	immediate = { }
+	title = por.6.t
+	desc = por.6.d
+	picture = GFX_salazar_country_event
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+	   name = por.6.a
+		news_event = { days = 1 id = por.7 } 
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = por.7 
+	immediate = { }
+	title = por.7.t
+	desc = por.7.d
+	picture = GFX_salazar_dead_news
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = por.7.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = por.8 
+ immediate = { }
+	title = por.8.t2
+	desc = por.8.d
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		release = CAB
+	}
+	option = {
+		name = por.6.a
+	}
+}

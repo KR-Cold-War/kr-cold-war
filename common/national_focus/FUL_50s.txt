@@ -1,0 +1,1545 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = FUL_50s
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = FUL
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+
+	focus = {
+		id = FUL_QuyChe_16
+		completion_reward = {
+		}
+		icon = GFX_FUL_QuyChe_16
+		cost = 2
+		x = 10
+		y = 0
+		allow_branch = {
+			NOT = {
+				has_country_flag = FUL_FRA_flag
+				has_country_flag = FUL_CuongDe_flag
+			}
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = FUL_BaoDai_Personality_Cult
+		completion_reward = {
+		}
+		icon = GFX_FUL_BaoDai_Personality_Cult
+		cost = 2
+		relative_position_id = FUL_QuyChe_16
+		prerequisite = {
+			focus = FUL_QuyChe_16
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = { id = BaoDai_Personality_Cult.1 hours = 12 }
+		}
+	}
+	focus = {
+		id = FUL_Limit_Tribal_Independence
+		completion_reward = {
+		}
+		icon = GFX_FUL_Limit_Tribal_Independence
+		cost = 2
+		relative_position_id = FUL_BaoDai_Personality_Cult
+		prerequisite = {
+			focus = FUL_BaoDai_Personality_Cult
+		}
+		mutually_exclusive = {
+			focus = FUL_FireWater_Kings
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			add_stability = -0.05
+			add_opinion_modifier = {
+				target = VIE
+				modifier = small_decrease
+			}
+			reverse_add_opinion_modifier = {
+				target = VIE
+				modifier = small_decrease
+			}
+			add_offsite_building = {
+				type = industrial_complex
+				level = 1
+			}
+			random_owned_controlled_state = {
+				custom_effect_tooltip = Increase_VIE_Settlers_tt
+				hidden_effect = {
+					set_variable = {
+						culture^1 = 242
+					}
+					set_variable = {
+						culture^2 = 249
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = FUL_FireWater_Kings
+		completion_reward = {
+		}
+		icon = GFX_FUL_FireWater_Kings
+		cost = 2
+		relative_position_id = FUL_BaoDai_Personality_Cult
+		prerequisite = {
+			focus = FUL_BaoDai_Personality_Cult
+		}
+		mutually_exclusive = {
+			focus = FUL_Limit_Tribal_Independence
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			country_event = { id = FireWater_Kings.1 hours = 12 }
+		}
+	}
+	focus = {
+		id = FUL_ToaAn_PhongTuc_Thuong
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_12
+		cost = 2
+		relative_position_id = FUL_BaoDai_Personality_Cult
+		prerequisite = {
+			focus = FUL_Limit_Tribal_Independence
+			focus = FUL_FireWater_Kings
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			country_event = { id = Montagnard_Administrative.1 hours = 12 }
+		}
+	}
+	focus = {
+		id = FUL_Limit_Viet_Settlements
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_pro_ethnic = yes
+			}
+		}
+		icon = GFX_FUL_Limit_Viet_Settlements
+		cost = 2
+		relative_position_id = FUL_ToaAn_PhongTuc_Thuong
+		prerequisite = {
+			focus = FUL_ToaAn_PhongTuc_Thuong
+		}
+		mutually_exclusive = {
+			focus = FUL_Ban_Viet_Settlements
+		}
+		ai_will_do = {
+			factor = 65
+			modifier = {
+				factor = 1
+				is_historical_focus_on = yes
+			}
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			add_stability = 0.10
+			add_manpower = -25000
+			add_opinion_modifier = {
+				target = VIE
+				modifier = medium_decrease
+			}
+			reverse_add_opinion_modifier = {
+				target = VIE
+				modifier = medium_decrease
+			}
+		}
+	}
+	focus = {
+		id = FUL_DarLac_Urbanization
+		completion_reward = {
+		}
+		icon = GFX_VIE_Quang_Modernize_Urban_Infrastructure
+		cost = 2
+		relative_position_id = FUL_Limit_Viet_Settlements
+		prerequisite = {
+			focus = FUL_Limit_Viet_Settlements
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			982 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { money_to_gain = -0.2 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = FUL_Du_So_21
+		completion_reward = {
+		}
+		icon = GFX_FUL_Du_So_21
+		cost = 2
+		relative_position_id = FUL_DarLac_Urbanization
+		prerequisite = {
+			focus = FUL_DarLac_Urbanization
+		}
+		x = 0
+		y = 1
+		available = {
+			has_country_flag = VIE_FUL_Annexation_Trigger
+		}
+		completion_reward = {
+			country_event = { id = Du_So_21.1 hours = 12 }
+		}
+	}
+	focus = {
+		id = FUL_Ban_Viet_Settlements
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 25 }
+				indochina_struggle_grant_pro_ethnic = yes
+			}
+		}
+		icon = GFX_FUL_Ban_Viet_Settlements
+		cost = 2
+		relative_position_id = FUL_ToaAn_PhongTuc_Thuong
+		prerequisite = {
+			focus = FUL_ToaAn_PhongTuc_Thuong
+		}
+		mutually_exclusive = {
+			focus = FUL_Limit_Viet_Settlements
+		}
+		ai_will_do = {
+			factor = 35
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_stability = 0.20
+			add_manpower = -50000
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = FRA
+						original_tag = VIE
+					}
+				}
+				add_opinion_modifier = {
+					target = FUL
+					modifier = large_decrease
+				}
+				reverse_add_opinion_modifier = {
+					target = PREV
+					modifier = large_decrease
+				}
+			}
+		}
+	}
+	focus = {
+		id = FUL_DaLat_Returned
+		completion_reward = {
+		}
+		icon = GFX_FUL_DaLat_Returned
+		cost = 2
+		relative_position_id = FUL_Ban_Viet_Settlements
+		prerequisite = {
+			focus = FUL_Ban_Viet_Settlements
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			transfer_state = 1757
+		}
+	}
+	focus = {
+		id = FUL_Remain_Autonomous
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 25 }
+				indochina_struggle_grant_pro_ethnic = yes
+				set_temp_variable = { indochina_phase_amount = 50 }
+				indochina_struggle_deescalate = yes
+			}
+		}
+		icon = GFX_FUL_Remain_Autonomous
+		cost = 2
+		relative_position_id = FUL_DaLat_Returned
+		prerequisite = {
+			focus = FUL_DaLat_Returned
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_political_power = 100
+			add_opinion_modifier = {
+				target = VIE
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = VIE
+				modifier = small_increase
+			}
+			load_focus_tree = generic_focus
+		}
+	}
+
+	focus = {
+		id = FUL_Autonomous_Republic
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 50 }
+				indochina_struggle_grant_pro_ethnic = yes
+				set_temp_variable = { indochina_phase_amount = 50 }
+				indochina_struggle_deescalate = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_Diplomacy_33
+		cost = 2
+		x = 13
+		y = 0
+		allow_branch = {
+			has_country_flag = FUL_FRA_flag
+			NOT = {
+				has_country_flag = FUL_CuongDe_flag
+			}
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 250
+			add_state_core = 1757
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = VIE
+						original_tag = VIN
+						original_tag = NLF
+					}
+				}
+				add_opinion_modifier = {
+					target = FUL
+					modifier = large_decrease
+				}
+				reverse_add_opinion_modifier = {
+					target = PREV
+					modifier = large_decrease
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = FRA
+						original_tag = USA
+					}
+				}
+				add_opinion_modifier = {
+					target = FUL
+					modifier = medium_increase
+				}
+				reverse_add_opinion_modifier = {
+					target = PREV
+					modifier = medium_increase
+				}
+			}
+			country_event = { id = Autonomous_FUL_Republic.1 days = 1 }
+			news_event = Autonomous_FUL_Republic.0
+		}
+	}
+	focus = {
+		id = FUL_Combat_CuongDe_Influence
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_pro_ethnic = yes
+			}
+		}
+		icon = GFX_VIE_Sideline_CuongDe_Ambitions
+		cost = 2
+		relative_position_id = FUL_Autonomous_Republic
+		prerequisite = {
+			focus = FUL_Autonomous_Republic
+		}
+		x = -3
+		y = 1
+		completion_reward = {
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = VIE
+						original_tag = FUL
+					}
+				}
+				country_event = { id = Combat_CuongDe.1 hours = 12 }
+			}
+		}
+	}
+	focus = {
+		id = FUL_Catholic_Missionaries
+		completion_reward = {
+		}
+		icon = GFX_usa_50_stir_unrest_north_vietnamese_catholics
+		cost = 2
+		relative_position_id = FUL_Combat_CuongDe_Influence
+		prerequisite = {
+			focus = FUL_Combat_CuongDe_Influence
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			add_stability = -0.2
+			add_timed_idea = {
+				idea = religoius_tensions
+				days = 120
+			}
+			set_variable = { THIS.idea_len_@token:religoius_tensions = 120 }
+			set_variable = { THIS.idea_date_@token:religoius_tensions = global.num_days }
+		}
+	}
+	focus = {
+		id = FUL_Recruit_FireWater_Kings
+		completion_reward = {
+		}
+		icon = GFX_FUL_FireWater_Kings
+		cost = 2
+		relative_position_id = FUL_Autonomous_Republic
+		prerequisite = {
+			focus = FUL_Autonomous_Republic
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			country_event = { id = FireWater_Kings.1 hours = 12 }
+		}
+	}
+	focus = {
+		id = FUL_Preserve_Local_Religions
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Other_8
+		cost = 2
+		relative_position_id = FUL_Recruit_FireWater_Kings
+		prerequisite = {
+			focus = FUL_Recruit_FireWater_Kings
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			add_stability = 0.05
+			every_owned_state = {
+				add_to_variable = {
+					ReligionTraditionalEastern = 20
+				}
+				add_to_variable = {
+					ReligionChristianityCatholic = -10
+				}
+				add_to_variable = {
+					ReligionBuddhismMahayana = -10
+				}
+				add_state_modifier = {
+					modifier = {
+						recruitable_population_factor = 0.5
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = FUL_Common_Identity
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_13
+		cost = 2
+		relative_position_id = FUL_Recruit_FireWater_Kings
+		prerequisite = {
+			focus = FUL_Combat_CuongDe_Influence
+		}
+		prerequisite = {
+			focus = FUL_Recruit_FireWater_Kings
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			add_manpower = 5000
+			add_opinion_modifier = {
+				target = VIN
+				modifier = medium_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = VIN
+				modifier = medium_increase
+			}
+		}
+	}
+	focus = {
+		id = FUL_Promote_Rade_French
+		completion_reward = {
+		}
+		icon = GFX_usa_50_diplo_assurances_to_france
+		cost = 2
+		relative_position_id = FUL_Common_Identity
+		prerequisite = {
+			focus = FUL_Common_Identity
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			capital_scope = {
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 0.10
+				uses = 2
+				category = industry
+			}
+			increase_education_rate = yes
+			set_temp_variable = { money_to_gain = -0.3 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = FUL_Total_Independence
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 50 }
+				indochina_struggle_grant_pro_ethnic = yes
+				set_temp_variable = { indochina_phase_amount = 50 }
+				indochina_struggle_escalate = yes
+			}
+		}
+		icon = GFX_usa_50_france_speeds_up_decolonization
+		cost = 2
+		relative_position_id = FUL_Promote_Rade_French
+		prerequisite = {
+			focus = FUL_Promote_Rade_French
+		}
+		mutually_exclusive = {
+			focus = FUL_Join_French_Community
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = { is_subject_of = VIE }
+				VIE = {
+					set_autonomy = {
+						target = FUL
+						autonomy_state = autonomy_free
+						end_wars = no
+						end_civil_wars = no
+					}
+				}
+			}
+			else_if = {
+				limit = { is_subject_of = FRA }
+				FRA = {
+					set_autonomy = {
+						target = FUL
+						autonomy_state = autonomy_free
+						end_wars = no
+						end_civil_wars = no
+					}
+				}
+			}
+			leave_faction = yes
+			remove_ideas = State_of_Vietnam_Faction
+			add_opinion_modifier = {
+				target = USA
+				modifier = medium_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = USA
+				modifier = medium_increase
+			}
+		}
+	}
+	focus = {
+		id = FUL_Join_French_Community
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 25 }
+				indochina_struggle_grant_pro_france = yes
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_pro_ethnic = yes
+				set_temp_variable = { indochina_phase_amount = 50 }
+				indochina_struggle_deescalate = yes
+			}
+		}
+		icon = GFX_VIE_Beg_France_Intervention
+		cost = 2
+		relative_position_id = FUL_Promote_Rade_French
+		prerequisite = {
+			focus = FUL_Promote_Rade_French
+		}
+		mutually_exclusive = {
+			focus = FUL_Total_Independence
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = FRA
+						is_subject_of = FRA
+					}
+				}
+				add_opinion_modifier = {
+					target = FUL
+					modifier = medium_increase
+				}
+				reverse_add_opinion_modifier = {
+					target = PREV
+					modifier = medium_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = FUL_Demand_DaLat
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Diplomacy_34
+		cost = 2
+		relative_position_id = FUL_Autonomous_Republic
+		prerequisite = {
+			focus = FUL_Autonomous_Republic
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			country_event = { id = DaLat_Question.1 hours = 12 }
+		}
+	}
+	focus = {
+		id = FUL_DaLat_Capital
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_32
+		cost = 2
+		relative_position_id = FUL_Demand_DaLat
+		prerequisite = {
+			focus = FUL_Demand_DaLat
+		}
+		mutually_exclusive = {
+			focus = FUL_BaoLoc_Capital
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			set_capital = {
+				state = 1757
+				remember_old_capital = yes
+			}
+			1757 = {
+				Upgrade_State_effect_0 = yes
+				add_victory_points = {
+					province = 16523
+					value = 10
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { money_to_gain = -0.3 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = FUL_BaoLoc_Capital
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_27
+		cost = 2
+		relative_position_id = FUL_Demand_DaLat
+		prerequisite = {
+			focus = FUL_Demand_DaLat
+		}
+		mutually_exclusive = {
+			focus = FUL_DaLat_Capital
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			set_capital = {
+				state = 982
+				remember_old_capital = yes
+			}
+			982 = {
+				Upgrade_State_effect_0 = yes
+				add_victory_points = {
+					province = 13713
+					value = 10
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { money_to_gain = -0.3 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = FUL_Fortify_VIE_Border
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_pro_ethnic = yes
+				set_temp_variable = { indochina_phase_amount = 25 }
+				indochina_struggle_escalate = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_Military_7
+		cost = 2
+		relative_position_id = FUL_Demand_DaLat
+		prerequisite = {
+			focus = FUL_Demand_DaLat
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			division_template = {
+				name = "Gardes-Frontières Montagnards"
+				division_names_group = VIE_NAT_01
+				#template_counter = 249
+				priority = 1
+				is_locked = yes
+
+				regiments = {
+					mountaineers = { x = 0 y = 0 }
+					mountaineers = { x = 0 y = 1 }
+					mountaineers = { x = 1 y = 0 }
+					mountaineers = { x = 1 y = 1 }
+					motorized_infantry = { x = 2 y = 0 }
+				}
+				support = {
+					signal_company = { x = 0 y = 0 }
+					field_hospital = { x = 1 y = 0 }
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"1st Gardes-Frontières Montagnards\" division_template = \"Gardes-Frontières Montagnards\" start_experience_factor = 0.2"
+					owner = FUL
+				}
+			}
+			every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+						limit_to_border_country = VIE
+					}
+				}
+			}
+			add_opinion_modifier = {
+				target = VIE
+				modifier = small_decrease
+			}
+			reverse_add_opinion_modifier = {
+				target = VIE
+				modifier = small_decrease
+			}
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = FRA
+						original_tag = USA
+					}
+				}
+				country_event = { id = Militarize_Viet_Border.1 hours = 12 }
+			}
+		}
+	}
+
+	focus = {
+		id = FUL_DanVuong_Model
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Established_DanVuong_Model
+		cost = 2
+		x = 10
+		y = 0
+		allow_branch = {
+			has_country_flag = FUL_CuongDe_flag
+			NOT = {
+				has_country_flag = FUL_FRA_flag
+			}
+		}
+		completion_reward = {
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = VIE
+						original_tag = FUL
+					}
+				}
+				country_event = { id = FUL_DanVuong_Model.1 hours = 12 }
+			}
+		}
+	}
+	focus = {
+		id = FUL_NamHung_Tour
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_49
+		cost = 2
+		relative_position_id = FUL_DanVuong_Model
+		prerequisite = {
+			focus = FUL_DanVuong_Model
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = VIE
+						original_tag = FUL
+					}
+				}
+				country_event = { id = FUL_DanVuong_Model.2 hours = 12 }
+			}
+		}
+	}
+	focus = {
+		id = FUL_Emergency_Military_Gov
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Military_42
+		cost = 2
+		relative_position_id = FUL_NamHung_Tour
+		prerequisite = {
+			focus = FUL_NamHung_Tour
+		}
+		mutually_exclusive = {
+			focus = FUL_Strengthen_FUL_Committee
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			VIE = {
+				random_army_leader = {
+					limit = {
+						NOT = {
+							is_field_marshal = yes
+							is_character = CCC_Tran_Quang_Vinh
+							is_character = VIE_Ngo_Dinh_Nhu
+						}
+					}
+					set_nationality = FUL
+					add_country_leader_role = {
+						promote_leader = yes
+						country_leader = {
+							ideology = DanVuong_Model
+						}
+					}
+				}
+			}
+			set_politics = {
+				ruling_party = democratic
+				elections_allowed = no
+				long_name = "Ban-Tai-Thiet Kien-Quoc Quan"
+				name = "BTT-KQ-Q"
+			}
+		}
+	}
+	focus = {
+		id = FUL_Strengthen_FUL_Committee
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Research_13
+		cost = 2
+		relative_position_id = FUL_NamHung_Tour
+		prerequisite = {
+			focus = FUL_NamHung_Tour
+		}
+		mutually_exclusive = {
+			focus = FUL_Emergency_Military_Gov
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 150
+			add_offsite_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+	}
+	focus = {
+		id = FUL_Combat_Illiteracy
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Research_3
+		cost = 2
+		relative_position_id = FUL_NamHung_Tour
+		prerequisite = {
+			focus = FUL_Emergency_Military_Gov
+			focus = FUL_Strengthen_FUL_Committee
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			982 = {
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 0.20
+				uses = 2
+				category = industry
+			}
+			increase_education_rate = yes
+		}
+	}
+	focus = {
+		id = FUL_Preserve_Tribal_Identity
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_pro_ethnic = yes
+			}
+		}
+		icon = GFX_Tribal_Vietminh_Hunts
+		cost = 2
+		relative_position_id = FUL_Combat_Illiteracy
+		prerequisite = {
+			focus = FUL_Combat_Illiteracy
+		}
+		mutually_exclusive = {
+			focus = FUL_Promote_Viet_Customs
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			add_stability = 0.20
+			add_manpower = -50000
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = FRA
+						original_tag = VIE
+					}
+				}
+				add_opinion_modifier = {
+					target = FUL
+					modifier = large_decrease
+				}
+				reverse_add_opinion_modifier = {
+					target = PREV
+					modifier = large_decrease
+				}
+			}
+		}
+	}
+	focus = {
+		id = FUL_Remain_Autonomous_CD
+		completion_reward = {
+		}
+		icon = GFX_FUL_Remain_Autonomous
+		cost = 2
+		relative_position_id = FUL_Preserve_Tribal_Identity
+		prerequisite = {
+			focus = FUL_Preserve_Tribal_Identity
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			add_political_power = 100
+			add_opinion_modifier = {
+				target = VIE
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = VIE
+				modifier = small_increase
+			}
+			load_focus_tree = generic_focus
+		}
+	}
+	focus = {
+		id = FUL_Preserve_FireWater_Kings
+		completion_reward = {
+		}
+		icon = GFX_FUL_FireWater_Kings
+		cost = 2
+		relative_position_id = FUL_Combat_Illiteracy
+		prerequisite = {
+			focus = FUL_Combat_Illiteracy
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			country_event = { id = FireWater_Kings.1 hours = 12 }
+		}
+	}
+	focus = {
+		id = FUL_Promote_Viet_Customs
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_pro_independence = yes
+				set_temp_variable = { ic_award = -8 }
+				indochina_struggle_grant_pro_ethnic = yes
+			}
+		}
+		icon = GFX_Vietnamization
+		cost = 2
+		relative_position_id = FUL_Combat_Illiteracy
+		prerequisite = {
+			focus = FUL_Combat_Illiteracy
+		}
+		mutually_exclusive = {
+			focus = FUL_Preserve_Tribal_Identity
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_stability = 0.10
+			add_manpower = -25000
+			add_opinion_modifier = {
+				target = VIE
+				modifier = medium_decrease
+			}
+			reverse_add_opinion_modifier = {
+				target = VIE
+				modifier = medium_decrease
+			}
+		}
+	}
+	focus = {
+		id = FUL_Prepare_Reannexation
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 25 }
+				indochina_struggle_grant_pro_independence = yes
+				set_temp_variable = { ic_award = -15 }
+				indochina_struggle_grant_pro_ethnic = yes
+			}
+		}
+		icon = GFX_usa_50_rig_vietnamese_elections
+		cost = 2
+		relative_position_id = FUL_Promote_Viet_Customs
+		prerequisite = {
+			focus = FUL_Promote_Viet_Customs
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			country_event = { id = CuongDe_Annexation.1 hours = 12 }
+		}
+	}
+
+	focus = {
+		id = FUL_HoiDong_KinhTe_Thuong
+		completion_reward = {
+		}
+		icon = GFX_FUL_HoiDong_KinhTe_Thuong
+		cost = 2
+		x = 2
+		y = 0
+		completion_reward = {
+			country_event = { id = FUL_Econ_Committee.1 hours = 12 }
+		}
+	}
+	focus = {
+		id = FUL_Allow_FUL_Landownership
+		completion_reward = {
+		}
+		icon = GFX_FUL_Allow_FUL_Landownership
+		cost = 2
+		relative_position_id = FUL_HoiDong_KinhTe_Thuong
+		prerequisite = {
+			focus = FUL_HoiDong_KinhTe_Thuong
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			set_temp_variable = { money_to_gain = 0.05 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = FUL_Modernize_DaLat_PhanRang_Line
+		completion_reward = {
+		}
+		icon = GFX_FUL_Modernize_DaLat_PhanRang_Line
+		cost = 2
+		relative_position_id = FUL_HoiDong_KinhTe_Thuong
+		prerequisite = {
+			focus = FUL_HoiDong_KinhTe_Thuong
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			set_temp_variable = { money_to_gain = -0.25 }
+			add_money_with_tooltip_effect = yes
+			add_equipment_to_stockpile = {
+				type = train_equipment
+				amount = 5
+				producer = JAP
+			}
+			1757 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+
+		}
+	}
+	focus = {
+		id = FUL_Expand_Tribal_Farms
+		completion_reward = {
+		}
+		icon = GFX_FUL_Expand_Tribal_Farms
+		cost = 2
+		relative_position_id = FUL_Allow_FUL_Landownership
+		prerequisite = {
+			focus = FUL_Allow_FUL_Landownership
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			set_temp_variable = { money_to_gain = -0.25 }
+			add_money_with_tooltip_effect = yes
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = FUL_Modernize_Dirt_Roads
+		completion_reward = {
+		}
+		icon = GFX_FUL_Modernize_Dirt_Road
+		cost = 2
+		relative_position_id = FUL_Modernize_DaLat_PhanRang_Line
+		prerequisite = {
+			focus = FUL_Modernize_DaLat_PhanRang_Line
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { money_to_gain = -0.2 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = FUL_Electrify_FUL
+		completion_reward = {
+		}
+		icon = GFX_FUL_Electrify_FUL
+		cost = 2
+		relative_position_id = FUL_HoiDong_KinhTe_Thuong
+		prerequisite = {
+			focus = FUL_Expand_Tribal_Farms
+		}
+		prerequisite = {
+			focus = FUL_Modernize_Dirt_Roads
+		}
+		x = 0
+		y = 3
+		completion_reward = {
+			add_stability = 0.05
+			982 = {
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 0.20
+				uses = 2
+				category = industry
+			}
+			add_tech_bonus = {
+				name = electronics_bonus
+				bonus = 0.20
+				uses = 2
+				category = computing_tech
+			}
+			set_temp_variable = { money_to_gain = -0.35 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+
+	focus = {
+		id = FUL_College_Sabbatier
+		completion_reward = {
+		}
+		icon = GFX_FUL_College_sabbatier
+		cost = 2
+		x = 6
+		y = 0
+		completion_reward = {
+			add_research_slot = 1
+			1757 = {
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { money_to_gain = -0.1 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = FUL_Mandatory_Viet_Classes
+		completion_reward = {
+		}
+		icon = GFX_FUL_Mandatory_Viet_Classes
+		cost = 2
+		relative_position_id = FUL_College_Sabbatier
+		prerequisite = {
+			focus = FUL_College_Sabbatier
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_stability = -0.05
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 0.20
+				uses = 2
+				category = industry
+			}
+		}
+	}
+
+	focus = {
+		id = FUL_Colonel_Massu_Proposal
+		completion_reward = {
+		}
+		icon = GFX_FUL_Colonel_Massu_Proposal
+		cost = 3
+		x = 2
+		y = 5
+		allow_branch = {
+			NOT = { has_country_flag = Accepted_Massau_Proposal }
+		}
+		available = {
+			NOT = { has_country_flag = Rejected_Massau_Proposal }
+		}
+		select_effect = {
+			country_event = Colonel_Massau.1
+		}
+		completion_reward = {
+			add_stability = -0.10
+			add_ideas = ethnic_conflict
+			random_owned_controlled_state = {
+				add_resource = {
+					type = oil
+					amount = 20
+				}
+			}
+		}
+	}
+	focus = {
+		id = FUL_French_Colonial_Investment
+		completion_reward = {
+		}
+		icon = GFX_FUL_French_Colonial_Investment
+		cost = 2
+		relative_position_id = FUL_Colonel_Massu_Proposal
+		prerequisite = {
+			focus = FUL_Colonel_Massu_Proposal
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			FUL = { country_event = { id = French_Econ_Aid.1 hours = 12 } }
+		}
+	}
+	focus = {
+		id = FUL_Settle_FRA_Veterans
+		completion_reward = {
+		}
+		icon = GFX_FUL_Settle_FRA_Veterans
+		cost = 2
+		relative_position_id = FUL_Colonel_Massu_Proposal
+		prerequisite = {
+			focus = FUL_Colonel_Massu_Proposal
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			982 = {
+				set_variable = {
+					culture^3 = 147
+					tooltip = FRA_Lamdong_Settlers_tt
+				}
+			}
+			add_manpower = 20000
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = FUL_Central_Highland_Railway
+		completion_reward = {
+		}
+		icon = GFX_FUL_Central_Highland_Railways
+		cost = 2
+		relative_position_id = FUL_Colonel_Massu_Proposal
+		prerequisite = {
+			focus = FUL_French_Colonial_Investment
+		}
+		prerequisite = {
+			focus = FUL_Settle_FRA_Veterans
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			VIE = { country_event = { id = Central_Highland_Railway.1 hours = 12 } }
+		}
+	}
+	focus = {
+		id = FUL_Michelin_Investments
+		completion_reward = {
+		}
+		icon = GFX_FUL_Michelin_Investments
+		cost = 2
+		relative_position_id = FUL_Central_Highland_Railway
+		prerequisite = {
+			focus = FUL_Central_Highland_Railway
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = oil
+					amount = 10
+				}
+			}
+			set_temp_variable = { money_to_gain = 0.05 }
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Michelin_Unlocked
+			custom_effect_tooltip = Enable_Michelin_Company_tt
+		}
+	}
+
+	focus = {
+		id = FUL_Tiraillerus_Battalions
+		completion_reward = {
+		}
+		icon = GFX_FUL_Tiraillerus_Battalions
+		cost = 2
+		x = 16
+		y = 0
+		offset = {
+			x = 5
+			trigger = {
+				has_country_flag = FUL_FRA_flag
+				NOT = { has_country_flag = FUL_CuongDe_flag }
+			}
+		}
+		completion_reward = {
+			add_manpower = 5000
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			country_event = { id = FUL_Armed_Forces.1 hours = 12 }
+		}
+	}
+	focus = {
+		id = FUL_Security_Unit
+		completion_reward = {
+		}
+		icon = GFX_FUL_Security_Unit
+		cost = 2
+		relative_position_id = FUL_Tiraillerus_Battalions
+		prerequisite = {
+			focus = FUL_Tiraillerus_Battalions
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			division_template = {
+				name = "Su-Doan Tu-Ve Xu-Thoung"
+				division_names_group = VIE_MIL_01
+				#template_counter = 249
+				priority = 1
+				is_locked = yes
+
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 1 y = 0 }
+					motorized_infantry = { x = 1 y = 1 }
+				}
+				support = {
+					signal_company = { x = 0 y = 0 }
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"1st Su-Doan Tu-Ve Xu-Thoung\" division_template = \"Su-Doan Tu-Ve Xu-Thoung\" start_experience_factor = 0.2"
+					owner = FUL
+				}
+			}
+			set_temp_variable = { money_to_gain = -0.05 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = FUL_Saigon_Military_Aid
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_pro_independence = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_Military_19
+		cost = 2
+		relative_position_id = FUL_Tiraillerus_Battalions
+		prerequisite = {
+			focus = FUL_Tiraillerus_Battalions
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			VIE = { country_event = { id = FUL_Armed_Forces.2 hours = 12 } }
+			custom_effect_tooltip = if_they_accept
+			effect_tooltip = {
+				add_manpower = 1000
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 2000
+					producer = VIE
+				}
+				add_equipment_to_stockpile = {
+					type = motorized_equipment
+					amount = 50
+					producer = FRA
+				}
+				add_opinion_modifier = {
+					target = VIE
+					modifier = medium_increase
+				}
+				reverse_add_opinion_modifier = {
+					target = VIE
+					modifier = medium_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = FUL_Tribal_Vietminh_Hunts
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 25 }
+				indochina_struggle_grant_pro_ethnic = yes
+				set_temp_variable = { ic_award = -15 }
+				indochina_struggle_grant_communist = yes
+				set_temp_variable = { indochina_phase_amount = 50 }
+				indochina_struggle_escalate = yes
+			}
+		}
+		icon = GFX_FUL_Tribal_Vietminh_Hunts
+		cost = 2
+		relative_position_id = FUL_Tiraillerus_Battalions
+		prerequisite = {
+			focus = FUL_Tiraillerus_Battalions
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			unlock_decision_tooltip = FUL_VietMinh_War_decision
+		}
+	}
+}

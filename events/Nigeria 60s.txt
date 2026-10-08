@@ -1,0 +1,2474 @@
+# KRCW (build/patch_residue.py): 76 OTL events dropped while KRCW_active
+add_namespace = nga60
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.1
+ 	immediate = { }
+	title = nga60.1.t2
+	desc = nga60.1.d
+ 	immediate = {
+		hidden_effect = {
+			1404 = {
+				set_demilitarized_zone = yes
+			}
+			1014 = {
+				set_demilitarized_zone = yes
+			}
+			set_country_flag = westerncrisis
+		}
+		1404 = {
+			damage_building = {
+			type = infrastructure
+			damage = 1
+			}
+			damage_building = {
+			type = industrial_complex
+			damage = 1
+			}
+			add_manpower = -300
+		}
+		1014 = {
+			damage_building = {
+			type = infrastructure
+			damage = 1
+			}
+			damage_building = {
+			type = industrial_complex
+			damage = 1
+			}
+			add_manpower = -300
+		}
+ 	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nga60.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.2
+ immediate = { }
+	title = nga60.2.t2
+	desc = nga60.2.d
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nga60.2.a2
+	}
+	option = {
+		name = nga60.2.b2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.3
+ 	immediate = { }
+	title = nga60.3.t2
+	desc = nga60.3.d2
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		complete_national_focus = NGA_boycott_the_fifa_world_cup
+		news_event = nga60.4
+	}
+	option = {
+		name = nga60.3.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.4
+ 	immediate = { }
+	title = nga60.4.t2
+	desc = nga60.4.d
+	picture = GFX_1966boycott
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = nga60.4.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.5
+ 	immediate = { }
+	title = nga60.5.t2
+	desc = nga60.5.d
+	picture = GFX_preparedtodie
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = nga60.5.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.6
+ 	immediate = { }
+	title = nga60.6.t2
+	desc = nga60.6.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			create_country_leader = {
+				name = "Tunji Otegbeye"
+				picture = "Tunji_Otegbeye.dds"
+				desc = "POLITICS_TUNJI_OTEGBEYE_DESC"
+				ideology = stalinism
+				traits = {
+					trade_union_leader
+					hardline_old_left
+					student_protest_organizer
+					medical_doctor
+				}
+			}
+			set_party_name = { 
+				ideology = communism
+				long_name = "Socialist Workers and Farmers Party of Nigeria" 
+				name = "SWFPN"
+			}
+			add_popularity = {
+				ideology = communism
+				popularity = 0.5
+			}
+		}
+	}
+
+	option = {
+		name = nga60.6.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.7
+ 	immediate = { }
+	title = nga60.7.t2
+	desc = nga60.7.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		custom_effect_tooltip = NGA.60.tt.14
+		custom_effect_tooltip = NGA.60.tt.11
+		custom_effect_tooltip = NGA.60.tt.12
+		custom_effect_tooltip = NGA.60.tt.13
+		hidden_effect = {
+			set_country_flag = the_coup_of_the_five_majors
+			add_country_leader_role = {
+				Character = NGA_Chukwuma_Kaduna_Nzeogwu
+				Promote_leader = yes
+				Country_leader = {
+					desc = "POLITICS_CHUKWUMA_KADUNA_NZEOGWU_DESC"
+					ideology = military_junta
+					traits = {
+						northern_familiar_igbo
+						overly_optimistic
+						igbo_favortist
+					}
+				}
+			}
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.2
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.1
+			}
+			set_party_name = { 
+				ideology = neutrality
+				long_name = "Junta of the Five Majors" 
+				name = "J-FM"
+			}
+			set_politics = {
+				ruling_party = neutrality
+				last_election = "1945.1.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Nnamdi Azikiwe"
+				picture = "Nnamdi_Azikiwe.dds"
+				desc = "POLITICS_NNAMDI_AZIKIWE_DESC"
+				ideology = pan_africanism
+				traits = {
+					father_of_nigerian_nationalism
+					former_rigorous_journalist
+					exceptionally_extensive_education_credentials
+					non_ethnic_favortist
+				}
+			}
+			set_party_name = { 
+				ideology = nationalist
+				long_name = "National Council of Nigeria and the Cameroons" 
+				name = "NCNC"
+			}
+			create_country_leader = {
+				name = "Shehu Shagari"
+				picture = "Shehu_Shagari_80s.dds"
+				ideology = social_democrat
+			}
+			set_party_name = { 
+				ideology = Social_Democratic
+				long_name = "National Party of Nigeria" 
+				name = "NPN"
+			}
+		}
+	}
+
+	option = {
+		name = nga60.7.a2
+		news_event = nga60.11
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.8
+ 	immediate = { }
+	title = nga60.8.t2
+	desc = nga60.8.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.8.a2
+		ai_chance = {
+			factor = 1
+
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 2
+			}
+		}
+		custom_effect_tooltip = NGA.60.tt.18
+		set_country_flag = free_northerners
+	}
+	option = {
+		name = nga60.8.b2
+		ai_chance = {
+			factor = 1
+		}
+		custom_effect_tooltip = NGA.60.tt.19
+		set_country_flag = inprisoned_northerners
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.9
+ 	immediate = { }
+	title = nga60.9.t2
+	desc = nga60.9.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		trigger = {has_country_flag = inprisoned_northerners}
+		name = nga60.9.a2
+		custom_effect_tooltip = NGA.60.tt.30
+		set_country_flag = northern_counter_coup_failed
+		hidden_effect = {
+			add_corps_commander_role = {
+				Character = NGA_Joseph_Achuzie 
+				traits = {  }
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+			}
+			add_corps_commander_role = {
+				Character = NGA_Victor_Banjo
+				traits = { trait_reckless }
+				skill = 1
+				attack_skill = 1
+				defense_skill = 1
+				planning_skill = 1
+				logistics_skill = 1
+				legacy_id = 129798
+			}
+
+		}
+	}
+	option = {
+		trigger = {has_country_flag = free_northerners}
+		name = nga60.9.b2
+		set_country_flag = northern_counter_coup_succeeded
+		retire_character = NGA_Johnson_Aguiyi_Ironsi
+		create_country_leader = {
+			name = "Nigerian Supreme Military Council"
+			picture = "Nigerian_Supreme_Military_Council.dds"
+			desc = "POLITICS_NSMC_DESC"
+			ideology = military_junta
+			traits = {
+				Hausa_Fulani_favortist
+			}
+		}
+		set_party_name = { 
+			ideology = neutrality
+			long_name = "Nigerian Supreme Military Council" 
+				name = "N-SMC"
+		}
+		news_event = nga60.12
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.10
+ 	immediate = { }
+	title = nga60.10.t2
+	desc = nga60.10.d2
+
+	is_triggered_only = yes
+	immediate = {
+		white_peace = CMR
+	}
+	option = {
+		name = nga60.10.a2
+		add_state_core = 1105
+		transfer_state = 1105
+	}
+	option = {
+		name = nga60.10.b2
+		puppet = BCR
+		hidden_effect = {
+			hidden_effect = {
+				BCR = {
+					transfer_state = 1105
+					set_politics = {
+						ruling_party = nationalist
+						last_election = "1945.1.1"
+						election_frequency = 48
+						elections_allowed = no
+					}
+					set_popularities = {
+						nationalist = 100					
+					}
+					set_cosmetic_tag = BCR_NGA
+				}
+			}
+		
+		}
+	}
+	option = {
+		name = nga60.10.c2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.11
+ 	immediate = { }
+	title = nga60.11.t2
+	desc = nga60.11.d
+	picture = GFX_fivemajorcoup
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = nga60.11.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.12
+ 	immediate = { }
+	title = nga60.12.t2
+	desc = nga60.12.d
+	picture = GFX_nigeriancountercoup
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = nga60.12.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.13
+ 	immediate = { }
+	title = nga60.13.t2
+	desc = nga60.13.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		add_ideas = one_party_state
+		hidden_effect = {
+			set_cosmetic_tag = NGA_NLA
+			create_country_leader = {
+				name = "Tunji Otegbeye"
+				picture = "Tunji_Otegbeye.dds"
+				desc = "POLITICS_TUNJI_OTEGBEYE_DESC"
+				ideology = stalinism
+				traits = {
+					trade_union_leader
+					hardline_old_left
+					student_protest_organizer
+					medical_doctor
+				}
+			}
+			set_party_name = { 
+				ideology = communism
+				long_name = "Socialist Workers and Farmers Party of Nigeria" 
+				name = "SWFPN"
+			}
+			set_politics = {
+				ruling_party = communism
+				last_election = "1945.1.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = communism
+				popularity = 0.25
+			}
+		}
+	}
+	option = {
+		name = nga60.13.a2
+		news_event = nga60.23
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.14
+ 	immediate = { }
+	title = nga60.14.t2
+	desc = nga60.14.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.14.a2
+		hidden_effect = {
+			set_country_flag = dynamic_party_wins
+			set_party_name = { 
+				ideology = socialist
+				long_name = "The Dynamic Party" 
+				name = "DP"
+			}
+			create_country_leader = {
+				name = "Chike Obi"
+				picture = "Chike_Obi.dds"
+				desc = "POLITICS_CHIKE_OBI_DESC"
+				ideology = kemalism
+				traits = {
+					mathematical_genius
+					the_nigerian_kemalist
+					radically_militaristic
+					non_ethnic_favortist
+				}
+			}
+			set_politics = {
+				ruling_party = socialist
+				last_election = "1945.1.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.2
+			}
+		}
+	}
+	option = {
+		name = nga60.14.b2
+		hidden_effect = {
+			set_country_flag = ncnc_wins
+			set_party_name = { 
+				ideology = nationalist
+				long_name = "National Council of Nigeria and the Cameroons" 
+				name = "NCNC"
+			}
+			create_country_leader = {
+				name = "Nnamdi Azikiwe"
+				picture = "Nnamdi_Azikiwe.dds"
+				desc = "POLITICS_NNAMDI_AZIKIWE_DESC"
+				ideology = pan_africanism
+				traits = {
+					father_of_nigerian_nationalism
+					former_rigorous_journalist
+					exceptionally_extensive_education_credentials
+					non_ethnic_favortist
+				}
+			}
+			set_politics = {
+				ruling_party = nationalist
+				last_election = "1945.1.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.3
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.15
+ 	immediate = { }
+	title = nga60.15.t2
+	desc = nga60.15.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		add_opinion_modifier = {
+			target = FRA
+			modifier = large_increase
+		}
+		FRA = {
+			add_opinion_modifier = {
+				target = NGA
+				modifier = large_increase
+			}
+		}
+	}
+	option = {
+		name = nga60.15.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.16
+ 	immediate = { }
+	title = nga60.16.t2
+	desc = nga60.16.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.16.a2
+		add_ideas = policy_religion_temp_3a
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.05
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.17
+ 	immediate = { }
+	title = nga60.17.t2
+	desc = nga60.17.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		add_political_power = 15
+		add_stability = 0.15
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.05
+		}
+	}
+	option = {
+		name = nga60.17.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.18
+ 	immediate = { }
+	title = nga60.18.t2
+	desc = nga60.18.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_flag = wafgov1
+				}
+				set_cosmetic_tag = NGA_WAF
+			}
+			GHA = {
+				GHA_Albert_Ocran = {
+					set_nationality = NGA
+				}
+				GHA_Akwasi_Afrifa = {
+					set_nationality = NGA
+				}
+				GHA_Joseph_Arthur_Ankrah = {
+					set_nationality = NGA
+				}
+				GHA_Ignatius_Kutu_Acheampong = {
+					set_nationality = NGA
+				}
+			}
+
+			if = {
+				limit = {
+					has_country_flag = wafnkrumah
+				}
+				create_country_leader = {
+					name = "Kwame Nkrumah"
+					desc = "POLITICS_KWAME_NKRUMAH_DESC"
+					picture = "gfx/leaders/GHA/Kwame_Nkrumah.dds"
+					ideology = african_socialism
+					traits = {
+						father_of_pan_africanism
+						vehemently_against_tribalism
+						danger_to_imperialism
+						quintessential_third_worldist
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = wafgov2
+				}
+				set_cosmetic_tag = NGA_WAF2
+			}
+			if = {
+				limit = {
+					has_country_flag = wafgov3
+				}
+				set_cosmetic_tag = NGA_WAF3
+			}
+			set_country_flag = west_african_federation
+			GHA = {
+				every_owned_state = {
+					add_core_of = NGA
+				}
+				country_event = nga60.61
+			}
+			GNA = {
+				every_owned_state = {
+					add_core_of = NGA
+				}
+				country_event = nga60.61
+			}
+			TOG = {
+				every_owned_state = {
+					add_core_of = NGA
+				}
+				country_event = nga60.61
+			}
+			VOL = {
+				every_owned_state = {
+					add_claim_by = NGA
+				}
+			}
+			DAH = {
+				every_owned_state = {
+					add_claim_by = NGA
+				}
+			}
+			IVO = {
+				every_owned_state = {
+					add_claim_by = NGA
+				}
+			}
+			MLI = {
+				every_owned_state = {
+					add_claim_by = NGA
+				}
+			}
+			LIB = {
+				every_owned_state = {
+					add_claim_by = NGA
+				}
+			}
+			SEN = {
+				every_owned_state = {
+					add_claim_by = NGA
+				}
+			}
+			SIE = {
+				every_owned_state = {
+					add_claim_by = NGA
+				}
+			}
+			GAM = {
+				every_owned_state = {
+					add_claim_by = NGA
+				}
+			}
+			1283 = {
+				add_claim_by = NGA
+			}
+			1284 = {
+				add_claim_by = NGA
+			}
+			296 = {
+				add_claim_by = NGA
+			}
+			1282 = {
+				add_claim_by = NGA
+			}
+			1383 = {
+				add_claim_by = NGA
+			}
+			1382 = {
+				add_claim_by = NGA
+			}
+			1281 = {
+				add_claim_by = NGA
+			}
+			557 = {
+				add_claim_by = NGA
+			}
+
+		}
+	}
+	option = {
+		name = nga60.18.a2
+		country_event = nga60.19
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.19
+ 	immediate = { }
+	title = nga60.19.t2
+	desc = nga60.19.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.19.a2
+		add_political_power = 10
+	}
+	option = {
+		name = nga60.19.b2
+		set_capital = { state = 274 }
+	}
+	option = {
+		name = nga60.19.c2
+		set_capital = { state = 774 }
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.20
+ 	immediate = { }
+	title = nga60.20.t2
+	desc = nga60.20.d
+	picture = GFX_westafricanfederation
+	major = yes
+
+	is_triggered_only = yes
+	option = {
+		name = nga60.20.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.21
+ 	immediate = { }
+	title = nga60.21.t2
+	desc = nga60.21.d
+	immediate = {
+		hidden_effect = {
+			give_guarantee = IVO
+			give_guarantee = SIE
+			give_guarantee = GNA
+			give_guarantee = GNB
+			give_guarantee = SEN
+			give_guarantee = CHA
+			give_guarantee = CMR
+			give_guarantee = CAR
+			give_guarantee = GAB
+			give_guarantee = RCG
+			give_guarantee = ETH
+			give_guarantee = KEN
+			give_guarantee = TZN
+			give_guarantee = RWA
+			give_guarantee = BRD
+			give_guarantee = ZAM
+			give_guarantee = MLW
+			give_guarantee = MAD
+			give_guarantee = BOT
+		}
+	}
+	is_triggered_only = yes
+
+
+	option = {
+		name = nga60.21.a2
+		news_event = nga60.22
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.22
+ 	immediate = { }
+	title = nga60.22.t2
+	desc = nga60.22.d
+	picture = GFX_africanmonroedoctrine
+	major = yes
+
+	is_triggered_only = yes
+	option = {
+		name = nga60.22.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.23
+ 	immediate = { }
+	title = nga60.23.t2
+	desc = nga60.23.d
+	picture = GFX_nigeriancommunist
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = nga60.23.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.24
+ 	immediate = { }
+	title = nga60.24.t2
+	desc = nga60.24.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+				declare_war_on = {
+					target = CMR
+					type = annex_everything
+				}
+				GHA = {
+					add_ai_strategy = {
+						type = support
+						id = "CMR" 
+						value = 200
+					}
+					add_ai_strategy = {
+						type = send_volunteers_desire
+						id = "CMR" 
+						value = 200
+					}
+				}
+				CUB = {
+					add_ai_strategy = {
+						type = support
+						id = "CMR" 
+						value = 200
+					}
+					add_ai_strategy = {
+						type = send_volunteers_desire
+						id = "CMR" 
+						value = 200
+					}
+				}
+				ETH = {
+					add_ai_strategy = {
+						type = support
+						id = "CMR" 
+						value = 200
+					}
+					add_ai_strategy = {
+						type = send_volunteers_desire
+						id = "CMR" 
+						value = 200
+					}
+				}
+				IRE = {
+					add_ai_strategy = {
+						type = support
+						id = "CMR" 
+						value = 200
+					}
+					add_ai_strategy = {
+						type = send_volunteers_desire
+						id = "CMR" 
+						value = 200
+					}
+				}
+				SWE = {
+					add_ai_strategy = {
+						type = support
+						id = "CMR" 
+						value = 200
+					}
+					add_ai_strategy = {
+						type = send_volunteers_desire
+						id = "CMR" 
+						value = 200
+					}
+				}
+				DOC = {
+					add_ai_strategy = {
+						type = support
+						id = "CMR" 
+						value = 200
+					}
+					add_ai_strategy = {
+						type = send_volunteers_desire
+						id = "CMR" 
+						value = 200
+					}
+				}
+				CMR = {
+					capital_scope = { 
+						create_unit = { division = "name = \"1st UN Peacekeepers Division\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = CMR } 
+						create_unit = { division = "name = \"2nd UN Peacekeepers Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = CMR } 
+						create_unit = { division = "name = \"3rd UN Peacekeepers Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = CMR } 
+						create_unit = { division = "name = \"4th UN Peacekeepers Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = CMR } 
+						create_unit = { division = "name = \"5th UN Peacekeepers Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = CMR } 
+						create_unit = { division = "name = \"6th UN Peacekeepers Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = CMR } 
+						create_unit = { division = "name = \"7th UN Peacekeepers Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = CMR } 
+						create_unit = { division = "name = \"8th UN Peacekeepers Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = CMR } 
+						create_unit = { division = "name = \"9th UN Peacekeepers Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = CMR } 
+						create_unit = { division = "name = \"10th UN Peacekeepers Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = CMR } 
+					}
+				}
+		}
+	}
+	
+	option = {
+		name = nga60.24.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.25
+ 	immediate = { }
+	title = nga60.25.t2
+	desc = nga60.25.d
+
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			white_peace = MLI
+			puppet = MLI
+			MLI = {
+				every_owned_state = {
+					add_core_of = NGA
+				}
+			}
+			MLI = {
+				set_politics = {
+					ruling_party = nationalist
+					last_election = "1960.1.1"
+					election_frequency = 48
+					elections_allowed = yes
+				}
+				set_popularities = { 
+					democratic = 0
+					communism = 12
+					fascism = 0
+					nationalist = 69
+					monarchism = 0
+					neutrality = 0
+					islamism = 0
+					radical_shiaism = 0
+					
+					Social_Democratic = 0
+					Social_Liberalism = 0
+					Salafism = 0
+					
+					Liberal_Conservatism = 19
+					
+					conservative = 0
+					Christian_Democratic = 0
+					socialist = 0
+					centrist = 0
+					liberal = 0
+					trotskyism = 0
+					maoism = 0
+					
+
+				}
+				create_country_leader = {
+					name = "Modibo Keïta"
+					picture = "Modibo_Keita.dds"
+					ideology = pan_africanism
+				}
+			}
+		}
+	}
+
+	option = {
+		name = nga60.25.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.26
+ 	immediate = { }
+	title = nga60.26.t2
+	desc = nga60.26.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+				declare_war_on = {
+					target = MLI
+					type = annex_everything
+				}
+				FRA = {
+					add_ai_strategy = {
+						type = support
+						id = "MLI" 
+						value = 200
+					}
+					add_ai_strategy = {
+						type = send_volunteers_desire
+						id = "MLI" 
+						value = 200
+					}
+				}
+				ISR = {
+					add_ai_strategy = {
+						type = support
+						id = "MLI" 
+						value = 200
+					}
+					add_ai_strategy = {
+						type = send_volunteers_desire
+						id = "MLI" 
+						value = 200
+					}
+				}
+				SAF = {
+					add_ai_strategy = {
+						type = support
+						id = "MLI" 
+						value = 200
+					}
+					add_ai_strategy = {
+						type = send_volunteers_desire
+						id = "MLI" 
+						value = 200
+					}
+				}
+				ZIM = {
+					add_ai_strategy = {
+						type = support
+						id = "MLI" 
+						value = 200
+					}
+					add_ai_strategy = {
+						type = send_volunteers_desire
+						id = "MLI" 
+						value = 200
+					}
+				}
+				MLI = {
+					capital_scope = { 
+						create_unit = { division = "name = \"1st Militia Division\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = MLI } 
+						create_unit = { division = "name = \"2nd Militia Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = MLI } 
+						create_unit = { division = "name = \"3rd Militia Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = MLI } 
+						create_unit = { division = "name = \"4th Militia Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = MLI } 
+						create_unit = { division = "name = \"5th Militia Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = MLI } 
+						create_unit = { division = "name = \"6th Militia Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = MLI } 
+						create_unit = { division = "name = \"7th Militia Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = MLI } 
+						create_unit = { division = "name = \"8th Militia Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = MLI } 
+						create_unit = { division = "name = \"9th Militia Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = MLI } 
+						create_unit = { division = "name = \"10th Militia Regiment\" division_template = \"UN Peacekeepers\" start_experience_factor = 1.0" owner = MLI } 
+					}
+				}
+		}
+	}
+
+	option = {
+		name = nga60.26.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.27
+ 	immediate = { }
+	title = nga60.27.t2
+	desc = nga60.27.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		NGA = {
+			transfer_state = 1383
+			transfer_state = 1382
+			transfer_state = 1381
+			transfer_state = 557
+			add_state_core = 1383
+			add_state_core = 1382
+			add_state_core = 1381
+			add_state_core = 557
+		}
+		MOR = {
+			puppet = MRT
+		}
+		set_popularities = { 
+			democratic = 0
+			communism = 6
+			fascism = 0
+			nationalist = 0
+			monarchism = 0
+			neutrality = 0
+			islamism = 6
+			radical_shiaism = 0
+			
+			Social_Democratic = 0
+			Social_Liberalism = 0
+			Salafism = 0
+			
+			Liberal_Conservatism = 22
+			
+			conservative = 0
+			Christian_Democratic = 0
+			socialist = 66
+			centrist = 0
+			liberal = 0
+			trotskyism = 0
+			maoism = 0
+			
+
+		}
+
+		set_politics = {
+			ruling_party = socialist
+			last_election = "1945.1.1"
+			election_frequency = 48
+			elections_allowed = no
+		}
+	}
+
+	option = {
+		name = nga60.27.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.28
+ 	immediate = { }
+	title = nga60.28.t2
+	desc = nga60.28.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.28.a2
+		hidden_effect = {
+			country_event = nga60.29
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.29
+ 	immediate = { }
+	title = nga60.29.t2
+	desc = nga60.29.d
+
+	is_triggered_only = yes	
+	fire_only_once = yes	
+	immediate = {
+		hidden_effect = {
+			BFR = {
+				transfer_state = 1402
+				transfer_state = 1401
+				transfer_state = 1122
+				load_oob = BFR_1949
+				
+			}
+			NGA = {
+				NGA_Humphrey_Chukwuka = {
+					set_nationality = BFR
+				}
+				NGA_Odumegwu_Ojukwu = {
+					set_nationality = BFR
+				}
+				NGA_Joseph_Achuzie  = {
+					set_nationality = BFR
+				}
+				NGA_Victor_Banjo = {
+					set_nationality = BFR
+				}
+			}
+			BFR = {
+				set_politics = {
+					ruling_party = nationalist
+					elections_allowed = no
+				}
+				add_country_leader_role = {
+					Character = NGA_Odumegwu_Ojukwu
+					Promote_leader = yes
+					Country_leader = {
+						desc = "POLITICS_C_ODUMEGWU_OJUKWU_DESC"
+						traits = {
+							the_face_of_biafra
+							professional_historian
+							sympathetic_and_compassionate
+						}
+						ideology = nationalist_ideology
+					}
+				}
+			}
+
+			load_oob = NGA_medium_conscripts
+			1404 = {
+				set_demilitarized_zone = no
+			}
+			1014 = {
+				set_demilitarized_zone = no
+			}
+		}
+	}
+
+
+	option = {
+		name = nga60.29.a2
+		custom_effect_tooltip =  NGA.60.tt.40
+		BFR = {
+			change_tag_from = NGA
+		}
+		hidden_effect = {
+			NGA = {
+				news_event = nga60.30
+				country_event = nga60.31
+			}
+		}
+	}
+	option = {
+		name = nga60.29.b2
+		hidden_effect = {
+			news_event = nga60.30
+			country_event = nga60.31
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.30
+ 	immediate = { }
+	title = nga60.30.t2
+	desc = nga60.30.d
+	picture = GFX_biafranindependence
+	major = yes
+
+	is_triggered_only = yes
+	option = {
+		name = nga60.30.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.31
+ 	immediate = { }
+	title = nga60.31.t2
+	desc = nga60.31.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_global_flag = nigerian_civil_war
+		set_country_flag = biafran_war
+		hidden_effect = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				load_oob = NGA_1949
+			}
+		}
+		declare_war_on = {
+			target = BFR
+			type = annex_everything
+		}
+		BFR = {
+			activate_mission = NGA_Initial_Offensive
+			add_ideas = NGA_CW_Attack_Bonus_Level_10
+		}
+	}
+	option = {
+		name = nga60.31.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.32
+ 	immediate = { }
+	title = nga60.32.t2
+	desc = nga60.32.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			set_country_flag = DLT_rebellion
+			DLT = {
+				transfer_state = 1403
+				load_oob = DLT_1960
+				declare_war_on = {
+					target = NGA
+					type = annex_everything
+				}
+			}
+			load_oob = NGA_small_conscripts
+			1404 = {
+				set_demilitarized_zone = no
+			}
+			1014 = {
+				set_demilitarized_zone = no
+			}
+		}
+	}
+	option = {
+		name = nga60.32.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.33
+ 	immediate = { }
+	title = nga60.33.t2
+	desc = nga60.33.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.33.a2
+		country_event = nga60.34
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.34
+ 	immediate = { }
+	title = nga60.34.t2
+	desc = nga60.34.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			NGA_Murtala_Mohammed = {
+				set_nationality = HAS
+			}
+			NGA_Hassan_Katsina = {
+				set_nationality = HAS
+			}
+			NGA_Yakubu_Gowon = {
+				set_nationality = HAS
+			}
+
+			set_country_flag = hausaland_war
+			set_global_flag = nigerian_civil_war
+			1404 = {
+				set_demilitarized_zone = no
+			}
+			1014 = {
+				set_demilitarized_zone = no
+			}
+			HAS = {
+					drop_cosmetic_tag = yes
+					transfer_state = 1166
+					transfer_state = 1405
+					set_capital = { state = 1405 }
+					add_popularity = {
+						ideology = neutrality
+						popularity = 1
+					}
+					set_politics = {
+						ruling_party = neutrality
+						last_election = "1945.1.1"
+						election_frequency = 48
+						elections_allowed = no
+					}
+					load_oob = HAS_1960
+					NGA = {
+						NGA_Olusegun_Obasanjo = {
+							set_nationality = HAS
+						}
+						NGA_Ibrahim_Babangida = {
+							set_nationality = HAS
+						}
+					}
+					activate_mission = NGA_Initial_Offensive
+					add_ideas = NGA_CW_Attack_Bonus_Level_5
+			}
+			declare_war_on = {
+				target = HAS
+				type = annex_everything
+			}
+		}
+	}
+	option = {
+		name = nga60.34.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.35
+ 	immediate = { }
+	title = nga60.35.t2
+	desc = nga60.35.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.35.a2
+		NGA = {
+			country_event = nga60.36
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.36
+ 	immediate = { }
+	title = nga60.36.t2
+	desc = nga60.36.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.36.a2
+		set_country_flag = ethiopian_peace_talks_failed
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.37
+ 	immediate = { }
+	title = nga60.37.t2
+	desc = nga60.37.d
+
+	immediate = {
+		add_ideas = closed_economy
+		add_ideas = famine
+		add_manpower = -20000
+		set_country_flag = nigera_is_blockading_biafra
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.37.a2
+		news_event = nga60.38.d
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.38
+ 	immediate = { }
+	title = nga60.38.t2
+	desc = nga60.38.d
+	picture = GFX_biafranfamine
+	major = yes
+
+	is_triggered_only = yes
+	option = {
+		name = nga60.38.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.39
+ 	immediate = { }
+	title = nga60.39.t2
+	desc = nga60.39.d
+
+	immediate = {
+		1402 = {	
+			add_manpower = -700
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.39.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.40
+ 	immediate = { }
+	title = nga60.40.t2
+	desc = nga60.40.d
+
+	immediate = {
+		hidden_effect = {
+			add_country_leader_role = {
+				Character = NGA_Yakubu_Gowon
+				Promote_leader = yes
+				Country_leader = {
+					ideology = military_junta
+					desc = "POLITICS_YAKUBU_GOWON_DESC"
+					traits = {
+						well_educated_military_prodigy
+						politically_ignorant
+						ethnic_and_religious_minority
+						northern_favortist
+					}
+				}
+			}
+			add_ideas = NGA_anti_igbo_pogroms
+				every_army_leader = {
+					limit = {
+						has_id = 85446
+					}
+					add_unit_leader_trait = politically_connected
+				}
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.40.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.41
+ 	immediate = { }
+	title = nga60.41.t2
+	desc = nga60.41.d
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.41.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.42
+ 	immediate = { }
+	title = nga60.42.t2
+	desc = nga60.42.d
+	picture = GFX_yakubugowonnovictor
+	major = yes
+
+	is_triggered_only = yes
+	option = {
+		name = nga60.42.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.43
+ 	immediate = { }
+	title = nga60.43.t2
+	desc = nga60.43.d
+
+	immediate = {
+		hidden_effect = {
+			white_peace = BFR
+			annex_country = {
+				target = BFR
+				transfer_troops = no
+			}
+			white_peace = BNN
+			annex_country = {
+				target = BNN
+				transfer_troops = no
+			}
+			clr_global_flag  = nigerian_civil_war
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.43.a2
+		news_event = nga60.46
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.44
+ 	immediate = { }
+	title = nga60.44.t2
+	desc = nga60.44.d
+
+	immediate = {
+		hidden_effect = {
+			white_peace = HAS
+			annex_country = {
+				target = HAS
+				transfer_troops = no
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.44.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.45
+ 	immediate = { }
+	title = nga60.45.t2
+	desc = nga60.45.d
+	picture = GFX_kwaleoilfields
+	major = yes
+
+	is_triggered_only = yes
+	option = {
+		name = nga60.45.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.46
+ 	immediate = { }
+	title = nga60.46.t2
+	desc = nga60.46.d
+	picture = GFX_biafradefeated
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = nga60.46.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.47
+ 	immediate = { }
+	title = nga60.47.t2
+	desc = nga60.47.d
+
+	immediate = {
+		hidden_effect = {
+			white_peace = DLT
+			annex_country = {
+				target = DLT
+				transfer_troops = no
+			}
+		}
+		DLT_Isaac_Adaka_Boro = {
+			set_nationality = NGA
+		}
+		set_country_flag = dlt_defeated
+		clr_country_flag = DLT_rebellion
+	}
+
+	is_triggered_only = yes
+	option = {
+		name = nga60.47.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.48
+ 	immediate = { }
+	title = nga60.48.t2
+	desc = nga60.48.d
+
+	immediate = {
+		retire_character = DLT_Isaac_Adaka_Boro
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.48.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.49
+ 	immediate = { }
+	title = nga60.49.t2
+	desc = nga60.49.d
+
+	immediate = {
+		retire_character = NGA_Christopher_Welby_Everard
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.49.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.50
+ 	immediate = { }
+	title = nga60.50.t2
+	desc = nga60.50.d
+
+	immediate = {
+		add_stability = -0.01
+		add_political_power = -0.01
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.50.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.51
+ 	immediate = { }
+	title = nga60.51.t2
+	desc = nga60.51.d
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.51.a2
+		add_stability = 0.01
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.52
+ 	immediate = { }
+	title = nga60.52.t2
+	desc = nga60.52.d
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.52.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.53
+ 	immediate = { }
+	title = nga60.53.t2
+	desc = nga60.53.d
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.53.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.54
+ 	immediate = { }
+	title = nga60.54.t2
+	desc = nga60.54.d
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = nga60.54.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.55
+ 	immediate = { }
+	title = nga60.55.t2
+	desc = nga60.55.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = nga60.55.a2
+		set_capital = { state = 1122 }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.56
+ 	immediate = { }
+	title = nga60.56.t2
+	desc = nga60.56.d
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = nga60.56.a2
+		remove_ideas = martial_law
+		add_political_power = 100
+		country_event = nga60.58
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.57
+ 	immediate = { }
+	title = nga60.57.t2
+	desc = nga60.57.d
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = nga60.57.a2
+		hidden_effect = {
+			set_province_name = {
+				id = 2050
+				name = "Eko"
+			}
+			set_province_name = {
+				id = 14332
+				name = "Ubinu"
+			}
+			set_province_name = {
+				id = 14316
+				name = "Oroworukwo"
+			}
+			set_province_name = {
+				id = 14329
+				name = "Énugwú"
+			}
+			set_province_name = {
+				id = 14387
+				name = "Gwosh"
+			}
+		}
+	}
+	option = {
+		name = nga60.57.b2
+		hidden_effect = {
+			set_province_name = {
+				id = 2050
+				name = "Ilulumumba"
+			}
+			set_province_name = {
+				id = 14347
+				name = "Ilutunji"
+			}
+			set_province_name = {
+				id = 14372
+				name = "Ilustalin"
+			}
+			set_province_name = {
+				id = 14332
+				name = "Leninobodo"
+			}
+			set_province_name = {
+				id = 14329
+				name = "Nkrumahobodo"
+			}
+			set_province_name = {
+				id = 14316
+				name = "Engelobodo"
+			}
+			set_province_name = {
+				id = 14387
+				name = "Marxbirni"
+			}
+			set_province_name = {
+				id = 14393
+				name = "Maobirni"
+			}
+			set_province_name = {
+				id = 13936
+				name = "Tunjibirni"
+			}
+			set_province_name = {
+				id = 13628
+				name = "Kalinbirni"
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.58
+ 	immediate = { }
+	title = nga60.58.t2
+	desc = nga60.58.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = nga60.58.a2
+		set_capital = { state = 1406 }
+		country_event = nga60.57
+	}
+	option = {
+		name = nga60.58.b2
+		set_capital = { state = 1122 }
+		country_event = nga60.57
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.59
+ 	immediate = { }
+	title = nga60.59.t2
+	desc = nga60.59.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+
+	option = {
+		name = nga60.59.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.60
+ 	immediate = { }
+	title = nga60.60.t2
+	desc = nga60.60.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	immediate = {
+			hidden_effect = {
+				remove_country_leader_role = {
+					character = NGA_Chukwuma_Kaduna_Nzeogwu
+					ideology = military_junta
+				}
+				NGA_Chukwuma_Kaduna_Nzeogwu = {
+					set_nationality = BFR
+				}
+				add_country_leader_role = {
+					Character = NGA_Johnson_Aguiyi_Ironsi
+					Promote_leader = yes
+					Country_leader = {
+						desc = "POLITICS_JOHNSON_AGUIYI_IRONSI_DESC"
+						ideology = military_junta
+						traits = {
+							nigerias_first_native_major
+							the_crocodile
+							subject_of_anti_igbo_conspiracies
+							igbo_favortist
+						}
+					}
+				}
+				set_party_name = { 
+					ideology = neutrality
+					long_name = "Supreme Military Council" 
+					name = "SMC"
+				}
+			}
+	}
+
+	option = {
+		name = nga60.60.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.61
+ 	immediate = { }
+	title = nga60.61.t2
+	desc = nga60.61.d
+
+	is_triggered_only = yes
+	
+
+	option = {
+		name = nga60.61.a2
+		ai_chance = {
+			factor = 100
+		}
+		NGA = {
+			annex_country = {
+				target = ROOT
+				transfer_troops = yes
+			}
+		}
+		if = {
+			limit = {
+				is_ai = no
+			}
+			NGA = { change_tag_from = ROOT }
+		}
+	}
+	option = {
+		name = nga60.61.b2
+		trigger = {
+			is_ai = no
+		}
+		NGA = {
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = ROOT
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.62
+ 	immediate = { }
+	title = nga60.62.t2
+	desc = nga60.62.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = nga60.62.a2
+		custom_effect_tooltip = NGA.60.tt.36
+		set_country_flag = wafgov1
+		country_event = nga60.63
+	}
+	option = {
+		name = nga60.62.b2
+		custom_effect_tooltip = NGA.60.tt.37
+		set_country_flag = wafgov2
+		country_event = nga60.63
+	}
+	option = {
+		name = nga60.62.c2
+		custom_effect_tooltip = NGA.60.tt.38
+		set_country_flag = wafgov3
+		country_event = nga60.63
+	
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.63
+ 	immediate = { }
+	title = nga60.63.t2
+	desc = nga60.63.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = nga60.63.a2
+		set_country_flag = west_african_congress_failed
+	}
+	option = {
+		name = nga60.63.b2
+		add_political_power = -200
+		country_event = nga60.18
+	}
+	option = {
+		name = nga60.63.c2
+		add_political_power = -125
+		custom_effect_tooltip = NGA.60.tt.39
+		set_country_flag = wafnkrumah
+		country_event = nga60.18
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.64
+ 	immediate = { }
+	title = nga60.64.t2
+	desc = nga60.64.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = nga60.64.a2
+		country_event = nga60.62
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.65
+ 	immediate = { }
+	title = nga60.65.t2
+	desc = nga60.65.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = nga60.65.a2
+		decrease_Religous_Upheaval = yes
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.05
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.66
+ 	immediate = { }
+	title = nga60.66.t2
+	desc = nga60.66.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = nga60.66.a2
+		add_political_power = 20
+		add_stability = 0.02
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.05
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.67
+ 	immediate = { }
+	title = nga60.67.t2
+	desc = nga60.67.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nga60.67.a2
+		add_political_power = 10
+		add_stability = 0.1
+		hidden_effect = {	
+			if = {
+				limit = {
+					has_idea = policy_saga_temp_0 
+				}
+				remove_ideas = policy_saga_temp_0
+			}
+			if = {
+				limit = {
+					has_idea = policy_saga_temp_1  
+				}
+				remove_ideas = policy_saga_temp_1 
+			}
+			if = {
+				limit = {
+					has_idea = policy_saga_temp_2   
+				}
+				remove_ideas = policy_saga_temp_2  
+			}
+			if = {
+				limit = {
+					has_idea = policy_saga_temp_3   
+				}
+				remove_ideas = policy_saga_temp_3  
+			}
+			if = {
+				limit = {
+					has_idea = policy_saga_temp_4a   
+				}
+				remove_ideas = policy_saga_temp_4a  
+			}
+		}
+		add_ideas = policy_saga_temp_4
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.05
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.68
+ 	immediate = { }
+	title = nga60.68.t2
+	desc = nga60.68.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nga60.68.a2
+		add_stability = 0.1
+		add_political_power = -50
+	}
+	option = {
+		name = nga60.68.b2
+		add_political_power = 50
+		hidden_effect = {
+			country_event = nga60.69
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.69
+ 	immediate = { }
+	title = nga60.69.t2
+	desc = nga60.69.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nga60.69.a2
+		add_political_power = -50
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.70
+ 	immediate = { }
+	title = nga60.70.t2
+	desc = nga60.70.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nga60.70.a2
+		add_political_power = 100
+		add_ideas = policy_media_temp_3
+		add_stability = 0.25
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.05
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.71
+ 	immediate = { }
+	title = nga60.71.t2
+	desc = nga60.71.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nga60.71.a2
+		remove_ideas = NGA_igbo_yoruba_hausa_divide
+		remove_ideas = tribalism_politics
+		add_political_power = 50
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.05
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.72
+ 	immediate = { }
+	title = nga60.72.t2
+	desc = nga60.72.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nga60.72.a2
+			add_political_power = 25
+			add_stability = 0.02
+			add_research_slot = 1
+			if = {
+				limit = {
+					has_idea = african_illiteracy_0
+				}
+				remove_ideas = african_illiteracy_0
+			}
+			if = {
+				limit = {
+					has_idea = african_illiteracy_1
+				}
+				remove_ideas = african_illiteracy_1
+			}
+			if = {
+				limit = {
+					has_idea = african_illiteracy_2
+				}
+				remove_ideas = african_illiteracy_2
+			}
+			if = {
+				limit = {
+					has_idea = african_illiteracy_3
+				}
+				remove_ideas = african_illiteracy_3
+			}
+			add_ideas = marxist_escuelas
+			if = {
+				limit = {
+					has_idea = policy_education_temp_1
+				}
+				add_ideas = policy_education_temp_2
+			}
+			if = {
+				limit = {
+					has_idea = policy_education_temp_0
+				}
+				add_ideas = policy_education_temp_1
+			}
+			if = {
+				limit = {
+					has_idea = policy_education_temp_2
+				}
+				add_ideas = policy_education_temp_3
+			}
+			if = {
+				limit = {
+					has_idea = policy_education_temp_2
+				}
+				add_ideas = policy_education_temp_3
+			}
+			add_popularity = {
+				ideology = communism
+				popularity = 0.1
+			}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.73
+ 	immediate = { }
+	title = nga60.73.t2
+	desc = nga60.73.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		declare_war_on = {
+			target = GHA
+			type = annex_everything
+		}
+		hidden_effect = {
+			USA = {
+				add_ai_strategy = {
+					type = support
+					id = "GHA" 
+					value = 200
+				}
+				add_ai_strategy = {
+					type = send_volunteers_desire
+					id = "GHA" 
+					value = 200
+				}
+			}
+		}
+	}
+
+	option = {
+		name = nga60.73.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.74
+ 	immediate = { }
+	title = nga60.74.t2
+	desc = nga60.74.d
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			white_peace = GHA
+			GHA = {
+				set_country_flag = kwameback
+				complete_national_focus = GHA_60s_Restore_Nkrumah
+				set_popularities = { 
+					democratic = 28
+					communism = 4
+					fascism = 0
+					nationalist = 0
+					monarchism = 0
+					neutrality = 0
+					islamism = 0
+					radical_shiaism = 0
+					
+					Social_Democratic = 0
+					Social_Liberalism = 0
+					Salafism = 0
+					
+					Liberal_Conservatism = 0
+					
+					conservative = 0
+					Christian_Democratic = 0
+					socialist = 0
+					centrist = 0
+					liberal = 0
+					trotskyism = 0
+					maoism = 68
+					
+
+				}
+				set_politics = {
+					ruling_party = maoism
+					last_election = "1960.6.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+				create_country_leader = {
+					name = "Kwame Nkrumah"
+					desc = "POLITICS_KWAME_NKRUMAH_DESC"
+					picture = "Kwame_Nkrumah.dds"
+					ideology = maoist
+					traits = {
+						father_of_pan_africanism
+						vehemently_against_tribalism
+						danger_to_imperialism
+						quintessential_third_worldist
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = nga60.74.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.75
+ 	immediate = { }
+	title = nga60.75.t2
+	desc = nga60.75.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		add_political_power = -50
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nga60.76
+ 	immediate = { }
+	title = nga60.76.t2
+	desc = nga60.76.d
+	picture = GFX_nigerian_airways
+	major = yes
+
+	is_triggered_only = yes
+	option = {
+		name = nga60.76.a2
+	}
+}

@@ -1,0 +1,278 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = KOR_Syngman_Rhee_1952
+	country = {
+		factor = 0
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	shared_focus = KOR_50s_the_kacic
+	shared_focus = KOR_50s_national_economy_reinvigoration_plan
+	shared_focus = KOR_50s_ministry_of_foreign_affairs
+	shared_focus = KOR_50s_daehanminguk_gukgun
+	shared_focus = KOR_50s_the_war_of_625
+	focus = {
+		id = KOR_SYNGMANRHEE52_syngman_rhee_administration
+		icon = GFX_KOR_syngman_rhee_administration_1952
+		cost = 5
+		x = 1
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_political_power = 150
+		}
+	}
+
+	focus = {
+		id = KOR_SYNGMANRHEE52_excerpt_constitutional_amendment
+		icon = GFX_KOR_push_for_constitutional_amendment
+		cost = 5
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_political_power = -100
+			news_event = KOR_SYNGMANRHEE52.1
+		}
+		relative_position_id = KOR_SYNGMANRHEE52_syngman_rhee_administration
+		prerequisite = { focus = KOR_SYNGMANRHEE52_syngman_rhee_administration }
+	}
+
+	focus = {
+		id = KOR_SYNGMANRHEE52_new_currency_reform_as_100won_to_one_hwan_basis
+		icon = GFX_KOR_new_currency_reform
+		cost = 5
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_ideas = KOR_reformed_currency
+		}
+		relative_position_id = KOR_SYNGMANRHEE52_syngman_rhee_administration
+		prerequisite = { focus = KOR_SYNGMANRHEE52_syngman_rhee_administration }
+	}
+
+	focus = {
+		id = KOR_SYNGMANRHEE52_declare_syngman_rhee_line
+		icon = GFX_unknown
+		cost = 5
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_to_variable = { KOR_M_N_escort = 0.05 }
+			add_to_variable = { KOR_M_N_raiding = 0.05 }
+			add_to_variable = { KOR_M_N_con_retreat_spd = 0.05 }
+			add_to_variable = { KOR_M_N_mine_plant = 0.05 }
+			add_to_variable = { KOR_M_N_mine_sweep = 0.05 }
+			add_to_variable = { KOR_M_N_coordinate = 0.05 }
+			custom_effect_tooltip = KOR_improve_navy_situation_TT
+		}
+		relative_position_id = KOR_SYNGMANRHEE52_excerpt_constitutional_amendment
+		prerequisite = { focus = KOR_SYNGMANRHEE52_excerpt_constitutional_amendment }
+		prerequisite = { focus = KOR_SYNGMANRHEE52_new_currency_reform_as_100won_to_one_hwan_basis }
+	}
+
+	focus = {
+		id = KOR_SYNGMANRHEE52_remove_jokcheong_from_power
+		icon = GFX_KOR_remove_jokcheong_from_power
+		cost = 5
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			remove_ideas = cultural_superiority_propaganda
+			add_stability = 0.1
+		}
+		relative_position_id = KOR_SYNGMANRHEE52_declare_syngman_rhee_line
+		prerequisite = { focus = KOR_SYNGMANRHEE52_declare_syngman_rhee_line }
+	}
+
+	focus = {
+		id = KOR_SYNGMANRHEE52_release_anticommunist_prisoners_of_war
+		icon = GFX_KOR_release_anticommunist_prisoners_of_war
+		cost = 5
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_manpower = 5000
+			add_war_support = 0.05
+			add_opinion_modifier = {
+				target = USA
+				modifier = small_decrease
+			}
+			USA = {
+				add_opinion_modifier = {
+				target = KOR
+				modifier = small_decrease
+				}
+			}
+			add_opinion_modifier = {
+				target = ENG
+				modifier = small_decrease
+			}
+			ENG = {
+				add_opinion_modifier = {
+				target = KOR
+				modifier = small_decrease
+				}
+			}
+		}
+		relative_position_id = KOR_SYNGMANRHEE52_declare_syngman_rhee_line
+		prerequisite = { focus = KOR_SYNGMANRHEE52_declare_syngman_rhee_line }
+	}
+
+	focus = {
+		id = KOR_SYNGMANRHEE52_antijapanese_diplomacy
+		icon = GFX_KOR_antijapanese_diplomacy
+		cost = 5
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.1
+			add_opinion_modifier = {
+				target = JAP
+				modifier = large_decrease
+			}
+			JAP = {
+				add_opinion_modifier = {
+				target = KOR
+				modifier = large_decrease
+				}
+			}
+		}
+		relative_position_id = KOR_SYNGMANRHEE52_remove_jokcheong_from_power
+		prerequisite = { focus = KOR_SYNGMANRHEE52_remove_jokcheong_from_power }
+		prerequisite = { focus = KOR_SYNGMANRHEE52_release_anticommunist_prisoners_of_war }
+	}
+
+	focus = {
+		id = KOR_SYNGMANRHEE52_labor_standards_act
+		icon = GFX_KOR_labor_standards_act
+		cost = 5
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			set_country_flag = labor_standards_act_enabled
+			custom_effect_tooltip = kor.na.bill
+			add_stability = -0.05
+		}
+		relative_position_id = KOR_SYNGMANRHEE52_antijapanese_diplomacy
+		prerequisite = { focus = KOR_SYNGMANRHEE52_antijapanese_diplomacy }
+	}
+
+	focus = {
+		id = KOR_SYNGMANRHEE52_expand_educational_opportunities
+		icon = GFX_KOR_expand_educational_opportunities
+		cost = 5
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_stability = -0.05
+			add_research_slot = 1
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = industry
+			}
+		}
+		relative_position_id = KOR_SYNGMANRHEE52_antijapanese_diplomacy
+		prerequisite = { focus = KOR_SYNGMANRHEE52_antijapanese_diplomacy }
+	}
+
+	focus = {
+		id = KOR_SYNGMANRHEE52_sabotage_election_campaigns_of_the_opposition
+		icon = GFX_goal_support_democracy
+		cost = 5
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_stability = -0.05
+			add_war_support = 0.1
+		}
+		relative_position_id = KOR_SYNGMANRHEE52_labor_standards_act
+		prerequisite = { focus = KOR_SYNGMANRHEE52_labor_standards_act }
+		prerequisite = { focus = KOR_SYNGMANRHEE52_expand_educational_opportunities }
+	}
+
+	focus = {
+		id = KOR_SYNGMANRHEE52_dispatch_the_dokdo_volunteer_guard
+		icon = GFX_unknown
+		cost = 5
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_war_support = 0.05
+			add_to_variable = {
+				KOR_M_A_core_attack = 0.05
+			}
+			add_to_variable = {
+				KOR_M_A_defence = 0.05
+			}
+			custom_effect_tooltip = KOR_improve_army_situation_TT
+		}
+		relative_position_id = KOR_SYNGMANRHEE52_sabotage_election_campaigns_of_the_opposition
+		prerequisite = { focus = KOR_SYNGMANRHEE52_sabotage_election_campaigns_of_the_opposition }
+	}
+
+	focus = {
+		id = KOR_SYNGMANRHEE52_complete_removal_of_the_term_limits
+		icon = GFX_KOR_complete_removal_of_the_term_limits
+		cost = 5
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			news_event = KOR_SYNGMANRHEE52.2
+		}
+		relative_position_id = KOR_SYNGMANRHEE52_dispatch_the_dokdo_volunteer_guard
+		prerequisite = { focus = KOR_SYNGMANRHEE52_dispatch_the_dokdo_volunteer_guard }
+	}
+
+	focus = {
+		id = KOR_SYNGMANRHEE52_establish_free_market_economy
+		icon = GFX_goal_generic_positive_trade_relations
+		cost = 5
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_ideas = KOR_free_market_economy
+		}
+		relative_position_id = KOR_SYNGMANRHEE52_complete_removal_of_the_term_limits
+		prerequisite = { focus = KOR_SYNGMANRHEE52_complete_removal_of_the_term_limits }
+	}
+}

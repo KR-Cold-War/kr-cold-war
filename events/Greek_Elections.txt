@@ -1,0 +1,429 @@
+# KRCW (build/patch_residue.py): 7 OTL events dropped while KRCW_active
+###########################
+# Greek Events
+###########################
+
+add_namespace = GRE_Elections
+
+
+# Greek Elections 1950
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = GRE_Elections.0 
+ immediate = { }
+	title = GRE_Elections.0.t
+	desc = GRE_Elections.0.d
+	picture = GFX_report_event_greek_election_1950
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	immediate = {
+		complete_national_focus = GRE_Elections_of_1950
+	}
+
+	immediate = {
+		create_country_leader = {
+			name = "Sofoklis Venizelos"
+			picture = "Sofoklis_Venizelos_50s.dds"
+			ideology = christian_democracy
+		}
+		set_global_flag = greek_elections_1950
+	}
+
+	# Christian_Democratic
+	option = {
+		name = GRE_Elections.0.a
+		set_politics = {
+			ruling_party = Christian_Democratic
+		}
+		complete_national_focus = GRE_Venizelos
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+			modifier = {
+				has_game_rule = {
+					rule = GRE_1950_elections
+					option = TSALDARIS_1950
+				}
+				factor = 0
+			}
+		}
+	}
+
+	# Conservative
+	option = {
+		name = GRE_Elections.0.b
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+		}
+		complete_national_focus = GRE_Tsaldaris
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = GRE_1950_elections
+					option = VENIZELOS_1950
+				}
+				factor = 0
+			}
+		}
+	}
+
+}
+# Greek Elections 1951
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = GRE_Elections.1 
+ immediate = { }
+	title = GRE_Elections.1.t
+	desc = GRE_Elections.1.d
+	picture = GFX_report_event_brazil_election_1950
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	immediate = {
+		complete_national_focus = GRE_Elections_of_1951
+	}
+
+	immediate = {
+		set_global_flag = greek_elections_1951
+		create_country_leader = {
+			name = "Alexandros Papagos"
+			picture = "Alexandros_Papagos_50s.dds"
+			ideology = conservatism
+		}
+	}
+
+	option = {
+		name = GRE_Elections.1.a
+		set_politics = {
+			ruling_party = Social_Liberalism
+		}
+		complete_national_focus = GRE_Plastiras
+		ai_chance = {
+			factor = 15
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+			modifier = {
+				has_game_rule = {
+					rule = GRE_1951_elections
+					option = PAPAGOS_1951
+				}
+				factor = 0
+			}
+		}
+	}
+
+	option = {
+		name = GRE_Elections.1.b
+		set_politics = {
+			ruling_party = conservative
+		}
+		complete_national_focus = GRE_Papagos
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = GRE_1951_elections
+					option = PLASTIRAS_1951
+				}
+				factor = 0
+			}
+		}
+	}
+
+}
+# Greek Elections 1952
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = GRE_Elections.2 
+ immediate = { }
+	title = GRE_Elections.2.t
+	desc = GRE_Elections.2.d
+	picture = GFX_report_event_brazil_election_1950
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = GRE_Elections_of_1952
+	}
+
+
+	immediate = {
+		set_global_flag = greek_elections_1952
+	}
+
+	option = {
+		name = GRE_Elections.2.a
+		set_politics = {
+			ruling_party = conservative
+		}
+		complete_national_focus = GRE_Papagos_1952
+		ai_chance = {
+			factor = 15
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+			modifier = {
+				has_game_rule = {
+					rule = GRE_1952_elections
+					option = PLASTIRAS_1952
+				}
+				factor = 0
+			}
+		}
+	}
+
+	option = {
+		name = GRE_Elections.2.b
+		set_politics = {
+			ruling_party = Social_Liberalism
+		}
+		complete_national_focus = GRE_Plastiras_1952
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = GRE_1952_elections
+					option = PAPAGOS_1952
+				}
+				factor = 0
+			}
+		}
+	}
+
+
+}
+
+
+# Greek Elections 1956
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = GRE_Elections.3 
+ immediate = { }
+	title = GRE_Elections.3.t
+	desc = GRE_Elections.3.d
+	picture = GFX_report_event_brazil_election_1950
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = GRE_Elections_of_1956
+	}
+
+
+
+	option = {
+		name = GRE_Elections.3.a
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = no
+		}
+		complete_national_focus = GRE_Karamanlis_1956
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = GRE_1956_elections
+					option = PAPANDREOU_1956
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = GRE_Elections.3.b
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+		}
+		complete_national_focus = GRE_Papandreou_1956
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = GRE_1956_elections
+					option = KARAMANLIS_1956
+				}
+				factor = 0
+			}
+		}
+	}
+}# Greek Elections 1958
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = GRE_Elections.4 
+ immediate = { }
+	title = GRE_Elections.4.t
+	desc = GRE_Elections.4.d
+	picture = GFX_report_event_brazil_election_1950
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_country_flag = greek_elections_1958
+		complete_national_focus = GRE_Elections_of_1958
+	}
+
+
+	option = {
+		name = GRE_Elections.4.a
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = no
+		}
+		complete_national_focus = GRE_Karamanlis_1958
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = GRE_1958_elections
+					option = PAPANDREOU_1958
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = GRE_Elections.4.b
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+		}
+		complete_national_focus = GRE_Papandreou_1958
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = GRE_1958_elections
+					option = KARAMANLIS_1958
+				}
+				factor = 0
+			}
+		}
+	}
+
+}
+# Greek Elections 1961
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = GRE_Elections.5 
+ immediate = { }
+	title = GRE_Elections.5.t
+	desc = GRE_Elections.5.d
+	picture = GFX_report_event_brazil_election_1950
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = GRE_60s_1961_elections
+		create_country_leader = {
+			name = "Georgios Papandreou"
+			picture = "Georgios_Papandreou_60s.dds"
+			ideology = national_democrat
+		}
+	}
+	
+	option = {
+		name = GRE_Elections.5.a
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = no
+		}
+		complete_national_focus = GRE_60s_Karamanlis
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = GRE_Elections.5.b
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = no
+		}
+		complete_national_focus = GRE_60s_Papandreou
+
+
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+		}
+	}
+}
+# Greek Elections 1963
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = GRE_Elections.6 
+ immediate = { }
+	title = GRE_Elections.6.t
+	desc = GRE_Elections.6.d
+	picture = GFX_report_event_brazil_election_1950
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = GRE_60s_1963_elections
+	}
+
+
+	option = {
+		name = GRE_Elections.6.a
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = no
+		}
+		complete_national_focus = GRE_60s_Karamanlis_63
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = GRE_Elections.6.b
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = no
+		}
+		complete_national_focus = GRE_60s_Papandreou_63
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+		}
+	}
+}

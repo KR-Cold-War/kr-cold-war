@@ -1,0 +1,59 @@
+# KRCW (build/patch_residue.py): 4 OTL decision categories hidden while KRCW_active
+SPACE_RACE_USA = {
+	icon = generic_propaganda
+
+	allowed = {
+		original_tag = USA
+	}
+	
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = NASA_Atlas_research
+	}
+
+	priority = {
+		base = 10
+		modifier = {
+			add = 10
+		}
+	}
+}
+
+CONGRESS_US = {
+	icon = generic_propaganda
+	
+	scripted_gui = usa_congress_decision_ui
+	picture = GFX_decision_US_congress
+	allowed = {
+		original_tag = USA
+	}
+	
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = USA
+	}
+	priority = 2000
+}
+FORIEGN_INVESTMENT = {
+	icon = generic_propaganda
+
+	scripted_gui = country_target_investment_menu_panel
+	priority = 85
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		always = no
+		#check_variable = {
+			#Sphere_Leader = THIS.id
+		#}
+	}
+}
+PBSUCCESS = {
+	icon = generic_propaganda
+	picture = GFX_decision_cat_cia	
+	allowed = {
+		original_tag = USA
+		
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_completed_focus = USA_50s_Operation_PBSUCCESS
+	}
+}
+

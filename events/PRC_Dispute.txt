@@ -1,0 +1,404 @@
+# KRCW (build/patch_residue.py): 19 OTL events dropped while KRCW_active
+################################
+# PRC Conflict's / Dispute #####
+################################
+
+add_namespace = prc_dispute
+add_namespace = SINO_INDIA
+
+#SINO_INDIA.1	Sino-Indian War Begins
+#SINO_INDIA.2	Chinese Victory In the Himalayas
+#SINO_INDIA.3	Indian Victory In the Himalayas
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SINO_INDIA.1 
+ immediate = { }
+	title = SINO_INDIA.1.t
+	desc = PRC_Dispute.1.d
+	picture = GFX_Sino_Indian_War_Begin
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = SINO_INDIA.1.a
+	}
+
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SINO_INDIA.2 
+ immediate = { }
+	title = SINO_INDIA.2.t
+	desc = PRC_Dispute.2.d
+	picture = GFX_Sino_Indian_War_PRC_Victory
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = SINO_INDIA.2.a
+	}
+
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SINO_INDIA.3 
+ immediate = { }
+	title = SINO_INDIA.3.t
+	desc = PRC_Dispute.3.d
+	picture = GFX_Sino_Indian_War_India_Victory
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = SINO_INDIA.3.a
+	}
+
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SINO_INDIA.4 
+ immediate = { }
+	title = SINO.INDIA.T
+	desc = PRC_Dispute.4.d
+	picture = GFX_PRC_Invade_India_News
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = SINO_INDIA.4.a
+	}
+
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SINO_INDIA.10 
+ immediate = { }
+	title = SINO_INDIA.10.t
+	desc = SINO_INDIA.10.d
+	picture = GFX_Sino_India_Conflict1
+
+	is_triggered_only = yes
+
+
+	option = {
+		ai_chance = {
+			factor = 6
+		}
+		name = SINO_INDIA.10.a
+		transfer_state = 873
+		news_event = SINO_INDIA.2
+		complete_national_focus = PRC_60s_Annex_Aksai_Chin_and_Declare_a_Ceasefire
+	}
+	option = {
+		ai_chance = {
+			factor = 4
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+		name = SINO_INDIA.10.b
+		transfer_state = 873
+		declare_war_on = { target = RAJ type = puppet_wargoal_focus }
+		news_event = SINO_INDIA.4
+		complete_national_focus = PRC_60s_Liberate_the_Indian_Peasentry
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SINO_INDIA.11 
+ immediate = { }
+	title = SINO_INDIA.11.t
+	desc = SINO_INDIA.11.d
+	picture = GFX_Sino_India_Conflict2
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SINO_INDIA.11.a
+	}
+
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SINO_INDIA.12 
+ immediate = { }
+	title = SINO_INDIA.12.t
+	desc = SINO_INDIA.12.d
+	picture = GFX_Sino_India_Conflict3
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SINO_INDIA.12.a
+		news_event = SINO_INDIA.3
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SINO_INDIA.13 
+ immediate = { }
+	title = SINO_INDIA.13.t
+	desc = SINO_INDIA.13.d
+	picture = GFX_Sino_India_Conflict4
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = SINO_INDIA.13.a
+	}
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = prc_dispute.1 
+ immediate = { }
+	title = prc_dispute.1.t
+	desc = prc_dispute.1.d
+	picture = GFX_news_event_prc_dispute
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = prc_dispute.1.a
+		set_global_flag = soviet_agreed_prc_proposal
+		USA = { country_event = prc_dispute.2 }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+	option = {
+		name = prc_dispute.1.b
+		set_global_flag = soviet_decline_prc_proposal
+		USA = { country_event = prc_dispute.3 }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 1
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = prc_dispute.2 
+ immediate = { }
+	title = prc_dispute.2.t
+	desc = prc_dispute.2.d
+	picture = GFX_news_event_prc_dispute
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = prc_dispute.2.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = prc_dispute.3 
+ immediate = { }
+	title = prc_dispute.3.t
+	desc = prc_dispute.3.d
+	picture = GFX_news_event_prc_dispute
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = prc_dispute.3.a
+		}
+}#Zhenbao Island American Response
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = prc_dispute.4 
+ immediate = { }
+	title = prc_dispute.4.t
+	desc = prc_dispute.4.d
+	picture = GFX_news_event_prc_dispute
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = prc_dispute.4.a
+			declare_war_on = { target = PRC type = puppet_wargoal_focus }
+			add_to_war = { targeted_alliance = USA enemy = PRC }
+		}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = prc_dispute.5 
+ immediate = { }
+	title = prc_dispute.5.t
+	desc = prc_dispute.5.d
+	picture = GFX_news_event_prc_dispute
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = prc_dispute.5.a
+			declare_war_on = { target = PRC type = puppet_wargoal_focus }
+		}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = prc_dispute.6 
+ immediate = { }
+	title = prc_dispute.6.t
+	desc = prc_dispute.6.d
+	picture = GFX_news_event_prc_dispute
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = prc_dispute.6.a
+		if = {
+			limit = {
+				has_war_with = PRC
+			}
+			white_peace = PRC
+		}
+		clr_global_flag = zhenbao_island
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 1
+				is_historical_focus_on = yes
+			}
+		}
+	}
+	option = {
+		name = prc_dispute.6.b
+		if = {
+			limit = {
+				has_war_with = PRC
+			}
+			PRC = { add_to_war = { targeted_alliance = USA enemy = SOV } }
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+add_namespace = prcb
+
+# PRC loses Border War
+country_event = {
+	id = prcb.1 
+ immediate = { }
+	title = prcb.1.t
+	desc = prcb.1.d
+	picture = GFX_report_event_chinese_soldiers_fighting
+
+	is_triggered_only = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = PRC
+	}
+
+	immediate = {
+		hidden_effect = {
+			873 = {
+				set_border_war = no
+			}
+		}
+	}
+
+	option = {
+		name = prcb.1.a
+		add_political_power = -100
+		add_stability = -0.05
+		RAJ = { country_event = prcb.2 }
+	}
+}
+# RAJ wins Border War
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = prcb.2 
+ immediate = { }
+	title = prcb.2.t
+	desc = goa.15.d
+	picture = GFX_report_event_chinese_soldiers_fighting
+
+	is_triggered_only = yes
+
+	option = {
+		name = prcb.2.a
+		add_political_power = 100
+		add_stability = 0.05
+	}
+}
+# RAJ loses Border War
+country_event = {
+	id = prcb.3 
+ immediate = { }
+	title = prcb.3.t
+	desc = goa.16.d
+	picture = GFX_report_event_chinese_soldiers_fighting
+
+	is_triggered_only = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = RAJ
+	}
+
+	immediate = {
+		hidden_effect = {
+			873 = {
+				set_border_war = no
+			}
+		}
+	}
+
+	option = {
+		name = prcb.3.a
+		add_political_power = -100
+		add_stability = -0.05
+		PRC = { country_event = prcb.4 }
+	}
+}
+# POR wins Border War
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = prcb.4 
+ immediate = { }
+	title = prcb.4.t
+	desc = goa.17.d
+	picture = GFX_report_event_chinese_soldiers_fighting
+
+	is_triggered_only = yes
+
+	option = {
+		name = goa.17.a
+		add_political_power = 100
+		add_stability = 0.05
+		PRC = { transfer_state = 873 }
+	}
+}
+# Goa War
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = prcb.11 
+ immediate = { }
+	title = prcb.11.t
+	desc = goa.1.d
+	picture = GFX_report_event_chinese_soldiers_fighting
+
+	is_triggered_only = yes
+
+	option = {
+		name = prcb.11.a
+	}
+}

@@ -1,0 +1,781 @@
+# KRCW (build/patch_residue.py): 23 OTL events dropped while KRCW_active
+add_namespace = PAK_Kashmir_70s
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.1
+    immediate = { }	
+	title = PAK_Kashmir_70s.1.t2
+	desc = PAK_Kashmir_70s.1.d
+	picture = GFX_PAK_Kashmir_70s_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Kashmir_70s.1.a2
+        #Temporary Mobilization" which should have some negative effects for economy, boost to organization, lasts for six months)
+        add_timed_idea = {
+            idea = Temporary_Mobilization
+            days = 185
+        }
+        set_variable = { THIS.idea_len_@token:Temporary_Mobilization = 185 }
+        set_variable = { THIS.idea_date_@token:Temporary_Mobilization = global.num_days }
+    }
+	option = {
+		name = PAK_Kashmir_70s.1.b2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.2
+    immediate = { }	
+	title = PAK_Kashmir_70s.2.t2
+	desc = PAK_Kashmir_70s.2.d
+	picture = GFX_PAK_Kashmir_70s_2
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Kashmir_70s.2.a2
+        #Temporary Mobilization" which should have some negative effects for economy, boost to organization, lasts for six months)
+        add_timed_idea = {
+            idea = Temporary_Mobilization
+            days = 185
+        }
+        set_variable = { THIS.idea_len_@token:Temporary_Mobilization = 185 }
+        set_variable = { THIS.idea_date_@token:Temporary_Mobilization = global.num_days }
+    }
+	option = {
+		name = PAK_Kashmir_70s.2.b2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.3
+    immediate = { }	
+	title = PAK_Kashmir_70s.3.t2
+	desc = PAK_Kashmir_70s.3.d
+	picture = GFX_PAK_Kashmir_70s_3
+
+	is_triggered_only = yes
+
+	option = {
+        name = PAK_Kashmir_70s.3.a2
+        news_event = {
+            id = PAK_Kashmir_70s.4
+            days = 60
+        }
+    }
+	option = {
+        name = PAK_Kashmir_70s.3.b2
+    }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.4
+ immediate = { }
+	title = PAK_Kashmir_70s.4.t2
+	desc = PAK_Kashmir_70s.4.d
+	picture = GFX_PAK_Kashmir_70s_4
+
+	is_triggered_only = yes
+	major = yes
+
+    immediate = {
+        hidden_effect = {
+            if = {
+                limit = {
+                    tag = RAJ
+                }
+                country_event = PAK_Kashmir_70s.5
+                if = {
+                    limit = {
+                        owns_state = 441
+                        NOT = {
+                            owns_state = 1562
+                        }
+                    }
+                    PAK = {
+                        start_border_war = {
+                            change_state_after_war = no
+                            attacker = {
+                                state = 1562
+                                num_provinces = 4
+                                on_win = PAK_Kashmir_70s.14
+                                on_lose = PAK_Kashmir_70s.12
+                                on_cancel = Indochina_War.4
+                            }
+                                        
+                            defender = {
+                                state = 441 
+                                num_provinces = 4
+                                on_win = PAK_Kashmir_70s.17
+                                on_lose = PAK_Kashmir_70s.15
+                                on_cancel = Indochina_War.4
+                            }
+                        }
+                    }
+                }
+                if = {
+                    limit = {
+                        owns_state = 1562
+                        NOT = {
+                            owns_state = 1144
+                        }
+                    }
+                    PAK = {
+                        start_border_war = {
+                            change_state_after_war = no
+                            attacker = {
+                                state = 1144
+                                num_provinces = 4
+                                on_win = PAK_Kashmir_70s.14
+                                on_lose = PAK_Kashmir_70s.12
+                                on_cancel = Indochina_War.4
+                            }
+                                        
+                            defender = {
+                                state = 1562 
+                                num_provinces = 4
+                                on_win = PAK_Kashmir_70s.17
+                                on_lose = PAK_Kashmir_70s.15
+                                on_cancel = Indochina_War.4
+                            }
+                        }
+                    }
+                }
+                if = {
+                    limit = {
+                        owns_state = 1144
+                    }
+                    PAK = {
+                        start_border_war = {
+                            change_state_after_war = no
+                            attacker = {
+                                state = 440
+                                num_provinces = 4
+                                on_win = PAK_Kashmir_70s.14
+                                on_lose = PAK_Kashmir_70s.12
+                                on_cancel = Indochina_War.4
+                            }
+                                        
+                            defender = {
+                                state = 1144 
+                                num_provinces = 4
+                                on_win = PAK_Kashmir_70s.17
+                                on_lose = PAK_Kashmir_70s.15
+                                on_cancel = Indochina_War.4
+                            }
+                        }
+                    }
+                }
+                if = {
+                    limit = {
+                        NOT = {
+                            owns_state = 1334
+                        }
+                    }
+                    PAK = {
+                        start_border_war = {
+                            change_state_after_war = no
+                            attacker = {
+                                state = 1334
+                                num_provinces = 4
+                                on_win = PAK_Kashmir_70s.14
+                                on_lose = PAK_Kashmir_70s.12
+                                on_cancel = Indochina_War.4
+                            }
+                                        
+                            defender = {
+                                state = 1097
+                                num_provinces = 4
+                                on_win = PAK_Kashmir_70s.17
+                                on_lose = PAK_Kashmir_70s.15
+                                on_cancel = Indochina_War.4
+                            }
+                        }
+                    }
+                }
+                if = {
+                    limit = {
+                        NOT = {
+                            owns_state = 441
+                        }
+                        owns_state = 1334
+                    }
+                    PAK = {
+                        start_border_war = {
+                            change_state_after_war = no
+                            attacker = {
+                                state = 441
+                                num_provinces = 4
+                                on_win = PAK_Kashmir_70s.14
+                                on_lose = PAK_Kashmir_70s.12
+                                on_cancel = Indochina_War.4
+                            }
+                                        
+                            defender = {
+                                state = 1334
+                                num_provinces = 4
+                                on_win = PAK_Kashmir_70s.17
+                                on_lose = PAK_Kashmir_70s.15
+                                on_cancel = Indochina_War.4
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+	option = {
+		name = PAK_Kashmir_70s.4.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.5
+    immediate = { }	
+	title = PAK_Kashmir_70s.5.t2
+	desc = PAK_Kashmir_70s.5.d
+	picture = GFX_PAK_Kashmir_70s_5
+
+	is_triggered_only = yes
+
+	option = {
+        name = PAK_Kashmir_70s.5.a2
+        news_event = {
+            id = PAK_Kashmir_70s.6
+            days = 30
+        }
+        set_country_flag = Pakistan_India_Kashmir_War_1970s
+        declare_war_on = {
+            target = PAK
+            type = annex_everything
+        }
+    }
+	option = {
+        name = PAK_Kashmir_70s.5.b2
+    }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.6
+ immediate = { }
+	title = PAK_Kashmir_70s.6.t2
+	desc = PAK_Kashmir_70s.6.d
+	picture = GFX_PAK_Kashmir_70s_6
+
+	is_triggered_only = yes
+	major = yes
+
+    immediate = {
+        if = {
+            limit = {
+                tag = RAJ
+            }
+            if = {
+                limit = {
+                    PAK = {
+                        controls_state = 441
+                        controls_state = 1334
+                    }
+                    check_variable = {
+                        global.province_controllers^8022 = PAK.id
+                    }
+                    check_variable = {
+                        global.province_controllers^3456 = PAK.id
+                    }
+                    check_variable = {
+                        global.province_controllers^12822 = PAK.id
+                    }
+                }
+                PAK = {
+                    country_event = PAK_Kashmir_70s.7
+                }
+            }
+            else_if = {
+                limit = {
+                    RAJ = {
+                        controls_state = 441
+                        controls_state = 1334
+                        controls_state = 1144
+                    }
+                    OR = {
+                        check_variable = {
+                            global.province_controllers^8022 = RAJ.id
+                        }
+                        check_variable = {
+                            global.province_controllers^3456 = RAJ.id
+                        }
+                        check_variable = {
+                            global.province_controllers^12822 = RAJ.id
+                        }
+                    }
+                    check_variable = {
+                        global.province_controllers^15898 = RAJ.id
+                    }
+                    check_variable = {
+                        global.province_controllers^2086 = RAJ.id
+                    }
+                    check_variable = {
+                        global.province_controllers^9975 = RAJ.id
+                    }
+                }
+                RAJ = {
+                    country_event = PAK_Kashmir_70s.10
+                }
+            }
+            else = {
+                news_event = PAK_Kashmir_70s.11
+            }
+        }
+
+    }
+    option = {
+        name = PAK_Kashmir_70s.6.a2
+    }
+}
+
+#PAK_Kashmir_70s.7 (if at the end of general war Pakistan controls either 441 and/or 1334  and retain control of Islamabad, Karachi, and Lahore)
+#PAK_Kashmir_70s.10 (If in the general war Indian player, captures Azad Kashmir capital and takes one of the major cities Lahore, Karachi, Islamabad, while retaining control of its major cities (Amristar, Delhi, Ahmadabad, probably missing one)
+ country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.7
+    immediate = { }	
+	title = PAK_Kashmir_70s.7.t2
+	desc = PAK_Kashmir_70s.7.d
+	picture = GFX_PAK_Kashmir_70s_7
+
+	is_triggered_only = yes
+	option = {
+		name = PAK_Kashmir_70s.7.a2
+        news_event = UN_KASHMIR.10
+    }
+
+	option = {
+		name = PAK_Kashmir_70s.7.b2
+        country_event = PAK_Kashmir_70s.8
+                RAJ = {
+                    country_event = PAK_Kashmir_70s.9
+                    every_owned_state = {
+                        limit = {
+                            is_core_of = KAS
+                        }
+                        PAK = {
+                            transfer_state = PREV
+                        }
+                    }
+                }
+    }
+ }
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.8
+    immediate = { }	
+	title = PAK_Kashmir_70s.8.t2
+	desc = PAK_Kashmir_70s.8.d
+	picture = GFX_PAK_Kashmir_70s_8
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = PAK_Kashmir_70s.8.a2
+        add_stability = 0.10
+        add_political_power = 100
+        add_war_support = 0.10
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.9
+    immediate = { }	
+	title = PAK_Kashmir_70s.9.t2
+	desc = PAK_Kashmir_70s.9.d
+	picture = GFX_PAK_Kashmir_70s_9
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = PAK_Kashmir_70s.9.a2
+        add_stability = -0.10
+        add_political_power = -100
+        add_war_support = -0.10
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.10
+    immediate = { }	
+	title = PAK_Kashmir_70s.10.t2
+	desc = PAK_Kashmir_70s.10.d
+	picture = GFX_PAK_Kashmir_70s_10
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Kashmir_70s.10.a2
+        PAK = {
+            country_event = PAK_Kashmir_70s.12
+        }
+        transfer_state = 1144
+        transfer_state = 1340
+    }
+    option = {
+        name = PAK_Kashmir_70s.10.b2
+        PAK = {
+            country_event = PAK_Kashmir_70s.12
+        }
+    }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.11  #If war ends with neither victory triggers reached
+ immediate = { }
+	title = PAK_Kashmir_70s.11.t2
+	desc = PAK_Kashmir_70s.11.d
+	picture = GFX_PAK_Kashmir_70s_11
+
+	is_triggered_only = yes
+	major = yes
+
+    immediate = {
+        hidden_effect = {
+            PAK = {
+                country_event = {
+                    id = PAK_Kashmir_70s.12
+                    days = 1
+                }
+            }
+        }
+    }
+    option = {
+        name = PAK_Kashmir_70s.11.a2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.12
+    immediate = { }	
+	title = PAK_Kashmir_70s.12.t2
+	desc = PAK_Kashmir_70s.12.d
+	picture = GFX_PAK_Kashmir_70s_12
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Kashmir_70s.12.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.13
+    immediate = { }	
+	title = PAK_Kashmir_70s.13.t2
+	desc = PAK_Kashmir_70s.13.d
+	picture = GFX_PAK_Kashmir_70s_13
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Kashmir_70s.13.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.14
+    immediate = { }	
+	title = PAK_Kashmir_70s.14.t2
+	desc = PAK_Kashmir_70s.14.d
+	picture = GFX_PAK_Kashmir_70s_14
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Kashmir_70s.14.a2
+        country_event = PAK_Kashmir_70s.16
+    }
+	option = {
+		name = PAK_Kashmir_70s.14.b2
+        if = {
+            limit = {
+                NOT = {
+                    owns_state = 1144
+                }
+            }
+            transfer_state = 779
+            transfer_state = 1563
+            transfer_state = 1144
+        }
+        else_if = {
+            limit = {
+                NOT = {
+                    owns_state = 1563
+                }
+            }
+            transfer_state = 1563
+        }
+        else_if = {
+            limit = {
+                NOT = {
+                    owns_state = 1562
+                }
+                
+            }
+            transfer_state = 1562
+        }
+        else = {
+            add_ideas = Kashmir_Strategic_Advantage_PAK
+        }
+        RAJ = {
+            country_event = PAK_Kashmir_70s.15
+        }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.15
+    immediate = { }	
+	title = PAK_Kashmir_70s.15.t2
+	desc = PAK_Kashmir_70s.15.d
+	picture = GFX_PAK_Kashmir_70s_15
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Kashmir_70s.15.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.16
+    immediate = { }	
+	title = PAK_Kashmir_70s.16.t2
+	desc = PAK_Kashmir_70s.16.d
+	picture = GFX_PAK_Kashmir_70s_16
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Kashmir_70s.16.a2
+        news_event = UN_KASHMIR.10
+    }
+	option = {
+		name = PAK_Kashmir_70s.16.b2
+        PAK = {
+        if = {
+            limit = {
+                NOT = {
+                    owns_state = 1144
+                }
+            }
+            transfer_state = 779
+            transfer_state = 1563
+            transfer_state = 1144
+        }
+        else_if = {
+            limit = {
+                NOT = {
+                    owns_state = 1563
+                }
+                
+            }
+            transfer_state = 1563
+        }
+        else_if = {
+            limit = {
+                NOT = {
+                    owns_state = 1562
+                }
+                
+            }
+            transfer_state = 1562
+        }
+        else = {
+            add_ideas = Kashmir_Strategic_Advantage_PAK
+        }
+        }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.17
+    immediate = { }	
+	title = PAK_Kashmir_70s.17.t2
+	desc = PAK_Kashmir_70s.17.d
+	picture = GFX_PAK_Kashmir_70s_17
+
+	is_triggered_only = yes
+	option = {
+		name = PAK_Kashmir_70s.17.a2
+        RAJ = {
+            country_event = {
+                id = PAK_Kashmir_70s.18
+                days = 3
+            }
+        }
+        PAK = {
+            country_event = {
+                id = PAK_Kashmir_70s.20
+                days = 3
+            }
+        }
+    }
+	option = {
+		name = PAK_Kashmir_70s.17.b2
+        if = {
+            limit = {
+                PAK = {
+                    owns_state = 1334
+                }
+            }
+            transfer_state = 1334
+            if = {
+                limit = {
+                    PAK = {
+                        owns_state = 1335
+                    }
+                }
+                transfer_state = 1335
+            }
+        }
+        else_if = {
+            limit = {
+                PAK = {
+                    owns_state = 441
+                }
+            }
+            transfer_state = 441
+        }
+        else_if = {
+            limit = {
+                PAK = {
+                    owns_state = 1562
+                }
+            }
+            transfer_state = 1562
+        }
+        else_if = {
+            limit = {
+                PAK = {
+                    owns_state = 1563
+                }
+            }
+            transfer_state = 1563
+            transfer_state = 1336
+        }
+        else = {
+            add_ideas = Kashmir_Strategic_Advantage_RAJ
+        }
+        RAJ = {
+            country_event = {
+                id = PAK_Kashmir_70s.19
+                days = 3
+            }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.18
+    immediate = { }	
+	title = PAK_Kashmir_70s.18.t2
+	desc = PAK_Kashmir_70s.18.d
+	picture = GFX_PAK_Kashmir_70s_18
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Kashmir_70s.18.a2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.19
+    immediate = { }	
+	title = PAK_Kashmir_70s.19.t2
+	desc = PAK_Kashmir_70s.19.d
+	picture = GFX_PAK_Kashmir_70s_19
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Kashmir_70s.19.a2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.20
+    immediate = { }	
+	title = PAK_Kashmir_70s.20.t2
+	desc = PAK_Kashmir_70s.20.d
+	picture = GFX_PAK_Kashmir_70s_20
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Kashmir_70s.20.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.21
+    immediate = { }	
+	title = PAK_Kashmir_70s.21.t2
+	desc = PAK_Kashmir_70s.21.d
+	picture = GFX_PAK_Kashmir_70s_21
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Kashmir_70s.21.a2
+        add_ideas = International_Kashmiri_Nationalists  #should hurt India diplomatically among other effects)
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.22
+    immediate = { }	
+	title = PAK_Kashmir_70s.22.t2
+	desc = PAK_Kashmir_70s.22.d
+	picture = GFX_PAK_Kashmir_70s_22
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Kashmir_70s.22.a2
+        news_event = UN_KASHMIR.10
+    }
+	option = {
+		name = PAK_Kashmir_70s.22.b2
+        add_timed_idea = {
+            idea = Resistant_to_Peace #hurts trade relations
+            days = 1825
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Kashmir_70s.23
+    immediate = { }	
+	title = PAK_Kashmir_70s.23.t2
+	desc = PAK_Kashmir_70s.23.d
+	picture = GFX_PAK_Kashmir_70s_23
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Kashmir_70s.23.a2
+    }
+}

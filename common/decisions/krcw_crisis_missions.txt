@@ -1,0 +1,619 @@
+krcw_crisis_missions_cat = {
+	krcw_m_ddr_stem_the_flow = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = DDR } }
+		activation = {
+			has_variable = krcw_ddr_emigration
+			check_variable = { krcw_ddr_emigration > 39 }
+			NOT = { has_global_flag = KRCW_berlin_sector_sealed }
+			NOT = { has_idea = krcw_ddr_the_stopped_wound }
+		}
+		available = {
+			check_variable = { krcw_ddr_emigration < 25 }
+		}
+		days_mission_timeout = 180
+		is_good = no
+		fire_only_once = no
+		days_re_enable = 120
+		complete_effect = {
+			add_stability = 0.03
+			add_political_power = 50
+		}
+		timeout_effect = {
+			add_stability = -0.05
+			add_manpower = -25000
+			add_to_variable = { global.krcw_berlin_pressure = 10 }
+			clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_wgr_hold_berlin = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = WGR } }
+		activation = {
+			has_variable = global.krcw_berlin_pressure
+			check_variable = { global.krcw_berlin_pressure > 69 }
+			NOT = { has_global_flag = KRCW_berlin_war }
+		}
+		available = {
+			check_variable = { global.krcw_berlin_pressure < 50 }
+		}
+		days_mission_timeout = 150
+		is_good = no
+		fire_only_once = no
+		days_re_enable = 120
+		complete_effect = {
+			add_political_power = 50
+			add_to_variable = { global.krcw_ti_crisis = -3 }
+		}
+		timeout_effect = {
+			add_stability = -0.05
+			add_political_power = -75
+			add_to_variable = { global.krcw_ti_crisis = 5 }
+			krcw_tension_up_medium = yes
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_us_cool_the_line = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = USA original_tag = WCA } }
+		activation = {
+			has_variable = global.krcw_ohio_tension
+			check_variable = { global.krcw_ohio_tension > 74 }
+			NOT = { has_global_flag = KRCW_american_war_restarted }
+			NOT = { has_global_flag = KRCW_american_war_over }
+		}
+		available = {
+			check_variable = { global.krcw_ohio_tension < 60 }
+		}
+		days_mission_timeout = 180
+		is_good = no
+		fire_only_once = no
+		days_re_enable = 120
+		complete_effect = {
+			add_stability = 0.03
+			add_political_power = 50
+		}
+		timeout_effect = {
+			krcw_ohio_up_medium = yes
+			add_war_support = 0.05
+			add_stability = -0.03
+			if = { limit = { check_variable = { global.krcw_gv_ohio_state = 0 } } set_variable = { global.krcw_gv_ohio_state = 1 } }
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_raj_the_princes = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = RAJ } }
+		activation = {
+			has_global_flag = KRCW_princely_revolts
+			NOT = { has_global_flag = KRCW_princely_revolts_over }
+			check_variable = { krcw_raj_unrest > 49 }
+		}
+		available = {
+			check_variable = { krcw_raj_unrest < 30 }
+		}
+		days_mission_timeout = 240
+		is_good = no
+		fire_only_once = no
+		days_re_enable = 120
+		complete_effect = {
+			add_to_variable = { krcw_raj_reform = 10 }
+			add_stability = 0.05
+		}
+		timeout_effect = {
+			add_to_variable = { krcw_raj_unrest = 15 }
+			clamp_variable = { var = krcw_raj_unrest min = 0 max = 100 }
+			add_stability = -0.05
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_fra_hold_the_internationale = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = FRA } }
+		activation = {
+			has_variable = global.krcw_ti_crisis
+			check_variable = { global.krcw_ti_crisis > 49 }
+			NOT = { has_global_flag = KRCW_cold_war_over }
+			NOT = { has_global_flag = KRCW_world_war }
+		}
+		available = {
+			check_variable = { global.krcw_ti_crisis < 35 }
+		}
+		days_mission_timeout = 270
+		is_good = no
+		fire_only_once = no
+		days_re_enable = 120
+		complete_effect = {
+			add_political_power = 75
+			add_stability = 0.03
+		}
+		timeout_effect = {
+			add_to_variable = { global.krcw_ti_crisis = 10 }
+			add_stability = -0.03
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_sov_hold_the_accord = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = SOV } }
+		activation = {
+			has_variable = global.krcw_ma_crisis
+			check_variable = { global.krcw_ma_crisis > 49 }
+			NOT = { has_global_flag = KRCW_cold_war_over }
+			NOT = { has_global_flag = KRCW_world_war }
+		}
+		available = {
+			check_variable = { global.krcw_ma_crisis < 35 }
+		}
+		days_mission_timeout = 270
+		is_good = no
+		fire_only_once = no
+		days_re_enable = 120
+		complete_effect = {
+			add_political_power = 75
+			add_stability = 0.03
+		}
+		timeout_effect = {
+			add_to_variable = { global.krcw_ma_crisis = 10 }
+			add_stability = -0.03
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_sov_contain_the_street = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = SOV } }
+		activation = {
+			has_global_flag = KRCW_savinkov_dead
+			NOT = { has_global_flag = KRCW_russian_succession_over }
+			check_variable = { krcw_sov_ext > 34 }
+		}
+		available = {
+			check_variable = { krcw_sov_ext < 25 }
+		}
+		days_mission_timeout = 200
+		is_good = no
+		fire_only_once = no
+		days_re_enable = 120
+		complete_effect = {
+			add_to_variable = { krcw_sov_mil = 5 }
+			add_stability = 0.03
+		}
+		timeout_effect = {
+			add_to_variable = { krcw_sov_ext = 10 }
+			clamp_variable = { var = krcw_sov_ext min = 0 max = 100 }
+			add_stability = -0.05
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_chi_win_lhasa = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = CHI } }
+		activation = {
+			country_exists = TIB
+			TIB = { is_subject_of = CHI has_variable = krcw_revolt_progress check_variable = { krcw_revolt_progress > 59 } }
+			NOT = { has_global_flag = KRCW_tibet_revolt_started }
+		}
+		available = {
+			TIB = { check_variable = { krcw_revolt_progress < 40 } }
+		}
+		days_mission_timeout = 180
+		is_good = no
+		fire_only_once = no
+		days_re_enable = 120
+		complete_effect = {
+			add_stability = 0.02
+			TIB = { add_to_variable = { krcw_revolt_progress = -5 } }
+		}
+		timeout_effect = {
+			TIB = { add_to_variable = { krcw_revolt_progress = 15 } clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 } }
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_proxy_gre = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = GRE } }
+		activation = {
+			has_global_flag = krcw_proxy_gre
+			has_war = yes
+		}
+		available = {
+			has_war = no
+		}
+		days_mission_timeout = 365
+		is_good = no
+		fire_only_once = no
+		days_re_enable = 120
+		complete_effect = {
+			add_stability = 0.05
+			add_war_support = 0.03
+		}
+		timeout_effect = {
+			add_stability = -0.06
+			add_war_support = -0.06
+			add_timed_idea = { idea = krcw_m_long_war days = 365 }
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_proxy_per = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = PER } }
+		activation = {
+			has_global_flag = krcw_proxy_per
+			has_war = yes
+		}
+		available = {
+			has_war = no
+		}
+		days_mission_timeout = 365
+		is_good = no
+		fire_only_once = no
+		days_re_enable = 120
+		complete_effect = {
+			add_stability = 0.05
+			add_war_support = 0.03
+		}
+		timeout_effect = {
+			add_stability = -0.06
+			add_war_support = -0.06
+			add_timed_idea = { idea = krcw_m_long_war days = 365 }
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_proxy_phi = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = PHI } }
+		activation = {
+			has_global_flag = krcw_proxy_phi
+			has_war = yes
+		}
+		available = {
+			has_war = no
+		}
+		days_mission_timeout = 365
+		is_good = no
+		fire_only_once = no
+		days_re_enable = 120
+		complete_effect = {
+			add_stability = 0.05
+			add_war_support = 0.03
+		}
+		timeout_effect = {
+			add_stability = -0.06
+			add_war_support = -0.06
+			add_timed_idea = { idea = krcw_m_long_war days = 365 }
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_proxy_brm = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = BRM } }
+		activation = {
+			has_global_flag = krcw_proxy_brm
+			has_war = yes
+		}
+		available = {
+			has_war = no
+		}
+		days_mission_timeout = 365
+		is_good = no
+		fire_only_once = no
+		days_re_enable = 120
+		complete_effect = {
+			add_stability = 0.05
+			add_war_support = 0.03
+		}
+		timeout_effect = {
+			add_stability = -0.06
+			add_war_support = -0.06
+			add_timed_idea = { idea = krcw_m_long_war days = 365 }
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_proxy_mex = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = MEX } }
+		activation = {
+			has_global_flag = krcw_proxy_mex
+			has_war = yes
+		}
+		available = {
+			has_war = no
+		}
+		days_mission_timeout = 365
+		is_good = no
+		fire_only_once = no
+		days_re_enable = 120
+		complete_effect = {
+			add_stability = 0.05
+			add_war_support = 0.03
+		}
+		timeout_effect = {
+			add_stability = -0.06
+			add_war_support = -0.06
+			add_timed_idea = { idea = krcw_m_long_war days = 365 }
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_open_chi = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = CHI } }
+		activation = {
+			NOT = { has_completed_focus = krcw_chi_reorganize_provincial_armies }
+			NOT = { has_country_flag = krcw_m_open_done }
+		}
+		available = {
+			has_completed_focus = krcw_chi_reorganize_provincial_armies
+		}
+		days_mission_timeout = 365
+		is_good = no
+		fire_only_once = yes
+		complete_effect = {
+			add_stability = 0.05
+			add_to_variable = { krcw_chi_f_revcom = 5 }
+			add_to_variable = { krcw_chi_f_whampoa = -3 }
+			set_country_flag = krcw_m_open_done
+		}
+		timeout_effect = {
+			add_stability = -0.05
+			add_political_power = -50
+			add_to_variable = { krcw_chi_f_whampoa = 8 }
+			set_country_flag = krcw_m_open_done
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_open_sov = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = SOV } }
+		activation = {
+			NOT = { has_completed_focus = krcw_sov_question_of_succession }
+			NOT = { has_country_flag = krcw_m_open_done }
+		}
+		available = {
+			has_completed_focus = krcw_sov_question_of_succession
+		}
+		days_mission_timeout = 400
+		is_good = no
+		fire_only_once = yes
+		complete_effect = {
+			add_to_variable = { krcw_sov_mil = 5 }
+			add_to_variable = { krcw_sov_civ = 5 }
+			add_stability = 0.03
+			set_country_flag = krcw_m_open_done
+		}
+		timeout_effect = {
+			add_to_variable = { krcw_sov_ext = 8 }
+			add_to_variable = { krcw_sov_mon = 5 }
+			add_stability = -0.04
+			set_country_flag = krcw_m_open_done
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_open_fra = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = FRA } }
+		activation = {
+			NOT = { has_completed_focus = krcw_fra_what_the_internationale_is }
+			NOT = { has_country_flag = krcw_m_open_done }
+		}
+		available = {
+			has_completed_focus = krcw_fra_what_the_internationale_is
+		}
+		days_mission_timeout = 240
+		is_good = no
+		fire_only_once = yes
+		complete_effect = {
+			add_to_variable = { global.krcw_ti_crisis = -5 }
+			add_political_power = 50
+			set_country_flag = krcw_m_open_done
+		}
+		timeout_effect = {
+			add_to_variable = { global.krcw_ti_crisis = 8 }
+			add_stability = -0.03
+			set_country_flag = krcw_m_open_done
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_open_eng = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = ENG } }
+		activation = {
+			NOT = { has_completed_focus = krcw_eng_national_coal_plan }
+			NOT = { has_country_flag = krcw_m_open_done }
+		}
+		available = {
+			has_completed_focus = krcw_eng_national_coal_plan
+		}
+		days_mission_timeout = 180
+		is_good = no
+		fire_only_once = yes
+		complete_effect = {
+			add_stability = 0.03
+			add_political_power = 50
+			set_country_flag = krcw_m_open_done
+		}
+		timeout_effect = {
+			add_timed_idea = { idea = krcw_eng2_coalfield_bitterness days = 180 }
+			add_stability = -0.03
+			set_country_flag = krcw_m_open_done
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_open_wgr = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = WGR } }
+		activation = {
+			NOT = { has_completed_focus = krcw_wgr_the_berlin_lifeline }
+			NOT = { has_country_flag = krcw_m_open_done }
+		}
+		available = {
+			has_completed_focus = krcw_wgr_the_berlin_lifeline
+		}
+		days_mission_timeout = 180
+		is_good = no
+		fire_only_once = yes
+		complete_effect = {
+			add_to_variable = { global.krcw_berlin_pressure = -10 }
+			clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+			set_country_flag = krcw_m_open_done
+		}
+		timeout_effect = {
+			add_to_variable = { global.krcw_berlin_pressure = 10 }
+			clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+			add_stability = -0.03
+			set_country_flag = krcw_m_open_done
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_open_ddr = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = DDR } }
+		activation = {
+			NOT = { has_completed_focus = krcw_ddr_the_reconstruction_plan }
+			NOT = { has_country_flag = krcw_m_open_done }
+		}
+		available = {
+			has_completed_focus = krcw_ddr_the_reconstruction_plan
+		}
+		days_mission_timeout = 180
+		is_good = no
+		fire_only_once = yes
+		complete_effect = {
+			add_stability = 0.03
+			add_political_power = 50
+			set_country_flag = krcw_m_open_done
+		}
+		timeout_effect = {
+			add_stability = -0.05
+			add_manpower = -15000
+			set_country_flag = krcw_m_open_done
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_open_usa = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = USA } }
+		activation = {
+			NOT = { has_completed_focus = krcw_usa_share_our_wealth_act }
+			NOT = { has_country_flag = krcw_m_open_done }
+		}
+		available = {
+			has_completed_focus = krcw_usa_share_our_wealth_act
+		}
+		days_mission_timeout = 180
+		is_good = no
+		fire_only_once = yes
+		complete_effect = {
+			add_stability = 0.04
+			add_political_power = 50
+			set_country_flag = krcw_m_open_done
+		}
+		timeout_effect = {
+			add_stability = -0.05
+			krcw_ohio_up_small = yes
+			set_country_flag = krcw_m_open_done
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_open_wca = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = WCA } }
+		activation = {
+			NOT = { has_completed_focus = krcw_wca_ninth_congress }
+			NOT = { has_country_flag = krcw_m_open_done }
+		}
+		available = {
+			has_completed_focus = krcw_wca_ninth_congress
+		}
+		days_mission_timeout = 180
+		is_good = no
+		fire_only_once = yes
+		complete_effect = {
+			add_stability = 0.04
+			add_political_power = 50
+			set_country_flag = krcw_m_open_done
+		}
+		timeout_effect = {
+			add_stability = -0.05
+			krcw_ohio_up_small = yes
+			set_country_flag = krcw_m_open_done
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_open_raj = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = RAJ } }
+		activation = {
+			NOT = { has_completed_focus = krcw_raj_federal_secretariat }
+			NOT = { has_country_flag = krcw_m_open_done }
+		}
+		available = {
+			has_completed_focus = krcw_raj_federal_secretariat
+		}
+		days_mission_timeout = 210
+		is_good = no
+		fire_only_once = yes
+		complete_effect = {
+			add_to_variable = { krcw_raj_reform = 5 }
+			add_political_power = 50
+			set_country_flag = krcw_m_open_done
+		}
+		timeout_effect = {
+			add_to_variable = { krcw_raj_unrest = 8 }
+			clamp_variable = { var = krcw_raj_unrest min = 0 max = 100 }
+			add_stability = -0.03
+			set_country_flag = krcw_m_open_done
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_open_jap = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = JAP } }
+		activation = {
+			NOT = { has_completed_focus = krcw_jap_repatriates }
+			NOT = { has_country_flag = krcw_m_open_done }
+		}
+		available = {
+			has_completed_focus = krcw_jap_repatriates
+		}
+		days_mission_timeout = 180
+		is_good = no
+		fire_only_once = yes
+		complete_effect = {
+			add_stability = 0.04
+			add_manpower = 20000
+			set_country_flag = krcw_m_open_done
+		}
+		timeout_effect = {
+			add_stability = -0.05
+			add_war_support = 0.05
+			set_country_flag = krcw_m_open_done
+		}
+		ai_will_do = { base = 1 }
+	}
+	krcw_m_open_psa = {
+		icon = generic_police_action
+		allowed = { OR = { original_tag = PSA } }
+		activation = {
+			NOT = { has_completed_focus = krcw_psa_martial_law_review }
+			NOT = { has_country_flag = krcw_m_open_done }
+		}
+		available = {
+			has_completed_focus = krcw_psa_martial_law_review
+		}
+		days_mission_timeout = 180
+		is_good = no
+		fire_only_once = yes
+		complete_effect = {
+			add_stability = 0.04
+			add_political_power = 50
+			set_country_flag = krcw_m_open_done
+		}
+		timeout_effect = {
+			add_stability = -0.05
+			add_political_power = -50
+			set_country_flag = krcw_m_open_done
+		}
+		ai_will_do = { base = 1 }
+	}
+}

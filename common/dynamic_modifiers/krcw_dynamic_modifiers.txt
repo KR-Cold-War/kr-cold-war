@@ -1,0 +1,107 @@
+krcw_dm_ddr_exodus = {
+	icon = GFX_idea_germany_exodus
+	enable = { always = yes }
+	remove_trigger = {
+		NOT = { AND = {
+			has_variable = krcw_ddr_emigration
+			check_variable = { krcw_ddr_emigration > 0 }
+		} }
+	}
+	monthly_population = krcw_dm_ddr_pop
+	research_speed_factor = krcw_dm_ddr_res
+	production_factory_max_efficiency_factor = krcw_dm_ddr_eff
+}
+
+krcw_dm_raj_princes = {
+	icon = GFX_idea_SOV_factionalism_modifier
+	enable = { always = yes }
+	remove_trigger = {
+		NOT = { AND = {
+			has_variable = krcw_raj_unrest
+		} }
+	}
+	stability_factor = krcw_dm_raj_stab
+	production_speed_buildings_factor = krcw_dm_raj_build
+	political_power_factor = krcw_dm_raj_pp
+}
+
+krcw_dm_ohio_line = {
+	icon = GFX_idea_generic_fortify_the_borders
+	enable = { always = yes }
+	remove_trigger = {
+		NOT = { AND = {
+			has_variable = global.krcw_ohio_tension
+			NOT = { has_global_flag = KRCW_american_war_restarted }
+		} }
+	}
+	war_support_factor = krcw_dm_ohio_ws
+	experience_gain_army_factor = krcw_dm_ohio_xp
+	consumer_goods_factor = krcw_dm_ohio_cg
+}
+
+krcw_dm_strait = {
+	icon = GFX_idea_generic_fortify_the_borders
+	enable = { always = yes }
+	remove_trigger = {
+		NOT = { AND = {
+			has_variable = global.krcw_strait_tension
+			NOT = { has_global_flag = krcw_gv_qd_broke }
+		} }
+	}
+	war_support_factor = krcw_dm_strait_ws
+	experience_gain_navy_factor = krcw_dm_strait_nxp
+}
+
+krcw_dm_berlin = {
+	icon = GFX_idea_generic_fortify_the_borders
+	enable = { always = yes }
+	remove_trigger = {
+		NOT = { AND = {
+			has_variable = global.krcw_berlin_pressure
+			NOT = { has_global_flag = KRCW_berlin_war }
+		} }
+	}
+	war_support_factor = krcw_dm_berlin_ws
+	production_speed_buildings_factor = krcw_dm_berlin_build
+}
+
+krcw_dm_ti_crisis = {
+	icon = GFX_idea_generic_disjointed_gov
+	enable = { always = yes }
+	remove_trigger = {
+		NOT = { AND = {
+			has_variable = global.krcw_ti_crisis
+			NOT = { has_global_flag = KRCW_cold_war_over }
+		} }
+	}
+	stability_factor = krcw_dm_bloc_stab
+	political_power_factor = krcw_dm_bloc_pp
+}
+
+krcw_dm_ma_crisis = {
+	icon = GFX_idea_generic_disjointed_gov
+	enable = { always = yes }
+	remove_trigger = {
+		NOT = { AND = {
+			has_variable = global.krcw_ma_crisis
+			NOT = { has_global_flag = KRCW_cold_war_over }
+		} }
+	}
+	stability_factor = krcw_dm_bloc_stab
+	political_power_factor = krcw_dm_bloc_pp
+}
+
+krcw_dm_sov_street = {
+	icon = GFX_idea_SOV_factionalism_modifier
+	enable = { always = yes }
+	remove_trigger = {
+		NOT = { AND = {
+			has_global_flag = KRCW_savinkov_dead
+			NOT = { has_global_flag = KRCW_russian_succession_over }
+			has_variable = krcw_sov_ext
+		} }
+	}
+	stability_factor = krcw_dm_sov_stab
+	party_popularity_stability_factor = krcw_dm_sov_stab2
+	war_support_factor = krcw_dm_sov_ws
+}

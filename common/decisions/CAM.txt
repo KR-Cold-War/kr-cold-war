@@ -1,0 +1,333 @@
+# KRCW (build/patch_residue.py): 7 OTL decisions hidden while KRCW_active
+CAM_Military_Decision_tab = {
+    CAM_Raise_Indigenous_Units = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = CAM_Expand_Indigenous_Units
+        }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = CAM_Expand_Indigenous_Units
+			NOT = {
+				check_variable = {
+					CAM_Raise_Indigenous_Units_Decision_var > 3
+				}
+			}
+		}
+		custom_cost_trigger = {
+			check_variable = {
+				currentMoney > 0.5
+			}
+		}
+		custom_cost_text = VIN_has_500_mil
+		days_remove = 30
+		remove_effect = {
+			hidden_effect = {
+					capital_scope = {
+						create_unit = {
+							division = "name = \"Indigenous Unit\" division_template = \"BCK Khmeres Bataillons\" start_experience_factor = 0.3 start_manpower_factor = 0.6 start_equipment_factor = 0.2"
+							owner = CAM
+						}
+					}
+				}
+			add_to_variable = {
+				currentMoney = -0.5
+			}
+			add_to_variable = {
+				var = CAM_Raise_Indigenous_Units_Decision_var
+				value = 1
+			}
+			set_temp_variable = {
+				x = -500
+				tooltip = adjust_money_mil_tt
+			}
+			custom_effect_tooltip = CAM_Raise_Indigenous_Units_tt
+		}
+	}
+	CAM_Decision_Recruit_CAM_kong_sileah = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = CAM_Promote_Lol_Nol_and_young_Khmer_Officers
+			date > 1964.01.01
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = CAM_Promote_Lol_Nol_and_young_Khmer_Officers
+			CAM_kong_sileah = {
+				is_navy_leader = no
+			}
+		}
+		
+		custom_cost_trigger = {
+			OR = {
+				has_political_power > 100
+				command_power > 50
+			}
+		}
+		custom_cost_text = CAM_Decision_Recruit_General
+		
+		fire_only_once = yes
+		selectable_mission = no
+		days_remove = 7
+		complete_effect = {
+			if = {
+				limit = {
+					command_power > 50
+				}
+				add_command_power = -50
+			}
+			else = {
+				add_political_power = -100
+			}
+		}
+		remove_effect = {
+			CAM_kong_sileah = {
+				add_naval_commander_role = {
+					traits = { politically_connected destroyer_leader french_trainee_navy CAM_Republican_navy }
+					skill = 2
+					attack_skill = 2
+					defense_skill = 2
+					maneuvering_skill = 2
+					coordination_skill = 2
+					legacy_id = -1
+				}
+			}
+		}
+	}
+	CAM_Decision_Recruit_CAM_sarendy_vong = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = CAM_Promote_Lol_Nol_and_young_Khmer_Officers
+			date > 1957.01.01
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = CAM_Promote_Lol_Nol_and_young_Khmer_Officers
+			CAM_sarendy_vong = {
+				is_navy_leader = no
+			}
+		}
+		
+		custom_cost_trigger = {
+			OR = {
+				has_political_power > 100
+				command_power > 50
+			}
+		}
+		custom_cost_text = CAM_Decision_Recruit_General
+		
+		fire_only_once = yes
+		selectable_mission = no
+		days_remove = 7
+		complete_effect = {
+			if = {
+				limit = {
+					command_power > 50
+				}
+				add_command_power = -50
+			}
+			else = {
+				add_political_power = -100
+			}
+		}
+		remove_effect = {
+			CAM_sarendy_vong = {
+				add_naval_commander_role = {
+					traits = { politically_connected destroyer_leader french_trainee_navy SEA_Pro_America_navy CAM_Republican_navy cuts_corners }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 2
+					maneuvering_skill = 2
+					coordination_skill = 2
+					legacy_id = -1
+				}
+			}
+		}
+	}
+	CAM_Decision_Recruit_CAM_lon_non = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = CAM_Promote_Lol_Nol_and_young_Khmer_Officers
+			date > 1970.01.01
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = CAM_Promote_Lol_Nol_and_young_Khmer_Officers
+			CAM_lon_non = {
+				is_army_leader = no
+			}
+		}
+		
+		custom_cost_trigger = {
+			OR = {
+				has_political_power > 100
+				command_power > 50
+			}
+		}
+		custom_cost_text = CAM_Decision_Recruit_General
+		
+		fire_only_once = yes
+		selectable_mission = no
+		days_remove = 7
+		complete_effect = {
+			if = {
+				limit = {
+					command_power > 50
+				}
+				add_command_power = -50
+			}
+			else = {
+				add_political_power = -100
+			}
+		}
+		remove_effect = {
+			CAM_lon_non = {
+				add_corps_commander_role = {
+					traits = { politically_connected CAM_Republican }
+					skill = 2
+					attack_skill = 2
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 2
+					legacy_id = -1
+				}
+			}
+		}
+	}
+	CAM_Decision_Recruit_CAM_lon_nol = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = CAM_Promote_Lol_Nol_and_young_Khmer_Officers
+			date > 1955.01.01
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = CAM_Promote_Lol_Nol_and_young_Khmer_Officers
+			CAM_lon_nol = {
+				is_army_leader = no
+			}
+		}
+		
+		custom_cost_trigger = {
+			OR = {
+				has_political_power > 100
+				command_power > 50
+			}
+		}
+		custom_cost_text = CAM_Decision_Recruit_General
+		
+		fire_only_once = yes
+		selectable_mission = no
+		days_remove = 7
+		complete_effect = {
+			if = {
+				limit = {
+					command_power > 50
+				}
+				add_command_power = -50
+			}
+			else = {
+				add_political_power = -100
+			}
+		}
+		remove_effect = {
+			CAM_lon_non = {
+				add_corps_commander_role = {
+					traits = { politically_connected trait_reckless hill_fighter infantry_officer jungle_rat CAM_Republican SEA_Pro_America }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 4
+					planning_skill = 3
+					logistics_skill = 4
+					legacy_id = -1
+				}
+			}
+		}
+	}
+	CAM_Decision_Recruit_CAM_dien_del = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = CAM_Promote_Lol_Nol_and_young_Khmer_Officers
+			date > 1964.01.01
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = CAM_Promote_Lol_Nol_and_young_Khmer_Officers
+			CAM_dien_del = {
+				is_army_leader = no
+			}
+		}
+		
+		custom_cost_trigger = {
+			OR = {
+				has_political_power > 100
+				command_power > 50
+			}
+		}
+		custom_cost_text = CAM_Decision_Recruit_General
+		
+		fire_only_once = yes
+		selectable_mission = no
+		days_remove = 7
+		complete_effect = {
+			if = {
+				limit = {
+					command_power > 50
+				}
+				add_command_power = -50
+			}
+			else = {
+				add_political_power = -100
+			}
+		}
+		remove_effect = {
+			CAM_dien_del = {
+				add_corps_commander_role = {
+					traits = { infantry_officer jungle_rat CAM_Republican SEA_Pro_America }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 4
+					planning_skill = 3
+					logistics_skill = 4
+					legacy_id = -1
+				}
+			}
+		}
+	}
+	CAM_Decision_Recruit_CAM_norodom_chantaraingseyl = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = CAM_Promote_Lol_Nol_and_young_Khmer_Officers
+			date > 1949.01.01
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = CAM_Promote_Lol_Nol_and_young_Khmer_Officers
+			CAM_norodom_chantaraingsey = {
+				is_army_leader = no
+			}
+		}
+		
+		custom_cost_trigger = {
+			OR = {
+				has_political_power > 100
+				command_power > 50
+			}
+		}
+		custom_cost_text = CAM_Decision_Recruit_General
+		
+		fire_only_once = yes
+		selectable_mission = no
+		days_remove = 7
+		complete_effect = {
+			if = {
+				limit = {
+					command_power > 50
+				}
+				add_command_power = -50
+			}
+			else = {
+				add_political_power = -100
+			}
+		}
+		remove_effect = {
+			CAM_norodom_chantaraingsey = {
+				add_corps_commander_role = {
+					traits = { politically_connected media_personality self_taught scavenger ww2_veteran guerrilla_fighter brave brilliant_strategist CAM_Republican }
+					skill = 3
+					attack_skill = 4
+					defense_skill = 3
+					planning_skill = 2
+					logistics_skill = 3
+					legacy_id = -1
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,3238 @@
+# krcw: paced
+# krcw: x-coords doubled for icon clearance
+focus_tree = {
+	id = krcw_fra_tree
+	continuous_focus_position = { x = 50 y = 2530 }
+	country = {
+		factor = 0
+		modifier = { add = 5000 tag = FRA }
+	}
+	default = no
+	reset_on_civilwar = no
+	focus = {
+		id = krcw_fra_congress_of_1949
+		icon = GFX_focus_generic_conference
+		x = 4
+		y = 0
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.02
+			country_event = { id = krcw_fra.1 days = 2 }
+		}
+	}
+	focus = {
+		id = krcw_fra_frachons_mandate
+		icon = GFX_focus_generic_workers
+		x = 2
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_congress_of_1949 }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_war_support = 0.03
+			# reward_fill.py
+			add_ideas = krcw_fill_fra_strike_committees
+		}
+	}
+	focus = {
+		id = krcw_fra_the_question_of_the_offices
+		icon = GFX_focus_generic_improve_the_administration
+		x = 6
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_congress_of_1949 }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			country_event = { id = krcw_fra.2 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_fra_statute_of_rotation
+		icon = GFX_focus_generic_self_management
+		x = 4
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_frachons_mandate }
+		prerequisite = { focus = krcw_fra_the_question_of_the_offices }
+		mutually_exclusive = { focus = krcw_fra_the_efficient_apparatus }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_rotation_statute
+			add_political_power = -25
+			set_country_flag = krcw_fra_renewal
+		}
+	}
+	focus = {
+		id = krcw_fra_the_efficient_apparatus
+		icon = GFX_focus_generic_central_planning
+		x = 8
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_frachons_mandate }
+		prerequisite = { focus = krcw_fra_the_question_of_the_offices }
+		mutually_exclusive = { focus = krcw_fra_statute_of_rotation }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_ti_bureaucratization } remove_ideas = krcw_ti_bureaucratization }
+			add_ideas = krcw_fra_technocratic_turn
+			set_country_flag = krcw_fra_technocrats
+			add_stability = -0.03
+		}
+	}
+	focus = {
+		id = krcw_fra_participatory_budgeting
+		icon = GFX_focus_generic_public_meetings
+		x = 2
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_statute_of_rotation }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_ti_bureaucratization } remove_ideas = krcw_ti_bureaucratization }
+			add_ideas = krcw_fra_participatory_budget
+			add_stability = 0.03
+		}
+	}
+	focus = {
+		id = krcw_fra_recallable_delegates
+		icon = GFX_focus_generic_vote
+		x = 6
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_statute_of_rotation }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.04
+			add_political_power = 50
+			add_popularity = { ideology = trotskyism popularity = 0.03 }
+		}
+	}
+	focus = {
+		id = krcw_fra_planning_directorate
+		icon = GFX_goal_generic_production
+		x = 10
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_efficient_apparatus }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_tech_bonus = { name = krcw_fra_directorate_ind bonus = 0.5 uses = 2 category = industry }
+		}
+	}
+	focus = {
+		id = krcw_fra_federal_constitution
+		icon = GFX_goal_generic_parliament2
+		x = 6
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_participatory_budgeting focus = krcw_fra_recallable_delegates focus = krcw_fra_planning_directorate }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 100
+			set_country_flag = krcw_fra_constitution
+			# reward_fill.py
+			add_ideas = krcw_fill_fra_federal_charter
+		}
+	}
+	focus = {
+		id = krcw_fra_the_sorbonne_speaks
+		icon = GFX_focus_generic_education
+		x = 6
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_fra_federal_constitution }
+		available = {
+			date > 1952.8.24
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			country_event = { id = krcw_fra.5 days = 3 }
+		}
+	}
+	focus = {
+		id = krcw_fra_new_charter_of_labour
+		icon = GFX_focus_generic_worker_administration
+		x = 4
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_sorbonne_speaks }
+		mutually_exclusive = { focus = krcw_fra_order_in_the_federations }
+		available = {
+			NOT = { has_idea = krcw_fra_technocratic_turn }
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_fra_second_commune_pressure } remove_ideas = krcw_fra_second_commune_pressure }
+			if = { limit = { has_idea = krcw_fra_rotation_statute } remove_ideas = krcw_fra_rotation_statute }
+			if = { limit = { has_idea = krcw_ti_bureaucratization } remove_ideas = krcw_ti_bureaucratization }
+			add_ideas = krcw_fra_charter_of_labour
+			if = { limit = { has_country_flag = krcw_fra_students_seated } add_stability = 0.03 add_political_power = 50 }
+			if = { limit = { has_country_flag = krcw_fra_billancourt_broken } add_stability = -0.03 }
+		}
+	}
+	focus = {
+		id = krcw_fra_order_in_the_federations
+		icon = GFX_focus_generic_national_security
+		x = 8
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_sorbonne_speaks }
+		mutually_exclusive = { focus = krcw_fra_new_charter_of_labour }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 100
+			set_country_flag = krcw_fra_order
+			if = { limit = { NOT = { has_idea = krcw_fra_technocratic_turn } } add_ideas = krcw_fra_technocratic_turn }
+			if = { limit = { NOT = { has_idea = krcw_fra_second_commune_pressure } } add_ideas = krcw_fra_second_commune_pressure }
+			if = { limit = { has_country_flag = krcw_fra_students_seated } add_stability = -0.05 clr_country_flag = krcw_fra_students_seated }
+			if = { limit = { has_country_flag = krcw_fra_faculty_closed } add_political_power = 25 }
+		}
+	}
+	focus = {
+		id = krcw_fra_reconstruction_commissariat
+		icon = GFX_focus_generic_economic_recovery
+		x = 22
+		y = 0
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 25
+		}
+		completion_reward = {
+			20 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			28 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			735 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_fra_lorraine_steel
+		icon = GFX_focus_generic_steel_mill
+		x = 18
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_reconstruction_commissariat }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			20 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			} }
+			20 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_fra_rebuild_the_nord
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 22
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_reconstruction_commissariat }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			735 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			} }
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_fra_rhone_power
+		icon = GFX_focus_generic_hydroelectric_energy
+		x = 26
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_reconstruction_commissariat }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			32 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			} }
+			32 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_fra_keepers_of_the_ledger
+		icon = GFX_focus_generic_monetary_union
+		x = 18
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_lorraine_steel }
+		available = {
+			has_global_flag = KRCW_paris_clearing_union
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_clearing_union
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_opinion_modifier = { target = ROOT modifier = krcw_eu_ti_solidarity }
+			}
+		}
+	}
+	focus = {
+		id = krcw_fra_found_transnational_federations
+		icon = GFX_goal_generic_scientific_exchange
+		x = 20
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_keepers_of_the_ledger }
+		prerequisite = { focus = krcw_fra_rebuild_the_nord }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_transnational_federations
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_political_power = 25
+			}
+		}
+	}
+	focus = {
+		id = krcw_fra_algerian_development_fund
+		icon = GFX_focus_generic_africa_factory
+		x = 26
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_rhone_power }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			459 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			460 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			513 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_stability = 0.02
+			set_country_flag = krcw_fra_algeria_fund
+			country_event = { id = krcw_fra2.20 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_fra_cybernetic_coordination
+		icon = GFX_goal_generic_computers
+		x = 24
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_found_transnational_federations }
+		prerequisite = { focus = krcw_fra_algerian_development_fund }
+		available = {
+			date > 1951.3.15
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_cybernetic_planning
+			country_event = { id = krcw_fra.3 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_fra_machine_tools_for_the_world
+		icon = GFX_focus_generic_license_production
+		x = 18
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_found_transnational_federations }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_opinion_modifier = { target = ROOT modifier = krcw_eu_ti_solidarity }
+				add_stability = 0.01
+			}
+			24 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_global_ledger
+		icon = GFX_focus_generic_industrial_experts
+		x = 20
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_fra_cybernetic_coordination focus = krcw_fra_machine_tools_for_the_world }
+		available = {
+			date > 1952.1.18
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			16 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			} }
+			30 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			set_country_flag = krcw_fra_global_ledger
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_political_power = 50
+			}
+		}
+	}
+	focus = {
+		id = krcw_fra_federal_defence_review
+		icon = GFX_goal_generic_position_armies
+		x = 56
+		y = 0
+		cost = 3
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			army_experience = 15
+			navy_experience = 10
+			air_experience = 10
+			# reward_fill.py
+			add_tech_bonus = { name = krcw_fra_federal_defence_review bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_fra_federal_army_reform
+		icon = GFX_focus_generic_army_doctrines_2
+		x = 50
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_federal_defence_review }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_red_army_reform
+			army_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_fra_armoured_federations
+		icon = GFX_focus_generic_tank_production
+		x = 48
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_federal_army_reform }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_fra_armour bonus = 0.5 uses = 2 category = armor }
+			16 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_fra_raise_territorial_defence
+		icon = GFX_focus_generic_home_defense
+		x = 52
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_federal_army_reform }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_territorial_defence
+			add_manpower = 20000
+		}
+	}
+	focus = {
+		id = krcw_fra_elbe_doctrine
+		icon = GFX_goal_generic_army_doctrines
+		x = 50
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_armoured_federations }
+		prerequisite = { focus = krcw_fra_raise_territorial_defence }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_fra_doctrine bonus = 0.5 uses = 2 category = land_doctrine }
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_fra_the_atlantic_fleet
+		icon = GFX_focus_generic_north_atlantic_fleet
+		x = 58
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_federal_defence_review }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_atlantic_fleet
+			14 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			} }
+			navy_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_fra_submarine_arm
+		icon = GFX_goal_generic_navy_submarine
+		x = 56
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_atlantic_fleet }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_fra_subs bonus = 0.5 uses = 2 category = submarine_tech }
+			23 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_fra_air_federation
+		icon = GFX_goal_generic_build_airforce
+		x = 62
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_federal_defence_review }
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			31 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+			31 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 2 instant_build = yes }
+			} }
+			air_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_fra_jet_interceptors
+		icon = GFX_focus_generic_jet_planes
+		x = 62
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_air_federation }
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_fra_jets bonus = 0.5 uses = 2 category = jet_technology }
+			16 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 2 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_fra_mediterranean_squadron
+		icon = GFX_focus_generic_mediterranean_sea_focus
+		x = 60
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_submarine_arm }
+		prerequisite = { focus = krcw_fra_jet_interceptors }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			21 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_fra_screens bonus = 0.5 uses = 2 category = screen_tech }
+		}
+	}
+	focus = {
+		id = krcw_fra_a_citizens_army
+		icon = GFX_focus_generic_combined_arms
+		x = 56
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_elbe_doctrine }
+		prerequisite = { focus = krcw_fra_mediterranean_squadron }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 20
+			navy_experience = 15
+			air_experience = 15
+			add_war_support = 0.03
+			add_stability = 0.02
+			# reward_fill.py
+			add_ideas = krcw_fill_fra_defence_council
+		}
+	}
+	focus = {
+		id = krcw_fra_national_research_council
+		icon = GFX_focus_generic_socialist_science
+		x = 74
+		y = 0
+		cost = 3
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = krcw_fra_university_federations
+		icon = GFX_focus_generic_university_2
+		x = 70
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_national_research_council }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_fra_univ bonus = 0.5 uses = 2 category = electronics }
+			add_stability = 0.01
+		}
+	}
+	focus = {
+		id = krcw_fra_computing_bureau
+		icon = GFX_focus_generic_radio_communication
+		x = 70
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_university_federations }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_fra_computing bonus = 0.5 uses = 2 category = computing_tech }
+		}
+	}
+	focus = {
+		id = krcw_fra_found_atomic_commissariat
+		icon = GFX_focus_generic_uranium_extraction
+		x = 74
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_national_research_council }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_atomic_commissariat
+			add_tech_bonus = { name = krcw_fra_atom bonus = 0.5 uses = 2 category = nuclear }
+			country_event = { id = krcw_fra2.10 days = 7 }
+		}
+	}
+	focus = {
+		id = krcw_fra_saharan_test_range
+		icon = GFX_focus_generic_desert_training
+		x = 74
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_found_atomic_commissariat }
+		available = {
+			has_country_flag = krcw_fra2_range_sited
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			1148 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 2 instant_build = yes }
+			} }
+			1148 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 1 instant_build = yes }
+			} }
+			set_country_flag = krcw_fra_test_range
+			custom_effect_tooltip = krcw_fra_test_range_tt
+			country_event = { id = krcw_fra2.16 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_bomb_question
+		icon = GFX_focus_generic_nuclear_development
+		x = 74
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_saharan_test_range }
+		available = {
+			has_global_flag = KRCW_fra_nuke
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			country_event = { id = krcw_fra.4 days = 3 }
+			country_event = { id = krcw_fra2.17 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_fra_minimum_deterrence
+		icon = GFX_focus_generic_world_peace
+		x = 72
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_bomb_question }
+		mutually_exclusive = { focus = krcw_fra_the_communes_deterrent }
+		available = {
+			has_country_flag = krcw_fra2_doctrine_min
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_minimum_deterrent
+			krcw_tension_down_small = yes
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_fra_the_communes_deterrent
+		icon = GFX_goal_generic_secret_weapon
+		x = 76
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_bomb_question }
+		mutually_exclusive = { focus = krcw_fra_minimum_deterrence }
+		available = {
+			has_country_flag = krcw_fra2_doctrine_full
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_force_de_frappe
+			add_nuclear_bombs = 2
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_fra_reactor_federation
+		icon = GFX_goal_EU_EURATOM
+		x = 74
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_fra_minimum_deterrence focus = krcw_fra_the_communes_deterrent }
+		prerequisite = { focus = krcw_fra_computing_bureau }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_fra_reactors bonus = 0.5 uses = 2 category = nuclear_reactor }
+			add_stability = 0.02
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_opinion_modifier = { target = ROOT modifier = krcw_eu_ti_solidarity }
+			}
+		}
+	}
+	focus = {
+		id = krcw_fra_sounding_rockets
+		icon = GFX_focus_JAP_radio_guided_missiles
+		x = 90
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_national_research_council }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_fra_rockets bonus = 0.5 uses = 2 category = rocketry }
+		}
+	}
+	focus = {
+		id = krcw_fra_hammaguir_range
+		icon = GFX_focus_generic_air_research_boost
+		x = 90
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_sounding_rockets }
+		available = {
+			date > 1951.5.18
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1147 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 2 instant_build = yes }
+			} }
+			1147 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = rocket_site level = 1 instant_build = yes }
+			} }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_fra_the_1871_programme
+		icon = GFX_focus_rocketry
+		x = 90
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_hammaguir_range }
+		available = {
+			date > 1952.1.18
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			set_country_flag = krcw_fra_space_race
+			add_ideas = krcw_fra_1871_programme
+			add_tech_bonus = { name = krcw_fra_space bonus = 0.5 uses = 2 category = space_research }
+			custom_effect_tooltip = krcw_fra_space_race_tt
+		}
+	}
+	focus = {
+		id = krcw_fra_towards_orbit
+		icon = GFX_goal_generic_radar
+		x = 90
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_1871_programme }
+		prerequisite = { focus = krcw_fra_computing_bureau }
+		available = {
+			date > 1953.1.25
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_fra_orbit bonus = 0.5 uses = 2 category = space_research }
+			add_tech_bonus = { name = krcw_fra_orbit_r bonus = 0.5 uses = 1 category = rocketry }
+		}
+	}
+	focus = {
+		id = krcw_fra_a_shared_sky
+		icon = GFX_goal_generic_radar
+		x = 88
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_fra_towards_orbit }
+		prerequisite = { focus = krcw_fra_reactor_federation }
+		available = {
+			OR = { has_global_flag = KRCW_sputnik_1871 has_global_flag = KRCW_sov_satellite_first }
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_research_slot = 1
+			air_experience = 10
+			add_tech_bonus = { name = krcw_fra_recon_sat bonus = 0.5 uses = 1 category = rocketry }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_internationale_at_paris
+		icon = GFX_focus_generic_red_flags
+		x = 106
+		y = 0
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			add_political_power = 50
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_opinion_modifier = { target = ROOT modifier = krcw_eu_ti_solidarity }
+			}
+		}
+	}
+	focus = {
+		id = krcw_fra_reform_the_secretariat
+		icon = GFX_goal_generic_major_alliance
+		x = 106
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_internationale_at_paris }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_fra_head_of_internationale } remove_ideas = krcw_fra_head_of_internationale }
+			add_ideas = krcw_fra_internationale_secretariat
+			country_event = { id = krcw_fra.13 days = 20 }
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_stability = 0.02
+			}
+		}
+	}
+	focus = {
+		id = krcw_fra_the_rhine_compact
+		icon = GFX_focus_generic_befriend_germany_democratic
+		x = 98
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_internationale_at_paris }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { country_exists = WGR } WGR = {
+				add_opinion_modifier = { target = FRA modifier = krcw_eu_ti_solidarity }
+				if = { limit = { NOT = { has_idea = krcw_ti_frontline_readiness } } add_ideas = krcw_ti_frontline_readiness }
+				add_political_power = 50
+			} }
+			51 = { if = {
+				limit = { is_owned_by = WGR }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			42 = { if = {
+				limit = { is_owned_by = WGR }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_fra_hold_berlin
+		icon = GFX_goal_generic_fortify_city
+		x = 98
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_rhine_compact }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 10
+			add_war_support = 0.03
+			if = { limit = { country_exists = WGR } WGR = {
+				add_stability = 0.03
+				add_war_support = 0.05
+			} }
+			742 = { if = {
+				limit = { is_owned_by = WGR }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			if = { limit = { NOT = { has_global_flag = KRCW_berlin_crisis_over } } krcw_tension_up_small = yes }
+		}
+	}
+	focus = {
+		id = krcw_fra_italian_brotherhood
+		icon = GFX_focus_ITA_workers_unions
+		x = 102
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_internationale_at_paris }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { country_exists = ITA } ITA = {
+				add_opinion_modifier = { target = FRA modifier = krcw_eu_ti_solidarity }
+				add_political_power = 50
+			} }
+			158 = { if = {
+				limit = { is_owned_by = ITA }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			32 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_iberian_federation
+		icon = GFX_focus_generic_free_iberia
+		x = 102
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_italian_brotherhood }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { country_exists = SPR } SPR = {
+				add_opinion_modifier = { target = FRA modifier = krcw_eu_ti_solidarity }
+				add_stability = 0.03
+			} }
+			165 = { if = {
+				limit = { is_owned_by = SPR }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			41 = { if = {
+				limit = { is_owned_by = SPR }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_channel_compact
+		icon = GFX_focus_generic_british_trade
+		x = 106
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_reform_the_secretariat }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			set_country_flag = krcw_fra_channel_compact
+			if = { limit = { country_exists = ENG } ENG = {
+				add_opinion_modifier = { target = FRA modifier = krcw_eu_ti_solidarity }
+				add_political_power = 50
+			} }
+			navy_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_fra_the_atlantic_bridge
+		icon = GFX_focus_generic_air_partners
+		x = 110
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_internationale_at_paris }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { country_exists = WCA } WCA = {
+				add_opinion_modifier = { target = FRA modifier = krcw_eu_ti_solidarity }
+				add_stability = 0.02
+			} }
+			if = { limit = { country_exists = CAN } CAN = {
+				add_opinion_modifier = { target = FRA modifier = krcw_eu_ti_solidarity }
+				add_political_power = 25
+			} }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_great_lakes_arsenal
+		icon = GFX_goal_generic_military_deal
+		x = 110
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_atlantic_bridge }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { country_exists = WCA } WCA = {
+				add_tech_bonus = { name = krcw_fra_wca_arsenal bonus = 0.5 uses = 1 category = industry }
+			} }
+			if = { limit = { country_exists = CAN } CAN = {
+				add_tech_bonus = { name = krcw_fra_can_arsenal bonus = 0.5 uses = 1 category = industry }
+			} }
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_fra_the_nanjing_axis
+		icon = GFX_focus_CHI_planned_economy
+		x = 114
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_internationale_at_paris }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { country_exists = CHI } CHI = {
+				add_opinion_modifier = { target = FRA modifier = krcw_eu_ti_solidarity }
+				add_tech_bonus = { name = krcw_fra_chi_aid bonus = 0.5 uses = 1 category = industry }
+			} }
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_fra_the_monsoon_conference
+		icon = GFX_focus_generic_asia_liberation
+		x = 114
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_nanjing_axis }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { country_exists = KOR } KOR = {
+				add_opinion_modifier = { target = FRA modifier = krcw_eu_ti_solidarity }
+			} }
+			if = { limit = { country_exists = CAM } CAM = {
+				add_opinion_modifier = { target = FRA modifier = krcw_eu_ti_solidarity }
+			} }
+			if = { limit = { country_exists = LOS } LOS = {
+				add_opinion_modifier = { target = FRA modifier = krcw_eu_ti_solidarity }
+			} }
+			if = { limit = { country_exists = BRM } BRM = {
+				add_opinion_modifier = { target = FRA modifier = krcw_eu_ti_solidarity }
+			} }
+			every_country = {
+				limit = { OR = { tag = INO tag = SIA tag = PHI tag = MAL } NOT = { krcw_is_ma = yes } }
+				add_popularity = { ideology = trotskyism popularity = 0.03 }
+			}
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_fra_the_liberation_fund
+		icon = GFX_focus_generic_africa_liberation
+		x = 106
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_channel_compact }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_africa_liberation
+			add_political_power = -25
+			every_country = {
+				limit = { capital_scope = { is_on_continent = africa } NOT = { krcw_is_ma = yes } NOT = { is_subject = yes } NOT = { tag = ROOT } }
+				add_opinion_modifier = { target = ROOT modifier = krcw_eu_ti_solidarity }
+			}
+		}
+	}
+	focus = {
+		id = krcw_fra_the_algerian_question
+		icon = GFX_focus_generic_africa_defense
+		x = 104
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_liberation_fund }
+		available = {
+			date > 1951.10.20
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = { id = krcw_fra.6 days = 3 }
+		}
+	}
+	focus = {
+		id = krcw_fra_technicians_not_governors
+		icon = GFX_focus_generic_industrial_experts
+		x = 108
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_liberation_fund }
+		prerequisite = { focus = krcw_fra_the_monsoon_conference }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = -25
+			every_country = {
+				limit = { NOT = { is_in_faction = yes } NOT = { krcw_is_ma = yes } OR = { capital_scope = { is_on_continent = africa } capital_scope = { is_on_continent = asia } } }
+				add_stability = 0.02
+				add_opinion_modifier = { target = ROOT modifier = krcw_eu_ti_solidarity }
+			}
+		}
+	}
+	focus = {
+		id = krcw_fra_the_global_internationale
+		icon = GFX_focus_generic_the_council_of_europe
+		x = 110
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_fra_technicians_not_governors }
+		prerequisite = { focus = krcw_fra_the_great_lakes_arsenal }
+		available = {
+			date > 1952.6.21
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			set_country_flag = krcw_fra_global_internationale
+			add_political_power = 50
+			every_country = {
+				limit = {
+					NOT = { is_in_faction = yes } NOT = { tag = ROOT } NOT = { krcw_is_ma = yes } is_subject = no
+					OR = { has_government = trotskyism has_government = communism has_government = socialist }
+				}
+				country_event = { id = krcw_fra.10 days = 3 }
+			}
+		}
+	}
+	focus = {
+		id = krcw_fra_the_two_worlds
+		icon = GFX_focus_generic_diplomatic_treaty
+		x = 124
+		y = 0
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_war_support = 0.02
+			# reward_fill.py
+			add_ideas = krcw_fill_fra_eastern_bureau
+		}
+	}
+	focus = {
+		id = krcw_fra_peaceful_competition
+		icon = GFX_focus_generic_national_security
+		x = 122
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_two_worlds }
+		mutually_exclusive = { focus = krcw_fra_permanent_revolution }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_containment_line
+			add_to_variable = { global.krcw_ma_crisis = 2 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_fra_ma_crisis_up2_tt
+		}
+	}
+	focus = {
+		id = krcw_fra_permanent_revolution
+		icon = GFX_focus_generic_spur_communist_revolutions
+		x = 126
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_two_worlds }
+		mutually_exclusive = { focus = krcw_fra_peaceful_competition }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 3
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_world_revolution
+			krcw_tension_up_medium = yes
+			add_war_support = 0.05
+			add_to_variable = { global.krcw_ma_crisis = 2 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_fra_ma_crisis_up2_tt
+		}
+	}
+	focus = {
+		id = krcw_fra_the_geneva_channel
+		icon = GFX_focus_generic_secret_service_agency
+		x = 120
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_peaceful_competition }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = { global.krcw_ma_crisis = 3 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_fra_ma_crisis_up3_tt
+			add_political_power = -25
+			add_tech_bonus = { name = krcw_fra_geneva_station bonus = 0.5 uses = 1 category = decryption_tech }
+		}
+	}
+	focus = {
+		id = krcw_fra_scientific_exchange
+		icon = GFX_focus_generic_radio_communication
+		x = 124
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_peaceful_competition }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = { global.krcw_ma_crisis = 3 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_fra_ma_crisis_up3_tt
+			add_political_power = -25
+			add_tech_bonus = { name = krcw_fra_radio_east bonus = 0.5 uses = 1 category = electronics }
+		}
+	}
+	focus = {
+		id = krcw_fra_test_ban_talks
+		icon = GFX_focus_generic_trade_interdiction
+		x = 122
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_geneva_channel }
+		prerequisite = { focus = krcw_fra_scientific_exchange }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			add_to_variable = { global.krcw_ma_crisis = 4 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_fra_ma_crisis_up4_tt
+			add_stability = -0.02
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_fra_the_convergence_declaration
+		icon = GFX_goal_generic_dangerous_deal
+		x = 122
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_test_ban_talks }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_fra_containment_line } swap_ideas = { remove_idea = krcw_fra_containment_line add_idea = krcw_fra_containment_plan } }
+			else = { add_ideas = krcw_fra_containment_plan }
+			add_to_variable = { global.krcw_ma_crisis = 5 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_fra_ma_crisis_up5_tt
+			set_country_flag = krcw_fra_containment_plan
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_fra_arm_the_partisans
+		icon = GFX_focus_generic_sabotage
+		x = 126
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_permanent_revolution }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 3
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			krcw_tension_up_small = yes
+			every_country = {
+				limit = { krcw_is_ma = yes NOT = { tag = SOV } OR = { tag = POL tag = HUN tag = ROM tag = BUL tag = DDR } }
+				add_stability = -0.03
+			}
+			if = { limit = { country_exists = SOV } SOV = {
+				add_stability = -0.02
+			} }
+			add_to_variable = { global.krcw_ma_crisis = 3 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_fra_ma_crisis_up3_tt
+		}
+	}
+	focus = {
+		id = krcw_fra_the_final_struggle
+		icon = GFX_focus_generic_crush_capitalism
+		x = 126
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_arm_the_partisans }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 3
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_war_support = 0.1
+			army_experience = 25
+			krcw_tension_up_medium = yes
+			set_country_flag = krcw_fra_final_struggle
+			add_to_variable = { global.krcw_ma_crisis = 3 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_fra_ma_crisis_up3_tt
+		}
+	}
+	focus = {
+		id = krcw_fra_the_lesson_of_the_elbe
+		icon = GFX_goal_generic_army_doctrines
+		x = 56
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_fra_a_citizens_army }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 25
+			add_war_support = 0.03
+			custom_effect_tooltip = krcw_fra_elbe_lesson_tt
+			# reward_fill.py
+			random_owned_controlled_state = { limit = { is_core_of = ROOT free_building_slots = { building = arms_factory size > 0 include_locked = yes } } add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 300 }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_officer_cadres
+		icon = GFX_goal_generic_army_doctrines
+		x = 52
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_lesson_of_the_elbe }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ti_cadre_reform
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_fra_combined_arms_doctrine
+		icon = GFX_goal_generic_army_tanks
+		x = 60
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_lesson_of_the_elbe }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ti_combined_arms
+			add_tech_bonus = { name = krcw_fra_combined bonus = 0.5 uses = 2 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_reserve_statute
+		icon = GFX_focus_generic_manpower
+		x = 56
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_officer_cadres focus = krcw_fra_combined_arms_doctrine }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ti_standing_reserve
+			add_manpower = 40000
+		}
+	}
+	focus = {
+		id = krcw_fra_operational_art_focus
+		icon = GFX_goal_generic_army_doctrines
+		x = 60
+		y = 8
+		cost = 8
+		prerequisite = { focus = krcw_fra_the_reserve_statute }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ti_operational_art
+			army_experience = 30
+			add_tech_bonus = { name = krcw_fra_opart bonus = 0.5 uses = 2 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_federal_manoeuvre
+		icon = GFX_goal_generic_major_alliance
+		x = 56
+		y = 9
+		cost = 8
+		prerequisite = { focus = krcw_fra_operational_art_focus }
+		available = {
+			date > 1952.1.18
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 25
+			add_war_support = 0.05
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				army_experience = 10
+			}
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_fra_the_second_generation
+		icon = GFX_focus_generic_public_meetings
+		x = 6
+		y = 7
+		cost = 8
+		prerequisite = { focus = krcw_fra_new_charter_of_labour focus = krcw_fra_order_in_the_federations }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_the_generation_of_the_congress
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = krcw_fra_the_workshop_schools
+		icon = GFX_focus_research
+		x = 2
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_second_generation }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_research_slot = 1
+			add_stability = 0.03
+		}
+	}
+	focus = {
+		id = krcw_fra_the_womens_charter
+		icon = GFX_focus_generic_universal_suffrage
+		x = 10
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_second_generation }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.04
+			add_manpower = 30000
+			add_political_power = -25
+			# reward_fill.py
+			add_ideas = krcw_fill_fra_womens_delegates
+		}
+	}
+	focus = {
+		id = krcw_fra_the_cultural_front_focus
+		icon = GFX_focus_generic_public_meetings
+		x = 6
+		y = 9
+		cost = 8
+		prerequisite = { focus = krcw_fra_the_workshop_schools focus = krcw_fra_the_womens_charter }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_the_cultural_front
+			add_stability = 0.05
+			country_event = { id = krcw_fra.60 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_consumer_question
+		icon = GFX_focus_generic_industry_1
+		x = 20
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_global_ledger }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			add_stability = -0.02
+			# reward_fill.py
+			capital_scope = { add_extra_state_shared_building_slots = 1 add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+			add_ideas = krcw_fill_fra_consumer_plan
+		}
+	}
+	focus = {
+		id = krcw_fra_the_shop_floor_plan_focus
+		icon = GFX_focus_generic_self_management
+		x = 16
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_consumer_question }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_the_shop_floor_plan
+			add_tech_bonus = { name = krcw_fra_shopplan bonus = 0.5 uses = 1 category = industry }
+		}
+	}
+	focus = {
+		id = krcw_fra_housing_for_the_communes
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 24
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_consumer_question }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			16 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_stability = 0.05
+			20 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_consumer_turn
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 20
+		y = 8
+		cost = 8
+		prerequisite = { focus = krcw_fra_the_shop_floor_plan_focus focus = krcw_fra_housing_for_the_communes }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.06
+			add_war_support = -0.03
+			23 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			country_event = { id = krcw_fra.62 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_european_clearing_zone
+		icon = GFX_focus_generic_monetary_union
+		x = 24
+		y = 9
+		cost = 8
+		prerequisite = { focus = krcw_fra_the_consumer_turn }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 75
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_stability = 0.02
+			}
+			add_tech_bonus = { name = krcw_fra_clearing bonus = 0.5 uses = 2 category = industry }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_word_no_one_says
+		icon = GFX_goal_generic_political_pressure
+		x = 106
+		y = 6
+		cost = 8
+		prerequisite = { focus = krcw_fra_the_algerian_question }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_the_reckoning_with_algiers
+			country_event = { id = krcw_fra.64 days = 5 }
+			country_event = { id = krcw_fra2.25 days = 20 }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_algiers_statute
+		icon = GFX_focus_generic_universal_suffrage
+		x = 102
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_word_no_one_says }
+		mutually_exclusive = { focus = krcw_fra_the_departments_are_france }
+		available = {
+			has_country_flag = krcw_fra2_alg_statute_open
+		}
+		bypass = {
+			has_country_flag = krcw_fra_algeria_free
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_fra_the_reckoning_with_algiers } remove_ideas = krcw_fra_the_reckoning_with_algiers }
+			add_stability = 0.05
+			add_political_power = -50
+			set_country_flag = krcw_fra_algiers_statute
+			if = { limit = { has_country_flag = krcw_fra_algiers_seats } add_stability = 0.03 add_political_power = 25 }
+			if = { limit = { has_country_flag = krcw_fra_algiers_refused } add_political_power = -25 }
+			country_event = { id = krcw_fra2.26 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_departments_are_france
+		icon = GFX_focus_generic_soldier_salute
+		x = 110
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_word_no_one_says }
+		mutually_exclusive = { focus = krcw_fra_the_algiers_statute }
+		available = {
+			has_country_flag = krcw_fra2_alg_departments_open
+		}
+		bypass = {
+			has_country_flag = krcw_fra_algeria_free
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_war_support = 0.04
+			add_political_power = 50
+			add_stability = -0.04
+			set_country_flag = krcw_fra_algeria_hard
+			if = { limit = { has_country_flag = krcw_fra_algiers_seats } add_stability = -0.04 }
+			if = { limit = { has_country_flag = krcw_fra_algiers_inquiry } add_stability = -0.02 }
+			country_event = { id = krcw_fra2.27 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_sahara_and_the_south
+		icon = GFX_goal_generic_oil_refinery
+		x = 106
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_algiers_statute focus = krcw_fra_the_departments_are_france }
+		bypass = {
+			has_country_flag = krcw_fra_algeria_free
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			460 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			459 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_fra_the_clearing_union_step
+		icon = GFX_focus_generic_monetary_union
+		x = 28
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_global_ledger }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_eu_clearing_member
+			add_political_power = 25
+			add_to_variable = { global.krcw_integration = 1 }
+			clamp_variable = { var = global.krcw_integration min = 0 max = 20 }
+			custom_effect_tooltip = krcw_integration_step_tt
+		}
+	}
+	focus = {
+		id = krcw_fra_the_division_of_labour
+		icon = GFX_goal_generic_positive_trade_relations
+		x = 28
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_clearing_union_step }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			16 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_political_power = 25
+			add_to_variable = { global.krcw_integration = 1 }
+			clamp_variable = { var = global.krcw_integration min = 0 max = 20 }
+			custom_effect_tooltip = krcw_integration_step_tt
+		}
+	}
+	focus = {
+		id = krcw_fra_the_common_plan
+		icon = GFX_focus_generic_industry_3
+		x = 28
+		y = 8
+		cost = 8
+		prerequisite = { focus = krcw_fra_the_division_of_labour }
+		available = {
+			check_variable = { global.krcw_integration > 3 }
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_eu_common_plan
+			add_to_variable = { global.krcw_integration = 1 }
+			clamp_variable = { var = global.krcw_integration min = 0 max = 20 }
+			custom_effect_tooltip = krcw_integration_step_tt
+			country_event = { id = krcw_eui.10 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_eu_the_strasbourg_congress
+		icon = GFX_focus_generic_conference
+		x = 28
+		y = 9
+		cost = 8
+		prerequisite = { focus = krcw_fra_the_common_plan }
+		available = {
+			check_variable = { global.krcw_integration > 7 }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			country_event = { id = krcw_eui.1 days = 5 }
+			add_to_variable = { global.krcw_integration = 1 }
+			clamp_variable = { var = global.krcw_integration min = 0 max = 20 }
+			custom_effect_tooltip = krcw_integration_step_tt
+		}
+	}
+	focus = {
+		id = krcw_eu_the_parliament_of_labour
+		icon = GFX_focus_generic_universal_suffrage
+		x = 26
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_eu_the_strasbourg_congress }
+		mutually_exclusive = { focus = krcw_eu_the_council_of_federations }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_eu_labour_parliament
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_stability = 0.03
+			}
+			add_political_power = -25
+			set_global_flag = KRCW_labour_parliament
+			add_to_variable = { global.krcw_integration = 1 }
+			clamp_variable = { var = global.krcw_integration min = 0 max = 20 }
+			custom_effect_tooltip = krcw_integration_step_tt
+		}
+	}
+	focus = {
+		id = krcw_eu_the_council_of_federations
+		icon = GFX_focus_generic_treaty
+		x = 30
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_eu_the_strasbourg_congress }
+		mutually_exclusive = { focus = krcw_eu_the_parliament_of_labour }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 14
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.04
+			set_global_flag = KRCW_federation_council
+			# reward_fill.py
+			every_country = { limit = { is_in_faction_with = ROOT NOT = { tag = ROOT } } add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } }
+		}
+	}
+	focus = {
+		id = krcw_eu_the_shop_floor_charter
+		icon = GFX_focus_generic_self_management
+		x = 28
+		y = 11
+		cost = 8
+		prerequisite = { focus = krcw_eu_the_parliament_of_labour focus = krcw_eu_the_council_of_federations }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_eu_shop_floor_veto
+			add_stability = 0.06
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_stability = 0.02
+			}
+		}
+	}
+	focus = {
+		id = krcw_eu_the_federation_of_labour
+		icon = GFX_focus_generic_world_peace
+		x = 28
+		y = 12
+		cost = 10
+		prerequisite = { focus = krcw_eu_the_shop_floor_charter }
+		available = {
+			check_variable = { global.krcw_integration > 11 }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.08
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_stability = 0.04
+			}
+			set_global_flag = KRCW_european_federation
+			country_event = { id = krcw_eui.2 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_fra_what_the_internationale_is
+		icon = GFX_focus_generic_conference
+		x = 28
+		y = 13
+		cost = 8
+		prerequisite = { focus = krcw_fra_reform_the_secretariat }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			country_event = { id = krcw_left.1 days = 7 }
+			country_event = { id = krcw_fra2.1 days = 14 }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_binding_secretariat
+		icon = GFX_goal_generic_political_pressure
+		x = 16
+		y = 14
+		cost = 5
+		prerequisite = { focus = krcw_fra_what_the_internationale_is }
+		mutually_exclusive = { focus = krcw_fra_the_covenant_of_communes focus = krcw_fra_the_federations_alone }
+		available = {
+			has_country_flag = krcw_fra2_road_centre_open
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_ideas = krcw_ti_the_single_centre
+			set_global_flag = KRCW_ti_road_centre
+			add_political_power = 50
+			every_country = { limit = { is_in_faction_with = ROOT NOT = { tag = ROOT } } add_opinion_modifier = { target = ROOT modifier = krcw_ti_doctrinal_dispute } }
+			if = { limit = { NOT = { has_character = FRA_krcw_marty } } recruit_character = FRA_krcw_marty }
+			promote_character = FRA_krcw_marty
+			set_party_name = { ideology = trotskyism name = krcw_fra_party_centre long_name = krcw_fra_party_centre_long }
+			country_event = { id = krcw_fra2.8 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_covenant_of_communes
+		icon = GFX_focus_generic_self_management
+		x = 28
+		y = 14
+		cost = 5
+		prerequisite = { focus = krcw_fra_what_the_internationale_is }
+		mutually_exclusive = { focus = krcw_fra_the_binding_secretariat focus = krcw_fra_the_federations_alone }
+		available = {
+			has_country_flag = krcw_fra2_road_communes_open
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ti_the_free_communes
+			set_global_flag = KRCW_ti_road_communes
+			add_stability = 0.06
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_stability = 0.02
+			}
+			set_party_name = { ideology = trotskyism name = krcw_fra_party_communes long_name = krcw_fra_party_communes_long }
+			country_event = { id = krcw_fra2.8 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_federations_alone
+		icon = GFX_focus_generic_workers
+		x = 40
+		y = 14
+		cost = 5
+		prerequisite = { focus = krcw_fra_what_the_internationale_is }
+		mutually_exclusive = { focus = krcw_fra_the_binding_secretariat focus = krcw_fra_the_covenant_of_communes }
+		available = {
+			has_country_flag = krcw_fra2_road_unions_open
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ti_the_unions_alone
+			set_global_flag = KRCW_ti_road_unions
+			add_stability = 0.04
+			add_political_power = -25
+			if = { limit = { NOT = { has_character = FRA_krcw_monatte } } recruit_character = FRA_krcw_monatte }
+			promote_character = FRA_krcw_monatte
+			set_party_name = { ideology = trotskyism name = krcw_fra_party_unions long_name = krcw_fra_party_unions_long }
+			country_event = { id = krcw_fra2.8 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_fra_the_question_of_the_east
+		icon = GFX_goal_generic_forceful_treaty
+		x = 28
+		y = 17
+		cost = 8
+		prerequisite = { focus = krcw_fra_one_cadre_school focus = krcw_fra_the_exit_clause focus = krcw_fra_direct_delegates }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			country_event = { id = krcw_left.3 days = 7 }
+		}
+	}
+	focus = {
+		id = krcw_fra_build_the_model_first
+		icon = GFX_goal_generic_consumer_goods
+		x = 16
+		y = 18
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_question_of_the_east }
+		mutually_exclusive = { focus = krcw_fra_the_cadres_go_east }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_ideas = krcw_ti_one_country_first
+			set_global_flag = KRCW_ti_road_one_country
+			add_stability = 0.06
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_stability = 0.02
+			}
+			add_to_variable = { global.krcw_ti_crisis = -5 }
+			clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_fra_ti_crisis_down5_tt
+		}
+	}
+	focus = {
+		id = krcw_fra_the_cadres_go_east
+		icon = GFX_focus_generic_the_giant_wakes
+		x = 40
+		y = 18
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_question_of_the_east }
+		mutually_exclusive = { focus = krcw_fra_build_the_model_first }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 8
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_ti_world_revolution
+			set_global_flag = KRCW_ti_road_world_revolution
+			add_war_support = 0.06
+			krcw_tension_up_medium = yes
+			country_event = { id = krcw_left.5 days = 14 }
+			add_to_variable = { global.krcw_ma_crisis = 4 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_fra_ma_crisis_up4_tt
+		}
+	}
+	focus = {
+		id = krcw_fra_secretariat_inspectors
+		icon = GFX_goal_generic_political_pressure
+		x = 16
+		y = 15
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_binding_secretariat }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_war_support = 0.03
+			every_country = { limit = { is_in_faction_with = ROOT NOT = { tag = ROOT } } add_political_power = -15 }
+			# reward_fill.py
+			add_ideas = krcw_fill_fra_secretariat_inspectors
+		}
+	}
+	focus = {
+		id = krcw_fra_one_cadre_school
+		icon = GFX_focus_generic_conference
+		x = 16
+		y = 16
+		cost = 5
+		prerequisite = { focus = krcw_fra_secretariat_inspectors }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			add_stability = 0.03
+			army_experience = 15
+			# reward_fill.py
+			add_ideas = krcw_fill_fra_cadre_textbooks
+		}
+	}
+	focus = {
+		id = krcw_fra_arbitration_between_federations
+		icon = GFX_focus_generic_court
+		x = 28
+		y = 15
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_covenant_of_communes }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_stability = 0.02
+			}
+			# reward_fill.py
+			every_country = { limit = { is_in_faction_with = ROOT NOT = { tag = ROOT } } add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } }
+			krcw_tension_down_small = yes
+		}
+	}
+	focus = {
+		id = krcw_fra_the_exit_clause
+		icon = GFX_focus_generic_treaty
+		x = 28
+		y = 16
+		cost = 5
+		prerequisite = { focus = krcw_fra_arbitration_between_federations }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_political_power = 25
+			}
+			add_stability = 0.03
+			# reward_fill.py
+			add_ideas = krcw_fill_fra_exit_clause
+		}
+	}
+	focus = {
+		id = krcw_fra_dissolve_the_ministries
+		icon = GFX_focus_generic_workers
+		x = 40
+		y = 15
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_federations_alone }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.06
+			add_political_power = -50
+			# reward_fill.py
+			add_ideas = krcw_fill_fra_federation_offices
+		}
+	}
+	focus = {
+		id = krcw_fra_direct_delegates
+		icon = GFX_focus_generic_universal_suffrage
+		x = 40
+		y = 16
+		cost = 5
+		prerequisite = { focus = krcw_fra_dissolve_the_ministries }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.04
+			add_political_power = 25
+			# reward_fill.py
+			every_country = { limit = { is_in_faction_with = ROOT NOT = { tag = ROOT } } add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } }
+		}
+	}
+	focus = {
+		id = krcw_fra_first_reconstruction_plan
+		icon = GFX_goal_generic_production
+		x = 32
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_reconstruction_commissariat }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 25
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_reconstruction_plan
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_fra_reopen_the_nord_pits
+		icon = GFX_focus_generic_coal_mining
+		x = 30
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_first_reconstruction_plan }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			735 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			735 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_fra_electrify_paris_lyon
+		icon = GFX_focus_generic_railroad
+		x = 34
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_first_reconstruction_plan }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			16 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			27 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			32 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_fra_rail_electrification bonus = 0.5 uses = 1 category = construction_tech }
+		}
+	}
+	focus = {
+		id = krcw_fra_rebuild_le_havre
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 30
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_reopen_the_nord_pits }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			33 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			} }
+			33 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			33 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_fra_genissiat_dam
+		icon = GFX_focus_focus_generic_build_dam
+		x = 34
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_electrify_paris_lyon }
+		prerequisite = { focus = krcw_fra_rhone_power }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			32 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_fra_plan_heavy_first
+		icon = GFX_focus_generic_industry_2
+		x = 30
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_rebuild_le_havre }
+		prerequisite = { focus = krcw_fra_genissiat_dam }
+		mutually_exclusive = { focus = krcw_fra_plan_housing_first }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_fra_reconstruction_plan } swap_ideas = { remove_idea = krcw_fra_reconstruction_plan add_idea = krcw_fra_reconstruction_plan_heavy } }
+			20 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			24 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_stability = -0.03
+		}
+	}
+	focus = {
+		id = krcw_fra_plan_housing_first
+		icon = GFX_focus_generic_low_cost_housing
+		x = 34
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_rebuild_le_havre }
+		prerequisite = { focus = krcw_fra_genissiat_dam }
+		mutually_exclusive = { focus = krcw_fra_plan_heavy_first }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_fra_reconstruction_plan } swap_ideas = { remove_idea = krcw_fra_reconstruction_plan add_idea = krcw_fra_reconstruction_plan_housing } }
+			16 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_stability = 0.04
+		}
+	}
+	focus = {
+		id = krcw_fra_lacq_gas
+		icon = GFX_goal_generic_oil_refinery
+		x = 32
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_fra_plan_heavy_first focus = krcw_fra_plan_housing_first }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { 19 = { is_owned_by = ROOT } } add_resource = { type = oil amount = 4 state = 19 } }
+			19 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_fra_lacq bonus = 0.5 uses = 1 category = synth_resources }
+		}
+	}
+	focus = {
+		id = krcw_fra_close_the_reconstruction_plan
+		icon = GFX_focus_generic_industry_3
+		x = 32
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_fra_lacq_gas }
+		available = {
+			date > 1951.3.15
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_fra_reconstruction_plan } remove_ideas = krcw_fra_reconstruction_plan }
+			if = { limit = { has_idea = krcw_fra_reconstruction_plan_heavy } remove_ideas = krcw_fra_reconstruction_plan_heavy }
+			if = { limit = { has_idea = krcw_fra_reconstruction_plan_housing } remove_ideas = krcw_fra_reconstruction_plan_housing }
+			add_ideas = krcw_fra_reconstruction_complete
+			add_stability = 0.03
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = krcw_fra_unified_social_insurance
+		icon = GFX_focus_generic_welfare
+		x = 40
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_first_reconstruction_plan }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_social_insurance
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_fra_forty_hour_week
+		icon = GFX_focus_generic_workers
+		x = 38
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_unified_social_insurance }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_fra_social_insurance } swap_ideas = { remove_idea = krcw_fra_social_insurance add_idea = krcw_fra_social_insurance_2 } }
+			add_stability = 0.02
+			add_popularity = { ideology = trotskyism popularity = 0.02 }
+		}
+	}
+	focus = {
+		id = krcw_fra_national_wage_scale
+		icon = GFX_focus_generic_central_planning
+		x = 42
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_unified_social_insurance }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.03
+			add_political_power = -25
+			add_war_support = 0.02
+			# reward_fill.py
+			add_ideas = krcw_fill_fra_wage_scale
+		}
+	}
+	focus = {
+		id = krcw_fra_works_medical_service
+		icon = GFX_focus_FIN_socialist_welfare
+		x = 40
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_forty_hour_week }
+		prerequisite = { focus = krcw_fra_national_wage_scale }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_fra_social_insurance_2 } swap_ideas = { remove_idea = krcw_fra_social_insurance_2 add_idea = krcw_fra_social_insurance_3 } }
+			add_manpower = 10000
+		}
+	}
+	focus = {
+		id = krcw_fra_saclay_research_reactor
+		icon = GFX_goal_generic_scientific_exchange
+		x = 78
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_found_atomic_commissariat }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_fra_saclay_reactor bonus = 0.5 uses = 1 category = nuclear_reactor }
+			add_political_power = -15
+		}
+	}
+	focus = {
+		id = krcw_fra_limousin_uranium
+		icon = GFX_focus_generic_uranium_extraction
+		x = 82
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_found_atomic_commissariat }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			25 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			25 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_fra_limousin bonus = 0.5 uses = 1 category = nuclear }
+		}
+	}
+	focus = {
+		id = krcw_fra_marcoule_reactors
+		icon = GFX_focus_JAP_f_go_nuclear_project
+		x = 80
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_saclay_research_reactor }
+		prerequisite = { focus = krcw_fra_limousin_uranium }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_fra_atomic_commissariat } swap_ideas = { remove_idea = krcw_fra_atomic_commissariat add_idea = krcw_fra_atomic_commissariat_2 } }
+			22 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_fra_marcoule bonus = 0.5 uses = 1 category = nuclear }
+		}
+	}
+	focus = {
+		id = krcw_fra_nuclear_engineering_school
+		icon = GFX_focus_generic_university_2
+		x = 78
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_marcoule_reactors }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_fra_nuclear_school bonus = 0.5 uses = 2 category = electronics }
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_fra_pierrelatte_plant
+		icon = GFX_focus_JAP_ni_go_nuclear_project
+		x = 82
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_marcoule_reactors }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_fra_pierrelatte bonus = 0.5 uses = 2 category = nuclear }
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_fra_chinon_power_station
+		icon = GFX_focus_JAP_the_shuilikeng_power_plant
+		x = 80
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_fra_pierrelatte_plant }
+		prerequisite = { focus = krcw_fra_reactor_federation }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_fra_atomic_commissariat_2 } swap_ideas = { remove_idea = krcw_fra_atomic_commissariat_2 add_idea = krcw_fra_atomic_commissariat_3 } }
+			24 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			} }
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_fra_eastern_legions
+		icon = GFX_goal_generic_allies_build_infantry
+		x = 126
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_final_struggle }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 3
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			army_experience = 15
+			add_manpower = 15000
+			add_to_variable = { global.krcw_ma_crisis = 3 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_fra_ma_crisis_up3_tt
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_fra_root_out_the_networks
+		icon = GFX_focus_generic_secret_agent_operative
+		x = 130
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_two_worlds }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			add_to_variable = { global.krcw_ti_crisis = -5 }
+			clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_fra_ti_crisis_down5_tt
+			add_stability = -0.02
+			add_political_power = 25
+			# reward_fill.py
+			add_ideas = krcw_fill_fra_federal_security
+		}
+	}
+	focus = {
+		id = krcw_fra_internationale_counterintelligence
+		icon = GFX_focus_generic_national_security
+		x = 130
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_fra_root_out_the_networks }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 25
+		}
+		completion_reward = {
+			add_to_variable = { global.krcw_ti_crisis = -4 }
+			clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_fra_ti_crisis_down4_tt
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				add_stability = 0.02
+			}
+			add_tech_bonus = { name = krcw_fra_counterintel bonus = 0.5 uses = 1 category = encryption_tech }
+		}
+	}
+	focus = {
+		id = krcw_fra_berlin_airlift_reserve
+		icon = GFX_goal_generic_air_fighter2
+		x = 98
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_fra_hold_berlin }
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			air_experience = 15
+			18 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 1 instant_build = yes }
+			} }
+			add_to_variable = { global.krcw_berlin_pressure = -10 }
+			clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+			custom_effect_tooltip = krcw_berlin_pressure_tt
+		}
+	}
+	focus = {
+		id = krcw_fra_army_of_the_rhine
+		icon = GFX_goal_generic_position_armies
+		x = 98
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_fra_berlin_airlift_reserve }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 15
+			add_war_support = 0.02
+			set_country_flag = krcw_fra_army_of_the_rhine
+			if = { limit = { country_exists = WGR } WGR = {
+				add_war_support = 0.05
+				army_experience = 10
+			} }
+			# reward_fill.py
+			add_tech_bonus = { name = krcw_fra_army_of_the_rhine bonus = 0.5 uses = 1 category = armor }
+			if = { limit = { country_exists = WGR } WGR = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+		}
+	}
+	focus = {
+		id = krcw_fra_general_mobilisation_plan
+		icon = GFX_focus_generic_manpower
+		x = 68
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_lesson_of_the_elbe }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_mobilisation_plan
+			army_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_fra_rhine_elbe_railways
+		icon = GFX_focus_generic_railroad
+		x = 64
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_fra_general_mobilisation_plan }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			20 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			28 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			18 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_fra_mil_rail bonus = 0.5 uses = 1 category = logistics_tech }
+			if = { limit = { country_exists = WGR } WGR = {
+				capital_scope = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_fra_armoured_army_groups
+		icon = GFX_goal_generic_army_tanks
+		x = 68
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_fra_general_mobilisation_plan }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_fra_armour_groups bonus = 0.5 uses = 2 category = armor }
+			20 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_fra_forward_air_bases
+		icon = GFX_focus_generic_air_bases
+		x = 72
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_fra_general_mobilisation_plan }
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			18 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 2 instant_build = yes }
+			} }
+			28 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 2 instant_build = yes }
+			} }
+			air_experience = 20
+			add_tech_bonus = { name = krcw_fra_forward_air bonus = 0.5 uses = 1 category = cat_air_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_fra_atlantic_convoy_plan
+		icon = GFX_goal_generic_navy_anti_submarine
+		x = 76
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_fra_general_mobilisation_plan }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			navy_experience = 20
+			14 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_fra_convoys bonus = 0.5 uses = 2 category = asw_tech }
+			if = { limit = { country_exists = WCA } WCA = {
+				navy_experience = 10
+			} }
+			if = { limit = { country_exists = CAN } CAN = {
+				navy_experience = 10
+			} }
+		}
+	}
+	focus = {
+		id = krcw_fra_civil_defence_directorate
+		icon = GFX_focus_generic_home_defense
+		x = 66
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_fra_general_mobilisation_plan }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			16 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = anti_air_building level = 2 instant_build = yes }
+			} }
+			735 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = anti_air_building level = 1 instant_build = yes }
+			} }
+			28 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = anti_air_building level = 1 instant_build = yes }
+			} }
+			add_war_support = 0.03
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_fra_military_intelligence_bureau
+		icon = GFX_focus_generic_secret_service_agency
+		x = 70
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_fra_general_mobilisation_plan }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_fra_intel_decrypt bonus = 0.5 uses = 1 category = decryption_tech }
+			add_tech_bonus = { name = krcw_fra_intel_radar bonus = 0.5 uses = 1 category = radar_tech }
+			20 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = radar_station level = 1 instant_build = yes }
+			} }
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_fra_war_economy_statute
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 74
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_fra_general_mobilisation_plan }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_fra_war_economy
+			24 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+			27 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_fra_internationale_joint_command
+		icon = GFX_goal_generic_major_alliance
+		x = 68
+		y = 9
+		cost = 5
+		prerequisite = { focus = krcw_fra_rhine_elbe_railways focus = krcw_fra_armoured_army_groups focus = krcw_fra_forward_air_bases focus = krcw_fra_atlantic_convoy_plan }
+		prerequisite = { focus = krcw_fra_military_intelligence_bureau }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 15
+			add_political_power = -25
+			every_country = {
+				limit = { NOT = { tag = ROOT } is_in_faction_with = ROOT }
+				army_experience = 10
+				add_war_support = 0.03
+			}
+			# reward_fill.py
+			add_ideas = krcw_fill_fra_strasbourg_command
+		}
+	}
+	focus = {
+		id = krcw_fra_general_war_readiness
+		icon = GFX_goal_generic_occupy_start_war
+		x = 70
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_fra_internationale_joint_command }
+		prerequisite = { focus = krcw_fra_war_economy_statute }
+		prerequisite = { focus = krcw_fra_civil_defence_directorate }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_fra_mobilisation_plan } swap_ideas = { remove_idea = krcw_fra_mobilisation_plan add_idea = krcw_fra_war_readiness } }
+			else = { add_ideas = krcw_fra_war_readiness }
+			add_war_support = 0.05
+			set_country_flag = krcw_ww_prepared
+			custom_effect_tooltip = krcw_fra_ww_prepared_tt
+		}
+	}
+	focus = {
+		id = krcw_fra2_suspend_the_dissenters
+		icon = GFX_goal_generic_political_pressure
+		x = 14
+		y = 17
+		cost = 5
+		prerequisite = { focus = krcw_fra_secretariat_inspectors }
+		mutually_exclusive = { focus = krcw_fra2_negotiated_exemptions }
+		available = {
+			NOT = { has_country_flag = krcw_fra2_optout }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_war_support = 0.02
+			set_global_flag = KRCW_fra2_italy_suspended
+			if = { limit = { country_exists = ITA } ITA = { add_opinion_modifier = { target = FRA modifier = krcw_eu_secretariat_slight } } }
+			if = { limit = { has_country_flag = krcw_fra2_members_balked } add_stability = -0.03 }
+		}
+	}
+	focus = {
+		id = krcw_fra2_negotiated_exemptions
+		icon = GFX_focus_generic_treaty
+		x = 18
+		y = 17
+		cost = 5
+		prerequisite = { focus = krcw_fra_secretariat_inspectors }
+		mutually_exclusive = { focus = krcw_fra2_suspend_the_dissenters }
+		available = {
+			OR = { has_country_flag = krcw_fra2_optout has_country_flag = krcw_fra2_members_balked }
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.04
+			add_political_power = -25
+			every_country = { limit = { is_in_faction_with = ROOT NOT = { tag = ROOT } } add_opinion_modifier = { target = ROOT modifier = krcw_eu_ti_solidarity } }
+		}
+	}
+	focus = {
+		id = krcw_fra2_court_of_the_covenant
+		icon = GFX_focus_generic_court
+		x = 24
+		y = 16
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_covenant_of_communes }
+		available = {
+			has_country_flag = krcw_fra2_arbitration_route
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_stability = 0.04
+			add_political_power = 25
+			every_country = { limit = { is_in_faction_with = ROOT NOT = { tag = ROOT } } add_stability = 0.01 }
+			# reward_fill.py
+			if = { limit = { country_exists = WGR } WGR = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			if = { limit = { country_exists = HOL } HOL = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			krcw_tension_down_small = yes
+		}
+	}
+	focus = {
+		id = krcw_fra2_no_first_use_statute
+		icon = GFX_focus_generic_treaty
+		x = 72
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_fra_minimum_deterrence }
+		available = {
+			OR = { has_country_flag = krcw_fra2_observers_invited has_country_flag = krcw_fra_letter_published has_country_flag = krcw_fra2_atom_open }
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_stability = 0.04
+			add_political_power = 25
+			every_country = { limit = { is_in_faction_with = ROOT NOT = { tag = ROOT } } add_opinion_modifier = { target = ROOT modifier = krcw_eu_ti_solidarity } }
+			country_event = { id = krcw_fra2.18 days = 7 }
+		}
+	}
+	focus = {
+		id = krcw_fra2_target_committee
+		icon = GFX_goal_generic_secret_weapon
+		x = 76
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_communes_deterrent }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_war_support = 0.03
+			add_political_power = -25
+			add_tech_bonus = { name = krcw_fra2_targeting bonus = 0.5 uses = 1 category = rocketry }
+			country_event = { id = krcw_fra2.18 days = 7 }
+		}
+	}
+	focus = {
+		id = krcw_fra2_algerian_assembly
+		icon = GFX_focus_generic_universal_suffrage
+		x = 102
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_algiers_statute }
+		available = {
+			has_country_flag = krcw_fra2_alg_congress_seated
+		}
+		bypass = {
+			has_country_flag = krcw_fra_algeria_free
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_stability = 0.03
+			add_political_power = 25
+			459 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			if = { limit = { has_country_flag = krcw_fra2_alg_split_congress } add_stability = -0.02 }
+		}
+	}
+	focus = {
+		id = krcw_fra2_algerian_territorials
+		icon = GFX_goal_generic_position_armies
+		x = 110
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_fra_the_departments_are_france }
+		available = {
+			OR = { has_country_flag = krcw_fra2_alg_local_companies has_country_flag = krcw_fra2_alg_metropolitan }
+		}
+		bypass = {
+			has_country_flag = krcw_fra_algeria_free
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			army_experience = 15
+			460 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			if = { limit = { has_country_flag = krcw_fra2_alg_local_companies } add_manpower = 10000 add_stability = -0.02 }
+			if = { limit = { has_country_flag = krcw_fra2_alg_metropolitan } add_war_support = -0.02 }
+		}
+	}
+}

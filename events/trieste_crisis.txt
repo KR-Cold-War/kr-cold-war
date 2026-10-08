@@ -1,0 +1,343 @@
+# KRCW (build/patch_residue.py): 15 OTL events dropped while KRCW_active
+add_namespace = YUG_trieste_crisis
+add_namespace = YUG_trieste
+add_namespace = ITA_trieste
+add_namespace = ITA_koper
+add_namespace = YUG_koper
+add_namespace = news_trieste
+
+
+#trieste crisis
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_trieste_crisis.1
+	
+	immediate = {
+	}
+	
+	title = YUG_trieste_crisis.1.t
+	
+	desc = YUG_trieste_crisis.1.d
+	
+	picture = GFX_Yugov_1
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = YUG_trieste_crisis.1.a	
+	YUG = {	
+		transfer_state = 1673
+	}
+		
+	start_border_war = {
+   
+    change_state_after_war = no
+    
+	attacker = {  #yugoslavia 
+        	state = 1673
+        	num_provinces = 1
+        	on_win = YUG_trieste.1  #yugoslavia annexes Trieste
+        	on_lose = YUG_trieste.2  #italy annexes trieste, removes Yugo core
+        	on_cancel = YUG_trieste.3  #Italy keeps trieste
+    }	
+	
+	defender = { #italy 
+			state = 756
+				num_provinces = 1
+				on_win = ITA_trieste.1  #italy annexes trieste, removes yugo core, can invade Koper
+				on_lose = ITA_trieste.2 #yugo annexes trieste, removes ita core
+				on_cancel = ITA_trieste.3 #keeps trieste, cant advance to Koper
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_trieste_crisis.2
+	
+	immediate = {
+	}
+	
+	title = YUG_trieste_crisis.2.t
+	
+	desc = YUG_trieste_crisis.2.d
+	
+	picture = GFX_Yugov_1
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		name = YUG_trieste_crisis.2.a	
+			
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_trieste.1 #yugo annexes trieste 
+	immediate = { }
+	title = YUG_trieste.1.t
+	desc = YUG_trieste.1.d
+	#picture = 
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = YUG_trieste.1.a
+		YUG = { transfer_state = 756 }
+		if = {
+			limit = { 756 = { is_owned_by = ROOT } }
+			756 = {
+				remove_core_of = ITA
+				add_core_of = YUG	
+			}
+		}
+		756 = { add_claim_by = ITA }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_trieste.2 #yugo loses trieste 
+	immediate = { }
+	title = YUG_trieste.2.t
+	desc = YUG_trieste.2.d
+	#picture = 
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = YUG_trieste.2.a
+		set_global_flag = ita_annexed_trieste
+		756 = {
+			remove_core_of = YUG
+			add_claim_by = YUG
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_trieste.3 #ita annexes trieste but cant invade Koper
+	immediate = { }
+	title = YUG_trieste.3.t
+	desc = YUG_trieste.3.d
+	#picture = 
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = YUG_trieste.3.a
+		756 = {
+			add_claim_by = YUG
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ITA_trieste.1 #ita annexes trieste and advances to koper
+	immediate = { }
+	title = ITA_trieste.1.t
+	desc = ITA_trieste.1.d
+	#picture = 
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ITA_trieste.1.a
+		set_country_flag = ITA_won_trieste
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ITA_trieste.2 #ita annexes trieste and advances to koper
+	immediate = { }
+	title = ITA_trieste.2.t
+	desc = ITA_trieste.2.d
+	#picture = 
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ITA_trieste.2.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ITA_trieste.3 #ita annexes trieste and advances to koper
+	immediate = { }
+	title = ITA_trieste.3.t
+	desc = ITA_trieste.3.d
+	#picture = 
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ITA_trieste.3.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ITA_koper.1 #ita annexes trieste and advances to koper
+	immediate = { }
+	title = ITA_koper.1.t
+	desc = ITA_koper.1.d
+	#picture = 
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ITA_koper.1.a
+		set_province_name = { id = 16376 name = "Capodistria" } 
+	    ITA = {
+            transfer_state = 1673
+        }
+		1673 = {
+			remove_core_of = YUG
+			add_claim_by = YUG
+			remove_core_of = TRS
+		}
+	}
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ITA_koper.2 #ita annexes trieste and cant take Koper
+	immediate = { }
+	title = ITA_koper.2.t
+	desc = ITA_koper.2.d
+	#picture = 
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ITA_koper.2.a
+		1673 = {
+			remove_core_of = ITA
+			add_claim_by = ITA
+			remove_core_of = TRS
+		}
+	}
+}
+
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_koper.1 #Yugo keeps koper
+	immediate = { }
+	title = YUG_koper.1.t
+	desc = YUG_koper.1.d
+	#picture = 
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = YUG_koper.1.a
+		1673 = {
+			remove_core_of = ITA
+			add_claim_by = ITA
+			remove_core_of = TRS
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_koper.2 #Yugo keeps koper
+	immediate = { }
+	title = YUG_koper.2.t
+	desc = YUG_koper.2.d
+	#picture = 
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = YUG_koper.2.a
+		1673 = {
+			remove_core_of = YUG
+			add_claim_by = YUG
+			remove_core_of = TRS
+		}
+	}
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ITA_trieste.5 #test event
+	immediate = { }
+	title = ITA_trieste.5.t
+	desc = ITA_trieste.5.d
+	#picture = 
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ITA_trieste.5.a
+		set_country_flag = ITA_YUG_war
+		set_global_flag = trieste_crisis
+	}
+}
+
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = news_trieste.1
+	 immediate = { }
+	title = news_trieste.1.t
+	desc = news_trieste.1.d
+	picture = GFX_italy_annexes_trieste	
+	
+	is_triggered_only = yes
+	major = yes
+	
+	option = {
+		name = news_trieste.1.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ITA_trieste.6 #test event
+	immediate = { }
+	title = ITA_trieste.6.t
+	desc = ITA_trieste.6.d
+	picture = GFX_trieste_victory
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ITA_trieste.6.a
+	}
+}

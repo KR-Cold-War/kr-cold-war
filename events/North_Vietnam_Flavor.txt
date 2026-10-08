@@ -1,0 +1,200 @@
+# KRCW (build/patch_residue.py): 7 OTL events dropped while KRCW_active
+add_namespace = VIN_Bao_Dai
+add_namespace = CPSU_VIN
+add_namespace = Le_Duan
+add_namespace = VIN_Geneva
+add_namespace = VWP
+
+add_namespace = Vietnam_America
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CPSU_VIN.1 
+ immediate = { }
+	title = CPSU_VIN.1.t
+	desc = CPSU_VIN.1.d
+	picture = GFX_CPSU_VIN_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = CPSU_VIN.1.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = VIN_Geneva.1 
+ immediate = { }
+	title = VIN_Geneva.1.t
+	desc = VIN_Geneva.1.d
+	picture = GFX_VIN_Geneva_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = VIN_Geneva.1.a
+		country_event = VIN_Geneva.2
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = VIN_Geneva.2 
+ immediate = { }
+	title = VIN_Geneva.2.t
+	desc = VIN_Geneva.2.d
+	picture = GFX_VIN_Geneva_2
+
+	is_triggered_only = yes
+
+	option = {
+		name = VIN_Geneva.2.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = VWP.1
+ immediate = { }
+	title = VWP.1.t
+	desc = VWP.1.d
+	picture = GFX_VWP_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = VWP.1.a
+		complete_national_focus = VIN_The_Fifteenth_Plenum_of_the_VWP
+		complete_national_focus = VIN_General_Secretary_Le_Duan
+		add_country_leader_role = {
+			character = VIN_Le_Duan
+			promote_leader = yes
+			country_leader = {
+				ideology = ho_chi_minh_thought
+			}
+		}
+		set_politics = {
+			ruling_party = communism
+			elections_allowed = no
+		}
+		ai_chance = {
+			base = 50
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = VIN_15_plenum
+						option = VIN_VO_NGUYEN_GIAP
+					}
+					has_game_rule = {
+						rule = VIN_15_plenum
+						option = VIN_TRUONG_CHINH
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = VWP.1.b
+		complete_national_focus = VIN_The_Fifteenth_Plenum_of_the_VWP
+		complete_national_focus = VIN_General_Secretary_Truong_Chinh
+		add_country_leader_role = {
+			character = VIN_Truong_Chinh
+			promote_leader = yes
+			country_leader = {
+				ideology = maoist
+			}
+		}
+		set_politics = {
+			ruling_party = maoism
+			elections_allowed = no
+		}
+		ai_chance = {
+			base = 25
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = VIN_15_plenum
+						option = VIN_VO_NGUYEN_GIAP
+					}
+					has_game_rule = {
+						rule = VIN_15_plenum
+						option = VIN_LE_DUAN
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = VWP.1.c
+		complete_national_focus = VIN_The_Fifteenth_Plenum_of_the_VWP
+		complete_national_focus = VIN_General_Secretary_Vo_Nguyen_Giap
+		add_country_leader_role = {
+			character = VIN_Vo_Nguyen_Giap
+			promote_leader = yes
+			country_leader = {
+				ideology = marxism_leninism
+			}
+		}
+		set_politics = {
+			ruling_party = communism
+			elections_allowed = no
+		}
+		ai_chance = {
+			base = 25
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = VIN_15_plenum
+						option = VIN_TRUONG_CHINH
+					}
+					has_game_rule = {
+						rule = VIN_15_plenum
+						option = VIN_LE_DUAN
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Le_Duan.1 
+ immediate = { }
+	title = Le_Duan.1.t
+	desc = Le_Duan.1.d
+	picture = GFX_Le_Duan_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = Le_Duan.1.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = VIN_Bao_Dai.1 
+ immediate = { }
+	title = VIN_Bao_Dai.1.t
+	desc = VIN_Bao_Dai.1.d
+	picture = GFX_VIN_Bao_Dai_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = VIN_Bao_Dai.1.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Vietnam_America.1 
+ immediate = { }
+	title = Vietnam_America.1.t
+	major = yes
+	picture = GFX_Vietnam_America_1
+	is_triggered_only = yes
+	desc = Vietnam_America.1.d
+
+	option = {
+		name = Vietnam_America.1.a
+	}
+}

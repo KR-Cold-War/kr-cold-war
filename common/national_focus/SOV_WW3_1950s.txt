@@ -1,0 +1,1003 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = SOV_WW3_1950s
+	country = {
+		factor = 0
+		modifier = {
+			add = 5
+			tag = SOV
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	focus = {
+		id = SOVw_The_Great_Liberation_War
+		icon = GFX_SOV_great_liberation_war_focus
+		cost = 1.4
+		x = 6
+		y = 0
+		completion_reward = {
+			custom_effect_tooltip = testtooltip
+		    every_subject_country = { 
+			    add_timed_idea = {
+                    idea = great_liberation_war
+	                days = 500
+                }
+		    }
+			add_timed_idea = {
+                idea = great_liberation_war
+	            days = 500
+            }
+			remove_ideas = {
+                victor_of_the_great_patriotic_war
+            }
+			army_experience = 50
+			navy_experience = 50
+			air_experience = 50
+		}
+	}
+	focus = {
+		id = SOVw_A_Wartime_Diplomacy
+		icon = GFX_SOV_Wartime_Diplomacy
+		cost = 2.8
+		x = 19
+		y = 0
+		completion_reward = {
+			custom_effect_tooltip = Great_Liberation_War
+            add_to_variable = {
+                bonus_fpp_modifier = 0.50
+                tooltip = bonus_fpp_modifier_tt 
+            }
+			set_temp_variable = { money_change_temp = -5 }
+			cwic_change_money = yes
+            every_country = {
+			    limit = {
+					is_in_faction_with = SOV
+				}
+				send_equipment = {
+                    equipment = infantry_equipment
+                    amount = 5000
+                    target = FROM
+                }
+			}
+        }
+	}
+	focus = {
+		id = SOVw_Round_up_the_Armed_Forces
+		icon = GFX_SOV_Round_Up_The_Armed_Forces
+		cost = 2.8
+		prerequisite = {
+			focus = SOVw_The_Great_Liberation_War
+		}
+		x = 0
+		y = 1
+		relative_position_id = SOVw_The_Great_Liberation_War
+		completion_reward = {
+		    set_temp_variable = { exhaustion_change = 0.05 }
+            WW3_1950_war_exhaustion_change = yes
+            add_manpower = 50000
+		    set_temp_variable = { money_change_temp = -5 }
+		    cwic_change_money = yes
+		}
+	}
+	focus = {
+		id = SOVw_Rally_the_Workers_of_the_Unions
+		icon = GFX_SOV_Rally_the_Workers_of_the_Unions
+		cost = 2.8
+		prerequisite = {
+			focus = SOVw_Round_up_the_Armed_Forces
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			custom_effect_tooltip = worker
+			set_temp_variable = { exhaustion_change = 0.05 }
+            WW3_1950_war_exhaustion_change = yes
+			add_political_power = 25
+			set_temp_variable = { money_change_temp = 5 }
+			cwic_change_money = yes
+			add_offsite_building = { type = arms_factory level = 5 }
+			country_event = SOVw_Third_World_War.2
+		}
+		relative_position_id = SOVw_The_Great_Liberation_War
+
+	}
+	focus = {
+		id = SOVw_Restart_Tankograd_Production_Capability
+		icon = GFX_SOVw_Restart_Tankograd_Production_Capability
+		cost = 5.00
+		prerequisite = {
+			focus = SOVw_Rally_the_Workers_of_the_Unions
+		}
+		completion_reward = {
+			set_temp_variable = { money_change_temp = -5 }
+			cwic_change_money = yes
+			
+		}
+		x = 0
+		y = 3
+		relative_position_id = SOVw_The_Great_Liberation_War
+
+	}
+	focus = {
+		id = SOVw_Set_Up_the_LEADER_Line
+		icon = GFX_FortificationEffort
+		cost = 5.00
+		prerequisite = {
+			focus = SOVw_Restart_Tankograd_Production_Capability
+		}
+		mutually_exclusive = {
+			focus = SOVw_Order_the_Mobilization_of_All_Able_Bodied_Man
+		}
+		completion_reward = {
+			SOV = {
+				every_owned_state = {
+					limit = {
+						is_controlled_by = PREV
+					}
+				    add_building_construction = {
+					    type = bunker
+					    level = 8
+				        instant_build = yes
+					    province = {
+						    all_provinces = yes
+						    limit_to_border = yes
+						    limit_to_border_country = FIN
+					    }
+				    }
+					add_building_construction = {
+					    type = bunker
+					    level = 8
+				        instant_build = yes
+					    province = {
+						    all_provinces = yes
+						    limit_to_border = yes
+						    limit_to_border_country = POL
+					    }
+				    }
+					add_building_construction = {
+					    type = bunker
+					    level = 8
+				        instant_build = yes
+					    province = {
+						    all_provinces = yes
+						    limit_to_border = yes
+						    limit_to_border_country = PER
+					    }
+				    }
+					add_building_construction = {
+					    type = bunker
+					    level = 8
+				        instant_build = yes
+					    province = {
+						    all_provinces = yes
+						    limit_to_border = yes
+						    limit_to_border_country = ROM
+					    }
+				    }
+			    }
+			}
+			set_temp_variable = { exhaustion_change = 0.25 }
+            WW3_1950_war_exhaustion_change = yes
+			set_temp_variable = { money_change_temp = -20 }
+			cwic_change_money = yes
+			modify_timed_idea = {
+                idea = great_liberation_war
+                days = 800
+            }
+		}
+		x = 1
+		y = 4
+		relative_position_id = SOVw_The_Great_Liberation_War
+
+	}
+	focus = {
+		id = SOVw_Order_the_Mobilization_of_All_Able_Bodied_Man
+		icon = GFX_SOVw_Order_the_Mobilization_of_All_Able_Bodied_Man
+		cost = 5.00
+		prerequisite = {
+			focus = SOVw_Restart_Tankograd_Production_Capability
+		}
+		mutually_exclusive = {
+			focus = SOVw_Set_Up_the_LEADER_Line
+		}
+		x = -1
+		y = 4
+		completion_reward = {
+		    modify_timed_idea = {
+                idea = great_liberation_war
+                days = 800
+            }
+			set_temp_variable = { exhaustion_change = 0.15 }
+            WW3_1950_war_exhaustion_change = yes
+	    }
+		relative_position_id = SOVw_The_Great_Liberation_War
+
+	}
+	focus = {
+		id = SOVw_Ration_Food_for_Soldiers
+		icon = GFX_SOVw_Ration_Food_for_Soldiers
+		cost = 5.00
+		prerequisite = {
+			focus = SOVw_Set_Up_the_LEADER_Line
+			focus = SOVw_Order_the_Mobilization_of_All_Able_Bodied_Man
+		}
+		completion_reward = {
+			set_temp_variable = { exhaustion_change = -0.15 }
+            WW3_1950_war_exhaustion_change = yes
+		}
+		x = 0
+		y = 5
+		relative_position_id = SOVw_The_Great_Liberation_War
+
+	}
+	focus = {
+		id = SOVw_Extend_Conscription_Law_for_Women
+		icon = GFX_SOVw_Extend_Conscription_Law_for_Women
+		cost = 5.00
+		prerequisite = {
+			focus = SOVw_Ration_Food_for_Soldiers
+		}
+		completion_reward = {
+			set_temp_variable = { exhaustion_change = 0.15 }
+            WW3_1950_war_exhaustion_change = yes
+			add_manpower = 150000
+		}
+		x = 0
+		y = 6
+		relative_position_id = SOVw_The_Great_Liberation_War
+
+	}
+	focus = {
+		id = SOVw_Suppress_Anti_War_Misinformation
+		icon = GFX_WGR_Surveillance
+		cost = 3
+		available = {
+			has_completed_focus = SOVw_Establish_the_Ministry_of_War_Information
+		}
+		prerequisite = {
+			focus = SOVw_A_Wartime_Diplomacy
+		}
+		x = 3
+		y = 1
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+		completion_reward = {
+			add_ideas = SOV_ANTI_MISINFORMATION
+		}
+
+	}
+	focus = {
+		id = SOVw_In_the_Defense_of_the_Union
+		icon = GFX_promise_wide_autonomy
+		cost = 2.8
+		prerequisite = {
+			focus = SOVw_Round_up_the_Armed_Forces
+		}
+		completion_reward = {
+			custom_effect_tooltip = CPSU_Gensec
+			set_temp_variable = { exhaustion_change = -0.05 }
+            WW3_1950_war_exhaustion_change = yes
+			add_political_power = 25
+			country_event = SOVw_Third_World_War.4
+		}
+		x = 3
+		y = 2
+		relative_position_id = SOVw_The_Great_Liberation_War
+
+	}
+	focus = {
+		id = SOVw_Reinstill_Militarism_for_the_Peoples
+		icon = GFX_PRC_50s_Localization_of_Soviet_Design
+		cost = 5.00
+		prerequisite = {
+			focus = SOVw_In_the_Defense_of_the_Union
+		}
+		completion_reward = {
+			set_temp_variable = { exhaustion_change = -0.05 }
+            WW3_1950_war_exhaustion_change = yes
+			add_war_support = 0.10
+		}
+		x = 3
+		y = 3
+		relative_position_id = SOVw_The_Great_Liberation_War
+
+	}
+	focus = {
+		id = SOVw_Encourage_Warbond_Purchases
+		icon = GFX_PRC_50s_The_Campaign_to_Increase_Production_And_Practice_Economy
+		cost = 3
+		prerequisite = {
+			focus = SOVw_Suppress_Anti_War_Misinformation
+		}
+		x = 3
+		y = 2
+		completion_reward = {
+			add_stability = -0.20
+		    set_temp_variable = { money_change_temp = 15 }
+			cwic_change_money = yes
+			set_temp_variable = { exhaustion_change = -0.25 }
+            WW3_1950_war_exhaustion_change = yes
+            add_research_slot = 1
+		}
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+
+	}
+	focus = {
+		id = SOVw_Launch_the_Korean_Offensive
+		dynamic = yes
+		icon = {
+			GFX_unknown = {
+				 country_exists = KOR
+			}
+			GFX_KPA_50s_the_fatherland_liberation_war = {
+				OR = {
+					has_global_flag = KOREA_CEASEFIRE_UN
+					NOT = {
+						OR = {
+							country_exists = KOR
+							country_exists = KPA
+						}
+					}
+				}
+			}
+		}
+		cost = 2.00
+		available = {
+			has_country_flag = DPRK_Letter_Join_War
+			OR = {
+				has_completed_focus = SOVw_Reinforce_North_China_Defenses
+				has_completed_focus = SOVw_Enact_Secretive_Talks_with_the_Peoples_Republic_of_China
+			}
+		}
+		prerequisite = {
+			focus = SOVw_Encourage_Warbond_Purchases
+		}
+		x = 5
+		y = 3
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+		dynamic = yes
+		completion_reward = {
+		    SOV = {
+				give_guarantee = KPA
+			}
+		    if = {
+				limit = {
+					country_exists = KOR
+				}
+				KOR = {
+					create_faction = KOR_FACTION_WW3
+				}
+				KPA = {
+                    set_temp_variable = { 
+                        New_sphere_leader = SOV
+                    }
+                    add_to_sphere = yes
+				    declare_war_on = {
+                        target = KOR
+                        type = annex_everything
+                    }
+				    if = {
+					    limit = {
+						    PRC = {
+							    is_in_faction = yes
+						    }
+					    }
+					    PRC = {
+						    add_to_faction = KPA
+					    }
+				    }
+                }
+			}
+		}
+	}
+	focus = {
+		id = SOVw_Cut_Japanese_Relations
+		icon = GFX_goal_unknown
+		cost = 2.00
+		available = {
+			has_war_with = JAP
+			NOT = {
+				JAP = {
+					OR = {
+						has_cosmetic_tag = JAP_SOV
+						has_cosmetic_tag = JAP_SOV_2
+					}
+				}
+			}
+		}
+		bypass = {
+			JAP = {
+				OR = {
+					has_cosmetic_tag = JAP_SOV
+					has_cosmetic_tag = JAP_SOV_2
+				}
+			}
+		}
+		prerequisite = {
+			focus = SOVw_Encourage_Warbond_Purchases
+		}
+		x = 1
+		y = 3
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+		completion_reward = {
+			send_embargo = JAP
+			add_opinion_modifier = {
+				target = JAP 
+				modifier = closed_embassies
+			}
+			JAP = {
+				add_opinion_modifier = {
+					target = SOV 
+					modifier = closed_embassies
+				}
+			}
+		}
+
+	}
+	focus = {
+		id = SOVw_Increase_North_Pacific_Submarine_Deployments
+		icon = GFX_PRC_50s_Expand_The_Submarine_Fleet
+		cost = 5.00
+		prerequisite = {
+			focus = SOVw_Cut_Japanese_Relations
+		}
+		x = 2
+		y = 4
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+		completion_reward = {
+			navy_experience = 20
+
+		}
+
+	}
+	focus = {
+		id = SOVw_The_American_Mainland_Problem
+		icon = GFX_ALB_United_States_Backing
+		cost = 5.00
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = SOVw_Launch_the_Korean_Offensive
+		}
+		prerequisite = {
+			focus = SOVw_Cut_Japanese_Relations
+		}
+		x = 4
+		y = 4
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+
+	}
+	focus = {
+		id = SOVw_Negotiate_Terms
+		icon = GFX_SOVw_Negotiate_Terms
+		cost = 5.00
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = SOVw_The_American_Mainland_Problem
+		}
+		prerequisite = {
+			focus = SOVw_Increase_North_Pacific_Submarine_Deployments
+		}
+		mutually_exclusive = {
+			focus = SOVw_Operation_Red_Dawn
+		}
+		x = 3
+		y = 5
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+
+	}
+	focus = {
+		id = SOVw_Put_Nuclear_Forces_in_High_Alert
+		icon = GFX_goal_generic_secret_weapon
+		cost = 5.00
+		prerequisite = {
+			focus = SOVw_Reinstill_Militarism_for_the_Peoples
+		}
+		x = 5
+		y = 4
+		relative_position_id = SOVw_The_Great_Liberation_War
+		completion_reward = {
+			if = {
+				limit = {
+					num_of_nukes < 5
+				}
+				add_nuclear_bombs = 10
+				add_command_power = -15
+			}
+			else = {
+				add_nuclear_bombs = 5
+				add_command_power = -10
+			}
+		}
+
+	}
+	focus = {
+		id = SOVw_Expand_the_Power_of_the_Security_Services
+		icon = GFX_SOV_Expand_the_Power_of_the_Security_Services
+		cost = 1.2
+		prerequisite = {
+			focus = SOVw_Put_Nuclear_Forces_in_High_Alert
+		}
+		x = 5
+		y = 5
+		relative_position_id = SOVw_The_Great_Liberation_War
+		completion_reward = {
+			custom_effect_tooltip = SOV_Spy_TT
+			if = {
+				limit = {
+					has_completed_focus = SOVw_Suppress_Anti_War_Misinformation
+				}
+				swap_ideas = {
+                    remove_idea = SOV_ANTI_MISINFORMATION
+                    add_idea = SOV_ANTI_MISINFORMATION_1
+                }
+			}
+			else = {
+				set_temp_variable = { exhaustion_change = 0.15 }
+                WW3_1950_war_exhaustion_change = yes
+			}
+		}
+	}
+	focus = {
+		id = SOVw_Boycott_the_United_Nations
+		icon = GFX_SOV_Expand_the_Power_of_the_Security_Services
+		cost = 1
+		prerequisite = {
+			focus = SOVw_Expand_the_Power_of_the_Security_Services
+		}
+		x = 5
+		y = 6
+		relative_position_id = SOVw_The_Great_Liberation_War
+		completion_reward = {
+			country_event = WW3.3
+		}
+	}
+	focus = {
+		id = SOVw_One_Last_Push_for_Victory
+		icon = GFX_SOV_Refocus_Propaganda_Toward_Lenin
+		cost = 2.8
+		prerequisite = {
+			focus = SOVw_Round_up_the_Armed_Forces
+		}
+		x = -3
+		y = 2
+		relative_position_id = SOVw_The_Great_Liberation_War
+		completion_reward = {
+			custom_effect_tooltip = One_Victory
+			set_temp_variable = { exhaustion_change = 0.05 }
+            WW3_1950_war_exhaustion_change = yes
+			swap_ideas = {
+                remove_idea = great_liberation_war
+                add_idea = great_liberation_war_2
+			}
+			modify_timed_idea = {
+                idea = great_liberation_war_2
+                days = 360
+            }
+		}
+	}
+	focus = {
+		id = SOVw_Reinforce_the_German_Fronts
+		icon = GFX_SOVw_Reinforce_the_German_Fronts
+		cost = 1
+		prerequisite = {
+			focus = SOVw_One_Last_Push_for_Victory
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					country_exists = WGR
+				}
+				add_timed_idea = {
+                    idea = rhine_in_seven_days
+                    days = 7
+                }
+			}
+			swap_ideas = {
+                remove_idea = great_liberation_war_2
+                add_idea = great_liberation_war_3
+            }
+			modify_timed_idea = {
+                idea = great_liberation_war_3
+                days = 360
+		    }
+			set_temp_variable = { exhaustion_change = 0.05 }
+            WW3_1950_war_exhaustion_change = yes
+		}
+		x = -3
+		y = 3
+		relative_position_id = SOVw_The_Great_Liberation_War
+	}
+	focus = {
+		id = SOVw_Force_Western_Communist_Parties_to_Revolt
+		icon = GFX_SOVw_Force_Western_Communist_Parties_to_Revolt
+		cost = 5.00
+		available = {
+			AND = {
+				has_country_flag = BEL_Capped
+				has_country_flag = HOL_Capped
+				has_country_flag = LUX_Capped
+			}
+		}
+		prerequisite = {
+			focus = SOVw_Reinforce_the_German_Fronts
+		}
+		x = -5
+		y = 4
+		completion_reward = {
+			add_political_power = -50
+			if = {
+				limit = {
+					HOL = {
+						is_in_faction_with = SOV
+					}
+					BEL = {
+						is_in_faction_with = SOV
+					}
+					LUX = {
+						is_in_faction_with = SOV
+					}
+				}
+				country_event = SOVw_Third_World_War.10
+				set_temp_variable = { exhaustion_change = -0.05 }
+                WW3_1950_war_exhaustion_change = yes
+			}
+			else_if = {
+				limit = {
+					HOL = {
+						is_in_faction_with = SOV
+					}
+					BEL = {
+						is_in_faction_with = SOV
+					}
+					LUX = {
+						is_in_faction_with = SOV
+					}
+					FRA = {
+						is_in_faction_with = SOV
+					}
+				}
+				country_event = SOVw_Third_World_War.10
+				FRA = {
+					country_event = SOVw_Third_World_War.9
+				}
+				set_temp_variable = { exhaustion_change = -0.15 }
+                WW3_1950_war_exhaustion_change = yes
+			}
+        }
+		relative_position_id = SOVw_The_Great_Liberation_War
+	}
+	focus = {
+		id = SOVw_Crush_Partisans_in_Benelux_and_Northern_France
+		icon = GFX_PurgeKulaks
+		cost = 5.00
+		prerequisite = {
+			focus = SOVw_Force_Western_Communist_Parties_to_Revolt
+		}
+		x = -5
+		y = 5
+		relative_position_id = SOVw_The_Great_Liberation_War
+		completion_reward = {
+			add_political_power = -150
+			if = {
+				limit = {
+					has_country_flag = Benelux_United
+				}
+				HOL = {
+					add_popularity = {
+						ideology = communism
+                        popularity = 0.15
+					}
+					add_political_power = 20
+				}
+				FRA = {
+					add_popularity = {
+						ideology = communism
+                        popularity = 0.10
+					}
+					add_political_power = 20
+				}
+			}
+			else = {
+				HOL = {
+					add_popularity = {
+						ideology = communism
+                        popularity = 0.05
+					}
+					add_political_power = 20
+				}
+				LUX = {
+					add_popularity = {
+						ideology = communism
+                        popularity = 0.05
+					}
+					add_political_power = 20
+				}
+				BEL = {
+					add_popularity = {
+						ideology = communism
+                        popularity = 0.05
+					}
+					add_political_power = 20
+				}
+				FRA = {
+					add_popularity = {
+						ideology = communism
+                        popularity = 0.10
+					}
+					add_political_power = 20
+				}
+			}
+			set_temp_variable = { exhaustion_change = -0.05 }
+            WW3_1950_war_exhaustion_change = yes
+			set_temp_variable = { money_change_temp = -3.500 }
+            cwic_change_money = yes
+		}
+	}
+	focus = {
+		id = SOVw_Establish_Communist_Governments_in_Liberated_Territory
+		icon = GFX_SOVw_Establish_Communist_Governments_in_Liberated_Territory
+		cost = 5.00
+		prerequisite = {
+			focus = SOVw_Crush_Partisans_in_Benelux_and_Northern_France
+		}
+		x = -5
+		y = 6
+		relative_position_id = SOVw_The_Great_Liberation_War
+		completion_reward = {
+			add_political_power = -250
+			set_temp_variable = { exhaustion_change = -0.05 }
+            WW3_1950_war_exhaustion_change = yes
+			country_event = SOVw_Third_World_War.7
+		}
+
+	}
+	focus = {
+		id = SOVw_The_Union_Marches_West
+		icon = GFX_promise_return_of_indigenization_policy
+		cost = 5.00
+		available = {
+			AND = {
+				has_country_flag = FRA_Capped
+				has_country_flag = ITA_Capped
+				has_country_flag = DEN_Capped
+				has_country_flag = HOL_Capped
+			}
+		}
+		prerequisite = {
+			focus = SOVw_Extend_Conscription_Law_for_Women
+		}
+		prerequisite = {
+			focus = SOVw_Boycott_the_United_Nations
+		}
+		prerequisite = {
+			focus = SOVw_Establish_Communist_Governments_in_Liberated_Territory
+		}
+		x = 0
+		y = 7
+		relative_position_id = SOVw_The_Great_Liberation_War
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.15
+			add_war_support = 0.10
+			set_temp_variable = { exhaustion_change = -0.25 }
+            WW3_1950_war_exhaustion_change = yes
+		}
+
+	}
+	focus = {
+		id = SOVw_Establish_the_Ministry_of_War_Information
+		icon = GFX_SOVw_Establish_the_Ministry_of_War_Information
+		cost = 3
+		prerequisite = {
+			focus = SOVw_A_Wartime_Diplomacy
+		}
+		x = -3
+		y = 1
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+		completion_reward = {
+			set_faction_spymaster = yes
+		}
+	}
+	focus = {
+		id = SOVw_Strengthen_Government_Control_on_Information
+		icon = GFX_SOVw_Strengthen_Government_Control_on_Information
+		cost = 3
+		available = {
+			has_completed_focus = SOVw_Suppress_Anti_War_Misinformation
+		}
+		prerequisite = {
+			focus = SOVw_Establish_the_Ministry_of_War_Information
+		}
+		completion_reward = {
+			set_temp_variable = { exhaustion_change = -0.10 }
+            WW3_1950_war_exhaustion_change = yes
+			set_temp_variable = { money_change_temp = -3 }
+			cwic_change_money = yes
+		}
+		x = -3
+		y = 2
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+
+	}
+	focus = {
+		id = SOVw_Operation_Red_Dawn
+		icon = GFX_PRC_50s_Prepare_Ships_for_Landing
+		cost = 5.00
+		prerequisite = {
+			focus = SOVw_The_American_Mainland_Problem
+		}
+		prerequisite = {
+			focus = SOVw_The_American_Mainland_Problem
+		}
+		mutually_exclusive = {
+			focus = SOVw_Negotiate_Terms
+		}
+		completion_reward = {
+            custom_effect_tooltip = Red_Dawn
+		    set_temp_variable = { exhaustion_change = 0.30 }
+            WW3_1950_war_exhaustion_change = yes
+		}
+		x = 5
+		y = 5
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+
+	}
+	focus = {
+		id = SOVw_Reinforce_North_China_Defenses
+		icon = GFX_PRC_50s_Rebuild_The_Leadership_of_CPK_in_Manchuria
+		cost = 1
+		prerequisite = {
+			focus = SOVw_Strengthen_Government_Control_on_Information
+		}
+		available = { 
+			has_global_flag = ROC_Victory
+		}
+		mutually_exclusive = {
+			focus = SOVw_Enact_Secretive_Talks_with_the_Peoples_Republic_of_China
+		}
+		completion_reward = {
+			SOV = {
+				set_temp_variable = { exhaustion_change = -0.05 }
+				WW3_1950_war_exhaustion_change = yes
+			}
+			give_guarantee = PRC
+			country_event = SOVw_Third_World_War.8
+		}
+		x = -5
+		y = 3
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+
+	}
+	focus = {
+		id = SOVw_Enact_Secretive_Talks_with_the_Peoples_Republic_of_China
+		icon = GFX_PRC_50s_Reconcile_Labour_Conflicts
+		cost = 1
+		prerequisite = {
+			focus = SOVw_Strengthen_Government_Control_on_Information
+		}
+		available = { 
+			has_global_flag = PRC_Victory
+		}
+		mutually_exclusive = {
+			focus = SOVw_Reinforce_North_China_Defenses
+		}
+		completion_reward = {
+			add_to_variable = {
+                bonus_fpp_modifier = 0.10
+                tooltip = bonus_fpp_modifier_tt 
+            }
+			country_event = SOVw_Third_World_War.5
+		}
+		x = -1
+		y = 3
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+
+	}
+	focus = {
+		id = SOVw_Operation_Fallen_Sun
+		icon = GFX_PRC_50s_Reinforcement_for_The_Sino-India_Border
+		cost = 0.00
+		available = {
+			has_country_flag = PRC_JOIN_WAR
+		}
+		prerequisite = {
+			focus = SOVw_Reinforce_North_China_Defenses
+		}
+		completion_reward = {
+			PRC = {
+                set_temp_variable = { 
+                    New_sphere_leader = SOV
+                }
+                add_to_sphere = yes
+				create_faction = PRC_FACTION_WW3
+				declare_war_on = {
+					target = CHI
+					type = annex_everything
+				}
+            }
+		}
+		x = -5
+		y = 4
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+
+	}
+	focus = {
+		id = SOVw_Sign_the_Mutual_Non_Interference_Agreement_with_Beijing
+		icon = GFX_Warsaw_Pact
+		cost = 0.00
+		available = {
+			has_country_flag = PRC_JOIN_WAR
+		}
+		prerequisite = {
+			focus = SOVw_Enact_Secretive_Talks_with_the_Peoples_Republic_of_China
+		}
+		bypass = {
+			has_country_flag = PRC_REFUSED
+		}
+		completion_reward = {
+			custom_effect_tooltip = WW3_SOV_PRC_TT
+			if = {
+				limit = {
+					PRC = {
+						has_country_flag = PRC_JOIN_WAR
+					}
+				}
+				custom_effect_tooltip = USSR_China
+			    set_temp_variable = { money_change_temp = -50 }
+				cwic_change_money = yes
+			    set_temp_variable = { exhaustion_change = -0.20 }
+                WW3_1950_war_exhaustion_change = yes
+			    give_guarantee = PRC
+			    PRC = {
+                    set_temp_variable = { 
+                        New_sphere_leader = SOV
+                    }
+                    add_to_sphere = yes
+					create_faction = PRC_WW3_FACTION
+                }
+			}
+		}
+		x = -1
+		y = 4
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+
+	}
+	focus = {
+		id = SOVw_Ramp_Up_Support_for_Communist_and_Socialists_in_Indochina_and_Southeast_Asia
+		icon = GFX_PRC_50s_Promote_Relations_with_Indochina
+		cost = 5.00
+		prerequisite = {
+			focus = SOVw_Sign_the_Mutual_Non_Interference_Agreement_with_Beijing
+			focus = SOVw_Operation_Fallen_Sun
+		}
+		x = -3
+		y = 5
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+		completion_reward = {
+			add_to_variable = {
+                bonus_fpp_modifier = 0.25
+                tooltip = bonus_fpp_modifier_tt 
+            }
+		}
+	}
+	focus = {
+		id = SOVw_A_Revolution_Realized
+		icon = GFX_SOVw_A_Revolution_Realized
+		cost = 5.00
+		prerequisite = {
+			focus = SOVw_Negotiate_Terms
+			focus = SOVw_Operation_Red_Dawn
+		}
+		prerequisite = {
+			focus = SOVw_Ramp_Up_Support_for_Communist_and_Socialists_in_Indochina_and_Southeast_Asia
+		}
+		x = 0
+		y = 6
+		relative_position_id = SOVw_A_Wartime_Diplomacy
+
+	}
+}

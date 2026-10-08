@@ -1,0 +1,78 @@
+# krcw: paced
+add_namespace = krcw_tur
+
+country_event = {
+	id = krcw_tur.1
+	title = krcw_tur_1_t
+	desc = krcw_tur_1_d
+	picture = GFX_krcw_eu_d12_tur_straits
+	fire_only_once = yes
+	trigger = {
+		tag = TUR
+		date > 1949.12.7
+		date < 1952.1.18
+		is_in_faction_with = SOV
+		NOT = { has_country_flag = krcw_tur_straits_question }
+	}
+	mean_time_to_happen = {
+		months = 8
+	}
+	immediate = {
+		set_country_flag = krcw_tur_straits_question
+	}
+	option = {
+		name = krcw_tur_1.a
+		ai_chance = {
+			factor = 40
+		}
+		add_war_support = 0.03
+		add_political_power = 25
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = TUR modifier = protectorate_dislikes_overlord } } }
+	}
+	option = {
+		name = krcw_tur_1.b
+		ai_chance = {
+			factor = 60
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		add_stability = 0.02
+		add_political_power = -25
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = TUR modifier = MA_protectorate_friendly } } }
+	}
+}
+
+country_event = {
+	id = krcw_tur.2
+	title = krcw_tur_2_t
+	desc = krcw_tur_2_d
+	picture = GFX_krcw_eu_d12_tur_meeting_c
+	fire_only_once = yes
+	trigger = {
+		tag = TUR
+		date > 1950.5.10
+		date < 1952.6.21
+		NOT = { has_country_flag = krcw_tur_arab_question }
+	}
+	mean_time_to_happen = {
+		months = 11
+	}
+	immediate = {
+		set_country_flag = krcw_tur_arab_question
+	}
+	option = {
+		name = krcw_tur_2.a
+		ai_chance = {
+			factor = 90
+		}
+		add_political_power = 50
+		add_stability = 0.02
+	}
+	option = {
+		name = krcw_tur_2.b
+		ai_chance = {
+			factor = 10
+		}
+		add_war_support = 0.02
+		add_stability = -0.01
+	}
+}

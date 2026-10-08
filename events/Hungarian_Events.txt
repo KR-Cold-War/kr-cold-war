@@ -1,0 +1,289 @@
+# KRCW (build/patch_residue.py): 16 OTL events dropped while KRCW_active
+add_namespace = Hungary_Anti_Semitic
+add_namespace = Wallenberg
+add_namespace = Kadar
+add_namespace = Nagy_Executed
+add_namespace = Rajk
+add_namespace = Nagy
+add_namespace = Golden_Team
+add_namespace = SOV_HUN
+add_namespace = Rakosi
+add_namespace = Hungarian_Collectivized
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rajk.1 
+ immediate = { }
+	title = Rajk.1.t2
+	desc = Rajk.1.d
+	picture = GFX_Hungary_1
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Rajk.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Kadar.1 
+ immediate = { }
+	title = Kadar.1.t2
+	desc = Kadar.1.d
+	picture = GFX_Hungary_2
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Kadar.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Golden_Team.1 
+ immediate = { }
+	title = Golden_Team.1.t2
+	desc = Golden_Team.1.d
+	picture = GFX_Hungary_3
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Golden_Team.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Nagy.1 
+ immediate = { }
+	title = Nagy.1.t2
+	desc = Nagy.1.d
+	picture = GFX_Hungary_4
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Nagy.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOV_HUN.1 
+ immediate = { }
+	title = SOV_HUN.1.t2
+	desc = SOV_HUN.1.d
+	picture = GFX_Hungary_5
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = SOV_HUN.1.a2
+		HUN = { country_event = SOV_HUN.2 }
+	}
+	option = {
+		name = SOV_HUN.1.b2
+		country_event = SOV_HUN.3
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOV_HUN.2 
+ immediate = { }
+	title = SOV_HUN.2.t2
+	desc = SOV_HUN.2.d
+	picture = GFX_Hungary_6
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = SOV_HUN.2.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOV_HUN.3		 
+ immediate = { }
+	title = SOV_HUN.3.t2
+	desc = SOV_HUN.3.d
+	picture = GFX_Hungary_7
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = SOV_HUN.3.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Kadar.5		 
+ immediate = { }
+	title = Kadar.5.t2
+	desc = Kadar.5.d
+	picture = GFX_Hungary_8
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Kadar.5.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rakosi.0
+    immediate = { }
+	title = Rakosi.0.t
+	desc = Rakosi.0.d
+	#picture = GFX_Hungary_9
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Rakosi.0.a
+		hidden_effect = {
+			SOV = {
+				set_autonomy = {
+		            target = HUN
+		            autonomous_state = autonomy_easternbloc
+		            freedom_level = 0.4
+	            }
+			}
+		}
+		clr_country_flag = CWIC_HOG_UI_ENABLED
+		set_politics = {
+			ruling_party = communism
+		}
+		set_popularities = {
+	        communism = 100
+		}
+		set_cosmetic_tag = HUN_1
+		news_event = Rakosi.2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rakosi.1 
+ immediate = { }
+	title = Rakosi.1.t2
+	desc = Rakosi.1.d
+	picture = GFX_Hungary_9
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Rakosi.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rakosi.2 
+    immediate = { }
+	title = Rakosi.2.t
+	desc = Rakosi.2.d
+	picture = GFX_Hungary_11
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = no
+	immediate = {
+		hidden_effect = {
+			play_song = "Cold War The Iron Curtain"
+		}
+	}
+
+	option = {
+		name = Rakosi.2.a
+		trigger = {
+			NOT = {
+				OR = {
+					has_government = communism
+					has_government = maoism
+					has_government = trotskyism
+				}
+			}
+		}
+	}
+	option = {
+		name = Rakosi.2.b
+		trigger = {
+			OR = {
+				has_government = communism
+				has_government = maoism
+				has_government = trotskyism
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Hungarian_Collectivized.1 
+ immediate = { }
+	title = Hungarian_Collectivized.1.t2
+	desc = Hungarian_Collectivized.1.d
+	picture = GFX_Hungary_10
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Hungarian_Collectivized.1.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		
+	id = Hungary_Anti_Semitic.1 
+ immediate = { }
+	title = Hungary_Anti_Semitic.1.t2
+	picture = GFX_Hungary_Anti_Semitic_1
+	is_triggered_only = yes
+	major = yes
+	desc = Hungary_Anti_Semitic.1.d
+
+	option = {
+		name = Hungary_Anti_Semitic.1.a2
+
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		
+	id = Wallenberg.1 
+ immediate = { }
+	title = Wallenberg.1.t2
+	picture = GFX_Wallenberg_1
+	is_triggered_only = yes
+	major = yes
+	desc = Wallenberg.1.d
+
+	option = {
+		name = Wallenberg.1.a2
+
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		
+	id = Kadar.2 
+ immediate = { }
+	title = Kadar.2.t2
+	picture = GFX_Kadar_2
+	is_triggered_only = yes
+	major = yes
+	desc = Kadar.2.d
+
+	option = {
+		name = Kadar.2.a2
+
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		
+	id = Nagy_Executed.1 
+ immediate = { }
+	title = Nagy_Executed.1.t2
+	picture = GFX_Nagy_Executed_1
+	is_triggered_only = yes
+	major = yes
+	desc = Nagy_Executed.1.d
+
+	option = {
+		name = Nagy_Executed.1.a2
+	}
+}

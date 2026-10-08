@@ -1,0 +1,112 @@
+# KRCW (build/patch_residue.py): 2 OTL decisions hidden while KRCW_active
+prospect_for_resources = {
+	the_rains_fall_in_africa = {
+		
+		#icon = tungsten
+
+		allowed = {
+			tag = POR
+		}
+
+
+		#highlight_provinces = {
+		#	16038 8219 16017 13904 13900 15998 16001 16006 16008 16013 16018 16031 16039 16032 16022 16023 16025 16037 16034
+		#}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+		}
+		fire_only_once = no
+
+		cost = 0
+	}
+	develop_chosen_tungsten_deposits = { #749
+		
+		icon = tungsten
+
+		allowed = {
+
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 749
+			}
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_tech = excavation_III
+			num_of_civilian_factories_available_for_projects > 4
+			owns_state = 749
+			controls_state = 749
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 749
+			controls_state = 749
+			749 = {
+				NOT = {
+					has_state_flag = { 
+						flag = chosin_tungsten_developed 
+						value = 5
+					}
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 25
+		days_remove = chosin_tungsten_duration
+
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		remove_effect = {
+			add_to_variable = { var = chosin_tungsten_duration value = 30 }
+			749 = {
+				if = {
+					limit = {
+						NOT = {
+							has_state_flag = chosin_tungsten_developed
+						}
+					}
+					set_state_flag = {
+						flag = chosin_tungsten_developed
+						value = 1
+					}
+				}
+				else = {
+					modify_state_flag = {
+						flag = chosin_tungsten_developed
+						value = 1
+					}
+				}
+			}
+			749 = {
+				add_resource = {
+					type = tungsten
+					amount = 6
+				}
+			}
+		}
+
+		complete_effect = {
+			if = {
+				limit = {
+					check_variable = { var = chosin_tungsten_duration value = 30 compare = less_than }
+				}
+				set_variable = { var = chosin_tungsten_duration value = 30 }
+			}
+		}
+	}
+}

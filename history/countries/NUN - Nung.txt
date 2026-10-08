@@ -1,0 +1,92 @@
+set_war_support = 0.2
+capital = 1281
+if = {
+	limit = {
+		has_dlc = "Man the Guns"
+	}
+	set_technology = {
+		subkiller_0 = 1
+		detection_ww = 1
+		ww_armaments = 1
+		ww_submarines = 1
+		conventional_sub_engines_0 = 1
+		torpedo_ww = 1
+		torpedo_small_0 = 1
+		ww_screens = 1
+	}
+	create_equipment_variant = {
+		name = "Junk Ship - Class"
+		type = battle_hull_light_ww
+		parent_version = 0
+		allow_without_tech = yes
+		modules = {
+			fixed_ship_surface_radar_slot = maritime_ta_fcs_0
+			fixed_sonar_slot = sonar_ww
+			fixed_ship_asw_slot = torpedo_ww
+			fixed_ship_engine_slot = screen_engine_0
+			front_1_custom_slot = ship_armament_light_ww
+			front_2_custom_slot = ship_armament_light_ww
+		}
+	}
+	else = {
+		set_technology = {
+			ww_screens_proletariat = 1
+		}
+	}
+}
+set_technology = {
+	ww_infra = 1
+	basic_train = 1
+	infantry_equip_1 = 1
+	team_weapons_1 = 1
+	squad_weapons_1 = 1
+	hmg_1 = 1
+	motorised_infantry = 1
+	tech_support = 1
+	combat_support = 1
+	tech_engineers = 1
+	tech_recon = 1
+	tech_military_police = 1
+	autocannon_1 = 1
+	artillery_1 = 1
+	light_artillery_1 = 1
+	direct_fire_gun_1 = 1
+	early_fighter = 1
+	early_bomber = 1
+}
+if = {
+	limit = {
+		NOT = {
+			has_dlc = "No Step Back"
+		}
+	}
+	set_technology = {
+		iw_armored_vehicles = 1
+	}
+}
+if = {
+	limit = {
+		has_dlc = "No Step Back"
+	}
+	set_technology = {
+		nsb_iw_armored_vehicles = 1
+		nsb_engines = 1
+		nsb_suspension0 = 1
+		nsb_armor = 1
+		nsb_light_guns = 1
+		nsb_medium_guns = 1
+		nsb_ammo = 1
+		nsb_tank_design = 1
+		nsb_autoloader0 = 1
+	}
+}
+add_ideas = {
+	unrecognized_state
+	limited_conscription
+	limited_exports
+	low_economic_mobilisation
+}
+set_variable = {
+	economic_x_axis = 21
+}
+startup_economics = yes

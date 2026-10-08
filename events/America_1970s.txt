@@ -1,0 +1,584 @@
+# KRCW (build/patch_residue.py): 34 OTL events dropped while KRCW_active
+add_namespace = Ford
+add_namespace = Albert
+add_namespace = Agnew
+add_namespace = ELS_COUP
+add_namespace = ERA
+add_namespace = USA_Marijuana
+add_namespace = Clark_Amendment
+add_namespace = Amnesty
+add_namespace = Department_of_Energy
+add_namespace = Abolish_JCNAE
+add_namespace = War_Powers
+add_namespace = Allende
+add_namespace = AST_CIA
+add_namespace = contra
+add_namespace = NIC_USA
+add_namespace = USA_NIC_WAR
+add_namespace = USA_NIC
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NIC_USA.1 
+ immediate = { }
+	title = NIC_USA.1.t2
+	desc = NIC_USA.1.d
+	picture = GFX_NIC_USA_1
+	major = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = NIC_USA.1.a2
+   }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NIC_USA.2 
+ immediate = { }
+	title = NIC_USA.2.t2
+	desc = NIC_USA.2.d
+	picture = GFX_NIC_USA_2
+	major = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = NIC_USA.2.a2
+   }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NIC_USA.3 
+ immediate = { }
+	title = NIC_USA.3.t2
+	desc = NIC_USA.3.d
+	picture = GFX_NIC_USA_3
+	major = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = NIC_USA.3.a2
+   }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		##Only if Marines Not Deployed + July 17, 1979 completes USA_70s_The_Fall_of_the_Somoza_Regime
+	id = NIC_USA.5 
+ immediate = { }
+	title = NIC_USA.5.t2
+	desc = NIC_USA.5.d
+	picture = GFX_NIC_USA_5
+	major = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = NIC_USA.5.a2
+   }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USA_NIC_WAR.1 
+ immediate = { }
+	title = USA_NIC_WAR.1.t2
+	desc = USA_NIC_WAR.1.d
+	picture = GFX_USA_NIC_WAR_1
+	major = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = USA_NIC_WAR.1.a2
+   }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USA_NIC.50 
+ immediate = { }
+	title = USA_NIC.50.t2
+	desc = USA_NIC.50.d
+	picture = GFX_USA_NIC_50
+	major = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = USA_NIC.50.a2
+   }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = contra.2 
+ immediate = { }
+	title = contra.2.t2
+	desc = contra.2.d
+	picture = GFX_contra_2
+	major = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = contra.2.a2
+   }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NIC_USA.4 
+ immediate = { }
+	title = NIC_USA.4.t2
+	desc = NIC_USA.4.d
+	picture = GFX_NIC_USA_4
+	is_triggered_only = yes
+
+
+	option = {
+		name = NIC_USA.4.a2
+
+   }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = contra.1 
+ immediate = { }
+	title = contra.1.t2
+	desc = contra.1.d
+	picture = GFX_contra_1
+	is_triggered_only = yes
+
+
+	option = {
+		name = contra.1.a2
+		NIC = {
+			set_variable = { contra_insurgency = 25 }
+			set_country_flag = contra_insurgency
+			every_owned_state = {
+				set_state_flag = contra_target
+				set_state_flag = insurg_lvl1
+				add_province_modifier = {
+					static_modifiers = { insurgency_tier1 }
+					province = {
+						all_provinces = yes
+					}
+				}
+				add_state_modifier = { modifier = { local_factory_sabotage = 0.05 } }
+			}
+		}
+   }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AST_CIA.1 
+ immediate = { }
+	title = AST_CIA.1.t2
+	desc = AST_CIA.1.d
+	picture = GFX_CIA_7
+
+	is_triggered_only = yes
+
+	option = {
+		name = AST_CIA.1.a2
+		random_list = {
+			75 = {
+				news_event = AST_CIA.3
+				complete_national_focus = USA_70s_Kerr_Agrees
+			}
+			25 = {
+				complete_national_focus = USA_70s_Kerr_Refuses
+				country_event = AST_CIA.2
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AST_CIA.2 
+ immediate = { }
+	title = AST_CIA.2.t2
+	desc = AST_CIA.2.d
+	picture = GFX_AST_CIA_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = AST_CIA.2.a2
+
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AST_CIA.3 
+ immediate = { }
+	title = AST_CIA.3.t2
+	desc = AST_CIA.3.d
+	picture = GFX_AST_CIA_3
+
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+		name = AST_CIA.3.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Allende.1 
+ immediate = { }
+	title = Allende.1.t2
+	desc = Allende.1.d
+	picture = GFX_Allende_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = Allende.1.a2
+		news_event = Allende.2
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = no
+		}
+
+		create_country_leader = {
+			name = "Augusto Pinochet"
+			picture = "Pinochet.dds"
+			expire = "2006.1.1"
+			ideology = military_junta
+		}
+	}
+	option = {
+		name = Allende.1.b2
+		news_event = Allende.3
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Allende.2 
+ immediate = { }
+	title = Allende.2.t2
+	desc = Allende.2.d
+	picture = GFX_Allende_2
+
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+		name = Allende.2.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Allende.3 
+ immediate = { }
+	title = Allende.3.t2
+	desc = Allende.3.d
+	picture = GFX_Allende_3
+
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+		name = Allende.3.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = War_Powers.1 
+ immediate = { }
+	title = War_Powers.1.t2
+	desc = War_Powers.1.d
+	picture = GFX_War_Powers_Act
+
+	is_triggered_only = yes
+
+	option = {
+		name = War_Powers.1.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Albert.2 
+ immediate = { }
+	title = Albert.2.t2
+	desc = Albert.2.d
+	picture = GFX_Nixon_Guilty
+
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+		name = Albert.2.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Albert.1 
+ immediate = { }
+	title = Albert.1.t2
+	desc = Albert.1.d
+	picture = GFX_Gerlad_Ford_VP
+
+	is_triggered_only = yes
+
+	option = {
+		name = Albert.1.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Agnew.2 
+ immediate = { }
+	title = Agnew.2.t2
+	desc = Agnew.2.d
+	picture = GFX_Spiro_Agnew_Pardons_Nixon
+
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+		name = Agnew.2.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Agnew.1 
+ immediate = { }
+	title = Agnew.1.t2
+	desc = Agnew.1.d
+	picture = GFX_George_Romney
+
+	is_triggered_only = yes
+
+	option = {
+		name = Agnew.1.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Ford.7 
+ immediate = { }
+	title = Ford.7.t2
+	desc = Ford.7.d
+	picture = GFX_Ford_Pardons_Nixon
+
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+		name = Ford.7.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Ford.5 
+ immediate = { }
+	title = Ford.5.t2
+	desc = Ford.5.d
+	picture = GFX_Rockefeller_VP
+
+	is_triggered_only = yes
+
+	option = {
+		name = Ford.5.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Ford.6 
+ immediate = { }
+	title = Ford.6.t2
+	desc = Ford.6.d
+	picture = GFX_Whip_Inflation_Now
+
+	is_triggered_only = yes
+
+	option = {
+		name = Ford.6.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Ford.10 
+ immediate = { }
+	title = Ford.10.t2
+	desc = Ford.10.d
+	picture = GFX_Ford_Assasination_Attempt
+
+	is_triggered_only = yes
+
+	option = {
+		name = Ford.10.a2
+		news_event = Ford.11
+	}
+	option = {
+		name = Ford.10.b2
+		news_event = Ford.12
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Nelson Rockefeller"
+			picture = "Nelson_Rockefeller_70s.dds"
+			ideology = republican
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Ford.11 
+ immediate = { }
+	title = Ford.11.t2
+	desc = Ford.11.d
+	picture = GFX_Ford_Failed_Assasination
+
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+		name = Ford.11.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Ford.12 
+ immediate = { }
+	title = Ford.12.t2
+	desc = Ford.12.d
+	picture = GFX_President_Rockefeller
+
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+		name = Ford.12.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ERA.5 
+ immediate = { }
+	title = ERA.5.t2
+	desc = ERA.5.d
+	picture = GFX_ERA_5
+
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+		name = ERA.5.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Abolish_JCNAE.1 
+ immediate = { }
+	title = Abolish_JCNAE.1.t2
+	desc = Abolish_JCNAE.1.d
+	picture = GFX_JCAE_Congress
+
+	is_triggered_only = yes
+
+	option = {
+		name = Abolish_JCNAE.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Department_of_Energy.1 
+ immediate = { }
+	title = Department_of_Energy.1.t2
+	desc = Department_of_Energy.1.d
+	picture = GFX_Department_of_Energy
+
+	is_triggered_only = yes
+
+	option = {
+		name = Department_of_Energy.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Amnesty.1 
+ immediate = { }
+	title = Amnesty.1.t2
+	desc = Amnesty.1.d
+	picture = GFX_Amnesty_for_Draft_Dodgers
+
+	is_triggered_only = yes
+
+	option = {
+		name = Amnesty.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Clark_Amendment.1 
+ immediate = { }
+	title = Clark_Amendment.1.t2
+	desc = Clark_Amendment.1.d
+	picture = GFX_Clark_Amendment
+
+	is_triggered_only = yes
+
+	option = {
+		name = Clark_Amendment.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USA_Marijuana.1 
+ immediate = { }
+	title = USA_Marijuana.1.t2
+	desc = USA_Marijuana.1.d
+	picture = GFX_Marijuana
+
+	is_triggered_only = yes
+
+	option = {
+		name = USA_Marijuana.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ELS_COUP.1 
+ immediate = { }
+	title = ELS_COUP.1.t2
+	desc = ELS_COUP.1.d
+	picture = GFX_El_Salvador_Coup
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = ELS_COUP.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ELS_COUP.2 
+ immediate = { }
+	title = ELS_COUP.2.t2
+	desc = ELS_COUP.2.d
+	picture = GFX_Assasination_of_Archbishop_Romero
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = ELS_COUP.2.a2
+	}
+}
+

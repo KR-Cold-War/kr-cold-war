@@ -1,0 +1,337 @@
+# KRCW bloc economy (build/economy.py). Design: C:/krcw_work/ECONOMY_经济机制_问题与设计.md
+
+krcw_econ_up_small = {
+	if = { limit = { has_variable = krcw_econ } add_to_variable = { krcw_econ = 3 } clamp_variable = { var = krcw_econ min = 0 max = 100 } }
+	custom_effect_tooltip = krcw_econ_up_small_tt
+}
+
+krcw_econ_up_medium = {
+	if = { limit = { has_variable = krcw_econ } add_to_variable = { krcw_econ = 6 } clamp_variable = { var = krcw_econ min = 0 max = 100 } }
+	custom_effect_tooltip = krcw_econ_up_medium_tt
+}
+
+krcw_econ_up_large = {
+	if = { limit = { has_variable = krcw_econ } add_to_variable = { krcw_econ = 10 } clamp_variable = { var = krcw_econ min = 0 max = 100 } }
+	custom_effect_tooltip = krcw_econ_up_large_tt
+}
+
+krcw_econ_down_small = {
+	if = { limit = { has_variable = krcw_econ } subtract_from_variable = { krcw_econ = 3 } clamp_variable = { var = krcw_econ min = 0 max = 100 } }
+	custom_effect_tooltip = krcw_econ_down_small_tt
+}
+
+krcw_econ_down_medium = {
+	if = { limit = { has_variable = krcw_econ } subtract_from_variable = { krcw_econ = 6 } clamp_variable = { var = krcw_econ min = 0 max = 100 } }
+	custom_effect_tooltip = krcw_econ_down_medium_tt
+}
+
+krcw_econ_down_large = {
+	if = { limit = { has_variable = krcw_econ } subtract_from_variable = { krcw_econ = 10 } clamp_variable = { var = krcw_econ min = 0 max = 100 } }
+	custom_effect_tooltip = krcw_econ_down_large_tt
+}
+
+krcw_econ_bloat_down = {
+	if = { limit = { has_variable = krcw_econ_bloat } subtract_from_variable = { krcw_econ_bloat = 12 } clamp_variable = { var = krcw_econ_bloat min = 0 max = 100 } }
+	custom_effect_tooltip = krcw_econ_bloat_down_tt
+}
+
+krcw_econ_heat_down = {
+	if = { limit = { has_variable = krcw_econ_heat } subtract_from_variable = { krcw_econ_heat = 15 } clamp_variable = { var = krcw_econ_heat min = 0 max = 100 } }
+	custom_effect_tooltip = krcw_econ_heat_down_tt
+}
+
+krcw_econ_heat_up = {
+	if = { limit = { has_variable = krcw_econ_heat } add_to_variable = { krcw_econ_heat = 10 } clamp_variable = { var = krcw_econ_heat min = 0 max = 100 } }
+	custom_effect_tooltip = krcw_econ_heat_up_tt
+}
+
+krcw_econ_apply_idea = {
+	if = { limit = { has_variable = krcw_dev_edu } krcw_dev_refresh = yes }
+}
+
+krcw_econ_force_tier = {
+	set_variable = { krcw_econ_tier = 0 }
+	if = { limit = { check_variable = { krcw_econ > 9.99 } } set_variable = { krcw_econ_tier = 1 } }
+	if = { limit = { check_variable = { krcw_econ > 24.99 } } set_variable = { krcw_econ_tier = 2 } }
+	if = { limit = { check_variable = { krcw_econ > 39.99 } } set_variable = { krcw_econ_tier = 3 } }
+	if = { limit = { check_variable = { krcw_econ > 59.99 } } set_variable = { krcw_econ_tier = 4 } }
+	if = { limit = { check_variable = { krcw_econ > 79.99 } } set_variable = { krcw_econ_tier = 5 } }
+	krcw_econ_apply_idea = yes
+}
+
+krcw_econ_set_tier = {
+	set_temp_variable = { krcw_t_moved = 0 }
+	if = { limit = { always = no } }
+	else_if = { limit = { check_variable = { krcw_econ_tier = 0 } check_variable = { krcw_econ > 9.99 } } set_variable = { krcw_econ_tier = 1 } set_temp_variable = { krcw_t_moved = 1 } }
+	else_if = { limit = { check_variable = { krcw_econ_tier = 1 } check_variable = { krcw_econ > 24.99 } } set_variable = { krcw_econ_tier = 2 } set_temp_variable = { krcw_t_moved = 1 } }
+	else_if = { limit = { check_variable = { krcw_econ_tier = 2 } check_variable = { krcw_econ > 39.99 } } set_variable = { krcw_econ_tier = 3 } set_temp_variable = { krcw_t_moved = 1 } }
+	else_if = { limit = { check_variable = { krcw_econ_tier = 3 } check_variable = { krcw_econ > 59.99 } } set_variable = { krcw_econ_tier = 4 } set_temp_variable = { krcw_t_moved = 1 } }
+	else_if = { limit = { check_variable = { krcw_econ_tier = 4 } check_variable = { krcw_econ > 79.99 } } set_variable = { krcw_econ_tier = 5 } set_temp_variable = { krcw_t_moved = 1 } }
+	else_if = { limit = { check_variable = { krcw_econ_tier = 1 } check_variable = { krcw_econ < 7 } } set_variable = { krcw_econ_tier = 0 } set_temp_variable = { krcw_t_moved = -1 } }
+	else_if = { limit = { check_variable = { krcw_econ_tier = 2 } check_variable = { krcw_econ < 22 } } set_variable = { krcw_econ_tier = 1 } set_temp_variable = { krcw_t_moved = -1 } }
+	else_if = { limit = { check_variable = { krcw_econ_tier = 3 } check_variable = { krcw_econ < 37 } } set_variable = { krcw_econ_tier = 2 } set_temp_variable = { krcw_t_moved = -1 } }
+	else_if = { limit = { check_variable = { krcw_econ_tier = 4 } check_variable = { krcw_econ < 57 } } set_variable = { krcw_econ_tier = 3 } set_temp_variable = { krcw_t_moved = -1 } }
+	else_if = { limit = { check_variable = { krcw_econ_tier = 5 } check_variable = { krcw_econ < 77 } } set_variable = { krcw_econ_tier = 4 } set_temp_variable = { krcw_t_moved = -1 } }
+	if = { limit = { NOT = { check_variable = { krcw_t_moved = 0 } } }
+		krcw_econ_apply_idea = yes
+		if = { limit = { check_variable = { krcw_econ_system = 1 } check_variable = { krcw_t_moved = -1 } check_variable = { krcw_econ_tier < 3 } } country_event = { id = krcw_econ.1 days = 1 } }
+		if = { limit = { check_variable = { krcw_econ_system = 1 } check_variable = { krcw_t_moved = 1 } check_variable = { krcw_econ_tier > 3 } } country_event = { id = krcw_econ.2 days = 1 } }
+		if = { limit = { check_variable = { krcw_econ_system = 2 } check_variable = { krcw_t_moved = -1 } check_variable = { krcw_econ_tier < 3 } } country_event = { id = krcw_econ.3 days = 1 } }
+		if = { limit = { check_variable = { krcw_econ_system = 2 } check_variable = { krcw_t_moved = 1 } check_variable = { krcw_econ_tier > 3 } } country_event = { id = krcw_econ.4 days = 1 } }
+		if = { limit = { check_variable = { krcw_econ_system = 3 } check_variable = { krcw_t_moved = -1 } check_variable = { krcw_econ_tier < 3 } } country_event = { id = krcw_econ.5 days = 1 } }
+		if = { limit = { check_variable = { krcw_econ_system = 3 } check_variable = { krcw_t_moved = 1 } check_variable = { krcw_econ_tier > 3 } } country_event = { id = krcw_econ.6 days = 1 } }
+	}
+}
+
+krcw_econ_recalc = {
+	set_variable = { krcw_econ_c_base = 0.35 }
+	if = { limit = { check_variable = { krcw_econ_system = 1 } } set_variable = { krcw_econ_c_base = 0.4 } }
+	if = { limit = { check_variable = { krcw_econ_system = 2 } } set_variable = { krcw_econ_c_base = 0.5 } }
+	set_variable = { krcw_econ_c_war = 0 }
+	if = {
+		limit = { has_war = yes }
+		set_variable = { krcw_econ_c_war = -0.8 }
+		if = { limit = { surrender_progress > 0.1 } set_variable = { krcw_econ_c_war = -1.5 } }
+	}
+	else_if = { limit = { has_idea = tot_economic_mobilisation } set_variable = { krcw_econ_c_war = -0.8 } }
+	else_if = { limit = { has_idea = war_economy } set_variable = { krcw_econ_c_war = -0.3 } }
+	set_variable = { krcw_econ_c_stab = 0 }
+	if = { limit = { has_stability > 0.70 } set_variable = { krcw_econ_c_stab = 0.3 } }
+	else_if = { limit = { has_stability < 0.25 } set_variable = { krcw_econ_c_stab = -0.8 } }
+	else_if = { limit = { has_stability < 0.40 } set_variable = { krcw_econ_c_stab = -0.3 } }
+	set_variable = { krcw_econ_c_arms = 0 }
+	if = {
+		limit = {
+			has_variable = global.krcw_tension
+			check_variable = { global.krcw_tension > 79 }
+			OR = { original_tag = FRA original_tag = SOV num_of_factories > 99 }
+		}
+		set_variable = { krcw_econ_c_arms = -0.3 }
+	}
+	set_variable = { krcw_econ_c_policy = modifier@krcw_econ_monthly }
+	set_variable = { krcw_econ_c_bloc = 0 }
+	if = {
+		limit = { krcw_econ_pcu_member = yes check_variable = { krcw_econ < 40 } }
+		set_temp_variable = { krcw_t = global.krcw_econ_ti_surplus }
+		multiply_temp_variable = { krcw_t = 0.15 }
+		clamp_temp_variable = { var = krcw_t min = 0 max = 1 }
+		add_to_variable = { krcw_econ_c_bloc = krcw_t }
+	}
+	else_if = {
+		limit = { krcw_econ_pcu_member = yes check_variable = { krcw_econ > 59 } check_variable = { global.krcw_econ_ti_distress > 0 } }
+		subtract_from_variable = { krcw_econ_c_bloc = 0.1 }
+	}
+	if = {
+		limit = {
+			NOT = { original_tag = FRA } krcw_is_ti = yes country_exists = FRA
+			FRA = { has_variable = krcw_econ_tier check_variable = { krcw_econ_tier < 2 } }
+		}
+		subtract_from_variable = { krcw_econ_c_bloc = 0.5 }
+	}
+	if = {
+		limit = {
+			NOT = { original_tag = SOV } krcw_is_ma = yes country_exists = SOV
+			SOV = { has_variable = krcw_econ_tier check_variable = { krcw_econ_tier < 2 } }
+		}
+		subtract_from_variable = { krcw_econ_c_bloc = 0.5 }
+	}
+	if = {
+		limit = { original_tag = SOV check_variable = { krcw_econ_tier > 3 } }
+		set_temp_variable = { krcw_t = global.krcw_econ_ma_debtors }
+		multiply_temp_variable = { krcw_t = 0.05 }
+		clamp_temp_variable = { var = krcw_t min = 0 max = 0.4 }
+		add_to_variable = { krcw_econ_c_bloc = krcw_t }
+	}
+	set_variable = { krcw_econ_c_sys = 0 }
+	if = {
+		limit = { check_variable = { krcw_econ_system = 1 } }
+		add_to_variable = { krcw_econ_bloat = 0.2 }
+		add_to_variable = { krcw_econ_bloat = modifier@krcw_econ_bloat_monthly }
+		clamp_variable = { var = krcw_econ_bloat min = 0 max = 100 }
+		set_temp_variable = { krcw_t = krcw_econ_bloat }
+		divide_temp_variable = { krcw_t = 75 }
+		subtract_from_variable = { krcw_econ_c_sys = krcw_t }
+	}
+	if = {
+		limit = { has_variable = krcw_rouble_debt check_variable = { krcw_rouble_debt > 0 } }
+		set_temp_variable = { krcw_t = krcw_rouble_debt }
+		divide_temp_variable = { krcw_t = 60 }
+		subtract_from_variable = { krcw_econ_c_sys = krcw_t }
+	}
+	set_variable = { krcw_econ_c_edu = 0 }
+	if = { limit = { has_variable = krcw_dev_edu } set_variable = { krcw_econ_c_edu = krcw_dev_edu } subtract_from_variable = { krcw_econ_c_edu = 50 } multiply_variable = { krcw_econ_c_edu = 0.005 } }
+	set_variable = { krcw_econ_c_revert = 50 }
+	subtract_from_variable = { krcw_econ_c_revert = krcw_econ }
+	multiply_variable = { krcw_econ_c_revert = 0.02 }
+	set_variable = { krcw_econ_c_plan = 0 }
+	if = { limit = { check_variable = { krcw_dev_plan = 1 } } set_variable = { krcw_econ_c_plan = 0.3 } }
+	if = { limit = { check_variable = { krcw_dev_plan = 2 } } set_variable = { krcw_econ_c_plan = -0.2 } }
+	if = { limit = { check_variable = { krcw_dev_plan = 3 } } set_variable = { krcw_econ_c_plan = -0.1 } }
+	if = { limit = { check_variable = { krcw_dev_plan = 4 } } set_variable = { krcw_econ_c_plan = -0.3 } }
+	set_variable = { krcw_econ_trend = krcw_econ_c_base }
+	add_to_variable = { krcw_econ_trend = krcw_econ_c_war }
+	add_to_variable = { krcw_econ_trend = krcw_econ_c_stab }
+	add_to_variable = { krcw_econ_trend = krcw_econ_c_arms }
+	add_to_variable = { krcw_econ_trend = krcw_econ_c_policy }
+	add_to_variable = { krcw_econ_trend = krcw_econ_c_bloc }
+	add_to_variable = { krcw_econ_trend = krcw_econ_c_sys }
+	add_to_variable = { krcw_econ_trend = krcw_econ_c_edu }
+	add_to_variable = { krcw_econ_trend = krcw_econ_c_revert }
+	add_to_variable = { krcw_econ_trend = krcw_econ_c_plan }
+	clamp_variable = { var = krcw_econ_trend min = -4 max = 4 }
+	add_to_variable = { krcw_econ = krcw_econ_trend }
+	clamp_variable = { var = krcw_econ min = 0 max = 100 }
+	if = {
+		limit = { check_variable = { krcw_econ_system = 2 } }
+		add_to_variable = { krcw_econ_heat = modifier@krcw_econ_heat_monthly }
+		if = {
+			limit = { check_variable = { krcw_econ_trend > 0 } }
+			set_temp_variable = { krcw_t = krcw_econ_trend }
+			multiply_temp_variable = { krcw_t = 2.5 }
+			add_to_variable = { krcw_econ_heat = krcw_t }
+		}
+		if = { limit = { has_variable = global.krcw_tension check_variable = { global.krcw_tension > 79 } } add_to_variable = { krcw_econ_heat = 1 } }
+		clamp_variable = { var = krcw_econ_heat min = 0 max = 100 }
+		if = { limit = { check_variable = { krcw_econ_heat > 99 } } krcw_econ_bubble_burst = yes }
+	}
+}
+
+krcw_econ_bubble_burst = {
+	set_variable = { krcw_econ_heat = 0 }
+	subtract_from_variable = { krcw_econ = 20 }
+	clamp_variable = { var = krcw_econ min = 0 max = 100 }
+	krcw_econ_force_tier = yes
+	country_event = { id = krcw_econ.7 days = 1 }
+	if = {
+		limit = { original_tag = SOV }
+		news_event = { id = krcw_econ.8 days = 2 }
+		every_country = {
+			limit = { has_variable = krcw_rouble_debt check_variable = { krcw_rouble_debt > 0 } NOT = { original_tag = SOV } }
+			subtract_from_variable = { krcw_econ = 8 }
+			clamp_variable = { var = krcw_econ min = 0 max = 100 }
+			set_country_flag = { flag = krcw_econ_loans_called value = 1 days = 365 }
+		}
+	}
+}
+
+krcw_econ_ai_floor = {
+	if = {
+		limit = { is_ai = yes has_war = no check_variable = { krcw_econ < 8 } }
+		add_to_variable = { krcw_econ_low_months = 1 }
+	}
+	else = { set_variable = { krcw_econ_low_months = 0 } }
+	if = {
+		limit = { check_variable = { krcw_econ_low_months > 5 } NOT = { has_country_flag = krcw_econ_bailed_out } }
+		set_variable = { krcw_econ = 30 }
+		set_variable = { krcw_econ_low_months = 0 }
+		if = { limit = { has_variable = krcw_econ_bloat } set_variable = { krcw_econ_bloat = 0 } }
+		if = { limit = { has_variable = krcw_econ_heat } set_variable = { krcw_econ_heat = 0 } }
+		if = { limit = { has_variable = krcw_rouble_debt } multiply_variable = { krcw_rouble_debt = 0.5 } }
+		set_country_flag = { flag = krcw_econ_bailed_out value = 1 days = 1095 }
+		krcw_econ_force_tier = yes
+	}
+}
+
+krcw_econ_log = {
+	if = {
+		limit = { has_country_flag = krcw_econ_log }
+		log = "[GetDateText] KRCWECON [ROOT.GetTag] sys=[?krcw_econ_system|0] e=[?krcw_econ|1] t=[?krcw_econ_trend|2] tier=[?krcw_econ_tier|0] bloat=[?krcw_econ_bloat|1] heat=[?krcw_econ_heat|1] debt=[?krcw_rouble_debt|1] edu=[?krcw_dev_edu|1] wel=[?krcw_dev_wel|1] pop=[?krcw_dev_pop|1] gdp=[?grossdomesticproduct|0] plan=[?krcw_dev_plan|0] proj=[?krcw_dev_slots|0]"
+	}
+}
+
+krcw_econ_init_untracked = {
+	set_variable = { krcw_econ_tier = 3 }
+	set_variable = { krcw_econ_system = 3 }
+	set_country_flag = krcw_econ_auto
+	if = {
+		limit = { krcw_is_ti = yes }
+		set_variable = { krcw_econ_system = 1 }
+		set_variable = { krcw_econ_bloat = 10 }
+	}
+	else_if = {
+		limit = { krcw_is_ma = yes }
+		set_variable = { krcw_econ_system = 2 }
+		set_variable = { krcw_econ_heat = 15 }
+	}
+	krcw_dev_setup_vars = yes
+	krcw_dev_census = yes
+	set_variable = { krcw_econ = krcw_dev_edu }
+	multiply_variable = { krcw_econ = 0.15 }
+	add_to_variable = { krcw_econ = 35 }
+	set_temp_variable = { krcw_tx = stability }
+	subtract_from_temp_variable = { krcw_tx = 0.5 }
+	multiply_temp_variable = { krcw_tx = 20 }
+	add_to_variable = { krcw_econ = krcw_tx }
+	clamp_variable = { var = krcw_econ min = 30 max = 55 }
+	krcw_econ_force_tier = yes
+	krcw_dev_setup_rest = yes
+}
+
+krcw_econ_cwic_cleanup = {
+	CWIC_clear_macro_crisis_ideas = yes
+	CWIC_clear_compound_crisis_ideas = yes
+	CWIC_clear_macro_crisis_flags = yes
+	CWIC_clear_compound_crisis_flags = yes
+	if = {
+		limit = { has_dynamic_modifier = { modifier = cwic_dm_consumer_goods_pressure_master } }
+		remove_dynamic_modifier = { modifier = cwic_dm_consumer_goods_pressure_master }
+	}
+	if = {
+		limit = { has_dynamic_modifier = { modifier = CWIC_mobilisation_penalty_modifier } }
+		remove_dynamic_modifier = { modifier = CWIC_mobilisation_penalty_modifier }
+	}
+}
+
+krcw_econ_monthly_tick = {
+	if = {
+		limit = { NOT = { has_variable = krcw_econ_system } NOT = { has_country_flag = active_insurgency } }
+		krcw_econ_init_untracked = yes
+	}
+	if = {
+		limit = { NOT = { has_country_flag = krcw_econ_cwic_cleaned } }
+		set_country_flag = krcw_econ_cwic_cleaned
+		krcw_econ_cwic_cleanup = yes
+	}
+	# an auto-assigned market economy that joins a bloc takes the bloc's system
+	if = {
+		limit = { has_country_flag = krcw_econ_auto check_variable = { krcw_econ_system = 3 } krcw_is_ti = yes }
+		set_variable = { krcw_econ_system = 1 }
+		set_variable = { krcw_econ_bloat = 10 }
+		krcw_econ_force_tier = yes
+	}
+	else_if = {
+		limit = { has_country_flag = krcw_econ_auto check_variable = { krcw_econ_system = 3 } krcw_is_ma = yes }
+		set_variable = { krcw_econ_system = 2 }
+		set_variable = { krcw_econ_heat = 15 }
+		krcw_econ_force_tier = yes
+	}
+	if = {
+		limit = { has_variable = krcw_econ_system check_variable = { krcw_econ_system > 0 } }
+		if = { limit = { NOT = { has_variable = krcw_dev_edu } } krcw_dev_setup = yes }
+		krcw_dev_census = yes
+		krcw_econ_recalc = yes
+		krcw_econ_set_tier = yes
+		krcw_dev_monthly = yes
+		krcw_econ_ai_floor = yes
+		krcw_econ_log = yes
+	}
+}
+
+krcw_econ_ti_count = {
+	set_variable = { global.krcw_econ_ti_surplus = 0 }
+	set_variable = { global.krcw_econ_ti_distress = 0 }
+	every_country = {
+		limit = { krcw_is_ti = yes has_variable = krcw_econ }
+		if = { limit = { krcw_econ_pcu_member = yes check_variable = { krcw_econ > 59 } } add_to_variable = { global.krcw_econ_ti_surplus = 1 } }
+		if = { limit = { NOT = { original_tag = FRA } check_variable = { krcw_econ < 40 } } add_to_variable = { global.krcw_econ_ti_distress = 1 } }
+	}
+}
+krcw_econ_ma_count = {
+	set_variable = { global.krcw_econ_ma_distress = 0 }
+	set_variable = { global.krcw_econ_ma_debtors = 0 }
+	every_country = {
+		limit = { has_variable = krcw_econ NOT = { original_tag = SOV } }
+		if = { limit = { krcw_is_ma = yes check_variable = { krcw_econ < 40 } } add_to_variable = { global.krcw_econ_ma_distress = 1 } }
+		if = { limit = { has_variable = krcw_rouble_debt check_variable = { krcw_rouble_debt > 0 } } add_to_variable = { global.krcw_econ_ma_debtors = 1 } }
+	}
+}

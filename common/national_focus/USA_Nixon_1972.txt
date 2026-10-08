@@ -1,0 +1,524 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = USA_Nixon_1972
+	country = {
+		factor = 0
+		modifier = {
+			add = 0
+			tag = USA
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	shared_focus = USA_70s_The_CIA
+	shared_focus = USA_70s_The_Paris_Peace_Accords
+	shared_focus = USA_70s_American_Armed_Forces
+	focus = {
+		id = USA_NIXON72_The_Nixon_Administration
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_NixonAdministration
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		x = 5
+		y = 0
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = USA_NIXON72_End_the_Draft
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_military_service_reduction
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_The_Nixon_Administration
+		}
+		x = 3
+		y = 1
+		completion_reward = {
+			add_ideas = volunteer_only
+			add_stability = 0.03
+		}
+	}
+	focus = {
+		id = USA_NIXON72_War_Powers_Resolution
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Adopt_New_Constitiution
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_End_the_Draft
+		}
+		x = 1
+		y = 2
+		completion_reward = {
+			country_event = War_Powers.1
+			add_ideas = War_Powers_Resolution
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Federal_Aid_Highway_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_focus_interstate
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_The_Nixon_Administration
+		}
+		x = 7
+		y = 1
+		completion_reward = {
+			set_country_flag = Federal_Aid_Highway_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = infrastructure_development
+			}
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Amtrak_Improvement_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Amtrak_Icon
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_End_the_Draft
+		}
+		prerequisite = {
+			focus = USA_NIXON72_Federal_Aid_Highway_Act
+		}
+		x = 5
+		y = 2
+		completion_reward = {
+			set_country_flag = Amtrak_Improvement_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = railway_expansion
+			}
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Comprehensive_Education_and_Training_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_machine_tools
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_War_Powers_Resolution
+		}
+		prerequisite = {
+			focus = USA_NIXON72_Amtrak_Improvement_Act
+		}
+		x = 3
+		y = 3
+		completion_reward = {
+			set_country_flag = Comprehensive_Education_and_Training_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Comprehensive_Education_and_Training_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Crackdown_on_Juvenile_Delinquency
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_focus_police
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_Comprehensive_Education_and_Training_Act
+		}
+		x = 2
+		y = 4
+		completion_reward = {
+			add_timed_idea = {
+				idea = law_and_order
+				days = 2250
+			}
+			set_variable = { THIS.idea_len_@token:law_and_order = 2250 }
+			set_variable = { THIS.idea_date_@token:law_and_order = global.num_days }
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Endangered_Species_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_Federal_Aid_Highway_Act
+		}
+		x = 9
+		y = 2
+		completion_reward = {
+			set_country_flag = Endangered_Species_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Endangered_Species_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Disaster_Relieft_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_Amtrak_Improvement_Act
+		}
+		prerequisite = {
+			focus = USA_NIXON72_Endangered_Species_Act
+		}
+		x = 7
+		y = 3
+		completion_reward = {
+			set_country_flag = Disaster_Relieft_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_disaster_relief
+			}
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Federal_Fire_Prevention_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_Comprehensive_Education_and_Training_Act
+		}
+		prerequisite = {
+			focus = USA_NIXON72_Disaster_Relieft_Act
+		}
+		x = 5
+		y = 4
+		completion_reward = {
+			set_country_flag = Federal_Fire_Prevention_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Federal_Fire_Prevention_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Education_for_the_Disabled
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_prioritize_western_education
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_Disaster_Relieft_Act
+		}
+		x = 8
+		y = 4
+		completion_reward = {
+			add_timed_idea = {
+				idea = literacy_campaign
+				days = 1825
+			}
+			set_variable = { THIS.idea_len_@token:literacy_campaign = 1825 }
+			set_variable = { THIS.idea_date_@token:literacy_campaign = global.num_days }
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Employee_Retirement_Income_Security_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Pension_Funding
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_Education_for_the_Disabled
+		}
+		prerequisite = {
+			focus = USA_NIXON72_Federal_Fire_Prevention_Act
+		}
+		x = 7
+		y = 5
+		completion_reward = {
+			set_country_flag = Employee_Retirement_Income_Security_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = increased_pensions
+			}
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Increase_Spending_to_Combat_Recession
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Cash_and_Carry
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_Employee_Retirement_Income_Security_Act
+		}
+		x = 9
+		y = 6
+		completion_reward = {
+			add_timed_idea = {
+				idea = increase_spending
+				days = 1250
+			}
+			set_variable = { THIS.idea_len_@token:increase_spending = 1250 }
+			set_variable = { THIS.idea_date_@token:increase_spending = global.num_days }
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Federal_Land_Reform
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Introduce_Political_Background_Checks
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_Increase_Spending_to_Combat_Recession
+		}
+		prerequisite = {
+			focus = USA_NIXON72_Fight_Inflation
+		}
+		x = 7
+		y = 7
+		completion_reward = {
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Revenue_Adjustment_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_ISR_Focus_Tax_Cuts
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_Trade_Act_of_1974
+		}
+		x = 1
+		y = 6
+		completion_reward = {
+			add_ideas = policy_taxrate_temp_3
+			hidden_effect = {
+				remove_ideas = policy_taxrate_temp_1
+				remove_ideas = policy_taxrate_temp_2
+				remove_ideas = policy_taxrate_temp_4
+				remove_ideas = policy_taxrate_temp_5
+			}
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Railroad_Revitilization_and_Regulation_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_FocusBuildRailroads
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_Revenue_Adjustment_Act
+		}
+		prerequisite = {
+			focus = USA_NIXON72_Fight_Inflation
+		}
+		x = 3
+		y = 7
+		completion_reward = {
+			set_country_flag = Railroad_Revitilization_and_Regulation_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = public_infrastructure_development
+			}
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Trade_Act_of_1974
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_generic_positive_trade_relations
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_Federal_Fire_Prevention_Act
+		}
+		prerequisite = {
+			focus = USA_NIXON72_Crackdown_on_Juvenile_Delinquency
+		}
+		x = 3
+		y = 5
+		completion_reward = {
+			set_country_flag = Trade_Act_of_1974_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_trade_act_1974
+			}
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Push_for_Universal_Healthcare
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_healthcare
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_Copyright_Act_of_1976
+		}
+		prerequisite = {
+			focus = USA_NIXON72_Resource_Conservation_Act
+		}
+		x = 5
+		y = 9
+		completion_reward = {
+			add_ideas = policy_healthcare_temp_4
+			hidden_effect = {
+				remove_ideas = policy_healthcare_temp_0
+				remove_ideas = policy_healthcare_temp_1
+				remove_ideas = policy_healthcare_temp_2
+				remove_ideas = policy_healthcare_temp_3
+				remove_ideas = policy_healthcare_temp_5
+			}
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Fight_Inflation
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Fight_Hyperinflation
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_Trade_Act_of_1974
+		}
+		prerequisite = {
+			focus = USA_NIXON72_Employee_Retirement_Income_Security_Act
+		}
+		x = 5
+		y = 6
+		completion_reward = {
+			remove_ideas = Inflation_Crisis
+			add_timed_idea = {
+				idea = Inflation_Crisis2
+				days = 750
+			}
+			set_variable = { THIS.idea_len_@token:Inflation_Crisis2 = 750 }
+			set_variable = { THIS.idea_date_@token:Inflation_Crisis2 = global.num_days }
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Copyright_Act_of_1976
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Copyright_Law
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_Railroad_Revitilization_and_Regulation_Act
+		}
+		x = 4
+		y = 8
+		completion_reward = {
+			set_country_flag = Copyright_Act_of_1976_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Copyright_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_NIXON72_Resource_Conservation_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Adopt_New_Constitiution
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_NIXON72_Federal_Land_Reform
+		}
+		x = 6
+		y = 8
+		completion_reward = {
+			set_country_flag = Resource_Conservation_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Resource_Conservation_Act_idea
+			}
+		}
+	}
+}

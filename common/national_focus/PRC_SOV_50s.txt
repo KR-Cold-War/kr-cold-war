@@ -1,0 +1,2110 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = PRC_SOV_50s	 ### let me keep this out atm - from taiga
+	country = {
+		factor = 0
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	focus = {
+		id = PRC_SOV_The_Dongbei_Retreat
+		icon = GFX_PRC_The_Dongbei_Retreat
+		completion_reward = {
+			remove_ideas = PRC_50s_People_s_War_of_Liberation
+			add_ideas = PRC_SOV_50s_Retreat_to_Dongbei
+			add_political_power = -58
+            country_event = PRC_SOV_50s_Dongbei_Retreat
+			SOV = {
+				set_autonomy = {
+					target = PRC
+					autonomous_state = autonomy_easternbloc
+					freedom_level = 0.4
+				}
+			}
+		}
+		cost = 2
+		x = 35
+		y = 0
+
+	}
+	focus = {
+		id = PRC_SOV_Reorganize_Provincial_Authorities
+		icon = GFX_PRC_Reorganize_Provincial_Autorities
+		cost = 2
+		completion_reward = {
+			add_stability = 0.09
+		    add_ideas = PRC_SOV_50s_Communist_Party_of_China_Vanguardist_Strengh_1
+			remove_ideas = cpsu_strengh
+			716 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			714 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+
+		}
+		prerequisite = {
+			focus = PRC_SOV_The_Dongbei_Retreat
+		}
+		x = 32
+		y = 1
+
+	}
+	focus = {
+		id = PRC_SOV_Wang_Ming_Reemergence
+		icon = GFX_PRC_Wang_Ming_Reemergence
+		completion_reward = {
+                        add_popularity = {
+	                        ideology = communism
+	                        popularity = 0.08
+                        }
+		        add_ideas = PRC_SOV_50s_Conflict_Between_Gao_Gang_and_Wang_Ming
+                        country_event = PRC_SOV_50s_Reemergence_of_Wang_Ming_28_Bolshevik
+                        custom_effect_tooltip = PRC_SOV_50s_CPC_Factionnal_War_Begin
+			add_political_power = -12
+		}
+		cost = 2
+		prerequisite = {
+			focus = PRC_SOV_The_Dongbei_Retreat
+		}
+		x = 35
+		y = 1
+
+	}
+	focus = {
+		id = PRC_SOV_Increase_Gao_Gang_NPC_Influence
+		icon = GFX_PRC_Increase_Gao_Gang_NPG_Influence
+		cost = 2
+		completion_reward = {
+                        add_popularity = {
+	                        ideology = maoism
+	                        popularity = 0.08
+                        }
+		        add_ideas = PRC_SOV_50s_Gao_Gang_Dongbei_Peoples_Government_Planning
+                        country_event = PRC_SOV_50s_Gao_Gang_Shenyang_Maoist_Bastion
+			add_political_power = 25
+		}
+		prerequisite = {
+			focus = PRC_SOV_Reorganize_Provincial_Authorities
+		}
+		prerequisite = {
+			focus = PRC_SOV_Wang_Ming_Reemergence
+		}
+		x = 33
+		y = 2
+
+	}
+	focus = {
+		id = PRC_SOV_Strengthen_Zhu_De_PLA
+		icon = GFX_PRC_Strengthen_Zhu_De_PLA
+		cost = 2
+		completion_reward = {
+                        add_command_power = 18
+                        army_experience = 10
+                        add_war_support = 0.08
+		}
+		prerequisite = {
+			focus = PRC_SOV_Increase_Gao_Gang_NPC_Influence
+		}
+		x = 32
+		y = 3
+
+	}
+	focus = {
+		id = PRC_SOV_Safeguard_Maoist_CPC_Apparatus
+		icon = GFX_PRC_Safeguard_Maoist_CPC_Apparatus
+		cost = 2
+		completion_reward = {
+                        add_political_power = 45
+                        add_popularity = {
+	                        ideology = maoism
+	                        popularity = 0.02
+                        }
+
+		}
+		prerequisite = {
+			focus = PRC_SOV_Strengthen_Zhu_De_PLA
+		}
+		x = 34
+		y = 4
+
+	}
+	focus = {
+		id = PRC_SOV_Increase_Suiyuan_Hebei_Defense
+		icon = GFX_PRC_Defense_of_Suiyuan_and_Hebei
+		cost = 2
+		completion_reward = {
+                        army_defence_factor = 0.5
+			1556 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+				}
+			}
+			609 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+				}
+			}
+			608 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		prerequisite = {
+			focus = PRC_SOV_The_Dongbei_Retreat
+		}
+		x = 38
+		y = 1
+
+	}
+	focus = {
+		id = PRC_SOV_Begin_Vital_Infrastructures_Reconstructions
+		icon = GFX_PRC_Begin_Vital_Infrastructures_Reconstruction
+		cost = 2
+		completion_reward = {
+                        add_political_power = 45
+			add_stability = 0.08
+			714 = {
+				add_building_construction = {
+					type = steel_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			715 = {
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			714 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			1556 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		prerequisite = {
+			focus = PRC_SOV_Wang_Ming_Reemergence
+		}
+		prerequisite = {
+			focus = PRC_SOV_Increase_Suiyuan_Hebei_Defense
+		}
+		x = 37
+		y = 2
+
+	}
+	focus = {
+		id = PRC_SOV_Mao_Zedong_Self-criticism
+		icon = GFX_PRC_Mao_Self_Criticism
+		cost = 2
+		completion_reward = {
+                        country_event = PRC_SOV_50s_Mao_Zedong_Self_Criticism
+                        add_stability = -0.15
+                        add_popularity = {
+	                        ideology = communism
+	                        popularity = 0.08
+                        }
+                        add_popularity = {
+	                        ideology = trotskyism
+	                        popularity = 0.02
+                        }
+		}
+		prerequisite = {
+			focus = PRC_SOV_Begin_Vital_Infrastructures_Reconstructions
+		}
+		prerequisite = {
+			focus = PRC_SOV_Increase_Gao_Gang_NPC_Influence
+		}
+		x = 35
+		y = 3
+
+	}
+	focus = {
+		id = PRC_SOV_8th_Congress_of_CPC
+		icon = GFX_PRC_CCP_8_Th_Congress
+		cost = 2
+		completion_reward = {
+            country_event = PRC_SOV_50s_CPC_8th_Congress
+			add_political_power = 25
+		}
+		prerequisite = {
+			focus = PRC_SOV_Rassure_the_Maoists_and_PLA
+		}
+		prerequisite = {
+			focus = PRC_SOV_Persuade_Zhou_and_Liu_to_accept_change
+		}
+		x = 35
+		y = 7
+
+	}
+	focus = {
+		id = PRC_SOV_General_Secretary_Zhang_Wentian
+		icon = GFX_PRC_General_Secretary_Zhang_Wentian
+		cost = 2
+		prerequisite = {
+			focus = PRC_SOV_8th_Congress_of_CPC
+		}
+	        completion_reward = {
+		        create_country_leader = {
+			        name = "Zhang Wentian"
+			        picture = "Zhang_Wentian.dds"
+			        ideology = twenty_eight_bolsheviks
+		        }
+                        set_politics = {
+	                        ruling_party = communism
+	                        elections_allowed = no
+                        }
+                        country_event = PRC_SOV_50s_GenSec_Zhang_Wentian
+			add_stability = 0.05
+		}
+		x = 35
+		y = 8
+
+	}
+	focus = {
+		id = PRC_SOV_Meeting_With_Zhang_Wentian
+		icon = GFX_PRC_Meeting_With_Zhang_Wentian
+		cost = 2
+		completion_reward = {
+                        country_event = PRC_SOV_50s_Meeting_Zhang_Wentian
+			add_political_power = 15
+		}
+		prerequisite = {
+			focus = PRC_SOV_Begin_Vital_Infrastructures_Reconstructions
+		}
+		x = 38
+		y = 3
+
+	}
+	focus = {
+		id = PRC_SOV_Critics_of_Chen_Yun_About_Mao_Manoeuvers
+		icon = GFX_PRC_Critics_of_Chen_Yun_About_Mao_Manoeuvers
+		cost = 2
+		completion_reward = {
+                        country_event = PRC_SOV_50s_Pragmatist_Wing_Critics
+			add_political_power = 15
+                        add_popularity = {
+	                        ideology = trotskyism
+	                        popularity = 0.04
+                        }
+		}
+		prerequisite = {
+			focus = PRC_SOV_Meeting_With_Zhang_Wentian
+		}
+		x = 36
+		y = 4
+
+	}
+	focus = {
+		id = PRC_SOV_Mao_Official_Resignation
+		icon = GFX_PRC_Mao_Official_Resignation
+		cost = 2
+	        completion_reward = {
+		        create_country_leader = {
+			        name = "CPC Politburo Standing Committee"
+			        picture = "CPC_Politburo_Standing_Committee.dds"
+			        ideology = mao_zedong_thought
+		        }
+                        country_event = PRC_SOV_50s_Mao_Resignation
+			add_political_power = -28
+		}
+		prerequisite = {
+			focus = PRC_SOV_Mao_Zedong_Self-criticism
+		}
+		prerequisite = {
+			focus = PRC_SOV_Safeguard_Maoist_CPC_Apparatus
+		}
+		prerequisite = {
+			focus = PRC_SOV_Critics_of_Chen_Yun_About_Mao_Manoeuvers
+		}
+		x = 35
+		y = 5
+
+	}
+	focus = {
+		id = PRC_SOV_Rassure_the_Maoists_and_PLA
+		icon = GFX_PRC_Rassure_The_Maoist
+		cost = 2
+		completion_reward = {
+                        add_popularity = {
+	                        ideology = maoism
+	                        popularity = 0.05
+                        }
+                        add_stability = 0.15
+		}
+		prerequisite = {
+			focus = PRC_SOV_Mao_Official_Resignation
+		}
+		x = 33
+		y = 6
+
+	}
+	focus = {
+		id = PRC_SOV_Persuade_Zhou_and_Liu_to_accept_change
+		icon = GFX_PRC_Persuade_Liu_and_Zhou_to_accept_change
+		completion_reward = {
+                        add_popularity = {
+	                        ideology = trotskyism
+	                        popularity = 0.05
+                        }
+                        add_stability = 0.08
+		}
+		cost = 2
+		prerequisite = {
+			focus = PRC_SOV_Mao_Official_Resignation
+		}
+		x = 37
+		y = 6
+
+	}
+	focus = {
+		id = PRC_SOV_Begin_CPC_Intra_Democracy_Reorganization
+		icon = GFX_goal_unknown
+		cost = 2
+		completion_reward = {
+                        swap_ideas = { 
+                          remove_idea = PRC_SOV_50s_Communist_Party_of_China_Vanguardist_Strengh_1 
+                          add_idea = PRC_SOV_50s_Communist_Party_of_China_Vanguardist_Strengh_2
+                        }
+                        add_stability = 0.08
+		}
+		prerequisite = {
+			focus = PRC_SOV_General_Secretary_Zhang_Wentian
+		}
+		x = 41
+		y = 9
+
+	}
+	focus = {
+		id = PRC_SOV_Open_CPPCC_Meeting
+		icon = GFX_goal_unknown
+		completion_reward = {
+                        country_event = PRC_SOV_50s_CPPCC_Meeting
+			add_political_power = 25
+		}
+		cost = 2
+		prerequisite = {
+			focus = PRC_SOV_Begin_CPC_Xibao_Recovery
+		}
+		x = 28
+		y = 10
+
+	}
+	focus = {
+		id = PRC_SOV_Proclamation_of_the_Constitution
+		completion_reward = {
+                        add_stability = 0.25
+                        country_event = PRC_SOV_50s_proclaimation_of_peoples_soviet_republic
+                        news_event = proclamation_of_peoples_soviet_republic_of_china
+                        set_cosmetic_tag = PRC_SOV_communism
+		}
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_Question_of_Ulanhus_Government
+		}
+		prerequisite = {
+			focus = PRC_SOV_Form_United_Peoples_Front
+		}
+		prerequisite = {
+			focus = PRC_SOV_Form_the_Zhongyang_Jihua_weiyuanhui
+		}
+		prerequisite = {
+			focus = PRC_SOV_Launch_Workers_and_Peasants_Defeudalization
+		}
+		x = 35
+		y = 12
+
+	}
+	focus = {
+		id = PRC_SOV_Begin_CPC_Xibao_Recovery
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_stability = 0.15
+		}
+		prerequisite = {
+			focus = PRC_SOV_General_Secretary_Zhang_Wentian
+		}
+		x = 29
+		y = 9
+
+	}
+	focus = {
+		id = PRC_SOV_1st_National_Peoples_Assembly_Session
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        country_event = PRC_SOV_50s_1st_National_Peoples_Assembly_Session
+                        add_popularity = {
+	                        ideology = maoism
+	                        popularity = 0.02
+                        }
+                        add_popularity = {
+	                        ideology = communism
+	                        popularity = 0.05
+                        }
+		}
+		prerequisite = {
+			focus = PRC_SOV_Proclamation_of_the_Constitution
+		}
+		x = 35
+		y = 13
+
+	}
+	focus = {
+		id = PRC_SOV_Direct_Intervention
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_CAPC_Position_on_KO
+		}
+		x = 67
+		y = 18
+
+	}
+	focus = {
+		id = PRC_SOV_Social_Recovery
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_stability = 0.15
+                        add_political_power = -25
+		}
+		prerequisite = {
+			focus = PRC_SOV_Proclamation_of_the_Constitution
+		}
+		x = 45
+		y = 13
+
+	}
+	focus = {
+		id = PRC_SOV_Dealing_With_CCP_Internal_Rivalities
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_political_power = -10
+		}
+		prerequisite = {
+			focus = PRC_SOV_Proclamation_of_the_Constitution
+		}
+		x = 25
+		y = 13
+
+	}
+	focus = {
+		id = PRC_SOV_Liu_Shaoqi_Maoist_Triumph
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_popularity = {
+	                        ideology = maoism
+	                        popularity = 0.08
+                        }
+                        country_event = PRC_SOV_50s_Liu_Shaoqi_Triumph
+		}
+		prerequisite = {
+			focus = PRC_SOV_1st_National_Peoples_Assembly_Session
+		}
+		mutually_exclusive = {
+			focus = PRC_SOV_Wang_Jiaxiang_Hold_on
+		}
+		x = 32
+		y = 14
+
+	}
+	focus = {
+		id = PRC_SOV_Wang_Jiaxiang_Hold_on
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_popularity = {
+	                        ideology = communism
+	                        popularity = 0.1
+                        }
+                        country_event = PRC_SOV_50s_Wang_Jiaxiang_Triumph
+		}
+		prerequisite = {
+			focus = PRC_SOV_1st_National_Peoples_Assembly_Session
+		}
+		mutually_exclusive = {
+			focus = PRC_SOV_Liu_Shaoqi_Maoist_Triumph
+		}
+		x = 38
+		y = 14
+
+	}
+	focus = {
+		id = PRC_SOV_Launch_Mass_Autocritic_Campaign
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_popularity = {
+	                        ideology = communism
+	                        popularity = 0.1
+                        }
+                        country_event = PRC_SOV_50s_Wang_Jiaxiang_Triumph
+		}
+		prerequisite = {
+			focus = PRC_SOV_Liu_Shaoqi_Maoist_Triumph
+		}
+		x = 31
+		y = 15
+
+	}
+	focus = {
+		id = PRC_SOV_Tolerate_Dazibao_Critics_against_Dogmatism
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_war_support = 0.08
+                        add_stability = 0.04
+		}
+		prerequisite = {
+			focus = PRC_SOV_Liu_Shaoqi_Maoist_Triumph
+		}
+		x = 33
+		y = 15
+
+	}
+	focus = {
+		id = PRC_SOV_Lin_Biao_as_Defense_Minister
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        army_experience = 15     	
+                        add_command_power = 58
+		}
+		prerequisite = {
+			focus = PRC_SOV_Launch_Mass_Autocritic_Campaign
+		}
+		prerequisite = {
+			focus = PRC_SOV_Tolerate_Dazibao_Critics_against_Dogmatism
+		}
+		x = 32
+		y = 16
+
+	}
+	focus = {
+		id = PRC_SOV_Reeducation_Camapign_for_Petite_Bourgeoisie
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_stability = 0.04
+		}
+		prerequisite = {
+			focus = PRC_SOV_Lin_Biao_as_Defense_Minister
+		}
+		x = 31
+		y = 17
+
+	}
+	focus = {
+		id = PRC_SOV_Strenghen_ties_with_Yang_Shangkun
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_popularity = {
+	                        ideology = communism
+	                        popularity = 0.01
+                        }
+                        country_event = PRC_SOV_50s_Meeting_with_Yang_Shangkun
+		}
+		prerequisite = {
+			focus = PRC_SOV_Wang_Jiaxiang_Hold_on
+		}
+		x = 37
+		y = 15
+
+	}
+	focus = {
+		id = PRC_SOV_Kang_Sheng_Counterrevolutionary_Campaign
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_ideas = PRC_SOV_50s_Kang_Sheng_Counter_revolutionary_Campaign 
+		}
+		prerequisite = {
+			focus = PRC_SOV_Dealing_With_CCP_Internal_Rivalities
+		}
+		mutually_exclusive = {
+			focus = PRC_SOV_Zhou_Enlai_Pragmatic_Solution
+		}
+		x = 23
+		y = 14
+
+	}
+	focus = {
+		id = PRC_SOV_Reaffirm_Sun_Yat_Sen_Moscow_University_Doctrine
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_ideas = PRC_SOV_50s_Sun_Yat_Sen_Moscow_University_Doctrine
+                        add_popularity = {
+	                        ideology = communism
+	                        popularity = 0.04
+                        }
+		}
+		prerequisite = {
+			focus = PRC_SOV_Wang_Jiaxiang_Hold_on
+		}
+		x = 39
+		y = 15
+
+	}
+	focus = {
+		id = PRC_SOV_Zhou_Enlai_Pragmatic_Solution
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_stability = 0.02
+                        add_political_power = 25
+		}
+		prerequisite = {
+			focus = PRC_SOV_Dealing_With_CCP_Internal_Rivalities
+		}
+		mutually_exclusive = {
+			focus = PRC_SOV_Kang_Sheng_Counterrevolutionary_Campaign
+		}
+		x = 27
+		y = 14
+
+	}
+	focus = {
+		id = PRC_SOV_Cooperation_with_CPWDP_and_RCCK
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_popularity = {
+	                        ideology = socialist
+	                        popularity = 0.03
+                        }
+                        add_popularity = {
+	                        ideology = Social_Democratic
+	                        popularity = 0.02
+                        }
+		}
+		prerequisite = {
+			focus = PRC_SOV_Lin_Biao_as_Defense_Minister
+		}
+		x = 33
+		y = 17
+
+	}
+	focus = {
+		id = PRC_SOV_Zhang_Zhou_meeting_about_trading_policy
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        give_market_access = SOV
+                        give_market_access = KPA
+                        send_embargo = CHI
+                        SOV = { send_embargo = CHI }
+		}
+		prerequisite = {
+			focus = PRC_SOV_Zhou_Enlai_Pragmatic_Solution
+		}
+		x = 28
+		y = 15
+
+	}
+	focus = {
+		id = PRC_SOV_Empower_Struggle_against_Material_Conditions
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        set_stability = 0.08
+		}
+		prerequisite = {
+			focus = PRC_SOV_Social_Recovery
+		}
+		x = 43
+		y = 14
+
+	}
+	focus = {
+		id = PRC_SOV_Appoint_Chen_Yun_as_Economic_Minister
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_political_power = -20
+                        add_ideas = PRC_SOV_50s_Chen_Yun_Little_Market_Theory
+		}
+		prerequisite = {
+			focus = PRC_SOV_Social_Recovery
+		}
+		x = 47
+		y = 14
+
+	}
+	focus = {
+		id = PRC_SOV_The_Task_of_Workers_and_Peasants_Alienation
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_political_power = -35
+                        add_popularity = {
+	                        ideology = maoism
+	                        popularity = 0.03
+                        }
+		}
+		prerequisite = {
+			focus = PRC_SOV_Empower_Struggle_against_Material_Conditions
+		}
+		prerequisite = {
+			focus = PRC_SOV_Appoint_Chen_Yun_as_Economic_Minister
+		}
+		x = 45
+		y = 15
+
+	}
+	focus = {
+		id = PRC_SOV_Question_of_Ulanhus_Government
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        country_event = PRC_SOV_50s_Question_of_Ulanhus_Government
+		}
+		prerequisite = {
+			focus = PRC_SOV_Open_CPPCC_Meeting
+		}
+		prerequisite = {
+			focus = PRC_SOV_Form_Zhishi_fenzi_and_Wenhua
+		}
+		x = 29
+		y = 11
+
+	}
+	focus = {
+		id = PRC_SOV_Form_United_Peoples_Front
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        set_stability = 0.1
+                        country_event = PRC_SOV_50s_Formation_of_Peoples_Front
+		}
+		prerequisite = {
+			focus = PRC_SOV_Keep_Mao_Zedong_in_CC
+		}
+		prerequisite = {
+			focus = PRC_SOV_Tolerate_Chen_Boda_and_Zhou_Yang_Materialism
+		}
+		x = 41
+		y = 11
+
+	}
+	focus = {
+		id = PRC_SOV_Peng_Dehuai_as_Defense_Minister
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        army_experience = 15     	
+                        add_command_power = 40
+		}
+		prerequisite = {
+			focus = PRC_SOV_Strenghen_ties_with_Yang_Shangkun
+		}
+		prerequisite = {
+			focus = PRC_SOV_Reaffirm_Sun_Yat_Sen_Moscow_University_Doctrine
+		}
+		x = 38
+		y = 16
+
+	}
+	focus = {
+		id = PRC_SOV_Impose_the_Dogma_of_Party_State
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_popularity = {
+	                        ideology = communism
+	                        popularity = 0.25
+                        }
+		}
+		prerequisite = {
+			focus = PRC_SOV_Peng_Dehuai_as_Defense_Minister
+		}
+		x = 37
+		y = 17
+
+	}
+	focus = {
+		id = PRC_SOV_Appoint_Chen_Yun_as_Director_for_Economic_Planning
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_political_power = -15
+		}
+		prerequisite = {
+			focus = PRC_SOV_Peng_Dehuai_as_Defense_Minister
+		}
+		x = 39
+		y = 17
+
+	}
+	focus = {
+		id = PRC_SOV_Li_Lisan_Worker_Representation_Plan
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_stability = 0.07
+                        add_war_support = 0.08
+		}
+		prerequisite = {
+			focus = PRC_SOV_Impose_the_Dogma_of_Party_State
+		}
+		prerequisite = {
+			focus = PRC_SOV_Appoint_Chen_Yun_as_Director_for_Economic_Planning
+		}
+		x = 38
+		y = 18
+
+	}
+	focus = {
+		id = PRC_SOV_Approuve_Mao_Zedong_New_Democracy
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        swap_ideas = {
+                            remove_idea = PRC_SOV_50s_Mao_Zedong_Influence_Increased
+                            add_idea = PRC_SOV_50s_Mao_Zedong_Influence_Medium
+						}
+		}
+		prerequisite = {
+			focus = PRC_SOV_Reeducation_Camapign_for_Petite_Bourgeoisie
+		}
+		prerequisite = {
+			focus = PRC_SOV_Cooperation_with_CPWDP_and_RCCK
+		}
+		x = 32
+		y = 18
+
+	}
+	focus = {
+		id = PRC_SOV_Encourage_Chinese_Material_Conditions_studies
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_stability = 0.05
+		}
+		prerequisite = {
+			focus = PRC_SOV_The_Task_of_Workers_and_Peasants_Alienation
+		}
+		mutually_exclusive = {
+			focus = PRC_SOV_Follow_guidance_of_USSR
+		}
+		x = 43
+		y = 16
+
+	}
+	focus = {
+		id = PRC_SOV_Follow_guidance_of_USSR
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_war_support = 0.1
+		}
+		prerequisite = {
+			focus = PRC_SOV_The_Task_of_Workers_and_Peasants_Alienation
+		}
+		mutually_exclusive = {
+			focus = PRC_SOV_Encourage_Chinese_Material_Conditions_studies
+		}
+		x = 47
+		y = 16
+
+	}
+	focus = {
+		id = PRC_SOV_Adopt_Anti_Dogmatic_Line_National_Peoples_Daily
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_popularity = {
+	                        ideology = maoism
+	                        popularity = 0.12
+                        }
+                        add_stability = 0.08
+		}
+		prerequisite = {
+			focus = PRC_SOV_Encourage_Chinese_Material_Conditions_studies
+		}
+		x = 42
+		y = 17
+
+	}
+	focus = {
+		id = PRC_SOV_Expropriation_and_Reeducation_Labor_for_Fangdong
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_ideas = PRC_SOV_50s_Laogais 
+		}
+		prerequisite = {
+			focus = PRC_SOV_Encourage_Chinese_Material_Conditions_studies
+		}
+		x = 44
+		y = 17
+
+	}
+	focus = {
+		id = PRC_SOV_Launch_Deportation_of_Fangdong
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_manpower = -255000
+                        add_stability = -0.8
+		}
+		prerequisite = {
+			focus = PRC_SOV_Follow_guidance_of_USSR
+		}
+		x = 46
+		y = 17
+
+	}
+	focus = {
+		id = PRC_SOV_Base_Peoples_Daily_on_Pravda
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_popularity = {
+	                        ideology = communism
+	                        popularity = 0.08
+                        }
+                        add_stability = 0.12
+		}
+		prerequisite = {
+			focus = PRC_SOV_Follow_guidance_of_USSR
+		}
+		x = 48
+		y = 17
+
+	}
+	focus = {
+		id = PRC_SOV_Director_Chen_Boda_Political_Research
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_ideas = PRC_SOV_50s_Chief_Ideologue_Chen_Boda
+		}
+		prerequisite = {
+			focus = PRC_SOV_Adopt_Anti_Dogmatic_Line_National_Peoples_Daily
+		}
+		prerequisite = {
+			focus = PRC_SOV_Expropriation_and_Reeducation_Labor_for_Fangdong
+		}
+		x = 43
+		y = 18
+
+	}
+	focus = {
+		id = PRC_SOV_Director_Kei_Feng_Political_Research
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_ideas = PRC_SOV_50s_Chief_Ideologue_Kai_Feng
+		}
+		prerequisite = {
+			focus = PRC_SOV_Launch_Deportation_of_Fangdong
+		}
+		prerequisite = {
+			focus = PRC_SOV_Base_Peoples_Daily_on_Pravda
+		}
+		x = 47
+		y = 18
+
+	}
+	focus = {
+		id = PRC_SOV_Create_Revolutionary_Education_Program
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_stability = 0.08
+                        add_war_support = 0.05
+		}
+		prerequisite = {
+			focus = PRC_SOV_Director_Chen_Boda_Political_Research
+			focus = PRC_SOV_Director_Kei_Feng_Political_Research
+		}
+		x = 45
+		y = 19
+
+	}
+	focus = {
+		id = PRC_SOV_Denounce_Japan_Panasianist_Crimes
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_stability = 0.05
+                        news_event = PRC_SOV_denounce_Japan_Panasianism_Crimes
+		}
+		prerequisite = {
+			focus = PRC_SOV_Approuve_Mao_Zedong_New_Democracy
+			focus = PRC_SOV_Li_Lisan_Worker_Representation_Plan
+		}
+		x = 35
+		y = 19
+
+	}
+	focus = {
+		id = PRC_SOV_Launch_Sino_Soviet_Academic_Project
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_stability = 0.05
+                        news_event = PRC_SOV_denounce_Japan_Panasianism_Crimes
+		}
+		prerequisite = {
+			focus = PRC_SOV_Zhou_Enlai_Pragmatic_Solution
+		}
+		x = 26
+		y = 15
+
+	}
+	focus = {
+		id = PRC_SOV_Joint_Operation_with_NKVD
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_intel = {
+                            target = CHI
+                            civilian_intel = 4
+                            army_intel = 2
+                        }
+		}
+		prerequisite = {
+			focus = PRC_SOV_Launch_Sino_Soviet_Academic_Project
+		}
+		prerequisite = {
+			focus = PRC_SOV_Zhang_Zhou_meeting_about_trading_policy
+		}
+		x = 27
+		y = 16
+
+	}
+	focus = {
+		id = PRC_SOV_Persuade_Zhang_Wentian_of_Wangs_anti_materialism
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        country_event = Zhang_Wentian_and_Mao_Zedong_ideological_ties
+		}
+		prerequisite = {
+			focus = PRC_SOV_Kang_Sheng_Counterrevolutionary_Campaign
+		}
+		x = 22
+		y = 15
+
+	}
+	focus = {
+		id = PRC_SOV_Strenghen_Rao_Shushi_Party_Reorganizations
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_stability = 0.08
+		}
+		prerequisite = {
+			focus = PRC_SOV_Kang_Sheng_Counterrevolutionary_Campaign
+		}
+		x = 24
+		y = 15
+
+	}
+	focus = {
+		id = PRC_SOV_Form_Zhongyang_Diaocha_Bu
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_stability = -0.09
+                        country_event = Zhang_Wentian_and_Mao_Zedong_ideological_ties
+		}
+		prerequisite = {
+			focus = PRC_SOV_Persuade_Zhang_Wentian_of_Wangs_anti_materialism
+		}
+		prerequisite = {
+			focus = PRC_SOV_Strenghen_Rao_Shushi_Party_Reorganizations
+		}
+		x = 23
+		y = 16
+
+	}
+	focus = {
+		id = PRC_SOV_Zhang_Wentians_Anti_Bandit_and_Corruption_Campaign
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_Form_Zhongyang_Diaocha_Bu
+			focus = PRC_SOV_Joint_Operation_with_NKVD
+		}
+		x = 25
+		y = 17
+
+	}
+	focus = {
+		id = PRC_SOV_Apply_Gao_Gangs_Centralism_Democratic
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_ideas = PRC_SOV_50s_Gao_Gang_Democratic_Centralism_1
+		}
+		prerequisite = {
+			focus = PRC_SOV_Zhang_Wentians_Anti_Bandit_and_Corruption_Campaign
+		}
+		x = 27
+		y = 18
+
+	}
+	focus = {
+		id = PRC_SOV_Launch_Beijing_Trials_against_traitors
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        country_event = PRC_SOV_Beijing_Mili
+		}
+		prerequisite = {
+			focus = PRC_SOV_Zhang_Wentians_Anti_Bandit_and_Corruption_Campaign
+		}
+		x = 23
+		y = 18
+
+	}
+	focus = {
+		id = PRC_SOV_Demand_Mandchukuo_official_Extradition
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        country_event = PRC_SOV_50s_Manchukuo_Concordia_Association_Collaborators_Fate
+		}
+		prerequisite = {
+			focus = PRC_SOV_Launch_Beijing_Trials_against_traitors
+		}
+		prerequisite = {
+			focus = PRC_SOV_Apply_Gao_Gangs_Centralism_Democratic
+		}
+		x = 25
+		y = 19
+
+	}
+	focus = {
+		id = PRC_SOV_2nd_National_Peoples_Assembly_Session
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        country_event = PRC_SOV_50s_2nd_National_Peoples_Assembly_Session
+		}
+		prerequisite = {
+			focus = PRC_SOV_Denounce_Japan_Panasianist_Crimes
+		}
+		prerequisite = {
+			focus = PRC_SOV_Demand_Mandchukuo_official_Extradition
+		}
+		prerequisite = {
+			focus = PRC_SOV_Create_Revolutionary_Education_Program
+		}
+		x = 35
+		y = 20
+
+	}
+	focus = {
+		id = PRC_SOV_A_letter_to_Shenyang
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_Zhu_De_Triumph
+		}
+		x = 34
+		y = 22
+
+	}
+	focus = {
+		id = PRC_SOV_Zhu_De_Triumph
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_2nd_National_Peoples_Assembly_Session
+		}
+		mutually_exclusive = {
+			focus = PRC_SOV_Li_Lisan_Triumph
+		}
+		x = 33
+		y = 21
+
+	}
+	focus = {
+		id = PRC_SOV_Li_Lisan_Triumph
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_2nd_National_Peoples_Assembly_Session
+		}
+		mutually_exclusive = {
+			focus = PRC_SOV_Zhu_De_Triumph
+		}
+		x = 37
+		y = 21
+
+	}
+	focus = {
+		id = PRC_SOV_9th_CCP_Congress
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_A_letter_to_Shenyang
+		}
+		prerequisite = {
+			focus = PRC_SOV_Harbin_Conference
+		}
+		x = 35
+		y = 23
+
+	}
+	focus = {
+		id = PRC_SOV_Harbin_Conference
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_Li_Lisan_Triumph
+		}
+		x = 36
+		y = 22
+
+	}
+	focus = {
+		id = PRC_SOV_Keep_Mao_Zedong_in_CC
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_ideas = PRC_SOV_50s_Mao_Zedong_Influence_Increased 
+		}
+		prerequisite = {
+			focus = PRC_SOV_Begin_CPC_Intra_Democracy_Reorganization
+		}
+		x = 42
+		y = 10
+
+	}
+	focus = {
+		id = PRC_SOV_GenSec_Wang_Ming
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_9th_CCP_Congress
+		}
+		mutually_exclusive = {
+			focus = PRC_SOV_GenSec_Gao_Gang
+		}
+		x = 33
+		y = 24
+
+	}
+	focus = {
+		id = PRC_SOV_GenSec_Gao_Gang
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_9th_CCP_Congress
+		}
+		mutually_exclusive = {
+			focus = PRC_SOV_GenSec_Wang_Ming
+		}
+		x = 37
+		y = 24
+
+	}
+	focus = {
+		id = PRC_SOV_Form_Zhishi_fenzi_and_Wenhua
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_ideas = PRC_SOV_50s_Intellectual_Research_Institutes_for_Xie_Wenhuan
+                        add_popularity = {
+                            ideology = socialist
+                            popularity = 0.02
+                        }
+                        add_popularity = {
+                            ideology = trotskyism
+                            popularity = 0.05
+                        }      	      
+		}
+		prerequisite = {
+			focus = PRC_SOV_Begin_CPC_Xibao_Recovery
+		}
+		x = 30
+		y = 10
+
+	}
+	focus = {
+		id = PRC_SOV_End_the_December_1941_Party_History_Version
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_stability = -0.12
+                        add_political_power = -14 	      
+		}
+		prerequisite = {
+			focus = PRC_SOV_Xin_wenhua_Movement
+		}
+		x = 33
+		y = 10
+
+	}
+	focus = {
+		id = PRC_SOV_Xin_wenhua_Movement
+		icon = GFX_goal_unknown
+		cost = 0
+		completion_reward = {
+                        add_stability = 0.18 	      
+		}
+		prerequisite = {
+			focus = PRC_SOV_General_Secretary_Zhang_Wentian
+		}
+		x = 35
+		y = 9
+
+	}
+	focus = {
+		id = PRC_SOV_Form_the_Zhongyang_Jihua_weiyuanhui
+		icon = GFX_goal_unknown
+		cost = 2
+		completion_reward = {
+                        add_ideas = PRC_SOV_50s_Zhongyang_Jihua_weiyuanhui
+                        add_political_power = 28	      
+		}
+		prerequisite = {
+			focus = PRC_SOV_Orthodox_Socialist_Science_Vanguardist_Doctrine
+		}
+		prerequisite = {
+			focus = PRC_SOV_End_the_December_1941_Party_History_Version
+		}
+		x = 34
+		y = 11
+
+	}
+	focus = {
+		id = PRC_SOV_Orthodox_Socialist_Science_Vanguardist_Doctrine
+		icon = GFX_goal_unknown
+		cost = 2
+		completion_reward = {
+                        add_political_power = 15	      
+		}
+		prerequisite = {
+			focus = PRC_SOV_Xin_wenhua_Movement
+		}
+		x = 35
+		y = 10
+
+	}
+	focus = {
+		id = PRC_SOV_Reorganize_the_Youth_League_under_antiimpeiralism
+		icon = GFX_goal_unknown
+		cost = 2
+		completion_reward = {
+                        add_political_power = 15
+                        add_war_support = 0.12	      
+		}
+		prerequisite = {
+			focus = PRC_SOV_Xin_wenhua_Movement
+		}
+		x = 37
+		y = 10
+
+	}
+	focus = {
+		id = PRC_SOV_Tolerate_Chen_Boda_and_Zhou_Yang_Materialism
+		icon = GFX_goal_unknown
+		cost = 2
+		completion_reward = {
+                        add_political_power = -35
+                        add_popularity = {
+                            ideology = maoism
+                            popularity = 0.08
+                        }         
+		}
+		prerequisite = {
+			focus = PRC_SOV_Begin_CPC_Intra_Democracy_Reorganization
+		}
+		x = 40
+		y = 10
+
+	}
+	focus = {
+		id = PRC_SOV_Launch_Workers_and_Peasants_Defeudalization
+		icon = GFX_goal_unknown
+		cost = 2
+		completion_reward = {
+                        add_war_support = -0.18        
+		}
+		prerequisite = {
+			focus = PRC_SOV_Orthodox_Socialist_Science_Vanguardist_Doctrine
+		}
+		prerequisite = {
+			focus = PRC_SOV_Reorganize_the_Youth_League_under_antiimpeiralism
+		}
+		x = 36
+		y = 11
+
+	}
+	focus = {
+		id = PRC_SOV_Recognize_DPRK_as_Legitimate_Korea
+		icon = GFX_goal_unknown
+		cost = 0
+		# prerequisite = {
+		# 	focus = PRC_SOV_Korean_Situation
+		# }
+		x = 61
+		y = 12
+
+	}
+	focus = {
+		id = PRC_SOV_Zhou_Baozhong_PLA_Korean_Command
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_Recognize_DPRK_as_Legitimate_Korea
+		}
+		x = 59
+		y = 13
+
+	}
+	focus = {
+		id = PRC_SOV_Sent_Pan_Zili_as_Ambassador
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_Recognize_DPRK_as_Legitimate_Korea
+		}
+		x = 63
+		y = 13
+
+	}
+	focus = {
+		id = PRC_SOV_Korean_Liberation_War
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_Zhou_Baozhong_PLA_Korean_Command
+		}
+		prerequisite = {
+			focus = PRC_SOV_Sent_Pan_Zili_as_Ambassador
+		}
+		x = 61
+		y = 14
+
+	}
+	focus = {
+		id = PRC_SOV_Meeting_With_Zhou_Baozhang
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_Korean_Liberation_War
+		}
+		x = 59
+		y = 15
+
+	}
+	focus = {
+		id = PRC_SOV_Sent_Equipement_to_DPRK
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_Korean_Liberation_War
+		}
+		x = 63
+		y = 15
+
+	}
+	focus = {
+		id = PRC_SOV_Create_the_Central_Asian_Peoples_Command
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_Meeting_With_Zhou_Baozhang
+		}
+		prerequisite = {
+			focus = PRC_SOV_Sent_Equipement_to_DPRK
+		}
+		x = 61
+		y = 16
+
+	}
+	focus = {
+		id = PRC_SOV_CAPC_Position_on_KO
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_Create_the_Central_Asian_Peoples_Command
+		}
+		x = 61
+		y = 17
+
+	}
+	focus = {
+		id = PRC_SOV_Joint_Support_Operation_With_USSR
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_CAPC_Position_on_KO
+		}
+		x = 55
+		y = 18
+
+	}
+	focus = {
+		id = PRC_SOV_Indirect_Intervention_in_Korea
+		icon = GFX_goal_unknown
+		cost = 0
+		prerequisite = {
+			focus = PRC_SOV_CAPC_Position_on_KO
+		}
+		x = 61
+		y = 18
+
+	}
+	shared_focus = PRC_Lessons_from_the_Liberation_War
+	focus = {
+		id = PRC_SOV_The_Sovietization_Of_Manchuria
+		icon = GFX_Sovietization_of_Manchuria
+		cost = 5 
+		available = {
+			has_completed_focus = PRC_SOV_Chairman_Wang_Ming
+		}
+		x = 8
+		y = 0
+		completion_reward = {
+			add_timed_idea = {
+				idea = ideological_fanaticism_focus
+				days = 2250
+			}
+		 }
+	}
+	focus = {
+		id = PRC_SOV_Appoint_Liao_Chengzhi_to_head_of_Peoples_Daily
+		icon = GFX_Peoples_Daily_head
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_The_Sovietization_Of_Manchuria
+		}
+		x = 3
+		y = 1
+		completion_reward = { 
+			add_timed_idea = {
+				idea = pro_soviet_propaganda
+				days = 50
+			}
+			add_to_variable = {
+				cpsu_strength_stability = 0.02
+			}
+			add_to_variable = {
+				cpsu_strength_pp = -0.01
+			}
+			custom_effect_tooltip = cpsu_strength_increase_TT
+		}
+	}
+	focus = {
+		id = PRC_SOV_Immortalize_the_Victims_of_Unit_731 
+		icon = GFX_Unit_731
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_Appoint_Liao_Chengzhi_to_head_of_Peoples_Daily
+		}
+		x = 1
+		y = 2
+		completion_reward = { 
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = PRC_SOV_Integrate_San-Min_Doctrine_into_the_CCP
+		icon = GFX_Chinese_rightsMLA
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_Appoint_Liao_Chengzhi_to_head_of_Peoples_Daily
+		}
+		x = 5
+		y = 2
+		completion_reward = { 
+			increase_welfare_rate = yes
+			add_to_variable = {
+				cpsu_strength_stability = 0.02
+			}
+			add_to_variable = {
+				cpsu_strength_pp = -0.01
+			}
+			custom_effect_tooltip = cpsu_strength_increase_TT
+		}
+	}
+	focus = {
+		id = PRC_SOV_Introduce_Chinese_Social_Realism
+		icon = GFX_Chinese_Social_Realism
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_Immortalize_the_Victims_of_Unit_731
+		}
+		prerequisite = {
+			focus = PRC_SOV_Integrate_San-Min_Doctrine_into_the_CCP
+		}
+		x = 3
+		y = 3
+		completion_reward = {
+			add_ideas = socialist_realism
+		 }
+	}
+	focus = {
+		id = PRC_SOV_Organize_Russian_Literacy_Programs
+		icon = GFX_Encourage_Russian_Language_Education
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_Introduce_Chinese_Social_Realism
+		}
+		x = 3
+		y = 4
+		completion_reward = { 
+			add_timed_idea = {
+				idea = education_invest
+				days = 2250
+			}
+			
+		}
+	}
+	focus = {
+		id = PRC_SOV_Maintain_the_Patriarchal_Society
+		icon = GFX_Gamers_Rise_Up
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_The_Sovietization_Of_Manchuria
+		}
+		mutually_exclusive = {
+			focus = PRC_SOV_Destroy_Traditional_Chinese_Social_Norms
+		}
+		x = 7
+		y = 1
+		completion_reward = {
+			
+			hidden_effect = {
+				remove_ideas = policy_women_temp_0
+				remove_ideas = policy_women_temp_1
+				remove_ideas = policy_women_temp_2
+				remove_ideas = policy_women_temp_3
+				remove_ideas = policy_women_temp_4
+				remove_ideas = policy_women_temp_4a
+				remove_ideas = policy_women_temp_2
+			}
+			add_ideas = policy_women_temp_1
+			add_to_variable = {
+				cpsu_strength_stability = -0.02
+			}
+			add_to_variable = {
+				cpsu_strength_pp = 0.05
+			}
+			custom_effect_tooltip = cpsu_strength_decrease_TT 
+			add_to_variable = {
+				gulag_factor = 0.01
+			}
+			add_to_variable = {
+				gulag_factor_neg = -0.01
+			}
+			add_to_variable = {
+				gulag_factor_five = 0.01
+			}
+			add_to_variable = {
+				gulag_factor_five_neg = -0.01
+			}
+			custom_effect_tooltip = gulag_factor_increase_TT
+		}
+	}
+	focus = {
+		id = PRC_SOV_Destroy_Traditional_Chinese_Social_Norms
+		icon = GFX_femelections
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_The_Sovietization_Of_Manchuria
+		}
+		mutually_exclusive = {
+			focus = PRC_SOV_Maintain_the_Patriarchal_Society
+		}
+		x = 9
+		y = 1
+		completion_reward = { 
+			hidden_effect = {
+				remove_ideas = policy_women_temp_1
+				remove_ideas = policy_women_temp_2
+				remove_ideas = policy_women_temp_3
+				remove_ideas = policy_women_temp_4
+				remove_ideas = policy_women_temp_2
+			}
+			add_ideas = policy_women_temp_4
+			add_to_variable = {
+				cpsu_strength_stability = 0.02
+			}
+			add_to_variable = {
+				cpsu_strength_pp = -0.01
+			}
+			custom_effect_tooltip = cpsu_strength_increase_TT
+		}
+	}
+	focus = {
+		id = PRC_SOV_Prohibit_the_Use_and_Sale_of_Opium
+		icon = GFX_Combat_Opium_Usage
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_Maintain_the_Patriarchal_Society
+			focus = PRC_SOV_Destroy_Traditional_Chinese_Social_Norms
+		}
+		x = 8
+		y = 3
+		completion_reward = { 
+			add_stability = 0.1
+		}
+	}
+	focus = {
+		id = PRC_SOV_Empower_the_CDSA
+		icon = GFX_Learn_from_our_chinese_comrades
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_The_Sovietization_Of_Manchuria
+		}
+		x = 13
+		y = 1
+		completion_reward = { 
+			add_ideas = leftwing_deathsquads
+			add_to_variable = {
+				cpsu_strength_stability = -0.01
+			}
+			add_to_variable = {
+				cpsu_strength_pp = 0.02
+			}
+			custom_effect_tooltip = cpsu_strength_decrease_TT 
+			add_to_variable = {
+				gulag_factor = 0.01
+			}
+			add_to_variable = {
+				gulag_factor_neg = -0.01
+			}
+			add_to_variable = {
+				gulag_factor_five = 0.01
+			}
+			add_to_variable = {
+				gulag_factor_five_neg = -0.01
+			}
+			custom_effect_tooltip = gulag_factor_increase_TT
+		}
+	}
+	focus = {
+		id = PRC_SOV_Expand_the_Young_Pioneers_of_China
+		icon = GFX_Chinese_Pioneers
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_Empower_the_CDSA
+		}
+		x = 11
+		y = 2
+		completion_reward = { 
+			add_ideas = Chinese_Pioneers
+		}
+	}
+	focus = {
+		id = PRC_SOV_Request_NKVD_Advisory
+		icon = GFX_Establish_a_Secret_police
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_Empower_the_CDSA
+		}
+		x = 15
+		y = 2
+		completion_reward = { 
+			increase_military_policy = yes
+			add_to_variable = {
+				cpsu_strength_stability = -0.01
+			}
+			add_to_variable = {
+				cpsu_strength_pp = 0.02
+			}
+			custom_effect_tooltip = cpsu_strength_decrease_TT
+			add_to_variable = {
+				gulag_factor = 0.01
+			}
+			add_to_variable = {
+				gulag_factor_neg = -0.01
+			}
+			add_to_variable = {
+				gulag_factor_five = 0.01
+			}
+			add_to_variable = {
+				gulag_factor_five_neg = -0.01
+			}
+			custom_effect_tooltip = gulag_factor_increase_TT
+		}
+	}
+	focus = {
+		id = PRC_SOV_Modernize_the_Chinese_Criminal_Code
+		icon = GFX_Improve_Civil_Implication_in_political_matters
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_Expand_the_Young_Pioneers_of_China
+		}
+		prerequisite = {
+			focus = PRC_SOV_Request_NKVD_Advisory
+		}
+		x = 13
+		y = 3
+		completion_reward = { 
+			remove_ideas = banditry
+			add_to_variable = {
+				cpsu_strength_stability = 0.02
+			}
+			add_to_variable = {
+				cpsu_strength_pp = -0.01
+			}
+			custom_effect_tooltip = cpsu_strength_increase_TT
+		}
+	}
+	focus = {
+		id = PRC_SOV_Establish_the_Harbin_Re-Education_Complex
+		icon = GFX_establish_gulag
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_Modernize_the_Chinese_Criminal_Code
+		}
+		x = 13
+		y = 4
+		completion_reward = { 
+			add_ideas = gulag_politic
+			add_to_variable = {
+				cpsu_strength_stability = -0.01
+			}
+			add_to_variable = {
+				cpsu_strength_pp = 0.02
+			}
+			custom_effect_tooltip = cpsu_strength_decrease_TT
+			add_to_variable = {
+				gulag_factor = 0.01
+			}
+			add_to_variable = {
+				gulag_factor_neg = -0.01
+			}
+			add_to_variable = {
+				gulag_factor_five = 0.01
+			}
+			add_to_variable = {
+				gulag_factor_five_neg = -0.01
+			}
+			custom_effect_tooltip = gulag_factor_increase_TT
+		}
+	}
+	focus = {
+		id = PRC_SOV_Consolidate_CCP_Authority_in_Manchuria
+		icon = GFX_usa_50_denounce_communism_in_asia
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_Establish_the_Harbin_Re-Education_Complex
+		}
+		prerequisite = {
+			focus = PRC_SOV_Prohibit_the_Use_and_Sale_of_Opium
+		}
+		prerequisite = {
+			focus = PRC_SOV_Organize_Russian_Literacy_Programs
+		}
+		x = 8
+		y = 5
+		completion_reward = { 
+			add_timed_idea = {
+				idea = total_loyalty
+				days = 2250
+			}
+		}
+	}
+
+
+
+
+
+
+
+	focus = {
+		id = PRC_SOV_Begin_Preparations_for_the_Asian_Liberation_War
+		icon = GFX_unknown
+		icon = GFX_
+		cost = 5
+		available = {
+			NOT = {
+				country_exists = KOR
+			}
+			has_completed_focus = PRC_SOV_Propose_the_North_Asian_Defense_Treaty
+		}
+		x = 67
+		y = 19
+		completion_reward = {
+			army_experience = 25
+			navy_experience = 25
+			air_experience = 25
+		}
+	}
+	focus = {
+		id = PRC_SOV_Support_Communist_Insurgents_in_Southern_China
+		icon = GFX_unknown
+		icon = GFX_
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_Begin_Preparations_for_the_Asian_Liberation_War
+		}
+		x = 65
+		y = 20
+		completion_reward = {
+			CHI = {
+				add_stability = -0.05
+				add_war_support = -0.05
+				add_timed_idea = {
+					idea = communist_partisans_recruiting
+					days = 365
+				}
+			}
+		}
+	}
+	focus = {
+		id = PRC_SOV_Form_the_Northern_Liberation_Front
+		icon = GFX_unknown
+		icon = GFX_
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_Begin_Preparations_for_the_Asian_Liberation_War
+		}
+		x = 69
+		y = 20
+		completion_reward = { 
+			create_faction_from_template = { template = faction_template_generic name = "Northern Liberation Front" }
+			SOV = {
+				set_autonomy = {
+					target = PRC
+					autonomy_state = autonomy_free
+				}
+			}
+			if = {
+				limit = {
+					SIK = {
+						has_government = communism
+					}
+				}
+				country_event = PRC_SOV.30
+			}
+			MON = {
+				country_event = PRC_SOV.31
+			}
+			KPA = {
+				country_event = PRC_SOV.32
+			}
+		}
+	}
+	focus = {
+		id = PRC_SOV_Launch_the_Asian_Liberation_War
+		icon = GFX_unknown
+		icon = GFX_
+		cost = 5
+		prerequisite = {
+			focus = PRC_SOV_Support_Communist_Insurgents_in_Southern_China
+		}
+		prerequisite = {
+			focus = PRC_SOV_Form_the_Northern_Liberation_Front
+		}
+		x = 67
+		y = 21
+		completion_reward = { 
+			set_global_flag = asian_liberation_war
+			every_country = {
+				limit = {
+					is_in_faction_with = PRC
+				}
+				declare_war_on = {
+					target = CHI
+					type = annex_everything
+				}
+			}
+		}
+	}
+	focus = {
+		id = PRC_SOV_Adopt_Order_227_in_the_PLA
+		icon = GFX_unknown
+		icon = GFX_
+		cost = 5
+		available = {
+			surrender_progress > 0.50
+		}
+		prerequisite = {
+			focus = PRC_SOV_Launch_the_Asian_Liberation_War
+		}
+		bypass = {
+			NOT = {
+				has_global_flag = asian_liberation_war
+			}
+		}
+		x = 64
+		y = 22
+		completion_reward = {
+			add_ideas = defensive_military_strategy
+		}
+	}
+	focus = {
+		id = PRC_SOV_Request_Greater_Soviet_Commitment
+		icon = GFX_unknown
+		icon = GFX_
+		cost = 5
+		available = {
+			surrender_progress > 0.10
+		}
+		bypass = {
+			NOT = {
+				has_global_flag = asian_liberation_war
+			}
+		}
+		prerequisite = {
+			focus = PRC_SOV_Launch_the_Asian_Liberation_War
+		}
+		x = 70
+		y = 22
+		completion_reward = { }
+	}
+	focus = {
+		id = PRC_SOV_Re-Introduce_Peoples_War_Doctrine
+		icon = GFX_
+		cost = 5
+		bypass = {
+			NOT = {
+				has_global_flag = asian_liberation_war
+			}
+		}
+		prerequisite = {
+			focus = PRC_SOV_Launch_the_Asian_Liberation_War
+		}
+		x = 67
+		y = 22
+		completion_reward = { 
+			add_timed_idea = {
+				idea = VIN_peoples_army
+				days = 365
+			}
+		}
+	}
+}

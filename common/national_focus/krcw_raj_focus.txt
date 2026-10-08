@@ -1,0 +1,1354 @@
+# krcw: paced
+# krcw: x-coords doubled for icon clearance
+focus_tree = {
+	id = krcw_raj_tree
+	continuous_focus_position = { x = 50 y = 1360 }
+	country = {
+		factor = 0
+		modifier = { add = 5000 tag = RAJ }
+	}
+	default = no
+	focus = {
+		id = krcw_raj_convene_chamber
+		icon = GFX_focus_RAJ_peacock_throne_for_the_modern_age
+		cost = 5
+		x = 24
+		y = 0
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 10
+		}
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.03
+			# reward_fill.py
+			add_manpower = 20000
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 1000 }
+		}
+	}
+	focus = {
+		id = krcw_raj_scindia_presidency
+		icon = GFX_focus_RAJ_kingmaker
+		cost = 5
+		x = 20
+		y = 1
+		prerequisite = { focus = krcw_raj_convene_chamber }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_popularity = { ideology = monarchism popularity = 0.05 }
+		}
+	}
+	focus = {
+		id = krcw_raj_federal_secretariat
+		icon = GFX_focus_generic_improve_the_administration
+		cost = 5
+		x = 28
+		y = 1
+		prerequisite = { focus = krcw_raj_convene_chamber }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.02
+			add_tech_bonus = { name = krcw_raj_secretariat_bonus bonus = 0.5 uses = 1 category = management }
+		}
+	}
+	focus = {
+		id = krcw_raj_dewans_council
+		icon = GFX_focus_generic_court
+		cost = 5
+		x = 24
+		y = 2
+		prerequisite = { focus = krcw_raj_scindia_presidency }
+		prerequisite = { focus = krcw_raj_federal_secretariat }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			swap_ideas = { remove_idea = krcw_raj_princely_fragmentation add_idea = krcw_raj_princely_fragmentation_2 }
+			country_event = { id = krcw_raj2.1 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_raj_guardians_of_tradition
+		icon = GFX_focus_RAJ_the_legacy_of_babur
+		cost = 5
+		x = 20
+		y = 3
+		prerequisite = { focus = krcw_raj_dewans_council }
+		mutually_exclusive = { focus = krcw_raj_cautious_reform }
+		available = {
+			custom_trigger_tooltip = { tooltip = krcw_raj2_tt_settled has_country_flag = krcw_raj2_land_settled }
+			custom_trigger_tooltip = { tooltip = krcw_raj2_tt_no_reform NOT = { has_country_flag = krcw_raj2_land_reform } }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 10
+			modifier = { factor = 0.2 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_FREE } }
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+			set_country_flag = krcw_raj_reaction
+			add_popularity = { ideology = monarchism popularity = 0.05 }
+		}
+	}
+	focus = {
+		id = krcw_raj_cautious_reform
+		icon = GFX_focus_RAJ_provincial_autonomy
+		cost = 5
+		x = 28
+		y = 3
+		prerequisite = { focus = krcw_raj_dewans_council }
+		mutually_exclusive = { focus = krcw_raj_guardians_of_tradition }
+		available = {
+			custom_trigger_tooltip = { tooltip = krcw_raj2_tt_settled has_country_flag = krcw_raj2_land_settled }
+			custom_trigger_tooltip = { tooltip = krcw_raj2_tt_reform has_country_flag = krcw_raj2_land_reform }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+			modifier = { factor = 5 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_RANDOM } }
+		}
+		completion_reward = {
+			add_political_power = -50
+			add_stability = -0.03
+			set_country_flag = krcw_raj_reformist
+			RAJ = {
+				add_to_variable = { krcw_raj_reform = 20 }
+				clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_raj_reform_up_20_tt
+			# reward_fill.py
+			add_ideas = krcw_fill_raj_young_princes
+		}
+	}
+	focus = {
+		id = krcw_raj_zamindar_compact
+		icon = GFX_focus_RAJ_trickle_down_economics
+		cost = 5
+		x = 18
+		y = 4
+		prerequisite = { focus = krcw_raj_guardians_of_tradition }
+		bypass = {
+			has_country_flag = krcw_raj2_compact_signed
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.03
+			random_owned_controlled_state = {
+					limit = { free_building_slots = { building = industrial_complex size > 0 include_locked = yes } }
+					prioritize = { 439 437 438 429 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+				}
+		}
+	}
+	focus = {
+		id = krcw_raj_princely_police
+		icon = GFX_focus_RAJ_union_busting
+		cost = 5
+		x = 22
+		y = 4
+		prerequisite = { focus = krcw_raj_guardians_of_tradition }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_ideas = krcw_raj_princely_constabulary
+		}
+	}
+	focus = {
+		id = krcw_raj_sanctity_of_durbar
+		icon = GFX_focus_RAJ_peacock_prince
+		cost = 5
+		x = 20
+		y = 5
+		prerequisite = { focus = krcw_raj_zamindar_compact }
+		prerequisite = { focus = krcw_raj_princely_police }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_war_support = 0.05
+			add_stability = 0.05
+			add_political_power = 50
+			# reward_fill.py
+			add_ideas = krcw_fill_raj_durbar
+		}
+	}
+	focus = {
+		id = krcw_raj_focus_tenancy_acts
+		icon = GFX_focus_generic_land_redistribution
+		cost = 5
+		x = 26
+		y = 4
+		prerequisite = { focus = krcw_raj_cautious_reform }
+		bypass = {
+			has_country_flag = krcw_raj2_tenancy_federal
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_ideas = krcw_raj_tenancy_acts
+			RAJ = {
+				add_to_variable = { krcw_raj_reform = 15 }
+				clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_raj_reform_up_15_tt
+		}
+	}
+	focus = {
+		id = krcw_raj_temple_entry
+		icon = GFX_focus_RAJ_temple_entry_movements
+		cost = 5
+		x = 30
+		y = 4
+		prerequisite = { focus = krcw_raj_cautious_reform }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			swap_ideas = { remove_idea = krcw_raj_caste_order add_idea = krcw_raj_caste_order_2 }
+			add_stability = -0.02
+			RAJ = {
+				add_to_variable = { krcw_raj_reform = 10 }
+				clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_raj_reform_up_10_tt
+		}
+	}
+	focus = {
+		id = krcw_raj_provincial_councils
+		icon = GFX_focus_generic_election
+		cost = 5
+		x = 28
+		y = 5
+		prerequisite = { focus = krcw_raj_focus_tenancy_acts }
+		prerequisite = { focus = krcw_raj_temple_entry }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_popularity = { ideology = Social_Democratic popularity = 0.05 }
+			RAJ = {
+				add_to_variable = { krcw_raj_reform = 15 }
+				clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_raj_reform_up_15_tt
+		}
+	}
+	focus = {
+		id = krcw_raj_face_the_storm
+		icon = GFX_focus_RAJ_the_crown_and_the_world
+		cost = 5
+		x = 24
+		y = 6
+		prerequisite = { focus = krcw_raj_sanctity_of_durbar focus = krcw_raj_provincial_councils }
+		available = {
+			has_global_flag = KRCW_princely_revolts
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+			army_experience = 25
+			# reward_fill.py
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 1500 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 200 }
+		}
+	}
+	focus = {
+		id = krcw_raj_charter_federal_courts
+		icon = GFX_focus_generic_improve_the_administration_2
+		cost = 5
+		x = 22
+		y = 7
+		prerequisite = { focus = krcw_raj_face_the_storm }
+		available = {
+			has_country_flag = krcw_raj_charter
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 75
+			add_tech_bonus = { name = krcw_raj_courts bonus = 0.5 uses = 1 category = management }
+		}
+	}
+	focus = {
+		id = krcw_raj_charter_house_of_people
+		icon = GFX_focus_generic_democratic_asia
+		cost = 5
+		x = 26
+		y = 7
+		prerequisite = { focus = krcw_raj_face_the_storm }
+		available = {
+			has_country_flag = krcw_raj_charter
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_popularity = { ideology = Social_Democratic popularity = 0.08 } add_popularity = { ideology = monarchism popularity = -0.05 }
+			remove_ideas = krcw_raj_caste_order
+			remove_ideas = krcw_raj_caste_order_2
+			add_stability = 0.03
+		}
+	}
+	focus = {
+		id = krcw_raj_charter_iron_order
+		icon = GFX_focus_RAJ_crush_the_anathema
+		cost = 5
+		x = 30
+		y = 7
+		prerequisite = { focus = krcw_raj_face_the_storm }
+		available = {
+			has_country_flag = krcw_raj_iron_durbar
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_war_support = 0.1
+			add_political_power = 100
+			army_experience = 50
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_raj_famine_commission
+		icon = GFX_focus_generic_agricultural_subsidies
+		cost = 5
+		x = 6
+		y = 0
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 10
+		}
+		completion_reward = {
+			swap_ideas = { remove_idea = krcw_raj_famine add_idea = krcw_raj_famine_relief }
+			country_event = { id = krcw_raj2.20 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_raj_grain_railways
+		icon = GFX_focus_generic_improve_roads
+		cost = 5
+		x = 2
+		y = 1
+		prerequisite = { focus = krcw_raj_famine_commission }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+					limit = { infrastructure < 4 }
+					add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+				}
+			random_owned_controlled_state = {
+					limit = { infrastructure < 4 }
+					add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+				}
+			add_tech_bonus = { name = krcw_raj_rail bonus = 0.5 uses = 1 category = infrastructure }
+		}
+	}
+	focus = {
+		id = krcw_raj_canal_colonies
+		icon = GFX_focus_generic_farmland
+		cost = 5
+		x = 10
+		y = 1
+		prerequisite = { focus = krcw_raj_famine_commission }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_stability = 0.03
+			add_tech_bonus = { name = krcw_raj_agri bonus = 0.5 uses = 2 category = agriculture }
+		}
+	}
+	focus = {
+		id = krcw_raj_end_the_famine
+		icon = GFX_focus_generic_modernizing_agriculture
+		cost = 5
+		x = 6
+		y = 2
+		prerequisite = { focus = krcw_raj_grain_railways }
+		prerequisite = { focus = krcw_raj_canal_colonies }
+		available = {
+			custom_trigger_tooltip = { tooltip = krcw_raj2_tt_famine_over OR = { has_country_flag = krcw_raj2_famine_contained date > 1951.3.15 } }
+			custom_trigger_tooltip = { tooltip = krcw_raj2_tt_famine_disaster OR = { NOT = { has_country_flag = krcw_raj2_famine_disaster } date > 1951.8.17 } }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			remove_ideas = krcw_raj_famine_relief
+			remove_ideas = krcw_raj_famine
+			add_stability = 0.05
+			add_manpower = 20000
+			country_event = { id = krcw_raj2.27 days = 3 }
+		}
+	}
+	focus = {
+		id = krcw_raj_bombay_mills
+		icon = GFX_focus_generic_industry_1
+		cost = 5
+		x = 2
+		y = 3
+		prerequisite = { focus = krcw_raj_end_the_famine }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+					limit = { free_building_slots = { building = industrial_complex size > 1 include_locked = yes } }
+					prioritize = { 439 437 438 429 }
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+				}
+		}
+	}
+	focus = {
+		id = krcw_raj_jamshedpur_steel
+		icon = GFX_focus_RAJ_the_return_of_the_east_india_trading_company
+		cost = 5
+		x = 10
+		y = 3
+		prerequisite = { focus = krcw_raj_end_the_famine }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+					limit = { free_building_slots = { building = arms_factory size > 0 include_locked = yes } }
+					prioritize = { 439 437 438 429 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+				}
+			add_tech_bonus = { name = krcw_raj_steel bonus = 0.5 uses = 1 category = industry }
+		}
+	}
+	focus = {
+		id = krcw_raj_rouble_credits
+		icon = GFX_focus_generic_money_for_equipment
+		cost = 5
+		x = 6
+		y = 4
+		prerequisite = { focus = krcw_raj_bombay_mills }
+		prerequisite = { focus = krcw_raj_jamshedpur_steel }
+		bypass = {
+			has_country_flag = krcw_raj2_rouble_deal
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_ideas = krcw_raj_russian_credits
+		}
+	}
+	focus = {
+		id = krcw_raj_kanpur_arsenal
+		icon = GFX_focus_generic_military_industry
+		cost = 5
+		x = 2
+		y = 5
+		prerequisite = { focus = krcw_raj_rouble_credits }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+					limit = { free_building_slots = { building = arms_factory size > 1 include_locked = yes } }
+					prioritize = { 439 437 438 429 }
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+				}
+			add_tech_bonus = { name = krcw_raj_arms bonus = 0.5 uses = 1 category = infantry_weapons }
+		}
+	}
+	focus = {
+		id = krcw_raj_damodar_valley
+		icon = GFX_focus_generic_hydroelectric_energy
+		cost = 5
+		x = 10
+		y = 5
+		prerequisite = { focus = krcw_raj_rouble_credits }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+					limit = { free_building_slots = { building = industrial_complex size > 0 include_locked = yes } }
+					prioritize = { 439 437 438 429 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+				}
+			add_tech_bonus = { name = krcw_raj_energy bonus = 0.5 uses = 1 category = energy }
+		}
+	}
+	focus = {
+		id = krcw_raj_second_plan
+		icon = GFX_focus_generic_industry_3
+		cost = 5
+		x = 6
+		y = 6
+		prerequisite = { focus = krcw_raj_kanpur_arsenal }
+		prerequisite = { focus = krcw_raj_damodar_valley }
+		available = {
+			date > 1952.11.23
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+					limit = { free_building_slots = { building = industrial_complex size > 1 include_locked = yes } }
+					prioritize = { 439 437 438 429 }
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+				}
+			random_owned_controlled_state = {
+					limit = { free_building_slots = { building = arms_factory size > 0 include_locked = yes } }
+					prioritize = { 439 437 438 429 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+				}
+			remove_ideas = krcw_raj_russian_credits
+		}
+	}
+	focus = {
+		id = krcw_raj_federal_army
+		icon = GFX_focus_RAJ_forge_the_kshatriya_army
+		cost = 5
+		x = 42
+		y = 0
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 8
+		}
+		completion_reward = {
+			add_ideas = krcw_raj_integrated_armies
+			army_experience = 25
+		}
+	}
+	focus = {
+		id = krcw_raj_russian_staff_college
+		icon = GFX_focus_generic_military_academy
+		cost = 5
+		x = 38
+		y = 1
+		prerequisite = { focus = krcw_raj_federal_army }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			army_experience = 50
+			add_tech_bonus = { name = krcw_raj_doctrine bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_raj_mountain_divisions
+		icon = GFX_focus_RAJ_mountain_guns
+		cost = 5
+		x = 46
+		y = 1
+		prerequisite = { focus = krcw_raj_federal_army }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_raj_mountain bonus = 0.75 uses = 1 category = mountaineers_tech }
+			army_experience = 25
+		}
+	}
+	focus = {
+		id = krcw_raj_gurkha_regiments
+		icon = GFX_focus_RAJ_indian_gurkhas
+		cost = 5
+		x = 46
+		y = 2
+		prerequisite = { focus = krcw_raj_mountain_divisions }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_manpower = 30000
+			add_ideas = krcw_raj_gurkhas
+		}
+	}
+	focus = {
+		id = krcw_raj_armoured_corps
+		icon = GFX_focus_generic_army_tanks2
+		cost = 5
+		x = 38
+		y = 2
+		prerequisite = { focus = krcw_raj_russian_staff_college }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_raj_armor bonus = 0.5 uses = 2 category = armor }
+		}
+	}
+	focus = {
+		id = krcw_raj_air_arm
+		icon = GFX_goal_generic_build_airforce
+		cost = 5
+		x = 42
+		y = 3
+		prerequisite = { focus = krcw_raj_armoured_corps }
+		prerequisite = { focus = krcw_raj_gurkha_regiments }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			air_experience = 50
+			random_owned_controlled_state = {
+					prioritize = { 439 437 438 429 }
+					add_building_construction = { type = air_base level = 2 instant_build = yes }
+				}
+			add_tech_bonus = { name = krcw_raj_air bonus = 0.5 uses = 1 category = fighter_multirole }
+		}
+	}
+	focus = {
+		id = krcw_raj_himalayan_line
+		icon = GFX_focus_generic_mountain_fortification
+		cost = 5
+		x = 46
+		y = 4
+		prerequisite = { focus = krcw_raj_air_arm }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			1335 = { add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes } }
+			868 = { add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes } }
+			434 = { add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes } }
+		}
+	}
+	focus = {
+		id = krcw_raj_indian_ocean_fleet
+		icon = GFX_goal_generic_build_navy
+		cost = 5
+		x = 38
+		y = 4
+		prerequisite = { focus = krcw_raj_air_arm }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			navy_experience = 50
+			random_owned_controlled_state = {
+					limit = { free_building_slots = { building = dockyard size > 0 include_locked = yes } is_coastal = yes }
+					prioritize = { 443 429 424 431 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = { type = dockyard level = 1 instant_build = yes }
+				}
+			add_tech_bonus = { name = krcw_raj_navy bonus = 0.5 uses = 1 category = screen_tech }
+		}
+	}
+	focus = {
+		id = krcw_raj_modern_army
+		icon = GFX_goal_generic_army_doctrines
+		cost = 5
+		x = 42
+		y = 5
+		prerequisite = { focus = krcw_raj_himalayan_line }
+		prerequisite = { focus = krcw_raj_indian_ocean_fleet }
+		available = {
+			date > 1953.4.26
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			remove_ideas = krcw_raj_russian_advisors
+			army_experience = 50
+			add_tech_bonus = { name = krcw_raj_doctrine2 bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_raj_moscow_compact
+		icon = GFX_focus_RAJ_seek_help_from_soviet
+		cost = 5
+		x = 56
+		y = 0
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 8
+		}
+		completion_reward = {
+			add_political_power = 50
+			SOV = { add_opinion_modifier = { target = RAJ modifier = krcw_raj_loyal_ally } }
+			RAJ = { add_opinion_modifier = { target = SOV modifier = krcw_raj_loyal_ally } }
+		}
+	}
+	focus = {
+		id = krcw_raj_trans_iranian_railway
+		icon = GFX_focus_PER_tehran_moscow_pact
+		cost = 5
+		x = 52
+		y = 1
+		prerequisite = { focus = krcw_raj_moscow_compact }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			443 = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			444 = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			if = { limit = { country_exists = PER } PER = { add_opinion_modifier = { target = RAJ modifier = krcw_raj_trade_partner } } }
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+	}
+	focus = {
+		id = krcw_raj_khyber_accord
+		icon = GFX_focus_generic_befriend_afghanistan
+		cost = 5
+		x = 60
+		y = 1
+		prerequisite = { focus = krcw_raj_moscow_compact }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_stability = 0.03
+			if = { limit = { country_exists = AFG } AFG = { add_opinion_modifier = { target = RAJ modifier = krcw_raj_trade_partner } } }
+			442 = { add_building_construction = { type = bunker level = 1 province = { all_provinces = yes limit_to_border = yes } instant_build = yes } }
+		}
+	}
+	focus = {
+		id = krcw_raj_accord_summit
+		icon = GFX_focus_generic_conference
+		cost = 5
+		x = 56
+		y = 2
+		prerequisite = { focus = krcw_raj_trans_iranian_railway }
+		prerequisite = { focus = krcw_raj_khyber_accord }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_political_power = 100
+			krcw_tension_up_small = yes
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = krcw_raj_russian_scientists
+		icon = GFX_goal_generic_scientific_exchange
+		cost = 5
+		x = 52
+		y = 3
+		prerequisite = { focus = krcw_raj_accord_summit }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_raj_sci bonus = 0.5 uses = 2 category = electronics }
+		}
+	}
+	focus = {
+		id = krcw_raj_overseas_broadcasts
+		icon = GFX_goal_generic_propaganda
+		cost = 5
+		x = 60
+		y = 3
+		prerequisite = { focus = krcw_raj_accord_summit }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_political_power = -25
+			add_to_variable = { global.krcw_ti_crisis = 3 }
+			clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+			krcw_tension_up_small = yes
+			add_war_support = 0.02
+		}
+	}
+	focus = {
+		id = krcw_raj_purge_clearing_agents
+		icon = GFX_goal_generic_intelligence_exchange
+		cost = 5
+		x = 60
+		y = 4
+		prerequisite = { focus = krcw_raj_overseas_broadcasts }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_to_variable = { global.krcw_ma_crisis = -4 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			RAJ = { subtract_from_variable = { krcw_raj_unrest = 5 } clamp_variable = { var = krcw_raj_unrest min = 0 max = 100 } }
+			custom_effect_tooltip = krcw_raj_unrest_down_5_tt
+			add_stability = 0.02
+			add_political_power = -25
+			set_country_flag = krcw_raj_agents_purged
+			# reward_fill.py
+			add_ideas = krcw_fill_raj_security_corps
+		}
+	}
+	focus = {
+		id = krcw_raj_accord_arms_quota
+		icon = GFX_goal_generic_military_deal
+		cost = 5
+		x = 52
+		y = 4
+		prerequisite = { focus = krcw_raj_russian_scientists }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 1 }
+			add_tech_bonus = { name = krcw_raj_quota_arty bonus = 0.5 uses = 1 category = artillery }
+			SOV = { add_opinion_modifier = { target = RAJ modifier = krcw_raj_loyal_ally } }
+		}
+	}
+	focus = {
+		id = krcw_raj_play_himalayan_game
+		icon = GFX_focus_generic_infiltration
+		cost = 5
+		x = 70
+		y = 0
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 8
+		}
+		completion_reward = {
+			add_ideas = krcw_raj_himalayan_game
+			set_country_flag = krcw_raj_game_on
+			TIB = {
+				add_to_variable = { krcw_revolt_progress = 5 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_up_5_tt
+			country_event = { id = krcw_raj2.40 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_raj_kalimpong_network
+		icon = GFX_focus_generic_conspiracy
+		cost = 5
+		x = 66
+		y = 1
+		prerequisite = { focus = krcw_raj_play_himalayan_game }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			set_country_flag = krcw_raj_kalimpong
+			TIB = {
+				add_to_variable = { krcw_revolt_progress = 8 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_up_8_tt
+		}
+	}
+	focus = {
+		id = krcw_raj_kham_chieftains
+		icon = GFX_focus_generic_befriend_basmachi
+		cost = 5
+		x = 74
+		y = 1
+		prerequisite = { focus = krcw_raj_play_himalayan_game }
+		available = {
+			custom_trigger_tooltip = { tooltip = krcw_raj2_tt_not_watch NOT = { has_country_flag = krcw_raj2_tib_watch } }
+		}
+		cancel_if_invalid = no
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			set_country_flag = krcw_raj_kham
+			TIB = {
+				add_to_variable = { krcw_revolt_progress = 8 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_up_8_tt
+		}
+	}
+	focus = {
+		id = krcw_raj_protectors_of_faith
+		icon = GFX_goal_generic_special_forces
+		cost = 5
+		x = 70
+		y = 2
+		prerequisite = { focus = krcw_raj_kalimpong_network focus = krcw_raj_kham_chieftains }
+		mutually_exclusive = { focus = krcw_raj2_frontier_watch }
+		available = {
+			custom_trigger_tooltip = { tooltip = krcw_raj2_tt_forward has_country_flag = krcw_raj2_tib_forward }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			set_country_flag = krcw_raj_protectors
+			TIB = {
+				add_to_variable = { krcw_revolt_progress = 12 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_up_12_tt
+			krcw_tension_up_small = yes
+			country_event = { id = krcw_raj2.47 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_raj_tibet_aftermath
+		icon = GFX_focus_RAJ_a_policy_of_silence
+		cost = 5
+		x = 70
+		y = 3
+		prerequisite = { focus = krcw_raj_protectors_of_faith focus = krcw_raj2_frontier_watch }
+		available = {
+			has_global_flag = KRCW_tibet_revolt_over
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			if = { limit = { has_global_flag = KRCW_tibet_outcome_independent } country_event = { id = krcw_raj.40 } }
+			else = { remove_ideas = krcw_raj_himalayan_game
+			add_stability = 0.03
+			add_war_support = 0.03 }
+		}
+	}
+	focus = {
+		id = krcw_raj_lhasa_legation
+		icon = GFX_focus_generic_diplomatic_treaty
+		cost = 5
+		x = 68
+		y = 4
+		prerequisite = { focus = krcw_raj_tibet_aftermath }
+		available = {
+			TIB = { exists = yes is_subject = no }
+		}
+		bypass = {
+			OR = { NOT = { country_exists = TIB } TIB = { is_subject = yes } }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			give_guarantee = TIB
+			TIB = { add_opinion_modifier = { target = RAJ modifier = krcw_raj_trade_partner } }
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = krcw_raj_special_frontier_force
+		icon = GFX_goal_generic_special_forces
+		cost = 5
+		x = 72
+		y = 4
+		prerequisite = { focus = krcw_raj_tibet_aftermath }
+		available = {
+			OR = { NOT = { country_exists = TIB } TIB = { is_subject_of = CHI } }
+		}
+		bypass = {
+			TIB = { exists = yes NOT = { is_subject_of = CHI } }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_manpower = 5000
+			army_experience = 15
+			add_tech_bonus = { name = krcw_raj_sff bonus = 0.5 uses = 1 category = mountaineers_tech }
+			add_to_variable = { global.krcw_ti_crisis = 2 }
+			clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+			set_country_flag = krcw_raj_sff
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_raj_border_roads
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 5
+		x = 54
+		y = 5
+		prerequisite = { focus = krcw_raj_himalayan_line }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			1103 = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			1236 = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			add_political_power = -25
+			add_tech_bonus = { name = krcw_raj_bro bonus = 0.5 uses = 1 category = engineers_tech }
+		}
+	}
+	focus = {
+		id = krcw_raj_leh_road
+		icon = GFX_focus_generic_improve_roads
+		cost = 5
+		x = 50
+		y = 6
+		prerequisite = { focus = krcw_raj_border_roads }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			441 = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			1335 = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			1335 = { add_building_construction = { type = air_base level = 1 instant_build = yes } }
+		}
+	}
+	focus = {
+		id = krcw_raj_nathu_la_road
+		icon = GFX_focus_CHI_combined_logistics_command
+		cost = 5
+		x = 58
+		y = 6
+		prerequisite = { focus = krcw_raj_border_roads }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			1564 = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			868 = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			add_war_support = 0.02
+		}
+	}
+	focus = {
+		id = krcw_raj_ladakh_scouts
+		icon = GFX_focus_AFG_mountain_training
+		cost = 5
+		x = 50
+		y = 7
+		prerequisite = { focus = krcw_raj_leh_road }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			army_experience = 15
+			add_manpower = 3000
+			add_tech_bonus = { name = krcw_raj_scouts bonus = 0.5 uses = 1 category = recon_tech }
+		}
+	}
+	focus = {
+		id = krcw_raj_nefa_agency
+		icon = GFX_focus_AFG_border_guards
+		cost = 5
+		x = 58
+		y = 7
+		prerequisite = { focus = krcw_raj_nathu_la_road }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			434 = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			432 = { add_building_construction = { type = air_base level = 2 instant_build = yes } }
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_raj_yadong_station
+		icon = GFX_focus_POL_expand_polish_intelligence
+		cost = 5
+		x = 62
+		y = 7
+		prerequisite = { focus = krcw_raj_nathu_la_road }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			if = { limit = { NOT = { has_global_flag = KRCW_tibet_revolt_started } TIB = { is_subject_of = CHI } }
+			TIB = {
+				add_to_variable = { krcw_revolt_progress = 8 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_up_8_tt
+			}
+			else_if = { limit = { has_global_flag = KRCW_tibet_revolt_started NOT = { has_global_flag = KRCW_tibet_revolt_over } } TIB = { add_war_support = 0.05 } }
+			add_to_variable = { global.krcw_ti_crisis = 1 }
+			clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+			# reward_fill.py
+			add_ideas = krcw_fill_raj_kalimpong_network
+		}
+	}
+	focus = {
+		id = krcw_raj_high_altitude_school
+		icon = GFX_focus_RAJ_mountain_guns
+		cost = 5
+		x = 52
+		y = 8
+		prerequisite = { focus = krcw_raj_ladakh_scouts }
+		prerequisite = { focus = krcw_raj_nefa_agency }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_ideas = krcw_raj_high_altitude_training
+			army_experience = 20
+			add_tech_bonus = { name = krcw_raj_hawd bonus = 0.5 uses = 1 category = mountaineers_tech }
+		}
+	}
+	focus = {
+		id = krcw_raj_himalayan_airlift
+		icon = GFX_focus_generic_air_bases
+		cost = 5
+		x = 60
+		y = 8
+		prerequisite = { focus = krcw_raj_nefa_agency }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			air_experience = 25
+			1564 = { add_building_construction = { type = air_base level = 2 instant_build = yes } }
+			add_tech_bonus = { name = krcw_raj_airlift bonus = 0.5 uses = 1 category = cat_air_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_raj_himalayan_war_plan
+		icon = GFX_goal_generic_territory_or_war
+		cost = 5
+		x = 56
+		y = 9
+		prerequisite = { focus = krcw_raj_high_altitude_school }
+		prerequisite = { focus = krcw_raj_himalayan_airlift }
+		prerequisite = { focus = krcw_raj_yadong_station }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			set_country_flag = krcw_ww_himalaya_ready
+			add_war_support = 0.05
+			army_experience = 25
+			add_state_claim = 873
+			add_state_claim = 1361
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_raj2_rent_tribunals
+		icon = GFX_focus_generic_court
+		cost = 5
+		x = 26
+		y = 5
+		prerequisite = { focus = krcw_raj_focus_tenancy_acts }
+		available = {
+			custom_trigger_tooltip = { tooltip = krcw_raj2_tt_negotiated has_country_flag = krcw_raj2_kisan_negotiated }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 8
+		}
+		completion_reward = {
+			add_ideas = krcw_raj2_rent_courts
+			RAJ = {
+				add_to_variable = { krcw_raj_reform = 10 }
+				clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_raj_reform_up_10_tt
+			country_event = { id = krcw_raj2.8 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_raj2_zamindari_police
+		icon = GFX_focus_RAJ_union_busting
+		cost = 5
+		x = 18
+		y = 5
+		prerequisite = { focus = krcw_raj_zamindar_compact }
+		available = {
+			custom_trigger_tooltip = { tooltip = krcw_raj2_tt_banned has_country_flag = krcw_raj2_kisan_banned }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 8
+		}
+		completion_reward = {
+			add_ideas = krcw_raj2_zamindari_police_idea
+			add_political_power = 25
+			country_event = { id = krcw_raj2.8 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_raj2_federal_granaries
+		icon = GFX_focus_generic_agricultural_subsidies
+		cost = 5
+		x = 12
+		y = 2
+		prerequisite = { focus = krcw_raj_famine_commission }
+		mutually_exclusive = { focus = krcw_raj2_grain_exchange }
+		available = {
+			custom_trigger_tooltip = { tooltip = krcw_raj2_tt_central has_country_flag = krcw_raj2_relief_central }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 8
+		}
+		completion_reward = {
+			add_ideas = krcw_raj2_federal_granaries_idea
+			add_political_power = -25
+			RAJ = {
+				add_to_variable = { krcw_raj_reform = 5 }
+				clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_raj_reform_up_5_tt
+		}
+	}
+	focus = {
+		id = krcw_raj2_grain_exchange
+		icon = GFX_goal_generic_positive_trade_relations
+		cost = 5
+		x = 14
+		y = 2
+		prerequisite = { focus = krcw_raj_famine_commission }
+		mutually_exclusive = { focus = krcw_raj2_federal_granaries }
+		available = {
+			custom_trigger_tooltip = { tooltip = krcw_raj2_tt_market has_country_flag = krcw_raj2_relief_market }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 8
+		}
+		completion_reward = {
+			add_political_power = 50
+			random_owned_controlled_state = {
+					limit = { free_building_slots = { building = industrial_complex size > 0 include_locked = yes } }
+					prioritize = { 439 437 438 429 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+				}
+		}
+	}
+	focus = {
+		id = krcw_raj2_frontier_watch
+		icon = GFX_focus_generic_mountain_fortification
+		cost = 5
+		x = 72
+		y = 2
+		prerequisite = { focus = krcw_raj_kalimpong_network focus = krcw_raj_kham_chieftains }
+		mutually_exclusive = { focus = krcw_raj_protectors_of_faith }
+		available = {
+			custom_trigger_tooltip = { tooltip = krcw_raj2_tt_line_first has_country_flag = krcw_raj2_tib_line_first }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 8
+		}
+		completion_reward = {
+			add_stability = 0.03
+			add_political_power = 25
+			army_experience = 15
+			set_country_flag = krcw_raj2_frontier_watched
+			country_event = { id = krcw_raj2.47 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_raj2_lhasa_stipends
+		icon = GFX_focus_generic_infiltration
+		cost = 5
+		x = 66
+		y = 2
+		prerequisite = { focus = krcw_raj_kalimpong_network }
+		available = {
+			custom_trigger_tooltip = { tooltip = krcw_raj2_tt_kashag has_country_flag = krcw_raj2_kashag_accepted }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 8
+		}
+		completion_reward = {
+			add_political_power = -25
+			TIB = {
+				add_to_variable = { krcw_revolt_progress = 8 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_up_8_tt
+			if = { limit = { country_exists = TIB } TIB = { add_opinion_modifier = { target = RAJ modifier = krcw_raj_trade_partner } } }
+		}
+	}
+	focus = {
+		id = krcw_raj2_pangdatsang_caravans
+		icon = GFX_goal_generic_special_forces
+		cost = 5
+		x = 74
+		y = 2
+		prerequisite = { focus = krcw_raj_kham_chieftains }
+		available = {
+			custom_trigger_tooltip = { tooltip = krcw_raj2_tt_kham_armed has_country_flag = krcw_raj2_kham_armed }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 8
+		}
+		completion_reward = {
+			add_political_power = -25
+			TIB = {
+				add_to_variable = { krcw_revolt_progress = 10 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_up_10_tt
+			krcw_tension_up_small = yes
+			if = { limit = { country_exists = TIB } TIB = { add_war_support = 0.05 } }
+		}
+	}
+}

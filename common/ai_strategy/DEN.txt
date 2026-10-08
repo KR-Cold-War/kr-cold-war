@@ -1,0 +1,24 @@
+# KRCW (build/patch_residue.py): 1 CWIC AI strategies gated while KRCW_active
+#Denmark buffer unit in West Germany
+DEN_ignore_SWE = {
+	allowed = { tag = DEN }
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		NOT = { 
+			OR = {
+				has_war_with = SWE
+			}
+		}
+	}
+	abort = {
+		OR = {
+			has_war_with = SWE
+		}
+	}
+	
+	ai_strategy = {
+		type = ignore
+		id = "SWE"			
+		value = 1000
+	}
+
+}

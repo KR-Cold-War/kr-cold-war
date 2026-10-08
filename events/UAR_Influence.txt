@@ -1,0 +1,83 @@
+# KRCW (build/patch_residue.py): 4 OTL events dropped while KRCW_active
+add_namespace = PRO_UAR_COUP
+add_namespace = UAR_INTEGRATION
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PRO_UAR_COUP.1 
+ immediate = { }
+
+	is_triggered_only = yes
+	hidden = yes
+	immediate = {
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = no
+		}
+		set_country_flag = uar_target_set
+		news_event = PRO_UAR_COUP.2
+		# set_variable = { global.UAR_TARGET = ROOT.id }
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PRO_UAR_COUP.2 
+ immediate = { }
+	title = PRO_UAR_COUP.t
+	desc = PRO_UAR_COUP.2.d
+
+	picture = GFX_Nasserist_Coup
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = PRO_UAR_COUP.2.a
+		clr_country_flag = uar_target_set
+		clear_variable = global.UAR_TARGET
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = UAR_INTEGRATION.1 
+ immediate = { }
+
+	is_triggered_only = yes
+	hidden = yes
+	immediate = {
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = no
+		}
+		set_country_flag = uar_target_set
+		news_event = UAR_INTEGRATION.2
+		set_variable = { global.UAR_TARGET = ROOT.id }
+		ROOT = {
+			every_owned_state = {
+				add_core_of = EGY
+			}
+		}
+		inherit_technology = EGY
+		EGY = {
+			annex_country = {
+				target = ROOT
+				transfer_troops = yes
+			}
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = UAR_INTEGRATION.2 
+ immediate = { }
+	title = UAR_INTEGRATION.t
+	desc = UAR_INTEGRATION.2.d
+
+	picture = GFX_UAR_Unification_Generic
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = UAR_INTEGRATION.2.a
+		clear_variable = global.UAR_TARGET
+	}
+}
+

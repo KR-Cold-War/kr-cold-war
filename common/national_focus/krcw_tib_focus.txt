@@ -1,0 +1,486 @@
+# krcw: paced
+# krcw: x-coords doubled for icon clearance
+focus_tree = {
+	id = krcw_tib_tree
+	continuous_focus_position = { x = 50 y = 840 }
+	country = {
+		factor = 0
+		modifier = { add = 5000 tag = TIB }
+	}
+	default = no
+	focus = {
+		id = krcw_tib_regency_council
+		icon = GFX_focus_generic_court
+		cost = 5
+		x = 16
+		y = 0
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 10
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_stability = 0.03
+			# reward_fill.py
+			add_ideas = krcw_fill_tib_regency
+		}
+	}
+	focus = {
+		id = krcw_tib_honour_agreement
+		icon = GFX_focus_generic_diplomatic_treaty
+		cost = 5
+		x = 8
+		y = 1
+		prerequisite = { focus = krcw_tib_regency_council }
+		mutually_exclusive = { focus = krcw_tib_friends_in_kalimpong }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 5
+			modifier = { factor = 0.5 RAJ = { has_country_flag = krcw_raj_protectors } }
+		}
+		completion_reward = {
+			add_stability = 0.05
+			TIB = {
+				subtract_from_variable = { krcw_revolt_progress = 10 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_down_10_tt
+			CHI = { add_opinion_modifier = { target = TIB modifier = krcw_raj_trade_partner } }
+		}
+	}
+	focus = {
+		id = krcw_tib_sichuan_road
+		icon = GFX_focus_generic_improve_roads
+		cost = 5
+		x = 6
+		y = 2
+		prerequisite = { focus = krcw_tib_honour_agreement }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+					limit = { infrastructure < 4 }
+					add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+				}
+			random_owned_controlled_state = {
+					limit = { infrastructure < 4 }
+					add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+				}
+		}
+	}
+	focus = {
+		id = krcw_tib_open_modern_schools
+		icon = GFX_focus_generic_education
+		cost = 5
+		x = 10
+		y = 2
+		prerequisite = { focus = krcw_tib_honour_agreement }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_ideas = krcw_tib_modern_schools
+			remove_ideas = TIB_Illiterate_Population
+		}
+	}
+	focus = {
+		id = krcw_tib_kashag_reform
+		icon = GFX_focus_generic_improve_the_administration
+		cost = 5
+		x = 8
+		y = 3
+		prerequisite = { focus = krcw_tib_sichuan_road }
+		prerequisite = { focus = krcw_tib_open_modern_schools }
+		available = {
+			date > 1951.8.17
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			remove_ideas = TIB_Kashag_Corruption
+			add_political_power = 50
+			TIB = {
+				subtract_from_variable = { krcw_revolt_progress = 10 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_down_10_tt
+		}
+	}
+	focus = {
+		id = krcw_tib_dalai_lama_majority
+		icon = GFX_focus_generic_monarchy_1
+		cost = 5
+		x = 8
+		y = 4
+		prerequisite = { focus = krcw_tib_kashag_reform }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_stability = 0.1
+			remove_ideas = TIB_Feudal_Social_Structure
+			if = { limit = { has_global_flag = KRCW_tibet_outcome_suppressed } add_political_power = 100 }
+		}
+	}
+	focus = {
+		id = krcw_tib_friends_in_kalimpong
+		icon = GFX_focus_generic_conspiracy
+		cost = 5
+		x = 24
+		y = 1
+		prerequisite = { focus = krcw_tib_regency_council }
+		mutually_exclusive = { focus = krcw_tib_honour_agreement }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			TIB = {
+				add_to_variable = { krcw_revolt_progress = 10 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_up_10_tt
+			# reward_fill.py
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 500 }
+			if = { limit = { country_exists = RAJ } RAJ = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+		}
+	}
+	focus = {
+		id = krcw_tib_raise_monastic_levies
+		icon = GFX_goal_generic_special_forces
+		cost = 5
+		x = 22
+		y = 2
+		prerequisite = { focus = krcw_tib_friends_in_kalimpong }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_ideas = krcw_tib_monastic_levies
+			TIB = {
+				add_to_variable = { krcw_revolt_progress = 5 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_up_5_tt
+		}
+	}
+	focus = {
+		id = krcw_tib_kham_horsemen
+		icon = GFX_goal_generic_cavalry
+		cost = 5
+		x = 26
+		y = 2
+		prerequisite = { focus = krcw_tib_friends_in_kalimpong }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_tib_cav bonus = 0.5 uses = 1 category = cavarly_tech }
+			TIB = {
+				add_to_variable = { krcw_revolt_progress = 5 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_up_5_tt
+			add_manpower = 5000
+		}
+	}
+	focus = {
+		id = krcw_tib_mountain_warfare
+		icon = GFX_focus_generic_mountain_training
+		cost = 5
+		x = 24
+		y = 3
+		prerequisite = { focus = krcw_tib_raise_monastic_levies }
+		prerequisite = { focus = krcw_tib_kham_horsemen }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_tib_mtn bonus = 1.0 uses = 1 category = mountaineers_tech }
+			army_experience = 25
+		}
+	}
+	focus = {
+		id = krcw_tib_hidden_arsenals
+		icon = GFX_goal_generic_small_arms
+		cost = 5
+		x = 24
+		y = 4
+		prerequisite = { focus = krcw_tib_mountain_warfare }
+		available = {
+			NOT = { has_global_flag = KRCW_tibet_revolt_started }
+		}
+		bypass = {
+			has_global_flag = KRCW_tibet_revolt_started
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 1500 producer = RAJ }
+			TIB = {
+				add_to_variable = { krcw_revolt_progress = 8 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_up_8_tt
+		}
+	}
+	focus = {
+		id = krcw_tib_after_the_war
+		icon = GFX_goal_generic_national_unity
+		cost = 5
+		x = 40
+		y = 1
+		prerequisite = { focus = krcw_tib_regency_council }
+		available = {
+			has_global_flag = KRCW_tibet_revolt_over
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+			# reward_fill.py
+			capital_scope = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+		}
+	}
+	focus = {
+		id = krcw_tib_snow_lion_state
+		icon = GFX_focus_generic_monarchist_sentiment
+		cost = 5
+		x = 36
+		y = 2
+		prerequisite = { focus = krcw_tib_after_the_war }
+		available = {
+			is_subject = no
+		}
+		bypass = {
+			is_subject = yes
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_political_power = 100
+			remove_ideas = krcw_tib_chamdo_armistice
+			random_owned_controlled_state = {
+					limit = { free_building_slots = { building = industrial_complex size > 0 include_locked = yes } }
+					prioritize = { 439 437 438 429 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+				}
+		}
+	}
+	focus = {
+		id = krcw_tib_delhi_treaty
+		icon = GFX_goal_generic_alliance
+		cost = 5
+		x = 34
+		y = 3
+		prerequisite = { focus = krcw_tib_snow_lion_state }
+		mutually_exclusive = { focus = krcw_tib_neutral_zone }
+		available = {
+			RAJ = { exists = yes }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			RAJ = { give_guarantee = TIB }
+			add_opinion_modifier = { target = RAJ modifier = krcw_raj_trade_partner }
+			RAJ = { add_opinion_modifier = { target = TIB modifier = krcw_raj_trade_partner } }
+		}
+	}
+	focus = {
+		id = krcw_tib_neutral_zone
+		icon = GFX_goal_generic_neutrality_focus
+		cost = 5
+		x = 38
+		y = 3
+		prerequisite = { focus = krcw_tib_snow_lion_state }
+		mutually_exclusive = { focus = krcw_tib_delhi_treaty }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_stability = 0.03
+			add_war_support = 0.05
+			army_experience = 15
+			add_tech_bonus = { name = krcw_tib_self_defence bonus = 0.5 uses = 1 category = mountaineers_tech }
+		}
+	}
+	focus = {
+		id = krcw_tib_jinsha_line
+		icon = GFX_focus_generic_mountain_fortification
+		cost = 5
+		x = 32
+		y = 4
+		prerequisite = { focus = krcw_tib_delhi_treaty focus = krcw_tib_neutral_zone }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			867 = { if = { limit = { is_owned_by = ROOT } add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes } } }
+			2018 = { if = { limit = { is_owned_by = ROOT } add_building_construction = { type = bunker level = 1 province = { all_provinces = yes limit_to_border = yes } instant_build = yes } } }
+			add_stability = -0.02
+		}
+	}
+	focus = {
+		id = krcw_tib_regular_regiments
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 5
+		x = 36
+		y = 4
+		prerequisite = { focus = krcw_tib_delhi_treaty focus = krcw_tib_neutral_zone }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_manpower = 5000
+			army_experience = 10
+			add_tech_bonus = { name = krcw_tib_regiments bonus = 0.5 uses = 1 category = infantry_weapons }
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_tib_chamdo_command
+		icon = GFX_goal_generic_defence
+		cost = 5
+		x = 34
+		y = 5
+		prerequisite = { focus = krcw_tib_jinsha_line }
+		prerequisite = { focus = krcw_tib_regular_regiments }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_war_support = 0.05
+			army_experience = 15
+			add_ideas = krcw_tib_chamdo_front
+		}
+	}
+	focus = {
+		id = krcw_tib_expanded_self_rule
+		icon = GFX_focus_generic_improve_the_administration_2
+		cost = 5
+		x = 44
+		y = 2
+		prerequisite = { focus = krcw_tib_after_the_war }
+		available = {
+			is_subject_of = CHI
+		}
+		bypass = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 75
+			# reward_fill.py
+			add_ideas = krcw_fill_tib_civil_office
+		}
+	}
+	focus = {
+		id = krcw_tib_reconciliation
+		icon = GFX_goal_generic_improve_relations
+		cost = 5
+		x = 42
+		y = 3
+		prerequisite = { focus = krcw_tib_expanded_self_rule }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_manpower = 3000
+			set_variable = { krcw_revolt_progress = 0 }
+			# reward_fill.py
+			add_ideas = krcw_fill_tib_amnesty
+		}
+	}
+	focus = {
+		id = krcw_tib_lhasa_power_station
+		icon = GFX_focus_generic_hydroelectric_energy
+		cost = 5
+		x = 46
+		y = 3
+		prerequisite = { focus = krcw_tib_expanded_self_rule }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+					limit = { free_building_slots = { building = industrial_complex size > 0 include_locked = yes } }
+					prioritize = { 439 437 438 429 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+				}
+			add_tech_bonus = { name = krcw_tib_energy bonus = 0.5 uses = 1 category = energy }
+		}
+	}
+	focus = {
+		id = krcw_tib_middle_way
+		icon = GFX_focus_generic_democratic_asia
+		cost = 5
+		x = 40
+		y = 5
+		prerequisite = { focus = krcw_tib_dalai_lama_majority focus = krcw_tib_chamdo_command focus = krcw_tib_reconciliation focus = krcw_tib_lhasa_power_station }
+		available = {
+			date > 1953.4.26
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			remove_ideas = TIB_Feudal_Social_Structure
+			remove_ideas = TIB_Kashag_Corruption
+			add_stability = 0.1
+			add_popularity = { ideology = socialist popularity = 0.05 } add_popularity = { ideology = monarchism popularity = -0.05 }
+		}
+	}
+	focus = {
+		id = krcw_tib_open_passes
+		icon = GFX_goal_generic_trade
+		cost = 5
+		x = 24
+		y = 5
+		prerequisite = { focus = krcw_tib_hidden_arsenals focus = krcw_tib_after_the_war }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			base = 1
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+					limit = { infrastructure < 4 }
+					add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+				}
+			add_political_power = 50
+			add_stability = 0.03
+		}
+	}
+}

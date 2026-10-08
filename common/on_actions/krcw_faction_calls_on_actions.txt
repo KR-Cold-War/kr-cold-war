@@ -1,0 +1,83 @@
+on_actions = {
+	on_declare_war = {
+		effect = {
+			if = {
+				limit = { has_global_flag = KRCW_active NOT = { has_country_flag = krcw_limited_war } }
+				# FRA declares: its AI members come in
+				if = {
+					limit = { tag = FRA is_faction_leader = yes }
+					every_country = {
+						limit = {
+							is_in_faction_with = FRA NOT = { tag = FRA } is_ai = yes
+							NOT = { has_war_with = FROM } NOT = { is_in_faction_with = FROM }
+						}
+						add_to_war = { targeted_alliance = FRA enemy = FROM hostility_reason = asked_to_join }
+					}
+				}
+				# a member of FRA's bloc is attacked from outside the bloc: the bloc defends it
+				if = {
+					limit = {
+						FROM = { OR = { tag = FRA is_in_faction_with = FRA } }
+						NOT = { is_in_faction_with = FRA }
+						FRA = { is_faction_leader = yes }
+					}
+					if = {
+						limit = { OR = { tag = SOV is_in_faction_with = SOV } NOT = { has_global_flag = KRCW_world_war } }
+						set_global_flag = KRCW_world_war
+						news_event = { id = krcw_ww.3 days = 1 }
+					}
+					FRA = {
+						if = {
+							limit = { NOT = { has_war_with = ROOT } }
+							add_to_war = { targeted_alliance = FROM enemy = ROOT hostility_reason = asked_to_join }
+						}
+					}
+					every_country = {
+						limit = {
+							is_in_faction_with = FRA is_ai = yes NOT = { tag = FROM } NOT = { tag = FRA }
+							NOT = { has_war_with = ROOT }
+						}
+						add_to_war = { targeted_alliance = FROM enemy = ROOT hostility_reason = asked_to_join }
+					}
+				}
+				# SOV declares: its AI members come in
+				if = {
+					limit = { tag = SOV is_faction_leader = yes }
+					every_country = {
+						limit = {
+							is_in_faction_with = SOV NOT = { tag = SOV } is_ai = yes
+							NOT = { has_war_with = FROM } NOT = { is_in_faction_with = FROM }
+						}
+						add_to_war = { targeted_alliance = SOV enemy = FROM hostility_reason = asked_to_join }
+					}
+				}
+				# a member of SOV's bloc is attacked from outside the bloc: the bloc defends it
+				if = {
+					limit = {
+						FROM = { OR = { tag = SOV is_in_faction_with = SOV } }
+						NOT = { is_in_faction_with = SOV }
+						SOV = { is_faction_leader = yes }
+					}
+					if = {
+						limit = { OR = { tag = FRA is_in_faction_with = FRA } NOT = { has_global_flag = KRCW_world_war } }
+						set_global_flag = KRCW_world_war
+						news_event = { id = krcw_ww.3 days = 1 }
+					}
+					SOV = {
+						if = {
+							limit = { NOT = { has_war_with = ROOT } }
+							add_to_war = { targeted_alliance = FROM enemy = ROOT hostility_reason = asked_to_join }
+						}
+					}
+					every_country = {
+						limit = {
+							is_in_faction_with = SOV is_ai = yes NOT = { tag = FROM } NOT = { tag = SOV }
+							NOT = { has_war_with = ROOT }
+						}
+						add_to_war = { targeted_alliance = FROM enemy = ROOT hostility_reason = asked_to_join }
+					}
+				}
+			}
+		}
+	}
+}

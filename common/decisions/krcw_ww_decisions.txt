@@ -1,0 +1,41 @@
+# krcw: paced
+krcw_ww_cat = {
+	krcw_ww_war_plan = {
+		icon = GFX_decision_generic_ignite_civil_war
+		cost = 100
+		allowed = { OR = { original_tag = FRA original_tag = SOV } }
+		visible = {
+			has_global_flag = KRCW_active
+			date > 1952.6.21
+			OR = { check_variable = { global.krcw_tension > 70 } AND = { krcw_gv_elbe_adjourned = yes check_variable = { global.krcw_tension > 60 } } }
+			NOT = { has_global_flag = KRCW_world_war }
+			NOT = { has_global_flag = KRCW_world_war_over }
+			FRA = { exists = yes is_faction_leader = yes num_of_factories > 100 has_war = no }
+			SOV = { exists = yes is_faction_leader = yes num_of_factories > 100 has_war = no }
+		}
+		available = { has_war_support > 0.5 has_country_flag = krcw_ww_prepared }   # last focus of the war-prep branch (eu_p43/eu_p44)
+		fire_only_once = yes
+		days_remove = 120
+		complete_effect = {
+			add_ideas = krcw_ww_total_mobilisation
+			krcw_tension_up_large = yes
+			if = { limit = { original_tag = FRA } SOV = { country_event = { id = krcw_ww.1 days = 3 } } }
+			if = { limit = { original_tag = SOV } FRA = { country_event = { id = krcw_ww.1 days = 3 } } }
+		}
+		remove_effect = { set_country_flag = krcw_ww_ready }
+		ai_will_do = { factor = 0 }
+	}
+	krcw_ww_ultimatum = {
+		icon = GFX_decision_generic_civil_support
+		cost = 50
+		allowed = { OR = { original_tag = FRA original_tag = SOV } }
+		visible = { has_country_flag = krcw_ww_ready NOT = { has_global_flag = KRCW_world_war } }
+		available = { has_war = no }
+		fire_only_once = yes
+		complete_effect = {
+			if = { limit = { original_tag = FRA } SOV = { country_event = { id = krcw_ww.2 days = 2 } } }
+			if = { limit = { original_tag = SOV } FRA = { country_event = { id = krcw_ww.2 days = 2 } } }
+		}
+		ai_will_do = { factor = 0 }
+	}
+}

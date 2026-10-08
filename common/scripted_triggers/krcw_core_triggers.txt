@@ -1,0 +1,34 @@
+# KRCW core shared triggers (owned by core agent)
+krcw_high_tension = {
+	check_variable = { global.krcw_tension > 69 }
+}
+krcw_low_tension = {
+	check_variable = { global.krcw_tension < 40 }
+}
+krcw_high_detente = {
+	check_variable = { global.krcw_detente > 59 }
+}
+krcw_route_historical = {
+	has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL }
+}
+krcw_route_random = {
+	has_game_rule = { rule = krcw_route option = KRCW_ROUTE_RANDOM }
+}
+krcw_route_free = {
+	has_game_rule = { rule = krcw_route option = KRCW_ROUTE_FREE }
+}
+krcw_is_ti = {
+	OR = {
+		tag = FRA
+		tag = CHI
+		is_in_faction_with = FRA
+		is_subject_of = CHI
+	}
+}
+krcw_is_ma = {
+	OR = {
+		tag = SOV
+		is_in_faction_with = SOV
+		is_subject_of = SOV
+	}
+}

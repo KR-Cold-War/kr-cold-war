@@ -1,0 +1,106 @@
+# KRCW (build/patch_residue.py): 3 OTL events dropped while KRCW_active
+add_namespace = BUL
+
+# Brazil Election 1950
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = BUL.250 
+ immediate = { }
+	title = BUL.250.t
+	desc = BUL.250.d
+	picture = GFX_report_event_brazil_election_1950
+
+	is_triggered_only = yes
+
+	# Getulio Vargas
+	option = {
+		name = BUL.250.a
+		BUL = {
+			transfer_state = 106
+			106 = { add_core_of = BUL }
+		}
+		ai_chance = {
+			factor = 70
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+		name = BUL.250.b
+		BUL = {
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = ROOT
+			}
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = BUL.350 
+ immediate = { }
+	title = BUL.350.t
+	desc = BUL.350.d
+	picture = GFX_report_event_brazil_election_1950
+
+	is_triggered_only = yes
+
+	# Getulio Vargas
+	option = {
+		name = BUL.350.a
+		set_cosmetic_tag = ITA_MON
+		complete_national_focus = BUL_60s_Italians_accepted
+		ai_chance = {
+			factor = 70
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+		name = BUL.350.b
+		BUL = {
+			complete_national_focus = BUL_60s_Italians_refused
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = BUL.100 
+ immediate = { }
+	title = BUL.100.t
+	desc = BUL.100.d
+	picture = GFX_dimitrov_dead
+
+	is_triggered_only = yes
+
+	option = {
+		name = BUL.100.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Valko Chervenkov"
+			picture = "Valko_Chervenkov_50s.dds"
+			ideology = stalinism
+			traits = {
+				stalins_puppet
+				staunch_stalinist
+			}
+		}
+		complete_national_focus = BUL_Chairman_Chervenkov
+	}
+}

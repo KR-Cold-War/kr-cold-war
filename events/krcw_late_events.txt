@@ -1,0 +1,259 @@
+# krcw: paced
+add_namespace = krcw_late
+
+country_event = {
+	id = krcw_late.1
+	title = krcw_late.1.t
+	desc = krcw_late.1.d
+	picture = GFX_krcw_eu_riot1
+	is_triggered_only = yes
+	trigger = {
+		tag = FRA
+		has_government = trotskyism
+		NOT = { has_country_flag = KRCW_fra_68_happened }
+	}
+	option = {
+		name = krcw_late.1.a
+		ai_chance = { base = 60 }
+		add_political_power = -50
+		set_country_flag = KRCW_fra_68_reform
+		set_country_flag = KRCW_fra_68_happened
+	}
+	option = {
+		name = krcw_late.1.b
+		ai_chance = { base = 30 }
+		add_political_power = 25
+		add_stability = -0.05
+		set_country_flag = KRCW_fra_68_repression
+		set_country_flag = KRCW_fra_68_happened
+	}
+	option = {
+		name = krcw_late.1.c
+		ai_chance = { base = 10 }
+		add_stability = -0.08
+		set_country_flag = KRCW_fra_68_radicalisation
+		set_country_flag = KRCW_fra_68_happened
+	}
+}
+
+country_event = {
+	id = krcw_late.2
+	title = krcw_late.2.t
+	desc = krcw_late.2.d
+	picture = GFX_krcw_eu_books
+	is_triggered_only = yes
+	trigger = {
+		tag = FRA
+		has_country_flag = KRCW_fra_68_reform
+	}
+	option = {
+		name = krcw_late.2.a
+		add_political_power = 50
+		add_stability = 0.05
+		set_global_flag = KRCW_fra_68_charter
+	}
+}
+
+country_event = {
+	id = krcw_late.3
+	title = krcw_late.3.t
+	desc = krcw_late.3.d
+	picture = GFX_krcw_eu_cabinet
+	is_triggered_only = yes
+	trigger = {
+		tag = FRA
+		has_country_flag = KRCW_fra_68_repression
+	}
+	option = {
+		name = krcw_late.3.a
+		add_political_power = 75
+		add_stability = 0.03
+		add_ideas = krcw_late_technocratic_turn
+		set_global_flag = KRCW_fra_68_technocracy
+	}
+}
+
+country_event = {
+	id = krcw_late.4
+	title = krcw_late.4.t
+	desc = krcw_late.4.d
+	picture = GFX_krcw_eu_strike
+	is_triggered_only = yes
+	trigger = {
+		tag = FRA
+		has_country_flag = KRCW_fra_68_radicalisation
+	}
+	option = {
+		name = krcw_late.4.a
+		add_political_power = -75
+		add_stability = -0.08
+		krcw_tension_up_medium = yes
+		set_global_flag = KRCW_fra_68_split
+	}
+}
+
+country_event = {
+	id = krcw_late.10
+	title = krcw_late.10.t
+	desc = krcw_late.10.d
+	picture = GFX_krcw_chi_zhou_profile
+	is_triggered_only = yes
+	trigger = {
+		tag = CHI
+		NOT = { has_country_flag = KRCW_chi_zhou_dead }
+	}
+	option = {
+		name = krcw_late.10.a
+		add_political_power = -50
+		set_country_flag = KRCW_chi_zhou_dead
+		country_event = { id = krcw_late.11 days = 40 }
+	}
+}
+
+country_event = {
+	id = krcw_late.11
+	title = krcw_late.11.t
+	desc = krcw_late.11.d
+	picture = GFX_krcw_chi_newspaper
+	is_triggered_only = yes
+	trigger = {
+		tag = CHI
+		has_country_flag = KRCW_chi_zhou_dead
+	}
+	option = {
+		name = krcw_late.11.a
+		ai_chance = { base = 70 }
+		add_political_power = 50
+		set_country_flag = KRCW_chi_reform
+		country_event = { id = krcw_late.12 days = 81 }
+	}
+	option = {
+		name = krcw_late.11.b
+		ai_chance = { base = 30 }
+		add_political_power = 25
+		add_stability = -0.03
+		set_country_flag = KRCW_chi_conservative
+	}
+}
+
+country_event = {
+	id = krcw_late.12
+	title = krcw_late.12.t
+	desc = krcw_late.12.d
+	picture = GFX_krcw_chi_legislative
+	is_triggered_only = yes
+	trigger = {
+		tag = CHI
+		has_country_flag = KRCW_chi_reform
+	}
+	option = {
+		name = krcw_late.12.a
+		add_political_power = 75
+		add_stability = 0.05
+		set_global_flag = KRCW_chi_multiparty
+	}
+}
+
+country_event = {
+	id = krcw_late.24
+	title = krcw_late.24.t
+	desc = krcw_late.24.d
+	picture = GFX_krcw_eu_rus_romanovs
+	is_triggered_only = yes
+	trigger = {
+		tag = SOV
+		krcw_high_tension = yes
+		has_global_flag = KRCW_savinkov_dead
+		NOT = { krcw_route_historical = yes }
+		NOT = { has_global_flag = KRCW_sov_romanov_restored }
+	}
+	option = {
+		name = krcw_late.24.a
+		add_political_power = -50
+		add_stability = -0.08
+		add_ideas = krcw_late_romanov_restoration
+		set_global_flag = KRCW_sov_romanov_restored
+		krcw_tension_up_large = yes
+	}
+}
+
+country_event = {
+	id = krcw_late.33
+	title = krcw_late.33.t
+	desc = krcw_late.33.d
+	picture = GFX_krcw_eu_smoke2_c
+	is_triggered_only = yes
+	trigger = {
+		OR = { tag = WCA tag = USA }
+		krcw_high_tension = yes
+		NOT = { krcw_route_historical = yes }
+		has_war_with_major = yes
+		NOT = { has_global_flag = KRCW_nuclear_war }
+	}
+	option = {
+		name = krcw_late.33.a
+		add_stability = -0.20
+		add_war_support = -0.20
+		set_global_flag = KRCW_nuclear_war
+		krcw_tension_up_large = yes
+	}
+}
+
+country_event = {
+	id = krcw_late.40
+	title = krcw_late.40.t
+	desc = krcw_late.40.d
+	picture = GFX_krcw_happy_crowd
+	is_triggered_only = yes
+	trigger = {
+		tag = JAP
+		NOT = { has_global_flag = KRCW_jap_democracy }
+		date > 1954.6.19
+	}
+	option = {
+		name = krcw_late.40.a
+		add_political_power = 50
+		add_stability = 0.05
+		set_global_flag = KRCW_jap_democracy
+	}
+}
+
+country_event = {
+	id = krcw_late.50
+	title = krcw_late.50.t
+	desc = krcw_late.50.d
+	picture = GFX_krcw_conference
+	is_triggered_only = yes
+	trigger = {
+		tag = RAJ
+		NOT = { has_global_flag = KRCW_raj_last_durbar }
+		date > 1955.1.18
+	}
+	option = {
+		name = krcw_late.50.a
+		add_political_power = 75
+		add_stability = 0.05
+		set_global_flag = KRCW_raj_last_durbar
+	}
+}
+
+country_event = {
+	id = krcw_late.80
+	title = krcw_late.80.t
+	desc = krcw_late.80.d
+	picture = GFX_krcw_eu_cabinet
+	is_triggered_only = yes
+	trigger = {
+		tag = FRA
+		has_global_flag = KRCW_fra_68_technocracy
+		date > 1955.1.18
+		NOT = { has_global_flag = KRCW_ti_technocracy }
+	}
+	option = {
+		name = krcw_late.80.a
+		add_stability = -0.08
+		add_ideas = krcw_late_technocratic_dictatorship
+		set_global_flag = KRCW_ti_technocracy
+		krcw_tension_up_medium = yes
+	}
+}

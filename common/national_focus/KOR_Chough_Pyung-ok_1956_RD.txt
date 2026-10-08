@@ -1,0 +1,267 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = KOR_Chough_Pyungok_1956_RD
+	country = {
+		factor = 0
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	shared_focus = KOR_50s_the_kacic
+	shared_focus = KOR_50s_national_economy_reinvigoration_plan
+	shared_focus = KOR_50s_ministry_of_foreign_affairs
+	shared_focus = KOR_50s_daehanminguk_gukgun
+	shared_focus = KOR_50s_the_war_of_625
+	focus = {
+		id = KOR_CHOUGHPYUNGOK56_RD_chough_pyungok_administration
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_political_power = 150
+		}
+	}
+
+	focus = {
+		id = KOR_CHOUGHPYUNGOK56_RD_deal_with_the_legacy_of_kim_koo
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			#news_event = our stance towards the leadership of kim koo
+		}
+		relative_position_id = KOR_CHOUGHPYUNGOK56_RD_chough_pyungok_administration
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_chough_pyungok_administration }
+	}
+
+	focus = {
+		id = KOR_CHOUGHPYUNGOK56_RD_resumption_of_anticommunist_rhetoric
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_political_power = 100
+		}
+		relative_position_id = KOR_CHOUGHPYUNGOK56_RD_chough_pyungok_administration
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_chough_pyungok_administration }
+	}
+
+	focus = {
+		id = KOR_CHOUGHPYUNGOK56_RD_take_charge_of_the_governing_party
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_stability = 0.2
+		}
+		relative_position_id = KOR_CHOUGHPYUNGOK56_RD_deal_with_the_legacy_of_kim_koo
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_deal_with_the_legacy_of_kim_koo }
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_resumption_of_anticommunist_rhetoric }
+	}
+
+	focus = {
+		id = KOR_CHOUGHPYUNGOK56_RD_not_projap_but_projob
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_stability = 0.5
+			add_popularity = {
+				ideology = conservative
+				popularity = -0.1
+			}
+		}
+		relative_position_id = KOR_CHOUGHPYUNGOK56_RD_take_charge_of_the_governing_party
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_take_charge_of_the_governing_party }
+	}
+
+	focus = {
+		id = KOR_CHOUGHPYUNGOK56_RD_win_the_favor_of_protestant_churches
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			set_country_flag = the_pluralism_act_enabled
+			custom_effect_tooltip = kor.na.bill
+		}
+		relative_position_id = KOR_CHOUGHPYUNGOK56_RD_take_charge_of_the_governing_party
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_take_charge_of_the_governing_party }
+	}
+
+	focus = {
+		id = KOR_CHOUGHPYUNGOK56_RD_strengthen_grip_over_the_military
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_command_power = -50
+		}
+		relative_position_id = KOR_CHOUGHPYUNGOK56_RD_not_projap_but_projob
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_not_projap_but_projob }
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_win_the_favor_of_protestant_churches }
+	}
+
+	focus = {
+		id = KOR_CHOUGHPYUNGOK56_RD_proamerican_diplomacy
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_political_power = 150
+			add_opinion_modifier = {
+				target = USA
+				modifier = large_increase
+			}
+			USA = {
+				add_opinion_modifier = {
+					target = KOR
+					modifier = large_increase
+				}
+			}
+		}
+		relative_position_id = KOR_CHOUGHPYUNGOK56_RD_strengthen_grip_over_the_military
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_strengthen_grip_over_the_military }
+	}
+
+	focus = {
+		id = KOR_CHOUGHPYUNGOK56_RD_reign_in_the_police_force
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			set_country_flag = police_modernization_act_enabled
+			custom_effect_tooltip = kor.na.bill
+		}
+		relative_position_id = KOR_CHOUGHPYUNGOK56_RD_strengthen_grip_over_the_military
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_strengthen_grip_over_the_military }
+	}
+
+	focus = {
+		id = KOR_CHOUGHPYUNGOK56_RD_allow_limited_press_freedom
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			set_country_flag = the_freedom_of_press_act_enabled
+			custom_effect_tooltip = kor.na.bill
+		}
+		relative_position_id = KOR_CHOUGHPYUNGOK56_RD_proamerican_diplomacy
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_proamerican_diplomacy }
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_reign_in_the_police_force }
+	}
+
+	focus = {
+		id = KOR_CHOUGHPYUNGOK56_RD_empower_the_national_assembly
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			#news_event = the rise of the national assembly
+			set_country_flag = national_assembly_rights_act_enabled
+			custom_effect_tooltip = kor.na.bill
+		}
+		relative_position_id = KOR_CHOUGHPYUNGOK56_RD_allow_limited_press_freedom
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_allow_limited_press_freedom }
+	}
+
+	focus = {
+		id = KOR_CHOUGHPYUNGOK56_RD_receive_support_from_rightwing_christian_sects
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.2
+			}
+		}
+		relative_position_id = KOR_CHOUGHPYUNGOK56_RD_allow_limited_press_freedom
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_allow_limited_press_freedom }
+	}
+
+	focus = {
+		id = KOR_CHOUGHPYUNGOK56_RD_prosecute_members_of_the_former_government
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_stability = 0.02
+			set_country_flag = total_cabinet_organization_reorganization_act_enabled
+			custom_effect_tooltip = kor.na.bill
+		}
+		relative_position_id = KOR_CHOUGHPYUNGOK56_RD_empower_the_national_assembly
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_empower_the_national_assembly }
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_receive_support_from_rightwing_christian_sects }
+	}
+
+	focus = {
+		id = KOR_CHOUGHPYUNGOK56_RD_introduce_limited_judicial_reforms
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			set_country_flag = limited_judical_reform_act_enabled
+			custom_effect_tooltip = kor.na.bill
+		}
+		relative_position_id = KOR_CHOUGHPYUNGOK56_RD_prosecute_members_of_the_former_government
+		prerequisite = { focus = KOR_CHOUGHPYUNGOK56_RD_prosecute_members_of_the_former_government }
+	}
+}

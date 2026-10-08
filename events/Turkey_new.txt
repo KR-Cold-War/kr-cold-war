@@ -1,0 +1,333 @@
+# KRCW (build/patch_residue.py): 19 OTL events dropped while KRCW_active
+add_namespace = TUR_Gunaltay
+add_namespace = TUR_DP
+add_namespace = TUR_CHP
+add_namespace = TUR_Elections
+add_namespace = TUR_kurds
+add_namespace = TUR_flavor
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_Gunaltay.1 #democratization
+    immediate = { }	
+	title = TUR_Gunaltay.1.t
+	desc = TUR_Gunaltay.1.d
+	picture = GFX_TUR_Gunaltay_1
+	is_triggered_only = yes
+	option = {
+		name = TUR_Gunaltay.1.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_Gunaltay.2 #road tax
+    immediate = { }	
+	title = TUR_Gunaltay.2.t
+	desc = TUR_Gunaltay.2.d
+	#picture = 
+	is_triggered_only = yes
+	option = {
+		name = TUR_Gunaltay.2.a
+		#decrease taxation slightly
+	}
+	option = {
+		name = TUR_Gunaltay.2.b
+		set_country_flag = TUR_road_tax_abolished
+		add_political_power = -250
+		#decrease taxation greatly
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_Gunaltay.3 #fevzi cakmak death
+    immediate = { }	
+	title = TUR_Gunaltay.3.t
+	desc = TUR_Gunaltay.3.d
+	picture = GFX_TUR_Gunaltay_3
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			create_country_leader = {
+				name = "Yusuf Hikmet Bayur"
+				picture = "gfx/leaders/leader_unknown.dds"
+				ideology = national_democrat
+			}
+		}
+	}
+	option = {
+		name = TUR_Gunaltay.3.a
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.05
+		}
+	}
+	option = {
+		name = TUR_Gunaltay.3.b
+		set_country_flag = TUR_fevzi_mourned
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_Gunaltay.4 #party hardliners angry
+    immediate = { }	
+	title = TUR_Gunaltay.4.t
+	desc = TUR_Gunaltay.4.d
+	picture = GFX_TUR_1950_ELECTIONS_1
+	is_triggered_only = yes
+	option = {
+		name = TUR_Gunaltay.4.a
+		add_stability = -0.01
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_Gunaltay.5 #formation of ysk
+    immediate = { }	
+	title = TUR_Gunaltay.5.t
+	desc = TUR_Gunaltay.5.d
+	picture = GFX_TUR_Gunaltay_5
+	is_triggered_only = yes
+	option = {
+		name = TUR_Gunaltay.5.a
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_Elections.1
+    immediate = { }	
+	title = TUR_Elections.1.t
+	desc = TUR_Elections.1.d
+	#picture = 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = TUR_Elections.1.a
+		trigger = {
+			AND = {
+				has_country_flag = TUR_road_tax_abolished
+				has_country_flag = TUR_fevzi_mourned
+				has_country_flag = TUR_lightened_secular_laws
+				has_country_flag = TUR_electoral_reform
+			}
+		}
+		set_country_flag = CHP_victory_1950
+		country_event = TUR_Elections.2
+	}
+	option = {
+		name = TUR_Elections.1.b
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = no
+		}
+		set_country_flag = DP_victory_1950
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_Elections.2
+    immediate = { }	
+	title = TUR_Elections.2.t
+	desc = TUR_Elections.2.d
+	#picture = 
+	is_triggered_only = yes
+	option = {
+		name = TUR_Elections.2.a
+		add_stability = -0.2
+		add_ideas = TUR_election_anger
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_Elections.3
+    immediate = { }	
+	title = TUR_Elections.3.t
+	desc = TUR_Elections.3.d
+	picture = GFX_TUR_Elections_3
+	is_triggered_only = yes
+	option = {
+		name = TUR_Elections.3.a
+		create_country_leader = {
+			name = "Adnan Menderes"
+			picture = "Adnan_Menderes.dds"
+			ideology = conservatism
+		}
+		add_stability = 0.1
+		set_variable = { BayarInfluence = 40 }
+		set_variable = { MenderesInfluence = 40 }
+		set_variable = { DPInfluence = 20 }
+		add_to_variable = { TUR_dp_50s_dirty = 1 }
+		hidden_effect = {
+			create_country_leader = {
+				name = "Ismet Inönü"
+				picture = "Ismet_Inonu.dds"
+				ideology = kemalism
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_DP.1
+    immediate = { }	
+	title = TUR_DP.1.t
+	desc = TUR_DP.1.d
+	#picture = 
+	is_triggered_only = yes
+	option = {
+		name = TUR_DP.1.a
+		hidden_effect = {
+			country_event = { id = TUR_DP.2 days = 4 }
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_DP.2
+    immediate = { }	
+	title = TUR_DP.2.t
+	desc = TUR_DP.2.d
+	#picture = 
+	is_triggered_only = yes
+	option = {
+		name = TUR_DP.2.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_DP.3
+    immediate = { }	
+	title = TUR_DP.3.t
+	desc = TUR_DP.3.d
+	#picture = 
+	is_triggered_only = yes
+	option = {
+		name = TUR_DP.3.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_CHP.1
+    immediate = { }	
+	title = TUR_CHP.1.t
+	desc = TUR_CHP.1.d
+	#picture = 
+	is_triggered_only = yes
+	option = {
+		name = TUR_CHP.1.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_CHP.2
+    immediate = { }	
+	title = TUR_CHP.2.t
+	desc = TUR_CHP.2.d
+	#picture = 
+	is_triggered_only = yes
+	option = {
+		name = TUR_CHP.2.a
+		add_stability = 0.03
+		add_popularity = {
+			ideology = Social_Democratic
+			popularity = 0.03
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_kurds.1
+    immediate = { }	
+	title = TUR_kurds.1.t
+	desc = TUR_kurds.1.d
+	#picture = 
+	is_triggered_only = yes
+	option = {
+		name = TUR_kurds.1.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_kurds.2
+    immediate = { }	
+	title = TUR_kurds.2.t
+	desc = TUR_kurds.2.d
+	#picture = 
+	is_triggered_only = yes
+	option = {
+		name = TUR_kurds.2.a
+		# Increase_Kurdish_Control = yes  # Invalid effect - scripted effect not found
+	}
+	option = {
+		name = TUR_kurds.2.b
+		# Decrease_Kurdish_Consciousness = yes  # Invalid effect - scripted effect not found
+		# Decrease_Kurdish_Control = yes  # Invalid effect - scripted effect not found
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_flavor.1 #recep peker death
+    immediate = { }	
+	title = TUR_flavor.1.t
+	desc = TUR_flavor.1.d
+	#picture = 
+	is_triggered_only = yes
+	option = {
+		name = TUR_flavor.1.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_flavor.2 #army offers intervention
+    immediate = { }	
+	title = TUR_flavor.2.t
+	desc = TUR_flavor.2.d
+	#picture = 
+	is_triggered_only = yes
+	option = {
+		name = TUR_flavor.2.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_flavor.3 #DP 2nd congress
+    immediate = { }	
+	title = TUR_flavor.3.t
+	desc = TUR_flavor.3.d
+	#picture = 
+	is_triggered_only = yes
+	option = {
+		name = TUR_flavor.3.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR_flavor.4 #rasulzade death
+    immediate = { }	
+	title = TUR_flavor.4.t
+	desc = TUR_flavor.4.d
+	#picture = 
+	is_triggered_only = yes
+	option = {
+		name = TUR_flavor.4.a
+	}
+}

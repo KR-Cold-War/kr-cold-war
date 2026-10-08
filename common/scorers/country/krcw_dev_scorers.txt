@@ -1,0 +1,99 @@
+# KRCW world rankings of the National Development tab (build/dev_effects.py)
+krcw_dev_gdp_scorer = {
+	targets = {
+		targets_dynamic = no
+		target_non_existing = no
+		target_array = global.countries
+		score = {
+			base = 0
+			modifier = {
+				has_variable = krcw_dev_edu
+				add = grossdomesticproduct
+			}
+		}
+	}
+}
+krcw_dev_gdppc_scorer = {
+	targets = {
+		targets_dynamic = no
+		target_non_existing = no
+		target_array = global.countries
+		score = {
+			base = 0
+			modifier = {
+				has_variable = krcw_dev_edu check_variable = { krcw_dev_pop > 2.99 }
+				add = grossdomesticproductcapita
+			}
+		}
+	}
+}
+krcw_dev_pop_scorer = {
+	targets = {
+		targets_dynamic = no
+		target_non_existing = no
+		target_array = global.countries
+		score = {
+			base = 0
+			modifier = {
+				has_variable = krcw_dev_edu
+				add = krcw_dev_pop
+			}
+		}
+	}
+}
+krcw_dev_econ_scorer = {
+	targets = {
+		targets_dynamic = no
+		target_non_existing = no
+		target_array = global.countries
+		score = {
+			base = 0
+			modifier = {
+				has_variable = krcw_dev_edu check_variable = { krcw_dev_pop > 1.99 }
+				add = krcw_econ
+			}
+		}
+	}
+}
+krcw_dev_edu_scorer = {
+	targets = {
+		targets_dynamic = no
+		target_non_existing = no
+		target_array = global.countries
+		score = {
+			base = 0
+			modifier = {
+				has_variable = krcw_dev_edu check_variable = { krcw_dev_pop > 1.99 }
+				add = krcw_dev_edu
+			}
+		}
+	}
+}
+krcw_dev_wel_scorer = {
+	targets = {
+		targets_dynamic = no
+		target_non_existing = no
+		target_array = global.countries
+		score = {
+			base = 0
+			modifier = {
+				has_variable = krcw_dev_edu check_variable = { krcw_dev_pop > 1.99 }
+				add = krcw_dev_wel
+			}
+		}
+	}
+}
+krcw_dev_fac_scorer = {
+	targets = {
+		targets_dynamic = no
+		target_non_existing = no
+		target_array = global.countries
+		score = {
+			base = 0
+			modifier = {
+				has_variable = krcw_dev_edu
+				add = krcw_dev_fac
+			}
+		}
+	}
+}

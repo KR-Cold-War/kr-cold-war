@@ -1,0 +1,410 @@
+# KRCW (build/patch_residue.py): 8 OTL decisions hidden while KRCW_active
+cuban_uprising = {
+	The_26th_of_july_movemnt_Uprising = {
+
+		icon = generic_civil_support
+
+		available = { NOT = { has_global_flag = KRCW_active } 			
+			always = no
+		}
+
+		days_mission_timeout = 90
+
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = CUB_uprising
+			check_variable = {
+				var = cuban_insurgency
+				value = 100
+				compare = greater_than_or_equals
+			}
+		}
+
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			check_variable = {
+				var = cuban_insurgency
+				value = 100
+				compare = less_than
+			}
+		 } }
+}
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+
+		is_good = no
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			country_event = cuban_uprising.1
+			CUB = {
+				drop_cosmetic_tag = yes
+				1111 = {
+					clr_state_flag = CUB_target
+					clr_state_flag = insurg_lvl2
+					remove_province_modifier = {
+						static_modifiers = { insurgency_tier2 }
+						province = {
+							all_provinces = yes
+						}
+					}
+					add_state_modifier = { modifier = { local_factory_sabotage = -0.15 } }
+				}
+				1112 = {
+					clr_state_flag = CUB_target
+					clr_state_flag = insurg_lvl2
+					remove_province_modifier = {
+						static_modifiers = { insurgency_tier2 }
+						province = {
+							all_provinces = yes
+						}
+					}
+					add_state_modifier = { modifier = { local_factory_sabotage = -0.15 } }
+				}
+				1113 = {
+					clr_state_flag = CUB_target
+					clr_state_flag = insurg_lvl2
+					remove_province_modifier = {
+						static_modifiers = { insurgency_tier2 }
+						province = {
+							all_provinces = yes
+						}
+					}
+					add_state_modifier = { modifier = { local_factory_sabotage = -0.15 } }
+				}
+			}
+			news_event = Cuban_Revolution.1
+			CUB = {
+				set_politics = {
+					ruling_party = nationalist
+					elections_allowed = no
+				}
+			}
+		 }
+}
+	}
+
+Liquidate_The_26th_of_july_movemnt = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+	icon = generic_civil_support
+	available = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = CUB_uprising
+		OR = {
+			AND = {
+				check_variable = {
+					var = cuban_insurgency
+					value = 3
+					compare = less_than
+				}
+				divisions_in_state = {
+					size > 2
+					state = 966
+				}
+				
+				divisions_in_state = {
+					size > 2
+					state = 1061
+				}
+				divisions_in_state = {
+					size > 2
+					state = 1292
+				}
+			}
+			is_subject = no
+		}
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	fire_only_once = yes
+	
+	cost = 100
+	
+	
+	complete_effect = {
+		news_event = cuban_uprising.2
+		clear_variable = cuban_insurgency
+		clr_country_flag = CUB_uprising
+
+			1111 = {
+				clr_state_flag = CUB_uprising
+				clr_state_flag = insurg_lvl2
+				remove_province_modifier = {
+					static_modifiers = { insurgency_tier2 }
+					province = {
+						all_provinces = yes
+					}
+				}
+				add_state_modifier = { modifier = { local_factory_sabotage = -0.15 } }
+			}
+			1112 = {
+				clr_state_flag = CUB_uprising
+				clr_state_flag = insurg_lvl2
+				remove_province_modifier = {
+					static_modifiers = { insurgency_tier2 }
+					province = {
+						all_provinces = yes
+					}
+				}
+				add_state_modifier = { modifier = { local_factory_sabotage = -0.15 } }
+			}
+			1113 = {
+				clr_state_flag = CUB_uprising
+				clr_state_flag = insurg_lvl2
+				remove_province_modifier = {
+					static_modifiers = { insurgency_tier2 }
+					province = {
+						all_provinces = yes
+					}
+				}
+				add_state_modifier = { modifier = { local_factory_sabotage = -0.15 } }
+			}
+			set_country_flag = CUB_uprising_crushed
+			news_event = Cuban_Revolution.1
+	}
+	
+}
+
+Infilitrate_The_26th_of_july_movemnt = {
+
+	icon = generic_civil_support
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_variable = cub_current_country_state_decision
+	}
+	available = { NOT = { has_global_flag = KRCW_active } 
+		
+		has_country_flag = CUB_uprising
+		divisions_in_state = {
+			size > 1
+			state = var:cub_current_country_state_decision
+		}
+		NOT = { var:cub_current_country_state_decision = { has_state_flag = insurgency_infilitrated } }
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	fire_only_once = no
+	days_re_enable = 25
+	
+	fixed_random_seed = no
+	
+	cost = 50
+	
+	complete_effect = {
+		random_list = {
+			60 = {
+				country_event = M267_insurgency_options.1
+			}
+			40 = {
+				country_event = M267_insurgency_options.2
+			}
+		}
+	}
+	
+}
+Raid_The_26th_of_july_movemnt = {
+
+	icon = generic_civil_support
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_variable = cub_current_country_state_decision
+	}
+	available = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = CUB_uprising
+		divisions_in_state = {
+			size > 1
+			state = var:cub_current_country_state_decision
+		}
+		
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	fire_only_once = no
+	days_re_enable = 75
+	
+	fixed_random_seed = no
+	
+	cost = 25
+	
+	complete_effect = {
+		random_list = {
+			50 = {
+				country_event = M267_insurgency_options.3
+			}
+			50 = {
+				country_event = M267_insurgency_options.4
+			}
+		}
+	}
+	
+}
+Bomb_The_26th_of_july_movemnt = {
+
+	icon = generic_civil_support
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_variable = cub_current_country_state_decision
+	}
+	available = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = CUB_uprising
+		has_deployed_air_force_size = {
+			size > 10
+			type = cas
+		}
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	fire_only_once = no
+	days_re_enable = 180
+	
+	fixed_random_seed = no
+	
+	cost = 25
+	
+	complete_effect = {
+		random_list = {
+			75 = {
+				country_event = M267_insurgency_options.5
+			}
+			25 = {
+				country_event = M267_insurgency_options.6
+			}
+		}
+	}
+}
+Sarin_attack_The_26th_of_july_movemnt = {
+
+	icon = generic_civil_support
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_variable = cub_current_country_state_decision
+	}
+	available = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = CUB_uprising
+		has_tech = nbc_nerve_weapon_0
+		NOT = { has_idea = wmd_disbandment }	
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	fire_only_once = no
+	days_re_enable = 180
+	
+	fixed_random_seed = no
+	
+	cost = 25
+	
+	complete_effect = {
+		add_to_variable = {
+			badboy = 1
+		}
+		add_to_variable = { cuban_insurgency = -2 }
+		var:cub_current_country_state_decision = {
+			add_manpower = -500
+		}
+	}
+}
+VX_Attack_The_26th_of_july_movemnt = {
+
+	icon = generic_civil_support
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_variable = cub_current_country_state_decision
+	}
+	available = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = CUB_uprising
+		has_tech = nbc_nerve_weapon_1
+		NOT = { has_idea = wmd_disbandment }
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	fire_only_once = no
+	days_re_enable = 180
+	
+	fixed_random_seed = no
+	
+	cost = 25
+	
+	complete_effect = {
+		add_to_variable = {
+			badboy = 2
+		}
+		add_to_variable = { cuban_insurgency = -4 }
+		var:cub_current_country_state_decision = {
+			add_manpower = -1500
+		}
+	}
+}
+
+The_26th_of_july_movemnt = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+
+	icon = generic_civil_support
+
+	available = { NOT = { has_global_flag = KRCW_active } 
+		divisions_in_state = {
+			size > 2
+			state = 966
+		}
+		
+		divisions_in_state = {
+			size > 2
+			state = 1061
+		}
+		divisions_in_state = {
+			size > 2
+			state = 1292
+		}
+	}
+	
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		tag = CUB
+	}
+
+	days_mission_timeout = 60
+
+	activation = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = CUB_uprising
+		NOT = {
+			has_country_flag = CUB_uprising_crushed
+		}
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		
+	}
+
+	fixed_random_seed = no
+
+	fire_only_once = no
+
+	is_good = no
+	
+	complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+		activate_mission = The_26th_of_july_movemnt_Uprising
+	 }
+}
+
+	timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+		#Outer Area
+		random_list = {
+			25 = {
+				add_to_variable = { cuban_insurgency = 1 } 
+				custom_effect_tooltip = 1_ins_tt
+			}
+			35 = {
+				add_to_variable = { cuban_insurgency = 2 } 
+				custom_effect_tooltip = 2_ins_tt
+			}
+			40 = {
+				
+			}
+		}
+		
+	 }
+}
+}
+}

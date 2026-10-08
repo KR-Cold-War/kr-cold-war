@@ -1,0 +1,835 @@
+# krcw: paced
+add_namespace = krcw_usa
+
+country_event = {
+	id = krcw_usa.40
+	title = krcw_usa_40_t
+	desc = krcw_usa_40_d
+	picture = GFX_report_event_american_hunger_march
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = USA
+	}
+	option = {
+		name = krcw_usa_40.a
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -50
+		add_stability = -0.05
+		1640 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		1707 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		add_popularity = { ideology = nationalist popularity = 0.05 }
+		set_country_flag = krcw_usa_barons_broken
+	}
+	option = {
+		name = krcw_usa_40.b
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = 50
+		add_stability = 0.02
+		1641 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		set_country_flag = krcw_usa_barons_bought
+	}
+	option = {
+		name = krcw_usa_40.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.04
+		add_stability = -0.03
+		add_political_power = 25
+		if = { limit = { country_exists = PSA } PSA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_river_provocation } } }
+	}
+}
+
+country_event = {
+	id = krcw_usa.44
+	title = krcw_usa_44_t
+	desc = krcw_usa_44_d
+	picture = GFX_report_event_airplane_factory
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = USA
+	}
+	option = {
+		name = krcw_usa_44.a
+		ai_chance = {
+			base = 55
+		}
+		add_political_power = 25
+		add_tech_bonus = { name = krcw_usa_atomic_ru bonus = 1.0 uses = 2 category = electronics }
+		if = { limit = { country_exists = SOV } add_opinion_modifier = { target = SOV modifier = krcw_us_accord_partner } }
+		set_country_flag = krcw_usa_atomic_shared
+	}
+	option = {
+		name = krcw_usa_44.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -50
+		376 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		add_tech_bonus = { name = krcw_usa_atomic_solo bonus = 0.5 uses = 2 category = electronics }
+		set_country_flag = krcw_usa_atomic_independent
+		add_stability = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_usa.5
+	title = krcw_usa_5_t
+	desc = krcw_usa_5_d
+	picture = GFX_krcw_us_convention_c
+	is_triggered_only = yes
+	option = {
+		name = krcw_usa_5.a
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 50
+		add_stability = 0.02
+		set_country_flag = krcw_usa_governors_favoured
+		if = { limit = { has_idea = krcw_usa_audited_machine } add_political_power = 25 }
+	}
+	option = {
+		name = krcw_usa_5.b
+		ai_chance = {
+			base = 30
+		}
+		army_experience = 25
+		add_war_support = 0.05
+		set_country_flag = krcw_usa_generals_favoured
+		krcw_ohio_up_small = yes
+	}
+	option = {
+		name = krcw_usa_5.c
+		ai_chance = {
+			base = 60
+		}
+		add_stability = 0.05
+		add_popularity = { ideology = nationalist popularity = 0.03 }
+		add_political_power = -25
+		set_country_flag = krcw_usa_share_favoured
+	}
+}
+
+country_event = {
+	id = krcw_usa.10
+	title = krcw_usa_10_t
+	desc = krcw_usa_10_d
+	picture = GFX_krcw_us_red_summer
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+	}
+	option = {
+		name = krcw_usa_10.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = -10
+		add_stability = 0.01
+		set_country_flag = krcw_usa_listening_to_veterans
+	}
+	option = {
+		name = krcw_usa_10.b
+		ai_chance = {
+			base = 30
+		}
+		add_stability = -0.03
+		krcw_ohio_up_small = yes
+		set_country_flag = krcw_usa_veterans_arrested
+		if = { limit = { country_exists = WCA } WCA = { add_manpower = 1000 add_political_power = 10 } }
+	}
+	option = {
+		name = krcw_usa_10.c
+		ai_chance = {
+			base = 10
+		}
+		add_political_power = -35
+		add_stability = 0.02
+		add_war_support = 0.02
+		set_country_flag = krcw_usa_listening_to_veterans
+	}
+}
+
+country_event = {
+	id = krcw_usa.11
+	title = krcw_usa_11_t
+	desc = krcw_usa_11_d
+	picture = GFX_krcw_us_capitol
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+	}
+	option = {
+		name = krcw_usa_11.a
+		ai_chance = {
+			base = 55
+		}
+		add_political_power = 25
+		add_stability = -0.02
+	}
+	option = {
+		name = krcw_usa_11.b
+		ai_chance = {
+			base = 25
+		}
+		add_political_power = 25
+		add_stability = -0.04
+		krcw_ohio_up_small = yes
+		if = { limit = { country_exists = WCA } WCA = { add_manpower = 2000 } }
+	}
+	option = {
+		name = krcw_usa_11.c
+		ai_chance = {
+			base = 20
+		}
+		add_political_power = -25
+		add_stability = 0.03
+		add_war_support = 0.02
+		set_country_flag = krcw_usa_listening_to_veterans
+	}
+}
+
+country_event = {
+	id = krcw_usa.12
+	title = krcw_usa_12_t
+	desc = krcw_usa_12_d
+	picture = GFX_krcw_us_scotus
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+	}
+	option = {
+		name = krcw_usa_12.a
+		ai_chance = {
+			base = 1
+		}
+		add_stability = 0.03
+		add_political_power = 25
+		krcw_ohio_down_small = yes
+
+		add_manpower = 20000
+		country_event = { id = krcw_usa.13 days = 33 random_days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_usa.13
+	title = krcw_usa_13_t
+	desc = krcw_usa_13_d
+	picture = GFX_krcw_us_national_guard
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		has_idea = krcw_usa_civil_rights_act
+	}
+	option = {
+		name = krcw_usa_13.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = -50
+		add_stability = 0.02
+		add_manpower = 10000
+		krcw_ohio_down_small = yes
+	}
+	option = {
+		name = krcw_usa_13.b
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 25
+		add_stability = -0.03
+		if = { limit = { country_exists = WCA } WCA = { add_manpower = 5000 } }
+	}
+}
+
+country_event = {
+	id = krcw_usa.14
+	title = krcw_usa_14_t
+	desc = krcw_usa_14_d
+	picture = GFX_krcw_us_zoot
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+	}
+	option = {
+		name = krcw_usa_14.a
+		ai_chance = {
+			base = 35
+		}
+		add_stability = 0.02
+		krcw_ohio_up_medium = yes
+		add_political_power = -10
+	}
+	option = {
+		name = krcw_usa_14.b
+		ai_chance = {
+			base = 50
+		}
+		if = { limit = { has_country_flag = krcw_usa_listening_to_veterans } add_political_power = -25 add_stability = 0.02 add_manpower = 5000 }
+		else = { add_political_power = -50 add_stability = -0.02 }
+		if = { limit = { has_idea = krcw_usa_color_line } country_event = { id = krcw_usa.11 days = 30 } }
+	}
+	option = {
+		name = krcw_usa_14.c
+		ai_chance = {
+			base = 15
+		}
+		add_political_power = 15
+		add_manpower = -15000
+		if = { limit = { country_exists = WCA } WCA = { add_manpower = 15000 } }
+	}
+}
+
+country_event = {
+	id = krcw_usa.30
+	title = krcw_usa_30_t
+	desc = krcw_usa_30_d
+	picture = GFX_krcw_us_long_family_c
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		NOT = { has_global_flag = KRCW_long_dead }
+	}
+	option = {
+		name = krcw_usa_30.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = 25
+		set_country_flag = krcw_usa_earl_at_hand
+		if = { limit = { NOT = { has_idea = krcw_usa_long_ailing } } add_ideas = krcw_usa_long_ailing }
+	}
+	option = {
+		name = krcw_usa_30.b
+		ai_chance = {
+			base = 25
+		}
+		army_experience = 10
+		add_stability = -0.02
+		set_country_flag = krcw_usa_generals_alerted
+		if = { limit = { NOT = { has_idea = krcw_usa_long_ailing } } add_ideas = krcw_usa_long_ailing }
+	}
+	option = {
+		name = krcw_usa_30.c
+		ai_chance = {
+			base = 15
+		}
+		add_political_power = 10
+		add_stability = -0.03
+		if = { limit = { NOT = { has_idea = krcw_usa_long_ailing } } add_ideas = krcw_usa_long_ailing }
+	}
+}
+
+country_event = {
+	id = krcw_usa.31
+	title = krcw_usa_31_t
+	desc = krcw_usa_31_d
+	picture = GFX_krcw_us_long
+	major = yes
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		NOT = { has_global_flag = KRCW_long_dead }
+	}
+	option = {
+		name = krcw_usa_31.a
+		trigger = { tag = USA }
+		ai_chance = {
+			base = 1
+		}
+		set_global_flag = KRCW_long_dead
+		if = { limit = { has_idea = krcw_usa_long_ailing } remove_ideas = krcw_usa_long_ailing }
+		add_ideas = krcw_usa_succession_chaos
+		add_ideas = krcw_usa_restless_generals
+		add_stability = -0.05
+		add_political_power = -50
+		if = { limit = { has_country_leader = { character = USA_krcw_huey_long ruling_only = yes } } kill_country_leader = yes }
+		else_if = { limit = { has_character = USA_krcw_huey_long } retire_character = USA_krcw_huey_long }
+		random_country = { news_event = { id = krcw_usa.32 days = 1 } }
+		if = { limit = { country_exists = WCA WCA = { NOT = { has_country_flag = krcw_wca_long_death_seen } } } WCA = { set_country_flag = krcw_wca_long_death_seen country_event = { id = krcw_wca.20 days = 2 } } }
+		country_event = { id = krcw_usa.33 days = 10 }
+	}
+	option = {
+		name = krcw_major_viewer.a
+		trigger = { NOT = { tag = USA } }
+		ai_chance = { base = 1 }
+	}
+}
+
+news_event = {
+	id = krcw_usa.32
+	title = krcw_usa_32_t
+	desc = krcw_usa_32_d
+	picture = GFX_krcw_us_long_n
+	is_triggered_only = yes
+	option = {
+		name = krcw_usa_32.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = krcw_usa.33
+	title = krcw_usa_33_t
+	desc = krcw_usa_33_d
+	picture = GFX_krcw_us_legislature
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		has_global_flag = KRCW_long_dead
+	}
+	option = {
+		name = krcw_usa_33.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = -25
+		set_country_flag = krcw_usa_succession_by_party
+		krcw_usa_succession_roll = yes
+	}
+	option = {
+		name = krcw_usa_33.b
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		army_experience = 10
+		add_war_support = 0.03
+		set_country_flag = krcw_usa_succession_by_army
+		krcw_usa_succession_roll = yes
+	}
+	option = {
+		name = krcw_usa_33.c
+		ai_chance = {
+			base = 15
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		set_country_flag = krcw_usa_succession_by_moscow
+		krcw_usa_succession_roll = yes
+	}
+}
+
+country_event = {
+	id = krcw_usa.45
+	title = krcw_usa_45_t
+	desc = krcw_usa_45_d
+	picture = GFX_krcw_us_legislature
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		NOT = { has_global_flag = KRCW_earl_long_president }
+		NOT = { has_country_flag = krcw_usa_junta_rule }
+	}
+	option = {
+		name = krcw_usa_45.a
+		ai_chance = {
+			base = 1
+		}
+		set_global_flag = KRCW_earl_long_president
+		if = { limit = { NOT = { has_character = USA_krcw_earl_long } } recruit_character = USA_krcw_earl_long }
+		promote_character = USA_krcw_earl_long
+		add_stability = 0.05
+		add_political_power = 50
+		if = { limit = { has_idea = krcw_usa_succession_chaos } remove_ideas = krcw_usa_succession_chaos }
+		random_country = { news_event = { id = krcw_usa.34 days = 2 } }
+		country_event = { id = krcw_usa.36 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_usa.46
+	title = krcw_usa_46_t
+	desc = krcw_usa_46_d
+	picture = GFX_krcw_us_military_trial
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		NOT = { has_global_flag = KRCW_earl_long_president }
+		NOT = { has_country_flag = krcw_usa_junta_rule }
+	}
+	option = {
+		name = krcw_usa_46.a
+		ai_chance = {
+			base = 1
+		}
+		set_country_flag = krcw_usa_junta_rule
+		set_global_flag = KRCW_usa_junta
+		if = { limit = { NOT = { has_character = USA_krcw_moseley } } recruit_character = USA_krcw_moseley }
+		promote_character = USA_krcw_moseley
+		add_war_support = 0.1
+		add_stability = -0.05
+		army_experience = 25
+		if = { limit = { has_idea = krcw_usa_succession_chaos } remove_ideas = krcw_usa_succession_chaos }
+		krcw_ohio_up_large = yes
+		krcw_tension_up_medium = yes
+		random_country = { news_event = { id = krcw_usa.35 days = 2 } }
+	}
+}
+
+country_event = {
+	id = krcw_usa.47
+	title = krcw_usa_47_t
+	desc = krcw_usa_47_d
+	picture = GFX_krcw_us_legislature
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		NOT = { has_global_flag = KRCW_earl_long_president }
+		NOT = { has_country_flag = krcw_usa_junta_rule }
+	}
+	option = {
+		name = krcw_usa_47.a
+		ai_chance = {
+			base = 1
+		}
+		set_global_flag = KRCW_earl_long_president
+		if = { limit = { NOT = { has_character = USA_krcw_earl_long } } recruit_character = USA_krcw_earl_long }
+		promote_character = USA_krcw_earl_long
+		set_country_flag = krcw_usa_moscow_installed
+		add_political_power = 25
+		add_stability = -0.02
+		if = { limit = { has_idea = krcw_usa_succession_chaos } remove_ideas = krcw_usa_succession_chaos }
+		if = { limit = { NOT = { has_idea = krcw_usa_russian_mission } } add_ideas = krcw_usa_russian_mission }
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_us_accord_partner } } }
+		random_country = { news_event = { id = krcw_usa.34 days = 2 } }
+		country_event = { id = krcw_usa.36 days = 30 }
+	}
+}
+
+news_event = {
+	id = krcw_usa.34
+	title = krcw_usa_34_t
+	desc = krcw_usa_34_d
+	picture = GFX_krcw_us_inauguration_n
+	is_triggered_only = yes
+	option = {
+		name = krcw_usa_34.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+news_event = {
+	id = krcw_usa.35
+	title = krcw_usa_35_t
+	desc = krcw_usa_35_d
+	picture = GFX_krcw_us_military_trial_n
+	is_triggered_only = yes
+	option = {
+		name = krcw_usa_35.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = krcw_usa.36
+	title = krcw_usa_36_t
+	desc = krcw_usa_36_d
+	picture = GFX_krcw_us_macarthur
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		has_global_flag = KRCW_earl_long_president
+	}
+	option = {
+		name = krcw_usa_36.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = -50
+		army_experience = -10
+		add_stability = 0.03
+		if = { limit = { has_idea = krcw_usa_restless_generals } remove_ideas = krcw_usa_restless_generals }
+		set_country_flag = krcw_usa_generals_dispersed
+	}
+	option = {
+		name = krcw_usa_36.b
+		ai_chance = {
+			base = 30
+		}
+		add_political_power = -25
+		army_experience = 25
+		add_war_support = 0.03
+		krcw_ohio_up_small = yes
+	}
+	option = {
+		name = krcw_usa_36.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = -0.03
+		set_country_flag = krcw_usa_generals_unchecked
+		country_event = { id = krcw_usa.37 days = 180 random_days = 300 }
+	}
+}
+
+country_event = {
+	id = krcw_usa.37
+	title = krcw_usa_37_t
+	desc = krcw_usa_37_d
+	picture = GFX_krcw_us_army
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		has_country_flag = krcw_usa_generals_unchecked
+		NOT = { has_country_flag = krcw_usa_junta_rule }
+	}
+	option = {
+		name = krcw_usa_37.a
+		ai_chance = {
+			base = 55
+		}
+		add_political_power = -75
+		add_stability = -0.03
+		army_experience = -25
+		if = { limit = { has_idea = krcw_usa_restless_generals } remove_ideas = krcw_usa_restless_generals }
+		set_country_flag = krcw_usa_generals_dispersed
+	}
+	option = {
+		name = krcw_usa_37.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_usa_junta_rule
+		set_global_flag = KRCW_usa_junta
+		if = { limit = { NOT = { has_character = USA_krcw_moseley } } recruit_character = USA_krcw_moseley }
+		promote_character = USA_krcw_moseley
+		clr_global_flag = KRCW_earl_long_president
+		add_war_support = 0.1
+		add_stability = -0.05
+		if = { limit = { has_idea = krcw_usa_earl_compromise } remove_ideas = krcw_usa_earl_compromise }
+		krcw_ohio_up_large = yes
+		krcw_tension_up_medium = yes
+		random_country = { news_event = { id = krcw_usa.35 days = 2 } }
+	}
+}
+
+country_event = {
+	id = krcw_usa.20
+	title = krcw_usa_20_t
+	desc = krcw_usa_20_d
+	picture = GFX_krcw_us_election_long
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		NOT = { has_global_flag = KRCW_long_dead }
+	}
+	option = {
+		name = krcw_usa_20.a
+		ai_chance = {
+			base = 20
+		}
+		add_political_power = -50
+		add_stability = 0.05
+		krcw_ohio_down_small = yes
+
+		set_country_flag = krcw_usa_real_election
+		add_popularity = { ideology = nationalist popularity = -0.04 }
+		custom_effect_tooltip = krcw_usa_real_election_tt
+		random_list = {
+			55 = {
+				modifier = { factor = 1.5 has_idea = krcw_usa_civil_rights_act }
+				modifier = { factor = 1.3 has_country_flag = krcw_usa_share_favoured }
+				modifier = { factor = 1.2 has_country_flag = krcw_usa_listening_to_veterans }
+				modifier = { factor = 1.3 has_stability > 0.6 }
+				country_event = { id = krcw_usa.23 days = 31 random_days = 5 }
+			}
+			45 = {
+				modifier = { factor = 1.5 has_idea = krcw_usa_hard_segregation }
+				modifier = { factor = 1.3 has_idea = krcw_usa_machine_corruption }
+				modifier = { factor = 1.3 has_country_flag = krcw_usa_governors_favoured }
+				modifier = { factor = 1.2 has_country_flag = krcw_usa_veterans_arrested }
+				modifier = { factor = 1.3 has_stability < 0.4 }
+				country_event = { id = krcw_usa.24 days = 31 random_days = 5 }
+			}
+		}
+	}
+	option = {
+		name = krcw_usa_20.b
+		ai_chance = {
+			base = 70
+		}
+		add_political_power = 50
+		add_popularity = { ideology = nationalist popularity = 0.05 }
+		add_stability = -0.02
+		set_country_flag = krcw_usa_managed_election
+	}
+	option = {
+		name = krcw_usa_20.c
+		ai_chance = {
+			base = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 75
+		add_stability = -0.08
+		add_war_support = 0.05
+		krcw_ohio_up_medium = yes
+		set_country_flag = krcw_usa_no_election
+		add_popularity = { ideology = nationalist popularity = 0.03 }
+		country_event = { id = krcw_usa.25 days = 31 random_days = 5 }
+	}
+}
+
+country_event = {
+	id = krcw_usa.21
+	title = krcw_usa_21_t
+	desc = krcw_usa_21_d
+	picture = GFX_krcw_us_inauguration
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		NOT = { has_global_flag = KRCW_long_dead }
+		NOT = { has_country_flag = krcw_usa_real_election }
+		NOT = { has_country_flag = krcw_usa_no_election }
+	}
+	option = {
+		name = krcw_usa_21.a
+		ai_chance = {
+			base = 1
+		}
+		add_political_power = 75
+		add_stability = 0.03
+		set_global_flag = KRCW_long_fifth_term
+		if = { limit = { NOT = { has_idea = krcw_usa_long_ailing } } add_ideas = krcw_usa_long_ailing }
+		random_country = { news_event = { id = krcw_usa.22 days = 3 } }
+	}
+}
+
+country_event = {
+	id = krcw_usa.23
+	title = krcw_usa_23_t
+	desc = krcw_usa_23_d
+	picture = GFX_krcw_us_inauguration
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		NOT = { has_global_flag = KRCW_long_dead }
+	}
+	option = {
+		name = krcw_usa_23.a
+		ai_chance = {
+			base = 1
+		}
+		set_global_flag = KRCW_long_fifth_term
+		if = { limit = { NOT = { has_idea = krcw_usa_long_ailing } } add_ideas = krcw_usa_long_ailing }
+		add_political_power = 50
+		add_stability = 0.05
+
+		set_country_flag = krcw_usa_honest_mandate
+		if = { limit = { country_exists = WCA } WCA = { add_stability = -0.02 } }
+		random_country = { news_event = { id = krcw_usa.22 days = 3 } }
+	}
+}
+
+country_event = {
+	id = krcw_usa.24
+	title = krcw_usa_24_t
+	desc = krcw_usa_24_d
+	picture = GFX_krcw_us_legislature
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		NOT = { has_global_flag = KRCW_long_dead }
+	}
+	option = {
+		name = krcw_usa_24.a
+		ai_chance = {
+			base = 60
+		}
+		set_global_flag = KRCW_long_fifth_term
+		if = { limit = { NOT = { has_idea = krcw_usa_long_ailing } } add_ideas = krcw_usa_long_ailing }
+		add_political_power = -25
+		add_stability = 0.03
+
+		set_country_flag = krcw_usa_opposition_seated
+		add_popularity = { ideology = nationalist popularity = -0.03 }
+		random_country = { news_event = { id = krcw_usa.22 days = 3 } }
+	}
+	option = {
+		name = krcw_usa_24.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		set_global_flag = KRCW_long_fifth_term
+		if = { limit = { NOT = { has_idea = krcw_usa_long_ailing } } add_ideas = krcw_usa_long_ailing }
+		add_political_power = 50
+		add_stability = -0.05
+		krcw_ohio_up_small = yes
+		set_country_flag = krcw_usa_managed_election
+		add_popularity = { ideology = nationalist popularity = 0.02 }
+		random_country = { news_event = { id = krcw_usa.22 days = 3 } }
+	}
+}
+
+country_event = {
+	id = krcw_usa.25
+	title = krcw_usa_25_t
+	desc = krcw_usa_25_d
+	picture = GFX_krcw_us_capitol
+	is_triggered_only = yes
+	trigger = {
+		tag = USA
+		NOT = { has_global_flag = KRCW_long_dead }
+	}
+	option = {
+		name = krcw_usa_25.a
+		ai_chance = {
+			base = 1
+		}
+		set_global_flag = KRCW_long_fifth_term
+		if = { limit = { NOT = { has_idea = krcw_usa_long_ailing } } add_ideas = krcw_usa_long_ailing }
+		add_political_power = 25
+		add_war_support = 0.02
+		if = { limit = { country_exists = WCA } WCA = { add_stability = 0.02 } }
+	}
+}
+
+news_event = {
+	id = krcw_usa.22
+	title = krcw_usa_22_t
+	desc = krcw_usa_22_d
+	picture = GFX_krcw_us_capitol_n
+	is_triggered_only = yes
+	option = {
+		name = krcw_usa_22.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}

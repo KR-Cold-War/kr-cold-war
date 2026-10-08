@@ -1,0 +1,1672 @@
+# krcw: paced
+add_namespace = krcw_chi2
+
+country_event = {
+	id = krcw_chi2.1
+	title = krcw_chi2_1_t
+	desc = {
+		text = krcw_chi2_1_d1
+		trigger = {
+			has_country_flag = krcw_chi_moderate_land_law
+		}
+	}
+	desc = {
+		text = krcw_chi2_1_d
+		trigger = {
+			NOT = {
+				OR = {
+					AND = {
+					has_country_flag = krcw_chi_moderate_land_law
+					}
+				}
+			}
+		}
+	}
+	picture = GFX_krcw_chi_rural_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_1.a
+		ai_chance = {
+			base = 45
+			modifier = { factor = 2 check_variable = { krcw_chi_f_revcom > 45 } }
+			modifier = { factor = 1.5 has_completed_focus = krcw_chi_reach_the_county }
+		}
+		add_ideas = krcw_chi_land_committees_cadres
+		set_country_flag = krcw_chi_land_cadres
+		add_political_power = -25
+		country_event = { id = krcw_chi2.2 days = 25 }
+	}
+	option = {
+		name = krcw_chi2_1.b
+		ai_chance = {
+			base = 25
+			modifier = { factor = 2 has_country_flag = krcw_chi_moderate_land_law }
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_moderate > 35 } }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_ideas = krcw_chi_land_committees_notables
+		set_country_flag = krcw_chi_land_notables
+		add_stability = 0.03
+		country_event = { id = krcw_chi2.3 days = 25 }
+	}
+	option = {
+		name = krcw_chi2_1.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 3 has_country_flag = krcw_chi_peasant_militia }
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_left > 25 } }
+			modifier = { factor = 0.5 has_stability < 0.4 }
+		}
+		add_ideas = krcw_chi_land_committees_associations
+		set_country_flag = krcw_chi_land_associations
+		add_to_variable = { krcw_chi_f_left = 5 }
+		clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_csp = 3 }
+		clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+		add_war_support = 0.02
+		country_event = { id = krcw_chi2.4 days = 25 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.2
+	title = krcw_chi2_2_t
+	desc = krcw_chi2_2_d
+	picture = GFX_krcw_chi_rural3_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_2.a
+		ai_chance = {
+			base = 55
+		}
+		add_stability = 0.03
+		add_political_power = 25
+		country_event = { id = krcw_chi2.5 days = 30 }
+	}
+	option = {
+		name = krcw_chi2_2.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_manpower = -10000
+		add_political_power = -25
+		add_war_support = 0.02
+		set_country_flag = krcw_chi_land_pushed
+		country_event = { id = krcw_chi2.5 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.3
+	title = krcw_chi2_3_t
+	desc = krcw_chi2_3_d
+	picture = GFX_krcw_chi_rural_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_3.a
+		ai_chance = {
+			base = 50
+		}
+		add_stability = 0.03
+		add_political_power = 25
+		add_to_variable = { krcw_chi_f_moderate = 3 }
+		clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+		set_country_flag = krcw_chi_land_lenient
+		country_event = { id = krcw_chi2.5 days = 30 }
+	}
+	option = {
+		name = krcw_chi2_3.b
+		ai_chance = {
+			base = 50
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -50
+		add_stability = -0.02
+		add_to_variable = { krcw_chi_f_revcom = 3 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+		set_country_flag = krcw_chi_land_rechecked
+		country_event = { id = krcw_chi2.5 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.4
+	title = krcw_chi2_4_t
+	desc = krcw_chi2_4_d
+	picture = GFX_krcw_chi_farmers_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_4.a
+		ai_chance = {
+			base = 55
+		}
+		add_stability = 0.02
+		add_political_power = -25
+		add_to_variable = { krcw_chi_f_left = -3 }
+		clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+		set_country_flag = krcw_chi_land_standard
+		country_event = { id = krcw_chi2.5 days = 30 }
+	}
+	option = {
+		name = krcw_chi2_4.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.03
+		add_stability = -0.04
+		add_to_variable = { krcw_chi_f_left = 5 }
+		clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_csp = 3 }
+		clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+		set_country_flag = krcw_chi_land_zealous
+		country_event = { id = krcw_chi2.5 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.5
+	title = krcw_chi2_5_t
+	desc = {
+		text = krcw_chi2_5_d1
+		trigger = {
+			has_country_flag = krcw_chi_land_cadres
+		}
+	}
+	desc = {
+		text = krcw_chi2_5_d2
+		trigger = {
+			has_country_flag = krcw_chi_land_notables
+		}
+	}
+	desc = {
+		text = krcw_chi2_5_d3
+		trigger = {
+			has_country_flag = krcw_chi_land_associations
+		}
+	}
+	desc = {
+		text = krcw_chi2_5_d
+		trigger = {
+			NOT = {
+				OR = {
+					AND = {
+					has_country_flag = krcw_chi_land_cadres
+					}
+					AND = {
+					has_country_flag = krcw_chi_land_notables
+					}
+					AND = {
+					has_country_flag = krcw_chi_land_associations
+					}
+				}
+			}
+		}
+	}
+	picture = GFX_krcw_chi_farmers2_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_5.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_chi_land_cadres }
+			modifier = { factor = 1.3 has_stability > 0.5 }
+		}
+		add_political_power = -25
+		army_experience = 5
+		add_stability = 0.02
+		set_country_flag = krcw_chi_land_guarded
+		country_event = { id = krcw_chi2.6 days = 30 }
+	}
+	option = {
+		name = krcw_chi2_5.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 has_country_flag = krcw_chi_land_notables }
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_moderate > 35 } }
+		}
+		add_political_power = 25
+		add_to_variable = { krcw_chi_f_moderate = 3 }
+		clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_left = -3 }
+		clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+		set_country_flag = krcw_chi_land_provinces
+		country_event = { id = krcw_chi2.6 days = 30 }
+	}
+	option = {
+		name = krcw_chi2_5.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 3 has_country_flag = krcw_chi_land_associations }
+			modifier = { factor = 2 has_country_flag = krcw_chi_peasant_militia }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_manpower = 10000
+		add_stability = -0.03
+		add_war_support = 0.03
+		add_to_variable = { krcw_chi_f_csp = 3 }
+		clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_whampoa = -3 }
+		clamp_variable = { var = krcw_chi_f_whampoa min = 0 max = 100 }
+		set_country_flag = krcw_chi_land_guard_squads
+		country_event = { id = krcw_chi2.6 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.6
+	title = krcw_chi2_6_t
+	desc = {
+		text = krcw_chi2_6_d1
+		trigger = {
+			has_country_flag = krcw_chi_land_guard_squads
+		}
+	}
+	desc = {
+		text = krcw_chi2_6_d
+		trigger = {
+			NOT = {
+				OR = {
+					AND = {
+					has_country_flag = krcw_chi_land_guard_squads
+					}
+				}
+			}
+		}
+	}
+	picture = GFX_krcw_chi_legislative
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_6.a
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 has_country_flag = krcw_chi_land_cadres }
+			modifier = { factor = 1.3 has_stability > 0.5 }
+			modifier = { factor = 1.3 check_variable = { krcw_chi_f_revcom > 40 } }
+		}
+		add_political_power = -50
+		custom_effect_tooltip = krcw_chi2_deadline_tt
+		hidden_effect = {
+		random_list = {
+			55 = {
+				modifier = { factor = 1.4 has_country_flag = krcw_chi_land_cadres }
+				modifier = { factor = 1.2 has_country_flag = krcw_chi_land_rechecked }
+				modifier = { factor = 1.2 has_country_flag = krcw_chi_land_guarded }
+				modifier = { factor = 1.3 has_completed_focus = krcw_chi_reach_the_county }
+				modifier = { factor = 1.3 has_stability > 0.55 }
+				modifier = { factor = 0.6 has_country_flag = krcw_chi_land_lenient }
+				modifier = { factor = 0.7 has_country_flag = krcw_chi_land_provinces }
+				modifier = { factor = 0.7 has_war = yes }
+				country_event = { id = krcw_chi2.7 days = 30 }
+			}
+			45 = {
+				set_country_flag = krcw_chi_land_deadline_missed
+				country_event = { id = krcw_chi2.8 days = 30 }
+			}
+		}
+		}
+	}
+	option = {
+		name = krcw_chi2_6.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 has_country_flag = krcw_chi_land_notables }
+			modifier = { factor = 1.5 has_stability < 0.4 }
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_moderate > 35 } }
+		}
+		add_stability = 0.03
+		add_political_power = 25
+		add_to_variable = { krcw_chi_f_moderate = 3 }
+		clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+		set_country_flag = krcw_chi_land_phased
+		country_event = { id = krcw_chi2.8 days = 30 }
+	}
+	option = {
+		name = krcw_chi2_6.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 3 has_country_flag = krcw_chi_land_associations }
+			modifier = { factor = 2 has_country_flag = krcw_chi_land_guard_squads }
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_left > 30 } }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.04
+		add_stability = -0.04
+		add_to_variable = { krcw_chi_f_left = 5 }
+		clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_csp = 5 }
+		clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_moderate = -5 }
+		clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+		country_event = { id = krcw_chi2.9 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.7
+	title = krcw_chi2_7_t
+	desc = krcw_chi2_7_d
+	picture = GFX_krcw_chi_rural3_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_7.a
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { has_idea = krcw_chi_land_committees_cadres } remove_ideas = krcw_chi_land_committees_cadres }
+		if = { limit = { has_idea = krcw_chi_land_committees_notables } remove_ideas = krcw_chi_land_committees_notables }
+		if = { limit = { has_idea = krcw_chi_land_committees_associations } remove_ideas = krcw_chi_land_committees_associations }
+		add_ideas = krcw_chi_land_delivered_idea
+		set_country_flag = krcw_chi_land_delivered
+		add_stability = 0.05
+		add_political_power = 50
+		add_to_variable = { krcw_chi_f_revcom = 3 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_left = 3 }
+		clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.8
+	title = krcw_chi2_8_t
+	desc = {
+		text = krcw_chi2_8_d1
+		trigger = {
+			has_country_flag = krcw_chi_land_phased
+		}
+	}
+	desc = {
+		text = krcw_chi2_8_d
+		trigger = {
+			NOT = {
+				OR = {
+					AND = {
+					has_country_flag = krcw_chi_land_phased
+					}
+				}
+			}
+		}
+	}
+	picture = GFX_krcw_chi_rural_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_8.a
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { has_idea = krcw_chi_land_committees_cadres } remove_ideas = krcw_chi_land_committees_cadres }
+		if = { limit = { has_idea = krcw_chi_land_committees_notables } remove_ideas = krcw_chi_land_committees_notables }
+		if = { limit = { has_idea = krcw_chi_land_committees_associations } remove_ideas = krcw_chi_land_committees_associations }
+		add_ideas = krcw_chi_land_stalled_idea
+		set_country_flag = krcw_chi_land_stalled
+		add_stability = -0.02
+		add_to_variable = { krcw_chi_f_moderate = 3 }
+		clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_left = -3 }
+		clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+		custom_effect_tooltip = krcw_chi2_salvage_tt
+	}
+}
+
+country_event = {
+	id = krcw_chi2.9
+	title = krcw_chi2_9_t
+	desc = krcw_chi2_9_d
+	picture = GFX_krcw_chi_farmers2_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_9.a
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { has_idea = krcw_chi_land_committees_cadres } remove_ideas = krcw_chi_land_committees_cadres }
+		if = { limit = { has_idea = krcw_chi_land_committees_notables } remove_ideas = krcw_chi_land_committees_notables }
+		if = { limit = { has_idea = krcw_chi_land_committees_associations } remove_ideas = krcw_chi_land_committees_associations }
+		add_ideas = krcw_chi_land_delivered_idea
+		set_country_flag = krcw_chi_land_delivered
+		set_country_flag = krcw_chi_land_campaign
+		add_war_support = 0.05
+		add_stability = -0.03
+		add_manpower = 20000
+		add_to_variable = { krcw_chi_f_left = 8 }
+		clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_csp = 5 }
+		clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_moderate = -8 }
+		clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.11
+	title = krcw_chi2_11_t
+	desc = {
+		text = krcw_chi2_11_d1
+		trigger = {
+			has_country_flag = krcw_chi_land_deepened
+		}
+	}
+	desc = {
+		text = krcw_chi2_11_d2
+		trigger = {
+			has_country_flag = krcw_chi_land_salvaged
+		}
+	}
+	desc = {
+		text = krcw_chi2_11_d
+		trigger = {
+			NOT = {
+				OR = {
+					AND = {
+					has_country_flag = krcw_chi_land_deepened
+					}
+					AND = {
+					has_country_flag = krcw_chi_land_salvaged
+					}
+				}
+			}
+		}
+	}
+	picture = GFX_krcw_chi_rural3_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_11.a
+		ai_chance = {
+			base = 1
+		}
+		add_political_power = 50
+		add_stability = 0.03
+		if = { limit = { has_country_flag = krcw_chi_land_campaign } add_war_support = 0.02 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.12
+	title = krcw_chi2_12_t
+	desc = krcw_chi2_12_d
+	picture = GFX_krcw_chi_rural_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_12.a
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 has_country_flag = krcw_chi_land_campaign }
+		}
+		add_stability = 0.04
+		add_political_power = -25
+		add_to_variable = { krcw_chi_f_left = 3 }
+		clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+	}
+	option = {
+		name = krcw_chi2_12.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_revcom > 45 } }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_war_support = 0.03
+		add_stability = -0.03
+		add_to_variable = { krcw_chi_f_left = -3 }
+		clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_revcom = 3 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.20
+	title = krcw_chi2_20_t
+	desc = {
+		text = krcw_chi2_20_d1
+		trigger = {
+			has_idea = krcw_chi_plan_commission
+		}
+	}
+	desc = {
+		text = krcw_chi2_20_d
+		trigger = {
+			NOT = {
+				OR = {
+					AND = {
+					has_idea = krcw_chi_plan_commission
+					}
+				}
+			}
+		}
+	}
+	picture = GFX_krcw_chi_anshan
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_20.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 check_variable = { krcw_chi_f_revcom > 45 } }
+			modifier = { factor = 1.5 has_idea = krcw_chi_revcom_ascendant }
+		}
+		add_political_power = 25
+		add_to_variable = { krcw_chi_f_revcom = 3 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+		country_event = { id = krcw_chi2.21 days = 25 }
+	}
+	option = {
+		name = krcw_chi2_20.b
+		trigger = {
+			country_exists = FRA
+		}
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 has_idea = krcw_chi_paris_clearing_union }
+			modifier = { factor = 1.5 has_country_flag = krcw_chi_different_roads }
+			modifier = { factor = 0.5 has_country_flag = krcw_chi_asian_leadership }
+		}
+		add_political_power = -25
+		custom_effect_tooltip = krcw_chi2_france_tt
+		hidden_effect = {
+		random_list = {
+			60 = {
+				modifier = { factor = 1.5 has_idea = krcw_chi_paris_clearing_union }
+				modifier = { factor = 1.3 has_country_flag = krcw_chi_different_roads }
+				modifier = { factor = 1.3 has_country_flag = krcw_chi_paris_credit }
+				modifier = { factor = 0.6 has_country_flag = krcw_chi_asian_leadership }
+				modifier = { factor = 0.7 FRA = { has_war = yes } }
+				country_event = { id = krcw_chi2.22 days = 30 }
+			}
+			40 = {
+				country_event = { id = krcw_chi2.23 days = 30 }
+			}
+		}
+		}
+	}
+	option = {
+		name = krcw_chi2_20.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 2 check_variable = { krcw_chi_f_moderate > 35 } }
+			modifier = { factor = 1.5 has_idea = krcw_chi_moderate_coalition }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.02
+		add_to_variable = { krcw_chi_f_moderate = 3 }
+		clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_revcom = -3 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+		country_event = { id = krcw_chi2.24 days = 25 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.21
+	title = krcw_chi2_21_t
+	desc = krcw_chi2_21_d
+	picture = GFX_krcw_chi_docks_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_21.a
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_csp > 25 } }
+		}
+		add_political_power = -50
+		add_to_variable = { krcw_chi_f_csp = 3 }
+		clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+		set_country_flag = krcw_chi_plan_squeezed
+		set_country_flag = krcw_chi_plan_stage1
+		if = { limit = { has_country_flag = krcw_chi_plan_quotas_set } country_event = { id = krcw_chi2.25 days = 30 } }
+	}
+	option = {
+		name = krcw_chi2_21.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_revcom > 50 } }
+		}
+		add_stability = -0.04
+		add_to_variable = { krcw_chi_f_csp = -5 }
+		clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+		add_political_power = 25
+		set_country_flag = krcw_chi_plan_squeezed
+		set_country_flag = krcw_chi_plan_stage1
+		if = { limit = { has_country_flag = krcw_chi_plan_quotas_set } country_event = { id = krcw_chi2.25 days = 30 } }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.22
+	title = krcw_chi2_22_t
+	desc = krcw_chi2_22_d
+	picture = GFX_krcw_chi_paris_office
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_22.a
+		ai_chance = {
+			base = 60
+		}
+		328 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		set_country_flag = krcw_chi_plan_paris_credit
+		if = { limit = { country_exists = FRA } FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_trade_partner } } }
+		set_country_flag = krcw_chi_plan_stage1
+		if = { limit = { has_country_flag = krcw_chi_plan_quotas_set } country_event = { id = krcw_chi2.25 days = 30 } }
+	}
+	option = {
+		name = krcw_chi2_22.b
+		ai_chance = {
+			base = 40
+		}
+		601 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+		} }
+		add_stability = 0.03
+		set_country_flag = krcw_chi_plan_paris_credit
+		if = { limit = { country_exists = FRA } FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_trade_partner } } }
+		set_country_flag = krcw_chi_plan_stage1
+		if = { limit = { has_country_flag = krcw_chi_plan_quotas_set } country_event = { id = krcw_chi2.25 days = 30 } }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.23
+	title = krcw_chi2_23_t
+	desc = krcw_chi2_23_d
+	picture = GFX_krcw_chi_european_kmt_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_23.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_chi_different_roads }
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_csp > 25 } }
+		}
+		328 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		set_country_flag = krcw_chi_plan_paris_terms
+		add_to_variable = { krcw_chi_f_csp = 3 }
+		clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_revcom = -5 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+		custom_effect_tooltip = krcw_chi2_paris_terms_tt
+		set_country_flag = krcw_chi_plan_stage1
+		if = { limit = { has_country_flag = krcw_chi_plan_quotas_set } country_event = { id = krcw_chi2.25 days = 30 } }
+	}
+	option = {
+		name = krcw_chi2_23.b
+		ai_chance = {
+			base = 50
+			modifier = { factor = 2 has_country_flag = krcw_chi_asian_leadership }
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_revcom > 45 } }
+		}
+		add_political_power = 25
+		add_to_variable = { krcw_chi_f_revcom = 3 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+		add_stability = -0.02
+		set_country_flag = krcw_chi_plan_squeezed
+		if = { limit = { country_exists = FRA } FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_rival } } }
+		set_country_flag = krcw_chi_plan_stage1
+		if = { limit = { has_country_flag = krcw_chi_plan_quotas_set } country_event = { id = krcw_chi2.25 days = 30 } }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.24
+	title = krcw_chi2_24_t
+	desc = krcw_chi2_24_d
+	picture = GFX_krcw_chi_industry
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_24.a
+		ai_chance = {
+			base = 60
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_moderate > 30 } }
+		}
+		add_stability = 0.03
+		add_to_variable = { krcw_chi_f_revcom = -3 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+		set_country_flag = krcw_chi_plan_lowered
+		set_country_flag = krcw_chi_plan_stage1
+		if = { limit = { has_country_flag = krcw_chi_plan_quotas_set } country_event = { id = krcw_chi2.25 days = 30 } }
+	}
+	option = {
+		name = krcw_chi2_24.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_revcom > 45 } }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		set_country_flag = krcw_chi_plan_lowered
+		set_country_flag = krcw_chi_plan_false_figures
+		set_country_flag = krcw_chi_plan_stage1
+		if = { limit = { has_country_flag = krcw_chi_plan_quotas_set } country_event = { id = krcw_chi2.25 days = 30 } }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.25
+	title = krcw_chi2_25_t
+	desc = {
+		text = krcw_chi2_25_d1
+		trigger = {
+			has_country_flag = krcw_chi_plan_false_figures
+		}
+	}
+	desc = {
+		text = krcw_chi2_25_d2
+		trigger = {
+			has_country_flag = krcw_chi_plan_squeezed
+			NOT = { has_country_flag = krcw_chi_plan_false_figures }
+		}
+	}
+	desc = {
+		text = krcw_chi2_25_d
+		trigger = {
+			NOT = {
+				OR = {
+					AND = {
+					has_country_flag = krcw_chi_plan_false_figures
+					}
+					AND = {
+					has_country_flag = krcw_chi_plan_squeezed
+					NOT = { has_country_flag = krcw_chi_plan_false_figures }
+					}
+				}
+			}
+		}
+	}
+	picture = GFX_krcw_chi_industry
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_25.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 has_completed_focus = krcw_chi_commission_sets_quotas }
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_revcom > 45 } }
+			modifier = { factor = 0.3 has_country_flag = krcw_chi_plan_paris_terms }
+		}
+		add_political_power = 25
+		add_to_variable = { krcw_chi_f_revcom = 3 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+		country_event = { id = krcw_chi2.26 days = 30 }
+	}
+	option = {
+		name = krcw_chi2_25.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 has_completed_focus = krcw_chi_negotiate_quotas }
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_csp > 25 } }
+			modifier = { factor = 1.5 has_completed_focus = krcw_chi_transnational_federations }
+		}
+		add_to_variable = { krcw_chi_f_csp = 3 }
+		clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_moderate = 2 }
+		clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+		country_event = { id = krcw_chi2.27 days = 30 }
+	}
+	option = {
+		name = krcw_chi2_25.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 2 has_country_flag = krcw_chi_plan_squeezed }
+			modifier = { factor = 1.5 has_stability < 0.45 }
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_moderate > 35 } }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.02
+		add_to_variable = { krcw_chi_f_moderate = 3 }
+		clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+		country_event = { id = krcw_chi2.28 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.26
+	title = krcw_chi2_26_t
+	desc = krcw_chi2_26_d
+	picture = GFX_krcw_chi_anshan
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_26.a
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_revcom > 45 } }
+		}
+		if = { limit = { has_idea = krcw_chi_plan_commission } remove_ideas = krcw_chi_plan_commission }
+		if = { limit = { has_idea = krcw_chi_plan_quotas } remove_ideas = krcw_chi_plan_quotas }
+		if = { limit = { has_idea = krcw_chi_plan_federations } remove_ideas = krcw_chi_plan_federations }
+		add_ideas = krcw_chi_plan_command
+		set_country_flag = krcw_chi_plan_centralist
+		add_to_variable = { krcw_chi_f_csp = -5 }
+		clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+		add_stability = -0.02
+		custom_effect_tooltip = krcw_chi2_plan_central_tt
+	}
+	option = {
+		name = krcw_chi2_26.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_csp > 25 } }
+		}
+		if = { limit = { has_idea = krcw_chi_plan_commission } remove_ideas = krcw_chi_plan_commission }
+		if = { limit = { has_idea = krcw_chi_plan_quotas } remove_ideas = krcw_chi_plan_quotas }
+		if = { limit = { has_idea = krcw_chi_plan_federations } remove_ideas = krcw_chi_plan_federations }
+		add_ideas = krcw_chi_plan_command
+		set_country_flag = krcw_chi_plan_centralist
+		add_political_power = -25
+		add_stability = 0.02
+		custom_effect_tooltip = krcw_chi2_plan_central_tt
+	}
+}
+
+country_event = {
+	id = krcw_chi2.27
+	title = krcw_chi2_27_t
+	desc = krcw_chi2_27_d
+	picture = GFX_krcw_chi_worker
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_27.a
+		ai_chance = {
+			base = 60
+			modifier = { factor = 1.5 has_completed_focus = krcw_chi_negotiate_quotas }
+		}
+		if = { limit = { has_idea = krcw_chi_plan_commission } remove_ideas = krcw_chi_plan_commission }
+		if = { limit = { has_idea = krcw_chi_plan_quotas } remove_ideas = krcw_chi_plan_quotas }
+		if = { limit = { has_idea = krcw_chi_plan_federations } remove_ideas = krcw_chi_plan_federations }
+		add_ideas = krcw_chi_plan_bargained
+		set_country_flag = krcw_chi_plan_devolved
+		add_political_power = -25
+		add_stability = 0.02
+		custom_effect_tooltip = krcw_chi2_plan_devolved_tt
+	}
+	option = {
+		name = krcw_chi2_27.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_csp > 30 } }
+		}
+		if = { limit = { has_idea = krcw_chi_plan_commission } remove_ideas = krcw_chi_plan_commission }
+		if = { limit = { has_idea = krcw_chi_plan_quotas } remove_ideas = krcw_chi_plan_quotas }
+		if = { limit = { has_idea = krcw_chi_plan_federations } remove_ideas = krcw_chi_plan_federations }
+		add_ideas = krcw_chi_plan_bargained
+		set_country_flag = krcw_chi_plan_devolved
+		add_to_variable = { krcw_chi_f_csp = 3 }
+		clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+		add_stability = -0.02
+		custom_effect_tooltip = krcw_chi2_plan_devolved_tt
+	}
+}
+
+country_event = {
+	id = krcw_chi2.28
+	title = krcw_chi2_28_t
+	desc = krcw_chi2_28_d
+	picture = GFX_krcw_chi_worker
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_28.a
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_whampoa < 30 } }
+		}
+		if = { limit = { has_idea = krcw_chi_plan_commission } remove_ideas = krcw_chi_plan_commission }
+		if = { limit = { has_idea = krcw_chi_plan_quotas } remove_ideas = krcw_chi_plan_quotas }
+		if = { limit = { has_idea = krcw_chi_plan_federations } remove_ideas = krcw_chi_plan_federations }
+		add_ideas = krcw_chi_plan_livelihood
+		set_country_flag = krcw_chi_plan_consumer
+		add_to_variable = { krcw_chi_f_whampoa = -5 }
+		clamp_variable = { var = krcw_chi_f_whampoa min = 0 max = 100 }
+		custom_effect_tooltip = krcw_chi2_whampoa_tt
+		hidden_effect = {
+		random_list = {
+			50 = {
+				modifier = { factor = 1.5 check_variable = { krcw_chi_f_whampoa < 25 } }
+				modifier = { factor = 1.3 has_completed_focus = krcw_chi_unified_command }
+				add_stability = 0.02
+			}
+			50 = {
+				modifier = { factor = 1.5 check_variable = { krcw_chi_f_whampoa > 35 } }
+				modifier = { factor = 1.3 has_war = yes }
+				add_war_support = -0.03
+				add_stability = -0.03
+				set_country_flag = krcw_chi_plan_whampoa_angry
+			}
+		}
+		}
+		custom_effect_tooltip = krcw_chi2_plan_consumer_tt
+	}
+	option = {
+		name = krcw_chi2_28.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_whampoa > 30 } }
+			modifier = { factor = 1.5 has_war = yes }
+		}
+		if = { limit = { has_idea = krcw_chi_plan_commission } remove_ideas = krcw_chi_plan_commission }
+		if = { limit = { has_idea = krcw_chi_plan_quotas } remove_ideas = krcw_chi_plan_quotas }
+		if = { limit = { has_idea = krcw_chi_plan_federations } remove_ideas = krcw_chi_plan_federations }
+		add_ideas = krcw_chi_plan_livelihood
+		set_country_flag = krcw_chi_plan_consumer
+		add_political_power = -25
+		1792 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+		} }
+		custom_effect_tooltip = krcw_chi2_plan_consumer_tt
+	}
+}
+
+country_event = {
+	id = krcw_chi2.29
+	title = krcw_chi2_29_t
+	desc = {
+		text = krcw_chi2_29_d1
+		trigger = {
+			has_country_flag = krcw_chi_plan_centralist
+		}
+	}
+	desc = {
+		text = krcw_chi2_29_d2
+		trigger = {
+			has_country_flag = krcw_chi_plan_devolved
+		}
+	}
+	desc = {
+		text = krcw_chi2_29_d3
+		trigger = {
+			has_country_flag = krcw_chi_plan_consumer
+		}
+	}
+	desc = {
+		text = krcw_chi2_29_d
+		trigger = {
+			NOT = {
+				OR = {
+					AND = {
+					has_country_flag = krcw_chi_plan_centralist
+					}
+					AND = {
+					has_country_flag = krcw_chi_plan_devolved
+					}
+					AND = {
+					has_country_flag = krcw_chi_plan_consumer
+					}
+				}
+			}
+		}
+	}
+	picture = GFX_krcw_chi_industry
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_29.a
+		ai_chance = {
+			base = 70
+		}
+		add_political_power = 50
+		add_stability = 0.03
+		if = { limit = { has_country_flag = krcw_chi_plan_centralist } add_tech_bonus = { name = krcw_chi2_plan_heavy bonus = 0.5 uses = 1 category = industry } }
+		if = { limit = { has_country_flag = krcw_chi_plan_devolved } add_tech_bonus = { name = krcw_chi2_plan_prod bonus = 0.5 uses = 1 category = production } }
+		if = { limit = { has_country_flag = krcw_chi_plan_consumer } add_stability = 0.03 }
+	}
+	option = {
+		name = krcw_chi2_29.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 has_stability < 0.4 }
+		}
+		add_stability = 0.05
+		add_political_power = -25
+	}
+}
+
+country_event = {
+	id = krcw_chi2.40
+	title = krcw_chi2_40_t
+	desc = krcw_chi2_40_d
+	picture = GFX_krcw_chi_zhou_profile
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+		has_completed_focus = krcw_chi_the_question_of_after
+		NOT = { has_country_flag = krcw_chi_zhou_fell_ill }
+	}
+	mean_time_to_happen = {
+		days = 40
+		modifier = { factor = 0.6 has_war = yes }
+		modifier = { factor = 0.7 has_stability < 0.4 }
+		modifier = { factor = 0.8 has_idea = krcw_chi_five_year_programme }
+	}
+	immediate = {
+		set_country_flag = krcw_chi_zhou_fell_ill
+	}
+	option = {
+		name = krcw_chi2_40.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 check_variable = { krcw_chi_f_revcom > 45 } }
+			modifier = { factor = 1.5 has_country_flag = krcw_chi_heir_committee }
+		}
+		add_ideas = krcw_chi_zhou_convalescent
+		set_country_flag = krcw_chi_acting_revcom
+		add_to_variable = { krcw_chi_f_revcom = 3 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+		country_event = { id = krcw_chi2.41 days = 30 }
+	}
+	option = {
+		name = krcw_chi2_40.b
+		trigger = {
+			has_character = CHI_krcw_gu_mengyu
+		}
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 check_variable = { krcw_chi_f_moderate > 35 } }
+			modifier = { factor = 1.5 has_country_flag = krcw_chi_heir_technocrat }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_ideas = krcw_chi_zhou_convalescent
+		set_country_flag = krcw_chi_acting_moderate
+		add_to_variable = { krcw_chi_f_moderate = 3 }
+		clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+		country_event = { id = krcw_chi2.42 days = 30 }
+	}
+	option = {
+		name = krcw_chi2_40.c
+		ai_chance = {
+			base = 30
+			modifier = { factor = 1.5 has_country_flag = krcw_chi_heir_governor }
+			modifier = { factor = 1.5 has_global_flag = KRCW_chi_coalition }
+			modifier = { factor = 1.3 has_stability < 0.45 }
+		}
+		add_ideas = krcw_chi_zhou_convalescent
+		set_country_flag = krcw_chi_acting_li
+		if = { limit = { NOT = { has_character = CHI_krcw_li_jishen } } recruit_character = CHI_krcw_li_jishen }
+		add_stability = 0.02
+		country_event = { id = krcw_chi2.43 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.41
+	title = krcw_chi2_41_t
+	desc = krcw_chi2_41_d
+	picture = GFX_krcw_chi_whampoa
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_41.a
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_whampoa > 30 } }
+			modifier = { factor = 1.3 has_war = yes }
+		}
+		add_to_variable = { krcw_chi_f_whampoa = 5 }
+		clamp_variable = { var = krcw_chi_f_whampoa min = 0 max = 100 }
+		army_experience = 10
+		country_event = { id = krcw_chi2.44 days = 30 }
+	}
+	option = {
+		name = krcw_chi2_41.b
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_revcom > 45 } }
+		}
+		add_to_variable = { krcw_chi_f_whampoa = -5 }
+		clamp_variable = { var = krcw_chi_f_whampoa min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_revcom = 3 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+		add_stability = -0.02
+		country_event = { id = krcw_chi2.44 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.42
+	title = krcw_chi2_42_t
+	desc = krcw_chi2_42_d
+	picture = GFX_krcw_chi_gu_mengyu
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_42.a
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_moderate > 40 } }
+		}
+		add_to_variable = { krcw_chi_f_moderate = 5 }
+		clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_revcom = -3 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+		add_stability = 0.03
+		country_event = { id = krcw_chi2.44 days = 30 }
+	}
+	option = {
+		name = krcw_chi2_42.b
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_revcom > 40 } }
+		}
+		add_political_power = -25
+		add_to_variable = { krcw_chi_f_revcom = 3 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+		country_event = { id = krcw_chi2.44 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.43
+	title = krcw_chi2_43_t
+	desc = krcw_chi2_43_d
+	picture = GFX_krcw_chi_legislative
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_43.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_global_flag = KRCW_chi_coalition }
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_moderate > 35 } }
+		}
+		add_to_variable = { krcw_chi_f_moderate = 5 }
+		clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+		add_stability = 0.03
+		set_country_flag = krcw_chi_acting_opened
+		country_event = { id = krcw_chi2.44 days = 30 }
+	}
+	option = {
+		name = krcw_chi2_43.b
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_revcom > 45 } }
+		}
+		add_to_variable = { krcw_chi_f_revcom = 3 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+		add_political_power = 25
+		country_event = { id = krcw_chi2.44 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.44
+	title = krcw_chi2_44_t
+	desc = krcw_chi2_44_d
+	picture = GFX_krcw_chi_zhou_hq
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_44.a
+		ai_chance = {
+			base = 30
+			modifier = { factor = 1.5 has_war = yes }
+			modifier = { factor = 1.5 has_stability < 0.4 }
+		}
+		add_political_power = 50
+		custom_effect_tooltip = krcw_chi2_frail_tt
+		hidden_effect = {
+		random_list = {
+			60 = {
+				modifier = { factor = 1.5 has_war = yes }
+				set_country_flag = krcw_chi_zhou_frail
+				country_event = { id = krcw_chi2.45 days = 15 }
+			}
+			40 = {
+				country_event = { id = krcw_chi2.45 days = 15 }
+			}
+		}
+		}
+	}
+	option = {
+		name = krcw_chi2_44.b
+		ai_chance = {
+			base = 50
+		}
+		add_stability = 0.02
+		custom_effect_tooltip = krcw_chi2_frail_tt
+		hidden_effect = {
+		random_list = {
+			30 = {
+				modifier = { factor = 1.5 has_war = yes }
+				set_country_flag = krcw_chi_zhou_frail
+				country_event = { id = krcw_chi2.45 days = 20 }
+			}
+			70 = {
+				country_event = { id = krcw_chi2.45 days = 20 }
+			}
+		}
+		}
+	}
+	option = {
+		name = krcw_chi2_44.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0.3 has_war = yes }
+		}
+		add_political_power = -50
+		custom_effect_tooltip = krcw_chi2_frail_tt
+		hidden_effect = {
+		random_list = {
+			10 = {
+				modifier = { factor = 1.5 has_war = yes }
+				set_country_flag = krcw_chi_zhou_frail
+				country_event = { id = krcw_chi2.45 days = 40 }
+			}
+			90 = {
+				country_event = { id = krcw_chi2.45 days = 40 }
+			}
+		}
+		}
+	}
+}
+
+country_event = {
+	id = krcw_chi2.45
+	title = krcw_chi2_45_t
+	desc = {
+		text = krcw_chi2_45_d1
+		trigger = {
+			has_country_flag = krcw_chi_zhou_frail
+		}
+	}
+	desc = {
+		text = krcw_chi2_45_d2
+		trigger = {
+			has_country_flag = krcw_chi_acting_moderate
+			NOT = { has_country_flag = krcw_chi_zhou_frail }
+		}
+	}
+	desc = {
+		text = krcw_chi2_45_d
+		trigger = {
+			NOT = {
+				OR = {
+					AND = {
+					has_country_flag = krcw_chi_zhou_frail
+					}
+					AND = {
+					has_country_flag = krcw_chi_acting_moderate
+					NOT = { has_country_flag = krcw_chi_zhou_frail }
+					}
+				}
+			}
+		}
+	}
+	picture = GFX_krcw_chi_zhou_speech_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_45.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 has_completed_focus = krcw_chi_separate_party_and_state }
+			modifier = { factor = 1.5 check_variable = { krcw_chi_f_moderate > 35 } }
+			modifier = { factor = 0.5 has_country_flag = krcw_chi_zhou_frail }
+		}
+		if = { limit = { has_idea = krcw_chi_zhou_convalescent } remove_ideas = krcw_chi_zhou_convalescent }
+		add_political_power = -25
+		custom_effect_tooltip = krcw_chi2_statute_tt
+		hidden_effect = {
+		random_list = {
+			60 = {
+				modifier = { factor = 1.4 check_variable = { krcw_chi_f_moderate > 35 } }
+				modifier = { factor = 1.3 has_completed_focus = krcw_chi_separate_party_and_state }
+				modifier = { factor = 1.3 has_country_flag = krcw_chi_acting_opened }
+				modifier = { factor = 0.6 check_variable = { krcw_chi_f_revcom > 55 } }
+				modifier = { factor = 0.6 has_completed_focus = krcw_chi_the_committee_endures }
+				country_event = { id = krcw_chi2.46 days = 20 }
+			}
+			40 = {
+				set_country_flag = krcw_chi_statute_failed
+				country_event = { id = krcw_chi2.48 days = 20 }
+			}
+		}
+		}
+	}
+	option = {
+		name = krcw_chi2_45.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 has_country_flag = krcw_chi_zhou_frail }
+			modifier = { factor = 1.5 has_completed_focus = krcw_chi_the_committee_endures }
+			modifier = { factor = 1.3 has_war = yes }
+		}
+		if = { limit = { has_idea = krcw_chi_zhou_convalescent } remove_ideas = krcw_chi_zhou_convalescent }
+		country_event = { id = krcw_chi2.47 days = 10 }
+	}
+	option = {
+		name = krcw_chi2_45.c
+		ai_chance = {
+			base = 30
+			modifier = { factor = 1.5 has_completed_focus = krcw_chi_the_factions_in_the_cec }
+			modifier = { factor = 0.5 has_country_flag = krcw_chi_zhou_frail }
+		}
+		if = { limit = { has_idea = krcw_chi_zhou_convalescent } remove_ideas = krcw_chi_zhou_convalescent }
+		add_stability = 0.02
+		country_event = { id = krcw_chi2.48 days = 10 }
+	}
+}
+
+country_event = {
+	id = krcw_chi2.46
+	title = krcw_chi2_46_t
+	desc = krcw_chi2_46_d
+	picture = GFX_krcw_chi_party_members
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_46.a
+		ai_chance = {
+			base = 1
+		}
+		add_ideas = krcw_chi_collective_leadership
+		set_country_flag = krcw_chi_succession_institutional
+		set_country_flag = krcw_chi_heir_governor
+		add_stability = 0.04
+		add_to_variable = { krcw_chi_f_moderate = 3 }
+		clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+		custom_effect_tooltip = krcw_chi2_succ_inst_tt
+	}
+}
+
+country_event = {
+	id = krcw_chi2.47
+	title = krcw_chi2_47_t
+	desc = krcw_chi2_47_d
+	picture = GFX_krcw_chi_zhou_profile
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_47.a
+		trigger = {
+			has_character = CHI_krcw_chen_gongbo
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 check_variable = { krcw_chi_f_revcom > 45 } }
+			modifier = { factor = 1.5 has_country_flag = krcw_chi_acting_revcom }
+		}
+		set_country_flag = krcw_chi_succession_dauphin
+		custom_effect_tooltip = krcw_chi2_succ_dauphin_tt
+		set_country_flag = krcw_chi_heir_committee
+		add_to_variable = { krcw_chi_f_revcom = 5 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+		hidden_effect = {
+		random_list = {
+			60 = {
+				modifier = { factor = 1.5 check_variable = { krcw_chi_f_whampoa < 25 } }
+				add_stability = 0.02
+			}
+			40 = {
+				modifier = { factor = 1.5 check_variable = { krcw_chi_f_whampoa > 35 } }
+				add_stability = -0.03
+				add_war_support = 0.02
+			}
+		}
+		}
+		custom_effect_tooltip = krcw_chi2_heir_react_tt
+	}
+	option = {
+		name = krcw_chi2_47.b
+		trigger = {
+			has_character = CHI_krcw_gu_mengyu
+		}
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 check_variable = { krcw_chi_f_moderate > 40 } }
+			modifier = { factor = 1.5 has_country_flag = krcw_chi_acting_moderate }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_chi_succession_dauphin
+		custom_effect_tooltip = krcw_chi2_succ_dauphin_tt
+		set_country_flag = krcw_chi_heir_technocrat
+		add_to_variable = { krcw_chi_f_moderate = 5 }
+		clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+		add_to_variable = { krcw_chi_f_revcom = -5 }
+		clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+		hidden_effect = {
+		random_list = {
+			60 = {
+				modifier = { factor = 1.5 check_variable = { krcw_chi_f_whampoa < 25 } }
+				add_stability = 0.02
+			}
+			40 = {
+				modifier = { factor = 1.5 check_variable = { krcw_chi_f_whampoa > 35 } }
+				add_stability = -0.03
+				add_war_support = 0.02
+			}
+		}
+		}
+		custom_effect_tooltip = krcw_chi2_heir_react_tt
+	}
+	option = {
+		name = krcw_chi2_47.c
+		ai_chance = {
+			base = 30
+			modifier = { factor = 1.5 has_country_flag = krcw_chi_acting_li }
+			modifier = { factor = 1.5 has_global_flag = KRCW_chi_coalition }
+		}
+		set_country_flag = krcw_chi_succession_dauphin
+		custom_effect_tooltip = krcw_chi2_succ_dauphin_tt
+		set_country_flag = krcw_chi_heir_governor
+		if = { limit = { NOT = { has_character = CHI_krcw_li_jishen } } recruit_character = CHI_krcw_li_jishen }
+		add_to_variable = { krcw_chi_f_moderate = 3 }
+		clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+		hidden_effect = {
+		random_list = {
+			60 = {
+				modifier = { factor = 1.5 check_variable = { krcw_chi_f_whampoa < 25 } }
+				add_stability = 0.02
+			}
+			40 = {
+				modifier = { factor = 1.5 check_variable = { krcw_chi_f_whampoa > 35 } }
+				add_stability = -0.03
+				add_war_support = 0.02
+			}
+		}
+		}
+		custom_effect_tooltip = krcw_chi2_heir_react_tt
+	}
+}
+
+country_event = {
+	id = krcw_chi2.48
+	title = krcw_chi2_48_t
+	desc = {
+		text = krcw_chi2_48_d1
+		trigger = {
+			has_country_flag = krcw_chi_statute_failed
+		}
+	}
+	desc = {
+		text = krcw_chi2_48_d
+		trigger = {
+			NOT = {
+				OR = {
+					AND = {
+					has_country_flag = krcw_chi_statute_failed
+					}
+				}
+			}
+		}
+	}
+	picture = GFX_krcw_chi_party_members
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_48.a
+		ai_chance = {
+			base = 1
+		}
+		set_country_flag = krcw_chi_succession_congress
+		add_political_power = 25
+		custom_effect_tooltip = krcw_chi2_succ_congress_tt
+	}
+}
+
+country_event = {
+	id = krcw_chi2.49
+	title = krcw_chi2_49_t
+	desc = {
+		text = krcw_chi2_49_d1
+		trigger = {
+			has_country_flag = krcw_chi_succession_institutional
+		}
+	}
+	desc = {
+		text = krcw_chi2_49_d2
+		trigger = {
+			has_country_flag = krcw_chi_succession_dauphin
+		}
+	}
+	desc = {
+		text = krcw_chi2_49_d3
+		trigger = {
+			has_country_flag = krcw_chi_succession_congress
+		}
+	}
+	desc = {
+		text = krcw_chi2_49_d
+		trigger = {
+			NOT = {
+				OR = {
+					AND = {
+					has_country_flag = krcw_chi_succession_institutional
+					}
+					AND = {
+					has_country_flag = krcw_chi_succession_dauphin
+					}
+					AND = {
+					has_country_flag = krcw_chi_succession_congress
+					}
+				}
+			}
+		}
+	}
+	picture = GFX_krcw_chi_sun_yat_sen_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = CHI
+	}
+	option = {
+		name = krcw_chi2_49.a
+		ai_chance = {
+			base = 1
+		}
+		add_stability = 0.03
+		add_political_power = 50
+		if = { limit = { has_country_flag = krcw_chi_succession_institutional } add_stability = 0.02 }
+		if = { limit = { has_country_flag = krcw_chi_succession_dauphin } add_political_power = 25 }
+	}
+}

@@ -1,0 +1,190 @@
+# KRCW (build/patch_residue.py): 9 OTL events dropped while KRCW_active
+add_namespace = CRO_insurgency_options
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CRO_insurgency_options.0 
+ immediate = { }
+	title = CRO_insurgency_options.0.t
+	desc = CRO_insurgency_options.0.d
+	picture = GFX_crusader_insurgency_0
+
+	is_triggered_only = yes
+	option = {
+		name = CRO_insurgency_options.0.a
+		set_variable = { crusader_insurgency = 20 }
+		set_country_flag = crusader_insurgency
+		163 = {
+			set_state_flag = crusader_target
+			set_state_flag = insurg_lvl1
+			add_province_modifier = {
+				static_modifiers = { insurgency_tier1 }
+				province = {
+					all_provinces = yes
+				}
+			}
+			add_state_modifier = { modifier = { local_factory_sabotage = 0.05 } }
+		}
+		1486 = {
+			add_province_modifier = {
+				static_modifiers = { insurgency_tier1 }
+				province = {
+					all_provinces = yes
+				}
+			}
+			add_state_modifier = { modifier = { local_factory_sabotage = 0.05 } }
+		}		
+		hidden_effect = {
+			LEB = {
+				set_variable = { ssnp_insurgency = 25 }
+				set_country_flag = ssnp_insurgency
+				553 = {
+					set_state_flag = ssnp_target
+					set_state_flag = insurg_lvl1
+					add_province_modifier = {
+						static_modifiers = { insurgency_tier1 }
+						province = {
+							all_provinces = yes
+						}
+					}
+					add_state_modifier = { modifier = { local_factory_sabotage = 0.05 } }
+				}
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CRO_insurgency_options.1 
+ immediate = { }
+	title = CRO_insurgency_options.1.t
+	desc = CRO_insurgency_options.1.d
+	picture = GFX_crusader_insurgency_1
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = CRO_insurgency_options.1.a
+		add_to_variable = { crusader_insurgency = -5 }
+		var:current_country_state_decision = {
+			set_state_flag = insurgency_infilitrated
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CRO_insurgency_options.2 
+ immediate = { }
+	title = CRO_insurgency_options.2.t
+	desc = CRO_insurgency_options.2.d
+	picture = GFX_crusader_insurgency_2
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = CRO_insurgency_options.2.a
+		add_to_variable = { crusader_insurgency = 5 }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CRO_insurgency_options.3 
+ immediate = { }
+	title = CRO_insurgency_options.3.t
+	desc = CRO_insurgency_options.3.d
+	picture = GFX_crusader_insurgency_3
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = CRO_insurgency_options.3.a
+		add_to_variable = { crusader_insurgency = -5 }
+		army_experience = 5
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CRO_insurgency_options.4 
+ immediate = { }
+	title = CRO_insurgency_options.4.t
+	desc = CRO_insurgency_options.4.d
+	picture = GFX_crusader_insurgency_4
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = CRO_insurgency_options.4.a
+		add_to_variable = { crusader_insurgency = 5 }
+		add_manpower = -100
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CRO_insurgency_options.5 
+ immediate = { }
+	title = CRO_insurgency_options.5.t
+	desc = CRO_insurgency_options.5.d
+	picture = GFX_crusader_insurgency_5
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = CRO_insurgency_options.5.a
+		add_to_variable = { crusader_insurgency = -8 }
+		air_experience = 5
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CRO_insurgency_options.6 
+ immediate = { }
+	title = CRO_insurgency_options.6.t
+	desc = CRO_insurgency_options.6.d
+	picture = GFX_crusader_insurgency_6
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = CRO_insurgency_options.6.a
+		add_to_variable = { crusader_insurgency = 5 }
+		add_equipment_to_stockpile = {
+			type = jet_light_equipment
+			amount = -1
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CRO_insurgency_options.10 
+ immediate = { }
+	title = CRO_insurgency_options.10.t
+	desc = CRO_insurgency_options.10.d
+	picture = GFX_crusader_insurgency_10
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = CRO_insurgency_options.10.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CRO_insurgency_options.11 
+ immediate = { }
+	title = CRO_insurgency_options.11.t
+	desc = CRO_insurgency_options.11.d
+	picture = GFX_crusader_insurgency_11
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = CRO_insurgency_options.11.a
+	}
+}

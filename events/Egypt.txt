@@ -1,0 +1,877 @@
+# KRCW (build/patch_residue.py): 29 OTL events dropped while KRCW_active
+###########################
+# egypte Events
+###########################
+
+add_namespace = egypte
+add_namespace = nasser
+add_namespace = Tiran_Closing
+add_namespace = aswan
+add_namespace = Yemani_Coup
+add_namespace = Syria_Seccession
+
+add_namespace = Nasser
+add_namespace = Rogers_Plan
+add_namespace = Al_Azhar
+add_namespace = an_Naksah
+
+#Nasser.2    #The Fall of General Abdel Hakim Amer
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Nasser.2 
+ immediate = { }
+	title = Nasser.2.t2
+	desc = Nasser.2.d
+	picture = GFX_UAR_Marshal_Amer
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = Nasser.2.a2
+
+	}
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Nasser.1 
+ immediate = { }
+	title = Nasser.1.t2
+	desc = Nasser.1.d
+	picture = GFX_Execution_of_Sayyed_Qutb
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = Nasser.1.a2
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rogers_Plan.1 
+ immediate = { }
+	title = Rogers_Plan.1.t2
+	desc = Rogers_Plan.1.d
+	picture = GFX_Rogers_Plan
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = Rogers_Plan.1.a2
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = an_Naksah.1 
+ immediate = { }
+	title = an_Naksah.1.t2
+	desc = an_Naksah.1.d
+	picture = GFX_an_Naksah
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = an_Naksah.1.a2
+
+	}
+
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Nasser.3 
+ immediate = { }
+	title = Nasser.3.t2
+	desc = Nasser.3.d
+	picture = GFX_Formation_of_the_ASU
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = Nasser.3.a2
+
+	}
+
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nasser.10 
+ immediate = { }
+	title = nasser.10.t2
+	desc = nasser.10.d
+	picture = GFX_UAR_Soldiers
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = nasser.10.a2
+
+	}
+
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Al_Azhar.1 
+ immediate = { }
+	title = Al_Azhar.1.t2
+	desc = Al_Azhar.1.d
+	picture = GFX_Al_Azhar
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = Al_Azhar.1.a2
+
+	}
+
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Syria_Seccession.1 
+ immediate = { }
+	title = Syria_Seccession.1.t2
+	desc = {
+		text = Syria_Seccession.1.d
+		trigger = {
+			NOT = {
+				has_country_flag = SSNP_PLOT
+			}
+		}
+	}
+	desc = {
+		text = SSNP_Focus.15.d
+		trigger = {
+			has_country_flag = SSNP_PLOT
+		}
+	}
+	
+	picture = GFX_Syria_Seccession_1
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			release = SYR
+			SYR = {
+				load_oob = SYR_1960
+				#load_focus_tree = 60s_SYR
+				set_politics = {
+					ruling_party = liberal
+					last_election = "1957.1.1"
+					election_frequency = 84
+					elections_allowed = yes
+				}
+				set_popularities = {
+					democratic = 0
+					communism = 20
+					fascism = 20
+					nationalist = 10
+					monarchism = 0
+					neutrality = 0
+					islamism = 10
+					radical_shiaism = 0
+					Social_Democratic = 0
+					Social_Liberalism = 0
+					Salafism = 0
+					Liberal_Conservatism = 0
+					conservative = 10
+					Christian_Democratic = 0
+					socialist = 0
+					centrist = 0
+					liberal = 30
+					trotskyism = 0
+					maoism = 0
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = SSNP_PLOT
+				}
+				LEB = { annex_country = { target = SYR transfer_troops = yes } }
+			}
+		}
+	}
+	option = {
+		name = Syria_Seccession.1.a2
+		ai_chance = {
+			factor = 100
+		}
+		country_event = Syria_Seccession.2
+	}
+	option = {
+		name = Syria_Seccession.1.b2
+		ai_chance = {
+			factor = 0
+		}
+		transfer_state = 809
+		if = {
+			limit = {
+				not = { has_country_flag = SSNP_PLOT }
+			}
+			declare_war_on = {
+				target = SYR
+				type = annex_everything
+			}
+			country_event = Syria_Seccession.3
+		}
+		if = {
+			limit = {
+				has_country_flag = SSNP_PLOT
+			}
+			declare_war_on = {
+				target = SYR
+				type = annex_everything
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Syria_Seccession.2 
+ immediate = { }
+	title = Syria_Seccession.2.t2
+	desc = Syria_Seccession.2.d
+	picture = GFX_Syria_Seccession_2
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = Syria_Seccession.2.a2
+	}
+	option = {
+		name = Syria_Seccession.2.b2
+		SYR = { change_tag_from = EGY }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Syria_Seccession.3 
+ immediate = { }
+	title = Syria_Seccession.3.t2
+	desc = Syria_Seccession.3.d
+	picture = GFX_Syria_Seccession_3
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = Syria_Seccession.3.a2
+	}
+	option = {
+		name = Syria_Seccession.3.b2
+		SYR = { change_tag_from = EGY }
+	}
+
+}
+
+#.1    #Country Event for Egypt to Accept the Syrian Coup (Historical ) or to Reject
+#.2    #Historical News Event for Syria leaving the UAR
+#.3    #The Syrian Civil War
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Yemani_Coup.1 
+ immediate = { }
+	title = Yemani_Coup.1.t2
+	desc = Yemani_Coup.1.d
+	picture = GFX_Yemeni_Coup_1
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = Yemani_Coup.1.a2
+		ai_chance = {
+			factor = 100
+		}
+		every_country = {
+			country_event = Yemani_Coup.2
+		}
+		start_civil_war = {
+			ruling_party = nationalist
+			ideology = monarchism
+			size = 0.4
+			states = {
+				1241
+			}
+		}
+	}
+	option = {
+		name = Yemani_Coup.1.b2
+		ai_chance = {
+			factor = 0
+		}
+		every_country = {
+			country_event = Yemani_Coup.3
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Yemani_Coup.2 
+ immediate = { }
+	title = Yemani_Coup.2.t2
+	desc = Yemani_Coup.2.d
+	picture = GFX_Yemeni_Coup_2
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = Yemani_Coup.2.a2
+
+	}
+
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Yemani_Coup.3 
+ immediate = { }
+	title = Yemani_Coup.3.t2
+	desc = Yemani_Coup.3.d
+	picture = GFX_Yemeni_Coup_3
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = Yemani_Coup.3.a2
+
+	}
+
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = aswan.100 
+ immediate = { }
+	title = aswan.100.t2
+	desc = aswan.100.d
+	picture = GFX_Aswan_Dam_Built
+	major = yes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = aswan.100.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Tiran_Closing.1 
+ immediate = { }
+	title = Tiran_Closing.1.t2
+	desc = Tiran_Closing.1.d
+	picture = GFX_Straits_of_Tiran
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = Tiran_Closing.1.a2
+	}
+}
+
+#Invitation to the League Arabe
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egypte.1 
+ immediate = { }
+	title = egypte.1.t2
+	title = {
+		text = egypte.1.t1
+		trigger = { FROM = { tag = EGY } }
+	}
+	title = {
+		text = egypte.1.t2
+		trigger = {
+			NOT = { FROM = { tag = EGY } }
+		}
+	}
+	desc = {
+		text = egypte.1.d1
+		trigger = { FROM = { tag = EGY } }
+	}
+	desc = {
+		text = egypte.1.d2
+		trigger = {
+			NOT = { FROM = { tag = EGY } }
+		}
+	}
+	#picture = GFX_report_event_egypte_flag
+
+	is_triggered_only = yes
+
+	option = {	#We accept
+		name = egypte.1.o1
+		#set_country_flag = seek_egypte_alliance
+		if = {
+			limit = { EGY = { is_faction_leader = yes } }
+			EGY = { add_to_faction = ROOT }
+		}
+		if = {
+			limit = { EGY = { is_faction_leader = no } }
+			random_country = {
+				limit = {
+					is_in_faction_with = EGY
+					is_faction_leader = yes
+				}
+				add_to_faction = ROOT
+			}
+		}
+		EGY = { country_event = generic.3 }
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_government = islamism
+				has_government = nationalist
+				add = 50
+			}
+
+			modifier = {
+				factor = 0
+				has_government = neutrality
+			}
+		}
+	}
+
+	option = {	#We reject
+		name = egypte.1.o2
+		EGY = { country_event = generic.4 }
+		ai_chance = {
+			factor = 10
+			modifier = {
+				tag = PAL
+				add = -10
+			}
+			modifier = {
+				tag = JOR
+				add = -10
+			}
+			modifier = {
+				tag = SYR
+				add = -10
+			}
+			modifier = {
+				tag = LEB
+				add = -10
+			}
+			modifier = {
+				tag = SAU
+				add = -10
+			}
+			modifier = {
+				tag = IRQ
+				add = -10
+			}
+		}
+	}
+}
+
+
+#FROM accepts!
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egypte.2 
+ immediate = { }
+	title = egypte.2.t
+	desc = egypte.2.d
+	#picture = GFX_report_event_political_deal2
+
+	is_triggered_only = yes
+
+	option = {	#Excellent.
+		name = egypte.2.o1
+	}
+}
+
+#FROM rejects!
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egypte.3 
+ immediate = { }
+	title = egypte.3.t
+	desc = egypte.3.d
+	#picture = GFX_report_event_political_deal2
+
+	is_triggered_only = yes
+
+	option = {	#Well, too bad.
+		name = egypte.3.o1
+	}
+}
+
+
+#Surrender when Israel has taken too much land in egypte
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egypte.4 
+ immediate = { }
+	title = egypte.4.t
+	desc = egypte.4.d
+	picture = GFX_report_event_soviet_tanks_snow
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Surrender and offer territory
+	option = {
+		name = egypte.4.a
+		ISR = {
+			country_event = egypte.5
+		}
+		custom_effect_tooltip = egypte.4.a_tt
+		effect_tooltip = {
+			ISR = {
+				white_peace = {
+					tag = EGY
+					message = EGY_agree_peace
+				}
+			}
+			transfer_state = 805
+			transfer_state = 453
+		}
+		ai_chance = {
+			factor = 9
+		}
+	}
+	option = {
+		name = egypte.4.b
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+}
+
+#Israel response to egypte surrender
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egypte.5 
+ immediate = { }
+	title = egypte.5.t
+	desc = egypte.5.d
+	picture = GFX_report_event_finnish_soldiers_snow
+
+	is_triggered_only = yes
+
+	#Accept surrender
+	option = {
+		name = egypte.5.a
+		white_peace = EGY
+		transfer_state = 805
+		transfer_state = 453
+	}
+}
+
+
+#Surrender when UK has taken too much land in egypte with focus
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egypte.6 
+ immediate = { }
+	title = egypte.6.t
+	desc = egypte.6.d
+	picture = GFX_report_event_soviet_tanks_snow
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Surrender and offer territory
+	option = {
+		name = egypte.6.a
+		ENG = {
+			country_event = { id = egypte.7 } 
+		}
+		custom_effect_tooltip = egypte.6.a_tt
+		effect_tooltip = {
+			ENG = {
+				white_peace = {
+					tag = EGY
+					message = EGY_agree_peace
+				}
+			}
+		}
+		ai_chance = {
+			factor = 9
+		}
+	}
+
+	option = {
+		name = egypte.6.b
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#UK response to egypte surrender
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egypte.7 
+ immediate = { }
+	title = egypte.7.t
+	desc = egypte.7.d
+	picture = GFX_report_event_finnish_soldiers_snow
+
+	is_triggered_only = yes
+
+	#Accept surrender
+	option = {
+		name = egypte.7.a
+		white_peace = EGY
+	}
+}
+
+
+#Surrender when Israel has taken too much land in egypte
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egypte.8 
+ immediate = { }
+	title = egypte.8.t
+	desc = egypte.8.d
+	picture = GFX_report_event_soviet_tanks_snow
+
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Surrender and offer territory
+	option = {
+		name = egypte.8.a
+		ISR = {
+			country_event = { id = egypte.9 } 
+		}
+		custom_effect_tooltip = egypte.8.a_tt
+		effect_tooltip = {
+			ISR = {
+				white_peace = {
+					tag = EGY
+					message = EGY_agree_peace
+				}
+			}
+		}
+		ai_chance = {
+			factor = 9
+		}
+	}
+
+	option = {
+		name = egypte.8.b
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+#Israel response to egypte surrender
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egypte.9 
+ immediate = { }
+	title = egypte.9.t
+	desc = egypte.9.d
+	picture = GFX_report_event_finnish_soldiers_snow
+
+	is_triggered_only = yes
+
+	#Accept surrender
+	option = {
+		name = egypte.9.a
+		white_peace = EGY
+		white_peace = PAL
+	}
+}
+
+#Invitation to the United Arab Republic
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egypte.10 
+ immediate = { }
+	title = egypte.10.t
+	desc = egypte.10.d
+
+	is_triggered_only = yes
+
+	option = {	#We accept
+		name = egypte.10.a
+		SYR = {
+			every_owned_state = {
+				add_core_of = EGY
+			}
+			EGY = { change_tag_from = SYR }
+		}
+		EGY = {
+			set_cosmetic_tag = UAR
+			annex_country = { target = SYR transfer_troops = yes }
+			#create_faction_from_template = { template = faction_template_generic name = "United Arab Republic" }
+			country_event = generic.3
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_government = nationalist
+				add = 50
+			}
+			modifier = {
+				factor = 1000
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+	option = {	#We reject
+		name = egypte.10.b
+		EGY = { country_event = generic.4 }
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+country_event = {
+	id = egypte.11 
+ immediate = { }
+	title = egypte.11.t2
+	desc = egypte.11.d
+	picture = GFX_Kurdish_Syrian_Six_Days_War_3
+	fire_only_once = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = EGY
+		date > 1967.1.1
+		date < 1967.2.2
+	}
+	option = {
+		name = egypte.11.a2
+		1279 = {
+			set_demilitarized_zone = no
+			}
+		805 = {
+			set_demilitarized_zone = no
+			}
+		453 = {
+			set_demilitarized_zone = no
+			}
+		801 = {
+			set_demilitarized_zone = no
+			}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egypte.12
+ 	immediate = { }
+	#title = "The Death of Nasser"
+	#desc = egypte.12.d
+	#picture = GFX_Kurdish_Syrian_Six_Days_War_3
+	hidden = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	immediate = {
+		set_popularities = { 
+			communism = 8
+			Liberal_Conservatism = 14
+			conservative = 78
+		}
+		
+		set_party_name = {
+			ideology = conservative
+			name = "NDP"
+			long_name = "National Democratic Party"
+		}
+		
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = no
+		}
+		
+		create_country_leader = {
+			name = "Anwar Sadat"
+			picture = "Anwar_Sadat_80s.dds"
+			desc = "POLITICS_ANWAR_SADAT_DESC"
+			ideology = liberal_nationalism
+		}
+		news_event = news.2102
+	}
+	option = {
+		name = egypte.12.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egypte.13
+ 	immediate = { }
+	#title = "The Assassination of Sadat"
+	#desc = egypte.13.d
+	#picture = GFX_Kurdish_Syrian_Six_Days_War_3
+	hidden = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	immediate = {
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Hosni Mubarak"
+			picture = "Hosni_Mubarak_90s.png"
+			desc = POLITICS_HOSNI_MUBARAK_DESC
+			ideology = liberal_nationalism
+		}
+		news_event = news.2103
+	}
+	option = {
+		name = egypte.13.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egypte.14
+	immediate = { }
+	title = egypte.14.t
+	desc = egypte.14.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = egypte.14.a
+		trigger = {TAG = EGY}
+	}
+
+	option = {
+		name = egypte.14.b
+		trigger = {TAG = ISR}
+	}
+
+	option = {
+		name = egypte.14.c
+		trigger = {
+			NOT ={
+				TAG = EGY
+				TAG = ISR
+			}
+		}
+	}
+}
+

@@ -1,0 +1,454 @@
+# KRCW (build/patch_residue.py): 22 OTL events dropped while KRCW_active
+add_namespace = mongolia
+add_namespace = mongolia_prc
+add_namespace = inner_mongol
+add_namespace = mon_territory
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mongolia.1
+	immediate = { }
+	title = mongolia.1.t2
+	desc = mongolia.7.d
+	picture = GFX_mongol_two
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+	name = mongolia.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mongolia.7
+	immediate = { }
+	title = mongolia.7.t2
+	desc = mongolia.1.d
+	picture = GFX_mongol_one
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+	name = mongolia.7.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mongolia.3
+	immediate = { }
+	title = mongolia.3.t2
+	desc = mongolia.3.d
+	picture = GFX_mongol_three
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+	name = mongolia.3.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mongolia.2
+	immediate = { }
+	title = mongolia.2.t2
+	desc = mongolia.2.d
+	picture = GFX_mongol_foura
+	is_triggered_only = yes
+
+	option = {
+	name = mongolia.2.a2
+		create_country_leader = {
+			name = "Ulsyn Ikh Khural"
+			picture = "council.dds"
+			ideology = marxism_leninism
+		}
+	retire_character = MON_khorloogiin_choibalsan
+	complete_national_focus = MON_Death_of_Choibalsan
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mongolia.11
+	immediate = { }
+	title = mongolia.11.t2
+	desc = mongolia.11.d
+	picture = GFX_generic_sc_ruling
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+	name = mongolia.11.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mongolia.20
+	immediate = { }
+	title = mongolia.20.t2
+	desc = mongolia.20.d
+	picture = GFX_generic_sc_ruling
+	is_triggered_only = yes
+
+	option = {
+	name = mongolia.20.a2
+	}
+	
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mongolia.21
+	immediate = { }
+	title = mongolia.21.t2
+	desc = mongolia.21.d
+	picture = GFX_generic_sc_ruling
+	is_triggered_only = yes
+
+	option = {
+	name = mongolia.21.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mongolia_prc.100
+	immediate = { }
+	title = mongolia_prc.100.t2
+	desc = mongolia_prc.100.d
+	picture = GFX_generic_sc_ruling
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+	name = mongolia_prc.100.a2
+	}
+}
+
+#News Events
+#mongolia.1 Mongolian International Recognition Campaign
+#mongolia.7 Mongolian Disillusionment with Stalin
+#mongolia.2 Death of Khorloogiin Choibalsan
+#mongolia.3 Mongolian Application to Become an SSR Rejected
+#mongolia.11 Revelation of the Brutality of the Mongolian Great Purge
+#mongolia.20 Deposition of General Secretary Dashiin Damba
+#mongolia.21 Deposition of Prime Minister Yumjaagiin Tsedenbal
+#mongolia_prc.100 Mongolian Ascension into the Peoples Republic of China
+
+
+#country_event
+#mongolia_prc.1	First Negotiation with Mao
+#inner_mongol.1	#The Inner Mongolian Offer
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = inner_mongol.1
+	immediate = { }
+	title = inner_mongol.1.t2
+	desc = "inner_mongol_1_desc"
+
+	is_triggered_only = yes
+
+	option = {
+		name = inner_mongol.1.a2
+		PRC = {
+			country_event = inner_mongol.2
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = inner_mongol.2
+	immediate = { }
+	title = inner_mongol.2.t2
+	desc = "inner_mongol_2_desc"
+
+	is_triggered_only = yes
+
+	option = {
+		name = inner_mongol.2.a2
+		MON = {
+			country_event = inner_mongol.4
+			news_event = inner_mongol.5
+		}
+		ai_chance = {
+			base = 20
+			modifier = {
+				has_game_rule = {
+					rule = MON_sino_mongolian_negotiations
+					option = NEGOTIATIONS_FAIL
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = inner_mongol.2.b2
+		MON = {
+			country_event = inner_mongol.3
+		}
+		ai_chance = {
+			base = 80
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = MON_sino_mongolian_negotiations
+					option = GET_INNER_MONGOLIA
+				}
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = inner_mongol.3
+	immediate = { }
+	title = inner_mongol.3.t2
+	desc = "inner_mongol_3_desc"
+
+	is_triggered_only = yes
+
+	option = {
+		name = inner_mongol.3.a2
+		country_event = mongolia_prc.1
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = inner_mongol.4
+	immediate = { }
+	title = inner_mongol.4.t2
+	desc = "inner_mongol_4_desc"
+
+	is_triggered_only = yes
+
+	option = {
+		name = inner_mongol.4.a2
+		complete_national_focus = MON_Mao_Accepts
+		transfer_state = 611
+		transfer_state = 621
+		transfer_state = 612
+		611 = {
+			add_core_of = MON
+		}
+		621 = {
+			add_core_of = MON
+		}
+		612 = {
+			add_core_of = MON
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = inner_mongol.5
+	immediate = { }
+	title = inner_mongol.5.t2
+	desc = inner_mongol.5.d
+	picture = GFX_Greater_Mongolia
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+	name = inner_mongol.5.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = inner_mongol.10
+	immediate = { }
+	title = inner_mongol.10.t2
+	desc = "inner_mongol_10_desc"
+
+	is_triggered_only = yes
+
+	option = {
+		name = inner_mongol.10.a2
+		MON = {
+			country_event = inner_mongol.11
+		}
+		news_event = inner_mongol.13
+		ai_chance = {
+			factor = 20
+			modifier = {
+				has_game_rule = {
+					rule = MON_sino_mongolian_negotiations
+					option = NEGOTIATIONS_FAIL
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = inner_mongol.10.b2
+		country_event = inner_mongol.12
+		news_event = inner_mongol.14
+		ai_chance = {
+			factor = 80
+			modifier = {
+				has_game_rule = {
+					rule = MON_sino_mongolian_negotiations
+					option = GET_INNER_MONGOLIA
+				}
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = inner_mongol.11
+	immediate = { }
+	title = inner_mongol.11.t2
+	desc = "inner_mongol_11_desc"
+
+	is_triggered_only = yes
+
+	option = {
+		name = inner_mongol.11.a2
+		complete_national_focus = MON_Mao_Accepts
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = inner_mongol.12
+	immediate = { }
+	title = inner_mongol.12.t2
+	desc = "inner_mongol_12_desc"
+
+	is_triggered_only = yes
+
+	option = {
+		name = inner_mongol.12.a2
+		complete_national_focus = MON_Chinese_Rejection
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = inner_mongol.13
+	immediate = { }
+	title = inner_mongol.13.t2
+	desc = inner_mongol_13_desc
+	picture = GFX_Mongols_United
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+	name = inner_mongol.13.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = inner_mongol.14
+	immediate = { }
+	title = inner_mongol.14.t2
+	desc = inner_mongol_14_desc
+	picture = GFX_generic_sc_ruling
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+	name = inner_mongol.14.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mongolia_prc.1
+	immediate = { }
+	title = mongolia_prc.1.t2
+	desc = "mongolia_prc_1_desc"
+
+	is_triggered_only = yes
+
+	option = {
+		name = mongolia_prc.1.a2
+		PRC = { country_event = mongolia_prc.2 }
+		complete_national_focus = MON_Accept_Maos_Offer
+		ai_chance = {
+			factor = 20
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = MON_sino_mongolian_negotiations
+						option = GET_INNER_MONGOLIA
+					}
+					has_game_rule = {
+						rule = MON_sino_mongolian_negotiations
+						option = NEGOTIATIONS_FAIL
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = mongolia_prc.1.b2
+		PRC = { country_event = mongolia_prc.3 }
+		ai_chance = {
+			factor = 80
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = MON_sino_mongolian_negotiations
+					option = JOIN_PRC
+				}
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mongolia_prc.2
+	immediate = { }
+	title = mongolia_prc.2.t2
+	desc = mongolia_prc.2.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = mongolia_prc.2.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mongolia_prc.3
+	immediate = { }
+	title = mongolia_prc.3.t2
+	desc = mongolia_prc.3.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = mongolia_prc.3.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mon_territory.1
+	immediate = { }
+	title = mon_territory.1.t
+	desc = mon_territory.1.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = mon_territory.1.a
+		MON = {
+				transfer_state = 1884
+				transfer_state = 1883
+				transfer_state = 1776
+		}
+	}
+}

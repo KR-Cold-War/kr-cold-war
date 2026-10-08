@@ -1,0 +1,98 @@
+# KRCW (build/patch_residue.py): 1 OTL country GUIs hidden while KRCW_active
+scripted_gui = {
+	russia_duma_gui = {
+		context_type = player_context
+		window_name = "russia_duma_gui_tab"
+		#dirty = RUS_Refresh_Variable
+		visible = { NOT = { has_global_flag = KRCW_active } 
+            OR = {
+                tag = SOV 
+                tag = RUS
+            }
+			check_variable = {
+				russia_duma_view = 1
+			}
+		}
+	}
+	russia_duma_parties = {
+		context_type = player_context
+		window_name = "russia_duma_parties_menu"
+		parent_scripted_gui = "russia_duma_gui"
+		dynamic_lists = {
+			russia_duma_parties_listing_grid = {
+				array = Soviet_Faction_ID_SORTED_DISPLAY
+				change_scope = no
+				entry_container = russia_duma_parties_list_entry
+			}
+		}
+		properties = {
+			icon = {
+				 image = "[GetCurrentSupremeSovietPartyBox]" 
+			}
+		}
+	}
+	russia_duma_deicisions = {
+		context_type = player_context
+		window_name = "russia_duma_decisions_menu"
+		parent_scripted_gui = "russia_duma_gui"
+		
+		dynamic_lists = {
+			russia_duma_decisions_listing_grid = {
+				array = russia_duma_deicisions_list
+				change_scope = no
+				entry_container = russia_duma_decisions_list_entry
+			}
+		}
+		effects = {
+			decision_item_bg_click = {
+				set_country_flag = {
+					flag = Recent_RUS_Duma_Decision
+					days = 3
+					value = 1
+				}
+				# russia_duma_decision_click = yes  # Custom effect not found - may need to be created
+			}
+		}
+		triggers = {
+			decision_item_bg_click_enabled = {
+				NOT = {
+					has_country_flag = Recent_RUS_Duma_Decision
+				}
+				has_political_power > 100
+				# russia_duma_decision_enabled = yes  # Custom trigger not found - may need to be created
+			}
+		}
+	}
+
+	parliament_sample_scripted_gui = {
+		window_name = "parliament_sample_gui"
+		parent_scripted_gui = "russia_duma_gui"
+		context_type = player_context
+
+		dynamic_lists = {
+			supreme_soviet_container = {
+				array = supreme_soviet_X_position
+				change_scope = no
+				entry_container = supreme_soviet_seat_container
+				index = seat_idx
+			}
+		}
+
+		properties = {
+			supreme_soviet_icon = {
+				x = supreme_soviet_X_position^seat_idx
+				y = supreme_soviet_Y_position^seat_idx
+				frame = supreme_soviet_frame^seat_idx
+			}
+		}
+
+		effects = {
+			close_button_click = {
+				clr_country_flag = open_parliament_gui
+			}
+			refresh_button_click = {
+				SAMPLE_init_parliament = yes
+			}
+		}
+	}
+}

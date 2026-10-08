@@ -1,0 +1,290 @@
+# KRCW (build/patch_residue.py): 2 OTL country GUIs hidden while KRCW_active
+scripted_gui = {
+	SIA_The_Triangle_GUI = { 
+		context_type = decision_category
+		window_name = "SIA_The_Triangle_GUI_Menu"
+		dirty = SIA_Triangle_GUI_Variable
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = SIA
+		}
+		ai_enabled = {
+			always = yes
+		}
+		
+		effects = {
+			Phibun_Frame_Button_click = {
+				clr_country_flag = SIA_Triangle_Phao_Selected_flag
+				clr_country_flag = SIA_Triangle_Sarit_Selected_flag
+				set_country_flag = SIA_Triangle_Phibun_Selected_flag
+				add_to_variable = {
+					SIA_Triangle_GUI_Variable = 1
+				}
+			}
+			Phibun_Icon_Button_click = {
+				clr_country_flag = SIA_Triangle_Phao_Selected_flag
+				clr_country_flag = SIA_Triangle_Sarit_Selected_flag
+				set_country_flag = SIA_Triangle_Phibun_Selected_flag
+				add_to_variable = {
+					SIA_Triangle_GUI_Variable = 1
+				}
+			}
+			Sakdina_Icon_Button_click = {
+				clr_country_flag = SIA_Triangle_Phao_Selected_flag
+				set_country_flag = SIA_Triangle_Sarit_Selected_flag
+				clr_country_flag = SIA_Triangle_Phibun_Selected_flag
+				add_to_variable = {
+					SIA_Triangle_GUI_Variable = 1
+				}
+			}
+			Sakdina_Frame_Button_click = {
+				clr_country_flag = SIA_Triangle_Phao_Selected_flag
+				set_country_flag = SIA_Triangle_Sarit_Selected_flag
+				clr_country_flag = SIA_Triangle_Phibun_Selected_flag
+				add_to_variable = {
+					SIA_Triangle_GUI_Variable = 1
+				}
+			}
+			Diamond_Ring_Frame_Button_click = {
+				set_country_flag = SIA_Triangle_Phao_Selected_flag
+				clr_country_flag = SIA_Triangle_Sarit_Selected_flag
+				clr_country_flag = SIA_Triangle_Phibun_Selected_flag
+				add_to_variable = {
+					SIA_Triangle_GUI_Variable = 1
+				}
+			}
+			Diamond_Ring_Icon_Button_click = {
+				set_country_flag = SIA_Triangle_Phao_Selected_flag
+				clr_country_flag = SIA_Triangle_Sarit_Selected_flag
+				clr_country_flag = SIA_Triangle_Phibun_Selected_flag
+				add_to_variable = {
+					SIA_Triangle_GUI_Variable = 1
+				}
+			}
+		}
+		properties = {
+			Phibun_progress_bar = {
+				frame = SIA_Phibun_Support
+			}
+			Sakdina_progress_bar = {
+				frame = SIA_Sakdina_Support
+			}
+			Diamond_Ring_progress_bar = {
+				frame = SIA_Diamond_Ring_Support
+			}
+		}
+		triggers = {
+			Phibun_pb_outline_visible = {
+				has_country_flag = SIA_Triangle_Phibun_Selected_flag
+			}
+			Sakdina_pb_outline_visible = {
+				has_country_flag = SIA_Triangle_Sarit_Selected_flag
+			}
+			Diamond_Ring_pb_outline_visible = {
+				has_country_flag = SIA_Triangle_Phao_Selected_flag
+			}
+			Phibun_Frame_outline_visible = {
+				has_country_flag = SIA_Triangle_Phibun_Selected_flag
+			}
+			Sakdina_Frame_outline_visible = {
+				has_country_flag = SIA_Triangle_Sarit_Selected_flag
+			}
+			Diamond_Ring_Frame_outline_visible = {
+				has_country_flag = SIA_Triangle_Phao_Selected_flag
+			}
+			Phibun_Frame_Button_visible = {
+				NOT = { has_country_flag = SIA_Triangle_Phibun_Selected_flag }
+			}
+			Phibun_Icon_Button_visible = {
+				NOT = { has_country_flag = SIA_Triangle_Phibun_Selected_flag }
+			}
+			Sakdina_Icon_Button_visible = {
+				NOT = { has_country_flag = SIA_Triangle_Sarit_Selected_flag }
+			}
+			Sakdina_Frame_Button_visible = {
+				NOT = { has_country_flag = SIA_Triangle_Sarit_Selected_flag }
+			}
+			Diamond_Ring_Frame_Button_visible = {
+				NOT = { has_country_flag = SIA_Triangle_Phao_Selected_flag }
+			}
+			Diamond_Ring_Icon_Button_visible = {
+				NOT = { has_country_flag = SIA_Triangle_Phao_Selected_flag }
+			}
+		}
+	}
+	
+	SIA_Separatists_GUI = { 
+		context_type = decision_category
+		window_name = "SIA_Separatists_GUI_Menu"
+		dirty = SIA_Separatists_GUI_Variable
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = SIA
+		}
+		ai_enabled = {
+			always = yes
+		}
+		properties = {
+			SIA_Perlis_Display = {
+				frame = 1891:gui_display_frame
+			}
+			SIA_Kedah_Display = {
+				frame = 1892:gui_display_frame
+			}
+			SIA_Pattani_Besar_Display = {
+				frame = 1936:gui_display_frame
+			}
+			SIA_Satun_Songkhla_Display = {
+				frame = 1937:gui_display_frame
+			}
+			SIA_Upper_Isan_Display = {
+				frame = 884:gui_display_frame
+			}
+			SIA_Lower_Isan_Display = {
+				frame = 1940:gui_display_frame
+			}
+			SIA_Ubon_Ratchathani_Display = {
+				frame = 1876:gui_display_frame
+			}
+			SIA_Central_Thailand_Display = {
+				frame = 882:gui_display_frame
+			}
+			SIA_Chiang_Mai_Display = {
+				frame = 2043:gui_display_frame
+			}
+			SIA_Chiang_Rai_Display = {
+				frame = 1318:gui_display_frame
+			}
+			SIA_May_Hong_Son_Display = {
+				frame = 2042:gui_display_frame
+			}
+			SIA_Ban_Karen_Display = {
+				frame = 2044:gui_display_frame
+			}
+			SIA_Culture_Flag = {
+				image = [SIASeparatistsFlagTag.GetFlag]
+			}
+			Main_Frame = {
+				image = [GetMainPortraitSIA]
+			}
+		}
+		effects = {
+			SIA_Upper_Isan_button_click = {
+				set_variable = { SIA_Selected_State = 884 }
+				SIA_Culture_Select_State_Verify_Culture = yes
+				add_to_variable = { 
+					SIA_Separatists_GUI_Variable = 1 
+				}
+			}
+			SIA_Lower_Isan_button_click = {
+				set_variable = { SIA_Selected_State = 1940 }
+				SIA_Culture_Select_State_Verify_Culture = yes
+				add_to_variable = { 
+					SIA_Separatists_GUI_Variable = 1 
+				}
+			}
+			SIA_Ubon_Ratchathani_button_click = {
+				set_variable = { SIA_Selected_State = 1876 }
+				SIA_Culture_Select_State_Verify_Culture = yes
+				add_to_variable = { 
+					SIA_Separatists_GUI_Variable = 1 
+				}
+			}
+			SIA_Perlis_button_click = {
+				set_variable = { SIA_Selected_State = 1891 }
+				SIA_Culture_Select_State_Verify_Culture = yes
+				add_to_variable = { 
+					SIA_Separatists_GUI_Variable = 1 
+				}
+			}
+			SIA_Kedah_button_click = {
+				set_variable = { SIA_Selected_State = 1892 }
+				SIA_Culture_Select_State_Verify_Culture = yes
+				add_to_variable = { 
+					SIA_Separatists_GUI_Variable = 1 
+				}
+			}
+			SIA_Pattani_Besar_button_click = {
+				set_variable = { SIA_Selected_State = 1936 }
+				SIA_Culture_Select_State_Verify_Culture = yes
+				add_to_variable = { 
+					SIA_Separatists_GUI_Variable = 1 
+				}
+			}
+			SIA_Satun_Songkhla_button_click = {
+				set_variable = { SIA_Selected_State = 1937 }
+				SIA_Culture_Select_State_Verify_Culture = yes
+				add_to_variable = { 
+					SIA_Separatists_GUI_Variable = 1 
+				}
+			}
+			SIA_Central_Thailand_button_click = {
+				set_variable = { SIA_Selected_State = 882 }
+				SIA_Culture_Select_State_Verify_Culture = yes
+				add_to_variable = { 
+					SIA_Separatists_GUI_Variable = 1 
+				}
+			}
+			SIA_Chiang_Mai_button_click = {
+				set_variable = { SIA_Selected_State = 2043 }
+				SIA_Culture_Select_State_Verify_Culture = yes
+				add_to_variable = { 
+					SIA_Separatists_GUI_Variable = 1 
+				}
+			}
+			SIA_Chiang_Rai_button_click = {
+				set_variable = { SIA_Selected_State = 1318 }
+				SIA_Culture_Select_State_Verify_Culture = yes
+				add_to_variable = { 
+					SIA_Separatists_GUI_Variable = 1 
+				}
+			}
+			SIA_May_Hong_Son_button_click = {
+				set_variable = { SIA_Selected_State = 2042 }
+				SIA_Culture_Select_State_Verify_Culture = yes
+				add_to_variable = { 
+					SIA_Separatists_GUI_Variable = 1 
+				}
+			}
+			SIA_Ban_Karen_button_click = {
+				set_variable = { SIA_Selected_State = 2044 }
+				SIA_Culture_Select_State_Verify_Culture = yes
+				add_to_variable = { 
+					SIA_Separatists_GUI_Variable = 1 
+				}
+			}
+			SIA_Thaificiation_view_click = {
+				set_variable = { SIA.SIA_cur_mapmode = 1 }
+				SIA_All_State_Update_Culture_Display = yes
+			}
+			SIA_Relations_view_click = {
+				set_variable = { SIA.SIA_cur_mapmode = 2 }
+				SIA_All_State_Update_Culture_Display = yes
+			}
+			SIA_Culture_left_button_click = {
+				SIA_Culture_Rotate_Left = yes
+				add_to_variable = { 
+					SIA_Separatists_GUI_Variable = 1 
+				}
+			}
+			SIA_Culture_right_button_click = {
+				SIA_Culture_Rotate_Right = yes
+				add_to_variable = { 
+					SIA_Separatists_GUI_Variable = 1 
+				}
+			}
+		}
+		triggers = {
+			SIA_Culture_Flag_Internal_visible = {
+				check_variable = {
+					SIA.InternalFlag = 1
+				}
+			}
+			SIA_Culture_Flag_visible = {
+				check_variable = {
+					SIA.InternalFlag = 0
+				}
+			}
+		}
+	}
+}

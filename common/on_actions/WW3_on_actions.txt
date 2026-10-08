@@ -1,0 +1,987 @@
+# KRCW: copy of CWIC WW3_on_actions.txt, every block gated on NOT KRCW_active (build/patch_ww3.py)
+on_actions = {
+	#ROOT is attacker, FROM is defender
+	on_declare_war = {
+		effect = {
+if = { limit = { NOT = { has_global_flag = KRCW_active } }
+
+			if = {
+				limit = {
+					date < 1970.1.1
+					OR = {
+						AND = {
+							ROOT = { is_in_faction_with = SOV }
+							FROM = { is_in_faction_with = USA }
+						}
+						AND = {
+							ROOT = { is_in_faction_with = USA }
+							FROM = { is_in_faction_with = SOV }
+						}
+					}
+					NOT = {
+						has_global_flag = WW3_Started
+					}
+				}
+				add_threat = -70
+				WW3_1950_starting_effect = yes
+				set_global_flag = WW3_Started
+				Start_Total_War_Between_Factions = yes
+				USA = {
+				    country_event = {
+					    id = UN.3
+					    days = 5
+				    }
+			    }
+			    SOV = {
+				    country_event = {
+					    id = UN.3
+					    days = 5
+				    }
+			    }
+			    JOR = {
+				    country_event = {
+					    id = WW3_ME.1
+					    days = 15
+				    }
+			    }
+			}
+			if = {
+				limit = {
+					OR = {
+						AND = {
+							ROOT = {
+								tag = ISR
+							}
+							FROM = {
+								tag = JOR
+							}
+						}
+						AND = {
+							ROOT = {
+								tag = JOR
+							}
+							FROM = {
+								tag = ISR
+							}
+						}
+					}
+				}
+				news_event = WW3_news.5
+			}
+		
+}
+}
+	}
+	####AMERICA LIBERATED REGION####
+	on_capitulation = { ###ROOT is Loser, FROM is Winner
+		effect = {
+if = { limit = { NOT = { has_global_flag = KRCW_active } }
+
+			####POLAND KILLED####
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = POL
+					}
+					FROM = {
+						OR = {
+							original_tag = USA
+							is_ally_with = USA
+						}
+					}
+				}
+				poland_killed = yes
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = -15
+				    }
+				}
+			}
+			###DDR KILLED####
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = DDR
+					}
+					FROM = {
+						OR = {
+							original_tag = USA
+							is_ally_with = USA
+						}
+					}
+				}
+				WGR = {
+					annex_country = {
+						target = DDR
+						transfer_troops = no
+					}
+				}
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = -15
+				    }
+				}
+			}
+			###ALBANIA KILLED###
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = ALB
+					}
+					FROM = {
+						OR = {
+							original_tag = USA
+							is_ally_with = USA
+						}
+					}
+				}
+				albania_killed = yes
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = -15
+				    }
+				}
+			}
+			###YUGOSLAVIA KILLED###
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = YUG
+					}
+					FROM = {
+						OR = {
+							original_tag = USA
+							is_ally_with = USA
+						}
+					}
+				}
+				yugoslavia_killed = yes
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = -15
+				    }
+				}
+			}
+		
+}
+}
+	}
+	####SOVIET WAR SPOILS###
+	on_capitulation = { ###ROOT is Loser, FROM is Winner
+		effect = {
+if = { limit = { NOT = { has_global_flag = KRCW_active } }
+
+			####ITALY KILLED#####
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = ITA
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				FROM = {
+					white_peace = ROOT
+					set_autonomy = {
+					    target = ROOT
+					    autonomy_state = autonomy_easternbloc
+				    }
+				}
+				ROOT = {
+					white_peace = FROM
+					set_country_flag = SOV_ITA_CAPTURED
+					set_cosmetic_tag = ITA_COM
+					add_ideas = Warsaw_Treaty_Organization_member
+					remove_ideas = NATO_Member
+					set_temp_variable = { 
+                        New_sphere_leader = SOV
+                    }
+                    add_to_sphere = yes
+					set_politics = {
+						ruling_party = communism
+					}
+					set_popularities = {
+						communism = 64
+						neutrality = 6
+						maoism = 10
+						trotskyism = 10
+						Social_Democratic = 10
+					}
+				}
+				load_focus_tree = NO_FOCUS
+				news_event = CWIC_ITALY_NEWS.1
+				news_event = CWIC_ITALY_NEWS.2
+				sardinia_independent = yes
+				sicily_independent = yes
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 25
+				    }
+                    set_country_flag = ITA_Capped
+				}
+			}
+			####FRANCE KILLED#####
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = FRA
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				FROM = {
+					white_peace = ROOT
+					set_autonomy = {
+					    target = ROOT
+					    autonomy_state = autonomy_easternbloc
+				    }
+				}
+				ROOT = {
+					set_country_flag = SOV_FRA_CAPTURED
+					set_cosmetic_tag = FRA_SOV
+					add_ideas = Warsaw_Treaty_Organization_member
+					remove_ideas = NATO_Member
+					set_politics = {
+						ruling_party = communism
+					}
+					create_country_leader = {
+						name = "Maurice Thorez"
+						picture = "Maurice_Thorez_50s.dds"
+						desc = "POLITICS_MAURICE_THOREZ_DESC"
+						ideology = marxism_leninism
+					}
+					set_temp_variable = { 
+                        New_sphere_leader = SOV
+                    }
+                    add_to_sphere = yes
+					set_popularities = {
+						communism = 54
+						neutrality = 6
+						maoism = 15
+						trotskyism = 10
+						Social_Democratic = 15
+					}
+					load_focus_tree = NO_FOCUS
+				}
+				france_killed = yes
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 40
+				    }
+				}
+			}
+			####GERMANY KILLED#####
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = WGR
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				ROOT = {
+					become_exiled_in = { 
+						target = USA 
+					    legitimacy = 60 
+					}
+				}
+				west_germany_killed = yes
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 25
+				    }
+				}
+			}
+			####DENMARK KILLED#####
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = DEN
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				FROM = {
+					white_peace = ROOT
+					set_autonomy = {
+					    target = ROOT
+					    autonomy_state = autonomy_easternbloc
+				    }
+				}
+				ROOT = {
+					set_cosmetic_tag = DEN_SOV
+					add_ideas = Warsaw_Treaty_Organization_member
+					remove_ideas = NATO_Member
+					retire_character = DEN_Aksel_Larsen_com
+					promote_character = DEN_Alfred_Jensen
+					set_politics = {
+						ruling_party = communism
+					}
+					set_temp_variable = { 
+                        New_sphere_leader = SOV
+                    }
+                    add_to_sphere = yes
+					set_popularities = {
+						communism = 65
+						neutrality = 5
+						trotskyism = 20
+						Social_Democratic = 10
+					}
+				}
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 25
+				    }
+					set_country_flag = DEN_Capped
+				}
+			}
+			###SAAR(land) KILLED####
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = SAR
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				DDR = {
+					annex_country = {
+                        target = ROOT
+                        transfer_troops = no
+                    }
+				}
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 25
+				    }
+				}
+			}
+			###AUSTRIA KILLED###
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = AUS
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				ROOT = {
+					become_exiled_in = { 
+						target = USA 
+					    legitimacy = 60 
+					}
+				}
+				ADR = {
+					annex_country = {
+                        target = AUS
+                        transfer_troops = no
+                    }
+					load_oob = ADR_1949
+					add_ideas = Warsaw_Treaty_Organization_member
+				}
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 25
+				    }
+				}
+			}
+			###LUXEMBOURG KILLED####
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = LUX
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				luxembourg_killed = yes
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 25
+				    }
+				}
+			}
+			###FINLAND KILLED####
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = FIN
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				FROM = {
+					white_peace = ROOT
+					set_autonomy = {
+					    target = ROOT
+					    autonomy_state = autonomy_easternbloc
+				    }
+				}
+				ROOT = {
+					set_cosmetic_tag = FIN_SOV
+					add_ideas = {
+						Warsaw_Treaty_Organization_member
+					}
+					set_temp_variable = { 
+                        New_sphere_leader = SOV
+                    }
+                    add_to_sphere = yes
+					set_politics = {
+						ruling_party = communism
+					}
+					set_popularities = {
+	                    communism = 65
+						maoism = 35
+                    }
+				}
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 25
+				    }
+				}
+			}
+			###SWEDEN KILLED###
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = SWE
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				FROM = {
+					white_peace = ROOT
+					set_autonomy = {
+					    target = ROOT
+					    autonomy_state = autonomy_easternbloc
+				    }
+				}
+				ROOT = {
+					set_cosmetic_tag = SWE_SOV
+					add_ideas = {
+						Warsaw_Treaty_Organization_member
+					}
+					retire_character = SWE_Helge_Jung
+					retire_character = SWE_Thord_Bonde
+					retire_character = SWE_Carl_August_Ehrensvard
+					retire_character = SWE_Archibald_Douglas
+					clr_country_flag = SWE_Gustav_VI
+					set_temp_variable = { 
+                        New_sphere_leader = SOV
+                    }
+                    add_to_sphere = yes
+					set_politics = {
+						ruling_party = communism
+					}
+					set_popularities = {
+	                    communism = 35
+						Social_Democratic = 35
+						socialist = 30
+                    }
+				}
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 25
+				    }
+				}
+			}
+			####NORWAY KILLED####
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = NOR
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				FROM = {
+					white_peace = ROOT
+					set_autonomy = {
+					    target = ROOT
+					    autonomy_state = autonomy_easternbloc
+				    }
+				}
+				ROOT = {
+					set_cosmetic_tag = NOR_SOV
+					add_ideas = {
+						Warsaw_Treaty_Organization_member
+					}
+					retire_character = NOR_Emil_Lovlien
+					promote_character = NOR_Jeanette_Olsen
+					create_corps_commander = {
+						name = "Helge Halsen"
+						picture = "gfx/leaders/NOR/Helge_Halsen_50s.dds"
+						traits = { winter_specialist }
+						skill = 3
+						attack_skill = 4
+						defense_skill = 4
+						planning_skill = 3
+						logistics_skill = 2
+					}
+					retire_character = NOR_Carl_Gustav_Fleischer
+					# clr_country_flag = NOR_Haakon_VII
+					set_temp_variable = { 
+                        New_sphere_leader = SOV
+                    }
+                    add_to_sphere = yes
+					set_politics = {
+						ruling_party = communism
+					}
+					set_popularities = {
+	                    communism = 45
+						Social_Democratic = 25
+						socialist = 30
+                    }
+				}
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 25
+				    }
+				}
+			}
+			###NETHERLAND KILLED###
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = HOL
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				FROM = {
+					white_peace = ROOT
+					set_autonomy = {
+					    target = ROOT
+					    autonomy_state = autonomy_easternbloc
+				    }
+				}
+				ROOT = {
+					set_cosmetic_tag = HOL_SOV
+					set_temp_variable = { 
+                        New_sphere_leader = SOV
+                    }
+                    add_to_sphere = yes
+				}
+				holland_killed = yes
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 25
+				    }
+				}
+			}
+			###BELGIUM KILLED###
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = BEL
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				FROM = {
+					white_peace = ROOT
+					set_autonomy = {
+					    target = ROOT
+					    autonomy_state = autonomy_easternbloc
+				    }
+				}
+				ROOT = {
+					set_party_name = {
+                        ideology = communism
+                        long_name = "Gruppa Sovetskikh Voysk v Belgii"
+                        name = "Gruppa Sovetskikh Voysk v Belgii"
+                    }
+					set_temp_variable = { 
+                        New_sphere_leader = SOV
+                    }
+					clr_country_flag = BEL_Baudouin_I_50s
+                    add_to_sphere = yes
+					recruit_character = SOV_Mikhail_Suslov
+					promote_character = {
+                        character = SOV_Mikhail_Suslov
+                        ideology = marxism_leninism
+                    }
+					remove_ideas = NATO_Member
+					add_ideas = Warsaw_Treaty_Organization_member
+					set_cosmetic_tag = BEL_SOV
+                    set_politics = {
+                        ruling_party = communism
+                    }
+                    set_popularities = {
+                        communism = 75
+                        neutrality = 25
+                    }
+					load_focus_tree = NO_FOCUS
+				}
+				belgium_killed = yes
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 25
+				    }
+				}
+			}
+			###YUGOSLAVIA KILLED###
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = YUG
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				FROM = {
+					white_peace = ROOT
+					set_autonomy = {
+					    target = ROOT
+					    autonomy_state = autonomy_easternbloc
+				    }
+				}
+				ROOT = {
+					set_temp_variable = { 
+                        New_sphere_leader = SOV
+                    }
+                    add_to_sphere = yes
+					set_cosmetic_tag = YUG_SOV
+					set_politics = {
+						ruling_party = communism
+					}
+					set_popularities = {
+						communism = 91
+						trotskyism = 9
+					}
+				}
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 25
+				    }
+				}
+			}
+			###SPAIN KILLED###
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = SPR
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				spain_killed = yes
+				FROM = {
+					white_peace = ROOT
+				}
+			}
+			###ANDORRA KILLED###
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = ANR
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				andorra_killed_1 = yes
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 5
+				    }
+				}
+			}
+			###PORTUGAL KILLED###
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = POR
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+					}
+				}
+				portugal_killed = yes
+				FROM = {
+					white_peace = ROOT
+				}
+			}
+			###JAPAN KILLED####
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = JAP
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							is_ally_with = SOV
+						}
+						NOT = {
+							original_tag = PRC
+						}
+					}
+				}
+				FROM = {
+					white_peace = ROOT
+					set_autonomy = {
+					    target = ROOT
+					    autonomy_state = autonomy_easternbloc
+				    }
+				}
+				ROOT = {
+					set_cosmetic_tag = JAP_SOV
+					set_temp_variable = { 
+                        New_sphere_leader = SOV
+                    }
+                    add_to_sphere = yes
+					remove_ideas = US_Ally_Japan
+					add_ideas = Warsaw_Treaty_Organization_member
+					load_focus_tree = NO_FOCUS
+				}
+				japan_killed = yes
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 25
+				    }
+				}
+			}
+			######People's Republic of China version######
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = JAP
+					}
+					FROM = {
+						OR = {
+							original_tag = PRC
+							is_ally_with = PRC
+						}
+						NOT = {
+							original_tag = SOV
+						}
+					}
+				}
+				japan_killed_prc = yes
+				SOV = {
+					add_days_mission_timeout = {
+					    mission = SOV_WW3_Time_Limit
+					    days = 25
+				    }
+				}
+			}
+
+			######WAR OF AFRICA####
+
+			if = {
+				limit = {
+					has_global_flag = WW3_Started
+					ROOT = {
+						original_tag = TAR
+					}
+					FROM = {
+						OR = {
+							original_tag = ALE
+							is_ally_with = ALE
+						}
+					}
+				}
+				FROM = {
+					white_peace = ROOT
+					set_autonomy = {
+					    target = ROOT
+					    autonomy_state = autonomy_colony
+				    }
+				}
+				ROOT = {
+					set_cosmetic_tag = ALE_TAR
+					recruit_character = TAR_Saïd_Boualam
+					TAR_Saïd_Boualam = {
+						promote_character = yes
+					}
+					retire_character = TAR_Alladi_ag_Alla
+					set_politics = {
+						ruling_party = neutrality
+					}
+					set_popularities = {
+						neutrality = 33
+						nationalist = 67
+					}
+				}
+				###ALGERIAN COMMUNIST KILLED###
+				if = {
+					limit = {
+						has_global_flag = WW3_Started
+						ROOT = {
+							original_tag = ALG
+						}
+						FROM = {
+							original_tag = ALE
+						}
+					}
+					FROM = {
+						annex_country = {
+                            target = ROOT
+                            transfer_troops = no
+                        }
+					}
+				}
+
+				####WAR IN ASIA###
+
+				if = {
+					limit = {
+						has_global_flag = WW3_Started
+						ROOT = {
+							original_tag = WPA
+						}
+						FROM = {
+							original_tag = INO
+						}
+					}
+					FROM = {
+						white_peace = HOL
+						set_autonomy = {
+							target = ROOT
+							autonomy_state = autonomy_protectorate
+						}
+						set_nationality = {
+                            target_country = WPA
+                            character = INO_Abdul_Haris_Nasution_Leader
+                        }
+					}
+					ROOT = {
+						858 = {
+							set_state_name = "Irian"
+						}
+						669 = {
+							set_state_name = "Irian Barat"
+						}
+						clr_country_flag = CWIC_HOG_UI_ENABLED
+						set_cosmetic_tag = INO_WPA
+		                INO_Abdul_Haris_Nasution_Leader = {
+			                promote_character = yes
+		                }
+                        retire_character = WPA_Tony_Lovink
+                        retire_character = WPA_van_Waardenburg
+                        retire_character = WPA_van_Eechoud
+						set_politics = {
+							ruling_party = neutrality
+						}
+						set_party_name = {
+                            ideology = neutrality
+                            long_name = "Angkatan Bersendjata Republik Indonesia"
+                            name = "Angkatan Bersendjata Republik Indonesia"
+                        }
+						set_popularities = {
+							neutrality = 33
+							nationalist = 67
+						}
+					}
+					news_event = indonesia_news.13
+				}
+			}
+		
+}
+}
+	}
+}

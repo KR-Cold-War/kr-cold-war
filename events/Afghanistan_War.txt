@@ -1,0 +1,999 @@
+# KRCW (build/patch_residue.py): 43 OTL events dropped while KRCW_active
+add_namespace = AFG_Revolution
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_Revolution.1		#March 1961
+	immediate = { }
+	title = AFG_Revolution.1.t
+	desc = AFG_Revolution.1.d
+	picture = GFX_AFG_Revolution_1
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_Revolution.1.a
+		PAK = { country_event = AFG_Revolution.2 }
+		set_country_flag = Daoud_Attack
+
+	}
+	option = {
+		name = AFG_Revolution.1.b
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_Revolution.2
+	immediate = { }
+	title = AFG_Revolution.2.t
+	desc = AFG_Revolution.2.d
+	picture = GFX_AFG_Revolution_2
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_Revolution.2.a
+		news_event = AFG_Revolution.3
+		add_opinion_modifier = {
+			target = AFG
+			modifier = trade_embargo
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_Revolution.3
+	immediate = { }
+	title = AFG_Revolution.3.t
+	picture = GFX_AFG_Revolution_3
+	is_triggered_only = yes
+	major = yes
+	desc = AFG_Revolution.3.d
+
+	option = {
+		name = AFG_Revolution.3.a
+
+	}
+}
+	
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_Revolution.4			#March 1963, has_country_flag = Daoud_Attack
+	immediate = { }
+	title = AFG_Revolution.4.t
+	desc = AFG_Revolution.4.d
+	picture = GFX_AFG_Revolution_4
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_Revolution.4.a
+		create_country_leader = {
+			name = "Mohammad Yusuf"
+			picture = "Mohammad_Yusuf_60s.dds"
+			ideology = monarchist
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_Revolution.5			#June 1964,
+	immediate = { }
+	title = AFG_Revolution.5.t
+	desc = AFG_Revolution.5.d
+	#picture = GFX_AFG_Revolution_5
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_Revolution.5.a
+		if = {
+			limit = {
+				NOT = { has_country_flag = Daoud_Attack }
+			}
+			create_country_leader = {
+				name = "Mohammad Yusuf"
+				picture = "mohammad_yusuf.dds"
+				ideology = monarchist
+			}
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_Revolution.6
+	immediate = { }
+	title = AFG_Revolution.6.t
+	picture = GFX_AFG_Revolution_6
+	is_triggered_only = yes
+	major = yes
+	desc = AFG_Revolution.6.d
+
+	option = {
+		name = AFG_Revolution.6.a
+
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_Revolution.7
+	immediate = { }
+	title = AFG_Revolution.7.t
+	picture = GFX_AFG_Revolution_7
+	is_triggered_only = yes
+	major = yes
+	desc = AFG_Revolution.7.d
+
+	option = {
+		name = AFG_Revolution.7.a
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }			#April 1978
+	id = AFG_Revolution.8
+	immediate = { }
+	title = AFG_Revolution.8.t
+	desc = AFG_Revolution.8.d
+	picture = GFX_AFG_Revolution_8
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_Revolution.8.a
+		country_event = { id = AFG_Revolution.9 days = 5 }
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_Revolution.9
+	immediate = { }
+	title = AFG_Revolution.9.t
+	desc = AFG_Revolution.9.d
+	picture = GFX_AFG_Revolution_9
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_Revolution.9.a
+		news_event = AFG_War.1
+		country_event = AFG_War.2
+		set_politics = {
+			ruling_party = communism
+			elections_allowed = no
+		}
+	}
+	option = {
+		name = AFG_Revolution.9.b
+		set_country_flag = NO_AFG_WAR
+	}
+}
+add_namespace = AFG_War
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.1
+	immediate = { }
+	title = AFG_War.1.t
+	picture = GFX_AFG_War_1
+	is_triggered_only = yes
+	major = yes
+	desc = AFG_War.1.d
+
+	option = {
+		name = AFG_War.1.a
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.2
+	immediate = { }
+	title = AFG_War.2.t
+	desc = AFG_War.2.d
+	picture = GFX_AFG_War_2
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.2.a
+		country_event = {
+			id = AFG_War.3 days = 90
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.3
+	immediate = { }
+	title = AFG_War.3.t
+	desc = AFG_War.3.d
+	picture = GFX_AFG_War_3
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.3.a
+		country_event = {
+			id = AFG_War.4 days = 90
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.4
+	immediate = { }
+	title = AFG_War.4.t
+	desc = AFG_War.4.d
+	picture = GFX_AFG_War_4
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.4.a
+		add_stability = -0.03
+		country_event = {
+			id = AFG_War.5 days = 90
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.5
+	immediate = { }
+	title = AFG_War.5.t
+	desc = AFG_War.5.d
+	picture = GFX_AFG_War_5
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.5.a
+		add_stability = -0.03
+		country_event = {
+			id = AFG_War.6 days = 45
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.6
+	immediate = { }
+	title = AFG_War.6.t
+	desc = AFG_War.6.d
+	picture = GFX_AFG_War_6
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.6.a
+		415 = {
+			add_manpower = -25000
+		}
+		add_stability = -0.03
+		add_war_support = -0.03
+		SOV = {
+			country_event = AFG_War.7
+		}
+		country_event = {
+			id = AFG_War.8 days = 45
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.7
+	immediate = { }
+	title = AFG_War.7.t
+	desc = AFG_War.7.d
+	picture = GFX_AFG_War_7
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.7.a
+		AFG = { add_offsite_building = { type = arms_factory level = 4 } }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.8
+	immediate = { }
+	title = AFG_War.8.t
+	desc = AFG_War.8.d
+	picture = GFX_AFG_War_8
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.8.a
+		country_event = {
+			id = AFG_War.9 days = 15
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.9
+	immediate = { }
+	title = AFG_War.9.t
+	desc = AFG_War.9.d
+	picture = GFX_AFG_War_9
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.9.a
+		news_event = AFG_War.10
+		country_event = {
+			id = AFG_War.11 days = 90
+		}
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Hafizullah Amin"
+			picture = "Hafizullah_Amin.dds"
+			ideology = stalinism
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.10
+	immediate = { }
+	title = AFG_War.10.t
+	picture = GFX_AFG_War_10
+	is_triggered_only = yes
+	major = yes
+	desc = AFG_War.10.d
+
+	option = {
+		name = AFG_War.10.a
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.11
+	immediate = { }
+	title = AFG_War.11.t
+	desc = AFG_War.11.d
+	picture = GFX_AFG_War_11
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.11.a
+		set_global_flag = AFGHANISTAN_SOV_WAR
+		soviet_afghan_war_super_event = yes
+		PAK = {
+			country_event = PAK_Afghan_War.1
+		}
+		every_owned_state = {
+			add_core_of = SEE
+			add_core_of = LOP
+			add_core_of = TAL
+			add_core_of = AGN
+		}
+		AGN = {
+			transfer_state = 1213
+			load_oob = "TAL_1949"
+			1213 = {
+				create_unit = {
+					division = "name = \"Infantry Division\"division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = AGN allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\"division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = AGN allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\"division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = AGN allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\"division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = AGN allow_spawning_on_enemy_provs = no
+				}
+			}
+		}
+		TAL = {
+			transfer_state = 1324
+			transfer_state = 1211
+			transfer_state = 1210
+			transfer_state = 415
+			transfer_state = 1218
+			load_oob = "TAL_1949"
+			1324 = {
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TAL allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TAL allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TAL allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TAL allow_spawning_on_enemy_provs = no
+				}
+			}
+			1210 = {
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TAL allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TAL allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TAL allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TAL allow_spawning_on_enemy_provs = no
+				}
+			}
+			1218 = {
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TAL allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TAL allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TAL allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TAL allow_spawning_on_enemy_provs = no
+				}
+			}
+		}
+		SEE = {
+			transfer_state = 1214
+			set_province_controller = 10852
+			set_province_controller = 10896
+			load_oob = "TAL_1949"
+			1214 = {
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = SEE allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = SEE allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = SEE allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = SEE allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = SEE allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = SEE allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = SEE allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = SEE allow_spawning_on_enemy_provs = no
+				}
+			}
+		}
+		LOP = {
+			transfer_state = 1323
+			load_oob = "TAL_1949"
+ 
+			1323 = {
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = LOP allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = LOP allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = LOP allow_spawning_on_enemy_provs = no
+				}
+			}
+
+		}
+
+		set_province_controller = 4893
+		set_province_controller = 13922
+		set_province_controller = 13921
+		set_province_controller = 13920
+
+		set_province_controller = 13919
+		set_province_controller = 13918
+
+		set_province_controller = 3119
+		set_province_controller = 6013
+
+		set_province_controller = 7916
+		set_province_controller = 12769
+
+		set_province_controller = 10737
+		declare_war_on = {
+			target = AGN
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = TAL
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = SEE
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = LOP
+			type = annex_everything
+		}
+		AGN = {
+			declare_war_on = {
+				target = LOP
+				type = annex_everything
+			}
+		}
+		SEE = {
+			declare_war_on = {
+				target = LOP
+				type = annex_everything
+			}
+		}
+		TAL = {
+			declare_war_on = {
+				target = SEE
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = LOP
+				type = annex_everything
+			}
+		}
+		SOV = {
+			country_event = AFG_War.12
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.12
+	immediate = { }
+	title = AFG_War.12.t
+	desc = AFG_War.12.d
+	picture = GFX_AFG_War_12
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.12.a
+		country_event = { id = AFG_War.13 days = 1 }
+		news_event = { id = SOV_AFG.1 days = 1 }
+		complete_national_focus = SOV_FP_Afghanistans_Intervention
+		USA = {
+			complete_national_focus = USA_70s_The_Soviet_Invasion_of_Afghanistan
+		}
+	}
+	option = {
+		name = AFG_War.12.b
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.13
+	immediate = { }
+	title = AFG_War.13.t
+	desc = AFG_War.13.d
+	picture = GFX_AFG_War_13
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.13.a
+		puppet = AFG
+		load_oob = SOV_1979
+		declare_war_on = {
+			target = AGN
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = SEE
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = TAL
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = LOP
+			type = annex_everything
+		}
+		AFG = {
+			retire_country_leader = yes
+			news_event = { id = AFG_War.14 days = 1 }
+			create_country_leader = {
+				name = "Babrak Karmal"
+				picture = "Babrak_Karmal_80s.dds"
+				ideology = stalinism
+			}
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.14
+	immediate = { }
+	title = AFG_War.14.t
+	picture = GFX_AFG_War_14
+	is_triggered_only = yes
+	major = yes
+	desc = AFG_War.13.d
+
+	option = {
+		name = AFG_War.14.a
+		
+	}
+}
+#Soviet Withdrawal Objectives (Soviet event)		#October 1985
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.15
+	immediate = { }
+	title = AFG_War.15.t
+	desc = AFG_War.15.d
+	picture = GFX_AFG_War_15
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.15.a
+		country_event = { id = AFG_War.16 days = 50 }
+	}
+}#Replace Soviet with Afghan Soldiers				#Immediate
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.16
+	immediate = { }
+	title = AFG_War.16.t
+	desc = AFG_War.16.d
+	picture = GFX_AFG_War_16
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.16.a
+		SOV = {
+			add_war_support = 0.03
+		}
+		AFG = {
+			add_manpower = 25000
+			country_event = { id = AFG_War.17 days = 50 }
+		}
+	}
+}
+#Soviets force Babrak Karmal to Appoint Mohammad Najibullah to Secretariat	#May 1986
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.17
+	immediate = { }
+	title = AFG_War.17.t
+	desc = AFG_War.17.d
+	picture = GFX_AFG_War_17
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.17.a
+		create_country_leader = {
+			name = "Mohammad Najibullah"
+			picture = "Mohammad_Najibullah_80s.dds"
+			ideology = stalinism
+		}
+		news_event = AFG_War.18
+		news_event = { id = AFG_War.19 days = 25 }
+		country_event = { id = AFG_War.20 days = 50 }
+	}
+}
+#Najibullah as PDPA General Secretary		#News Event
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.18
+	immediate = { }
+	title = AFG_War.18.t
+	picture = GFX_AFG_War_18
+	is_triggered_only = yes
+	major = yes
+	desc = AFG_War.18.d
+
+	option = {
+		name = AFG_War.18.a
+		
+	}
+}#Najibullah ousts Karmal		#News Event
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.19
+	immediate = { }
+	title = AFG_War.19.t
+	picture = GFX_AFG_War_19
+	is_triggered_only = yes
+	major = yes
+	desc = AFG_War.19.d
+
+	option = {
+		name = AFG_War.19.a
+		
+	}
+}
+#Policy of Reconciliation/Change country name		#Country Event
+	#Should lower popularity of PDPA, stability, but trigger ceasefire events
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.20
+	immediate = { }
+	title = AFG_War.20.t
+	desc = AFG_War.20.d
+	picture = GFX_AFG_War_20
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.20.a
+		add_stability = 0.10
+		add_popularity = {
+			ideology = communism
+			popularity = -0.10
+		}
+		set_cosmetic_tag = REP_AFG
+		set_country_flag = Ceasefire_Enabled
+		country_event = AFG_War.21
+	}
+}#Ceasefire with Massoud?
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.21
+	immediate = { }
+	title = AFG_War.21.t
+	desc = AFG_War.21.d
+	picture = GFX_AFG_War_21
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.21.a
+		set_truce = {
+			target = AGN
+			days = 182
+		}
+		country_event = { id = AFG_War.22 days = 182 }
+	}
+}	
+#Incorporate Massoud?
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.22
+	immediate = { }
+	title = AFG_War.22.t
+	desc = AFG_War.22.d
+	picture = GFX_AFG_War_22
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = { add_popularity = { ideology = islamism popularity = 0.1 } }
+
+	option = {
+		name = AFG_War.22.a
+	}
+	option = {
+		name = AFG_War.22.b
+		annex_country = { target = AGN transfer_troops = yes }
+	}
+}
+#Ceasefire with Iranian Parties? (Afghan event)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.23
+	immediate = { }
+	title = AFG_War.23.t
+	desc = AFG_War.23.d
+	picture = GFX_AFG_War_23
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.23.a
+		PER = { country_event = AFG_War.24 }
+	}
+}	
+#Ceasefire offer (Iran event)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.24
+	immediate = { }
+	title = AFG_War.24.t
+	desc = AFG_War.24.d
+	picture = GFX_AFG_War_24
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = AFG_War.24.a
+	}
+	option = {
+		name = AFG_War.24.b
+		AFG = {
+			set_truce = {
+				target = SEE
+				days = 182
+			}
+		}
+		AFG = { country_event = { id = AFG_War.25 days = 182 } }
+	}
+}#Incorporate Iranian Parties
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.25
+	immediate = { }
+	title = AFG_War.25.t
+	desc = AFG_War.25.d
+	picture = GFX_AFG_War_25
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = { add_popularity = { ideology = radical_shiaism popularity = 0.1 } }
+
+	option = {
+		name = AFG_War.25.a
+	}
+	option = {
+		name = AFG_War.25.b
+		annex_country = { target = SEE transfer_troops = yes }
+	}
+}	
+#Ceasefire with Pakistan Parties? (Afghan event)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.26
+	immediate = { }
+	title = AFG_War.26.t
+	desc = AFG_War.26.d
+	picture = GFX_AFG_War_26
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.26.a
+		PAK = { country_event = AFG_War.26 }
+	}
+}#Ceasefire with Pakistani Parties (Pakistan event)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.27
+	immediate = { }
+	title = AFG_War.27.t
+	desc = AFG_War.27.d
+	picture = GFX_AFG_War_27
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = AFG_War.27.a
+	}
+	option = {
+		name = AFG_War.27.b
+		AFG = {
+			set_truce = {
+				target = TAL
+				days = 182
+			}
+		}
+		AFG = { country_event = { id = AFG_War.27 days = 182 } }
+	}
+}	
+#Incorporate Pakistani Parties (Afghanistan event)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.28
+	immediate = { }
+	title = AFG_War.28.t
+	desc = AFG_War.28.d
+	picture = GFX_AFG_War_28
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = { add_popularity = { ideology = salafism popularity = 0.1 } }
+
+	option = {
+		name = AFG_War.28.a
+	}
+	option = {
+		name = AFG_War.28.b
+		annex_country = { target = TAL transfer_troops = yes }
+	}
+}	
+#Geneva Accords April 1988
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.29
+	immediate = { }
+	title = AFG_War.29.t
+	picture = GFX_AFG_War_29
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+	desc = AFG_War.29.d
+
+	option = {
+		name = AFG_War.29.a
+
+	}
+}#Geneva Accords aftermath (US)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.30
+	immediate = { }
+	title = AFG_War.30.t
+	desc = AFG_War.30.d
+	picture = GFX_AFG_War_30
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = AFG_War.30.a
+		set_variable = { tal_funding = 0 }
+		set_country_flag = US_AFG_END
+	}
+	option = {
+		name = AFG_War.30.b
+	}
+}
+#Promise Najibullah Immense Aid (Soviet event)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.31
+	immediate = { }
+	title = AFG_War.31.t
+	desc = AFG_War.31.d
+	picture = GFX_AFG_War_31
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = AFG_War.31.a
+		add_to_variable = { AFG_funding = 25 }
+		AFG = {
+			add_offsite_building = { type = arms_factory level = 5 }
+			army_experience = 25
+			air_experience = 25
+		}
+	}
+	option = {
+		name = AFG_War.31.b
+		set_variable = { AFG_funding = 0 }
+		set_country_flag = SOV_AFG_END
+	}
+
+}
+#Soviet Withdrawal Begins Phase I (Soviet)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.32
+	immediate = { }
+	title = AFG_War.32.t
+	desc = AFG_War.32.d
+	picture = GFX_AFG_War_32
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = AFG_War.32.a
+		country_event = { id = AFG_War.33 days = 90 }
+	}
+}#Final Withdrawal Complete (Soviet)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.33
+	immediate = { }
+	title = AFG_War.33.t
+	desc = AFG_War.33.d
+	picture = GFX_AFG_War_33
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = AFG_War.33.a
+		white_peace = TAL
+		white_peace = SEE
+		white_peace = AGN
+		white_peace = LOP
+		set_autonomy = { target = AFG autonomy_state = autonomy_free }
+		news_event = AFG_War.34
+	}
+}#Soviet Withdrawal Complete (Global)
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_War.34
+	immediate = { }
+	title = AFG_War.34.t
+	picture = GFX_AFG_War_34
+	is_triggered_only = yes
+	major = yes
+	desc = AFG_War.34.d
+
+	option = {
+		name = AFG_War.34.a
+
+	}
+}

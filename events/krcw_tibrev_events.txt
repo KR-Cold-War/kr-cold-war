@@ -1,0 +1,449 @@
+# krcw: paced
+add_namespace = krcw_tibrev
+
+country_event = {
+	id = krcw_tibrev.1
+	title = krcw_tibrev.1.t
+	desc = krcw_tibrev.1.d
+	picture = GFX_report_event_krcw_tib_army
+	trigger = {
+		NOT = { has_global_flag = KRCW_tibet_revolt_started }
+	}
+	is_triggered_only = yes
+	option = {
+		name = krcw_tibrev.1.a
+		ai_chance = {
+			base = 100
+		}
+		set_global_flag = KRCW_tibet_revolt_started
+		CHI = { end_puppet = TIB }
+		if = { limit = { is_in_faction = yes } leave_faction = yes }
+		remove_ideas = krcw_tib_lhasa_agreement
+		add_ideas = krcw_tib_protectors_of_faith
+		set_variable = { krcw_revolt_progress = 100 }
+		TIB = { capital_scope = {
+		create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+		create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+		create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+		create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+		create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+		create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+		create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+		create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+		} }
+		if = { limit = { RAJ = { has_country_flag = krcw_raj_protectors } } TIB = { capital_scope = {
+		create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+		create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+		create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+		create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+		} } }
+		if = { limit = { RAJ = { has_country_flag = krcw_raj_kham } } TIB = { capital_scope = {
+		create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+		create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+		create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+		} } }
+		add_ideas = krcw_tib_mountain_war
+		add_war_support = 0.3
+		add_manpower = 40000
+		CHI = { set_country_flag = { flag = krcw_limited_war value = 1 days = 2 } }
+		CHI = { if = { limit = { NOT = { has_war_with = TIB } } declare_war_on = { target = TIB type = annex_everything } } }
+		country_event = { id = krcw_tibrev.6 hours = 6 }
+		krcw_tension_up_medium = yes
+		country_event = { id = krcw_tibrev.20 days = 243 }
+		CHI = { country_event = { id = krcw_tibrev.3 hours = 6 } }
+		RAJ = { country_event = { id = krcw_raj.30 hours = 12 } }
+		news_event = { id = krcw_tibrev.2 hours = 12 }
+	}
+	option = {
+		name = krcw_tibrev.1.b
+		ai_chance = {
+			base = 0
+			modifier = { add = 10 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_FREE } }
+		}
+		set_variable = { krcw_revolt_progress = 35 }
+		add_stability = -0.05
+		CHI = { country_event = { id = krcw_tibrev.4 days = 2 } }
+	}
+}
+
+country_event = {
+	id = krcw_tibrev.6
+	hidden = yes
+	trigger = {
+		tag = TIB
+		has_global_flag = KRCW_tibet_revolt_started
+		NOT = { has_global_flag = KRCW_tibet_revolt_over }
+	}
+	is_triggered_only = yes
+	option = {
+		ai_chance = {
+			base = 1
+		}
+		if = {
+			limit = { has_war_with = CHI }
+			set_global_flag = KRCW_tibet_war_began
+			log = "[GetDateText] KRCWTIB war on (retry=[?global.krcw_tib_retry|0])"
+		}
+		else_if = {
+			limit = { NOT = { check_variable = { global.krcw_tib_retry > 0 } } }
+			set_variable = { global.krcw_tib_retry = 1 }
+			log = "[GetDateText] KRCWTIB declare failed (faction=[?is_in_faction] subject=[?is_subject]), CHI retries"
+			if = { limit = { is_subject_of = CHI } CHI = { end_puppet = TIB } }
+			if = { limit = { is_in_faction = yes } leave_faction = yes }
+			CHI = { set_country_flag = { flag = krcw_limited_war value = 1 days = 2 } }
+			CHI = { if = { limit = { NOT = { has_war_with = TIB } } declare_war_on = { target = TIB type = annex_everything } } }
+			country_event = { id = krcw_tibrev.6 days = 1 }
+		}
+		else_if = {
+			limit = { check_variable = { global.krcw_tib_retry < 2 } }
+			set_variable = { global.krcw_tib_retry = 2 }
+			log = "[GetDateText] KRCWTIB CHI still cannot declare, TIB declares a war of independence"
+			if = { limit = { is_in_faction = yes } leave_faction = yes }
+			set_country_flag = { flag = krcw_limited_war value = 1 days = 2 }
+			declare_war_on = { target = CHI type = independence_wargoal }
+			country_event = { id = krcw_tibrev.6 days = 1 }
+		}
+		else = {
+			log = "[GetDateText] KRCWTIB no war possible, status quo restored"
+			CHI = {
+				if = { limit = { has_dlc = "Together for Victory" }
+					set_autonomy = { target = TIB autonomous_state = autonomy_China_Local_Government freedom_level = 0.9 }
+				}
+				else = { puppet = TIB }
+			}
+			set_global_flag = KRCW_tibet_revolt_over
+			set_global_flag = KRCW_tibet_outcome_suppressed
+			CHI = { remove_ideas = krcw_chi_tibet_pacification remove_ideas = krcw_chi_frontier_garrisons }
+			TIB = { remove_ideas = krcw_tib_protectors_of_faith remove_ideas = krcw_tib_mountain_war }
+			if = { limit = { country_exists = TIB TIB = { is_subject = no is_in_faction_with = CHI } } TIB = { leave_faction = yes } }
+			RAJ = { remove_ideas = krcw_raj_arming_tibet }
+			news_event = { id = krcw_tibrev.30 days = 1 }
+		}
+	}
+}
+
+news_event = {
+	id = krcw_tibrev.2
+	title = krcw_tibrev.2.t
+	desc = krcw_tibrev.2.d
+	picture = GFX_news_event_krcw_tib_army_n
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tibrev.2.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = krcw_tibrev.3
+	title = krcw_tibrev.3.t
+	desc = krcw_tibrev.3.d
+	picture = GFX_report_event_chinese_soldiers_01
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tibrev.3.a
+		ai_chance = {
+			base = 100
+		}
+		set_country_flag = krcw_chi_tibet_promise
+		add_ideas = krcw_chi_tibet_pacification
+		army_experience = 10
+	}
+	option = {
+		name = krcw_tibrev.3.b
+		ai_chance = {
+			base = 0
+			modifier = { add = 20 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_RANDOM } }
+		}
+		set_country_flag = krcw_chi_tibet_abolish
+		add_ideas = krcw_chi_tibet_pacification
+		add_war_support = 0.05
+		krcw_tension_up_small = yes
+		TIB = { add_war_support = 0.1 }
+	}
+}
+
+country_event = {
+	id = krcw_tibrev.4
+	title = krcw_tibrev.4.t
+	desc = krcw_tibrev.4.d
+	picture = GFX_report_event_krcw_tib_lhasa
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tibrev.4.a
+		ai_chance = {
+			base = 80
+		}
+		add_political_power = -50
+		TIB = { add_stability = 0.05 set_variable = { krcw_revolt_progress = 20 } }
+	}
+	option = {
+		name = krcw_tibrev.4.b
+		ai_chance = {
+			base = 20
+		}
+		TIB = { add_stability = -0.1 set_variable = { krcw_revolt_progress = 45 } }
+		krcw_tension_up_small = yes
+	}
+}
+
+country_event = {
+	id = krcw_tibrev.10
+	title = krcw_tibrev.10.t
+	desc = krcw_tibrev.10.d
+	picture = GFX_report_event_chinese_soldiers_02
+	trigger = {
+		tag = CHI
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tibrev.10.a
+		ai_chance = {
+			base = 100
+			modifier = { factor = 0.2 has_country_flag = krcw_chi_tibet_abolish }
+		}
+		white_peace = TIB
+		CHI = {
+			if = { limit = { has_dlc = "Together for Victory" }
+				set_autonomy = { target = TIB autonomous_state = autonomy_China_Local_Government freedom_level = 0.9 }
+			}
+			else = { puppet = TIB }
+		}
+		TIB = { add_ideas = krcw_tib_expanded_autonomy add_stability = 0.1 }
+		krcw_tension_down_small = yes
+		set_global_flag = KRCW_tibet_revolt_over
+		set_global_flag = KRCW_tibet_outcome_suppressed
+		CHI = { remove_ideas = krcw_chi_tibet_pacification remove_ideas = krcw_chi_frontier_garrisons }
+		TIB = { remove_ideas = krcw_tib_protectors_of_faith remove_ideas = krcw_tib_mountain_war }
+		if = { limit = { country_exists = TIB TIB = { is_subject = no is_in_faction_with = CHI } } TIB = { leave_faction = yes } }
+		RAJ = { remove_ideas = krcw_raj_arming_tibet }
+		news_event = { id = krcw_tibrev.30 days = 1 }
+	}
+	option = {
+		name = krcw_tibrev.10.b
+		ai_chance = {
+			base = 0
+			modifier = { add = 50 has_country_flag = krcw_chi_tibet_abolish }
+		}
+		annex_country = { target = TIB transfer_troops = no }
+		add_stability = -0.05
+		krcw_tension_up_small = yes
+		krcw_detente_down_small = yes
+		set_global_flag = KRCW_tibet_revolt_over
+		set_global_flag = KRCW_tibet_outcome_suppressed
+		CHI = { remove_ideas = krcw_chi_tibet_pacification remove_ideas = krcw_chi_frontier_garrisons }
+		TIB = { remove_ideas = krcw_tib_protectors_of_faith remove_ideas = krcw_tib_mountain_war }
+		if = { limit = { country_exists = TIB TIB = { is_subject = no is_in_faction_with = CHI } } TIB = { leave_faction = yes } }
+		RAJ = { remove_ideas = krcw_raj_arming_tibet }
+		news_event = { id = krcw_tibrev.30 days = 1 }
+	}
+}
+
+country_event = {
+	id = krcw_tibrev.20
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { has_global_flag = KRCW_tibet_revolt_started NOT = { has_global_flag = KRCW_tibet_revolt_over } has_war_with = CHI } CHI = { country_event = { id = krcw_tibrev.21 } } }
+	}
+}
+
+country_event = {
+	id = krcw_tibrev.21
+	title = krcw_tibrev.21.t
+	desc = krcw_tibrev.21.d
+	picture = GFX_report_event_krcw_tib_army2
+	trigger = {
+		tag = CHI
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tibrev.21.a
+		trigger = {
+			OR = {
+				controls_state = 1549
+				AND = { has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } TIB = { is_ai = yes } is_ai = yes controls_state = 867 }
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+		white_peace = TIB
+		CHI = {
+			if = { limit = { has_dlc = "Together for Victory" }
+				set_autonomy = { target = TIB autonomous_state = autonomy_China_Local_Government freedom_level = 0.9 }
+			}
+			else = { puppet = TIB }
+		}
+		TIB = { add_ideas = krcw_tib_expanded_autonomy }
+		krcw_tension_down_small = yes
+		set_global_flag = KRCW_tibet_revolt_over
+		set_global_flag = KRCW_tibet_outcome_suppressed
+		CHI = { remove_ideas = krcw_chi_tibet_pacification remove_ideas = krcw_chi_frontier_garrisons }
+		TIB = { remove_ideas = krcw_tib_protectors_of_faith remove_ideas = krcw_tib_mountain_war }
+		if = { limit = { country_exists = TIB TIB = { is_subject = no is_in_faction_with = CHI } } TIB = { leave_faction = yes } }
+		RAJ = { remove_ideas = krcw_raj_arming_tibet }
+		news_event = { id = krcw_tibrev.30 days = 1 }
+	}
+	option = {
+		name = krcw_tibrev.21.b
+		trigger = {
+			NOT = { controls_state = 1549 }
+			NOT = { AND = { has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } TIB = { is_ai = yes } is_ai = yes controls_state = 867 } }
+		}
+		ai_chance = {
+			base = 30
+		}
+		every_state = { limit = { is_owned_by = TIB is_controlled_by = CHI } CHI = { transfer_state = PREV } }
+		white_peace = TIB
+		TIB = { add_ideas = krcw_tib_chamdo_armistice }
+		krcw_tension_up_small = yes
+		set_global_flag = KRCW_tibet_revolt_over
+		set_global_flag = KRCW_tibet_outcome_stalemate
+		CHI = { remove_ideas = krcw_chi_tibet_pacification remove_ideas = krcw_chi_frontier_garrisons }
+		TIB = { remove_ideas = krcw_tib_protectors_of_faith remove_ideas = krcw_tib_mountain_war }
+		if = { limit = { country_exists = TIB TIB = { is_subject = no is_in_faction_with = CHI } } TIB = { leave_faction = yes } }
+		RAJ = { remove_ideas = krcw_raj_arming_tibet }
+		news_event = { id = krcw_tibrev.32 days = 1 }
+	}
+	option = {
+		name = krcw_tibrev.21.c
+		trigger = {
+			NOT = { controls_state = 1549 }
+			TIB = { num_of_controlled_states > 10 }
+			NOT = { AND = { has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } TIB = { is_ai = yes } is_ai = yes controls_state = 867 } }
+		}
+		ai_chance = {
+			base = 30
+		}
+		white_peace = TIB
+		TIB = { add_ideas = krcw_tib_independent_kashag }
+		RAJ = { give_guarantee = TIB }
+		krcw_tension_up_medium = yes
+		set_global_flag = KRCW_tibet_revolt_over
+		set_global_flag = KRCW_tibet_outcome_independent
+		CHI = { remove_ideas = krcw_chi_tibet_pacification remove_ideas = krcw_chi_frontier_garrisons }
+		TIB = { remove_ideas = krcw_tib_protectors_of_faith remove_ideas = krcw_tib_mountain_war }
+		if = { limit = { country_exists = TIB TIB = { is_subject = no is_in_faction_with = CHI } } TIB = { leave_faction = yes } }
+		RAJ = { remove_ideas = krcw_raj_arming_tibet }
+		news_event = { id = krcw_tibrev.31 days = 1 }
+		RAJ = { country_event = { id = krcw_raj.40 days = 7 } }
+	}
+}
+
+news_event = {
+	id = krcw_tibrev.30
+	title = krcw_tibrev.30.t
+	desc = krcw_tibrev.30.d
+	picture = GFX_news_event_krcw_tib_lhasa_n
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tibrev.30.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+news_event = {
+	id = krcw_tibrev.31
+	title = krcw_tibrev.31.t
+	desc = krcw_tibrev.31.d
+	picture = GFX_news_event_krcw_tib_army_n
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tibrev.31.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+news_event = {
+	id = krcw_tibrev.32
+	title = krcw_tibrev.32.t
+	desc = krcw_tibrev.32.d
+	picture = GFX_news_event_krcw_tib_lhasa_n
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tibrev.32.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = krcw_tibrev.100
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { exists = yes is_subject_of = CHI NOT = { has_global_flag = KRCW_tibet_revolt_started }
+			OR = {
+				has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL }
+				AND = { has_game_rule = { rule = krcw_route option = KRCW_ROUTE_RANDOM } check_variable = { krcw_revolt_progress > 29 } }
+				check_variable = { krcw_revolt_progress > 59 }
+			}
+		}
+			country_event = { id = krcw_tibrev.1 }
+		}
+	}
+}
+
+country_event = {
+	id = krcw_tibrev.5
+	title = krcw_tibrev.5.t
+	desc = krcw_tibrev.5.d
+	picture = GFX_report_event_krcw_tib_lhasa
+	trigger = {
+		is_subject_of = CHI
+		NOT = { has_global_flag = KRCW_tibet_revolt_started }
+		RAJ = { has_country_flag = krcw_raj_game_on }
+	}
+	mean_time_to_happen = {
+		months = 8
+	}
+	fire_only_once = yes
+	option = {
+		name = krcw_tibrev.5.a
+		ai_chance = {
+			base = 70
+		}
+		TIB = {
+			add_to_variable = { krcw_revolt_progress = 5 }
+			clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_tibrev_progress_up_5_tt
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_tibrev.5.b
+		ai_chance = {
+			base = 30
+		}
+		TIB = {
+			subtract_from_variable = { krcw_revolt_progress = 8 }
+			clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_tibrev_progress_down_8_tt
+		CHI = { add_opinion_modifier = { target = TIB modifier = krcw_raj_trade_partner } }
+	}
+}

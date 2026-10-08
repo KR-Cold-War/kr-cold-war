@@ -1,0 +1,116 @@
+# krcw: paced
+add_namespace = krcw_mex
+
+country_event = {
+	id = krcw_mex.10
+	title = krcw_mex_10_t
+	desc = krcw_mex_10_d
+	picture = GFX_report_event_generic_rally
+	fire_only_once = yes
+	trigger = {
+		tag = MEX
+		date > 1950.2.9
+		date < 1952.6.21
+	}
+	mean_time_to_happen = {
+		months = 11
+	}
+	option = {
+		name = krcw_mex_10.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = 50
+		479 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+		} }
+		krcw_tension_up_small = yes
+		if = { limit = { country_exists = USA } USA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_arms_conduit } } }
+	}
+	option = {
+		name = krcw_mex_10.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.02
+		add_political_power = 25
+		if = { limit = { country_exists = USA } USA = { add_war_support = -0.02 } }
+	}
+}
+
+country_event = {
+	id = krcw_mex.11
+	title = krcw_mex_11_t
+	desc = krcw_mex_11_d
+	picture = GFX_report_event_generic_rally
+	fire_only_once = yes
+	trigger = {
+		tag = MEX
+		date > 1950.5.10
+		date < 1952.11.23
+		NOT = { has_country_flag = krcw_mex_left_turn }
+	}
+	mean_time_to_happen = {
+		months = 14
+	}
+	option = {
+		name = krcw_mex_11.a
+		ai_chance = {
+			base = 60
+		}
+		add_stability = 0.03
+		add_political_power = -25
+		add_popularity = { ideology = socialist popularity = 0.04 }
+		set_country_flag = krcw_mex_left_turn
+	}
+	option = {
+		name = krcw_mex_11.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 50
+		add_stability = -0.03
+		add_popularity = { ideology = nationalist popularity = 0.03 }
+	}
+}
+
+country_event = {
+	id = krcw_mex.12
+	title = krcw_mex_12_t
+	desc = krcw_mex_12_d
+	picture = GFX_report_event_generic_rally
+	fire_only_once = yes
+	trigger = {
+		tag = MEX
+		date > 1950.10.12
+		date < 1953.4.26
+		has_country_flag = krcw_mex_machine_path
+	}
+	mean_time_to_happen = {
+		months = 11
+	}
+	option = {
+		name = krcw_mex_12.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = 50
+		add_stability = -0.03
+		add_popularity = { ideology = nationalist popularity = 0.03 }
+	}
+	option = {
+		name = krcw_mex_12.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.04
+		add_political_power = -50
+		add_popularity = { ideology = Social_Democratic popularity = 0.05 }
+		set_country_flag = krcw_mex_open_path
+		if = { limit = { has_idea = krcw_mex_one_party } remove_ideas = krcw_mex_one_party }
+	}
+}

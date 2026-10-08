@@ -1,0 +1,865 @@
+# KRCW (build/patch_residue.py): 39 OTL events dropped while KRCW_active
+###########################
+# Cyprus Events
+###########################
+add_namespace = UN_Cyprus
+add_namespace = CYP_INSURGENCY
+add_namespace = Zurich
+add_namespace = EOKA
+add_namespace = TMT_Insurgency
+add_namespace = CYP_Enosis
+add_namespace = EOKA_GRE
+add_namespace = Cyprus_TUR
+add_namespace = CYP_noninvolvement
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Cyprus_TUR.1 
+ immediate = { }
+	title = Cyprus_TUR.1.t2
+	desc = Cyprus_TUR_1_d
+	picture = GFX_Cyprus_TUR_Invasion_1
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = Cyprus_TUR.1.a2
+		country_event = Cyprus_TUR.2
+
+		transfer_state = 912
+		
+		ai_chance = {
+			base = 10
+			modifier = {
+				has_game_rule = {
+					rule = CYP_future_of_cyprus_50s
+					option = TURKISH_RULE
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Cyprus_TUR.1.b2
+		trigger = {
+			ENG = {
+				check_variable = {
+					tmt_insurgency > 500
+				}
+			}
+		}
+		transfer_state = 183
+		transfer_state = 912
+		transfer_state = 915
+
+		country_event = Cyprus_TUR.2
+		
+		ai_chance = {
+			base = 10
+			modifier = {
+				has_game_rule = {
+					rule = CYP_future_of_cyprus_50s
+					option = TAKSIM
+				}
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Cyprus_TUR.2 
+ immediate = { }
+	title = Cyprus_TUR.2.t2
+	desc = Cyprus_TUR_2_d
+	picture = GFX_Cyprus_TUR_Invasion_2
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Cyprus_TUR.2.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Zurich.1 
+ immediate = { }
+	title = Zurich.1.t2
+	desc = Zurich.1.d
+	picture = GFX_Zurich_1
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = Zurich.1.a2
+		country_event = Zurich.2
+		complete_national_focus = GRE_london_summit_suc
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = CYP_future_of_cyprus_50s
+					option = ENOSIS
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Zurich.1.b2
+		country_event = Zurich.5
+		complete_national_focus = GRE_london_summit_fails
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = CYP_future_of_cyprus_50s
+					option = INDEPENDENCE
+				}
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Zurich.2 
+ immediate = { }
+	title = Zurich.2.t2
+	desc = Zurich_2_d
+	picture = GFX_Zurich_2
+
+	is_triggered_only = yes
+	major = yes
+
+	immediate = {
+		hidden_effect = {
+			CYP = {
+				transfer_state = 912
+				transfer_state = 183
+			}
+		}
+	}
+
+	option = {
+		name = Zurich.2.a2
+	}
+
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Zurich.3 
+ immediate = { }
+	title = Zurich.3.t2
+	desc = Zurich_3_d
+	picture = GFX_Zurich_3
+
+	is_triggered_only = yes
+	major = yes
+
+	immediate = {
+
+	}
+
+	option = {
+		name = Zurich.3.a2
+	}
+
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Zurich.4 
+ immediate = { }
+	title = Zurich.4.t2
+	desc = Zurich_4_d
+	picture = GFX_Zurich_4
+
+	is_triggered_only = yes
+	major = yes
+
+	immediate = {
+		hidden_effect = {
+			CYP = {
+				transfer_state = 912
+				transfer_state = 183
+			}
+		}
+	}
+
+	option = {
+		name = Zurich.4.a2
+	}
+
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Zurich.5 
+ immediate = { }
+	title = Zurich.5.t2
+	desc = Zurich_5_d
+	picture = GFX_Zurich_5
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Zurich.5.a2
+	}
+
+}
+#Greece Cyprus Events
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EOKA_GRE.1 
+ immediate = { }
+	title = EOKA_GRE.1.t2
+	desc = EOKA_GRE_1
+	picture = GFX_EOKA_insurgency_2
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = EOKA_GRE.1.a2
+		add_to_variable = { ENG.eoka_insurgency = -5 }
+		var:current_country_state_decision = {
+			set_state_flag = insurgency_infilitrated
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EOKA_GRE.2 
+ immediate = { }
+	title = EOKA_GRE.2.t2
+	desc = EOKA_GRE_2
+	picture = GFX_EOKA_insurgency_1
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = EOKA_GRE.2.a2
+		add_to_variable = { ENG.eoka_insurgency = 5 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EOKA_GRE.3 
+ immediate = { }
+	title = EOKA_GRE.3.t2
+	desc = EOKA_GRE_3
+	picture = GFX_EOKA_insurgency_4
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = EOKA_GRE.3.a2
+		add_to_variable = { ENG.eoka_insurgency = -5 }
+		army_experience = 5
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EOKA_GRE.4 
+ immediate = { }
+	title = EOKA_GRE.4.t2
+	desc = EOKA_GRE_4
+	picture = GFX_EOKA_insurgency_3
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = EOKA_GRE.4.a2
+		add_to_variable = { ENG.eoka_insurgency = 5 }
+		add_manpower = -100
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EOKA_GRE.5 
+ immediate = { }
+	title = EOKA_GRE.5.t2
+	desc = EOKA_GRE_5
+	picture = GFX_EOKA_insurgency_6
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = EOKA_GRE.5.a2
+		add_to_variable = { ENG.eoka_insurgency = 2 }
+		air_experience = 5
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EOKA_GRE.6 
+ immediate = { }
+	title = EOKA_GRE.6.t2
+	desc = EOKA_GRE_6
+	picture = GFX_EOKA_insurgency_5
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = EOKA_GRE.6.a2
+		add_to_variable = { ENG.eoka_insurgency = -5 }
+	}
+}
+
+
+#British Cyprus Events
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EOKA.1 
+ immediate = { }
+	title = EOKA.1.t2
+	desc = EOKA_1_d
+	picture = GFX_EOKA_insurgency_1
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = EOKA.1.a2
+		add_to_variable = { ENG.eoka_insurgency = -5 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EOKA.2 
+ immediate = { }
+	title = EOKA.2.t2
+	desc = EOKA_2_d
+	picture = GFX_EOKA_insurgency_2
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = EOKA.2.a2
+		add_to_variable = { ENG.eoka_insurgency = 5 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EOKA.3 
+ immediate = { }
+	title = EOKA.3.t2
+	desc = EOKA_3_d
+	picture = GFX_EOKA_insurgency_3
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = EOKA.3.a2
+		add_to_variable = { ENG.eoka_insurgency = -5 }
+		army_experience = 5
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EOKA.4 
+ immediate = { }
+	title = EOKA.4.t2
+	desc = EOKA_4_d
+	picture = GFX_EOKA_insurgency_4
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = EOKA.4.a2
+		add_to_variable = { ENG.eoka_insurgency = 5 }
+		add_manpower = -100
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EOKA.5 
+ immediate = { }
+	title = EOKA.5.t2
+	desc = EOKA_5_d
+	picture = GFX_EOKA_insurgency_5
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = EOKA.5.a2
+		add_to_variable = { ENG.eoka_insurgency = -8 }
+		air_experience = 5
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EOKA.6 
+ immediate = { }
+	title = EOKA.6.t2
+	desc = EOKA_6_d
+	picture = GFX_EOKA_insurgency_6
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = EOKA.6.a2
+		add_to_variable = { ENG.eoka_insurgency = 5 }
+		add_equipment_to_stockpile = {
+			type = jet_light_equipment
+			amount = -1
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EOKA.7 
+ immediate = { }
+	title = EOKA.7.t2
+	desc = EOKA_8_d
+	picture = GFX_EOKA_Defeat
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = EOKA.7.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EOKA.8 
+ immediate = { }
+	title = EOKA.8.t2
+	desc = EOKA_7_d
+	picture = GFX_EOKA_Victory
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = EOKA.8.a2
+		set_global_flag = Turkish_Intervention_Unlocked
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CYP_INSURGENCY.1 
+ immediate = { }
+	title = CYP_INSURGENCY.1.t2
+	desc = CYP_INSURGENCY.1.d
+	picture = GFX_Cypriot_Emergency
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = CYP_INSURGENCY.1.a2
+		hidden_effect = {
+			if = {
+				limit = {
+					country_exists = PDG
+				}
+				PDG = { complete_national_focus = PDG_The_Cyprus_Emergency }
+			}
+		}
+		set_global_flag = cyprus_emergency
+		set_country_flag = tmt_insurgency
+		set_country_flag = eoka_insurgency
+		set_variable = {
+			var = eoka_insurgency
+			value = 50
+		}
+		set_variable = {
+			var = tmt_insurgency
+			value = 25
+		}
+		activate_mission = The_EOKA
+		activate_mission = The_TMT
+		912 = {
+			set_state_flag = eoka_target
+			set_state_flag = tmt_target
+			set_state_flag = insurg_lvl1
+			add_province_modifier = {
+				static_modifiers = { insurgency_tier1 }
+				province = {
+					all_provinces = yes
+				}
+			}
+			add_state_modifier = { modifier = { local_factory_sabotage = 0.10 } }
+		}
+		163 = {
+			set_state_flag = eoka_target
+			set_state_flag = insurg_lvl1
+			add_province_modifier = {
+				static_modifiers = { insurgency_tier1 }
+				province = {
+					all_provinces = yes
+				}
+			}
+			add_state_modifier = { modifier = { local_factory_sabotage = 0.05 } }
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CYP_INSURGENCY.2 
+ immediate = { }
+	title = CYP_INSURGENCY.2.t2
+	desc = CYP_INSURGENCY.2.d
+	picture = GFX_CYP_Insurgency_2
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = CYP_INSURGENCY.2.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = UN_Cyprus.1 
+ immediate = { }
+	title = UN_Cyprus.1.t2
+	desc = UN_Cyprus.1.d
+	picture = GFX_UN_Cyprus_1
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+		name = UN_Cyprus.1.a2
+		if = {
+			limit = { is_historical_focus_on = no }
+			random_list = {
+				50 = {
+					country_event = UN_Cyprus.2
+				}
+				50 = {
+					country_event = UN_Cyprus.3
+				}
+			}
+		}
+		if = {
+			limit = { is_historical_focus_on = yes }
+			country_event = UN_Cyprus.3
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = UN_Cyprus.2 
+ immediate = { }
+	title = UN_Cyprus.2.t2
+	desc = UN_Cyprus.2.d
+	picture = GFX_UN_Cyprus_2
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+		name = UN_Cyprus.2.a2
+		GRE = { country_event = CYP_Enosis.1 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = UN_Cyprus.3 
+ immediate = { }
+	title = UN_Cyprus.3.t2
+	desc = UN_Cyprus.3.d
+	picture = GFX_UN_Cyprus_3
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	major = yes
+
+	option = {
+		name = UN_Cyprus.3.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TMT_Insurgency.1 
+ immediate = { }
+	title = TMT_Insurgency.1.t2
+	desc = TMT_1_d
+	picture = GFX_TMT_insurgency_1
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = TMT_Insurgency.1.a2
+		add_to_variable = { ENG.tmt_insurgency = -5 }
+		var:current_country_state_decision = {
+			set_state_flag = insurgency_infilitrated
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TMT_Insurgency.2 
+ immediate = { }
+	title = TMT_Insurgency.2.t2
+	desc = TMT_2_d
+	picture = GFX_TMT_insurgency_2
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = TMT_Insurgency.2.a2
+		add_to_variable = { ENG.tmt_insurgency = 5 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TMT_Insurgency.3 
+ immediate = { }
+	title = TMT_Insurgency.3.t2
+	desc = TMT_3_d
+	picture = GFX_TMT_insurgency_3
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = TMT_Insurgency.3.a2
+		add_to_variable = { ENG.tmt_insurgency = -5 }
+		army_experience = 5
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TMT_Insurgency.4 
+ immediate = { }
+	title = TMT_Insurgency.4.t2
+	desc = TMT_4_d
+	picture = GFX_TMT_insurgency_4
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = TMT_Insurgency.4.a2
+		add_to_variable = { ENG.tmt_insurgency = 5 }
+		add_manpower = -100
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TMT_Insurgency.5 
+ immediate = { }
+	title = TMT_Insurgency.5.t2
+	desc = TMT_5_d
+	picture = GFX_TMT_insurgency_5
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = TMT_Insurgency.5.a2
+		add_to_variable = { ENG.tmt_insurgency = -8 }
+		air_experience = 5
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CYP_Enosis.1 
+ immediate = { }
+	title = CYP_Enosis.1.t2
+	desc = Enosis_d
+	picture = GFX_CYP_Enosis
+
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			GRE = {
+				transfer_state = 183
+				transfer_state = 912
+				transfer_state = 915
+			}
+		}
+	}
+
+	option = {
+		name = CYP_Enosis.1.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TMT_Insurgency.6 
+ immediate = { }
+	title = TMT_Insurgency.6.t2
+	desc = TMT_6_d
+	picture = GFX_TMT_insurgency_6
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = TMT_Insurgency.6.a2
+		add_to_variable = { ENG.tmt_insurgency = 5 }
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TMT_Insurgency.8 
+ immediate = { }
+	title = TMT_Insurgency.8.t2
+	desc = TMT_8_d
+	picture = GFX_TMT_Defeat
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = TMT_Insurgency.8.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TMT_Insurgency.7 
+ immediate = { }
+	title = TMT_Insurgency.7.t2
+	desc = TMT_7_d
+	picture = GFX_TMT_Victory
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = TMT_Insurgency.7.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CYP_noninvolvement.1
+ immediate = { }
+	title = CYP_noninvolvement.1.t
+	desc = CYP_noninvolvement.1.d
+	#picture = 
+
+	is_triggered_only = yes
+
+	option = {
+		name = CYP_noninvolvement.1.a
+		set_global_flag = cyp_keepingout
+		TUR = { country_event = CYP_noninvolvement.3 }
+		add_opinion_modifier = {
+			target = TUR
+			modifier = medium_increase
+		}
+		TUR = {
+			add_opinion_modifier = {
+				target = GRE
+				modifier = medium_increase
+			}
+		}
+		add_opinion_modifier = {
+			target = ENG
+			modifier = medium_increase
+		}
+		ENG = {
+			add_opinion_modifier = {
+				target = GRE
+				modifier = medium_increase
+			}
+		}
+	}
+	
+	option = {
+		name = CYP_noninvolvement.1.b
+		TUR = { country_event = CYP_noninvolvement.4 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CYP_noninvolvement.2
+ immediate = { }
+	title = CYP_noninvolvement.2.t
+	desc = CYP_noninvolvement.2.d
+	#picture = 
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CYP_noninvolvement.2.a
+		TUR = { country_event = CYP_noninvolvement.4 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CYP_noninvolvement.3
+ immediate = { }
+	title = CYP_noninvolvement.3.t
+	desc = CYP_noninvolvement.3.d
+	#picture = 
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CYP_noninvolvement.3.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CYP_noninvolvement.4
+ immediate = { }
+	title = CYP_noninvolvement.4.t
+	desc = CYP_noninvolvement.4.d
+	#picture = 
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CYP_noninvolvement.4.a
+	}
+}

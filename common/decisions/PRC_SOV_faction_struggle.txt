@@ -1,0 +1,21 @@
+# KRCW (build/patch_residue.py): 1 OTL decisions hidden while KRCW_active
+PRC_SOV_politics_categories = {
+    
+    PRC_SOV_see_how_powerful_each_faction = {
+        icon = GFX_PRC_politic_decision_6
+        available = { NOT = { has_global_flag = KRCW_active } 
+            NOT ={
+                has_country_flag = PRC_FACTION_UI_visible
+            }
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+            NOT = {
+                has_country_flag = PRC_FACTION_UI_visible
+            }
+        }
+        complete_effect = {
+            set_country_flag = PRC_FACTION_UI_visible
+        }
+        fire_only_once = no
+    }
+}

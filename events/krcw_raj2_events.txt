@@ -1,0 +1,1081 @@
+add_namespace = krcw_raj2
+
+country_event = {
+	id = krcw_raj2.1
+	title = krcw_raj2.1.t
+	desc = krcw_raj2.1.d
+	picture = GFX_report_event_krcw_raj_princes
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.1.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 NOT = { has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } } }
+			modifier = { factor = 1.5 check_variable = { krcw_raj_reform > 9 } }
+		}
+		set_country_flag = krcw_raj2_bill_decided
+		add_political_power = -25
+		random_list = {
+			35 = {
+				modifier = { factor = 1.5 check_variable = { krcw_raj_reform > 19 } }
+				modifier = { factor = 1.3 has_country_flag = krcw_raj_heir_seated }
+				modifier = { factor = 0.7 has_stability < 0.4 }
+				set_country_flag = krcw_raj2_bill_passed
+			}
+			65 = { set_country_flag = krcw_raj2_bill_vetoed }
+		}
+		country_event = { id = krcw_raj2.2 days = 15 }
+	}
+	option = {
+		name = krcw_raj2.1.b
+		ai_chance = {
+			base = 60
+			modifier = { factor = 1.5 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } }
+		}
+		set_country_flag = krcw_raj2_bill_decided
+		set_country_flag = krcw_raj_land_reform_vetoed
+		add_political_power = 40
+		country_event = { id = krcw_raj2.3 days = 15 }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.2
+	title = krcw_raj2.2.t
+	desc = {
+		text = krcw_raj2.2.d0
+		trigger = {
+			has_country_flag = krcw_raj2_bill_passed
+		}
+	}
+	desc = {
+		text = krcw_raj2.2.d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_krcw_raj_princes
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.2.a
+		trigger = {
+			has_country_flag = krcw_raj2_bill_passed
+		}
+		ai_chance = {
+			base = 1
+		}
+		set_country_flag = krcw_raj2_tenancy_federal
+		add_ideas = krcw_raj_tenancy_acts
+		RAJ = {
+			add_to_variable = { krcw_raj_reform = 15 }
+			clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_raj_reform_up_15_tt
+		add_stability = -0.02
+		country_event = { id = krcw_raj2.4 days = 20 }
+	}
+	option = {
+		name = krcw_raj2.2.b
+		trigger = {
+			has_country_flag = krcw_raj2_bill_vetoed
+		}
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } }
+			modifier = { factor = 2 check_variable = { krcw_raj_reform > 19 } }
+		}
+		set_country_flag = krcw_raj2_tenancy_federal
+		add_ideas = krcw_raj_tenancy_acts
+		RAJ = {
+			add_to_variable = { krcw_raj_reform = 15 }
+			clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_raj_reform_up_15_tt
+		add_stability = -0.04
+		add_political_power = -50
+		country_event = { id = krcw_raj2.5 days = 15 }
+	}
+	option = {
+		name = krcw_raj2.2.c
+		trigger = {
+			has_country_flag = krcw_raj2_bill_vetoed
+		}
+		ai_chance = {
+			base = 75
+		}
+		set_country_flag = krcw_raj_land_reform_vetoed
+		add_political_power = 25
+		country_event = { id = krcw_raj2.3 days = 15 }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.3
+	title = krcw_raj2.3.t
+	desc = krcw_raj2.3.d
+	picture = GFX_report_event_krcw_raj_princes2_c
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.3.a
+		ai_chance = {
+			base = 65
+			modifier = { factor = 1.5 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } }
+		}
+		set_country_flag = krcw_raj2_compact_signed
+		add_political_power = 50
+		add_stability = 0.03
+		country_event = { id = krcw_raj2.4 days = 20 }
+	}
+	option = {
+		name = krcw_raj2.3.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 check_variable = { krcw_raj_reform > 9 } }
+		}
+		set_country_flag = krcw_raj2_compact_signed
+		add_political_power = -25
+		RAJ = {
+			add_to_variable = { krcw_raj_reform = 5 }
+			clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_raj_reform_up_5_tt
+		country_event = { id = krcw_raj2.4 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.4
+	title = krcw_raj2.4.t
+	desc = {
+		text = krcw_raj2.4.d0
+		trigger = {
+			has_country_flag = krcw_raj2_tenancy_federal
+		}
+	}
+	desc = {
+		text = krcw_raj2.4.d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_krcw_raj_riot
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.4.a
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 has_country_flag = krcw_raj2_tenancy_federal }
+			modifier = { factor = 2 NOT = { has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } } }
+		}
+		set_country_flag = krcw_raj2_kisan_negotiated
+		set_country_flag = krcw_raj2_land_reform
+		set_country_flag = krcw_raj2_land_settled
+		RAJ = {
+			add_to_variable = { krcw_raj_reform = 10 }
+			clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_raj_reform_up_10_tt
+		add_political_power = -25
+		country_event = { id = krcw_raj2.7 days = 20 }
+	}
+	option = {
+		name = krcw_raj2.4.b
+		ai_chance = {
+			base = 65
+			modifier = { factor = 1.5 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } }
+			modifier = { factor = 1.5 has_country_flag = krcw_raj2_compact_signed }
+			modifier = { factor = 0.5 has_country_flag = krcw_raj2_tenancy_federal }
+		}
+		set_country_flag = krcw_raj2_kisan_banned
+		set_country_flag = krcw_raj2_land_settled
+		add_political_power = 25
+		add_stability = -0.02
+		custom_effect_tooltip = krcw_raj_remembered_tt
+		country_event = { id = krcw_raj2.6 days = 15 }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.5
+	title = krcw_raj2.5.t
+	desc = {
+		text = krcw_raj2.5.d0
+		trigger = {
+			has_country_flag = krcw_raj2_princes_boycott
+		}
+	}
+	desc = {
+		text = krcw_raj2.5.d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_krcw_raj_princes2_c
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		random_list = {
+			55 = {
+				modifier = { factor = 1.5 has_country_flag = krcw_raj_reaction }
+				set_country_flag = krcw_raj2_princes_boycott
+			}
+			45 = { set_country_flag = krcw_raj2_princes_grumble }
+		}
+	}
+	option = {
+		name = krcw_raj2.5.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = 25
+		add_stability = 0.02
+		country_event = { id = krcw_raj2.4 days = 20 }
+	}
+	option = {
+		name = krcw_raj2.5.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0.5 has_country_flag = krcw_raj2_princes_boycott }
+		}
+		add_stability = -0.03
+		RAJ = {
+			add_to_variable = { krcw_raj_reform = 5 }
+			clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_raj_reform_up_5_tt
+		add_political_power = -25
+		country_event = { id = krcw_raj2.4 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.6
+	title = krcw_raj2.6.t
+	desc = krcw_raj2.6.d
+	picture = GFX_report_event_krcw_raj_army
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.6.a
+		ai_chance = {
+			base = 70
+		}
+		add_political_power = 25
+		add_stability = 0.02
+	}
+	option = {
+		name = krcw_raj2.6.b
+		ai_chance = {
+			base = 30
+		}
+		add_political_power = -25
+		add_stability = 0.02
+		RAJ = {
+			add_to_variable = { krcw_raj_reform = 5 }
+			clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_raj_reform_up_5_tt
+	}
+}
+
+country_event = {
+	id = krcw_raj2.7
+	title = krcw_raj2.7.t
+	desc = krcw_raj2.7.d
+	picture = GFX_report_event_krcw_raj_princes
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.7.a
+		ai_chance = {
+			base = 50
+		}
+		RAJ = {
+			add_to_variable = { krcw_raj_reform = 10 }
+			clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_raj_reform_up_10_tt
+		add_stability = -0.02
+		add_political_power = -25
+	}
+	option = {
+		name = krcw_raj2.7.b
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } }
+		}
+		add_political_power = 25
+		RAJ = {
+			add_to_variable = { krcw_raj_reform = 5 }
+			clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_raj_reform_up_5_tt
+	}
+}
+
+country_event = {
+	id = krcw_raj2.8
+	title = krcw_raj2.8.t
+	desc = {
+		text = krcw_raj2.8.d0
+		trigger = {
+			has_completed_focus = krcw_raj2_rent_tribunals
+		}
+	}
+	desc = {
+		text = krcw_raj2.8.d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_krcw_raj_princes
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.8.a
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { has_country_flag = krcw_raj2_kisan_negotiated } add_stability = 0.03 }
+		else = { add_political_power = 50 add_stability = 0.02 }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.20
+	title = krcw_raj2.20.t
+	desc = krcw_raj2.20.d
+	picture = GFX_report_event_krcw_raj_famine
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.20.a
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 has_country_flag = krcw_raj2_land_reform }
+			modifier = { factor = 2 NOT = { has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } } }
+		}
+		set_country_flag = krcw_raj2_requisition
+		set_country_flag = krcw_raj2_relief_central
+		add_political_power = -25
+		country_event = { id = krcw_raj2.21 days = 12 }
+	}
+	option = {
+		name = krcw_raj2.20.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } }
+			modifier = { factor = 1.5 has_completed_focus = krcw_raj_moscow_compact }
+		}
+		set_country_flag = krcw_raj2_asked_moscow
+		set_country_flag = krcw_raj2_relief_central
+		if = { limit = { country_exists = SOV } SOV = { country_event = { id = krcw_raj2.22 days = 5 } } }
+		else = { country_event = { id = krcw_raj2.25 days = 20 } }
+	}
+	option = {
+		name = krcw_raj2.20.c
+		ai_chance = {
+			base = 30
+			modifier = { factor = 1.5 has_country_flag = krcw_raj2_compact_signed }
+		}
+		set_country_flag = krcw_raj2_relief_market
+		add_political_power = 25
+		country_event = { id = krcw_raj2.23 days = 12 }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.21
+	title = krcw_raj2.21.t
+	desc = {
+		text = krcw_raj2.21.d0
+		trigger = {
+			has_country_flag = krcw_raj2_granaries_open
+		}
+	}
+	desc = {
+		text = krcw_raj2.21.d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_krcw_raj_princes2_c
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		random_list = {
+			45 = {
+				modifier = { factor = 1.5 check_variable = { krcw_raj_reform > 19 } }
+				modifier = { factor = 1.3 has_country_flag = krcw_raj_heir_seated }
+				modifier = { factor = 0.6 has_country_flag = krcw_raj2_princes_boycott }
+				set_country_flag = krcw_raj2_granaries_open
+			}
+			55 = {
+				modifier = { factor = 1.5 has_country_flag = krcw_raj_reaction }
+				set_country_flag = krcw_raj2_granaries_refused
+			}
+		}
+	}
+	option = {
+		name = krcw_raj2.21.a
+		trigger = {
+			has_country_flag = krcw_raj2_granaries_open
+		}
+		ai_chance = {
+			base = 1
+		}
+		add_stability = 0.02
+		country_event = { id = krcw_raj2.24 days = 15 }
+	}
+	option = {
+		name = krcw_raj2.21.b
+		trigger = {
+			has_country_flag = krcw_raj2_granaries_refused
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 0.5 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } }
+		}
+		set_country_flag = krcw_raj2_granaries_seized
+		add_stability = -0.04
+		army_experience = 5
+		custom_effect_tooltip = krcw_raj_remembered_tt
+		country_event = { id = krcw_raj2.24 days = 15 }
+	}
+	option = {
+		name = krcw_raj2.21.c
+		trigger = {
+			has_country_flag = krcw_raj2_granaries_refused
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } }
+		}
+		clr_country_flag = krcw_raj2_relief_central
+		add_political_power = 25
+		country_event = { id = krcw_raj2.25 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.22
+	title = krcw_raj2.22.t
+	desc = krcw_raj2.22.d
+	picture = GFX_report_event_krcw_raj_delhi
+	trigger = {
+		tag = SOV
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.22.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_stability > 0.6 }
+		}
+		add_political_power = -25
+		RAJ = { set_country_flag = krcw_raj2_russian_wheat add_opinion_modifier = { target = SOV modifier = krcw_raj_loyal_ally } country_event = { id = krcw_raj2.24 days = 20 } }
+	}
+	option = {
+		name = krcw_raj2.22.b
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_stability < 0.5 }
+		}
+		add_political_power = 25
+		RAJ = { country_event = { id = krcw_raj2.26 days = 10 } }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.23
+	title = krcw_raj2.23.t
+	desc = krcw_raj2.23.d
+	picture = GFX_report_event_krcw_raj_famine
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.23.a
+		ai_chance = {
+			base = 45
+		}
+		set_country_flag = krcw_raj2_hoarders_tried
+		add_political_power = -25
+		add_stability = 0.02
+		country_event = { id = krcw_raj2.24 days = 15 }
+	}
+	option = {
+		name = krcw_raj2.23.b
+		ai_chance = {
+			base = 55
+		}
+		add_political_power = -50
+		country_event = { id = krcw_raj2.24 days = 15 }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.24
+	title = krcw_raj2.24.t
+	desc = {
+		text = krcw_raj2.24.d0
+		trigger = {
+			has_country_flag = krcw_raj2_russian_wheat
+		}
+	}
+	desc = {
+		text = krcw_raj2.24.d1
+		trigger = {
+			has_country_flag = krcw_raj2_granaries_seized
+		}
+	}
+	desc = {
+		text = krcw_raj2.24.d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_krcw_raj_famine
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.24.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 2 has_completed_focus = krcw_raj_grain_railways }
+			modifier = { factor = 1.5 has_country_flag = krcw_raj2_land_reform }
+		}
+		set_country_flag = krcw_raj2_famine_contained
+		add_stability = 0.03
+		add_political_power = -25
+	}
+	option = {
+		name = krcw_raj2.24.b
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_raj_reaction }
+			modifier = { factor = 0.5 has_completed_focus = krcw_raj_grain_railways }
+		}
+		set_country_flag = krcw_raj2_famine_hard
+		set_country_flag = krcw_raj_famine_neglect
+		add_war_support = 0.03
+		add_stability = -0.03
+		custom_effect_tooltip = krcw_raj_remembered_tt
+	}
+}
+
+country_event = {
+	id = krcw_raj2.25
+	title = krcw_raj2.25.t
+	desc = krcw_raj2.25.d
+	picture = GFX_report_event_krcw_raj_famine
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.25.a
+		trigger = {
+			country_exists = SOV
+			NOT = { has_country_flag = krcw_raj2_asked_moscow }
+		}
+		ai_chance = {
+			base = 60
+		}
+		set_country_flag = krcw_raj2_asked_moscow
+		set_country_flag = krcw_raj2_relief_central
+		add_political_power = -25
+		SOV = { country_event = { id = krcw_raj2.22 days = 5 } }
+	}
+	option = {
+		name = krcw_raj2.25.b
+		ai_chance = {
+			base = 40
+		}
+		set_country_flag = krcw_raj2_famine_disaster
+		set_country_flag = krcw_raj_famine_neglect
+		add_stability = -0.06
+		add_manpower = -20000
+		custom_effect_tooltip = krcw_raj_remembered_tt
+	}
+}
+
+country_event = {
+	id = krcw_raj2.26
+	title = krcw_raj2.26.t
+	desc = krcw_raj2.26.d
+	picture = GFX_report_event_krcw_raj_delhi
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.26.a
+		ai_chance = {
+			base = 70
+			modifier = { factor = 1.5 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } }
+		}
+		set_country_flag = krcw_raj2_rouble_deal
+		set_country_flag = krcw_raj2_russian_wheat
+		if = { limit = { NOT = { has_idea = krcw_raj_russian_credits } } add_ideas = krcw_raj_russian_credits }
+		add_political_power = -25
+		country_event = { id = krcw_raj2.24 days = 20 }
+	}
+	option = {
+		name = krcw_raj2.26.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 has_completed_focus = krcw_raj_bombay_mills }
+		}
+		set_country_flag = krcw_raj_moscow_refused_grain
+		add_stability = -0.02
+		country_event = { id = krcw_raj2.25 days = 10 }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.27
+	title = krcw_raj2.27.t
+	desc = {
+		text = krcw_raj2.27.d0
+		trigger = {
+			has_country_flag = krcw_raj2_famine_contained
+		}
+	}
+	desc = {
+		text = krcw_raj2.27.d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_krcw_raj_famine
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.27.a
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { has_country_flag = krcw_raj2_famine_contained } add_stability = 0.03 }
+		else = { add_war_support = -0.02 }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.40
+	title = krcw_raj2.40.t
+	desc = krcw_raj2.40.d
+	picture = GFX_report_event_krcw_tib_lhasa
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.40.a
+		ai_chance = {
+			base = 35
+			modifier = { factor = 1.5 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } }
+		}
+		set_country_flag = krcw_raj2_tib_kashag
+		add_political_power = -25
+		if = { limit = { country_exists = TIB } TIB = { country_event = { id = krcw_raj2.41 days = 8 } } }
+		else = { country_event = { id = krcw_raj2.44 days = 15 } }
+	}
+	option = {
+		name = krcw_raj2.40.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 has_war_support > 0.5 }
+			modifier = { factor = 1.5 has_country_flag = krcw_raj_reaction }
+		}
+		set_country_flag = krcw_raj2_tib_kham
+		country_event = { id = krcw_raj2.43 days = 12 }
+	}
+	option = {
+		name = krcw_raj2.40.c
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 has_stability < 0.4 }
+			modifier = { factor = 1.5 has_country_flag = krcw_raj_reformist }
+		}
+		set_country_flag = krcw_raj2_tib_watch
+		add_political_power = 25
+		country_event = { id = krcw_raj2.44 days = 15 }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.41
+	title = krcw_raj2.41.t
+	desc = krcw_raj2.41.d
+	picture = GFX_report_event_krcw_tib_lhasa
+	trigger = {
+		tag = TIB
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.41.a
+		ai_chance = {
+			base = 60
+			modifier = { factor = 1.5 check_variable = { krcw_revolt_progress > 30 } }
+		}
+		RAJ = { set_country_flag = krcw_raj2_kashag_accepted country_event = { id = krcw_raj2.42 days = 8 } }
+		TIB = {
+			add_to_variable = { krcw_revolt_progress = 5 }
+			clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_tibrev_progress_up_5_tt
+	}
+	option = {
+		name = krcw_raj2.41.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 has_idea = krcw_tib_expanded_autonomy }
+		}
+		RAJ = { set_country_flag = krcw_raj2_kashag_refused country_event = { id = krcw_raj2.42 days = 8 } }
+		if = { limit = { country_exists = CHI } CHI = { country_event = { id = krcw_raj2.45 days = 10 } } }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.42
+	title = krcw_raj2.42.t
+	desc = {
+		text = krcw_raj2.42.d0
+		trigger = {
+			has_country_flag = krcw_raj2_kashag_accepted
+		}
+	}
+	desc = {
+		text = krcw_raj2.42.d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_krcw_tib_lhasa
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.42.a
+		trigger = {
+			has_country_flag = krcw_raj2_kashag_accepted
+		}
+		ai_chance = {
+			base = 1
+		}
+		add_political_power = -25
+		TIB = {
+			add_to_variable = { krcw_revolt_progress = 5 }
+			clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_tibrev_progress_up_5_tt
+		country_event = { id = krcw_raj2.44 days = 15 }
+	}
+	option = {
+		name = krcw_raj2.42.b
+		trigger = {
+			has_country_flag = krcw_raj2_kashag_refused
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_war_support > 0.5 }
+		}
+		set_country_flag = krcw_raj2_tib_kham
+		country_event = { id = krcw_raj2.43 days = 12 }
+	}
+	option = {
+		name = krcw_raj2.42.c
+		trigger = {
+			has_country_flag = krcw_raj2_kashag_refused
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } }
+		}
+		set_country_flag = krcw_raj2_tib_watch
+		add_political_power = 25
+		country_event = { id = krcw_raj2.44 days = 15 }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.43
+	title = krcw_raj2.43.t
+	desc = krcw_raj2.43.d
+	picture = GFX_report_event_krcw_tib_army
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		random_list = {
+			40 = {
+				modifier = { factor = 1.5 has_country_flag = krcw_raj2_kashag_refused }
+				set_country_flag = krcw_raj2_kham_exposed
+				if = { limit = { country_exists = CHI } CHI = { country_event = { id = krcw_raj2.45 days = 10 } } }
+			}
+			60 = { }
+		}
+	}
+	option = {
+		name = krcw_raj2.43.a
+		ai_chance = {
+			base = 60
+			modifier = { factor = 0.5 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } }
+		}
+		set_country_flag = krcw_raj2_kham_armed
+		TIB = {
+			add_to_variable = { krcw_revolt_progress = 8 }
+			clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_tibrev_progress_up_8_tt
+		add_political_power = -25
+		country_event = { id = krcw_raj2.44 days = 15 }
+	}
+	option = {
+		name = krcw_raj2.43.b
+		ai_chance = {
+			base = 40
+		}
+		set_country_flag = krcw_raj2_kham_armed
+		TIB = {
+			add_to_variable = { krcw_revolt_progress = 5 }
+			clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_tibrev_progress_up_5_tt
+		country_event = { id = krcw_raj2.44 days = 15 }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.44
+	title = krcw_raj2.44.t
+	desc = {
+		text = krcw_raj2.44.d0
+		trigger = {
+			OR = { has_country_flag = krcw_raj2_kham_exposed has_country_flag = krcw_raj2_kashag_refused }
+		}
+	}
+	desc = {
+		text = krcw_raj2.44.d1
+		trigger = {
+			has_country_flag = krcw_raj2_kham_armed
+		}
+	}
+	desc = {
+		text = krcw_raj2.44.d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_krcw_raj_delhi
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.44.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 2 has_country_flag = krcw_raj2_kham_armed }
+			modifier = { factor = 0.4 has_country_flag = krcw_raj2_tib_watch }
+			modifier = { factor = 1.5 has_completed_focus = krcw_raj_kalimpong_network }
+		}
+		set_country_flag = krcw_raj2_tib_forward
+		TIB = {
+			add_to_variable = { krcw_revolt_progress = 10 }
+			clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_tibrev_progress_up_10_tt
+		krcw_tension_up_small = yes
+		add_war_support = 0.03
+		if = { limit = { country_exists = CHI } CHI = { country_event = { id = krcw_raj2.45 days = 15 } } }
+	}
+	option = {
+		name = krcw_raj2.44.b
+		ai_chance = {
+			base = 50
+			modifier = { factor = 2 has_country_flag = krcw_raj2_tib_watch }
+			modifier = { factor = 1.5 has_country_flag = krcw_raj2_kham_exposed }
+			modifier = { factor = 1.5 has_completed_focus = krcw_raj_himalayan_line }
+		}
+		set_country_flag = krcw_raj2_tib_line_first
+		add_stability = 0.02
+		add_political_power = 25
+		krcw_tension_down_small = yes
+	}
+}
+
+country_event = {
+	id = krcw_raj2.45
+	title = krcw_raj2.45.t
+	desc = {
+		text = krcw_raj2.45.d0
+		trigger = {
+			RAJ = { has_country_flag = krcw_raj2_kashag_refused }
+		}
+	}
+	desc = {
+		text = krcw_raj2.45.d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_chinese_soldiers_01
+	trigger = {
+		tag = CHI
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.45.a
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 has_war_support > 0.5 }
+		}
+		add_political_power = -25
+		TIB = {
+			subtract_from_variable = { krcw_revolt_progress = 8 }
+			clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_tibrev_progress_down_8_tt
+		RAJ = { set_country_flag = krcw_raj2_chi_garrisoned country_event = { id = krcw_raj2.46 days = 10 } }
+	}
+	option = {
+		name = krcw_raj2.45.b
+		ai_chance = {
+			base = 45
+		}
+		krcw_tension_up_small = yes
+		RAJ = { set_country_flag = krcw_raj2_chi_protested country_event = { id = krcw_raj2.46 days = 10 } }
+	}
+}
+
+country_event = {
+	id = krcw_raj2.46
+	title = krcw_raj2.46.t
+	desc = {
+		text = krcw_raj2.46.d0
+		trigger = {
+			has_country_flag = krcw_raj2_chi_garrisoned
+		}
+	}
+	desc = {
+		text = krcw_raj2.46.d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_chinese_soldiers_01
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.46.a
+		ai_chance = {
+			base = 60
+			modifier = { factor = 1.5 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } }
+		}
+		add_political_power = -25
+		krcw_tension_down_small = yes
+	}
+	option = {
+		name = krcw_raj2.46.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 has_country_flag = krcw_raj2_tib_forward }
+		}
+		add_war_support = 0.03
+		krcw_tension_up_small = yes
+		TIB = {
+			add_to_variable = { krcw_revolt_progress = 5 }
+			clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_tibrev_progress_up_5_tt
+	}
+}
+
+country_event = {
+	id = krcw_raj2.47
+	title = krcw_raj2.47.t
+	desc = {
+		text = krcw_raj2.47.d0
+		trigger = {
+			has_completed_focus = krcw_raj_protectors_of_faith
+		}
+	}
+	desc = {
+		text = krcw_raj2.47.d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_krcw_tib_army
+	trigger = {
+		tag = RAJ
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_raj2.47.a
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { has_completed_focus = krcw_raj_protectors_of_faith } add_war_support = 0.02 }
+		else = { add_stability = 0.02 }
+	}
+}

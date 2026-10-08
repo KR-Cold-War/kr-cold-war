@@ -1,0 +1,321 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = KOR_Syngman_Rhee_1948
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = KOR
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	shared_focus = KOR_50s_the_kacic
+	shared_focus = KOR_50s_national_economy_reinvigoration_plan
+	shared_focus = KOR_50s_ministry_of_foreign_affairs
+	shared_focus = KOR_50s_daehanminguk_gukgun
+	shared_focus = KOR_50s_the_war_of_625
+	focus = {
+		id = KOR_SYNGMANRHEE48_syngman_rhee_administration
+		icon = GFX_KOR_syngman_rhee_administration_1948
+		cost = 1
+		x = 1
+		y = 0
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			add_political_power = 120
+		}
+	}
+	
+	focus = {
+		id = KOR_SYNGMANRHEE48_stall_the_investigation_of_projapanese_collaborators
+		icon = GFX_KOR_stall_the_investigation_of_projapanese_collaborators
+		cost = 5
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			add_political_power = 50
+			news_event = KOR_SYNGMANRHEE48.1
+		}
+		relative_position_id = KOR_SYNGMANRHEE48_syngman_rhee_administration
+		prerequisite = { focus = KOR_SYNGMANRHEE48_syngman_rhee_administration }
+	}
+	
+	focus = {
+		id = KOR_SYNGMANRHEE48_establish_the_bodo_league
+		icon = GFX_KOR_establish_the_bodo_league
+		cost = 5
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_ideas = gulag_politic
+			news_event = KOR_SYNGMANRHEE48.2
+		}
+		relative_position_id = KOR_SYNGMANRHEE48_syngman_rhee_administration
+		prerequisite = { focus = KOR_SYNGMANRHEE48_syngman_rhee_administration }
+	}
+	
+	focus = {
+		id = KOR_SYNGMANRHEE48_arrest_the_investigators
+		icon = GFX_KOR_arrest_the_investiagators
+		cost = 5
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_ideas = repression
+		}
+		relative_position_id = KOR_SYNGMANRHEE48_stall_the_investigation_of_projapanese_collaborators
+		prerequisite = { focus = KOR_SYNGMANRHEE48_stall_the_investigation_of_projapanese_collaborators }
+		prerequisite = { focus = KOR_SYNGMANRHEE48_establish_the_bodo_league }
+	}
+	
+	focus = {
+		id = KOR_SYNGMANRHEE48_the_farmland_reform_act_of_1949
+		icon = GFX_KOR_the_farmland_reform_act_of_1949
+		cost = 5
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			set_country_flag = the_farmland_reform_act_enabled
+			1358 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = kor.na.bill
+		}
+		relative_position_id = KOR_SYNGMANRHEE48_arrest_the_investigators
+		prerequisite = { focus = KOR_SYNGMANRHEE48_arrest_the_investigators }
+	}
+	
+	focus = {
+		id = KOR_SYNGMANRHEE48_complete_eradication_campaign_in_jeju
+		icon = GFX_KOR_complete_eradication_campaign_in_jeju
+		cost = 5
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			add_political_power = 50
+			news_event = KOR_SYNGMANRHEE48.3
+			1004 = {
+				add_manpower = -10000
+			}
+			add_stability = -0.02
+			add_war_support = 0.05
+		}
+		relative_position_id = KOR_SYNGMANRHEE48_arrest_the_investigators
+		prerequisite = { focus = KOR_SYNGMANRHEE48_arrest_the_investigators }
+	}
+	
+	focus = {
+		id = KOR_SYNGMANRHEE48_embrace_ilminism
+		icon = GFX_KOR_embrace_ilminism
+		cost = 5
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			add_ideas = cultural_superiority_propaganda
+		}
+		relative_position_id = KOR_SYNGMANRHEE48_the_farmland_reform_act_of_1949
+		prerequisite = { focus = KOR_SYNGMANRHEE48_the_farmland_reform_act_of_1949 }
+		prerequisite = { focus = KOR_SYNGMANRHEE48_complete_eradication_campaign_in_jeju }
+	}
+	
+	focus = {
+		id = KOR_SYNGMANRHEE48_removal_of_japanese_influence
+		icon = GFX_KOR_removal_of_japanese_influence
+		cost = 5
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			remove_ideas = KOR_legacy_of_the_occupation
+		}
+		relative_position_id = KOR_SYNGMANRHEE48_embrace_ilminism
+		prerequisite = { focus = KOR_SYNGMANRHEE48_embrace_ilminism }
+	}
+	
+	focus = {
+		id = KOR_SYNGMANRHEE48_crackdown_on_the_workers_party_of_korea
+		icon = GFX_KOR_crackdown_on_the_workers_party_of_korea
+		cost = 5
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			add_political_power = 100
+			news_event = KOR_SYNGMANRHEE48.4
+			remove_ideas = gulag_politic
+			add_ideas = gulag_politic_expanded
+			add_ideas = communism_banned
+		}
+		relative_position_id = KOR_SYNGMANRHEE48_embrace_ilminism
+		prerequisite = { focus = KOR_SYNGMANRHEE48_embrace_ilminism }
+	}
+	
+	focus = {
+		id = KOR_SYNGMANRHEE48_the_military_service_act
+		icon = GFX_KOR_the_military_service_act
+		cost = 5
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			set_country_flag = the_military_service_act_enabled
+			custom_effect_tooltip = kor.na.bill
+		}
+		relative_position_id = KOR_SYNGMANRHEE48_crackdown_on_the_workers_party_of_korea
+		prerequisite = { focus = KOR_SYNGMANRHEE48_crackdown_on_the_workers_party_of_korea }
+		prerequisite = { focus = KOR_SYNGMANRHEE48_removal_of_japanese_influence }
+	}
+	
+	focus = {
+		id = KOR_SYNGMANRHEE48_create_the_liberal_party
+		icon = GFX_KOR_create_the_liberal_party
+		cost = 5
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			add_political_power = 100
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.1
+			}
+		}
+		relative_position_id = KOR_SYNGMANRHEE48_the_military_service_act
+		prerequisite = { focus = KOR_SYNGMANRHEE48_the_military_service_act }
+	}
+	
+	focus = {
+		id = KOR_SYNGMANRHEE48_push_for_constitutional_amendment
+		icon = GFX_KOR_push_for_constitutional_amendment
+		cost = 5
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			add_political_power = -50
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+		relative_position_id = KOR_SYNGMANRHEE48_the_military_service_act
+		prerequisite = { focus = KOR_SYNGMANRHEE48_the_military_service_act }
+	}
+	
+	focus = {
+		id = KOR_SYNGMANRHEE48_call_local_elections_ahead_of_time
+		icon = GFX_KOR_call_local_elections_ahead_of_time
+		cost = 5
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			add_political_power = 10
+			add_stability = -0.05
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.05
+			}
+		}
+		relative_position_id = KOR_SYNGMANRHEE48_create_the_liberal_party
+		prerequisite = { focus = KOR_SYNGMANRHEE48_create_the_liberal_party }
+		prerequisite = { focus = KOR_SYNGMANRHEE48_push_for_constitutional_amendment }
+	}
+	
+	focus = {
+		id = KOR_SYNGMANRHEE48_utilize_political_gangs
+		icon = GFX_KOR_utilize_political_gangs
+		cost = 5
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			add_political_power = 150
+			add_ideas = political_crackdown
+		}
+		relative_position_id = KOR_SYNGMANRHEE48_call_local_elections_ahead_of_time
+		prerequisite = { focus = KOR_SYNGMANRHEE48_declaration_of_martial_law_in_busan }
+		prerequisite = { focus = KOR_SYNGMANRHEE48_call_local_elections_ahead_of_time }
+	}
+	
+	focus = {
+		id = KOR_SYNGMANRHEE48_declaration_of_martial_law_in_busan
+		icon = GFX_KOR_declaration_of_martial_law
+		cost = 5
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = martial_law
+				days = 500
+			}
+		}
+		relative_position_id = KOR_SYNGMANRHEE48_push_for_constitutional_amendment
+		prerequisite = { focus = KOR_SYNGMANRHEE48_create_the_liberal_party }
+		prerequisite = { focus = KOR_SYNGMANRHEE48_push_for_constitutional_amendment }
+	}
+	
+	focus = {
+		id = KOR_SYNGMANRHEE48_round_up_anti-rhee_legislators
+		icon = GFX_KOR_round_up_anti-rhee_legislators
+		cost = 5
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			news_event = KOR_SYNGMANRHEE48.5
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.3
+			}
+		}
+		relative_position_id = KOR_SYNGMANRHEE48_declaration_of_martial_law_in_busan
+		prerequisite = { focus = KOR_SYNGMANRHEE48_declaration_of_martial_law_in_busan }
+		prerequisite = { focus = KOR_SYNGMANRHEE48_call_local_elections_ahead_of_time }
+	}
+}

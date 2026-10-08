@@ -1,0 +1,1365 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+### PRC Interim Government ###
+focus_tree = {
+	id = PRC_50s_Interim
+	country = {
+		factor = 0
+
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+
+### NOTE ###
+#	when you use relative_position_id, keep using one focus as a started point - from Taiga
+############
+
+	focus = {
+		id = PRC_50s_Launch_The_Crossing_Yangtze_River_Campaign_Interim
+		icon = GFX_PRC_50s_Launch_The_Crossing_Yangtze_River_Campaign_Interim
+		cost = 3.6
+		x = 10
+		y = 1
+		allow_branch = {
+			NOT = { 
+				check_variable = {
+					var = PRC_focus_tree_var
+					value = 0
+					compare = not_equals
+				}
+			}
+		}
+		available = {
+			
+		}
+		cancelable = no
+		mutually_exclusive = {
+			focus = PRC_50s_Accept_Governance_Across_The_Yangtze_River
+		}
+		completion_reward = {
+			custom_effect_tooltip = PRC_50s_Launch_The_Crossing_Yangtze_River_Campaign_tt
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Accept_Governance_Across_The_Yangtze_River
+		icon = GFX_PRC_50s_Accept_Governance_Across_The_Yangtze_River
+		cost = 3.6
+		x = 12
+		y = 1
+		allow_branch = {
+			NOT = { 
+				check_variable = {
+					var = PRC_focus_tree_var
+					value = 0
+					compare = not_equals
+				}
+			}
+		}
+		available = {
+
+		}
+		mutually_exclusive = {
+			focus = PRC_50s_Launch_The_Crossing_Yangtze_River_Campaign_Interim
+		}
+		completion_reward = {
+			custom_effect_tooltip = PRC_50s_Accept_Using_The_Yangtze_as_A_Partition_tt
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_The_Final_Push
+		icon = GFX_PRC_50s_The_Final_Push
+		cost = 1
+		x = 1
+		y = 1
+		relative_position_id = PRC_50s_Launch_The_Crossing_Yangtze_River_Campaign_Interim
+		prerequisite = {
+			focus = PRC_50s_Launch_The_Crossing_Yangtze_River_Campaign_Interim
+			focus = PRC_50s_Accept_Governance_Across_The_Yangtze_River
+		}
+		cancelable = no
+		select_effect = {
+		}
+		#bypass = {
+		#	has_global_flag = CCW_Over
+		#}
+		available = {
+			OR = {
+				#count_triggers = {
+				#	amount = 8
+				#	controls_state = 620
+				#	controls_state = 1792
+				#	controls_state = 1785
+				#	controls_state = 596
+				#	controls_state = 174
+				#	controls_state = 613
+				#	controls_state = 598
+				#	controls_state = 1573
+				#	controls_state = 606
+				#	controls_state = 621
+				#	controls_state = 622
+				#	controls_state = 1786
+				#}
+				CHI = { num_of_controlled_states < 40 }
+				NOT = {
+					has_global_flag = roc_stalled_ccp
+				}
+			}
+		}
+		cancel_if_invalid = yes
+		completion_reward = {
+			add_political_power = 10
+			add_war_support = 0.025
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = PRC_50s_People_s_War_of_Liberation
+					}
+					remove_ideas = PRC_50s_People_s_War_of_Liberation
+					add_timed_idea = {
+						idea = PRC_50s_People_s_War_of_Liberation
+						days = 320
+					}
+				}
+				else_if = {
+					limit = {
+						has_idea = PRC_50s_People_s_War_of_Liberation_1
+					}
+					remove_ideas = PRC_50s_People_s_War_of_Liberation_1
+					add_timed_idea = {
+						idea = PRC_50s_People_s_War_of_Liberation_1
+						days = 320
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_March_To_The_Southwest
+		icon = GFX_PRC_50s_March_To_The_Southwest
+		cost = 2.0
+		x = -1
+		y = 2
+		relative_position_id = PRC_50s_Launch_The_Crossing_Yangtze_River_Campaign_Interim
+
+		prerequisite = {
+			focus = PRC_50s_The_Final_Push
+		}
+
+		available = {
+		}
+
+		cancelable = no
+
+		completion_reward = {
+			add_manpower = 75000
+			add_war_support = 0.05
+			army_experience = 40
+			hidden_effect = {
+				add_timed_idea = {
+					idea = PRC_50s_Southwest_Offensive_Spirit
+					days = 120
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	##解放昆明
+	focus = {
+		id = PRC_50s_Liberate_Kunming
+		icon = GFX_PRC_50s_Liberate_Kunming
+		cost = 2
+		x = -1
+		y = 1
+		relative_position_id = PRC_50s_March_To_The_Southwest
+
+		prerequisite = {
+			focus = PRC_50s_March_To_The_Southwest
+		}
+
+		available = {
+		}
+		completion_reward = {
+			add_manpower = 50000
+			add_war_support = 0.03
+			add_stability = 0.01
+			add_ideas = PRC_50s_Southwest_Offensive_Spirit
+			every_state = {
+				limit = {
+					OR = {
+						state = 1557
+						state = 603
+						state = 1575
+						state = 1793
+						state = 620
+						state = 601
+						state = 1786 
+						state = 2015
+						state = 1978
+						state = 605
+					}
+				}
+				add_dynamic_modifier = { 
+					modifier = PRC_attack_bonus 
+					days = 365
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	##解放广西
+	focus = {
+		id = PRC_50s_Liberate_Guangxi
+		icon = GFX_PRC_50s_Liberate_Guangxi
+		cost = 2
+		x = 1
+		y = 1
+		relative_position_id = PRC_50s_March_To_The_Southwest
+
+		prerequisite = {
+			focus = PRC_50s_March_To_The_Southwest
+		}
+
+		available = {
+		}
+		completion_reward = {
+			add_manpower = 50000
+			add_war_support = 0.05
+			add_stability = 0.01
+			every_state = {
+				limit = {
+					OR = {
+						state = 2031
+						state = 594
+						state = 1578
+						state = 2014
+						state = 602
+					}
+				}
+				add_dynamic_modifier = { 
+					modifier = PRC_attack_bonus 
+					days = 365
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	##解放到南海
+	focus = {
+		id = PRC_50s_Reach_South_China_Sea
+		icon = GFX_PRC_50s_Reach_South_China_Sea
+		cost = 2
+		x = -1
+		y = 1.5
+		relative_position_id = PRC_50s_Liberate_Guangxi
+
+		prerequisite = {
+			focus = PRC_50s_Liberate_Guangxi
+			focus = PRC_50s_Liberate_Kunming
+		}
+
+		available = {
+
+		}
+
+		cancelable = no
+
+		completion_reward = {
+			add_manpower = 50000
+			add_war_support = 0.03
+			add_stability = 0.01
+
+			every_state = {
+				limit = {
+					OR = {
+						state = 592
+						state = 1569
+						state = 1577
+						state = 595
+					}
+				}
+				add_dynamic_modifier = { 
+					modifier = PRC_attack_bonus 
+					days = 365
+				}
+
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_The_Three_District_Revolution
+		icon = GFX_PRC_50s_The_Three_District_Revolution
+		cost = 1
+		x = 3
+		y = 2
+		relative_position_id = PRC_50s_Launch_The_Crossing_Yangtze_River_Campaign_Interim
+
+		prerequisite = {
+			focus = PRC_50s_The_Final_Push
+		}
+
+		available = {
+		}
+
+		bypass = {
+			has_full_control_of_state = 1557
+			has_full_control_of_state = 603
+			has_full_control_of_state = 1575
+			has_full_control_of_state = 1793
+			has_full_control_of_state = 620
+			has_full_control_of_state = 601
+			has_full_control_of_state = 1786
+			has_full_control_of_state = 2015
+			has_full_control_of_state = 1978
+			has_full_control_of_state = 605
+		}
+
+		completion_reward = {
+			add_political_power = 50
+			unlock_decision_tooltip = PRC_Contact_the_three_district_government
+			set_country_flag = PRC_Contact_the_three_district_government
+			add_stability = 0.05
+			617 = {
+				add_core_of = PRC
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+			modifier = {
+				factor = 0
+				date < 1949.1.01
+			}
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Peacefully_Liberate_Urumqi_Campaign
+		icon = GFX_PRC_50s_Peacefully_Liberate_Urumqi_Campaign
+		cost = 1
+		x = -1
+		y = 1
+		relative_position_id = PRC_50s_The_Three_District_Revolution
+
+		prerequisite = {
+			focus = PRC_50s_The_Three_District_Revolution
+		}
+
+		available = {
+			country_exists = SIK
+			controls_state = 1994
+			has_country_flag = PRC_Contact_the_three_district_government
+		}
+		completion_reward = {
+			add_political_power = 50
+			PRC = {
+				set_autonomy = {
+					target = SIK
+					autonomous_state = autonomy_China_Local_Government
+				}
+			}
+			#PRC_Seypidin_Eziz = { set_nationality = SIK }
+			SIK = {
+				set_capital = {
+					state = 617
+					remember_old_capital = no
+				}
+				set_variable = { Sphere_Leader = 0 }
+				add_country_leader_role = {
+					character = PRC_Seypidin_Eziz
+					promote_leader = yes
+					country_leader = {
+						ideology = mao_zedong_thought
+						expire = "2003.11.14.1"
+						traits = {
+							
+						}
+					}
+				}
+				transfer_state = 617
+				transfer_state = 1867
+				transfer_state = 1866
+				transfer_state = 1868
+				transfer_state = 1869
+				transfer_state = 1870
+				transfer_state = 619
+				transfer_state = 1871
+				transfer_state = 287
+				transfer_state = 1865
+				transfer_state = 873
+				transfer_state = 1338
+				set_cosmetic_tag = SIK_PRC_liberation
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 1864
+						state = 1878
+						state = 618
+						state = 617
+						state = 1867
+						state = 1865
+						state = 1866
+						state = 1867
+						state = 1868
+						state = 287
+						state = 1869
+						state = 1870
+						state = 619
+						state = 1871
+						state = 873
+						state = 1338
+					}
+				}
+				add_dynamic_modifier = { modifier = PRC_Xinjiang_Separatists_1 }
+			}
+			hidden_effect = {
+				SIK = {
+					set_popularities = { 
+						communism = 27
+						islamism = 10
+						radical_shiaism = 1
+						Salafism = 3
+						maoism = 59
+					}
+				}
+			}
+			clr_country_flag = PRC_Contact_the_three_district_government
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Begin_Establishment_of_PCCX
+		icon = GFX_PRC_50s_Begin_Establishment_of_PCCX
+		cost = 5
+		x = 1
+		y = 1
+		relative_position_id = PRC_50s_The_Three_District_Revolution
+		prerequisite = {
+			focus = PRC_50s_The_Three_District_Revolution
+		}
+		available = {
+			date > 1949.10.1
+			has_completed_focus = PRC_50s_Peacefully_Liberate_Urumqi_Campaign
+		}
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 1864
+						state = 1878
+						state = 618
+						state = 617
+						state = 1867
+						state = 1865
+						state = 1866
+						state = 1867
+						state = 1868
+						state = 287
+						state = 1869
+						state = 1870
+						state = 619
+						state = 1871
+						state = 873
+						state = 1338
+					}
+				}
+				remove_dynamic_modifier = { modifier = PRC_Xinjiang_Separatists_1 }
+				add_dynamic_modifier = { modifier = PRC_Xinjiang_Separatists_2 }
+			}
+			add_stability = 0.025
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Integrate_the_three_districts_government
+		icon = GFX_PRC_50s_Integrate_the_three_districts_government
+		cost = 5
+		x = 0.0
+		y = 2.5
+		relative_position_id = PRC_50s_The_Three_District_Revolution
+		prerequisite = {
+			focus = PRC_50s_Begin_Establishment_of_PCCX
+		}
+		prerequisite = {
+			focus = PRC_50s_Peacefully_Liberate_Urumqi_Campaign
+		}
+		available = {
+			date > 1949.10.10
+		}
+		completion_reward = {
+			annex_country = {
+				target = SIK
+				transfer_troops = yes
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 1864
+						state = 1878
+						state = 618
+						state = 617
+						state = 1867
+						state = 1865
+						state = 1866
+						state = 1867
+						state = 1868
+						state = 287
+						state = 1869
+						state = 1870
+						state = 619
+						state = 1871
+						state = 873
+						state = 1338
+					}
+				}
+				add_core_of = PRC
+				remove_dynamic_modifier = { 
+					modifier = PRC_Xinjiang_Separatists_2 
+				}
+				add_dynamic_modifier = { modifier = PRC_Xinjiang_Separatists_3 }
+
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Unite_The_National_Bourgeoisie_Interim
+		icon = GFX_PRC_50s_Unite_The_National_Bourgeoisie
+		cost = 2
+		x = 0
+		y = 4
+		relative_position_id = PRC_50s_The_Final_Push
+		prerequisite = {
+			focus = PRC_50s_The_Final_Push
+		}
+		prerequisite = {
+			focus = PRC_50s_Peacefully_Liberate_Urumqi_Campaign
+		}
+		completion_reward = {
+			#set_temp_variable and class changes
+			set_temp_variable = { temp_class = 8 }
+			set_temp_variable = { temp_weight = 15 }
+			set_temp_variable = { temp_opinion = 5 }
+			PRC_class_status_change = yes
+
+			set_temp_variable = { temp_class = 7 }
+			set_temp_variable = { temp_weight = -25 }
+			set_temp_variable = { temp_opinion = -40 }
+			PRC_class_status_change = yes
+
+			set_temp_variable = { temp_v = 2 }
+			set_temp_variable = { temp_influence = 0.5 }
+			PRC_CCCPC_leaders_influence_update = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Prepare_for_the_First_CPPCC_Interim
+		icon = GFX_PRC_50s_Prepare_for_the_First_CPPCC
+		cost = 2
+		x = -1
+		y = 1
+		relative_position_id = PRC_50s_Unite_The_National_Bourgeoisie_Interim
+		prerequisite = {
+			focus = PRC_50s_Unite_The_National_Bourgeoisie_Interim
+		}
+		available = {
+		}
+		completion_reward = {
+			add_political_power = 50
+
+			set_temp_variable = { temp_class = 8 }
+			set_temp_variable = { temp_weight = 5 }
+			set_temp_variable = { temp_opinion = 5 }
+			PRC_class_status_change = yes
+
+			set_temp_variable = { temp_class = 10 }
+			set_temp_variable = { temp_weight = 5 }
+			set_temp_variable = { temp_opinion = 5 }
+			PRC_class_status_change = yes
+
+			set_temp_variable = { temp_class = 9 }
+			set_temp_variable = { temp_weight = 5 }
+			set_temp_variable = { temp_opinion = 5 }
+			PRC_class_status_change = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Production_Assurance_of_Newly_Receiving_Enterprises_Interim
+		icon = GFX_PRC_50s_Production_Assurance_of_Newly_Receiving_Enterprises
+		cost = 2
+		x = 1
+		y = 1
+		relative_position_id = PRC_50s_Unite_The_National_Bourgeoisie_Interim
+		prerequisite = {
+			focus = PRC_50s_Unite_The_National_Bourgeoisie_Interim
+		}
+		available = {
+		}
+		completion_reward = {
+			PRC_50s_Economic_ruin_caused_by_war_ideas_swap = yes
+
+			set_temp_variable = { temp_class = 8 }
+			set_temp_variable = { temp_weight = 3 }
+			set_temp_variable = { temp_opinion = 4 }
+			PRC_class_status_change = yes
+
+			set_temp_variable = { temp_class = 11 }
+			set_temp_variable = { temp_weight = 20 }
+			set_temp_variable = { temp_opinion = 6 }
+			PRC_class_status_change = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Foundation_of_the_Peoples_Republic_of_China
+		icon = GFX_PRC_50s_Found_The_People_s_Republic_of_China
+		cost = 3
+		x = 0
+		y = 2
+		relative_position_id = PRC_50s_Unite_The_National_Bourgeoisie_Interim
+		available = {
+			AND = {
+				has_completed_focus = PRC_50s_Peacefully_Liberate_Urumqi_Campaign
+				date > 1949.09.16
+				has_global_flag = CCW_Over
+			}
+		}
+		prerequisite = {
+			focus = PRC_50s_Prepare_for_the_First_CPPCC_Interim
+		}
+		prerequisite = {
+			focus = PRC_50s_Production_Assurance_of_Newly_Receiving_Enterprises_Interim
+		}
+		select_effect = {
+			country_event = { 
+				id = PRC_50s_Rework_event.11 
+				days = 60
+			}
+		}
+		completion_reward = {
+			effect_tooltip = {
+				set_cosmetic_tag = PRC
+			}
+
+			country_event = { id = PRC_50s_Rework_event.12 }
+
+			add_political_power = 100
+
+			set_country_flag = PRC_Founding_of_New_China_flag
+			set_variable = { PRC_49_60_focus_var = 1 }
+			mark_focus_tree_layout_dirty = yes
+
+			set_country_flag = PRC_The_Road_to_Socialism_flag
+			set_country_flag = PRC_Declare_PRC
+			set_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 0 }
+			unlock_decision_category_tooltip = PRC_50s_The_Road_to_Socialism_categories
+
+			set_variable = { PRC_transitional_period_policy_preference = 0 }
+			PRC_transitional_period_policy_preference_update = yes
+
+			hidden_effect = {
+				drop_cosmetic_tag = yes
+				news_event = { id = news.1005 }
+				country_event = {
+					id = PRC_50s_Rework_event.39
+					days = 97
+				}
+				country_event = {
+					id = PRC_50s_Rework_event.52
+					days = 2
+				}
+				country_event = {
+					id = PRC_50s_Rework_event.53
+					days = 56
+				}
+				country_event = {
+					id = PRC_50s_Rework_event.75 
+					days = 56
+				}
+				SOV = {
+					country_event = {
+						id = sov_jvs.5
+						days = 75
+					}
+				}
+				# unlock_national_focus =   # Fixed: incomplete statement - commented out (needs focus ID)
+			}   
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Consolidate_Support_Of_Country
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 3
+		x = 1
+		y = 1
+		relative_position_id = PRC_50s_Foundation_of_the_Peoples_Republic_of_China
+		prerequisite = {
+			focus = PRC_50s_Foundation_of_the_Peoples_Republic_of_China
+		}
+
+		allow_branch = {
+			has_country_flag = PRC_Declare_PRC
+		}
+		completion_reward = {
+			PRC_50s_Economic_ruin_caused_by_war_ideas_swap = yes
+			#set_temp_variable and class changes
+			set_temp_variable = { temp_class = 8 }
+			set_temp_variable = { temp_weight = 15 }
+			set_temp_variable = { temp_opinion = 5 }
+			PRC_class_status_change = yes
+
+			set_temp_variable = { temp_class = 7 }
+			set_temp_variable = { temp_weight = 15 }
+			set_temp_variable = { temp_opinion = 20 }
+			PRC_class_status_change = yes
+
+			set_temp_variable = { temp_v = 2 }
+			set_temp_variable = { temp_influence = 0.5 }
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	focus = {
+		id = PRC_50s_Repair_Our_Economy
+		icon = GFX_bag_of_money
+		cost = 3
+		x = -1
+		y = 1
+		relative_position_id = PRC_50s_Foundation_of_the_Peoples_Republic_of_China
+		prerequisite = {
+			focus = PRC_50s_Foundation_of_the_Peoples_Republic_of_China
+		}
+		allow_branch = {
+			has_country_flag = PRC_Declare_PRC
+		}
+		completion_reward = {
+			add_stability = 0.03
+			add_war_support = 0.02
+	
+			608 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 5
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+
+			609 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+	
+			597 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+	
+			716 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+
+			1580 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	focus = {
+		id = PRC_50s_Begin_Implementation_The_Land_Reform_Law
+		icon = GFX_goal_generic_political_pressure
+		cost = 3
+		x = 1
+		y = 1
+		relative_position_id = PRC_50s_Repair_Our_Economy
+		prerequisite = {
+			focus = PRC_50s_Repair_Our_Economy
+			focus = PRC_50s_Consolidate_Support_Of_Country
+		}
+		completion_reward = {
+			add_stability = 0.02
+			add_war_support = -0.02
+
+			add_political_power = 25
+
+			##To add
+			add_ideas = PRC_50s_Agricultural_Cooperative_Economy
+
+			597 = {
+				add_building_construction = {
+					type = civilian_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			608 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_manpower = 25000
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Begin_The_Battle_Of_Chamdo
+		icon = GFX_PRC_50s_Launch_The_Chamdo_Battle
+		cost = 3
+		x = -4
+		y = 1
+		relative_position_id = PRC_50s_Begin_Implementation_The_Land_Reform_Law
+		prerequisite = {
+			focus = PRC_50s_Begin_Implementation_The_Land_Reform_Law
+		}
+
+		completion_reward = {
+			declare_war_on = {
+				target = TIB
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = SAG
+				type = annex_everything
+			}
+	
+			set_country_flag = Tibet_Invasion_1
+
+			RAJ = {
+				country_event = PRC_TIBETAN.10
+			}
+
+			hidden_effect = {
+				322 = { set_demilitarized_zone = yes }
+				1361 = { set_demilitarized_zone = yes }
+				1548 = { set_demilitarized_zone = yes }
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+			modifier = {
+				factor = 0
+				date < 1950.9.27
+			}
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Trust_in_Kashgar
+		icon = GFX_PRC_50s_Trust_in_Gaxag
+		cost = 3
+		x = -2
+		y = 1
+		relative_position_id = PRC_50s_Begin_The_Battle_Of_Chamdo
+
+		prerequisite = {
+			focus = PRC_50s_Begin_The_Battle_Of_Chamdo
+		}
+
+		available = {
+			NOT = { has_war = yes }  # Fixed: changed from is_at_war (invalid trigger) to has_war
+		}
+
+		completion_reward = {
+			add_stability = 0.025
+			PRC = {
+				set_autonomy = {
+					target = TIB
+					autonomous_state = autonomy_China_Local_Government
+				}
+			}
+			TIB = {
+				add_stability = 0.05
+				transfer_state = 1361
+				transfer_state = 2025
+				transfer_state = 2026
+				transfer_state = 2024
+				transfer_state = 2027
+				transfer_state = 2023
+				transfer_state = 2028
+				transfer_state = 322
+				transfer_state = 2021
+				transfer_state = 2022
+				transfer_state = 1889
+				transfer_state = 1548
+				transfer_state = 2020
+				transfer_state = 1857
+				transfer_state = 2019
+				transfer_state = 1549
+				transfer_state = 1898
+				transfer_state = 1877
+				transfer_state = 2017
+				transfer_state = 2016
+				transfer_state = 2018
+			}
+			hidden_effect = {
+				TIB = {
+					set_popularities = { 
+						communism = 27
+						islamism = 10
+						radical_shiaism = 1
+						Salafism = 3
+						maoism = 59
+					}
+				}
+			}
+		}
+
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	focus = {
+		id = PRC_50s_Send_Aid_To_The_Tibetans
+		icon = GFX_PRC_50s_Send_Aid_to_Tibet
+		cost = 3
+		x = 2
+		y = 1
+		relative_position_id = PRC_50s_Begin_The_Battle_Of_Chamdo
+		allow_branch = {
+			has_completed_focus = PRC_50s_Foundation_of_the_Peoples_Republic_of_China
+		}
+		prerequisite = {
+			focus = PRC_50s_Begin_The_Battle_Of_Chamdo
+		}
+		available = {
+			has_completed_focus = PRC_50s_Trust_in_Kashgar
+			TIB = { is_puppet_of = PRC }
+		}
+
+		completion_reward = {
+			set_temp_variable = { temp_x = 5 }
+			PRC_50s_spend_money_tt = yes
+
+			TIB = {
+				add_stability = 0.05
+			}
+
+			country_event = {
+				id = PRC_50s_Rework_event.66
+				days = 10
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Establish_The_TWC
+		icon = GFX_PRC_50s_Establish_PLAN
+		cost = 3
+		x = 0
+		y = 1
+		relative_position_id = PRC_50s_Begin_The_Battle_Of_Chamdo
+		allow_branch = {
+			has_completed_focus = PRC_50s_Foundation_of_the_Peoples_Republic_of_China
+		}
+
+		prerequisite = {
+			focus = PRC_50s_Send_Aid_To_The_Tibetans
+			focus = PRC_50s_Trust_in_Kashgar
+		}
+
+
+		available = {
+		}
+		completion_reward = {
+			TIB = {
+				add_stability = 0.05
+				add_political_power = 100
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Incorporate_CPTibet_into_CPC
+		icon = GFX_PRC_50s_Incorporate_CPT_into_CPC
+		cost = 3
+		x = 0
+		y = 2
+		relative_position_id = PRC_50s_Begin_The_Battle_Of_Chamdo
+
+		prerequisite = {
+			focus = PRC_50s_Send_Aid_To_The_Tibetans
+			focus = PRC_50s_Trust_in_Kashgar
+		}
+
+		available = {
+			has_completed_focus = PRC_50s_Establish_The_TWC
+			TIB = {
+				is_puppet_of = PRC
+			}
+		}
+
+		completion_reward = {
+			add_stability = 0.02
+			add_political_power = 50
+			TIB = {
+				add_stability = 0.05
+			}
+			annex_country = {
+				target = TIB
+			}
+			set_country_flag = PRC_Tibet_Integrated
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	focus = {
+		id = PRC_50s_Prepare_For_Hainan
+		icon = GFX_unknown
+		cost = 3
+		x = 4
+		y = 1
+		relative_position_id = PRC_50s_Begin_Implementation_The_Land_Reform_Law
+
+		prerequisite = {
+			focus = PRC_50s_Begin_Implementation_The_Land_Reform_Law
+		}
+
+		available = {
+		}
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 100
+			}
+
+			1577 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 3
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Revive_PLAN
+		icon = GFX_PRC_50s_Establish_PLAN
+		cost = 3
+		x = 1
+		y = 1
+		relative_position_id = PRC_50s_Prepare_For_Hainan
+
+		prerequisite = {
+			focus = PRC_50s_Prepare_For_Hainan
+		}
+
+		available = {
+		}
+
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 100
+			}
+
+			add_navy_experience = 100
+
+			1577 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 3
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			613 = {
+				add_building_construction = {
+					type = dockyard
+					level = 4
+					instant_build = yes
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Splinter_Cells_Hainan
+		icon = GFX_unknown
+		cost = 3
+		x = -1
+		y = 1
+		relative_position_id = PRC_50s_Prepare_For_Hainan
+
+		prerequisite = {
+			focus = PRC_50s_Prepare_For_Hainan
+		}
+
+		available = {
+		}
+
+		completion_reward = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 591
+					}
+				}
+				add_dynamic_modifier = { 
+					modifier = PRC_attack_bonus 
+					days = 365
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	focus = {
+		id = PRC_50s_Liberate_Hainan
+		icon = GFX_unknown
+		cost = 3
+		x = 0
+		y = 2
+		relative_position_id = PRC_50s_Prepare_For_Hainan
+
+		prerequisite = {
+			focus = PRC_50s_Splinter_Cells_Hainan
+			focus = PRC_50s_Revive_PLAN
+		}
+
+		available = {
+			tag = PRC
+			has_global_flag = CCW_Over
+			has_global_flag = PRC_Victory
+			has_global_flag = ROC_taiwan
+			NOT = {
+				owns_state = 591
+			}
+		}
+		completion_reward = {
+			custom_effect_tooltip = FOCUS_LIBERATE_HAINAN_TOOLTIP
+			declare_war_on = {
+				target = CHI
+				type = take_state_focus
+				generator = { 591 } 
+			}
+			hidden_effect = {
+				1547 = {
+					add_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				524 = {
+					add_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				593 = {
+					add_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				1648 = {
+					add_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				2032 = {
+					add_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				1666 = {
+					add_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				1006 = {
+					add_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				
+				
+				load_oob = PRC_Hainan_oob
+				
+
+				set_global_flag = PRC_Liberating_Hainan
+			}
+			news_event = {
+					id = KMT_Hainan.1
+					days = 2
+			}
+			activate_mission = Battle_of_Hainan
+			set_province_controller = 1038
+			set_province_controller = 16106
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	focus = {
+		id = PRC_50s_To_Liberate_Formosa
+		icon = GFX_unknown
+		cost = 3
+		x = 0
+		y = 4
+		relative_position_id = PRC_50s_Begin_Implementation_The_Land_Reform_Law
+
+		prerequisite = {
+			focus = PRC_50s_Incorporate_CPTibet_into_CPC
+			focus = PRC_50s_Liberate_Hainan
+		}
+
+		available = {
+		}
+		completion_reward = {
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	focus = {
+		id = PRC_50s_Consolidate_The_PLAN
+		icon = GFX_PRC_50s_Establish_PLAN
+		cost = 3
+		x = 2
+		y = 1
+		relative_position_id = PRC_50s_To_Liberate_Formosa
+
+		prerequisite = {
+			focus = PRC_50s_To_Liberate_Formosa
+		}
+
+		available = {
+		}
+		completion_reward = {
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	focus = {
+		id = PRC_50s_Prepare_Our_Men
+		icon = GFX_unknown
+		cost = 3
+		x = -2
+		y = 1
+		relative_position_id = PRC_50s_To_Liberate_Formosa
+
+		prerequisite = {
+			focus = PRC_50s_To_Liberate_Formosa
+		}
+
+		available = {
+		}
+		completion_reward = {
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

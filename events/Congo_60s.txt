@@ -1,0 +1,474 @@
+# KRCW (build/patch_residue.py): 22 OTL events dropped while KRCW_active
+add_namespace = congo_mutiny
+add_namespace = mobutu_cos
+add_namespace = lumumba_deposed
+add_namespace = un_congo
+add_namespace = congo_un
+add_namespace = belgium_congo
+add_namespace = lumumba_death
+add_namespace = mobutu
+add_namespace = zaire
+add_namespace = tshombe
+add_namespace = mobutu_execution
+add_namespace = cabinda_trade
+add_namespace = congo_name_change
+add_namespace = congoflavor
+
+#congo_mutiny.1        #The Soldiers Mutiny  TAKEN
+#mobutu_cos.1        #Mobutu Appointed Chief of Staff  TAKEN
+#lumumba_deposed.1    #Patrice Lumumba Deposed  TAKEN
+#un_congo.1            #Appeal for UN Intervention  TAKEN
+#un_congo.2            #Congo Issues Diplomatic Protests over UN Incompetence  TAKEN
+#congo_un.20            #Congo Demands Withdrawal of UN Forces  TAKEN
+#un_congo.3            #Congo Issues Final Ultimatum Over UN Forces  TAKEN
+#belgium_congo.1        #Congo Demands Belgian Withdrawal  TAKEN
+#lumumba_death.1        #Execution of Patrice Lumumba	TAKEN
+#mobutu.2            #Failed Coup Attempt in the Congo
+#mobutu.3            #Mercenary Crackdown in the Congo
+#zaire.1                #The Nation of Zaire		#TAKEN
+#tshombe.1            #The Savior of the Congo
+#mobutu_execution.1    #Execution of Mobutu
+#mobutu.100
+#	DOC_Failure_of_the_Coup
+#	DOC_Lumumba_Deposed
+
+#cabinda_trade.1		#State ID 902
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cabinda_trade.1
+ immediate = { }
+	title = cabinda_trade.1.t2
+	desc = cabinda_trade.1.d2
+	picture = GFX_news_event_india_troops
+
+	is_triggered_only = yes
+
+	option = {
+		name = cabinda_trade.1.a2
+		DOC = {
+			declare_war_on = {
+				target = ANG
+				type = annex_everything
+			}
+			transfer_state = 902
+			902 = { add_core_of = DOC }
+		}
+	}
+	option = { #Uprising
+		name = cabinda_trade.1.b2
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mobutu.100
+ immediate = { }
+	title = mobutu.100.t2
+	desc = mobutu.100.d2
+   picture = GFX_news_event_india_troops
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	immediate = {
+		complete_national_focus = DOC_The_Mobutu_Coup
+	}
+
+	option = {
+		name = mobutu.100.a2
+		complete_national_focus = DOC_Lumumba_Deposed
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 10
+				is_historical_focus_on = yes
+			}
+		}
+	}
+	option = { #Uprising
+		name = mobutu.100.b2
+		complete_national_focus = DOC_Failure_of_the_Coup
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = congo_name_change.1
+ immediate = { }
+	title = congo_name_change.1.t2
+	desc = congo_name_change.1.d2
+    fire_only_once = yes
+	is_triggered_only = yes
+	immediate = {
+		set_cosmetic_tag = DOC_1964_1966
+	}
+	option = {
+		name = congo_name_change.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = congo_name_change.2
+ immediate = { }
+	title = congo_name_change.2.t2
+	desc = congo_name_change.2.d2
+
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			set_cosmetic_tag = DOC_1966_1971
+		}
+	}
+	option = {
+		name = congo_name_change.2.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = congoflavor.1
+ 	immediate = { }
+	title = congoflavor.1.t2
+	desc = congoflavor.1.d
+
+	is_triggered_only = yes
+	immediate = {
+		retire_character = DOC_leonard_mulamba
+	}
+	option = {
+		name = congoflavor.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = congo_mutiny.1
+ immediate = { }
+	title = congo_mutiny.1.t2
+	desc = congo_mutiny.1.d
+	picture = GFX_congoelse_mutiny
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = congo_mutiny.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mobutu_cos.1
+ immediate = { }
+	title = mobutu_cos.1.t2
+	desc = mobutu_cos.1.d
+	picture = GFX_mobutu_cos
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = mobutu_cos.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = lumumba_deposed.1
+ immediate = { }
+	title = lumumba_deposed.1.t2
+	desc = lumumba_deposed.1.d
+	picture = GFX_Lumumba_Deposed
+
+	is_triggered_only = yes
+	major = yes
+	immediate = { set_global_flag = lumumba_deposed_already }
+
+	option = {
+		name = lumumba_deposed.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = lumumba_deposed.2
+ immediate = { }
+	title = lumumba_deposed.2.t2
+	desc = lumumba_deposed.2.d
+	hidden = yes
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		create_country_leader = {
+		name = "Patrice Lumumba"
+		picture = "Patrice_Lumumba_60s.dds"
+		desc = POLITICS_LAMUMBA_DESC
+		ideology = african_socialism
+			traits = {
+				boldy_resistant_to_belgian_imperialism
+				humanist_egalitarian
+				vehemently_against_tribalism
+				isolated_political_maverick
+			}
+		}
+		set_popularities = {
+			democratic = 0
+			communism = 0
+			fascism = 0
+			nationalist = 0
+			monarchism = 0
+			neutrality = 0
+			islamism = 0
+			radical_shiaism = 0
+			Social_Democratic = 12.6
+			Social_Liberalism = 0
+			Salafism = 0
+			Liberal_Conservatism = 9.5
+			conservative = 0
+			Christian_Democratic = 0
+			socialist = 77.9
+			centrist = 0
+			liberal = 0
+			trotskyism = 0
+			maoism = 0
+			
+		}
+	
+		set_politics = {
+			ruling_party = socialist
+			last_election = "1960.5.22"
+			election_frequency = 60
+			elections_allowed = no
+		}
+	}
+
+
+	option = {
+		name = lumumba_deposed.2.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = un_congo.1
+ immediate = { }
+	title = un_congo.1.t2
+	desc = un_congo.1.d
+	picture = GFX_un_intervention
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = un_congo.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = congo_un.2
+ immediate = { }
+	title = congo_un.2.t2
+	desc = congo_un.20.d
+	picture = GFX_un_congo_two
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = congo_un.2.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = congo_un.20
+ immediate = { }
+	title = congo_un.20.t2
+	desc = congo_un.20.d
+	picture = GFX_un_congo_three
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = congo_un.20.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = un_congo.3
+ immediate = { }
+	title = un_congo.3.t2
+	desc = un_congo.3.d
+	picture = GFX_un_congo_four
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = un_congo.3.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = belgium_congo.1
+ immediate = { }
+	title = belgium_congo.1.t2
+	desc = belgium_congo.1.d
+	picture = GFX_belgian_katanga
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = belgium_congo.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = lumumba_death.1
+ immediate = { }
+	title = lumumba_death.1.t2
+	desc = lumumba_death.1.d
+	picture = GFX_lumumba_execution
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			NGA = {
+				country_event = nga60.59
+			}
+		}
+	}
+
+	option = {
+		name = lumumba_death.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mobutu.2
+ immediate = { }
+	title = mobutu.2.t2
+	desc = mobutu.2.d
+	picture = GFX_congo_fail_mobutu
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = mobutu.2.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mobutu.3
+ immediate = { }
+	title = mobutu.3.t2
+	desc = mobutu.3.d
+	picture = GFX_congo_merc
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = mobutu.3.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = zaire.1
+ immediate = { }
+	title = zaire.1.t2
+	desc = zaire.1.d
+	picture = GFX_zaire_decleration
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = zaire.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = tshombe.1
+ immediate = { }
+	title = tshombe.1.t2
+	desc = tshombe.1.d
+	picture = GFX_tshombe_congo
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = tshombe.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mobutu_execution.1
+ immediate = { }
+	title = mobutu_execution.1.t2
+	desc = mobutu_execution.1.d
+	picture = GFX_mobutu_execution
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = mobutu_execution.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = mobutu.10
+ immediate = { }
+	title = mobutu.10.t2
+	desc = mobutu.10.d
+	picture = GFX_mobutu_coup_65
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = mobutu.10.a2
+	}
+}
+#1958.7.12
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = belgium_congo.50
+ 	immediate = { }
+	title = belgium_congo.50.t
+	desc = belgium_congo.50.d
+
+	is_triggered_only = yes
+	immediate = {
+		create_country_leader = {
+			name = "Hendrik Cornelis"
+			picture = "Hendrik_Cornelis_50s.dds"
+			desc = POLITICS_HENDRIK_CORNELIS_DESC
+			ideology = colonial_regime
+			traits = {
+				deplorable_belgian_colonialist
+			}
+		}
+	}
+	option = {
+		name = belgium_congo.50.a
+	}
+}

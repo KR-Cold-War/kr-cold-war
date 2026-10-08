@@ -1,0 +1,125 @@
+krcw_young_nations = {
+	krcw_yn_paris_aid = {
+		icon = GFX_decision_generic_industry
+		cost = 50
+		days_remove = 0
+		ai_will_do = { factor = 15 }
+		visible = {
+			country_exists = FRA
+			NOT = { is_in_faction_with = SOV }
+		}
+		complete_effect = {
+			random_owned_controlled_state = { limit = { is_core_of = ROOT } add_extra_state_shared_building_slots = 1 add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+			if = { limit = { country_exists = FRA } FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_yn_friend_of_paris } } }
+			krcw_yn_tension_up_small = yes
+		}
+	}
+	krcw_yn_moscow_aid = {
+		icon = GFX_decision_generic_army_support
+		cost = 50
+		days_remove = 0
+		ai_will_do = { factor = 15 }
+		visible = {
+			country_exists = SOV
+			NOT = { is_in_faction_with = FRA }
+		}
+		complete_effect = {
+			random_owned_controlled_state = { limit = { is_core_of = ROOT } add_extra_state_shared_building_slots = 1 add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_yn_friend_of_moscow } } }
+			krcw_yn_tension_up_small = yes
+		}
+	}
+	krcw_yn_nationalise = {
+		icon = GFX_decision_money_with_hand
+		cost = 75
+		days_remove = 0
+		ai_will_do = { factor = 10 }
+		complete_effect = {
+			random_owned_controlled_state = { limit = { is_core_of = ROOT } add_extra_state_shared_building_slots = 1 add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+			add_stability = -0.02
+			add_political_power = 25
+		}
+	}
+	krcw_yn_technicians = {
+		icon = generic_research
+		cost = 50
+		days_remove = 0
+		ai_will_do = { factor = 12 }
+		visible = {
+			OR = { has_idea = krcw_yn_nonaligned is_in_faction_with = FRA is_in_faction_with = SOV }
+		}
+		complete_effect = {
+			add_ideas = krcw_yn_technicians_idea
+		}
+	}
+	krcw_yn_host_conference = {
+		icon = generic_political_rally
+		cost = 100
+		days_remove = 0
+		ai_will_do = { factor = 20 }
+		visible = {
+			has_country_flag = krcw_yn_conference_host
+			krcw_high_detente = yes
+		}
+		complete_effect = {
+			add_political_power = 100
+			add_stability = 0.05
+			krcw_yn_detente_up_medium = yes
+			every_country = { limit = { has_country_flag = KRCW_minor NOT = { tag = ROOT } } add_opinion_modifier = { target = ROOT modifier = krcw_yn_young_nations } }
+		}
+	}
+}
+
+krcw_court_minors = {
+	krcw_yn_court_africa = {
+		icon = generic_political_actions
+		cost = 50
+		days_remove = 0
+		ai_will_do = { factor = 10 }
+		complete_effect = {
+			every_country = {
+			  limit = { has_country_flag = KRCW_minor is_in_faction = no capital_scope = { is_on_continent = africa } }
+			  add_opinion_modifier = { target = ROOT modifier = krcw_yn_young_nations }
+			}
+			krcw_tension_up_small = yes
+		}
+	}
+	krcw_yn_court_mideast = {
+		icon = generic_political_actions
+		cost = 50
+		days_remove = 0
+		ai_will_do = { factor = 10 }
+		complete_effect = {
+			every_country = {
+			  limit = { has_country_flag = KRCW_minor is_in_faction = no OR = { tag = EGY tag = ISR tag = JOR tag = IRQ tag = SYR tag = LEB tag = SAU tag = YEM tag = OMA tag = DUB tag = QAT tag = BHR tag = KUW } }
+			  add_opinion_modifier = { target = ROOT modifier = krcw_yn_young_nations }
+			}
+			krcw_tension_up_small = yes
+		}
+	}
+	krcw_yn_court_sea = {
+		icon = generic_political_actions
+		cost = 50
+		days_remove = 0
+		ai_will_do = { factor = 10 }
+		complete_effect = {
+			every_country = {
+			  limit = { has_country_flag = KRCW_minor is_in_faction = no OR = { tag = INO tag = MAL tag = BRU tag = PHI tag = SIA tag = SRL } }
+			  add_opinion_modifier = { target = ROOT modifier = krcw_yn_young_nations }
+			}
+			krcw_tension_up_small = yes
+		}
+	}
+	krcw_yn_arms_to_republics = {
+		icon = GFX_decision_generic_army_support
+		cost = 75
+		days_remove = 0
+		ai_will_do = { factor = 8 }
+		complete_effect = {
+			every_country = {
+			  limit = { has_country_flag = KRCW_minor has_opinion = { target = ROOT value > 30 } }
+			  ROOT = { send_equipment = { target = PREV type = infantry_equipment_1 amount = 800 } }
+			}
+		}
+	}
+}

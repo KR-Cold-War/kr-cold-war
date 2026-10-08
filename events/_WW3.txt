@@ -1,0 +1,308 @@
+# KRCW (build/patch_residue.py): 14 OTL events dropped while KRCW_active
+add_namespace = WW3
+add_namespace = WW3_Asia
+add_namespace = WW3_ME
+add_namespace = WW3_news
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = WW3.1
+ immediate = { }
+	title = WW3.1.t
+	desc = WW3.1.d
+	picture = GFX_WW3_7
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = WW3.1.a
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = WW3.2
+ immediate = { }
+	title = WW3.2.t
+	desc = WW3.2.d
+	picture = GFX_WW3_7
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = WW3.2.a
+		MOC = {
+			set_cosmetic_tag = MOC_REP
+		    MOC_Charles_Soccal = {
+			    promote_character = yes
+		    }
+		    set_politics = {
+			    ruling_party = trotskyism
+		    }
+		    set_party_name = {
+			    ideology = trotskyism
+			    name = "Union des Syndicats de Monaco"
+			    long_name = "Union des Syndicats de Monaco"
+		    }
+		    set_popularities = {
+			    communism = 35
+			    trotskyism = 65
+		    }
+		    FRA = {
+			    give_guarantee = MOC
+		    }
+		}
+		news_event = WW3_news.1
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = WW3.3
+ immediate = { }
+	title = WW3.3.t
+	desc = WW3.3.d
+	picture = GFX_WW3_7
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = WW3.3.a
+    }
+}
+####MIDDLE EAST#####
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = WW3_ME.1
+ immediate = { }
+	title = WW3_ME.1.t
+	desc = WW3_ME.1.d
+	picture = GFX_WW3_7
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = WW3_ME.1.a
+		ISR = {
+			country_event = WW3_ME.2
+		}
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = WW3_ME.2
+ immediate = { }
+	title = WW3_ME.2.t
+	desc = WW3_ME.2.d
+	picture = GFX_WW3_7
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = WW3_ME.2.a
+		start_border_war = {
+            change_state_after_war = no
+            attacker = {
+                state = 1770
+                num_provinces = 1
+                on_win = WW3_news.3
+                on_lose = WW3_news.4
+                modifier = 0.1
+                dig_in_factor = 0
+                terrain_factor = 0
+            }	
+            defender = {
+                state = 921
+                num_provinces = 1
+                on_win = WW3_news.4
+                on_lose = WW3_news.3
+            }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = WW3_ME.3
+ immediate = { }
+	title = WW3_ME.3.t
+	desc = WW3_ME.3.d
+	picture = GFX_WW3_7
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = WW3_ME.3.a
+		JOR = {
+			declare_war_on = {
+				target = ISR
+				type = annex_everything
+			}
+			create_faction = WW3_MIDDLE_EAST_FACTION_ARAB
+		}
+		ISR = {
+			create_faction = WW3_MIDDLE_EAST_FACTION_ISRAEL
+		}
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = WW3_ME.4
+ immediate = { }
+	title = WW3_ME.4.t
+	desc = WW3_ME.4.d
+	picture = GFX_WW3_7
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = WW3_ME.4.a
+		ISR = {
+			declare_war_on = {
+				target = JOR
+				type = annex_everything
+			}
+			create_faction = WW3_MIDDLE_EAST_FACTION_ISRAEL
+		}
+		JOR = {
+			create_faction = WW3_MIDDLE_EAST_FACTION_ARAB
+		}
+    }
+}
+##NEWS###
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = WW3_news.1
+ immediate = { }
+	title = WW3_news.1.t
+	desc = WW3_news.1.d
+	picture = GFX_WW3_news_1
+
+    fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = WW3_news.1.a
+    }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = WW3_news.2
+ immediate = { }
+	title = WW3_news.2.t
+	desc = WW3_news.2.d
+	picture = GFX_WW3_news_1
+
+    fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = WW3_news.2.a
+    }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = WW3_news.3
+ immediate = { }
+	title = WW3_news.3.t
+	desc = WW3_news.3.d
+	picture = GFX_WW3_news_1
+
+    fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = WW3_news.3.a
+		hidden_effect = {
+			ISR = {
+				country_event = {
+				    id = WW3_ME.4
+				    days = 5
+			    }
+			}
+		}
+    }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = WW3_news.4
+ immediate = { }
+	title = WW3_news.4.t
+	desc = WW3_news.4.d
+	picture = GFX_WW3_news_1
+
+    fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = WW3_news.4.a
+		hidden_effect = {
+			JOR = {
+				country_event = {
+				    id = WW3_ME.3
+				    days = 5
+			    }
+			}
+		}
+    }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = WW3_news.5
+ immediate = { }
+	title = WW3_news.5.t
+	desc = WW3_news.5.d
+	picture = GFX_WW3_news_2
+
+    fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = WW3_news.5.a
+    }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = WW3_news.6
+ immediate = { }
+	title = WW3_news.6.t
+	desc = WW3_news.6.d
+	picture = GFX_JAP_Execution
+
+    fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = WW3_news.6.a
+    }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = WW3_news.7
+ immediate = { }
+	title = WW3_news.7.t
+	desc = WW3_news.7.d
+	picture = GFX_JAP_Hanada
+	immediate = {
+		hidden_effect = {
+			japan_prc_reformed = yes
+		}
+	}
+    fire_only_once = no
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = WW3_news.7.a
+    }
+}

@@ -1,0 +1,1168 @@
+# KRCW (build/patch_residue.py): 32 OTL decisions hidden while KRCW_active
+Laotion_Civil_War_Decisions_category = {
+
+	LOS_External_Support = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+		
+		allowed = {
+		  tag = LOS
+		}
+		
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			
+			tag = LOS
+			country_exists = LAO
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			
+			tag = LOS
+			country_exists = LAO
+		}
+
+		selectable_mission = yes
+		days_mission_timeout = 30
+		
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			hidden_effect = {
+				set_variable = { global_los_funding = 0 }
+				every_country = {
+					add_to_variable = { LOS.global_los_funding = los_funding }
+				}
+
+				set_temp_variable = { inf_equp_gain = global_los_funding }
+				multiply_temp_variable = { inf_equp_gain = 10 }
+
+				set_temp_variable = { artillery_gain = global_los_funding }
+				multiply_temp_variable = { artillery_gain = 5 }
+				
+				set_temp_variable = { anti_air_gain = global_los_funding }
+				multiply_temp_variable = { anti_air_gain = 2 }
+			}
+						
+			meta_effect = {
+				text = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = [AMNT]
+						producer = USA
+					}
+				}
+				AMNT = "inf_equp_gain"
+			}
+			
+			meta_effect = {
+				text = {
+					add_equipment_to_stockpile = {
+						type = artillery_equipment
+						amount = [AMNT]
+						producer = USA
+					}
+				}
+				AMNT = "artillery_gain"
+			}
+			
+			meta_effect = {
+				text = {
+					add_equipment_to_stockpile = {
+						type = auto_cannon_equipment
+						amount = [AMNT]
+						producer = USA
+					}
+				}
+				AMNT = "anti_air_gain"
+			}
+			activate_mission = LOS_External_Support
+			
+		 }
+}
+	}
+	Increase_LOS_Funding = {
+				
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = LOS
+			country_exists = LAO
+			OR = {
+				NOT = { has_government = communism }
+				NOT = { has_government = maoism }
+				NOT = { has_government = trotskyism }
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = LOS
+			country_exists = LAO
+			NOT = { has_government = communism }
+			NOT = { has_government = maoism }
+			NOT = { has_government = trotskyism }
+			
+		}
+		complete_effect = {
+			add_to_variable = { los_funding = 1 }
+			custom_effect_tooltip = insurgency_funding_inc_tt
+		}
+	}
+	Decrease_LOS_Funding = {
+				
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = LOS
+			country_exists = LAO
+			OR = {
+				NOT = { has_government = communism }
+				NOT = { has_government = maoism }
+				NOT = { has_government = trotskyism }
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { los_funding > 0 }
+			country_exists = LOS
+			country_exists = LAO
+			NOT = { has_government = communism }
+			NOT = { has_government = maoism }
+			NOT = { has_government = trotskyism }
+		}
+		days_re_enable = 60
+		complete_effect = {
+			add_to_variable = { los_funding = -1 }
+			custom_effect_tooltip = insurgency_funding_dec_tt
+		}
+	}
+
+}
+Vietnam_War_Decisions_category = {
+	VIE_External_Support = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+		
+		allowed = {
+		  tag = VIE
+		}
+		
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			
+			tag = VIE
+			country_exists = NLF
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			
+			tag = VIE
+			country_exists = NLF
+		}
+
+		selectable_mission = yes
+		days_mission_timeout = 30
+		
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			hidden_effect = {
+				set_variable = { global_vie_funding = 0 }
+				every_country = {
+					add_to_variable = { VIE.global_vie_funding = vie_funding }
+				}
+
+				set_temp_variable = { inf_equp_gain = global_vie_funding }
+				multiply_temp_variable = { inf_equp_gain = 10 }
+
+				set_temp_variable = { artillery_gain = global_vie_funding }
+				multiply_temp_variable = { artillery_gain = 5 }
+				
+				set_temp_variable = { anti_air_gain = global_vie_funding }
+				multiply_temp_variable = { anti_air_gain = 2 }
+			}
+						
+			meta_effect = {
+				text = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = [AMNT]
+						producer = USA
+					}
+				}
+				AMNT = "inf_equp_gain"
+			}
+			
+			meta_effect = {
+				text = {
+					add_equipment_to_stockpile = {
+						type = artillery_equipment
+						amount = [AMNT]
+						producer = USA
+					}
+				}
+				AMNT = "artillery_gain"
+			}
+			
+			meta_effect = {
+				text = {
+					add_equipment_to_stockpile = {
+						type = auto_cannon_equipment
+						amount = [AMNT]
+						producer = USA
+					}
+				}
+				AMNT = "anti_air_gain"
+			}
+			activate_mission = VIE_External_Support
+			
+		 }
+}
+	}
+	Increase_NLF_Funding = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+				
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = VIE
+			country_exists = NLF
+			NOT = { tag = VIE }
+			OR = {
+				has_government = communism
+				has_government = maoism
+				has_government = trotskyism
+			}
+		}
+		complete_effect = {
+			add_to_variable = { nlf_funding = 1 }
+			custom_effect_tooltip = insurgency_funding_inc_tt
+		}
+	}
+	Decrease_NLF_Funding = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+				
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = VIE
+			country_exists = NLF
+			NOT = { tag = VIE }
+			OR = {
+				has_government = communism
+				has_government = maoism
+				has_government = trotskyism
+			}
+		}
+
+		days_re_enable = 60
+		complete_effect = {
+			add_to_variable = { nlf_funding = -1 }
+			custom_effect_tooltip = insurgency_funding_dec_tt
+		}
+	}
+
+	NLF_External_Support = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+		
+		allowed = {
+		  tag = NLF
+		}
+		
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			
+			tag = NLF
+			country_exists = VIE
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			
+			tag = NLF
+			country_exists = VIE
+		}
+
+		selectable_mission = yes
+		days_mission_timeout = 30
+		
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			hidden_effect = {
+				set_temp_variable = { manpower_gain = VIN.nlf_funding }
+				multiply_temp_variable = { manpower_gain = 500 }
+
+				set_temp_variable = { army_xp_gain = VIN.nlf_funding }
+				multiply_temp_variable = { army_xp_gain = 5 }
+				
+				set_variable = { global_nlf_funding = 0 }
+				every_country = {
+					add_to_variable = { NLF.global_nlf_funding = nlf_funding }
+				}
+
+				set_temp_variable = { inf_equp_gain = global_nlf_funding }
+				multiply_temp_variable = { inf_equp_gain = 10 }
+
+				set_temp_variable = { artillery_gain = global_nlf_funding }
+				multiply_temp_variable = { artillery_gain = 5 }
+				
+				set_temp_variable = { anti_air_gain = global_nlf_funding }
+				multiply_temp_variable = { anti_air_gain = 2 }
+			}
+			
+			army_experience = var:army_xp_gain
+			add_manpower = var:manpower_gain
+			
+			meta_effect = {
+				text = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = [AMNT]
+						producer = SOV
+					}
+				}
+				AMNT = "inf_equp_gain"
+			}
+			
+			meta_effect = {
+				text = {
+					add_equipment_to_stockpile = {
+						type = artillery_equipment
+						amount = [AMNT]
+						producer = SOV
+					}
+				}
+				AMNT = "artillery_gain"
+			}
+			
+			meta_effect = {
+				text = {
+					add_equipment_to_stockpile = {
+						type = auto_cannon_equipment
+						amount = [AMNT]
+						producer = SOV
+					}
+				}
+				AMNT = "anti_air_gain"
+			}
+			activate_mission = NLF_External_Support
+			
+		 }
+}
+	}
+	Increase_VIE_Funding = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+				
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = VIE
+			country_exists = NLF
+			NOT = { tag = NLF }
+			OR = {
+				NOT = { has_government = communism }
+				NOT = { has_government = maoism }
+				NOT = { has_government = trotskyism }
+			}
+		}
+
+		complete_effect = {
+			add_to_variable = { vie_funding = 1 }
+			custom_effect_tooltip = insurgency_funding_inc_tt
+		}
+	}
+	Decrease_VIE_Funding = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+				
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = VIE
+			country_exists = NLF
+			NOT = { tag = NLF }
+			OR = {
+				NOT = { has_government = communism }
+				NOT = { has_government = maoism }
+				NOT = { has_government = trotskyism }
+			}
+		}
+
+		days_re_enable = 60
+		complete_effect = {
+			add_to_variable = { vie_funding = -1 }
+			custom_effect_tooltip = insurgency_funding_dec_tt
+		}
+	}
+
+}
+
+Guinea_Bissau_War_of_Independence_category = {
+	Increase_PAIGC_Funding = {
+				
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = GNB
+			OR = {
+				tag = SOV
+				tag = PRC
+				tag = GNA
+				tag = SEN
+				tag = YUG
+			}
+			NOT = { has_country_flag = GNB_Established_State }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = GNB
+			OR = {
+				tag = SOV
+				tag = PRC
+				tag = GNA
+				tag = SEN
+				tag = YUG
+			}
+			NOT = { has_country_flag = GNB_Established_State }
+		}
+		complete_effect = {
+			add_to_variable = { paigc_funding = 1 }
+			custom_effect_tooltip = insurgency_funding_inc_tt
+		}
+	}
+	Decrease_PAIGC_Funding = {
+				
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = GNB
+			OR = {
+				tag = SOV
+				tag = PRC
+				tag = GNA
+				tag = SEN
+				tag = YUG
+			}
+			NOT = { has_country_flag = GNB_Established_State }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { paigc_funding > 0 }
+			country_exists = GNB
+			OR = {
+				tag = SOV
+				tag = PRC
+				tag = GNA
+				tag = YUG
+				tag = SEN
+			}
+			NOT = { has_country_flag = GNB_Established_State }
+		}
+		days_re_enable = 60
+		complete_effect = {
+			add_to_variable = { paigc_funding = -1 }
+			custom_effect_tooltip = insurgency_funding_dec_tt
+		}
+	}
+	
+	
+	Expel_PAIGC_Camps = {
+				
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = GNB
+			OR = {
+				AND = {
+					tag = GNA
+					774 = {
+						has_state_flag = PAIGC_Camp
+					}
+				}
+				AND = {
+					tag = SEN
+					272 = {
+						has_state_flag = PAIGC_Camp
+					}
+				}
+			}
+			NOT = { has_country_flag = GNB_Established_State }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = GNB
+			OR = {
+				AND = {
+					tag = GNA
+					774 = {
+						has_state_flag = PAIGC_Camp
+					}
+				}
+				AND = {
+					tag = SEN
+					272 = {
+						has_state_flag = PAIGC_Camp
+					}
+				}
+			}
+			NOT = { has_country_flag = GNB_Established_State }
+		}
+		days_re_enable = 60
+		complete_effect = {
+			if = {
+				limit = {
+					tag = GNA
+				}
+				774 = {
+					set_variable = { PAIGC_Camp_level = 0 }
+					clr_state_flag = PAIGC_Camp
+				}
+				country_event = gbn_colonial_war.700
+			}
+			if = {
+				limit = {
+					tag = SEN
+				}
+				272 = {
+					set_variable = { PAIGC_Camp_level = 0 }
+					clr_state_flag = PAIGC_Camp
+				}
+				country_event = gbn_colonial_war.701
+			}
+			custom_effect_tooltip = expel_militant_bases_tt
+		}
+	}
+	
+	Raid_PAIGC_Camps_in_Guinea = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+			country_exists = GNB
+			country_exists = GNA
+			has_border_war = no
+			GNA = {
+				774 = {
+					has_state_flag = PAIGC_Camp
+					check_variable = { PAIGC_Camp_level > 0 }
+				}
+			}
+		}
+
+		days_re_enable = 120
+
+		complete_effect = {
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 296
+					num_provinces = 3
+					on_win = gbn_colonial_war.500
+					on_lose = gbn_colonial_war.501
+					on_cancel = Indochina_War.4
+				}
+							
+				defender = {
+					state = 774
+					num_provinces = 3
+					on_win = gbn_colonial_war.501
+					on_lose = gbn_colonial_war.500
+					on_cancel = Indochina_War.4
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0.10
+		}
+	}
+	
+	Raid_PAIGC_Camps_in_Senegal = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+			country_exists = GNB
+			country_exists = SEN
+			has_border_war = no
+			SEN = {
+				272 = {
+					has_state_flag = PAIGC_Camp
+					check_variable = { PAIGC_Camp_level > 0 }
+				}
+			}
+		}
+
+		days_re_enable = 120
+
+		complete_effect = {
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 296
+					num_provinces = 3
+					on_win = gbn_colonial_war.600
+					on_lose = gbn_colonial_war.601
+					on_cancel = Indochina_War.4
+				}
+							
+				defender = {
+					state = 272
+					num_provinces = 3
+					on_win = gbn_colonial_war.601
+					on_lose = gbn_colonial_war.600
+					on_cancel = Indochina_War.4
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0.10
+		}
+	}
+		
+	Expand_Training_Camps_in_Guinea = {
+				
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = GNB
+			774 = {
+				has_state_flag = PAIGC_Camp
+			}
+			NOT = { has_country_flag = GNB_Established_State }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = GNB
+			774 = {
+				has_state_flag = PAIGC_Camp
+			}
+			NOT = { has_country_flag = GNB_Established_State }
+			has_army_experience > 20
+			has_manpower > 5000
+		}
+		days_re_enable = 90
+		complete_effect = {
+			army_experience = -20
+			add_manpower = -5000
+			GNA = {
+				774 = {
+					add_to_variable = { PAIGC_Camp_level = 1 }
+				}
+			}
+			custom_effect_tooltip = increase_camp_level_one_tt
+		}
+	}
+	
+	Expand_Training_Camps_in_Senegal = {
+				
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = GNB
+			272 = {
+				has_state_flag = PAIGC_Camp
+			}
+			NOT = { has_country_flag = GNB_Established_State }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = GNB
+			272 = {
+				has_state_flag = PAIGC_Camp
+			}
+			NOT = { has_country_flag = GNB_Established_State }
+			has_army_experience > 20
+			has_manpower > 5000
+		}
+		days_re_enable = 90
+		complete_effect = {
+			army_experience = -20
+			add_manpower = -5000
+			SEN = {
+				272 = {
+					add_to_variable = { PAIGC_Camp_level = 1 }
+				}
+			}
+			custom_effect_tooltip = increase_camp_level_one_tt
+		}
+	}
+
+	PAIGC_External_Support = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+		
+		allowed = {
+		  tag = GNB
+		}
+		
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			
+			tag = GNB
+			NOT = { has_country_flag = GNB_Established_State }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			tag = GNB
+			NOT = { has_country_flag = GNB_Established_State }
+		}
+
+		#is_good = yes
+
+		selectable_mission = yes
+		days_mission_timeout = 30
+		
+
+		
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			hidden_effect = {
+				set_variable = { paigc_camp_level_calc = 0 }
+				every_state = { add_to_variable = { GNB.paigc_camp_level_calc = PAIGC_Camp_level } }
+				set_temp_variable = { manpower_gain = paigc_camp_level_calc }
+				multiply_temp_variable = { manpower_gain = 100 }
+
+				set_temp_variable = { army_xp_gain = paigc_camp_level_calc }
+				multiply_temp_variable = { army_xp_gain = 5 }
+				
+				set_variable = { global_paigc_funding = 0 }
+				add_to_variable = { global_paigc_funding = SOV.paigc_funding }
+				add_to_variable = { global_paigc_funding = GNA.paigc_funding }
+				add_to_variable = { global_paigc_funding = SEN.paigc_funding }
+				add_to_variable = { global_paigc_funding = PRC.paigc_funding }
+				add_to_variable = { global_paigc_funding = YUG.paigc_funding }
+
+				set_temp_variable = { inf_equp_gain = global_paigc_funding }
+				multiply_temp_variable = { inf_equp_gain = 10 }
+
+				set_temp_variable = { artillery_gain = global_paigc_funding }
+				multiply_temp_variable = { artillery_gain = 5 }
+				
+				set_temp_variable = { anti_air_gain = global_paigc_funding }
+				multiply_temp_variable = { anti_air_gain = 2 }
+			}
+			
+			army_experience = var:army_xp_gain
+			add_manpower = var:manpower_gain
+			
+			meta_effect = {
+				text = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = [AMNT]
+						producer = SOV
+					}
+				}
+				AMNT = "inf_equp_gain"
+			}
+			
+			meta_effect = {
+				text = {
+					add_equipment_to_stockpile = {
+						type = artillery_equipment
+						amount = [AMNT]
+						producer = SOV
+					}
+				}
+				AMNT = "artillery_gain"
+			}
+			
+			meta_effect = {
+				text = {
+					add_equipment_to_stockpile = {
+						type = auto_cannon_equipment
+						amount = [AMNT]
+						producer = SOV
+					}
+				}
+				AMNT = "anti_air_gain"
+			}
+			activate_mission = PAIGC_External_Support
+			
+		 }
+}
+	}
+   Raid_Northern_Bases = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+			country_exists = GNB
+			has_border_war = no
+		}
+
+		days_re_enable = 60
+
+		complete_effect = {
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 296
+					num_provinces = 3
+					on_win = gbn_colonial_war.100
+					on_lose = gbn_colonial_war.101
+					on_cancel = Indochina_War.4
+				}
+							
+				defender = {
+					state = 1282
+					num_provinces = 3
+					on_win = gbn_colonial_war.102
+					on_lose = gbn_colonial_war.103
+					on_cancel = Indochina_War.4
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0.10
+		}
+	}
+   Raid_Southern_Bases = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+			country_exists = GNB
+			has_border_war = no
+		}
+
+		days_re_enable = 60
+
+		complete_effect = {
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 296
+					num_provinces = 3
+					on_win = gbn_colonial_war.100
+					on_lose = gbn_colonial_war.101
+					on_cancel = Indochina_War.4
+				}
+							
+				defender = {
+					state = 1284
+					num_provinces = 3
+					on_win = gbn_colonial_war.102
+					on_lose = gbn_colonial_war.103
+					on_cancel = Indochina_War.4
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 0.10
+		}
+	}
+   Attack_Bissau_from_the_North = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = GNB
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = GNB
+			country_exists = GNB
+			has_border_war = no
+		}
+
+		days_re_enable = 60
+
+		complete_effect = {
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 1282
+					num_provinces = 3
+					on_win = gbn_colonial_war.102
+					on_lose = gbn_colonial_war.103
+					on_cancel = Indochina_War.4
+				}
+							
+				defender = {
+					state = 296
+					num_provinces = 3
+					on_win = gbn_colonial_war.100
+					on_lose = gbn_colonial_war.101
+					on_cancel = Indochina_War.4
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1 
+		}
+	}
+   Attack_Bissau_from_the_South = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = GNB
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = GNB
+			country_exists = GNB
+			has_border_war = no
+		}
+
+		days_re_enable = 60
+
+		complete_effect = {
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 1282
+					num_provinces = 3
+					on_win = gbn_colonial_war.102
+					on_lose = gbn_colonial_war.103
+					on_cancel = Indochina_War.4
+				}
+							
+				defender = {
+					state = 296
+					num_provinces = 3
+					on_win = gbn_colonial_war.100
+					on_lose = gbn_colonial_war.101
+					on_cancel = Indochina_War.4
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1 
+		}
+	}  
+	#https://pt.m.wikipedia.org/wiki/Lista_de_opera%C3%A7%C3%B5es_militares_da_Guerra_do_Ultramar
+	
+	#https://pt.m.wikipedia.org/wiki/Opera%C3%A7%C3%A3o_Tridente
+    Operation_Trident = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+			country_exists = GNB
+			date > 1964.1.1
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			country_event = gbn_colonial_war.610	
+		}
+
+		ai_will_do = {
+			factor = 1 
+		}
+	}
+	#Operation Griffin	April 1966 Paratrooper Ambush
+    Operation_Griffin = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+			country_exists = GNB
+			date > 1966.4.1
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			country_event = gbn_colonial_war.680	
+		}
+
+		ai_will_do = {
+			factor = 1 
+		}
+	}  
+	Operation_Cyclone_II = {	#Helicopter Assault on PAIGC
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+			country_exists = GNB
+			date > 1968.2.1
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			country_event = gbn_colonial_war.620	
+		}
+
+		ai_will_do = {
+			factor = 1 
+		}
+	}
+	Operation_Vulcano = {	
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+			country_exists = GNB
+			date > 1969.3.1
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			country_event = gbn_colonial_war.630	
+		}
+
+		ai_will_do = {
+			factor = 1 
+		}
+	}
+	Operation_Little_Cat = {	
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+			country_exists = GNB
+			date > 1969.6.1
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			country_event = gbn_colonial_war.640	
+		}
+
+		ai_will_do = {
+			factor = 1 
+		}
+	}
+	Initiate_the_Buba_Attack = {	
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+			country_exists = GNB
+			date > 1969.10.1
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			country_event = gbn_colonial_war.650	
+		}
+
+		ai_will_do = {
+			factor = 1 
+		}
+	}
+	
+	Operation_Jove = {	
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+			country_exists = GNB
+			date > 1969.11.1
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			country_event = gbn_colonial_war.660	
+		}
+
+		ai_will_do = {
+			factor = 1 
+		}
+	}
+
+	Royal_Amethyst_Operation = {	
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+			country_exists = GNB
+			date > 1973.5.1
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			country_event = gbn_colonial_war.670	
+		}
+
+		ai_will_do = {
+			factor = 1 
+		}
+	}
+
+	Operation_Green_Sea = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+			country_exists = GNB
+			date > 1970.1.1
+		}
+
+		cost = 0
+
+		fire_only_once = yes
+
+		complete_effect = {
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 296
+					num_provinces = 3
+					on_win = gbn_colonial_war.400
+					on_lose = gbn_colonial_war.401
+					on_cancel = Indochina_War.4
+				}
+							
+				defender = {
+					state = 774
+					num_provinces = 3
+					on_win = gbn_colonial_war.401
+					on_lose = gbn_colonial_war.402
+					on_cancel = Indochina_War.4
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1 
+		}
+	}
+
+	Exile_PAIGC = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = POR
+			country_exists = GNB
+			has_border_war = no
+			check_variable = { POR.victory_points > 1000 }
+			check_variable = { GNB.victory_points < POR.victory_points }
+
+		}
+
+		cost = 0
+
+		fire_only_once = yes
+
+		complete_effect = {
+			annex_country = { target = GNB }
+			clr_global_flag = Portuguese_Colonial_War_GNB
+			country_event = gbn_colonial_war.300
+		}
+
+		ai_will_do = {
+			factor = 1 
+		}
+	}
+
+	The_Liberation_of_Guinea_Bissau = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = GNB
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = GNB
+			country_exists = POR
+			has_border_war = no
+			check_variable = { GNB.victory_points > 800 }
+			check_variable = { POR.victory_points < GNB.victory_points }
+		}
+
+		cost = 0
+
+		fire_only_once = yes
+
+		complete_effect = {
+			clr_global_flag = Portuguese_Colonial_War_GNB
+			transfer_state = 296
+			country_event = gbn_colonial_war.301
+		}
+
+
+		ai_will_do = {
+			factor = 1 
+		}
+	}
+}

@@ -1,0 +1,367 @@
+# krcw: paced
+add_namespace = krcw_yn
+
+news_event = {
+	id = krcw_yn.1
+	is_triggered_only = yes
+	picture = GFX_news_event_generic_african_unity_n
+	title = krcw_yn.1.t
+	desc = krcw_yn.1.d
+	option = {
+		name = krcw_yn.1.a
+	}
+}
+
+news_event = {
+	id = krcw_yn.2
+	is_triggered_only = yes
+	picture = GFX_news_event_generic_rally_n
+	title = krcw_yn.2.t
+	desc = krcw_yn.2.d
+	option = {
+		name = krcw_yn.2.a
+	}
+}
+
+news_event = {
+	id = krcw_yn.3
+	is_triggered_only = yes
+	picture = GFX_report_event_ast_transfer_singapore_n
+	title = krcw_yn.3.t
+	desc = krcw_yn.3.d
+	option = {
+		name = krcw_yn.3.a
+	}
+}
+
+news_event = {
+	id = krcw_yn.4
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_rally_n
+	title = krcw_yn.4.t
+	desc = krcw_yn.4.d
+	option = {
+		name = krcw_yn.4.a
+	}
+}
+
+country_event = {
+	id = krcw_yn.10
+	is_triggered_only = yes
+	trigger = {
+		tag = ZAM
+		date > 1950.2.9
+		date < 1950.5.10
+		NOT = { has_global_flag = krcw_katanga_fired }
+	}
+	picture = GFX_report_event_FIN_petsamo_mine
+	title = krcw_yn.10.t
+	desc = krcw_yn.10.d
+	option = {
+		name = krcw_yn.10.a
+		ai_chance = { factor = 100 }
+		country_event = { id = krcw_yn.11 days = 30 random_days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_yn.11
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_riot
+	title = krcw_yn.11.t
+	desc = krcw_yn.11.d
+	option = {
+		name = krcw_yn.11.a
+		ai_chance = { factor = 60 }
+		set_global_flag = krcw_katanga_fired
+		country_event = { id = krcw_yn.12 days = 10 }
+	}
+	option = {
+		name = krcw_yn.11.b
+		ai_chance = { factor = 40 }
+		set_global_flag = krcw_katanga_fired
+		add_stability = -0.05
+		add_political_power = -50
+		every_owned_state = { limit = { OR = { state = 575 state = 1440 } } add_extra_state_shared_building_slots = 1 add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+		krcw_detente_up_small = yes
+	}
+}
+
+country_event = {
+	id = krcw_yn.12
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_strike
+	title = krcw_yn.12.t
+	desc = krcw_yn.12.d
+	option = {
+		name = krcw_yn.12.a
+		ai_chance = { factor = 70 }
+		start_civil_war = {
+		  ideology = trotskyism
+		  size = 0.3
+		  states = { 575 1440 }
+		}
+		add_war_support = 0.05
+		krcw_tension_up_medium = yes
+	}
+	option = {
+		name = krcw_yn.12.b
+		ai_chance = { factor = 30 }
+		release = KAG
+		KAG = { set_politics = { ruling_party = trotskyism elections_allowed = no } set_popularities = { trotskyism = 100 } }
+		add_stability = -0.08
+		krcw_tension_up_small = yes
+	}
+}
+
+country_event = {
+	id = krcw_yn.20
+	is_triggered_only = yes
+	trigger = {
+		tag = ISR
+		date > 1950.6.4
+		date < 1950.10.12
+		NOT = { has_global_flag = krcw_palestine_fired }
+	}
+	picture = GFX_report_event_generic_rally
+	title = krcw_yn.20.t
+	desc = krcw_yn.20.d
+	option = {
+		name = krcw_yn.20.a
+		ai_chance = { factor = 100 }
+		country_event = { id = krcw_yn.21 days = 30 random_days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_yn.21
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_rally
+	title = krcw_yn.21.t
+	desc = krcw_yn.21.d
+	option = {
+		name = krcw_yn.21.a
+		ai_chance = { factor = 50 }
+		set_global_flag = krcw_palestine_fired
+		if = { limit = { country_exists = FRA } FRA = { country_event = { id = krcw_yn.22 days = 5 } } }
+		if = { limit = { NOT = { country_exists = FRA } } country_event = { id = krcw_yn.23 days = 5 } }
+	}
+	option = {
+		name = krcw_yn.21.b
+		ai_chance = { factor = 30 }
+		set_global_flag = krcw_palestine_fired
+		if = { limit = { country_exists = SOV } SOV = { country_event = { id = krcw_yn.22 days = 5 } } }
+		if = { limit = { NOT = { country_exists = SOV } } country_event = { id = krcw_yn.23 days = 5 } }
+	}
+	option = {
+		name = krcw_yn.21.c
+		ai_chance = { factor = 20 }
+		set_global_flag = krcw_palestine_fired
+		add_war_support = 0.08
+		country_event = { id = krcw_yn.23 days = 5 }
+	}
+}
+
+country_event = {
+	id = krcw_yn.22
+	is_triggered_only = yes
+	picture = GFX_news_event_generic_sign_treaty2_c
+	title = krcw_yn.22.t
+	desc = krcw_yn.22.d
+	option = {
+		name = krcw_yn.22.a
+		ai_chance = { factor = 100 }
+		ISR = { add_stability = 0.05 add_political_power = 50 }
+		krcw_detente_up_medium = yes
+	}
+}
+
+country_event = {
+	id = krcw_yn.23
+	is_triggered_only = yes
+	trigger = {
+		tag = ISR
+		has_global_flag = krcw_palestine_fired
+	}
+	picture = GFX_news_event_generic_rally_c
+	title = krcw_yn.23.t
+	desc = krcw_yn.23.d
+	option = {
+		name = krcw_yn.23.a
+		ai_chance = { factor = 100 }
+		ISR = { add_war_support = 0.10 }
+		if = { limit = { country_exists = SYR SYR = { NOT = { has_war_with = ISR } } }
+		  SYR = { declare_war_on = { target = ISR type = annex_everything } }
+		  krcw_tension_up_large = yes
+		}
+	}
+}
+
+country_event = {
+	id = krcw_yn.30
+	is_triggered_only = yes
+	trigger = {
+		tag = EGY
+		date > 1950.10.12
+		date < 1951.3.15
+		NOT = { has_global_flag = krcw_egypt_fired }
+	}
+	picture = GFX_report_event_soldiers_marching
+	title = krcw_yn.30.t
+	desc = krcw_yn.30.d
+	option = {
+		name = krcw_yn.30.a
+		ai_chance = { factor = 100 }
+		country_event = { id = krcw_yn.31 days = 30 random_days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_yn.31
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_military_parade
+	title = krcw_yn.31.t
+	desc = krcw_yn.31.d
+	option = {
+		name = krcw_yn.31.a
+		ai_chance = { factor = 60 }
+		set_global_flag = krcw_egypt_fired
+		set_politics = { ruling_party = neutrality elections_allowed = no }
+		set_popularities = { neutrality = 55 nationalist = 25 socialist = 20 }
+		create_country_leader = { name = "穆罕默德·纳吉布" desc = "" picture = "gfx/leaders/EGY/Mohamed_Naguib_50s.dds" expire = "1965.1.1" ideology = oligarchism }
+		add_stability = 0.05
+		add_war_support = 0.08
+		krcw_tension_up_small = yes
+	}
+	option = {
+		name = krcw_yn.31.b
+		ai_chance = { factor = 40 }
+		set_global_flag = krcw_egypt_fired
+		add_stability = -0.10
+		add_war_support = -0.05
+		add_political_power = -75
+		army_experience = -20
+	}
+}
+
+country_event = {
+	id = krcw_yn.40
+	is_triggered_only = yes
+	trigger = {
+		tag = SAF
+		date > 1950.3.20
+		date < 1950.7.13
+		NOT = { has_global_flag = krcw_saf_fired }
+	}
+	picture = GFX_report_event_generic_strike
+	title = krcw_yn.40.t
+	desc = krcw_yn.40.d
+	option = {
+		name = krcw_yn.40.a
+		ai_chance = { factor = 70 }
+		set_global_flag = krcw_saf_fired
+		add_stability = -0.08
+		add_war_support = 0.03
+		country_event = { id = krcw_yn.41 days = 20 }
+	}
+	option = {
+		name = krcw_yn.40.b
+		ai_chance = { factor = 30 }
+		set_global_flag = krcw_saf_fired
+		add_stability = 0.03
+		add_political_power = -50
+		krcw_detente_up_small = yes
+	}
+}
+
+country_event = {
+	id = krcw_yn.41
+	is_triggered_only = yes
+	trigger = {
+		tag = SAF
+		has_global_flag = krcw_saf_fired
+	}
+	picture = GFX_news_event_generic_african_unity_c
+	title = krcw_yn.41.t
+	desc = krcw_yn.41.d
+	option = {
+		name = krcw_yn.41.a
+		ai_chance = { factor = 100 }
+		add_ideas = krcw_yn_saf_isolated
+		add_stability = -0.03
+	}
+}
+
+country_event = {
+	id = krcw_yn.50
+	is_triggered_only = yes
+	trigger = {
+		tag = MAL
+		date > 1949.12.20
+		date < 1950.5.10
+		NOT = { has_global_flag = krcw_malaya_fired }
+	}
+	picture = GFX_report_event_ast_transfer_singapore
+	title = krcw_yn.50.t
+	desc = krcw_yn.50.d
+	option = {
+		name = krcw_yn.50.a
+		ai_chance = { factor = 60 }
+		set_global_flag = krcw_malaya_fired
+		add_stability = -0.05
+		add_war_support = 0.03
+	}
+	option = {
+		name = krcw_yn.50.b
+		ai_chance = { factor = 40 }
+		set_global_flag = krcw_malaya_fired
+		release = SGP
+		SGP = { set_politics = { ruling_party = trotskyism elections_allowed = yes } set_popularities = { trotskyism = 50 socialist = 30 Social_Democratic = 20 } }
+		add_stability = 0.03
+		krcw_detente_up_small = yes
+	}
+}
+
+country_event = {
+	id = krcw_yn.60
+	is_triggered_only = yes
+	trigger = {
+		tag = IRQ
+		date > 1950.9.3
+		date < 1950.12.15
+		NOT = { has_global_flag = krcw_kuwait_fired }
+	}
+	picture = GFX_report_event_generic_military_parade
+	title = krcw_yn.60.t
+	desc = krcw_yn.60.d
+	option = {
+		name = krcw_yn.60.a
+		ai_chance = { factor = 100 }
+		country_event = { id = krcw_yn.61 days = 30 random_days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_yn.61
+	is_triggered_only = yes
+	picture = GFX_news_event_generic_sign_treaty2_c
+	title = krcw_yn.61.t
+	desc = krcw_yn.61.d
+	option = {
+		name = krcw_yn.61.a
+		ai_chance = { factor = 70 }
+		set_global_flag = krcw_kuwait_fired
+		add_stability = -0.03
+		add_political_power = -25
+		krcw_tension_down_small = yes
+	}
+	option = {
+		name = krcw_yn.61.b
+		ai_chance = { factor = 30 }
+		set_global_flag = krcw_kuwait_fired
+		if = { limit = { country_exists = KUW KUW = { NOT = { has_war_with = IRQ } } }
+		  declare_war_on = { target = KUW type = annex_everything }
+		  krcw_tension_up_large = yes
+		}
+	}
+}

@@ -1,0 +1,4525 @@
+# KRCW (build/patch_residue.py): 120 OTL decisions hidden while KRCW_active
+
+
+Chinese_Civil_War_missions_category = {
+
+    
+
+
+    The_Chinese_Civil_war = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	    icon = china_map_emblem
+	    allowed = {
+	    }
+	    available = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				has_global_flag = CCW_Over
+				PRC = {
+					NOT = {
+						has_war_with = CHI
+					}
+				}
+			}
+	    }
+	    fire_only_once = yes
+		priority = 14
+	    days_mission_timeout = 740
+	    cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+		    OR = {
+				has_global_flag = CCW_Over
+				PRC = {
+					NOT = {
+						has_war_with = CHI
+					}
+				}
+			}
+	     } }
+}
+	    timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			
+				
+			if = {
+				limit = {
+					PRC = {
+						surrender_progress > 0.79
+					}
+				}
+				PRC_Lose_CCW = yes
+			}	
+			else_if = {
+					limit = {
+						PRC = {
+							has_global_flag = roc_stalled_ccp
+							surrender_progress > 0.59
+						}
+					}
+					PRC_Lose_CCW = yes
+			}
+			else = {
+				ROC_lose_CCW = yes
+			}
+			
+		    
+	     }
+}
+	}
+    
+  
+    The_Shanghai_Campaign = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_prepare_civil_war
+		allowed = {
+			tag = CHI
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			613 = { is_controlled_by = PRC  } 
+			
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		highlight_states = {
+    		highlight_state_targets = {
+        		state = 613
+    		}
+    		
+		}
+		
+		fire_only_once = yes
+		priority = 10
+		selectable_mission = no
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+		    OR = {
+				has_global_flag = CCW_Over
+				PRC = {
+					NOT = {
+						has_war_with = CHI
+					}
+				}
+			}
+	     } }
+}
+		days_mission_timeout = 7
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			CHI =  {country_event = { id = KMT_Civilwar.48 days = 1} }
+			
+			
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			if = {
+				limit = {
+					613 = { is_controlled_by = PRC  } 
+				}
+				CHI =  {country_event = { id = KMT_Civilwar.48 days = 1} }
+				
+			}
+			else = {
+				CHI =  {country_event = { id = KMT_Civilwar.47 days = 1} }
+				 
+			}
+		    
+		   
+	     }
+}
+    }
+
+	Changheng_campaign = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_prepare_civil_war
+		priority = 8
+		allowed = {
+			tag = CHI
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			#601 = { is_fully_controlled_by = PRC  } 
+				
+			AND = {
+				602 = { is_controlled_by = PRC}
+				1575 = { is_controlled_by = PRC}
+			}
+		}
+
+		highlight_states = {
+    		highlight_state_targets = {
+        		state = 602
+        		state = 1575
+    		}
+    		
+		}
+
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+		    OR = {
+				has_global_flag = CCW_Over
+				CHI = {has_completed_focus = CHI_CIVILWAR_abandon_mainland}
+				PRC = {
+					NOT = {
+						has_war_with = CHI
+					}
+				}
+			}
+	     } }
+}
+		fire_only_once = yes
+		selectable_mission = no
+
+		days_mission_timeout = 152
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			CHI_new_major_loss = yes 	
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			if = {
+				limit = {
+					AND = {
+						602 = { is_controlled_by = PRC}
+						1575 = { is_controlled_by = PRC}
+					}
+				}		
+				CHI_new_major_loss = yes 	
+			}
+			
+			
+				 
+			else = {
+				if = {
+					limit = {
+						tag = PRC
+					}
+					remove_ideas = civil_war_fervor
+				}
+				CHI_new_major_defense = yes 
+				
+		    }
+			
+	     }
+}
+    }
+	
+	Defense_of_the_southwest = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_prepare_civil_war
+		priority = 9
+		allowed = {
+			tag = CHI
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				601 = { is_controlled_by = PRC}
+				NOT = {has_global_flag = ROC_taiwan}
+			}
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+		    OR = {
+				has_global_flag = CCW_Over
+				CHI = {has_completed_focus = CHI_CIVILWAR_abandon_mainland}
+				PRC = {
+					NOT = {
+						has_war_with = CHI
+					}
+				}
+			}
+	     } }
+}
+		fire_only_once = yes
+		selectable_mission = no
+		
+		highlight_states = {
+    		highlight_state_targets = {
+        		state = 601
+        		state = 2015
+				state = 605
+				state = 1978
+				state = 1557
+				state = 603
+				state = 325
+				state = 1326
+				state = 1988
+    		}
+    		
+		}
+		
+		days_mission_timeout = 223
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			CHI =  {country_event = { id = KMT_Civilwar.42 days = 1} }
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			if = {
+				limit = {
+					AND = {
+						601 = { is_controlled_by = PRC}
+						NOT = {has_global_flag = ROC_taiwan}
+					}
+				}
+				CHI =  {country_event = { id = KMT_Civilwar.42 days = 1} }
+
+			}
+			else = {
+					
+				if = {
+					limit = {
+						tag = PRC
+					}
+					remove_ideas = civil_war_fervor
+				}
+				CHI =  {country_event = { id = KMT_Civilwar.411 days = 1} }
+			}	
+		 }
+}
+	}
+	
+	Defense_of_Liangguang = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_prepare_civil_war
+		priority = 8
+		allowed = {
+			tag = CHI
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			#601 = { is_fully_controlled_by = PRC  } 
+			1569 = { is_controlled_by = PRC}
+		}
+
+		highlight_states = {
+    		highlight_state_targets = {
+        		state = 591
+        		state = 1577
+				state = 1578
+				state = 594
+				state = 1569
+				state = 592
+				state = 2014
+				state = 2031
+    		}
+    		
+		}
+
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+		    OR = {
+				has_global_flag = CCW_Over
+				CHI = {has_completed_focus = CHI_CIVILWAR_abandon_mainland}
+				PRC = {
+					NOT = {
+						has_war_with = CHI
+					}
+				}
+			}
+	     } }
+}
+		fire_only_once = yes
+		selectable_mission = no
+
+		days_mission_timeout = 223
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			CHI =  {country_event = { id = KMT_Civilwar.45 days = 3} }
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			if = {
+				limit = {
+					1569 = { is_controlled_by = PRC}
+				} 
+				CHI =  {country_event = { id = KMT_Civilwar.45 days = 3} }
+			}
+				
+			else = {
+				if = {
+					limit = {
+						tag = PRC
+					}
+					remove_ideas = civil_war_fervor
+				}
+				CHI =  {country_event = { id = KMT_Civilwar.46 days = 3} }
+		    }
+		 }
+}
+	}
+    
+
+	Defense_of_the_Northwest = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_prepare_civil_war
+		priority = 8
+		allowed = {
+			tag = CHI
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			283 = { is_controlled_by = PRC}	
+		}
+
+		highlight_states = {
+    		highlight_state_targets = {
+        		state = 604
+        		state = 283
+				state = 1359
+				state = 612
+				state = 2033
+				state = 283
+				state = 2034
+				state = 1995
+				state = 1992
+				state = 1994
+				state = 1991
+				state = 1989
+				state = 1990
+    		}
+    		
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+		    OR = {
+				has_global_flag = CCW_Over
+				PRC = {
+					NOT = {
+						has_war_with = CHI
+					}
+				}
+			}
+	     } }
+}
+		fire_only_once = yes
+		selectable_mission = no
+
+		days_mission_timeout = 223
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			
+			CHI =  {country_event = { id = KMT_Civilwar.43 days = 5} }
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			if = {
+				limit = {
+					283 = { is_controlled_by = PRC}					
+				}
+				
+				CHI =  {country_event = { id = KMT_Civilwar.43 days = 5} }
+				
+			}
+			 
+			
+			else = {
+				if = {
+					limit = {
+						tag = PRC
+					}
+					remove_ideas = civil_war_fervor
+				}
+				CHI =  {country_event = { id = KMT_Civilwar.44 days = 5} }
+		    }
+		 }
+}
+    }
+	
+	
+	CHI_keep_propaganda_machines_rolling = {
+          visible = { NOT = { has_global_flag = KRCW_active } 
+               PRC= {
+                   has_war_with = CHI
+               }
+               tag = CHI
+			   has_completed_focus = CHI_CIVILWAR_anti_ccp_propaganda
+          }
+          cost = 50
+		  priority = 4
+          available = { NOT = { has_global_flag = KRCW_active } 
+            tag = CHI
+			has_completed_focus = CHI_CIVILWAR_anti_ccp_propaganda
+          }
+          complete_effect = {
+               
+          }
+          days_remove = 10
+        remove_effect = {
+            add_war_support = 0.05
+               
+            
+        }
+    }
+    CHI_Arrest_CPC_Spies = {#杀共谍
+          visible = { NOT = { has_global_flag = KRCW_active } 
+               check_variable = { PRC.cww_infiltrate > 0 }
+               tag = CHI
+          }
+          cost = 50
+		  priority = 4
+          available = { NOT = { has_global_flag = KRCW_active } 
+            tag = CHI
+            check_variable = { PRC.cww_infiltrate > 0 }
+          }
+          complete_effect = {
+               
+          }
+          days_remove = 10
+        remove_effect = {
+            PRC = {
+                add_manpower = -20
+            }
+               
+            add_to_variable = { PRC.cww_infiltrate = -10 }
+        }
+    }
+
+	CHI_Rebellious_Troops = {
+	visible = { NOT = { has_global_flag = KRCW_active } }#国军起义                        
+        allowed = {
+              tag = CHI
+        }            
+		icon = KMT_Army_hat
+        available = { NOT = { has_global_flag = KRCW_active }                            
+            CHI = {
+				OR = {
+					NOT = {
+						has_war_with = PRC
+					}
+					has_completed_focus = CHI_CIVILWAR_temporal_military_reorganization
+					
+				}	
+            }                  
+        }
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+		    OR = {
+				has_global_flag = CCW_Over
+				has_completed_focus = CHI_CIVILWAR_temporal_military_reorganization
+				PRC = {
+					NOT = {
+						has_war_with = CHI
+					}
+				}
+			}
+	     } }
+}
+        activation = { NOT = { has_global_flag = KRCW_active }                           
+            CHI = {
+                has_war_with = PRC
+				NOT = {has_completed_focus = CHI_CIVILWAR_temporal_military_reorganization}
+				NOT = {has_country_flag = CCW_Over}
+            }                      
+        }                      
+        selectable_mission = no               
+        days_mission_timeout = 150
+		priority = 5		
+        timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }                      
+            CHI = {
+				country_event = KMT_Civilwar.38 
+                transfer_units_fraction= {
+				    target = PRC
+				    size = 0.3
+				    stockpile_ratio = 0.03
+				    army_ratio = 0.01
+				    navy_ratio = 0
+				    air_ratio = 0.01
+				    keep_unit_leaders_trigger = {
+				    	always = yes
+					}
+			    }
+            }
+         }
+}
+        complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }                    
+           add_political_power = 50 
+         }
+}
+    }
+
+    CHI_hunan_defection = {
+	visible = { NOT = { has_global_flag = KRCW_active } }                       
+        allowed = {
+				tag = CHI
+				
+        }            
+		icon = soldierly_discipline
+        available = { NOT = { has_global_flag = KRCW_active }                            
+            CHI = {
+				has_completed_focus = CHI_CIVILWAR_form_the_national_security_bureau
+			}
+			
+        }
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+		    OR = {
+				has_global_flag = CCW_Over
+				
+				PRC = {
+					NOT = {
+						has_war_with = CHI
+					}
+				}
+			}
+			
+	     } }
+}
+        activation = { NOT = { has_global_flag = KRCW_active }                           
+            CHI = {
+                has_war_with = PRC
+				
+            }                     
+        }
+		
+		highlight_states = {
+    		highlight_state_targets = {
+        		state = 602
+        		state = 1575
+    		}
+    		
+		}
+		
+		fire_only_once = yes 
+        selectable_mission = no               
+        days_mission_timeout = 72
+		priority = 4		
+        timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }                      
+			CHI = {
+				country_event = KMT_Civilwar.19
+			}
+         }
+}
+        complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }                    
+          CHI = {
+				country_event = KMT_Civilwar.30
+			}
+         }
+}
+    }
+
+	CHI_the_grand_counterattack = {
+          visible = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+               PRC= {
+                   has_war_with = CHI
+               }
+               tag = CHI
+			   NOT = {has_global_flag = CCW_Over}
+			   has_global_flag = roc_stalled_ccp
+			}   
+          }
+          cost = 50
+		  
+		  cancel_trigger = {
+		    OR = {
+				has_global_flag = CCW_Over
+				PRC = {
+					NOT = {
+						has_war_with = CHI
+					}
+				}
+			}
+	      }
+		  
+          available = { NOT = { has_global_flag = KRCW_active } 
+               tag = CHI
+               PRC= {
+                   has_war_with = CHI
+               }
+			   has_global_flag = roc_stalled_ccp
+          }
+
+		  fire_only_once = yes 
+
+          complete_effect = {
+          }
+          days_remove = 180
+		  priority = 6
+		  icon = lkmt_flag
+          remove_effect = {
+			#country_event = KMT_major_counteroffensive
+			set_global_flag = roc_counteroffensive
+			add_ideas = CHI_mainland_counterattack
+		 }				
+	}
+
+	CHI_move_capital_back_to_nanjing = {
+          visible = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+               PRC= {
+                   has_war_with = CHI
+               }
+               tag = CHI
+			   NOT = {has_global_flag = CCW_Over}
+			   has_global_flag = roc_stalled_ccp
+			}   
+          }
+          cost = 50
+		  
+		  cancel_trigger = {
+		    OR = {
+				has_global_flag = CCW_Over
+				PRC = {
+					NOT = {
+						has_war_with = CHI
+					}
+				}
+			}
+	      }
+		  
+          available = { NOT = { has_global_flag = KRCW_active } 
+               tag = CHI
+               PRC= {
+                   has_war_with = CHI
+               }
+			   CHI = {
+				controls_state = 598
+				controls_state = 1573
+				controls_state = 606
+				controls_state = 1785
+				controls_state = 613
+			   }
+          }
+
+		  fire_only_once = yes 
+
+          complete_effect = {
+          }
+          days_remove = 10
+		  priority = 6
+		  icon = lkmt_flag
+          remove_effect = {
+			CHI = {
+				add_stability = 0.1
+				
+				set_capital = {
+					state = 598
+				}
+				hidden_effect = {
+					country_event = KMT_Civilwar.18
+					if = {
+				limit = {
+					has_country_flag = xichang_capital_city
+				}
+				add_victory_points = {
+					province = 7294
+						value = -10
+				}
+				clr_country_flag = xichang_capital_city
+				}
+				}
+			}
+		 }
+	}
+	
+	
+
+	CHI_sun_li_jen_training_troops = {
+	visible = { NOT = { has_global_flag = KRCW_active } }                       
+        allowed = {
+              tag = CHI
+        }            
+		icon = GFX_decision_Paper_Signed
+        available = { NOT = { has_global_flag = KRCW_active }                            
+            CHI = {
+				OR = {
+					NOT = {
+						has_war_with = PRC
+					}
+				}	
+            }                  
+        }
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+		    OR = {
+				has_global_flag = CCW_Over
+				
+				PRC = {
+					NOT = {
+						has_war_with = CHI
+					}
+				}
+			}
+	     } }
+}
+        activation = { NOT = { has_global_flag = KRCW_active }                           
+            CHI = {
+                has_war_with = PRC
+				
+            }                      
+        }
+		fire_only_once = yes                       
+        selectable_mission = no               
+        days_mission_timeout = 133
+		priority = 3		
+        timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }                      
+            CHI = {
+				country_event = KMT_Civilwar.25
+            }
+         }
+}
+        complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }                    
+          hidden_effect = {
+				set_country_flag = sun_li_jen_out_taiwan
+			}
+         }
+}
+    }
+	
+	CHI_recapture_nanjing = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_prepare_civil_war
+		allowed = {
+			tag = CHI
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			598 = { is_controlled_by = CHI  } 
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cost = 0
+		priority = 8
+		selectable_mission = yes
+		fire_only_once = yes
+		priority = 11
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+	
+			OR = {
+				has_global_flag = CCW_Over
+				PRC = {
+					NOT = {
+						has_war_with = CHI
+					}
+				}
+			}
+		 } }
+}
+	    
+		days_mission_timeout = 649 #2 years after fall of Nanjing 1949, April 23th#
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			news_event = {
+				id = KMT_Civilwar.15
+				days = 1
+			}
+			PRC = {
+				add_war_support = -0.20
+				transfer_units_fraction= {
+				    target = CHI
+				    size = 0.4
+				    stockpile_ratio = 0.1
+				    army_ratio = 0.1
+				    navy_ratio = 0
+				    air_ratio = 0.02
+				    keep_unit_leaders_trigger = {
+				    	always = yes
+					}
+				}
+			}
+			add_days_mission_timeout = {
+						mission = The_Chinese_Civil_war
+						days = 200
+			}
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			add_war_support = -0.15
+		      
+		 }
+}
+	}
+
+
+	CHI_recapture_wuhan = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_prepare_civil_war
+		allowed = {
+			tag = CHI
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			1792 = { is_controlled_by = CHI  } 
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cost = 0
+		priority = 7
+		selectable_mission = yes
+		fire_only_once = yes
+		priority = 12
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+	
+			OR = {
+				has_global_flag = CCW_Over
+				PRC = {
+					NOT = {
+						has_war_with = CHI
+					}
+				}
+			}
+		 } }
+}
+	    
+		days_mission_timeout = 819 #40th year Wuchang Uprising Anniversary October 10#
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			news_event = {
+				id = KMT_Civilwar.16
+				days = 1
+			}
+			PRC = {
+				add_war_support = -0.20
+				transfer_units_fraction= {
+				    target = CHI
+				    size = 0.4
+				    stockpile_ratio = 0.1
+				    army_ratio = 0.1
+				    navy_ratio = 0
+				    air_ratio = 0.02
+				    keep_unit_leaders_trigger = {
+				    	always = yes
+					}
+			    }
+			}
+			add_days_mission_timeout = {
+						mission = The_Chinese_Civil_war
+						days = 300
+			}
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			add_war_support = -0.15
+		      
+		 }
+}
+	}
+
+	CHI_recapture_beiping = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_prepare_civil_war
+		allowed = {
+			tag = CHI
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			608 = { is_controlled_by = CHI  } 
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cost = 0
+		selectable_mission = yes
+		fire_only_once = yes
+		priority = 13
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+	
+			OR = {
+				has_global_flag = CCW_Over
+				PRC = {
+					NOT = {
+						has_war_with = CHI
+					}
+				}
+			}
+		 } }
+}
+	    
+		days_mission_timeout = 988 #should be available until Chinese Civil war ends#
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			news_event = {
+				id = KMT_Civilwar.17
+				days = 1
+			}
+			PRC = {
+				add_war_support = -0.35
+				transfer_units_fraction= {
+				    target = CHI
+				    size = 0.5
+				    stockpile_ratio = 0.25
+				    army_ratio = 0.35
+				    navy_ratio = 0
+				    air_ratio = 0.5
+				    keep_unit_leaders_trigger = {
+				    	always = yes
+					}
+			    }
+			}
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			add_war_support = -0.15
+		      
+		 }
+}
+	}
+	
+	buy_american_rifles = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_global_flag = USA_end_armsembargo }
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 75
+			days_remove = 20
+		
+			target_trigger = {
+				FROM = { tag = USA }
+			}
+			
+			remove_effect = {
+				add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 8000
+				producer = USA
+				}
+			}
+			days_re_enable = 180 
+	}
+		
+	buy_american_support_equipment = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+		
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_global_flag = USA_end_armsembargo }
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 80
+			days_remove = 20
+		
+			target_trigger = {
+				FROM = { tag = USA }
+			}
+			
+			remove_effect = {
+				add_equipment_to_stockpile = {
+				  type = support_equipment
+				  amount = 1000
+				  producer = USA
+				}
+			}
+			days_re_enable = 180 
+	}
+		
+	buy_american_trucks = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+		
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_global_flag = USA_end_armsembargo }
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 80
+			days_remove = 20
+		
+			target_trigger = {
+				FROM = { tag = USA }
+			}
+			
+			remove_effect = {
+				add_equipment_to_stockpile = {
+				  type = motorized_equipment
+				  amount = 300
+				  producer = USA
+				}
+			}
+			days_re_enable = 180
+	}
+
+	buy_american_artillery = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_global_flag = USA_end_armsembargo }
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 30
+		
+			target_trigger = {
+				FROM = { tag = USA }
+			}
+			
+			remove_effect = {
+				add_equipment_to_stockpile = {
+				  type = artillery_equipment
+				  amount = 600
+				  producer = USA
+				}
+				add_equipment_to_stockpile = {
+				  type = auto_cannon_equipment
+				  amount = 400
+				  producer = USA
+				} 
+				add_equipment_to_stockpile = {
+				  type = direct_fire_gun_equipment
+				  amount = 400
+				  producer = USA
+				} 
+			}
+			days_re_enable = 180
+	}
+		
+	buy_american_planes = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_global_flag = USA_end_armsembargo }
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 120
+			days_remove = 30
+		
+			target_trigger = {
+				FROM = { tag = USA }
+			}
+			
+			remove_effect = {
+				add_equipment_to_stockpile = {
+				  type = fighter_equipment
+				  amount = 150
+				  producer = USA
+				}
+			}
+			days_re_enable = 180
+	}
+}
+
+
+International_Diplomacy_category = {
+		
+		request_for_better_treatment_of_chinese_in_vietnam = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_completed_focus = KMT_recognise_saigon_authority_in_vietnam }
+			}
+			fire_only_once = yes
+			available = { NOT = { has_global_flag = KRCW_active } 
+				NOT = {
+					has_global_flag = CHI_change_support_for_vnqdd
+					has_country_flag = CHI_jus_sanguini
+				}
+				has_country_flag = CHI_defined_nationality
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 25
+			days_remove = 20
+		
+			
+			remove_effect = {
+				VIE = {
+					country_event = CHI_INDO.2
+				}
+				
+			}
+			
+		}
+
+		expand_the_indochina_military_mission_to_indochina_nations = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_completed_focus = KMT_organize_the_indochina_military_mission }
+			}
+			fire_only_once = yes
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_organize_the_indochina_military_mission
+				has_completed_focus = KMT_establish_embassies_in_indochina
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 20
+			remove_effect = {
+				LOS = {
+					country_event = CHI_INDO.12
+				}
+				CAM = {
+					country_event = CHI_INDO.12
+				}
+				SIA = {
+					country_event = CHI_INDO.12
+				}
+			}
+		}
+
+		publicize_project_blue_sky_white_sun = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_completed_focus = KMT_Begin_Preperations_for_First_Nuclear_Test }
+			}
+			fire_only_once = yes
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_global_flag = KMT_China_has_nukes_now
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 25
+			days_remove = 20
+			remove_effect = {
+				news_event = KMT_Atoms.2
+			}
+		}
+
+		Overseas_chinese_community_affairs_council = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			fire_only_once = yes
+			available = { NOT = { has_global_flag = KRCW_active } 
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 25
+			days_remove = 20
+			remove_effect = {
+				country_event = KMT_qiaowuweiyuanhui.1
+				hidden_effect = {
+					if = {
+						limit = {
+							NOT = {
+								has_global_flag = ROC_taiwan
+							}
+						}
+						set_country_flag = KMT_400million
+					}
+				}
+			}
+		}
+
+		consolidate_connections_with_southeastasia_chinese = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_country_flag = KMT_400million
+			}
+			fire_only_once = yes
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_country_flag = CHI_jus_sanguini
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 25
+			days_remove = 20
+			remove_effect = {
+				country_event = KMT_qiaowuweiyuanhui.2
+			}
+		}
+
+		consolidate_connections_with_north_american_chinese = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_country_flag = KMT_400million
+			}
+			fire_only_once = yes
+			available = { NOT = { has_global_flag = KRCW_active } 
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 25
+			days_remove = 20
+			remove_effect = {
+				country_event = KMT_qiaowuweiyuanhui.3
+			}
+		}
+
+
+
+		status_of_japanese_military_advisors = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			fire_only_once = yes
+			available = { NOT = { has_global_flag = KRCW_active } 
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 15
+			remove_effect = {
+				country_event = bss.228
+			}
+		}
+		
+		diplomatic_report_RAJ = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			fire_only_once = yes
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_seeking_allies_in_asia
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 10		
+			remove_effect = {
+				country_event = KMT_diplomatic_report.1
+
+			}
+		}
+
+		diplomatic_report_JAP = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			fire_only_once = yes
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_seeking_allies_in_asia
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 10
+			remove_effect = {
+				country_event = KMT_diplomatic_report.2
+			}	
+		}
+
+		diplomatic_report_SEA = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			fire_only_once = yes
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_seeking_allies_in_asia
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 10
+			remove_effect = {
+				country_event = KMT_diplomatic_report.3
+				set_country_flag = CHI_nationality_question_arises_2
+			}
+		}
+
+		 cooperation_with_SEATO = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			fire_only_once = yes
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_support_the_western_allies
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 10
+			remove_effect = {
+				custom_effect_tooltip = cooperate_with_SEATO_tt
+				set_global_flag = KMT_defended_by_SEATO
+			}	
+		}
+
+		request_for_better_treatment_of_chinese_in_thailand = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			fire_only_once = yes
+			available = { NOT = { has_global_flag = KRCW_active } 
+				OR = {
+					has_completed_focus = KMT_Support_The_Viet_Quoc
+					has_country_flag = vietnam_ends_anti_chinese_sentiment
+				}
+				has_country_flag = CHI_defined_nationality
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 10
+			remove_effect = {
+				country_event = CHI_INDO.15
+			}
+		}
+
+		define_nationality_law_of_the_ROC = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			fire_only_once = yes
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_country_flag = CHI_nationality_question_arises_2
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 10
+			remove_effect = {
+				country_event = CHI_INDO.14
+			}
+		}
+
+		New_Dual_Nationality_Law = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			fire_only_once = yes
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_country_flag = CHI_new_nationality_law
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 10
+			remove_effect = {
+				country_event = CHI_INDO.19
+			}
+		}
+
+		take_hong_kong_by_force = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+
+			allowed = {tag = CHI}
+			fire_only_once = yes
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_global_flag = Suez_Crisis
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 10
+			remove_effect = {
+				country_event = KMT_50s_Mainland.14
+			}	
+		}
+		negotiate_over_hong_kong = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			fire_only_once = yes
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_global_flag = Suez_Crisis
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 10	
+			remove_effect = {
+				country_event = KMT_50s_Mainland.14
+			}	
+		}
+}
+
+KMT_Temporary_Provisions_Mainland_50s_category = {
+
+		End_the_Crisis = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			icon = Phone		
+			available = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					custom_trigger_tooltip = {
+						tooltip = crisis_factor_party_neg_more_than_minus_5_tt
+						check_variable = {
+							crisis_factor_party_neg > -0.05
+						}
+					}
+					custom_trigger_tooltip = {
+						tooltip = crisis_factor_urban_neg_more_than_minus_5_tt
+						check_variable = {
+							crisis_factor_urban_neg > -0.05
+						}
+					}
+					custom_trigger_tooltip = {
+						tooltip = crisis_factor_rural_neg_more_than_minus_5_tt
+						check_variable = {
+							crisis_factor_rural_neg > -0.05
+						}
+					}
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 0
+			fire_only_once = yes
+			priority = 50
+			complete_effect = {
+				remove_dynamic_modifier = { modifier = National_Crisis_modifier}
+			}
+			
+		}
+
+		Expand_The_Garrison_Command = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			icon = KMT_Army_hat			
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_The_White_Terror
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			custom_cost_trigger = {
+			command_power > 50
+			}
+			custom_cost_text = Command_Power_cost_50
+			days_remove = 20
+			fire_only_once = no
+			days_re_enable = 180
+			priority = 50
+			complete_effect = {
+				add_command_power = -50
+				add_manpower = -50000
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_0
+					amount = -8000
+					producer = CHI
+				}
+			}
+			remove_effect = {
+				add_stability = -0.03
+				add_war_support = -0.03
+				if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = decrease_urban_crisis_penalty_small_TT
+					decrease_urban_crisis_penalty_tiny = yes
+				}
+			}	
+		}
+		Purge_Universities = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			icon = generic_civil_support			
+			available = { NOT = { has_global_flag = KRCW_active } 
+				OR = {
+					has_completed_focus = KMT_Refocus_Tsing_Hua_University
+					has_completed_focus = KMT_reopen_sun_yat_sen_university
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }			
+			cost = 100			
+			fire_only_once = no
+			days_re_enable = 250
+			
+			days_remove = 20
+			priority = 40			
+			complete_effect = {
+				add_manpower = -5000
+				add_timed_idea = {
+					idea = Scientific_Collapse_lessened
+					days = 180
+				}				
+			}
+			remove_effect = {				
+				if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = decrease_urban_crisis_penalty_small_TT
+					decrease_urban_crisis_penalty_tiny = yes
+				}
+			}			
+		}
+		
+		Subsidize_Urban_State_Enterprises = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			icon = generic_construction		
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_National_Corporations_Department
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }			
+			modifier = {
+				civilian_factory_use = 2 
+			}			
+			cost = 50			
+			fire_only_once = no
+			days_re_enable = 250
+			days_remove = 150
+			priority = 30
+			complete_effect = {
+				set_temp_variable = { money_to_gain = -30 }
+				add_money_with_tooltip_effect = yes
+			}
+			remove_effect = {
+				if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = decrease_urban_crisis_penalty_small_TT
+					decrease_urban_crisis_penalty_tiny = yes
+				}
+			}
+		}
+		Enforce_375_Rent_Cap = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			#icon = Phone
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_Chen_Cheng_50s_Rent_cap
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			fire_only_once = yes
+			days_remove = 30
+			priority = 29
+			complete_effect = {
+				set_temp_variable = { money_to_gain = -10 }
+				add_money_with_tooltip_effect = yes
+			}
+			remove_effect = {
+				if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = decrease_rural_crisis_penalty_big_TT
+					decrease_rural_crisis_penalty_bigger = yes
+				}
+				set_country_flag = CHI_Mainland_Rent_Cap_Established
+			}
+		}
+		Compensation_Landlords_with_Japanese_Assets = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			icon = Money_US_Dollars
+			available = { NOT = { has_global_flag = KRCW_active } 
+				OR = {
+					has_completed_focus = KMT_Compensate_Landowners
+					has_completed_focus = KMT_Reward_Kuomitang_Loyalists
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			modifier = {
+				civilian_factory_use = 2 
+			}
+			fire_only_once = no
+			days_re_enable = 180
+			days_remove = 90
+			priority = 28
+			complete_effect = {
+				set_temp_variable = { money_to_gain = -20 }
+				add_money_with_tooltip_effect = yes
+			}
+			remove_effect = {
+				if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = decrease_rural_crisis_penalty_small_TT
+					decrease_rural_crisis_penalty_tiny = yes
+				}
+			}
+		}
+		Land_to_The_Tiller = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			icon = Paper_Signed
+			available = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					OR = {
+						has_completed_focus = KMT_Take_Half_Measures
+						has_completed_focus = KMT_Commit_to_Land_Reform
+					}
+					has_country_flag = CHI_Mainland_Rent_Cap_Established
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			fire_only_once = no
+			days_re_enable = 250
+			days_remove = 25
+			priority = 27
+			complete_effect = {
+				
+			}
+			remove_effect = {
+				if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = decrease_rural_crisis_penalty_small_TT
+					decrease_rural_crisis_penalty_tiny = yes
+				}
+				clr_country_flag = CHI_Mainland_Rent_Cap_Established
+			}
+		}
+		Deploy_Rural_Pacification_Squads = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+			allowed = {tag = CHI}
+			icon = soldierly_discipline
+			available = { NOT = { has_global_flag = KRCW_active } 
+				OR = {
+					has_completed_focus = KMT_Liquidate_Uncooperative_Landlords
+					has_completed_focus = KMT_Seize_Collaborators_Land
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			custom_cost_trigger = {
+			command_power > 50
+			}
+			custom_cost_text = Command_Power_cost_50
+			complete_effect = {
+				add_command_power = -50
+				add_manpower = -50000
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_0
+					amount = -8000
+					producer = CHI
+				}
+				add_stability = -0.03
+			}
+			fire_only_once = no
+			days_re_enable = 250
+			days_remove = 25
+			priority = 26
+			remove_effect = {
+				if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = decrease_rural_crisis_penalty_small_TT
+					decrease_rural_crisis_penalty_tiny = yes
+				}
+			}
+		}
+		Reform_CC_Clique = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			icon = category_chinese_civil_war1
+			available = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					has_completed_focus = KMT_Deradicalize_the_CC_Clique
+					custom_trigger_tooltip = {
+						tooltip = crisis_factor_party_neg_more_than_minus_25_tt
+						check_variable = {
+							crisis_factor_party_neg > -0.25
+						}
+					}
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 150
+			complete_effect = {
+				add_stability = -0.1
+			}
+			
+			fire_only_once = yes
+			days_remove = 25
+			priority = 25
+			remove_effect = {
+				if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = decrease_party_crisis_penalty_very_big_TT
+					decrease_party_crisis_penalty_bigger = yes
+					decrease_party_crisis_penalty_bigger = yes
+					custom_effect_tooltip = CC_Clique_integrated_TT
+			
+					add_popularity = {
+						ideology = neutrality
+						popularity = -0.1
+					}
+					add_popularity = {
+						ideology = nationalist
+						popularity = 0.05
+					}
+				}	
+			}
+		}
+		Expand_Yangmingshan_Institute = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			icon = Conference_Building
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_Encourage_Cadre_Training
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 75
+			
+			modifier = {
+				civilian_factory_use = 1 
+			}
+			fire_only_once = yes
+			days_remove = 25
+			priority = 24
+			remove_effect = {
+				if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = decrease_party_crisis_penalty_small_TT
+					decrease_party_crisis_penalty_tiny = yes
+					
+				}
+				add_command_power = 10
+			}
+		}
+		Conduct_Ideological_Re_Registration = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			icon = Hands_with_Paper
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_Launch_Kuomintang_Reorganization
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 75
+			
+			modifier = {
+				political_power_gain = -1 
+			}
+			fire_only_once = no
+			days_re_enable = 150
+			days_remove = 25
+			priority = 24
+			remove_effect = {
+				if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = decrease_party_crisis_penalty_small_TT
+					decrease_party_crisis_penalty_tiny = yes
+					
+				}
+				
+			}
+		}
+		Communist_Activities_Urban = {
+	visible = { NOT = { has_global_flag = KRCW_active } } 
+		
+			allowed = {always = no}
+			days_mission_timeout = 365
+			selectable_mission = no
+			icon = Israel_Treaty
+			
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_Commencen_the_Show_Trials
+			}
+			
+			cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+				has_completed_focus = KMT_Commencen_the_Show_Trials
+			 } }
+}
+			fire_only_once = no
+			
+			timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+				add_political_power = -50
+				add_stability = -0.05
+				add_war_support = -0.05
+				add_popularity = {
+					ideology = maoism
+					popularity = 0.05
+				}
+				if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = increase_urban_crisis_penalty_small_TT
+					increase_urban_crisis_penalty_tiny = yes
+				}
+				activate_mission = Communist_Activities_Urban
+				
+				
+			 }
+}
+		}
+		Peasant_Rebellions_Rural = {
+	visible = { NOT = { has_global_flag = KRCW_active } } 
+		
+			allowed = {always = no}
+			days_mission_timeout = 365
+			selectable_mission = no
+			icon = Israel_Treaty
+			
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_Restoring_Rural_Order
+			}
+			
+			cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+				has_completed_focus = KMT_Restoring_Rural_Order
+			 } }
+}
+			fire_only_once = no
+			
+			timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+				add_manpower = -50000
+				add_war_support = -0.05
+				if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = increase_rural_crisis_penalty_small_TT
+					increase_rural_crisis_penalty_tiny = yes
+					
+				}
+				activate_mission = Peasant_Rebellions_Rural
+				
+			 }
+}
+		}
+		Party_Factionalism = {
+	visible = { NOT = { has_global_flag = KRCW_active } } 
+		
+			allowed = {always = no}
+			days_mission_timeout = 365
+			selectable_mission = no
+			icon = Israel_Treaty
+			
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_Sideline_Opposition_Factions
+			}	
+			
+			cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+				has_completed_focus = KMT_Sideline_Opposition_Factions
+			 } }
+}
+			fire_only_once = no
+			
+
+			timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+				add_political_power = -100
+				add_command_power = -100
+				
+				if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = increase_party_crisis_penalty_small_TT
+					increase_party_crisis_penalty_tiny = yes
+				}
+				activate_mission = Party_Factionalism
+				
+				
+			 }
+}
+		} 
+}
+	
+	
+KMT_Temporary_Provisions_Taiwan_50s_category = {
+
+		Move_Presidential_Palace_to_Taipei = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			icon = Conference_Building	
+			
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = CHI_The_Temporary_Provisions
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			custom_cost_trigger = {
+			command_power > 50
+			}
+			custom_cost_text = Command_Power_cost_50
+			days_remove = 20
+			fire_only_once = yes
+			priority = 50
+			
+			remove_effect = {
+				custom_effect_tooltip = increase_kmt_influence_tiny_bit_tt
+				increase_influence_normal = yes
+				add_political_power = 50
+				hidden_effect = {add_command_power = -50}
+			}
+			
+		}
+		
+		Storage_of_National_Palace_Museum_Goods = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = CHI_Sinicization_of_taiwan
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 20
+			fire_only_once = yes
+			priority = 30
+			
+			remove_effect = {
+				CHI = {country_event = KMT_Taiwan50s.47}
+				PRC = {country_event = KMT_Taiwan50s.47}
+			}
+			
+		}
+		
+		Establish_Mandatory_Portraits_in_School_Classes = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			icon = Sun_Portrait
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = CHI_change_the_curriculum
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 20
+			fire_only_once = yes
+			priority = 20
+			
+			remove_effect = {
+				add_popularity = {
+					ideology = nationalist
+					popularity = 0.01
+				}
+				country_event = KMT_Taiwan50s.45
+				custom_effect_tooltip = increase_native_unrest_tiny_bit_tt
+				increase_unrest_normal = yes
+				
+			}
+			
+		}
+		
+		Launch_A_Party_Cadre_Recruitment_Wave = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			icon = soldierly_discipline
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = CHI_The_Academy_for_the_Study_of_Carrying_out_Revolution 
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 360
+			fire_only_once = no
+			priority = 2
+			
+			complete_effect = {
+				add_manpower = 20000
+				custom_effect_tooltip = increase_kmt_unity_tiny_bit_tt
+				increase_unity_normal = yes
+				add_popularity = {
+					ideology = nationalist
+					popularity = 0.02
+				}
+			}
+			
+		}
+		
+		Invite_Yan_Xishan_into_Chiangs_Circle = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			icon = Phone
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = CHI_expand_advisory_groups
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 200
+			days_remove = 10
+			fire_only_once = yes
+			priority = 40
+			
+			remove_effect = {
+				
+				custom_effect_tooltip = increase_kmt_unity_tiny_bit_tt
+				increase_unity_normal = yes
+				country_event = KMT_Taiwan50s.46
+			}
+			
+		}
+		
+		Launch_Propaganda_Broadcasts_across_Mainland_China = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			icon = Lobbyism
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = CHI_launch_voice_of_free_china 
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 280
+			fire_only_once = no
+			priority = 1
+			
+			
+			target_trigger = {
+				FROM = { tag = PRC }
+			}
+
+			targets = { PRC }
+			
+			complete_effect = {
+					add_war_support = 0.05
+					add_manpower = 100
+					PRC = {
+						add_political_power = -50
+						add_stability = -0.05
+						add_war_support = -0.05
+						add_popularity = {
+							ideology = nationalist
+							popularity = 0.01
+						}
+					}
+					
+			}
+			
+		}
+		
+		Formally_Expell_Li_Zongren_as_VP = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } } 
+		
+			allowed = {always = no}
+			days_mission_timeout = 5
+			selectable_mission = yes
+			icon = Israel_Treaty
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = CHI_appoint_chen_cheng_vp
+			}
+			fire_only_once = no
+			
+			timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+				add_political_power = -200
+				add_stability = -0.10
+				add_war_support = -0.10
+				add_popularity = {
+					ideology = nationalist
+					popularity = -0.05
+				}
+			 }
+}
+			
+			complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+				add_stability = 0.03
+				add_command_power = 30
+			 }
+}
+		}
+
+
+}
+
+
+Sino_American_Relations_Taiwan_50s_category = {
+
+		propose_intervention_into_korea = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					has_country_flag = CHI_wants_to_join_korean_war
+					KOR = {
+						has_war_with = KPA
+					}
+				}
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				KOR = {
+					has_war_with = KPA
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 20
+		
+			
+			remove_effect = {
+				USA = {
+					country_event = CHI_KOR.1
+				}	
+			}
+			fire_only_once = yes
+		}
+
+		buy_american_rifles1 = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } has_global_flag = ROC_Taiwan}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_completed_focus = CHI_American_Arms }
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 20
+		
+			complete_effect = {
+				set_temp_variable = { money_to_gain = -1 }
+				add_money_with_tooltip_effect = yes
+			}	
+			
+			remove_effect = {
+				add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 8000
+				producer = USA
+				}
+			}
+			days_re_enable = 180 
+		}
+		
+		buy_american_support_equipment1 = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } has_global_flag = ROC_Taiwan}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_completed_focus = CHI_American_Arms }
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 20
+		
+			complete_effect = {
+				set_temp_variable = { money_to_gain = -2 }
+				add_money_with_tooltip_effect = yes
+			}	
+			
+			remove_effect = {
+				add_equipment_to_stockpile = {
+				  type = support_equipment
+				  amount = 1000
+				  producer = USA
+				}
+			}
+			days_re_enable = 180 
+		}
+		
+		buy_american_trucks1 = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } has_global_flag = ROC_Taiwan}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_completed_focus = CHI_American_Arms }
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 20
+		
+			complete_effect = {
+				set_temp_variable = { money_to_gain = -2 }
+				add_money_with_tooltip_effect = yes
+			}	
+			
+			remove_effect = {
+				add_equipment_to_stockpile = {
+				  type = motorized_equipment
+				  amount = 300
+				  producer = USA
+				}
+			}
+			days_re_enable = 180 
+		}
+
+		buy_american_artillery1 = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } has_global_flag = ROC_Taiwan}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_completed_focus = CHI_American_Arms }
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 150
+			days_remove = 30
+		
+			complete_effect = {
+				set_temp_variable = { money_to_gain = -3 }
+				add_money_with_tooltip_effect = yes
+			}	
+			
+			remove_effect = {
+				add_equipment_to_stockpile = {
+				  type = artillery_equipment
+				  amount = 600
+				  producer = USA
+				}
+				add_equipment_to_stockpile = {
+				  type = auto_cannon_equipment
+				  amount = 400
+				  producer = USA
+				} 
+				add_equipment_to_stockpile = {
+				  type = direct_fire_gun_equipment
+				  amount = 400
+				  producer = USA
+				} 
+			}
+			days_re_enable = 180 
+		}
+		
+		buy_american_planes1 = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } has_global_flag = ROC_Taiwan}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_completed_focus = CHI_Surplus_American_Aircraft}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 200
+			days_remove = 30
+		
+			complete_effect = {
+				set_temp_variable = { money_to_gain = -5 }
+				add_money_with_tooltip_effect = yes
+			}	
+			
+			remove_effect = {
+				add_equipment_to_stockpile = {
+				  type = fighter_equipment
+				  amount = 400
+				  producer = USA
+				}
+			}
+			days_re_enable = 180 
+		}
+		
+		buy_american_landing_ships = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } has_global_flag = ROC_Taiwan}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_completed_focus = CHI_Purchase_American_Destroyers}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 30
+		
+			complete_effect = {
+				set_temp_variable = { money_to_gain = -2 }
+				add_money_with_tooltip_effect = yes
+			}	
+			
+			remove_effect = {
+				add_equipment_to_stockpile = {
+				  type = convoy
+				  amount = 200
+				  producer = USA
+				}
+			}
+			days_re_enable = 180 
+		}
+		
+		bribe_american_officials = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } has_global_flag = ROC_Taiwan}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_completed_focus = CHI_indoctrinate_officiers}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 150
+			days_remove = 10
+		
+			complete_effect = {
+				set_temp_variable = { money_to_gain = -3 }
+				add_money_with_tooltip_effect = yes
+			}	
+			
+			remove_effect = {
+				custom_effect_tooltip = decrease_us_influence_on_taiwan_tt 
+				decrease_us_influence = yes
+				
+			}
+			days_re_enable = 120 
+		}
+		
+		grant_more_power_to_us_advisers = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } has_global_flag = ROC_Taiwan}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_completed_focus = CHI_empower_the_maag}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 10
+		
+			
+			remove_effect = {
+				custom_effect_tooltip = increase_us_influence_on_taiwan_tt
+				increase_us_influence = yes	
+				
+				
+			}
+			days_re_enable = 120 
+		}
+
+
+
+}
+
+Korean_War_Escalation_50s_Taiwan_category = {
+	
+
+		join_the_fray_alone_against_Korea = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_completed_focus = CHI_Korean_War_strike_the_communist_alliance}
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				NOT = {has_country_flag = CHI_Korean_Full_intervention}
+				NOT = {has_country_flag = CHI_Limited_Korean_Intervention}
+			}
+			fire_only_once = yes
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 15
+			complete_effect = {
+               set_country_flag = CHI_Limited_Korean_Intervention
+			}
+			
+			remove_effect = {
+				create_faction_from_template = { template = faction_template_generic name = "Anti-Communist Resistance Front" }
+					add_to_faction = KOR
+					add_to_war = {
+					targeted_alliance = KOR
+					enemy = KPA
+					hostility_reason = asked_to_join
+				}
+				news_event = CHI_KOR.4
+				custom_effect_tooltip = CHI_KOR_TT
+				
+			}
+			
+		}
+		
+		send_more_guns_to_south_korea = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_completed_focus = CHI_Korean_War_strike_the_communist_alliance}
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				KOR = {
+					has_war_with = KPA
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 25
+			days_remove = 20
+		
+			
+			remove_effect = {
+				KOR = {
+					add_manpower = 1000
+					add_equipment_to_stockpile = {
+					type = infantry_equipment_0
+					amount = 3000
+					producer = CHI
+					}
+				}	
+			}
+			days_re_enable = 90
+		}
+		
+		abandon_south_korea = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				CHI = { has_completed_focus = CHI_Korean_War_strike_the_communist_alliance}
+			}
+			fire_only_once = yes
+			available = { NOT = { has_global_flag = KRCW_active } 
+				NOT = {has_country_flag = CHI_Korean_Full_intervention} 
+				has_country_flag = CHI_Limited_Korean_Intervention
+				CHI = {
+					has_war_with = KPA
+				}
+				KOR = {
+					surrender_progress > 0.65
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 25
+			days_remove = 20
+		
+			
+			remove_effect = {
+				dismantle_faction = yes	
+				white_peace = KPA
+				white_peace = PRC
+				news_event = CHI_KOR.5
+				clr_country_flag = CHI_Korean_War_Escalation
+			}
+			
+		}
+
+
+}
+
+
+
+
+
+Chinese_Faction_Decisions = {
+
+	GXC_replace_Li_Zongren_as_governor = {
+		
+			icon = Phone
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					has_completed_focus = KMT_Replace_Untrustworthy_Governors
+					NOT = {
+						has_country_flag = GUX_INTEGRATED
+						has_country_flag = GUX_REBELLION
+					}
+				} 
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					custom_trigger_tooltip = {
+						tooltip = Guangxi_Loyal_Above_70
+						check_variable = {
+							GUX_Warlord_Loyalty > 0.69
+						}
+					}
+					custom_trigger_tooltip = {
+							tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+							NOT = {
+								check_variable = {
+									GUX_Warlord_Loyalty > 0.89
+								}
+							}
+						}
+					NOT = {
+							has_country_flag = GUX_INTEGRATED
+							has_country_flag = GUX_REBELLION
+					}
+				}
+			}
+			
+			cost = 100
+		
+			fire_only_once = yes
+			
+			remove_effect = {
+				custom_effect_tooltip = Guangxi_Bribe
+				custom_effect_tooltip = Governor_Changed_Guangxi_tt
+				set_country_flag = Li_Zongren_Replaced_as_Governor
+				add_to_variable = { var_warlord_loyalty_check = 1 }
+				add_to_variable = {
+					GUX_Warlord_Loyalty = 0.1
+				}
+			}
+			
+	}
+
+	HNN_replace_Ding_Delong_as_governor = {
+		
+			icon = Phone
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					has_completed_focus = KMT_Replace_Untrustworthy_Governors
+					NOT = {
+						has_country_flag = HUN_INTEGRATED
+						has_country_flag = HUN_REBELLION
+					}
+				} 
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					custom_trigger_tooltip = {
+						tooltip = Hunan_Loyal_Above_70
+						check_variable = {
+							HUN_Warlord_Loyalty > 0.69
+						}
+					}
+					custom_trigger_tooltip = {
+							tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+							NOT = {
+								check_variable = {
+									HUN_Warlord_Loyalty > 0.89
+								}
+							}
+					}
+					NOT = {
+							has_country_flag = HUN_INTEGRATED
+							has_country_flag = HUN_REBELLION
+					}
+				}
+			}
+			
+			cost = 100
+		
+			fire_only_once = yes
+			
+			remove_effect = {
+				custom_effect_tooltip = Hunan_Bribe
+				custom_effect_tooltip = Governor_Changed_Hunan_tt
+				set_country_flag = Ding_Delong_Replaced_as_Governor
+				add_to_variable = { var_warlord_loyalty_check = 1 }
+				add_to_variable = {
+					HUN_Warlord_Loyalty = 0.1
+				}
+			}
+			
+	}
+	
+	YUN_replace_Sun_Du_as_governor = {
+		
+			icon = Phone
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					has_completed_focus = KMT_Replace_Untrustworthy_Governors
+					NOT = {
+						has_country_flag = YUN_INTEGRATED
+						has_country_flag = YUN_REBELLION
+					}
+				} 
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					custom_trigger_tooltip = {
+						tooltip = Yunnan_Loyal_Above_70
+						check_variable = {
+							YUN_Warlord_Loyalty > 0.69
+						}
+					}
+					custom_trigger_tooltip = {
+							tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+							NOT = {
+								check_variable = {
+									YUN_Warlord_Loyalty > 0.89
+								}
+							}
+						}
+					NOT = {
+							has_country_flag = YUN_INTEGRATED
+							has_country_flag = YUN_REBELLION
+					}
+				}
+			}
+			
+			cost = 100
+		
+			fire_only_once = yes
+			
+			remove_effect = {
+				custom_effect_tooltip = Yunnan_Bribe
+				custom_effect_tooltip = Governor_Changed_Yunnan_tt
+				set_country_flag = Sun_Du_Replaced_as_Governor
+				add_to_variable = { var_warlord_loyalty_check = 1 }
+				add_to_variable = {
+					YUN_Warlord_Loyalty = 0.1
+				}
+			}
+			
+	}
+	
+	XIK_replace_Sun_Zhen_as_governor = {
+		
+			icon = Phone
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					has_completed_focus = KMT_Replace_Untrustworthy_Governors
+					NOT = {
+						has_country_flag = XIK_INTEGRATED
+						has_country_flag = XIK_REBELLION
+					}
+				} 
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					custom_trigger_tooltip = {
+						tooltip = Sichuan_Loyal_Above_70
+						check_variable = {
+							XIK_Warlord_Loyalty > 0.69
+						}
+					}
+					custom_trigger_tooltip = {
+							tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+							NOT = {
+								check_variable = {
+									XIK_Warlord_Loyalty > 0.89
+								}
+							}
+						}
+					NOT = {
+						has_country_flag = XIK_INTEGRATED
+						has_country_flag = XIK_REBELLION
+					}
+				}	
+			}
+			
+			cost = 100
+		
+			fire_only_once = yes
+			
+			remove_effect = {
+				custom_effect_tooltip = Xikang_Bribe
+				custom_effect_tooltip = Governor_Changed_Sichuan_tt
+				set_country_flag = Sun_Zhen_Replaced_as_Governor
+				add_to_variable = { var_warlord_loyalty_check = 1 }
+				add_to_variable = {
+					XIK_Warlord_Loyalty = 0.1
+				}
+			}
+			
+	}
+	
+	XSM_replace_Ma_Bufang_as_governor = {
+		
+			icon = Phone
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					has_completed_focus = KMT_Replace_Untrustworthy_Governors
+					NOT = {
+						has_country_flag = QMC_INTEGRATED
+						has_country_flag = QMC_REBELLION
+					}
+				} 
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					custom_trigger_tooltip = {
+						tooltip = Xibei_Loyal_Above_70
+						check_variable = {
+							QMC_Warlord_Loyalty > 0.69
+						}
+					}
+					custom_trigger_tooltip = {
+							tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+							NOT = {
+								check_variable = {
+									QMC_Warlord_Loyalty > 0.89
+								}
+							}
+						}
+					NOT = {
+							has_country_flag = QMC_INTEGRATED
+							has_country_flag = QMC_REBELLION
+					}
+				}
+			}
+			
+			cost = 100
+		
+			fire_only_once = yes
+			
+			remove_effect = {
+				custom_effect_tooltip = Qinghai_Ma_Bribe
+				custom_effect_tooltip = Governor_Changed_Xibei_tt
+				set_country_flag = Ma_Bufang_Replaced_as_Governor
+				add_to_variable = { var_warlord_loyalty_check = 1 }
+				add_to_variable = {
+					QMC_Warlord_Loyalty = 0.1
+				}
+			}
+			
+	}
+	
+	SHX_Retirement_of_Yan_Xishan_as_governor = {
+		
+			icon = Phone
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					has_completed_focus = KMT_Replace_Untrustworthy_Governors
+					NOT = {
+						has_country_flag = SHX_INTEGRATED
+						has_country_flag = SHX_REBELLION
+					}
+				} 
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					custom_trigger_tooltip = {
+						tooltip = Shanxi_Loyal_Above_70
+						check_variable = {
+							SHX_Warlord_Loyalty > 0.69
+						}
+					}
+					custom_trigger_tooltip = {
+						tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+						NOT = {
+							check_variable = {
+								SHX_Warlord_Loyalty > 0.89
+							}
+						}
+					}
+					NOT = {
+						has_country_flag = SHX_INTEGRATED
+						has_country_flag = SHX_REBELLION
+					}
+				}
+			}
+			
+			cost = 100
+		
+			fire_only_once = yes
+			
+			remove_effect = {
+				custom_effect_tooltip = Shanxi_Bribe
+				custom_effect_tooltip = Governor_Changed_Shanxi_tt
+				set_country_flag = Yan_Xishan_Replaced_as_Governor
+				add_to_variable = { var_warlord_loyalty_check = 1 }
+				add_to_variable = {
+					SHX_Warlord_Loyalty = 0.1
+				}
+			}
+			
+	}
+	
+ 	Offer_Concessions_to_the_Shanxi_Clique = {
+		icon = Hands_with_Paper
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				OR = {
+					has_country_flag = SHX_INTEGRATED
+					has_country_flag = SHX_REBELLION
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+				NOT = {
+					check_variable = {
+						SHX_Warlord_Loyalty > 0.89
+					}
+				}
+			}
+		}
+		highlight_states = {
+			highlight_state_targets = {state = 615} 
+			
+		}
+		allowed = {
+			tag = CHI
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		fire_only_once = no
+		days_re_enable = 365
+		fixed_random_seed = no
+		cost = 100
+		complete_effect = {
+			custom_effect_tooltip = Shanxi_Bribe
+			add_to_variable = { SHX_Warlord_Loyalty = 0.10 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+			add_to_variable = { refresh_CHI = 1 }
+		}
+	}
+
+
+	Offer_Concessions_to_the_Hunan_Clique = {
+		icon = Hands_with_Paper
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				OR = {
+					has_country_flag = HUN_INTEGRATED
+					has_country_flag = HUN_REBELLION
+				}
+			}
+		}
+		allowed = {
+			tag = CHI
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+				NOT = {
+					check_variable = {
+						HUN_Warlord_Loyalty > 0.89
+					}
+				}
+			}
+		}
+		highlight_states = {
+			highlight_state_targets = {state = 602 state = 1575} 
+			
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		fire_only_once = no
+		days_re_enable = 365
+		fixed_random_seed = no
+		cost = 100
+		complete_effect = {
+			custom_effect_tooltip = Hunan_Bribe
+			add_to_variable = { HUN_Warlord_Loyalty = 0.10 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+			add_to_variable = { refresh_CHI = 1 }
+		}
+	}
+
+	
+
+	
+
+	
+
+	Offer_Concessions_to_the_New_Guangxi_Clique = {
+		icon = Hands_with_Paper
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				OR = {
+					has_country_flag = GUX_INTEGRATED
+					has_country_flag = GUX_REBELLION
+				}
+			}
+		}
+		allowed = {
+			tag = CHI
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+				NOT = {
+					check_variable = {
+						GUX_Warlord_Loyalty > 0.89
+					}
+				}
+			}
+		}
+		highlight_states = {
+			highlight_state_targets = {state = 594 state = 2031 state = 2014} 
+			
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		fire_only_once = no
+		days_re_enable = 365
+		fixed_random_seed = no
+		cost = 100
+		complete_effect = {
+			custom_effect_tooltip = Guangxi_Bribe
+			add_to_variable = { GUX_Warlord_Loyalty = 0.10 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+			add_to_variable = { refresh_CHI = 1 }
+		}
+	}
+
+	Offer_Concessions_to_the_Yunnan_Clique = {
+		icon = Hands_with_Paper
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				OR = {
+					has_country_flag = YUN_INTEGRATED
+					has_country_flag = YUN_REBELLION
+				}
+			}
+		}
+		allowed = {
+			tag = CHI
+		}
+		highlight_states = {
+			highlight_state_targets = {state = 1326 state = 1988 state = 325} 
+			
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+				NOT = {
+					check_variable = {
+						YUN_Warlord_Loyalty > 0.89
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		fire_only_once = no
+		days_re_enable = 365
+		fixed_random_seed = no
+		cost = 100
+		complete_effect = {
+			custom_effect_tooltip = Yunnan_Bribe
+			add_to_variable = { YUN_Warlord_Loyalty = 0.10 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+			add_to_variable = { refresh_CHI = 1 }
+		}
+	}
+
+	Offer_Concessions_to_the_Xikang_Clique = {
+		icon = Hands_with_Paper
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				OR = {
+					has_country_flag = XIK_INTEGRATED
+					has_country_flag = XIK_REBELLION
+				}
+			}
+		}
+		allowed = {
+			tag = CHI
+		}
+		highlight_states = {
+			highlight_state_targets = {state = 1557 state = 1963 state = 1927 state = 1928 state = 1929 state = 1930 state = 1978 state = 605 state = 601 state = 2015} 
+			
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+				NOT = {
+					check_variable = {
+						XIK_Warlord_Loyalty > 0.89
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		fire_only_once = no
+		days_re_enable = 365
+		fixed_random_seed = no
+		cost = 100
+		complete_effect = {
+			custom_effect_tooltip = Xikang_Bribe
+			add_to_variable = { XIK_Warlord_Loyalty = 0.10 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+			add_to_variable = { refresh_CHI = 1 }
+		}
+	}
+
+	Offer_Concessions_to_the_Qinghai_Ma_Clique = {
+		icon = Hands_with_Paper
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				OR = {
+					has_country_flag = QMC_INTEGRATED
+					has_country_flag = QMC_REBELLION
+				}
+			}
+		}
+		allowed = {
+			tag = CHI
+		}
+		highlight_states = {
+			highlight_state_targets = {state = 1359 state = 1926 state = 604 state = 2033 state = 283 state = 1995 state = 1994 state = 1992 state = 1787 state = 1989 state = 2034 state = 1990 state = 1991} 
+			
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+				NOT = {
+					check_variable = {
+						QMC_Warlord_Loyalty > 0.89
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		fire_only_once = no
+		days_re_enable = 365
+		fixed_random_seed = no
+		cost = 100
+		complete_effect = {
+			custom_effect_tooltip = Qinghai_Ma_Bribe
+			add_to_variable = { QMC_Warlord_Loyalty = 0.10 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+			add_to_variable = { refresh_CHI = 1 }
+		}
+	}
+
+ 	Bribe_the_Shanxi_Clique = {
+		icon = Phone
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				OR = {
+					has_country_flag = SHX_INTEGRATED
+					has_country_flag = SHX_REBELLION
+				}
+			}
+		}
+		allowed = {
+			tag = CHI
+		}
+		highlight_states = {
+			highlight_state_targets = {state = 615} 
+			
+		}
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money25
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+				NOT = {
+					check_variable = {
+						SHX_Warlord_Loyalty > 0.89
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		fire_only_once = no
+		days_re_enable = 365
+		fixed_random_seed = no
+		cost = 0
+		complete_effect = {
+			set_temp_variable = { money_to_gain = -25 }
+			add_money_with_tooltip_effect = yes
+		}
+		remove_effect = {
+			custom_effect_tooltip = Shanxi_Bribe
+			add_to_variable = { SHX_Warlord_Loyalty = 0.10 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+			add_to_variable = { refresh_CHI = 1 }
+		}
+	}
+
+
+	Bribe_the_Hunan_Clique = {
+		icon = Phone
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				OR = {
+					has_country_flag = HUN_INTEGRATED
+					has_country_flag = HUN_REBELLION
+				}
+			}
+		}
+		allowed = {
+			tag = CHI
+		}
+		highlight_states = {
+			highlight_state_targets = {state = 602 state = 1575} 
+			
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+				NOT = {
+					check_variable = {
+						HUN_Warlord_Loyalty > 0.89
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money25
+		fire_only_once = no
+		days_re_enable = 365
+		fixed_random_seed = no
+		cost = 0
+		complete_effect = {
+			set_temp_variable = { money_to_gain = -25 }
+			add_money_with_tooltip_effect = yes
+		}
+		remove_effect = {
+			custom_effect_tooltip = Hunan_Bribe
+			add_to_variable = { HUN_Warlord_Loyalty = 0.10 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+			add_to_variable = { refresh_CHI = 1 }
+		}
+	}
+
+	Bribe_the_New_Guangxi_Clique = {
+		icon = Phone
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				OR = {
+					has_country_flag = GUX_INTEGRATED
+					has_country_flag = GUX_REBELLION
+				}
+			}
+		}
+		allowed = {
+			tag = CHI
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+				NOT = {
+					check_variable = {
+						GUX_Warlord_Loyalty > 0.89
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		highlight_states = {
+			highlight_state_targets = {state = 594 state = 2031 state = 2014} 
+			
+		}
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money25
+		fire_only_once = no
+		days_re_enable = 365
+		fixed_random_seed = no
+		cost = 0
+		complete_effect = {
+			set_temp_variable = { money_to_gain = -25 }
+			add_money_with_tooltip_effect = yes
+		}
+		remove_effect = {
+			custom_effect_tooltip = Guangxi_Bribe
+			add_to_variable = { GUX_Warlord_Loyalty = 0.10 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+			add_to_variable = { refresh_CHI = 1 }
+		}
+	}
+
+	Bribe_the_Yunnan_Clique = {
+		icon = Phone
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				OR = {
+					has_country_flag = YUN_INTEGRATED
+					has_country_flag = YUN_REBELLION
+				}
+			}
+		}
+		allowed = {
+			tag = CHI
+		}
+		highlight_states = {
+			highlight_state_targets = {state = 1326 state = 1988 state = 325} 
+		
+		}
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money25
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+				NOT = {
+					check_variable = {
+						YUN_Warlord_Loyalty > 0.89
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		fire_only_once = no
+		days_re_enable = 365
+		fixed_random_seed = no
+		cost = 0
+		complete_effect = {
+			set_temp_variable = { money_to_gain = -25 }
+			add_money_with_tooltip_effect = yes
+		}
+		remove_effect = {
+			custom_effect_tooltip = Yunnan_Bribe
+			add_to_variable = { YUN_Warlord_Loyalty = 0.10 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+			add_to_variable = { refresh_CHI = 1 }
+		}
+	}
+
+	Bribe_the_Xikang_Clique = {
+		icon = Phone
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				OR = {
+					has_country_flag = XIK_INTEGRATED
+					has_country_flag = XIK_REBELLION
+				}
+			}
+		}
+		allowed = {
+			tag = CHI
+		}
+		highlight_states = {
+			highlight_state_targets = {state = 1557 state = 1963 state = 1927 state = 1928 state = 1929 state = 1930 state = 1978 state = 605 state = 601 state = 2015} 
+			
+		}
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money25
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+				NOT = {
+					check_variable = {
+						XIK_Warlord_Loyalty > 0.89
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 80
+		}
+		fire_only_once = no
+		days_re_enable = 365
+		fixed_random_seed = no
+		cost = 0
+		complete_effect = {
+			set_temp_variable = { money_to_gain = -25 }
+			add_money_with_tooltip_effect = yes
+		}
+		complete_effect = {
+			custom_effect_tooltip = Xikang_Bribe
+			add_to_variable = { XIK_Warlord_Loyalty = 0.10 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+			add_to_variable = { refresh_CHI = 1 }
+		}
+	}
+
+	Bribe_the_Qinghai_Ma_Clique = {
+		icon = Phone
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				OR = {
+					has_country_flag = QMC_INTEGRATED
+					has_country_flag = QMC_REBELLION
+				}
+			}
+		}
+		allowed = {
+			tag = CHI
+		}
+		highlight_states = {
+			highlight_state_targets = {state = 1359 state = 1926 state = 604 state = 2033 state = 283 state = 1995 state = 1994 state = 1992 state = 1787 state = 1989 state = 2034 state = 1990 state = 1991} 
+			
+		}
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money25
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = KMT_50s_Mainland_Clique_Loyalty_Not_100_tt
+				NOT = {
+					check_variable = {
+						QMC_Warlord_Loyalty > 0.89
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		fire_only_once = no
+		days_re_enable = 365
+		fixed_random_seed = no
+		cost = 0
+		complete_effect = {
+			set_temp_variable = { money_to_gain = -25 }
+			add_money_with_tooltip_effect = yes
+		}
+		remove_effect = {
+			custom_effect_tooltip = Qinghai_Ma_Bribe
+			add_to_variable = { QMC_Warlord_Loyalty = 0.10 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+			add_to_variable = { refresh_CHI = 1 }
+		}
+	}
+
+	
+
+	#Revolts
+	New_Guangxi_Clique_Revolt = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+		allowed = {
+			tag = CHI
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { GUX_Warlord_Loyalty > 0.25 }
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { GUX_Warlord_Loyalty < 0.26 }
+			NOT = {
+				has_country_flag = GUX_INTEGRATED
+				has_country_flag = GUX_REBELLION
+			}
+		}
+		fire_only_once = no
+		selectable_mission = no
+		days_mission_timeout = 5
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			set_country_flag = GUX_REBELLION
+			news_event = ROC_CLIQUE.3
+			hidden_effect = {
+				GXC = {
+					create_country_leader = {
+						name = "Li Zongren"
+						picture = "Li_Zongren_60s.dds"
+						ideology = military_junta
+						desc = POLITICS_ZONGREN_UPRISING_DESC
+						traits = { Hero_of_the_Second_Sino_Japanese_War }
+					}
+					
+					transfer_state = 2014
+					transfer_state = 594
+					transfer_state = 2031
+		
+					add_state_core = 594
+					add_state_core = 2031
+					add_state_core = 2014
+
+					on_independence_run = yes
+				}
+				CHI_li_zongren = {
+					retire = yes
+				}
+				CHI_bai_chongxi = {
+					retire = yes
+				}
+				CHI = {
+					transfer_units_fraction= {
+						target = GXC
+						size = 0.5
+						stockpile_ratio = 0.5
+						army_ratio = 0.2
+						navy_ratio = 0
+						air_ratio = 0.2
+						keep_unit_leaders_trigger = {
+							always = yes
+						}
+					}
+				}
+			}
+			CHI = {
+				declare_war_on = { target = GXC type = annex_everything } 
+				add_stability = -0.15
+				add_war_support = -0.15
+			}
+			add_to_variable = { refresh_CHI = 1 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+		 }
+}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	Hunan_Clique_Revolt = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+		allowed = {
+			tag = CHI
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { HUN_Warlord_Loyalty > 0.25 }
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { HUN_Warlord_Loyalty < 0.26 }
+			NOT = {
+				has_country_flag = HUN_INTEGRATED
+				has_country_flag = HUN_REBELLION
+			}
+		}
+		fire_only_once = no
+		selectable_mission = no
+		days_mission_timeout = 5
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			set_country_flag = HUN_REBELLION
+			news_event = ROC_CLIQUE.1
+			hidden_effect = {
+				HNN = {
+					create_country_leader = {
+						name = "Ding Delong"
+						picture = "Ding_Delong.dds"
+						ideology = military_junta
+						desc = POLITICS_DING_DELONG_UPRISING_DESC
+					}
+					transfer_state = 602
+					transfer_state = 1575
+					add_state_core = 602
+					add_state_core = 1575
+					on_independence_run = yes
+					
+				}
+				CHI_ding_delong = {
+					retire = yes
+				}
+				CHI = {
+					transfer_units_fraction= {
+						target = HNN
+						size = 0.3
+						stockpile_ratio = 0.3
+						army_ratio = 0.2
+						navy_ratio = 0
+						air_ratio = 0.2
+						keep_unit_leaders_trigger = {
+							always = yes
+						}
+					}
+				}
+			}	
+			CHI = {
+				declare_war_on = { target = HNN type = annex_everything } 
+				add_stability = -0.15
+				add_war_support = -0.15
+			}
+			add_to_variable = { refresh_CHI = 1 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+		 }
+}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	Xikang_Clique_Revolt = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+		allowed = {
+			tag = CHI
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { XIK_Warlord_Loyalty > 0.25 }
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { XIK_Warlord_Loyalty < 0.26 }
+			NOT = {
+				has_country_flag = XIK_INTEGRATED
+				has_country_flag = XIK_REBELLION
+			}
+		}
+		fire_only_once = no
+		selectable_mission = no
+		days_mission_timeout = 5
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			set_country_flag = XIK_REBELLION
+			news_event = ROC_CLIQUE.6
+			hidden_effect = {
+				SZE = {
+					create_country_leader = {
+						name = "Sun Zhen"
+						picture = "Sun_Zhen.dds"
+						ideology = military_junta
+						desc = POLITICS_SUN_ZHEN_UPRISING_DESC
+					}
+					
+					transfer_state = 1557 
+					transfer_state = 1963 
+					transfer_state = 1927 
+					transfer_state = 1928 
+					transfer_state = 1929 
+					transfer_state = 1930 
+					transfer_state = 1978 
+					transfer_state = 605 
+					transfer_state = 601 
+					transfer_state = 2015
+					add_core_state = 1557 
+					add_core_state = 1963 
+					add_core_state = 1927 
+					add_core_state = 1928 
+					add_core_state = 1929 
+					add_core_state = 1930 
+					add_core_state = 1978 
+					add_core_state = 605 
+					add_core_state = 601 
+					add_core_state = 2015
+
+					on_independence_run = yes
+
+				}
+				CHI_sun_zhen = {
+					retire = yes
+				}
+				
+				CHI = {
+					transfer_units_fraction= {
+						target = SZE
+						size = 0.5
+						stockpile_ratio = 0.5
+						army_ratio = 0.2
+						navy_ratio = 0
+						air_ratio = 0.2
+						keep_unit_leaders_trigger = {
+							always = yes
+						}
+					}
+				}
+			}
+			CHI = {
+				declare_war_on = { target = SZE type = annex_everything } 
+				add_stability = -0.15
+				add_war_support = -0.15
+			}
+			
+			add_to_variable = { refresh_CHI = 1 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+		 }
+}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	Yunnan_Clique_Revolt = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+		allowed = {
+			tag = CHI
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { YUN_Warlord_Loyalty > 0.25 }
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { YUN_Warlord_Loyalty < 0.26 }
+			NOT = {
+				has_country_flag = YUN_INTEGRATED
+				has_country_flag = YUN_REBELLION
+			}
+		}
+		fire_only_once = no
+		selectable_mission = no
+		days_mission_timeout = 5
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+		 }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			set_country_flag = YUN_REBELLION
+			news_event = ROC_CLIQUE.7
+			hidden_effect = {
+				YUN = {
+					create_country_leader = {
+						name = "Sun Du"
+						picture = "Sun_Du_Army.dds"
+						ideology = military_junta
+						desc = POLITICS_SUN_DU_UPRISING_DESC
+					}
+					transfer_state = 325
+					add_state_core = 325
+					
+					add_state_core = 1326
+					transfer_state = 1326
+					
+					add_state_core = 1988
+					transfer_state = 1988
+					
+					on_independence_run = yes
+				}
+				
+				CHI_sun_du = {
+					retire = yes
+				}
+					
+			
+				CHI = {
+					transfer_units_fraction= {
+						target = YUN
+						size = 0.3
+						stockpile_ratio = 0.3
+						army_ratio = 0.2
+						navy_ratio = 0
+						air_ratio = 0.2
+						keep_unit_leaders_trigger = {
+							always = yes
+						}
+					}
+				}
+			}	
+			CHI = {
+				declare_war_on = { target = YUN type = annex_everything } 
+				add_stability = -0.15
+				add_war_support = -0.15
+			}
+			
+			add_to_variable = { refresh_CHI = 1 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+		 }
+}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	Shanxi_Clique_Revolt = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+		allowed = {
+			tag = CHI
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { SHX_Warlord_Loyalty > 0.25 }
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { SHX_Warlord_Loyalty < 0.26 }
+			NOT = {
+				has_country_flag = SHX_INTEGRATED
+				has_country_flag = SHX_REBELLION
+			}
+		}
+		fire_only_once = no
+		selectable_mission = no
+		days_mission_timeout = 5
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+		 }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			set_country_flag = SHX_REBELLION
+			news_event = ROC_CLIQUE.5
+			hidden_effect = {
+				SHX = {
+					create_country_leader = {
+						name = "Yan Xishan"
+						picture = "Yan_Xishan.dds"
+						ideology = military_junta
+						desc = POLITICS_YAN_XISHAN_UPRISING_DESC
+					}
+
+					transfer_state = 615
+					add_state_core = 615
+
+					
+				}
+				CHI_yan_xishan = {
+					retire = yes
+				}
+				CHI = {
+					transfer_units_fraction= {
+						target = SHX
+						size = 0.3
+						stockpile_ratio = 0.3
+						army_ratio = 0.15
+						navy_ratio = 0
+						air_ratio = 0.2
+						keep_unit_leaders_trigger = {
+							always = yes
+						}
+					}
+				}
+			}	
+			CHI = {
+				declare_war_on = { target = SHX type = annex_everything } 
+				add_stability = -0.15
+				add_war_support = -0.15
+			}
+		 }
+}	
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	Qinghai_Ma_Clique_Revolt = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+		allowed = {
+			tag = CHI
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { QMC_Warlord_Loyalty > 0.25 }
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { QMC_Warlord_Loyalty < 0.26 }
+			NOT = {
+				has_country_flag = QMC_INTEGRATED
+				has_country_flag = QMC_REBELLION
+			}
+		}
+		fire_only_once = no
+		selectable_mission = no
+		days_mission_timeout = 5
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+		 }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			set_country_flag = QMC_REBELLION
+			news_event = ROC_CLIQUE.4
+			hidden_effect = {
+				XSM = {
+					create_country_leader = {
+						name = "Ma Bufang"
+						picture = "Ma_Bufang_army.dds"
+						ideology = military_junta
+						desc = POLITICS_BUFANG_UPRISING_DESC
+					}
+					set_cosmetic_tag = QINGHAI_MA
+					add_core_state = 1359 
+					add_core_state = 1926 
+					add_core_state = 604 
+					add_core_state = 2033 
+					add_core_state = 283 
+					add_core_state = 1995 
+					add_core_state = 1994 
+					add_core_state = 1992 
+					add_core_state = 1787 
+					add_core_state = 1989 
+					add_core_state = 2034 
+					add_core_state = 1990 
+					add_core_state = 1991
+					
+					transfer_state = 1359 
+					transfer_state = 1926 
+					transfer_state = 604 
+					transfer_state = 2033 
+					transfer_state = 283 
+					transfer_state = 1995 
+					transfer_state = 1994 
+					transfer_state = 1992 
+					transfer_state = 1787 
+					transfer_state = 1989 
+					transfer_state = 2034 
+					transfer_state = 1990 
+					transfer_state = 1991
+
+				}
+				CHI_Ma_Bufang = {
+					retire = yes
+				}
+				CHI_Ma_Hongkui = {
+					retire = yes
+				}
+				CHI = {
+					transfer_units_fraction= {
+						target = XSM
+						size = 0.5
+						stockpile_ratio = 0.5
+						army_ratio = 0.2
+						navy_ratio = 0
+						air_ratio = 0.2
+						keep_unit_leaders_trigger = {
+							always = yes
+						}
+					}
+				}
+			}
+			CHI = {
+				declare_war_on = { target = XSM type = annex_everything } 
+				add_stability = -0.15
+				add_war_support = -0.15
+			}
+			
+			
+			
+			add_to_variable = { refresh_CHI = 1 }
+			add_to_variable = { var_warlord_loyalty_check = 1 }
+		 }
+}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+ 	
+}
+
+KMT_Military_Reforms_category = {
+
+	KMT_Reform_the_Justice_Investigation_Bureau = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } has_completed_focus = KMT_reform_the_ministry_of_national_defense}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = {
+					has_completed_focus = KMT_clamp_down_on_army_nepotism
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 30
+			fire_only_once = yes 
+			
+			remove_effect = {
+				country_event = KMT_MIL.2
+				
+				set_global_flag = KMT_reformed_justice_investigation_bureau
+			}
+	}
+
+	KMT_Launch_Investigations_into_the-Army = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_clamp_down_on_army_nepotism
+				has_global_flag = KMT_reformed_justice_investigation_bureau
+			}
+			
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 30
+			fire_only_once = yes 
+	
+			remove_effect = {
+				country_event = KMT_MIL.3
+				remove_ideas = CHI_disorganized_military2
+				KMT_50s_Mainland_Decrease_Warlord_Loyalty_Tiny = yes
+				add_manpower = -25000
+			}
+			
+	}
+
+	KMT_Mass_Purges = {
+		
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_clamp_down_on_army_nepotism
+				has_country_flag = KMT_Mil_purge
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = {
+					has_completed_focus = KMT_clamp_down_on_army_nepotism
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 30
+			fire_only_once = yes 
+			
+			remove_effect = {
+				country_event = KMT_MIL.5
+				
+				KMT_50s_Mainland_Decrease_Warlord_Loyalty_Tiny = yes
+				
+				add_manpower = -25000
+				
+				clr_country_flag = KMT_Mil_purge
+				custom_effect_tooltip = nepotism_over_tt
+				set_country_flag = KMT_nepotism_over
+			}
+	}
+
+	KMT_Send_Suspect_Officers_to_the_Frontier = {
+
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_clamp_down_on_army_nepotism
+				has_country_flag = KMT_Mil_exile
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = {
+					has_completed_focus = KMT_clamp_down_on_army_nepotism
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 30
+			fire_only_once = yes 
+			
+			remove_effect = {
+				country_event = KMT_MIL.4
+			
+			clr_country_flag = KMT_Mil_exile
+			custom_effect_tooltip = nepotism_over_tt
+			set_country_flag = KMT_nepotism_over
+			}
+	}
+
+	KMT_training_brigades = {
+
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_sixty_divisions_plan
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = {
+					has_completed_focus = KMT_sixty_divisions_plan
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 30
+			fire_only_once = yes 
+			
+			remove_effect = {
+				country_event = KMT_MIL.8
+				set_country_flag = KMT_trained_brigades
+			}
+			
+	}
+
+	KMT_adopt_new_army_structure = {
+
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_sixty_divisions_plan
+				has_country_flag = KMT_trained_brigades
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = {
+					has_completed_focus = KMT_sixty_divisions_plan
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 30
+			fire_only_once = yes 
+			
+			remove_effect = {
+				country_event = KMT_MIL.9
+				clr_country_flag = KMT_trained_brigades
+				set_country_flag = KMT_adopted_army_structure
+				
+			}
+	}
+
+	KMT_conclude_the_sixty_divisions_plan = {
+
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_sixty_divisions_plan
+				has_country_flag = KMT_adopted_army_structure
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = {
+					has_completed_focus = KMT_sixty_divisions_plan
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 30
+			fire_only_once = yes 
+			
+			remove_effect = {
+				country_event = KMT_MIL.10
+				clr_country_flag = KMT_adopted_army_structure
+				
+			}
+	}
+
+	KMT_acquire_US_advisors = {
+
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_ninety_divisions_plan
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = {
+					has_completed_focus = KMT_ninety_divisions_plan
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 30
+			fire_only_once = yes 
+			
+			remove_effect = {
+				country_event = KMT_MIL.11
+				set_country_flag = KMT_acquired_US_advisors
+			}
+	}
+
+	KMT_reform_logistical_system = {
+
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_ninety_divisions_plan
+				has_country_flag = KMT_acquired_US_advisors
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = {
+					has_completed_focus = KMT_ninety_divisions_plan
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 30
+			fire_only_once = yes 
+			
+			remove_effect = {
+				country_event = KMT_MIL.12
+				clr_country_flag = KMT_acquired_US_advisors
+				set_country_flag = KMT_reformed_logistics
+			}
+	}
+
+	KMT_devise_new_methods_for_sustaining_army_structure = {
+
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_ninety_divisions_plan
+				has_country_flag = KMT_reformed_logistics
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = {
+					has_completed_focus = KMT_ninety_divisions_plan
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 30
+			fire_only_once = yes 
+			
+			remove_effect = {
+				country_event = KMT_MIL.13
+				clr_country_flag = KMT_reformed_logistics
+				set_country_flag = KMT_devised_new_methods
+			}
+	}
+
+	KMT_conclude_the_ninety_divisions_plan = {
+
+			allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_ninety_divisions_plan
+				has_country_flag = KMT_devised_new_methods
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				CHI = {
+					has_completed_focus = KMT_ninety_divisions_plan
+				}
+			}
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 100
+			days_remove = 30
+			fire_only_once = yes 
+			
+			remove_effect = {
+				country_event = KMT_MIL.14
+				clr_country_flag = KMT_devised_new_methods
+				set_country_flag = KMT_concluded_ninety_divisions
+			}
+	}
+}
+
+KMT_Shanghai_beating_tigers_category = {
+	
+	send_ching_kuo_to_shanghai = {
+	allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_send_ching_kuo_to_shanghai
+			}
+	available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = KMT_send_ching_kuo_to_shanghai
+			}
+			fire_only_once = yes
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 0
+			
+			remove_effect = {
+			
+				set_country_flag = beat_tigers
+				country_event = KMT_Shanghai.1
+			}
+		
+	}
+
+	start_beating_the_tigers = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+	allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_country_flag = beat_tigers
+			}
+			fire_only_once = yes
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 20
+			
+			remove_effect = {
+				country_event = KMT_Shanghai.2
+			}
+		
+	}
+
+	relaunch_mass_movements_in_shanghai = {
+	allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_country_flag = beat_tigers
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				NOT = { has_country_flag = CHI_Shanghai_Reform_in_Progress }
+			}
+			fire_only_once = yes
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 20
+			
+			complete_effect = {
+				set_country_flag = CHI_Shanghai_Reform_in_Progress
+			}
+			
+			remove_effect = {
+				clr_country_flag = CHI_Shanghai_Reform_in_Progress
+				country_event = KMT_Shanghai.3
+				add_war_support = 0.01
+			}
+		
+	}
+
+	lobby_support_from_government = {
+	allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_country_flag = beat_tigers
+			}
+			fire_only_once = yes
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 20
+			
+			available = { NOT = { has_global_flag = KRCW_active } 
+				NOT = { has_country_flag = CHI_Shanghai_Reform_in_Progress }
+			}
+		
+			complete_effect = {set_country_flag = CHI_Shanghai_Reform_in_Progress}
+			
+			remove_effect = {
+				clr_country_flag = CHI_Shanghai_Reform_in_Progress
+				country_event = KMT_Shanghai.4
+			}
+		
+	}
+
+	rearrest_green_gang_members = {
+			allowed = {
+				tag = CHI
+			}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_country_flag = beat_tigers
+			}
+			available = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					NOT = { has_country_flag = CHI_Shanghai_Reform_in_Progress }
+					has_completed_focus = KMT_Crush_Secret_Societies
+				}
+			}
+			
+			fire_only_once = yes
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 20
+		
+			
+			complete_effect = {
+				set_country_flag = CHI_Shanghai_Reform_in_Progress
+				613 = {
+					add_manpower = -20000
+				}
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_0
+					amount = -9000
+					producer = CHI
+				}
+			}
+			
+			remove_effect = {
+				clr_country_flag = CHI_Shanghai_Reform_in_Progress
+				country_event = KMT_Shanghai.5
+			}
+		
+	}
+
+	outline_various_classes_in_Shanghai = {
+	allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_country_flag = beat_tigers
+			}
+			fire_only_once = yes
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 20
+			
+			available = { NOT = { has_global_flag = KRCW_active } 
+				NOT = { has_country_flag = CHI_Shanghai_Reform_in_Progress }
+			}
+			
+			complete_effect = {
+			
+				add_manpower = -7000
+				add_command_power = -50
+				set_country_flag = CHI_Shanghai_Reform_in_Progress
+			}
+			
+			remove_effect = {
+				clr_country_flag = CHI_Shanghai_Reform_in_Progress
+				set_country_flag = Target_Upper_Classes_Shanghai_Beating_Tigers
+			}
+		
+	}
+
+	attack_upperclass_businessmen = {
+	allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_country_flag = beat_tigers
+			}
+			
+			fire_only_once = yes
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 20
+			
+			available = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					NOT = { has_country_flag = CHI_Shanghai_Reform_in_Progress }
+					has_country_flag = Target_Upper_Classes_Shanghai_Beating_Tigers
+				}
+			}
+			
+			complete_effect = {
+				set_country_flag = CHI_Shanghai_Reform_in_Progress
+				clr_country_flag = Target_Upper_Classes_Shanghai_Beating_Tigers
+			}
+			
+			remove_effect = {
+				clr_country_flag = CHI_Shanghai_Reform_in_Progress
+				set_country_flag = Target_Middle_Classes_Shanghai_Beating_Tigers
+				country_event = KMT_Shanghai.6
+			}
+		
+	}
+
+	attack_middleclass_businessmen = {
+	allowed = {tag = CHI}
+			visible = { NOT = { has_global_flag = KRCW_active } 
+				has_country_flag = beat_tigers
+			}
+			fire_only_once = yes
+			activation = { NOT = { has_global_flag = KRCW_active }  always = yes }
+			cost = 50
+			days_remove = 20
+			
+			available = { NOT = { has_global_flag = KRCW_active } 
+				AND = {
+					NOT = { has_country_flag = CHI_Shanghai_Reform_in_Progress }
+					has_country_flag = Target_Middle_Classes_Shanghai_Beating_Tigers
+				}
+			}
+			
+			complete_effect = {
+				set_country_flag = CHI_Shanghai_Reform_in_Progress
+				clr_country_flag = Target_Middle_Classes_Shanghai_Beating_Tigers
+			}
+			
+			remove_effect = {
+				clr_country_flag = CHI_Shanghai_Reform_in_Progress
+				country_event = KMT_Shanghai.7
+			}
+		
+	}
+
+	conclude_the_reforms_in_shanghai = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	
+			allowed = {
+				AND = {		
+					tag = CHI
+				}
+			}
+			fire_only_once = yes
+			days_mission_timeout = 180
+
+			available = { NOT = { has_global_flag = KRCW_active } 
+				
+			}
+			
+			activation = { NOT = { has_global_flag = KRCW_active } 
+				always = no
+			}
+
+			complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+				
+			 }
+} 
+
+			timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+				if = {
+					limit = {
+						check_variable = {Shanghai_Beating_Tigers_Reform_var < 70}
+					}
+					country_event = KMT_Shanghai.9	
+				}
+				else = {
+					country_event = KMT_Shanghai.8
+				}
+				
+			 }
+}
+		
+	}
+}
+	
+
+
+education_reform_category = {
+	centralize_control_of_schools = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+		allowed = {tag = CHI}
+		fire_only_once = yes
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = KMT_tackle_national_illiteracy_problem
+		}
+
+		cost = 250
+		days_remove = 80
+		priority = 10
+			
+		remove_effect = {
+			set_country_flag = KMT_centralized_schools
+			add_command_power = -50
+			add_war_support = -0.05
+			
+		}
+			
+	}
+
+	private_schooling_in_china = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+		allowed = {tag = CHI}
+		fire_only_once = yes
+		available = { NOT = { has_global_flag = KRCW_active }  has_country_flag = KMT_centralized_schools}
+
+		cost = 50
+		days_remove = 10
+		
+			
+		remove_effect = {
+			country_event = KMT_50s_Mainland.23
+		}
+			
+	}
+	
+	Enforce_Mandarin_Only_Education = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			icon = generic_research			
+			available = { NOT = { has_global_flag = KRCW_active }  
+				AND = {
+					has_country_flag = KMT_centralized_schools
+					has_completed_focus = KMT_Launch_Sinicization_Campaign
+				}
+			}			
+			cost = 100			
+			fire_only_once = yes
+			days_remove = 200
+			priority = 1			
+			complete_effect = {
+				if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = increase_urban_crisis_penalty_small_TT
+					increase_urban_crisis_penalty_tiny = yes
+				}				
+			}
+			remove_effect = {
+				if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = decrease_urban_crisis_penalty_big_TT
+					decrease_urban_crisis_penalty_bigger = yes
+				}
+			}			
+	}
+
+	compulsory_education_in_china = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+		allowed = {tag = CHI}
+		fire_only_once = yes
+		available = { NOT = { has_global_flag = KRCW_active }  has_country_flag = KMT_centralized_schools}
+		
+		cost = 50
+		days_remove = 10
+		
+			
+		remove_effect = {
+			country_event = KMT_50s_Mainland.25
+		}
+			
+	}
+
+	sanminzhuyi_course = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+		allowed = {tag = CHI}
+		fire_only_once = yes
+		available = { NOT = { has_global_flag = KRCW_active }  
+			AND = {
+				has_country_flag = KMT_centralized_schools
+				has_completed_focus = KMT_reopen_sun_yat_sen_university
+			}
+		}
+		
+		cost = 50
+		days_remove = 10
+		
+			
+		remove_effect = {
+			country_event = KMT_50s_Mainland.26
+		}
+			
+	}
+	reverse_the_brain_drain = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		
+			allowed = {tag = CHI}
+			
+			available = { NOT = { has_global_flag = KRCW_active }  
+				AND = {
+					has_country_flag = KMT_centralized_schools
+					has_completed_focus = KMT_American_Cooperation
+				}
+			}
+			fire_only_once = yes
+			
+			
+			cost = 50
+			days_remove = 20
+			remove_effect = {
+			custom_effect_tooltip = reverse_the_brain_drain_tt
+			KMT_decrease_illiteracy_rate = yes
+			custom_effect_tooltip = KMT_Decrease_Mainland_Education_Debuffs
+			}
+	}
+}
+
+
+
+
+
+

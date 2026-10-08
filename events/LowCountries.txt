@@ -1,0 +1,175 @@
+﻿# KRCW (build/patch_residue.py): 4 OTL events dropped while KRCW_active
+add_namespace = northseaflood
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = northseaflood.1
+ 	immediate = { }
+	title = northseaflood.1.t2
+	desc = northseaflood.1.d
+	picture = GFX_northseafloodlarge
+	major = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = northseaflood.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = northseaflood.2
+ 	immediate = { }
+	title = northseaflood.2.t2
+	desc = northseaflood.2.d
+	picture = GFX_northseafloodsmall
+    fire_only_once = yes
+    immediate = {
+        add_timed_idea = {
+            idea = idea_BEL_North_Sea_Flood_Damage
+            days = 200
+        }
+        35 = {
+            damage_building = {
+                type = infrastructure
+                damage = 3
+            }
+            damage_building = {
+                type = state_infrastructure
+                damage = 3
+            }
+            damage_building = {
+                type = agri_industrial_complex
+                damage = 3
+            }
+        }
+        1506 = {
+            damage_building = {
+                type = infrastructure
+                damage = 3
+            }
+            damage_building = {
+                type = state_infrastructure
+                damage = 3
+            }
+        }
+        7 = {
+            damage_building = {
+                type = infrastructure
+                damage = 1
+            }
+        }
+    }
+	is_triggered_only = yes
+
+
+	option = {
+		name = northseaflood.2.a2
+        news_event = northseaflood.1
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = northseaflood.3
+ 	immediate = { }
+	title = northseaflood.3.t2
+	desc = northseaflood.3.d
+	picture = GFX_northseafloodsmall
+    fire_only_once = yes
+    immediate = {
+        127 = {
+            damage_building = {
+                type = infrastructure
+                damage = 1
+            }
+        }
+        125 = {
+            damage_building = {
+                type = infrastructure
+                damage = 2
+            }
+            damage_building = {
+                type = state_infrastructure
+                damage = 1
+            }
+            damage_building = {
+                type = agri_industrial_complex
+                damage = 1
+            }
+        }
+        129 = {
+            damage_building = {
+                type = infrastructure
+                damage = 1
+            }
+            damage_building = {
+                type = state_infrastructure
+                damage = 1
+            }
+        }
+        130 = {
+            damage_building = {
+                type = infrastructure
+                damage = 1
+            }
+        }
+        131 = {
+            damage_building = {
+                type = infrastructure
+                damage = 1
+            }
+        }
+        121 = {
+            damage_building = {
+                type = infrastructure
+                damage = 1
+            }
+        }
+    }
+	is_triggered_only = yes
+
+
+	option = {
+		name = northseaflood.3.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = northseaflood.4
+ 	immediate = { }
+	title = northseaflood.4.t2
+	desc = northseaflood.4.d
+	picture = GFX_northseafloodsmall
+    fire_only_once = yes
+    immediate = {
+        set_country_flag = BEL_north_sea_flood_flag
+        add_timed_idea = {
+            idea = idea_BEL_North_Sea_Flood_Damage
+            days = 200
+        }
+        958 = {
+            damage_building = {
+                type = infrastructure
+                damage = 1
+            }
+            damage_building = {
+                type = state_infrastructure
+                damage = 1
+            }
+        }
+        1507 = {
+            damage_building = {
+                type = infrastructure
+                damage = 1
+            }
+        }
+    }
+	is_triggered_only = yes
+
+	option = {
+		name = northseaflood.4.a2
+	}
+	option = {
+		name = northseaflood.4.b2
+	}
+}

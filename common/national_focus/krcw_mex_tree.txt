@@ -1,0 +1,645 @@
+# krcw: paced
+# krcw: x-coords doubled for icon clearance
+focus_tree = {
+	id = krcw_mex_tree
+	continuous_focus_position = { x = 50 y = 1100 }
+	country = {
+		factor = 0
+		modifier = { add = 5000 tag = MEX }
+	}
+	default = no
+	reset_on_civilwar = no
+	focus = {
+		id = krcw_mex_the_corridor
+		icon = GFX_focus_generic_railroad
+		x = 16
+		y = 0
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_stability = 0.02
+			# reward_fill.py
+			random_owned_controlled_state = { limit = { is_core_of = ROOT NOT = { is_capital = yes } } add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			random_owned_controlled_state = { limit = { is_core_of = ROOT NOT = { is_capital = yes } } add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+		}
+	}
+	focus = {
+		id = krcw_mex_tampico_docks
+		icon = GFX_focus_generic_merchant_fleet
+		x = 12
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_mex_the_corridor }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			479 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			} }
+			479 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_mex_monterrey_steel
+		icon = GFX_focus_generic_steel_mill
+		x = 16
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_mex_the_corridor }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			876 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			480 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_mex_pemex_oil
+		icon = GFX_focus_generic_coal_mining
+		x = 20
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_mex_the_corridor }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			477 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_mex_mexico_city_works
+		icon = GFX_focus_generic_industry_2
+		x = 16
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_mex_tampico_docks focus = krcw_mex_monterrey_steel focus = krcw_mex_pemex_oil }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			277 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_mex_accord_arsenal
+		icon = GFX_focus_generic_license_production
+		x = 14
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_mex_mexico_city_works }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			277 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_mex_arms bonus = 0.5 uses = 1 category = infantry_weapons }
+		}
+	}
+	focus = {
+		id = krcw_mex_green_revolution
+		icon = GFX_focus_generic_modernizing_agriculture
+		x = 18
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_mex_mexico_city_works }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.04
+			1545 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_mex_the_camacho_machine
+		icon = GFX_focus_generic_improve_the_administration
+		x = 4
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_mex_the_corridor }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			# reward_fill.py
+			add_ideas = krcw_fill_mex_state_committees
+		}
+	}
+	focus = {
+		id = krcw_mex_ejido_question
+		icon = GFX_focus_generic_land_redistribution
+		x = 2
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_mex_the_camacho_machine }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = -0.02
+			add_political_power = 50
+			# reward_fill.py
+			add_ideas = krcw_fill_mex_land_registry
+		}
+	}
+	focus = {
+		id = krcw_mex_hard_hand
+		icon = GFX_focus_generic_secret_service_agency
+		x = 2
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_mex_ejido_question }
+		mutually_exclusive = { focus = krcw_mex_cardenas_returns }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.03
+			clr_country_flag = krcw_mex_left_turn
+			add_popularity = { ideology = trotskyism popularity = -0.05 }
+		}
+	}
+	focus = {
+		id = krcw_mex_cardenas_returns
+		icon = GFX_focus_generic_workers_and_farmers_rise
+		x = 6
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_mex_ejido_question }
+		mutually_exclusive = { focus = krcw_mex_hard_hand }
+		available = {
+			OR = { has_country_flag = krcw_mex_left_turn has_stability < 0.35 krcw_route_free = yes }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 3
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			set_country_flag = krcw_mex_left_turn
+			add_popularity = { ideology = socialist popularity = 0.1 }
+			add_stability = 0.05
+			add_political_power = -50
+		}
+	}
+	focus = {
+		id = krcw_mex_the_long_border
+		icon = GFX_focus_generic_home_defense
+		x = 10
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_mex_hard_hand focus = krcw_mex_cardenas_returns }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_war_support = 0.03
+			add_tech_bonus = { name = krcw_mex_land bonus = 0.5 uses = 1 category = infantry_weapons }
+		}
+	}
+	focus = {
+		id = krcw_mex_moscow_friendship
+		icon = GFX_goal_generic_major_alliance
+		x = 26
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_mex_the_corridor }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_us_accord_partner } } }
+		}
+	}
+	focus = {
+		id = krcw_mex_new_orleans_partner
+		icon = GFX_focus_generic_treaty
+		x = 24
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_mex_moscow_friendship }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { country_exists = USA } USA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_arms_conduit } } }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_mex_pacific_trade
+		icon = GFX_focus_generic_western_pacific
+		x = 28
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_mex_moscow_friendship }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			481 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			478 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_mex_latin_voice
+		icon = GFX_focus_generic_diplomatic_treaty
+		x = 24
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_mex_new_orleans_partner }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			# reward_fill.py
+			if = { limit = { country_exists = ARG } ARG = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			if = { limit = { country_exists = BRA } BRA = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			krcw_tension_down_small = yes
+		}
+	}
+	focus = {
+		id = krcw_mex_neither_corridor
+		icon = GFX_focus_generic_world_peace
+		x = 28
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_mex_pacific_trade }
+		available = {
+			has_country_flag = krcw_mex_left_turn
+			has_war = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 2
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			if = { limit = { is_in_faction = yes } leave_faction = yes }
+			remove_ideas = krcw_mex_russian_corridor
+			add_stability = 0.05
+
+			krcw_tension_down_small = yes
+			if = { limit = { country_exists = USA } USA = { add_war_support = -0.03 } }
+			add_to_variable = { global.krcw_ma_crisis = 3 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_am_ma_crisis_up3_tt
+		}
+	}
+	focus = {
+		id = krcw_mex_northern_industry
+		icon = GFX_focus_generic_steel_mill
+		x = 16
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_mex_accord_arsenal }
+		mutually_exclusive = { focus = krcw_mex_southern_land }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_ideas = krcw_mex_northern_boom
+			876 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			480 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+			set_country_flag = krcw_mex_north_path
+		}
+	}
+	focus = {
+		id = krcw_mex_southern_land
+		icon = GFX_focus_generic_land_redistribution
+		x = 20
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_mex_accord_arsenal }
+		mutually_exclusive = { focus = krcw_mex_northern_industry }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 8
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_mex_ejido_restored
+			add_stability = 0.04
+			add_political_power = -25
+			set_country_flag = krcw_mex_left_turn
+		}
+	}
+	focus = {
+		id = krcw_mex_electrify
+		icon = GFX_focus_ARG_develop_the_electricity_sector
+		x = 14
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_mex_northern_industry focus = krcw_mex_southern_land }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1545 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			277 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_stability = 0.03
+		}
+	}
+	focus = {
+		id = krcw_mex_pemex_expansion
+		icon = GFX_focus_generic_offshore_oil_rig
+		x = 20
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_mex_electrify }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			477 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			877 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_mex_bank_of_mexico
+		icon = GFX_focus_ARG_banco_central_de_la_republica_argentina
+		x = 16
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_mex_pemex_expansion }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_stability = 0.03
+			add_tech_bonus = { name = krcw_mex_finance bonus = 0.5 uses = 1 category = industry }
+		}
+	}
+	focus = {
+		id = krcw_mex_russian_equipment
+		icon = GFX_focus_ARG_army
+		x = 6
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_mex_the_long_border }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 15
+			add_tech_bonus = { name = krcw_mex_armor bonus = 0.5 uses = 1 category = armor }
+			army_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_mex_officer_academy
+		icon = GFX_focus_mex_caudillo_private_armies
+		x = 10
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_mex_russian_equipment }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.03
+			army_experience = 10
+			# reward_fill.py
+			add_ideas = krcw_fill_mex_military_college
+		}
+	}
+	focus = {
+		id = krcw_mex_border_command
+		icon = GFX_focus_generic_home_defense
+		x = 6
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_mex_officer_academy }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_war_support = 0.03
+			add_tech_bonus = { name = krcw_mex_defence bonus = 0.5 uses = 1 category = land_doctrine }
+			480 = { if = { limit = { is_owned_by = ROOT } add_building_construction = { type = bunker level = 1 province = { all_provinces = yes limit_to_border = yes } instant_build = yes } } }
+		}
+	}
+	focus = {
+		id = krcw_mex_single_party
+		icon = GFX_focus_mex_jefe_maximo
+		x = 2
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_mex_hard_hand }
+		mutually_exclusive = { focus = krcw_mex_open_the_system }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_ideas = krcw_mex_one_party
+			add_political_power = 75
+			add_stability = 0.03
+			set_country_flag = krcw_mex_machine_path
+		}
+	}
+	focus = {
+		id = krcw_mex_open_the_system
+		icon = GFX_focus_generic_social_democracy
+		x = 6
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_mex_hard_hand }
+		mutually_exclusive = { focus = krcw_mex_single_party }
+		available = {
+			OR = { has_stability > 0.5 krcw_route_free = yes }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 6
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_political_power = -25
+			add_stability = 0.04
+			add_popularity = { ideology = Social_Democratic popularity = 0.06 }
+			set_country_flag = krcw_mex_open_path
+		}
+	}
+	focus = {
+		id = krcw_mex_sindicalist_question
+		icon = GFX_focus_generic_workers_and_farmers_rise
+		x = 2
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_mex_cardenas_returns }
+		available = {
+			has_country_flag = krcw_mex_left_turn
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_mex_sindicalist_ferment
+			add_popularity = { ideology = trotskyism popularity = 0.05 }
+			add_stability = -0.02
+			set_country_flag = krcw_mex_sindicalist_open
+		}
+	}
+	focus = {
+		id = krcw_mex_diversify_trade
+		icon = GFX_focus_ARG_capitalize_the_beef_industry
+		x = 24
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_mex_pacific_trade }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.03
+			add_political_power = 25
+			478 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_mex_court_the_syndicates
+		icon = GFX_focus_ARG_anti_american_propaganda
+		x = 24
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_mex_diversify_trade }
+		available = {
+			has_country_flag = krcw_mex_left_turn
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 4
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			if = { limit = { country_exists = WCA } WCA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_good_neighbour } } }
+
+			add_political_power = 25
+			add_to_variable = { global.krcw_ma_crisis = 2 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_am_ma_crisis_up2_tt
+		}
+	}
+	focus = {
+		id = krcw_mex_latin_leadership
+		icon = GFX_focus_ARG_south_american_unity
+		x = 26
+		y = 4
+		cost = 8
+		prerequisite = { focus = krcw_mex_latin_voice }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+
+			every_country = {
+				limit = { capital_scope = { is_on_continent = south_america } is_ai = yes NOT = { tag = ROOT } }
+				add_opinion_modifier = { target = ROOT modifier = krcw_us_good_neighbour }
+			}
+		}
+	}
+}

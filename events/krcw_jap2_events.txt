@@ -1,0 +1,854 @@
+add_namespace = krcw_jap2
+
+country_event = {
+	id = krcw_jap2.1
+	title = krcw_jap2_1_t
+	desc = krcw_jap2_1_d
+	picture = GFX_krcw_eu_d12_jap_diet
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_1.a
+		ai_chance = {
+			base = 25
+			modifier = { factor = 2 has_war_support > 0.55 }
+			modifier = { factor = 2 has_country_flag = krcw_jap_revanche_nursed }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_jap2_generals_backed
+		add_war_support = 0.04
+		add_political_power = -25
+		add_popularity = { ideology = nationalist popularity = 0.03 }
+		country_event = { id = krcw_jap2.2 days = 8 }
+	}
+	option = {
+		name = krcw_jap2_1.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_jap2_cabinet_line
+		add_political_power = 40
+		add_stability = 0.02
+		country_event = { id = krcw_jap2.3 days = 8 }
+	}
+	option = {
+		name = krcw_jap2_1.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 2 has_stability > 0.55 }
+			modifier = { factor = 3 krcw_route_free = yes }
+		}
+		set_country_flag = krcw_jap2_diet_line
+		add_stability = 0.03
+		add_political_power = -25
+		add_popularity = { ideology = conservative popularity = 0.03 }
+		country_event = { id = krcw_jap2.4 days = 8 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.2
+	title = krcw_jap2_2_t
+	desc = krcw_jap2_2_d
+	picture = GFX_krcw_eu_d12_jap_soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_2.a
+		ai_chance = {
+			base = 70
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.03
+		army_experience = 10
+		set_country_flag = krcw_jap2_list_signed
+		country_event = { id = krcw_jap2.5 days = 20 }
+	}
+	option = {
+		name = krcw_jap2_2.b
+		ai_chance = {
+			base = 30
+		}
+		add_political_power = 25
+		navy_experience = 5
+		country_event = { id = krcw_jap2.5 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.3
+	title = krcw_jap2_3_t
+	desc = krcw_jap2_3_d
+	picture = GFX_krcw_eu_d12_jap_meeting
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_3.a
+		ai_chance = {
+			base = 70
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_war_support = 0.02
+		1608 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+		} }
+		country_event = { id = krcw_jap2.5 days = 20 }
+	}
+	option = {
+		name = krcw_jap2_3.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 has_stability < 0.5 }
+		}
+		add_political_power = 25
+		1605 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		set_country_flag = krcw_jap2_guns_to_butter
+		country_event = { id = krcw_jap2.5 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.4
+	title = krcw_jap2_4_t
+	desc = krcw_jap2_4_d
+	picture = GFX_krcw_us_jap_diet2
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_4.a
+		ai_chance = {
+			base = 60
+			modifier = { factor = 2 krcw_route_free = yes }
+		}
+		add_stability = 0.03
+		add_popularity = { ideology = conservative popularity = 0.04 }
+		add_popularity = { ideology = Social_Democratic popularity = 0.02 }
+		country_event = { id = krcw_jap2.5 days = 20 }
+	}
+	option = {
+		name = krcw_jap2_4.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 has_war_support > 0.5 }
+		}
+		add_political_power = 25
+		add_war_support = 0.02
+		country_event = { id = krcw_jap2.5 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.5
+	title = krcw_jap2_5_t
+	desc = {
+		text = krcw_jap2_5_d0
+		trigger = {
+			has_country_flag = krcw_jap2_generals_backed
+		}
+	}
+	desc = {
+		text = krcw_jap2_5_d1
+		trigger = {
+			has_country_flag = krcw_jap2_diet_line
+		}
+	}
+	desc = {
+		text = krcw_jap2_5_d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_d12_jap_diet
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_5.a
+		ai_chance = {
+			base = 20
+			modifier = { factor = 3 has_country_flag = krcw_jap2_generals_backed }
+			modifier = { factor = 2 has_completed_focus = krcw_jap_rearmament }
+			modifier = { factor = 0.2 has_country_flag = krcw_jap2_diet_line }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_jap2_revanche_open
+		add_war_support = 0.06
+		add_stability = -0.03
+		add_popularity = { ideology = nationalist popularity = 0.05 }
+		krcw_tension_up_small = yes
+		country_event = { id = krcw_jap2.6 days = 5 }
+	}
+	option = {
+		name = krcw_jap2_5.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 has_country_flag = krcw_jap2_diet_line }
+			modifier = { factor = 2 has_completed_focus = krcw_jap_taisho_spirit }
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_jap2_revanche_shelved
+		add_stability = 0.04
+		add_political_power = 25
+		country_event = { id = krcw_jap2.7 days = 5 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.6
+	title = krcw_jap2_6_t
+	desc = krcw_jap2_6_d
+	picture = GFX_krcw_eu_d12_jap_soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_6.a
+		ai_chance = {
+			base = 1
+		}
+		army_experience = 10
+		news_event = { id = krcw_jap2.8 days = 1 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.7
+	title = krcw_jap2_7_t
+	desc = krcw_jap2_7_d
+	picture = GFX_krcw_eu_d12_jap_meeting
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_7.a
+		ai_chance = {
+			base = 1
+		}
+		add_stability = 0.03
+		news_event = { id = krcw_jap2.8 days = 1 }
+	}
+}
+
+news_event = {
+	id = krcw_jap2.8
+	title = krcw_jap2_8_t
+	desc = {
+		text = krcw_jap2_8_d0
+		trigger = {
+			has_country_flag = krcw_jap2_revanche_open
+		}
+	}
+	desc = {
+		text = krcw_jap2_8_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_d12_jap_diet_n
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_8.a
+		ai_chance = {
+			base = 1
+		}
+		add_political_power = 25
+	}
+}
+
+country_event = {
+	id = krcw_jap2.20
+	title = krcw_jap2_20_t
+	desc = krcw_jap2_20_d
+	picture = GFX_krcw_us_jap_taipei_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_20.a
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 has_war_support > 0.5 }
+			modifier = { factor = 2 has_country_flag = krcw_jap2_revanche_open }
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_jap2_formosa_fortress
+		add_war_support = 0.03
+		krcw_tension_up_small = yes
+		if = { limit = { country_exists = CHI CHI = { has_variable = krcw_chi_taiwan_support } } CHI = { add_to_variable = { krcw_chi_taiwan_support = 5 } } }
+		country_event = { id = krcw_jap2.21 days = 8 }
+	}
+	option = {
+		name = krcw_jap2_20.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 has_stability > 0.55 }
+			modifier = { factor = 3 krcw_route_free = yes }
+			modifier = { factor = 0 has_country_flag = krcw_jap2_revanche_open }
+		}
+		set_country_flag = krcw_jap2_formosa_assembly
+		add_stability = 0.03
+		krcw_tension_down_small = yes
+		if = { limit = { country_exists = CHI CHI = { has_variable = krcw_chi_taiwan_support } } CHI = { subtract_from_variable = { krcw_chi_taiwan_support = 5 } } }
+		country_event = { id = krcw_jap2.22 days = 8 }
+	}
+	option = {
+		name = krcw_jap2_20.c
+		ai_chance = {
+			base = 30
+		}
+		add_political_power = 25
+		593 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		country_event = { id = krcw_jap2.23 days = 8 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.21
+	title = krcw_jap2_21_t
+	desc = krcw_jap2_21_d
+	picture = GFX_krcw_us_jap_strait
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_21.a
+		ai_chance = {
+			base = 70
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.03
+		army_experience = 10
+		set_country_flag = krcw_jap2_strait_hardened
+		country_event = { id = krcw_jap2.24 days = 25 }
+	}
+	option = {
+		name = krcw_jap2_21.b
+		ai_chance = {
+			base = 30
+		}
+		navy_experience = 10
+		add_political_power = 25
+		country_event = { id = krcw_jap2.24 days = 25 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.22
+	title = krcw_jap2_22_t
+	desc = krcw_jap2_22_d
+	picture = GFX_krcw_us_jap_taipei_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_22.a
+		ai_chance = {
+			base = 60
+			modifier = { factor = 2 krcw_route_free = yes }
+		}
+		add_stability = 0.03
+		add_popularity = { ideology = conservative popularity = 0.03 }
+		set_country_flag = krcw_jap2_strait_softened
+		country_event = { id = krcw_jap2.24 days = 25 }
+	}
+	option = {
+		name = krcw_jap2_22.b
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 25
+		add_stability = 0.02
+		country_event = { id = krcw_jap2.24 days = 25 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.23
+	title = krcw_jap2_23_t
+	desc = krcw_jap2_23_d
+	picture = GFX_krcw_us_jap_taipei_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_23.a
+		ai_chance = {
+			base = 1
+		}
+		add_political_power = 25
+		593 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+		} }
+		country_event = { id = krcw_jap2.24 days = 25 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.24
+	title = krcw_jap2_24_t
+	desc = {
+		text = krcw_jap2_24_d0
+		trigger = {
+			has_country_flag = krcw_jap2_formosa_fortress
+		}
+	}
+	desc = {
+		text = krcw_jap2_24_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_d12_jap_meeting
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_24.a
+		ai_chance = {
+			base = 20
+			modifier = { factor = 3 has_country_flag = krcw_jap2_revanche_open }
+			modifier = { factor = 2 has_country_flag = krcw_jap2_formosa_fortress }
+			modifier = { factor = 2 has_war_support > 0.6 }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_jap2_korea_pressed
+		add_war_support = 0.05
+		add_stability = -0.02
+		krcw_tension_up_small = yes
+		country_event = { id = krcw_jap2.25 days = 5 }
+	}
+	option = {
+		name = krcw_jap2_24.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 2 has_completed_focus = krcw_jap_russian_oil }
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+			modifier = { factor = 0.3 has_country_flag = krcw_jap2_revanche_open }
+		}
+		set_country_flag = krcw_jap2_korea_traded
+		add_political_power = 25
+		random_list = {
+			70 = {
+				modifier = { factor = 1.5 is_in_faction_with = SOV }
+				modifier = { factor = 1.3 has_completed_focus = krcw_jap_russian_oil }
+				set_country_flag = krcw_jap2_moscow_agreed
+			}
+			30 = {
+				modifier = { factor = 1.5 has_completed_focus = krcw_jap_pacific_neutrality }
+				set_country_flag = krcw_jap2_moscow_balked
+			}
+		}
+		country_event = { id = krcw_jap2.26 days = 12 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.25
+	title = krcw_jap2_25_t
+	desc = krcw_jap2_25_d
+	picture = GFX_krcw_eu_d12_jap_soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_25.a
+		ai_chance = {
+			base = 1
+		}
+		army_experience = 10
+		krcw_tension_up_small = yes
+	}
+}
+
+country_event = {
+	id = krcw_jap2.26
+	title = krcw_jap2_26_t
+	desc = {
+		text = krcw_jap2_26_d0
+		trigger = {
+			has_country_flag = krcw_jap2_moscow_agreed
+		}
+	}
+	desc = {
+		text = krcw_jap2_26_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_d12_jap_meeting
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_26.a
+		ai_chance = {
+			base = 70
+		}
+		add_political_power = 25
+		if = { limit = { has_country_flag = krcw_jap2_moscow_agreed } add_stability = 0.03 SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_us_good_neighbour } } }
+		else = { add_stability = -0.03 add_war_support = 0.02 }
+	}
+	option = {
+		name = krcw_jap2_26.b
+		trigger = {
+			has_country_flag = krcw_jap2_moscow_balked
+		}
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 has_war_support > 0.5 }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		clr_country_flag = krcw_jap2_korea_traded
+		set_country_flag = krcw_jap2_korea_pressed
+		add_war_support = 0.03
+		krcw_tension_up_small = yes
+		country_event = { id = krcw_jap2.25 days = 10 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.27
+	title = krcw_jap2_27_t
+	desc = {
+		text = krcw_jap2_27_d0
+		trigger = {
+			has_country_flag = krcw_jap2_seoul_arrests
+		}
+	}
+	desc = {
+		text = krcw_jap2_27_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_jap_strait
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	immediate = {
+		random_list = {
+			50 = {
+				modifier = { factor = 1.5 has_country_flag = krcw_jap2_strait_hardened }
+				modifier = { factor = 1.3 KOR = { has_stability > 0.5 } }
+				set_country_flag = krcw_jap2_seoul_arrests
+			}
+			50 = {
+				modifier = { factor = 1.5 has_country_flag = krcw_jap2_strait_softened }
+				set_country_flag = krcw_jap2_seoul_protest
+			}
+		}
+	}
+	option = {
+		name = krcw_jap2_27.a
+		ai_chance = {
+			base = 70
+		}
+		if = { limit = { has_country_flag = krcw_jap2_seoul_arrests } add_war_support = 0.03 }
+		else = { add_political_power = 25 army_experience = 5 }
+	}
+	option = {
+		name = krcw_jap2_27.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 has_stability < 0.45 }
+		}
+		add_stability = 0.03
+		krcw_tension_down_small = yes
+	}
+}
+
+country_event = {
+	id = krcw_jap2.40
+	title = krcw_jap2_40_t
+	desc = krcw_jap2_40_d
+	picture = GFX_krcw_eu_d12_jap_soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_40.a
+		ai_chance = {
+			base = 45
+			modifier = { factor = 2 has_country_flag = krcw_jap_diet_path }
+			modifier = { factor = 2 has_stability > 0.5 }
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_jap2_screening
+		add_political_power = -25
+		army_experience = 10
+		country_event = { id = krcw_jap2.41 days = 10 }
+	}
+	option = {
+		name = krcw_jap2_40.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 2 has_country_flag = krcw_jap2_generals_backed }
+			modifier = { factor = 2 has_country_flag = krcw_jap_bureaucratic_path }
+		}
+		set_country_flag = krcw_jap2_clique_kept
+		army_experience = 15
+		add_war_support = 0.02
+		country_event = { id = krcw_jap2.42 days = 10 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.41
+	title = krcw_jap2_41_t
+	desc = krcw_jap2_41_d
+	picture = GFX_krcw_us_jap_diet2
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_41.a
+		ai_chance = {
+			base = 55
+			modifier = { factor = 2 krcw_route_free = yes }
+			modifier = { factor = 0 has_country_flag = krcw_jap2_generals_backed }
+		}
+		set_country_flag = krcw_jap2_purge_hard
+		add_stability = -0.02
+		add_political_power = -25
+		country_event = { id = krcw_jap2.43 days = 20 }
+	}
+	option = {
+		name = krcw_jap2_41.b
+		ai_chance = {
+			base = 45
+		}
+		set_country_flag = krcw_jap2_purge_soft
+		add_political_power = 25
+		country_event = { id = krcw_jap2.43 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.42
+	title = krcw_jap2_42_t
+	desc = krcw_jap2_42_d
+	picture = GFX_krcw_eu_d12_jap_soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_42.a
+		ai_chance = {
+			base = 70
+		}
+		army_experience = 10
+		add_war_support = 0.02
+		country_event = { id = krcw_jap2.44 days = 20 }
+	}
+	option = {
+		name = krcw_jap2_42.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 krcw_route_free = yes }
+		}
+		add_political_power = 25
+		add_stability = 0.02
+		set_country_flag = krcw_jap2_late_screening
+		country_event = { id = krcw_jap2.41 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.43
+	title = krcw_jap2_43_t
+	desc = krcw_jap2_43_d
+	picture = GFX_krcw_eu_d12_jap_diet
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_43.a
+		ai_chance = {
+			base = 55
+			modifier = { factor = 2 has_country_flag = krcw_jap2_purge_hard }
+			modifier = { factor = 2 krcw_route_free = yes }
+		}
+		set_country_flag = krcw_jap2_army_purged
+		clr_country_flag = krcw_jap2_old_guard
+		add_stability = 0.03
+		add_political_power = -25
+		add_popularity = { ideology = conservative popularity = 0.03 }
+		country_event = { id = krcw_jap2.45 days = 5 }
+	}
+	option = {
+		name = krcw_jap2_43.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 2 has_country_flag = krcw_jap2_purge_soft }
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		set_country_flag = krcw_jap2_affair_buried
+		country_event = { id = krcw_jap2.44 days = 5 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.44
+	title = krcw_jap2_44_t
+	desc = krcw_jap2_44_d
+	picture = GFX_krcw_eu_d12_jap_soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_44.a
+		ai_chance = {
+			base = 1
+		}
+		set_country_flag = krcw_jap2_old_guard
+		clr_country_flag = krcw_jap2_army_purged
+		add_war_support = 0.03
+		army_experience = 10
+	}
+}
+
+country_event = {
+	id = krcw_jap2.45
+	title = krcw_jap2_45_t
+	desc = krcw_jap2_45_d
+	picture = GFX_krcw_us_jap_diet2
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_45.a
+		ai_chance = {
+			base = 1
+		}
+		add_political_power = 25
+		army_experience = 10
+		add_stability = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_jap2.9
+	title = krcw_jap2_9_t
+	desc = {
+		text = krcw_jap2_9_d0
+		trigger = {
+			has_completed_focus = krcw_jap2_continental_bureau
+		}
+	}
+	desc = {
+		text = krcw_jap2_9_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_jap_diet2
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_9.a
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { has_completed_focus = krcw_jap2_continental_bureau } add_war_support = 0.03 set_country_flag = krcw_jap2_korea_pressed }
+		else = { add_stability = 0.03 add_political_power = 25 }
+	}
+}
+
+country_event = {
+	id = krcw_jap2.46
+	title = krcw_jap2_46_t
+	desc = {
+		text = krcw_jap2_46_d0
+		trigger = {
+			has_completed_focus = krcw_jap2_merit_officer_corps
+		}
+	}
+	desc = {
+		text = krcw_jap2_46_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_d12_jap_soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+	}
+	option = {
+		name = krcw_jap2_46.a
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { has_completed_focus = krcw_jap2_merit_officer_corps } add_stability = 0.02 }
+		else = { add_war_support = 0.02 add_stability = -0.02 }
+	}
+}

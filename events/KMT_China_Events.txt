@@ -1,0 +1,8518 @@
+# KRCW (build/patch_residue.py): 323 OTL events dropped while KRCW_active
+###Custom Events for BSS###
+
+add_namespace = bss
+add_namespace = KMT_70s
+add_namespace = KMT_80s
+add_namespace = KMT_Borderconflict
+add_namespace = KMT_Taiwan50s
+add_namespace = roc
+add_namespace = prc
+add_namespace = chi
+add_namespace = CHI_KOR
+add_namespace = Intro
+add_namespace = Taiwan_Elections
+add_namespace = Formosa
+add_namespace = KMT
+add_namespace = CHI_KMT
+add_namespace = CHI_TIB
+add_namespace = KMT_MIL
+add_namespace = KMT_NUCLEAR
+add_namespace = CHI_INDO
+add_namespace = CHI_BANDIT
+add_namespace = CHI_VIN
+add_namespace = KMT_LAND_REFORM
+add_namespace = KMT_REFORM
+add_namespace = TIBET_KMT
+add_namespace = FRA_KMT
+add_namespace = KMT_Sinification
+add_namespace = KMT_VICTORY_TERROR
+add_namespace = KMT_CULTS
+add_namespace = CHI_MARTIAL_LAW
+add_namespace = CHI_SEATO
+add_namespace = CC_CLIQUE_FALL
+add_namespace = KMT_Atoms
+add_namespace = ROC_SOV
+add_namespace = ROC_CLIQUE
+add_namespace = ROC_VICTORY
+add_namespace = KMT_SHOW_TRIALS
+add_namespace = KMT_Coup
+add_namespace = KMT_50s_Mainland
+add_namespace = KMT_Fuguo
+add_namespace = KMT_Civilwar 
+add_namespace = KMT_Shanghai
+add_namespace = KMT_mainlandburma
+add_namespace = KMT_punishments
+add_namespace = KMT_qiaowuweiyuanhui
+add_namespace = KMT_diplomatic_report
+add_namespace = KMT_fangong_dalu
+add_namespace = Strait_Crisis
+add_namespace = KMT_concessions_diplomacy
+add_namespace = KMT_Hainan
+
+
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Hainan.1 
+ immediate = { }
+	title = KMT_Hainan.1.t
+	desc = KMT_Hainan.1.d
+	picture = GFX_KMT_PRC_Attack_on_Hainan
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		trigger = {
+			NOT = {
+				OR = {
+					tag = CHI
+					tag = PRC
+				}	
+			}
+		}	
+		name = KMT_Hainan.1.a
+	}
+	option = {
+		trigger = {
+			tag = CHI
+		}	
+		name = KMT_Hainan.1.b
+	}
+	option = {
+		trigger = {
+			tag = PRC
+		}	
+		name = KMT_Hainan.1.c
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Hainan.2 
+ immediate = { }
+	title = KMT_Hainan.2.t
+	desc = KMT_Hainan.2.d
+	picture = GFX_KMT_PRC_Conquers_Hainan
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		trigger = {
+			NOT = {
+				OR = {
+					tag = CHI
+					tag = PRC
+				}	
+			}
+		}	
+		name = KMT_Hainan.2.a
+	}
+	option = {
+		trigger = {
+			tag = CHI
+		}	
+		name = KMT_Hainan.2.b
+		add_war_support = -0.02
+	}
+	option = {
+		trigger = {
+			tag = PRC
+		}	
+		name = KMT_Hainan.2.c
+		add_war_support = 0.02
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Hainan.3 
+ immediate = { }
+	title = KMT_Hainan.3.t
+	desc = KMT_Hainan.3.d
+	picture = GFX_KMT_ROC_Holds_Hainan
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		trigger = {
+			NOT = {
+				OR = {
+					tag = CHI
+					tag = PRC
+				}	
+			}
+		}		
+		name = KMT_Hainan.3.a
+	}
+	option = {
+		trigger = {
+			tag = CHI
+		}	
+		name = KMT_Hainan.3.b
+		add_war_support = 0.02
+	}
+	option = {
+		trigger = {
+			tag = PRC
+		}	
+		name = KMT_Hainan.3.c
+		add_war_support = -0.02
+	}
+}
+
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_70s.1
+ immediate = { }
+ immediate = {
+	CHI = {
+		kill_country_leader = yes
+		create_country_leader = {
+    		name = "Chiang Ching-Kuo"  
+    		picture = "Chiang_Ching-Kuo_80s.dds"
+    		ideology = Three_principles_of_people
+		}
+	}
+ }
+	title = KMT_70s.1.t2
+	desc = KMT_70s.1.d
+	picture = GFX_Chiang_Senior_died
+	is_triggered_only = yes
+	fire_only_once = yes 
+
+	option = {
+		name = KMT_70s.1.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_80s.1
+ immediate = { }
+ immediate = {
+	CHI = {
+		kill_country_leader = yes
+		create_country_leader = {
+    		name = "Lee Teng Hui"
+    		picture = "Lee_Teng_Hui_90s.dds"
+    		ideology = Three_principles_of_people
+		}
+	}
+ }
+	title = KMT_80s.1.t2
+	desc = KMT_80s.1.d
+	picture = GFX_Chiang_Junior_died
+	fire_only_once = yes 
+	is_triggered_only = yes
+	option = {
+		name = KMT_80s.1.a
+	}
+}
+
+###Old Taiwan Events###
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT.201 
+ immediate = { }
+	title = KMT.201.t2
+	desc = KMT.201.d
+	picture = GFX_Sun_Li_Jen_Coup
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = KMT.201.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT.150 
+ immediate = { }
+	title = KMT.150.t2
+	desc = KMT.150.d
+	picture = GFX_Sun_Li_Jen_Arrested
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = KMT.150.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Formosa.10 
+ immediate = { }
+	title = Formosa.10.t2
+	desc = Formosa.10.d
+	picture = GFX_Formosa_10
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Formosa.10.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Formosa.11 
+ immediate = { }
+	title = Formosa.11.t2
+	desc = Formosa.11.d
+	picture = GFX_Formosa_11
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Formosa.11.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Formosa.12 
+ immediate = { }
+	title = Formosa.12.t2
+	desc = Formosa.12.d
+	picture = GFX_Formosa_12
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Formosa.12.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Formosa.100 
+ immediate = { }
+	title = Formosa.100.t2
+	desc = Formosa.100.d
+	picture = GFX_Formosa_100
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Formosa.100.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT.110 
+ immediate = { }
+	title = KMT.110.t2
+	desc = KMT.110.d
+	picture = GFX_KMT_110
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = KMT.110.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT.10 
+ immediate = { }
+	title = KMT.10.t2
+	desc = KMT.10.d
+	picture = GFX_KMT_10
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT.10.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Taiwan_Elections.1 
+ immediate = { }
+	title = Taiwan_Elections.1.t2
+	desc = Taiwan_Elections.1.d2
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = Taiwan_Elections.1.a2
+		complete_national_focus = CHI_Democratic_Progressive_Victory
+		set_politics = {
+			ruling_party = Social_Liberalism
+
+			election_frequency = 36
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 70
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+		name = Taiwan_Elections.1.b2
+		complete_national_focus = CHI_Taiwanese_Communist_Party_Victory
+		set_politics = {
+			ruling_party = communism
+
+			election_frequency = 36
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Taiwan_Elections.1.c2
+		complete_national_focus = CHI_China_Democratic_Socialist_Party_Victory
+
+		set_politics = {
+			ruling_party = socialist
+
+			election_frequency = 36
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Taiwan_Elections.2 
+ immediate = { }
+	title = Taiwan_Elections.2.t2
+	desc = Taiwan_Elections.2.d2
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = Taiwan_Elections.2.a2
+		complete_national_focus = CHI_Democratic_Progressive_Victory_1958
+		set_politics = {
+			ruling_party = Social_Liberalism
+
+			election_frequency = 36
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 70
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+		name = Taiwan_Elections.2.b2
+		complete_national_focus = CHI_Taiwanese_Communist_Party_Victory_58
+		set_politics = {
+			ruling_party = communism
+
+			election_frequency = 36
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Taiwan_Elections.2.c2
+		complete_national_focus = CHI_China_Democratic_Socialist_Party_Victory_1958
+
+		set_politics = {
+			ruling_party = socialist
+
+			election_frequency = 36
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_KOR.0 
+ immediate = { }
+	title = CHI_KOR.0.t2
+	desc = CHI_KOR.0.d
+	picture = GFX_RoC_Legislative_Yuan_Country_Event
+
+	is_triggered_only = yes
+
+	option = {
+		name = CHI_KOR.0.a2
+		set_country_flag = CHI_wants_to_join_korean_war
+		unlock_decision_tooltip = propose_intervention_into_korea
+	}
+
+	option = {
+		name = CHI_KOR.0.b
+		CHI = {
+			complete_national_focus = CHI_Korean_War_listen_to_the_chief_of_staffs
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_KOR.1 
+ immediate = { }
+	title = CHI_KOR.1.t2
+	desc = CHI_KOR.1.d
+	picture = GFX_Generic_White_House_1950s
+
+	is_triggered_only = yes
+
+	option = {
+		name = CHI_KOR.1.a2
+		CHI = {
+			country_event = CHI_KOR.3
+		}
+	}
+	option = {
+		name = CHI_KOR.1.b2
+		CHI = {
+			country_event = CHI_KOR.2
+		}
+		
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_KOR.2 
+ immediate = { }
+	title = CHI_KOR.2.t2
+	desc = CHI_KOR.2.d
+	picture = GFX_Korean_War_Taiwan_Yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = CHI_KOR.2.a2
+		complete_national_focus = CHI_Korean_War_Prepare_for_Operations_on_mainland
+
+	}
+
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_KOR.3 
+ immediate = { }
+	title = CHI_KOR.3.t2
+	desc = CHI_KOR.3.d
+	picture = GFX_Korean_War_Taiwan_No
+
+	is_triggered_only = yes
+
+	option = {
+		name = CHI_KOR.3.a2
+		complete_national_focus = CHI_Korean_War_listen_to_the_chief_of_staffs
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_KOR.4 
+ immediate = { }
+	title = CHI_KOR.4.t2
+	desc = CHI_KOR.4.d
+	picture = GFX_RoC_Intervention_Korea
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = CHI_KOR.4.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_KOR.5 
+ immediate = { }
+	title = CHI_KOR.5.t
+	desc = CHI_KOR.5.d
+	picture = GFX_KMT_pull_out_of_korea
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = CHI_KOR.5.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_KOR.6 
+ immediate = { }
+	title = CHI_KOR.6.t
+	desc = CHI_KOR.6.d
+	picture = GFX_RoC_Intervention_Korea
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = CHI_KOR.6.a
+	}
+}
+
+###Korean war introduction mainland###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = CHI_KOR.7
+	immediate = { }
+	title = CHI_KOR.7.t
+	desc = CHI_KOR.7.d	
+	is_triggered_only = yes
+	picture = GFX_PRC_USA_KOR_4
+	fire_only_once = yes
+	option = {
+		name = CHI_KOR.7.a
+		
+	}
+}
+
+###ROC denounces DPRK invasion mainland###
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = CHI_KOR.8
+	title = CHI_KOR.8.t
+	desc = CHI_KOR.8.d	
+	is_triggered_only = yes
+	picture = GFX_ROC_CLIQUE_103
+	major = yes
+
+	option = {
+		name = CHI_KOR.8.a
+		
+	}		
+}
+
+###Weapons for South Korea during Korean War###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = CHI_KOR.9
+	immediate = { }
+	title = CHI_KOR.9.t
+	desc = CHI_KOR.9.d	
+	is_triggered_only = yes
+	picture = GFX_Training_Brigades
+	fire_only_once = yes
+	option = {
+		name = CHI_KOR.9.a
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_0
+			amount = 20000
+			producer = CHI
+		}
+		add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 1000
+				producer = CHI
+		}
+		add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = 750
+				producer = CHI
+		}
+		
+	}
+}
+
+###military advisors to South Korea mainland###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = CHI_KOR.10
+	immediate = { }
+	title = CHI_KOR.10.t
+	desc = CHI_KOR.10.d	
+	is_triggered_only = yes
+	picture = GFX_Chiang_with_Other_Army_dudes
+	fire_only_once = yes
+	option = {
+		name = CHI_KOR.10.a
+		add_ideas = chinese_advisors
+	}
+}
+
+###sino-korean mutual defense treaty###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = CHI_KOR.11
+	immediate = { }
+	title = CHI_KOR.11.t
+	desc = CHI_KOR.11.d	
+	is_triggered_only = yes
+	picture = GFX_Rhee_and_Chiang
+	
+	major = yes
+	fire_only_once = yes
+	
+	option = {
+		name = CHI_KOR.11.a
+		news_event = CHI_KOR.12
+		KOR = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = large_increase
+			}
+			give_guarantee = CHI
+			give_military_access = CHI
+		}
+		CHI = {
+			add_opinion_modifier = {
+				target = KOR
+				modifier = large_increase
+			}
+			give_guarantee = KOR
+		}
+	}
+
+	option = {
+		name = CHI_KOR.11.b
+		news_event = CHI_KOR.13
+		add_opinion_modifier = {
+					target = CHI
+					modifier = large_decrease
+				}
+		CHI = {
+				add_opinion_modifier = {
+					target = KOR
+					modifier = large_decrease
+				}
+			}
+		
+	}
+}
+
+###sino-korean mutual defense treaty accepted###
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = CHI_KOR.12
+	immediate = { }
+	title = CHI_KOR.12.t
+	desc = CHI_KOR.12.d	
+	is_triggered_only = yes
+	picture = GFX_South_Korea_ROC_Defense_Treaty
+	major = yes
+	option = {
+		name = CHI_KOR.12.a
+		
+	}
+}
+
+###sino-korean mutual defense treaty declined###
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = CHI_KOR.13
+	immediate = { }
+	title = CHI_KOR.13.t
+	desc = CHI_KOR.13.d	
+	is_triggered_only = yes
+	
+	picture = GFX_South_Korea_ROC_No_Defense_Treaty
+	fire_only_once = yes
+	option = {
+		name = CHI_KOR.13.a
+		
+	}
+}
+
+###Pulling out of the Mainland Again if North Korea defeated South Korea during the Korean War, if PRC was participating###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = CHI_KOR.14
+	immediate = { }
+	title = CHI_KOR.14.t
+	desc = CHI_KOR.14.d	
+	is_triggered_only = yes
+	
+	picture = GFX_KMT_MIL_4
+	fire_only_once = yes
+	option = {
+		name = CHI_KOR.14.a
+		custom_effect_tooltip = "It would be wise to safe the game here."
+		
+	}
+	option = {
+		name = CHI_KOR.14.b
+		CHI = {
+			white_peace = PRC
+		}
+	}
+}
+
+###Pulling out of the Mainland Again if South Korea defeated North Korea during the Korean War, if PRC was participating###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = CHI_KOR.15
+	immediate = { }
+	title = CHI_KOR.15.t
+	desc = CHI_KOR.15.d	
+	is_triggered_only = yes
+	
+	picture = GFX_KMT_MIL_4
+	fire_only_once = yes
+	option = {
+		name = CHI_KOR.15.a
+		custom_effect_tooltip = "It would be wise to safe the game here."
+		
+	}
+	option = {
+		name = CHI_KOR.15.b
+		CHI = {
+			white_peace = PRC
+		}
+	}
+}
+
+# UN recognition of PRC
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = chi.1 
+ immediate = { }
+	title = chi.1.t
+	desc = chi.1.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = chi.1.a
+		set_global_flag = chi_yes_prc_un_recognition
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 15
+		}
+		name = chi.1.b
+		set_global_flag = chi_no_prc_un_recognition
+	}
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = chi.3 
+ immediate = { }
+	title = chi.3.t2
+	desc = chi.3.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = chi.3.a2
+		CHI = { puppet = MON }
+		ai_chance = {
+			factor = 50
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 50
+		}
+		name = chi.3.b2
+		CHI = {
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = MON
+			}
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = chi.4 
+ immediate = { }
+	title = chi.4.t2
+	desc = chi.4.d2
+	picture = GFX_roc_army
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = chi.4.a2
+		trigger = { original_tag = CHI }
+	}
+
+	option = {
+		name = chi.4.b2
+		trigger = { NOT = { original_tag = CHI } }
+	}
+
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = chi.5 
+ immediate = { }
+	title = chi.5.t2
+	desc = chi.5.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = chi.5.a2
+		puppet = CHI
+		ai_chance = {
+			factor = 75
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 25
+		}
+		name = chi.5.b2
+		CHI = {
+			create_wargoal = {
+				type = annex_everything
+				target = PRC
+			}
+		}
+	}
+}
+
+#Chiang Kai-shek reassumes Presidency
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = roc.1 
+ immediate = { }
+	title = "roc.1.t"
+	picture = GFX_Chiang_Drip
+	desc = "roc.1.d"
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = "roc.1.a"
+		custom_effect_tooltip = chiang_kai_shek_president_tt
+		CHI = {
+			set_country_flag = chiang_kai_shek_becomes_president_again
+			set_country_flag = chen_cheng_premier
+			clr_country_flag = Li_Zongren_president
+			clr_country_flag = yan_xishan_premier
+			custom_effect_tooltip = increase_kmt_unity_tiny_bit_tt
+			increase_unity_normal = yes 
+		}	
+		
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = prc.1000 
+ immediate = { }
+	title = prc.1000.t2
+	desc = prc.1000.d2
+	picture = GFX_yellow_river_flood
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = prc.1000.a2
+		set_country_flag = yellow_riv_flood
+	   }
+	}
+
+##### Taiwan 50s Stuff ######
+
+###CIA Coup###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = KMT_Taiwan50s.1
+	title = KMT_Taiwan50s.1.t
+	desc = KMT_Taiwan50s.1.d
+	picture = GFX_Sun_Li_Jen
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	
+	
+	
+	option = {
+	    name = KMT_Taiwan50s.1.a
+		mark_focus_tree_layout_dirty = yes
+		set_country_flag = CIA_Coup
+		news_event = { id = KMT.201 days = 2 }
+		complete_national_focus = CHI_Sun_Li_Jen_Coup
+		
+				
+				retire_character = CHI_chiang_kai_shek
+				promote_character = CHI_sun_li_jen   
+				
+				set_country_flag = sun_li_jen_president
+				clr_country_flag = chiang_kai_shek_becomes_president_again
+		
+	}
+}	
+
+###Sinicization of Taiwan###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = KMT_Taiwan50s.2
+	title = KMT_Taiwan50s.2.t
+	desc = KMT_Taiwan50s.2.d
+	picture = GFX_Taiwan_Sinicization	
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+	    name = KMT_Taiwan50s.2.a
+		add_political_power = 100
+	}
+}
+
+###Importance of Confucius###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = KMT_Taiwan50s.3
+	title = KMT_Taiwan50s.3.t
+	desc = KMT_Taiwan50s.3.d
+	picture = GFX_Confucius_Teaching	
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+	    name = KMT_Taiwan50s.3.a
+		add_stability = 0.01
+	}
+}
+
+###Status of Native Languages###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = KMT_Taiwan50s.4 
+	title = KMT_Taiwan50s.4.t
+	desc = KMT_Taiwan50s.4.d	
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+	    name = KMT_Taiwan50s.4.a
+		custom_effect_tooltip = increase_kmt_influence_great_bit_tt
+		increase_influence_greatly = yes
+		custom_effect_tooltip = increase_native_unrest_great_bit_tt
+		increase_unrest_greatly = yes
+	}
+	option = {
+	    name = KMT_Taiwan50s.4.b
+		custom_effect_tooltip = increase_kmt_influence_tiny_bit_tt
+		increase_influence_normal = yes
+		custom_effect_tooltip = increase_native_unrest_tiny_bit_tt
+		increase_unrest_normal = yes
+	}
+	option = {
+	    name = KMT_Taiwan50s.4.c
+		custom_effect_tooltip =	decrease_kmt_influence_tiny_bit_negative_tt
+		decrease_influence_normal = yes
+		custom_effect_tooltip = decrease_native_unrest_great_bit_tt
+		decrease_unrest_greatly = yes
+		
+	}
+}
+
+###Launch of the Free Voice of China###
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = KMT_Taiwan50s.5
+	title = KMT_Taiwan50s.5.t
+	desc = KMT_Taiwan50s.5.d
+	picture = GFX_Voice_of_Free_China	
+	is_triggered_only = yes
+	
+	major = yes
+	
+	option = {
+		trigger = {
+			NOT = {
+				OR = {
+					tag = CHI
+					tag = PRC
+				}	
+			}
+		}		
+		name = KMT_Taiwan50s.5.a
+	}
+	option = {
+		trigger = {
+			tag = CHI
+		}	
+		name = KMT_Taiwan50s.5.b
+		add_war_support = 0.01
+		add_political_power = 20
+	}
+	option = {
+		trigger = {
+			tag = PRC
+		}	
+		name = KMT_Taiwan50s.5.c
+		add_stability = -0.02
+	}
+
+	
+}
+
+###Taiwanese_Economy###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = KMT_Taiwan50s.6
+	title = KMT_Taiwan50s.6.t
+	desc = KMT_Taiwan50s.6.d	
+	is_triggered_only = yes
+	picture = GFX_Taiwan_Economic_Report_50s
+	fire_only_once = yes
+	option = {
+	    name = KMT_Taiwan50s.6.a
+		add_tech_bonus = {
+			name = industrial_bonus
+			bonus = 0.40
+			uses = 1
+			category = industry
+		}
+	}
+	
+}
+
+###Chen Cheng appoints Yin Zhongrong###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = KMT_Taiwan50s.7
+	title = KMT_Taiwan50s.7.t
+	desc = KMT_Taiwan50s.7.d	
+	is_triggered_only = yes
+	picture = GFX_Yin_Zhongrong_appointed_event
+	fire_only_once = yes
+	option = {
+	    name = KMT_Taiwan50s.7.a
+		add_tech_bonus = {
+			name = industrial_bonus
+			bonus = 0.25
+			uses = 1
+			category = industry
+		}
+		add_political_power = 20 
+	}
+	
+}
+
+###Temporary Provisions###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = KMT_Taiwan50s.8
+	title = KMT_Taiwan50s.8.t
+	desc = KMT_Taiwan50s.8.d	
+	is_triggered_only = yes
+	picture = GFX_Temporary_Provisions_Against_Communist_Rebellion
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.8.a
+	    custom_effect_tooltip = constitution_1947_suspended_tt
+		add_political_power = 200
+	}
+	
+}
+
+###Central_Reform_Committee###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = KMT_Taiwan50s.9
+	title = KMT_Taiwan50s.9.t
+	desc = KMT_Taiwan50s.9.d	
+	is_triggered_only = yes
+	picture = GFX_Central_Reform_Committee_event
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.9.a
+		custom_effect_tooltip = increase_kmt_unity_tiny_bit_tt
+		increase_unity_normal = yes
+		custom_effect_tooltip =  increase_native_unrest_tiny_bit_tt
+		increase_unrest_normal = yes
+	}
+	option = {
+		name = KMT_Taiwan50s.9.b
+		custom_effect_tooltip = increase_kmt_influence_tiny_bit_tt
+		increase_influence_normal = yes
+	}
+	option = {
+		name = KMT_Taiwan50s.9.c
+		custom_effect_tooltip =  decrease_native_unrest_tiny_bit_tt
+		decrease_unrest_normal = yes
+	}
+	
+}
+
+###Samin###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.10
+	title = KMT_Taiwan50s.10.t
+	desc = KMT_Taiwan50s.10.d	
+	is_triggered_only = yes
+	picture = GFX_Samin_Doctrine_Event
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.10.a
+		custom_effect_tooltip = increase_kmt_influence_tiny_bit_tt
+		increase_influence_normal = yes
+	}
+	option = {
+		name = KMT_Taiwan50s.10.b
+		custom_effect_tooltip = increase_us_influence_on_taiwan_tt
+		hidden_effect = {
+			increase_us_influence = yes
+		}
+	}
+	option = {
+		name = KMT_Taiwan50s.10.c
+		custom_effect_tooltip = decrease_native_unrest_tiny_bit_tt
+		decrease_unrest_normal = yes
+	}
+	
+}
+
+###Concluding the Reforms###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.11
+	title = KMT_Taiwan50s.11.t
+	desc = KMT_Taiwan50s.11.d	
+	is_triggered_only = yes
+	picture = GFX_Seventh_national_congress 
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.11.a
+		add_ideas = CHI_KMT_reborn
+	}
+}
+
+###Finished Army reforms###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.12
+	title = KMT_Taiwan50s.12.t
+	desc = KMT_Taiwan50s.12.d	
+	is_triggered_only = yes
+	picture = GFX_Chiang_Investigating_troops 
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.12.a
+		army_experience = 50
+		navy_experience = 50
+		air_experience = 50
+		
+	}
+}
+
+###CKS Reelected###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.13
+	title = KMT_Taiwan50s.13.t
+	desc = KMT_Taiwan50s.13.d	
+	is_triggered_only = yes
+	picture = GFX_Chiang_Desk
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.13.a
+		add_political_power = 50
+		add_stability = 0.02
+	}
+}
+
+###Local Elections###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.14
+	title = KMT_Taiwan50s.14.t
+	desc = KMT_Taiwan50s.14.d	
+	is_triggered_only = yes
+	picture = GFX_Local_Elections
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.14.a
+		custom_effect_tooltip = decrease_native_unrest_tiny_bit_tt
+		decrease_unrest_normal = yes
+		custom_effect_tooltip = decrease_kmt_influence_tiny_bit_negative_tt
+		decrease_influence_normal = yes
+		add_stability = 0.01
+		add_war_support = 0.01
+		
+	}
+}
+
+###Local Elections (Sun Li Jen)###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.144
+	title = KMT_Taiwan50s.144.t
+	desc = KMT_Taiwan50s.144.d	
+	is_triggered_only = yes
+	picture = GFX_Local_Elections
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.144.a
+		custom_effect_tooltip = decrease_native_unrest_tiny_bit_tt
+		decrease_influence_normal = yes
+		custom_effect_tooltip = decrease_kmt_influence_tiny_bit_negative_tt
+		decrease_unrest_normal = yes
+		add_stability = 0.01
+		add_war_support = 0.01
+		
+		
+	}
+}
+
+###Expelling Lei Chen from KMT###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.15
+	title = KMT_Taiwan50s.15.t
+	desc = KMT_Taiwan50s.15.d	
+	is_triggered_only = yes
+	picture = GFX_Lei_Chen_Quits_KMT
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.15.a
+	}
+}
+
+
+###Free China is further around###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.16
+	title = KMT_Taiwan50s.16.t
+	desc = KMT_Taiwan50s.16.d	
+	is_triggered_only = yes
+	picture = GFX_Free_China_event
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.16.a
+	}
+}
+
+###Formation of the CDL###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.17
+	title = KMT_Taiwan50s.17.t
+	desc = KMT_Taiwan50s.17.d	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.17.a
+		add_country_leader_role = {
+			  character = CHI_Lei_Chen
+			  promote_leader = yes
+			  country_leader = {
+				ideology = liberal_conservatives
+				expire = "1973.1.1.1"
+				traits = {  }
+			  }
+		}
+		set_party_name = {
+				ideology = Liberal_Conservatism
+				name = "CDP"
+				long_name = "China Democratic Party"
+		}
+		custom_effect_tooltip = 50s_taiwan_content_end_tt
+	}
+	option = {
+		name = KMT_Taiwan50s.17.b
+		add_political_power = -100
+		custom_effect_tooltip = increase_kmt_influence_tiny_bit_tt
+		increase_influence_normal = yes 
+		custom_effect_tooltip = 50s_taiwan_content_end_tt
+	}
+	
+}
+
+###Postponing Legislative Yuan Elections###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.18
+	title = KMT_Taiwan50s.18.t
+	desc = KMT_Taiwan50s.18.d	
+	is_triggered_only = yes
+	picture = GFX_Legislative_Yuan_elections
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.18.a
+		custom_effect_tooltip = increase_kmt_influence_great_bit_tt
+		increase_influence_greatly = yes
+		add_to_variable = {
+				bonus_fpp_modifier = 0.05
+				tooltip = bonus_fpp_modifier_tt
+		}
+	}
+	
+}
+
+###What to do with Chiang family###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.19
+	title = KMT_Taiwan50s.19.t
+	desc = KMT_Taiwan50s.19.d	
+	is_triggered_only = yes
+	picture = GFX_Chiang_Family
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.19.a
+		add_popularity = {
+				ideology = Liberal_Conservatism
+				popularity = 0.02
+		}
+		CHI_chiang_kai_shek = {
+			retire = yes
+		}
+		CHI_chiang_weikuo = {
+			retire = yes
+		}
+		hidden_effect = {
+			country_event = { id = KMT_Taiwan50s.21 days = 5 }
+		}
+	}
+	option = {
+		name = KMT_Taiwan50s.19.b
+		add_war_support = -0.02
+		CHI_chiang_kai_shek = {
+			retire = yes
+		}
+		CHI_chiang_weikuo = {
+			retire = yes
+		}
+		hidden_effect = {
+			country_event = { id = KMT_Taiwan50s.21 days = 5 }
+		}
+	}
+	option = {
+		name = KMT_Taiwan50s.19.c
+		add_stability = 0.02
+		CHI_chiang_kai_shek = {
+			retire = yes
+		}
+		CHI_chiang_weikuo = {
+			retire = yes
+		}
+		hidden_effect = {
+			country_event = { id = KMT_Taiwan50s.21 days = 5 }
+		}
+	}
+	
+}
+
+###What to do with Chen Cheng###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.21
+	title = KMT_Taiwan50s.21.t
+	desc = KMT_Taiwan50s.21.d	
+	is_triggered_only = yes
+	picture = GFX_Chen_Cheng_dismissed_event
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.21.a
+		add_stability = 0.02
+		set_country_flag = chen_cheng_stayed
+		
+	}
+	option = {
+		name = KMT_Taiwan50s.21.b
+		add_political_power = -50
+		set_country_flag = chen_cheng_removed
+	}
+	
+	
+}
+
+###New VP?###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.20
+	title = KMT_Taiwan50s.20.t
+	desc = KMT_Taiwan50s.20.d	
+	is_triggered_only = yes
+	picture = GFX_Presidential_Palace
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.20.a
+		clr_country_flag = Li_Zongren_vice_president
+		set_country_flag = chen_cheng_vp
+		set_country_flag = yan_xishan_premier_junta
+		clr_country_flag = chen_cheng_premier
+		clr_country_flag = Yu_Hung_Chun_premier
+		
+	}
+	option = {
+		name = KMT_Taiwan50s.20.b
+		
+		clr_country_flag = chen_cheng_vp
+		clr_country_flag = Li_Zongren_vice_president
+		set_country_flag = Kuo_Liang_vp
+		clr_country_flag = Yu_Hung_Chun_premier
+		clr_country_flag = chen_cheng_premier
+		set_country_flag = yan_xishan_premier_junta
+	}
+	option = {
+		name = KMT_Taiwan50s.20.c
+		
+		clr_country_flag = chen_cheng_vp
+		clr_country_flag = Li_Zongren_vice_president
+		set_country_flag = wu_guozhen_vp
+		clr_country_flag = Yu_Hung_Chun_premier
+		clr_country_flag = chen_cheng_premier
+		set_country_flag = yan_xishan_premier_junta
+	}
+	
+}
+
+###New VP? (Without Chen Cheng)###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.22
+	title = KMT_Taiwan50s.22.t
+	desc = KMT_Taiwan50s.22.d	
+	is_triggered_only = yes
+	picture = GFX_Presidential_Palace
+	fire_only_once = yes
+
+	option = {
+		name = KMT_Taiwan50s.22.b
+		
+		clr_country_flag = chen_cheng_vp
+		clr_country_flag = Li_Zongren_vice_president
+		set_country_flag = Kuo_Liang_vp
+		clr_country_flag = Yu_Hung_Chun_premier
+		clr_country_flag = chen_cheng_premier
+		set_country_flag = yan_xishan_premier_junta
+	} 
+	option = {
+		name = KMT_Taiwan50s.22.c
+		
+		clr_country_flag = chen_cheng_vp
+		clr_country_flag = Li_Zongren_vice_president
+		set_country_flag = wu_guozhen_vp
+		clr_country_flag = Yu_Hung_Chun_premier
+		clr_country_flag = chen_cheng_premier
+		set_country_flag = yan_xishan_premier_junta
+	}
+	
+}
+
+###Kuo Ting-liang revealed as Spy###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.23
+	title = KMT_Taiwan50s.23.t
+	desc = KMT_Taiwan50s.23.d	
+	is_triggered_only = yes
+	picture = GFX_Sun_Li_Jen
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.23.a
+		retire_character = CHI_sun_li_jen
+		news_event = KMT.150
+		hidden_effect = {
+			USA = { country_event = KMT_Taiwan50s.25 }
+		}
+	}
+	
+	
+	
+}
+
+###Sun Li Jen arrested (For USA)###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.25
+	title = KMT_Taiwan50s.25.t
+	desc = KMT_Taiwan50s.25.d	
+	is_triggered_only = yes
+	picture = GFX_Sun_Li_Jen
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.25.a
+		custom_effect_tooltip = decrease_us_influence_on_taiwan_tt
+		hidden_effect = {
+			decrease_us_influence = yes
+		}		
+		
+	}
+	
+	
+	
+}
+
+###Washingren-Tangwai-Debate###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.24
+	title = KMT_Taiwan50s.24.t
+	desc = KMT_Taiwan50s.24.d	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.24.a
+		custom_effect_tooltip = decrease_native_unrest_tiny_bit_tt
+		decrease_unrest_normal = yes
+		add_political_power = -200
+	}
+	option = {
+		name = KMT_Taiwan50s.24.b
+		custom_effect_tooltip = increase_native_unrest_tiny_bit_tt
+		increase_unrest_normal = yes
+		add_political_power = 10
+		add_popularity = {
+				ideology = nationalist
+				popularity = 0.02
+		}
+		
+	}
+	
+	
+	
+}
+
+###Junta steps down###
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.26
+	title = KMT_Taiwan50s.26.t
+	desc = KMT_Taiwan50s.26.d	
+	is_triggered_only = yes
+	picture = GFX_Junta_steps_Down
+
+	
+	major = yes
+	
+	option = {
+		name = KMT_Taiwan50s.26.a
+
+	}
+	
+	
+	
+	
+}
+
+
+###Sun Fo Wing Explanation###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.27
+	title = KMT_Taiwan50s.27.t
+	desc = KMT_Taiwan50s.27.d	
+	is_triggered_only = yes
+	picture = GFX_Social_Liberal_Faction_Taiwan_50s
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.27.a
+		
+		if = { 
+			limit = { 
+				has_country_flag = chen_cheng_stayed
+			}	
+			country_event = { id = KMT_Taiwan50s.28 days = 8 }
+		}
+		else_if = {
+			limit = { has_country_flag = chen_cheng_removed }
+				country_event = { id = KMT_Taiwan50s.29 days = 8 }
+		}
+		 
+		add_popularity = {
+				ideology = Liberal_Conservatism
+				popularity = 0.03
+		}
+		
+		add_popularity = {
+				ideology = nationalist
+				popularity = -0.03
+		}	 
+		
+		
+		
+	}
+	
+	
+	
+}
+
+###Chen Cheng Market Liberal Wing Explanation###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.28
+	title = KMT_Taiwan50s.28.t
+	desc = KMT_Taiwan50s.28.d	
+	is_triggered_only = yes
+	picture = GFX_KMT_Chen_Cheng_Market_Libeal_Faction_Taiwan50s
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.28.a
+		If = {
+			limit = { 
+				has_completed_focus = CHI_Allow_Formation_of_New_Parties
+			}	
+			country_event = { id = KMT_Taiwan50s.31 days = 5 }
+		}
+		add_country_leader_role = {
+			  character = CHI_chen_cheng
+			  promote_leader = yes
+			  country_leader = {
+				ideology = Three_principles_of_people_conservative
+				desc = POLITICS_CHEN_CHENG_DESC_DEMOCRATIC
+				expire = "1973.1.1.1"
+				traits = {  }
+			  }
+			}
+		add_popularity = {
+				ideology = conservative
+				popularity = 0.10
+		}
+		add_popularity = {
+				ideology = nationalist
+				popularity = -0.03
+		}
+		 
+	}	
+	
+}
+
+###Without Chen Cheng Market Liberal Wing Explanation###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.29
+	title = KMT_Taiwan50s.29.t
+	desc = KMT_Taiwan50s.29.d	
+	is_triggered_only = yes
+	picture = GFX_KMT_Taiwan_50s_Market_Liberals_without_Chen_Cheng_50s
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.29.a
+		if = {
+			limit = { 
+				has_completed_focus = CHI_Allow_Formation_of_New_Parties
+			}	
+			country_event = { id = KMT_Taiwan50s.31 days = 5 }
+		}
+		
+		add_popularity = {
+				ideology = conservative
+				popularity = 0.10
+		}
+		
+		add_popularity = {
+				ideology = nationalist
+				popularity = -0.03
+		}
+	} 	
+	
+}
+
+
+###CDP forms###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.31
+	title = KMT_Taiwan50s.31.t
+	desc = KMT_Taiwan50s.31.d	
+	is_triggered_only = yes
+	picture = GFX_Lei_Chen_Quits_KMT
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.31.a
+		set_country_flag = cdp_formed
+		add_popularity = {
+				ideology = social_liberalism
+				popularity = 0.10
+		}
+	}
+		
+}
+
+###First Election (Without CDL) With Chang Li sheng###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.30
+	title = KMT_Taiwan50s.30.t
+	desc = KMT_Taiwan50s.30.d	
+	is_triggered_only = yes
+	picture = GFX_Party_Election
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.30.a
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = no
+		}
+		clr_country_flag = sun_li_jen_president
+		clr_country_flag = chen_cheng_vp
+		clr_country_flag = wu_guozhen_vp
+		clr_country_flag = Kuo_Liang_vp
+		clr_country_flag = yan_xishan_premier_junta
+		set_country_flag = Zhang_Junmai_premier
+		set_country_flag = wu_guozhen_vp
+		set_country_flag = Sun_Fo_president
+	}
+	option = {
+		name = KMT_Taiwan50s.30.b
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = no
+		}
+		clr_country_flag = sun_li_jen_president
+		set_country_flag = Chang_Li_sheng_president
+		clr_country_flag = yan_xishan_premier_junta
+		set_country_flag = Zhu_Jiahua_premier
+		clr_country_flag = chen_cheng_vp
+		clr_country_flag = wu_guozhen_vp
+		clr_country_flag = Kuo_Liang_vp
+		set_country_flag = Wang_Yun_Wu_vp
+	}
+	
+	
+	
+}
+
+###First Election (Without CDL) With Chen Cheng###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.33
+	title = KMT_Taiwan50s.33.t
+	desc = KMT_Taiwan50s.33.d	
+	is_triggered_only = yes
+	picture = GFX_Party_Election
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.33.a
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = no
+		}
+		clr_country_flag = sun_li_jen_president
+		clr_country_flag = chen_cheng_vp
+		clr_country_flag = wu_guozhen_vp
+		clr_country_flag = Kuo_Liang_vp
+		clr_country_flag = yan_xishan_premier_junta
+		set_country_flag = Zhang_Junmai_premier
+		set_country_flag = wu_guozhen_vp
+		set_country_flag = Sun_Fo_president
+	}
+	option = {
+		name = KMT_Taiwan50s.33.b
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = no
+		}
+		clr_country_flag = sun_li_jen_president
+		set_country_flag = chen_cheng_president
+		clr_country_flag = yan_xishan_premier_junta
+		set_country_flag = Wang_Yun_Wu_premier
+		clr_country_flag = chen_cheng_vp
+		clr_country_flag = wu_guozhen_vp
+		clr_country_flag = Kuo_Liang_vp
+		set_country_flag = Chang_Li_sheng_vp
+	}
+	
+	
+	
+}
+
+###First Election (With CDL)###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.32
+	title = KMT_Taiwan50s.32.t
+	desc = KMT_Taiwan50s.32.d	
+	is_triggered_only = yes
+	picture = GFX_Party_Election
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.32.a
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = no
+		}
+		
+		clr_country_flag = sun_li_jen_president
+		clr_country_flag = chen_cheng_vp
+		clr_country_flag = wu_guozhen_vp
+		clr_country_flag = Kuo_Liang_vp
+		clr_country_flag = yan_xishan_premier_junta
+		set_country_flag = Zhang_Junmai_premier
+		set_country_flag = wu_guozhen_vp
+		set_country_flag = Sun_Fo_president
+		
+	}
+	option = {
+		name = KMT_Taiwan50s.32.b
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = no
+		}
+		clr_country_flag = sun_li_jen_president
+		set_country_flag = chen_cheng_president
+		clr_country_flag = yan_xishan_premier_junta
+		set_country_flag = Wang_Yun_Wu_premier
+		clr_country_flag = chen_cheng_vp
+		clr_country_flag = wu_guozhen_vp
+		clr_country_flag = Kuo_Liang_vp
+		set_country_flag = Chang_Li_sheng_vp
+		
+	}
+	option = {
+		name = KMT_Taiwan50s.32.c
+		set_politics = {
+			ruling_party = Social_Liberalism
+			elections_allowed = no
+		}
+	}	
+}
+
+
+
+###First Election (With CDL) With Chang Li sheng###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.34
+	title = KMT_Taiwan50s.34.t
+	desc = KMT_Taiwan50s.34.d	
+	is_triggered_only = yes
+	picture = GFX_Party_Election
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.34.a
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = no
+		} 
+		
+		clr_country_flag = sun_li_jen_president
+		clr_country_flag = chen_cheng_vp
+		clr_country_flag = wu_guozhen_vp
+		clr_country_flag = Kuo_Liang_vp
+		clr_country_flag = yan_xishan_premier_junta
+		set_country_flag = Zhang_Junmai_premier
+		set_country_flag = wu_guozhen_vp
+		set_country_flag = Sun_Fo_president
+		
+	}
+	option = {
+		name = KMT_Taiwan50s.34.b
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = no
+		}
+		clr_country_flag = sun_li_jen_president
+		set_country_flag = Chang_Li_sheng_president
+		clr_country_flag = yan_xishan_premier_junta
+		set_country_flag = Zhu_Jiahua_premier
+		clr_country_flag = chen_cheng_vp
+		clr_country_flag = wu_guozhen_vp
+		clr_country_flag = Kuo_Liang_vp
+		set_country_flag = Wang_Yun_Wu_vp
+	}
+	option = {
+		name = KMT_Taiwan50s.34.c
+		set_politics = {
+			ruling_party = Social_Liberalism
+			elections_allowed = no
+		}
+	}	
+}
+
+###State Visit from Saigon###
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.35
+	title = KMT_Taiwan50s.35.t
+	desc = KMT_Taiwan50s.35.d	
+	is_triggered_only = yes
+	picture = GFX_KMT_Taiwan_50s_Diem_in_Taipei
+
+	
+	major = yes
+	
+	option = {
+		name = KMT_Taiwan50s.35.a
+		CHI = { add_political_power = 10}	
+		VIE = { add_political_power = 10}	
+			
+		
+	}		
+}
+
+###State Visit Invititation for Saigon###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.37
+	title = KMT_Taiwan50s.37.t
+	desc = KMT_Taiwan50s.37.d	
+	is_triggered_only = yes
+	picture = GFX_Presidential_Palace
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.37.a
+		CHI = {		
+			add_opinion_modifier = {
+					target = VIE
+					modifier = small_increase
+			}
+		}
+		custom_effect_tooltip = kmt_cooperation_tt
+	}		
+}
+
+###VNQDD Influence rising###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_Taiwan50s.38
+	title = KMT_Taiwan50s.38.t
+	desc = KMT_Taiwan50s.38.d	
+	is_triggered_only = yes
+	picture = GFX_VNQDD_Event
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.38.a
+		add_popularity = {
+						ideology = fascism
+						popularity = 0.05
+		}
+	}		
+}
+
+###Situation in Indochina (Taiwan)#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Taiwan50s.36
+	title = KMT_Taiwan50s.36.t
+	desc = KMT_Taiwan50s.36.d
+	is_triggered_only = yes
+	picture = GFX_CHI_INDO_0
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.36.a
+	}
+}
+
+###Seventh Fleet moves into Taiwan Strait#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Taiwan50s.41
+	title = KMT_Taiwan50s.41.t
+	desc = KMT_Taiwan50s.41.d
+	is_triggered_only = yes
+	picture = GFX_US_Seventh_Fleet_Event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+	
+		trigger = {
+			has_government = nationalist
+		}
+		name = KMT_Taiwan50s.41.a
+		CHI = {add_ideas = CHI_Protected_by_US_Fleet}
+	} 
+	option = {	
+	
+		trigger = {
+			has_government = maoism
+		}
+		name = KMT_Taiwan50s.41.b
+		
+	}
+	
+}
+
+###ROC request Sino-American Treaty#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Taiwan50s.42
+	title = KMT_Taiwan50s.42.t
+	desc = KMT_Taiwan50s.42.d
+	is_triggered_only = yes
+	picture = GFX_Requesting_The_Sino_American_Defense_Treaty_Event
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.42.a
+		CHI = {country_event = KMT_Taiwan50s.43}
+	}
+}
+
+###USA agrees to sign the Treaty#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Taiwan50s.43
+	title = KMT_Taiwan50s.43.t
+	desc = KMT_Taiwan50s.43.d
+	is_triggered_only = yes
+	picture = GFX_Signing_The_Sino_American_Defense_Treaty_Event  
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.43.a
+		CHI = {complete_national_focus = CHI_Sino_american_treaty}
+	}
+}
+
+###Signing the SAMD Treaty#
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Taiwan50s.44
+	title = KMT_Taiwan50s.44.t
+	desc = KMT_Taiwan50s.44.d
+	is_triggered_only = yes
+	picture = GFX_KMT_110
+	is_triggered_only = yes
+
+	
+	major = yes
+	
+	option = {
+		name = KMT_Taiwan50s.44.a
+		
+	}
+}
+
+###Portraits in Schools#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Taiwan50s.45
+	title = KMT_Taiwan50s.45.t
+	desc = KMT_Taiwan50s.45.d
+	is_triggered_only = yes
+	picture = GFX_Sun_yat_sen_Portrait
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = KMT_Taiwan50s.45.a
+		increase_influence_normal = yes
+		custom_effect_tooltip = increase_kmt_influence_tiny_bit_tt
+		add_popularity = {
+					ideology = maoism
+					popularity = -0.01
+		}
+	}
+}
+
+###Yan Xishan Inner Circle#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Taiwan50s.46
+	title = KMT_Taiwan50s.46.t
+	desc = KMT_Taiwan50s.46.d
+	is_triggered_only = yes
+	picture = GFX_Yans_Offer
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = KMT_Taiwan50s.46.a
+		remove_ideas = CHI_government_corruption
+	}
+}
+
+###National Palace Museum Goods#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Taiwan50s.47
+	title = KMT_Taiwan50s.47.t
+	desc = {
+		text = KMT_Taiwan50s.47.da
+		trigger = {
+			tag = CHI
+		}
+	}
+	desc = {
+		trigger = {
+			tag = PRC
+		}
+		text = KMT_Taiwan50s.47.db
+	}
+	is_triggered_only = yes
+	picture = GFX_Evacuation_of_Cultural_Goods
+	is_triggered_only = yes
+
+	
+	option = {
+		name = KMT_Taiwan50s.47.a
+		trigger = {
+			tag = CHI
+		}
+		add_stability = 0.01
+		add_war_support = 0.01
+	}
+	option = {
+		name = KMT_Taiwan50s.47.b
+		trigger = {
+			tag = PRC
+		}
+		add_war_support = 0.05
+		add_stability = -0.05
+	}
+		
+}
+
+###PLA Bombs Quemoy#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.1
+	title = Strait_Crisis.1.t
+	desc = Strait_Crisis.1.d
+	is_triggered_only = yes
+	picture = GFX_PLA_shells_Kinmen_Event 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Strait_Crisis.1.a
+		CHI = {complete_national_focus = CHI_the_taiwan_strait}
+	}
+}
+
+###PLA continues Shelling#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.2
+	title = Strait_Crisis.2.t
+	desc = Strait_Crisis.2.d
+	is_triggered_only = yes
+	picture = GFX_PLA_shells_Kinmen_Event 
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Strait_Crisis.2.a
+		CHI = {
+				1006 = {
+					damage_building = {
+						type = infrastructure
+						damage = 1
+					}
+					
+				}
+		}
+	}
+}
+
+
+###US moves in#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.3
+	title = Strait_Crisis.3.t
+	desc = Strait_Crisis.3.d
+	is_triggered_only = yes
+	picture = GFX_USA_helps_with_evacuations
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+	
+		trigger = {
+			has_government = nationalist
+		}
+		name = Strait_Crisis.3.a
+		CHI = {add_war_support = 0.02}
+	}
+	option = {	
+	
+		trigger = {
+			has_government = maoism
+		}
+		name = Strait_Crisis.3.b
+		
+	} 
+}
+
+
+###Situation calms down#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.4
+	title = Strait_Crisis.4.t
+	desc = Strait_Crisis.4.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Strait_Crisis.4.a
+		trigger = {tag = CHI}
+		CHI = {clr_country_flag = First_Taiwan_strait_crisis}
+	}
+	option = {
+		name = Strait_Crisis.4.b
+		trigger = {tag = PRC}
+		add_war_support = 0.05
+	}
+}
+
+###Battle of Yijiashan Islands#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.5
+	title = Strait_Crisis.5.t
+	desc = Strait_Crisis.5.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Strait_Crisis.5.a
+		trigger = {tag = CHI}
+		add_manpower = -1086
+	}
+	option = {
+		name = Strait_Crisis.5.b
+		trigger = {tag = PRC}
+		add_war_support = 0.05
+	}
+}
+
+###arrival of american airwings in Taiwan#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.6
+	title = Strait_Crisis.6.t
+	desc = Strait_Crisis.6.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Strait_Crisis.6.a
+		trigger = {tag = CHI}
+		add_war_support = 0.05
+	}
+	option = {
+		name = Strait_Crisis.6.b
+		trigger = {tag = PRC}
+		add_war_support = -0.05
+	}
+}
+
+###Taiwan Second Strait Crisis###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.7
+	title = Strait_Crisis.7.t
+	desc = Strait_Crisis.7.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	
+	 
+	option = {
+		name = Strait_Crisis.7.a
+		add_equipment_to_stockpile = {
+			type = jet_CAS_equipment_2
+			amount = -2
+		}
+		
+	}
+}
+
+###leaflets dropped by PRC demanding for surrender###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.8
+	title = Strait_Crisis.8.t
+	desc = Strait_Crisis.8.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	
+	 
+	option = {
+		name = Strait_Crisis.8.a
+		
+		
+	}
+}
+
+###Soviet support for PRC###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.9
+	title = Strait_Crisis.9.t
+	desc = Strait_Crisis.9.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	
+	 
+	option = {
+		name = Strait_Crisis.9.a
+		
+		
+	}
+}
+
+###US support for ROC in 2nd strait crisis###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.10
+	title = Strait_Crisis.10.t
+	desc = Strait_Crisis.10.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	
+	 
+	option = {
+		name = Strait_Crisis.10.a
+		
+		
+	}
+}
+
+###resupply attempts###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.11
+	title = Strait_Crisis.11.t
+	desc = Strait_Crisis.11.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	
+	 
+	option = {
+		name = Strait_Crisis.11.a
+		
+		
+	}
+}
+
+###first Aerial Engagements###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.12
+	title = Strait_Crisis.12.t
+	desc = Strait_Crisis.12.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	
+	 
+	option = {
+		name = Strait_Crisis.12.a
+		trigger = {tag = CHI}
+		add_equipment_to_stockpile = {
+			type = jet_multirole_equipment_3
+			amount = -1
+		}
+	}
+	option = {
+		name = Strait_Crisis.12.b
+		trigger = {tag = PRC}
+		add_equipment_to_stockpile = {
+			type = jet_multirole_equipment_2
+			amount = -8
+		}
+	}
+}
+
+###second Aerial Engagements###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.13
+	title = Strait_Crisis.13.t
+	desc = Strait_Crisis.13.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	
+	 
+	option = {
+		name = Strait_Crisis.13.a
+		trigger = {tag = CHI}
+		add_war_support = 0.05
+	}
+	option = {
+		name = Strait_Crisis.13.b
+		trigger = {tag = PRC}
+		add_equipment_to_stockpile = {
+			type = jet_multirole_equipment_2
+			amount = -26
+		}
+	}
+}
+
+###third Aerial Engagements###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.14
+	title = Strait_Crisis.14.t
+	desc = Strait_Crisis.14.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	
+	 
+	option = {
+		name = Strait_Crisis.14.a
+		trigger = {tag = CHI}
+		add_equipment_to_stockpile = {
+			type = jet_multirole_equipment_3
+			amount = -1
+		}
+	}
+	option = {
+		name = Strait_Crisis.14.b
+		trigger = {tag = PRC}
+		add_equipment_to_stockpile = {
+			type = jet_multirole_equipment_2
+			amount = -3
+		}
+	}
+}
+
+###ceasefire###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.15
+	title = Strait_Crisis.15.t
+	desc = Strait_Crisis.15.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	
+	 
+	option = {
+		name = Strait_Crisis.15.a
+		trigger = {tag = CHI}
+		add_political_power = 25
+		
+		add_war_support = 0.1
+	}
+	option = {
+		name = Strait_Crisis.15.b
+		trigger = {tag = PRC}
+		add_political_power = -25
+	}
+}
+
+###ceasefire extended###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.16
+	title = Strait_Crisis.16.t
+	desc = Strait_Crisis.16.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	
+	 
+	option = {
+		name = Strait_Crisis.16.a
+		trigger = {tag = CHI}
+		
+	}
+	option = {
+		name = Strait_Crisis.16.b
+		trigger = {tag = PRC}
+		
+	}
+}
+
+###real ceasefire###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.17
+	title = Strait_Crisis.17.t
+	desc = Strait_Crisis.17.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	
+	 
+	option = {
+		name = Strait_Crisis.17.a
+		trigger = {tag = CHI}
+		add_political_power = 75
+		add_stability = 0.05
+	}
+	option = {
+		name = Strait_Crisis.17.b
+		trigger = {tag = PRC}
+		add_war_support = -0.05
+	}
+}
+
+###return of F86 planes###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.18
+	title = Strait_Crisis.18.t
+	desc = Strait_Crisis.18.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	
+	 
+	option = {
+		name = Strait_Crisis.18.a
+		remove_ideas = CHI_operation_black_magic_idea
+	}
+	option = {
+		name = Strait_Crisis.18.b
+		add_political_power = -25
+		add_timed_idea = {
+			idea = CHI_operation_black_magic_idea
+			days = 2555
+		}
+		set_variable = { THIS.idea_len_@token:economic_growth = 2555 }
+		set_variable = { THIS.idea_date_@token:economic_growth = global.num_days }
+		hidden_effect = {remove_ideas = CHI_operation_black_magic_idea}
+	}
+}
+
+###islands lost###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Strait_Crisis.19
+	title = Strait_Crisis.19.t
+	desc = Strait_Crisis.19.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	immediate = {
+		PRC = {
+			transfer_state = 1666
+			transfer_state = 1006
+		}
+	}
+	
+	 
+	option = {
+		name = Strait_Crisis.19.a
+		
+		
+			PRC = {
+				transfer_state = 1666
+				transfer_state = 1006
+			}
+		
+		trigger = {tag = CHI}
+	}
+	option = {
+		name = Strait_Crisis.19.b
+		
+		effect_tooltip = {
+			transfer_state = 1666
+			transfer_state = 1006
+		}
+		trigger = {tag = PRC}
+		add_war_support = 0.05
+	}
+}
+
+
+###Mainland operations#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Taiwan50s.49
+	title = KMT_Taiwan50s.49.t
+	desc = KMT_Taiwan50s.49.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	picture = GFX_Xinjiang
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.49.a
+		
+	}
+}
+
+##KMT Helps YANSA#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Taiwan50s.50
+	title = KMT_Taiwan50s.50.t
+	desc = KMT_Taiwan50s.50.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	picture = GFX_Korea_Soldiers_China
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.50.a
+		army_experience = 20
+		add_political_power = 30
+		
+	}
+}
+
+##KMT Helps YANSA#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Taiwan50s.51
+	title = KMT_Taiwan50s.51.t
+	desc = KMT_Taiwan50s.51.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	picture = GFX_UN_KASHMIR_4
+
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.51.a
+		BRM = {annex_country = { target = YAN transfer_troops = no }}
+		add_manpower = 30000
+		army_experience = 30
+		YAN = {set_country_flag = KMT_orders_full_retreat}
+		
+	}
+	
+	option = {
+		name = KMT_Taiwan50s.51.b
+		YAN = {set_country_flag = KMT_orders_wacky_retreat}
+	}
+	
+}
+
+##Debate about Islamic Insurgency#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Taiwan50s.52
+	title = KMT_Taiwan50s.52.t
+	desc = KMT_Taiwan50s.52.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	picture = GFX_Chinese_Indian_Skirmish
+
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.52.a
+		set_country_flag = KMT_Islamic_Insurgency_remained
+		
+	}
+	
+	option = {
+		name = KMT_Taiwan50s.52.b
+			XSM = {
+				
+				remove_state_core = 1864
+				remove_state_core = 1865
+				remove_state_core = 1866
+				remove_state_core = 1868
+				remove_state_core = 1869
+				remove_state_core = 1870
+				remove_state_core = 1871
+				remove_state_core = 1878
+				remove_state_core = 1776
+				remove_state_core = 2029
+				remove_state_core = 2030
+				remove_state_core = 1359
+				remove_state_core = 1926
+				remove_state_core = 1990
+				remove_state_core = 1991
+				remove_state_core = 1992
+				remove_state_core = 1989
+				remove_state_core = 1994
+				remove_state_core = 1995
+				remove_state_core = 2033
+				remove_state_core = 617
+				remove_state_core = 604
+				remove_state_core = 614
+				remove_state_core = 619
+				remove_state_core = 618
+				remove_state_core = 287
+			}
+			PRC = {remove_ideas = banditry}
+			set_country_flag = KMT_Islamic_Insurgency_recalled
+	}
+	
+}
+
+##Event about Korean War#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Taiwan50s.53
+	title = KMT_Taiwan50s.53.t
+	desc = KMT_Taiwan50s.53.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	picture = GFX_Korea_Soldiers_China
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.53.a
+
+		
+	}
+}
+
+##PRC Warning#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Taiwan50s.54
+	title = KMT_Taiwan50s.54.t
+	desc = KMT_Taiwan50s.54.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	picture = GFX_Korea_Soldiers_China
+	fire_only_once = yes
+	option = {
+		name = KMT_Taiwan50s.54.a
+
+		
+	}
+}
+
+#Taiwan Fuguo Island Events#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Fuguo.1
+	immediate = { }
+	title = KMT_Fuguo.1.t
+	desc = KMT_Fuguo.1.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = KMT_Fuguo.1.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Fuguo.2
+	immediate = { }
+	title = KMT_Fuguo.2.t
+	desc = KMT_Fuguo.2.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = KMT_Fuguo.2.a
+	}
+}
+
+##Formosan Revolution#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Taiwan50s.55
+	title = KMT_Taiwan50s.55.t
+	desc = KMT_Taiwan50s.55.d
+	is_triggered_only = yes
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	
+	 
+	option = {
+		name = KMT_Taiwan50s.55.a
+		load_focus_tree = 50s_Formosa
+		set_country_flag = Formosa_Revolution
+		remove_ideas = CHI_Taiwan_Japanese_remnants
+		remove_ideas = CHI_government_corruption
+		remove_ideas = antiquated_agricultural_sector_2
+		remove_ideas = CHI_Martial_law
+		remove_dynamic_modifier = { modifier = kmt_party_unity_50s_taiwan }
+		remove_dynamic_modifier = { modifier = kmt_influence_50s_taiwan }
+		remove_dynamic_modifier = { modifier = native_unrest_50s_taiwan }
+		clear_variable = kmt_50s_unity_taiwan_surrender_var 
+		clear_variable = kmt_50s_unity_taiwan_drift_defence_var 
+		clear_variable = kmt_50s_unity_taiwan_research_var 
+		clear_variable = kmt_50s_influence_taiwan_var 
+		clear_variable = kmt_50s_native_taiwan_var 
+		clear_variable = kmt_50s_native_taiwan_recruitablepop_var 
+		 
+		
+	}
+}
+
+###Fǎngōng dàlù###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_fangong_dalu.1
+	title = KMT_fangong_dalu.1.t
+	desc = KMT_fangong_dalu.1.d
+	picture = GFX_KMT_fangong_dalu_1_pic
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	
+	 
+	option = {
+		name = KMT_fangong_dalu.1.a
+		add_political_power = 50
+		add_war_support = 0.05
+	}
+}
+
+
+		###################50s Mainland Stuff########################
+
+###Republic of China introduction###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = bss.1
+	title = bss.1.t
+	desc = bss.1.d
+	picture = GFX_republic_china_intro_event
+
+	is_triggered_only = yes
+	
+	
+	option = {
+		name = bss.1.a
+		country_event = Intro.1
+		
+	}
+	option = {
+		name = bss.1.b
+		country_event = Intro.2 
+		
+	}
+	option = {
+		name = bss.1.c
+		
+	}
+
+	}
+
+###Kuomintang Introduction###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Intro.1
+	title = Intro.1.t
+	desc = Intro.1.d
+	picture = GFX_Nationalist_Victory_Civil_war_event
+
+	is_triggered_only = yes
+	 
+	
+	option = {
+		name = Intro.1.a
+		
+		
+	}
+	option = {
+		name = Intro.1.b
+		country_event = Intro.2
+		
+	} 
+	
+
+}
+
+###Chinese Civil War Introduction###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Intro.2
+	title = Intro.2.t
+	desc = Intro.2.d
+	picture = GFX_USA_CWC_1
+
+	is_triggered_only = yes
+	 
+	
+	option = {
+		name = Intro.2.a
+		country_event = Intro.1
+		
+	}
+	option = {
+		name = Intro.2.b
+		
+		
+	}
+	
+
+}
+
+		#####Civil War Stuff#####
+
+###Civil War Ceasefire - Nationalist Victory###
+#country_event = {
+#   id = bss.2
+#	title = bss.2.t
+#	desc = bss.2.d
+#	picture = GFX_Nationalist_Victory_Civil_war_event
+#	
+#	is_triggered_only = yes
+#	fire_only_once = yes
+#	
+#	option = {
+#	     name = bss.2.a
+#		 log = "loading KMT_1950s_Victory from decision"
+#		 load_focus_tree = KMT_1950s_Victory
+#		 
+#	}
+#}
+
+###Civil War Ceasefire - Nationalist Defeat###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+   id = bss.221
+	title = bss.221.t
+	desc = bss.221.d
+	picture = GFX_Retreat_to_Taiwan_Event
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+	    name = bss.221.a
+		load_focus_tree = ROC_50s 
+		CHI_li_mi = {
+			retire = yes
+		}
+		hidden_effect = {
+			add_ideas = CHI_Taiwan_Japanese_remnants
+			add_ideas = CHI_government_corruption
+			add_ideas = antiquated_agricultural_sector_2
+			add_ideas = CHI_calls_for_education_reforms
+			set_political_power = 0
+			add_dynamic_modifier = { modifier = kmt_party_unity_50s_taiwan }
+			add_dynamic_modifier = { modifier = kmt_influence_50s_taiwan }
+			add_dynamic_modifier = { modifier = native_unrest_50s_taiwan }
+			set_variable = { kmt_50s_unity_taiwan_surrender_var = -0.15 }
+			set_variable = { kmt_50s_unity_taiwan_drift_defence_var = -0.3}
+			set_variable = { kmt_50s_unity_taiwan_research_var = -0.15}
+			set_variable = { kmt_50s_influence_taiwan_var = 0.05}
+			set_variable = { kmt_50s_native_taiwan_var = -0.2}
+			set_variable = { kmt_50s_native_taiwan_recruitablepop_var = -0.3}
+			set_popularities = { 
+				democratic = 0
+				communism = 5
+				fascism = 7.5
+				nationalist = 50
+				monarchism = 0
+				neutrality = 0
+				islamism = 0
+				radical_shiaism = 0
+			
+				Social_Democratic = 7.5
+				Social_Liberalism = 10
+				Salafism = 0
+				Liberal_Conservatism = 10
+				conservative = 0
+				Christian_Democratic = 0
+				socialist = 0
+				centrist = 0
+				liberal = 0
+				trotskyism = 0
+				maoism = 10
+			}
+			set_portraits = { 
+				character = CHI_chiang_kai_shek
+				civilian = { large = "gfx/leaders/CHI/Chiang_Kai_Shek_50s_Defeat.dds" }
+				army = { large = "gfx/leaders/CHI/Chiang_Kai_Shek_60s_Gen.dds" }
+			}
+			PRC = {
+				set_portraits = { 
+					character = PRC_Mao_Zedong
+					civilian = { large = "gfx/leaders/PRC/Mao_Zedong_1955.png" }
+					army = { large = "gfx/leaders/PRC/Mao_Zedong_1955.png" }
+				}
+			}
+		}
+	}
+	option = {
+	    name = bss.221.b
+		load_focus_tree = ROC_50s
+		CHI_li_mi = {
+			retire = yes
+		}
+		CHI = {
+			hidden_effect = {
+				add_ideas = CHI_Taiwan_Japanese_remnants
+				add_ideas = CHI_government_corruption
+				add_ideas = antiquated_agricultural_sector_2
+				set_political_power = 0
+				add_dynamic_modifier = { modifier = kmt_party_unity_50s_taiwan }
+				add_dynamic_modifier = { modifier = kmt_influence_50s_taiwan }
+				add_dynamic_modifier = { modifier = native_unrest_50s_taiwan }
+				set_variable = { kmt_50s_unity_taiwan_surrender_var = -0.15 }
+				set_variable = { kmt_50s_unity_taiwan_drift_defence_var = -0.3}
+				set_variable = { kmt_50s_unity_taiwan_research_var = -0.15}
+				set_variable = { kmt_50s_influence_taiwan_var = 0.05}
+				set_variable = { kmt_50s_native_taiwan_var = -0.2}
+				set_variable = { kmt_50s_native_taiwan_recruitablepop_var = -0.3}
+				set_popularities = { 
+					democratic = 0
+					communism = 5
+					fascism = 7.5
+					nationalist = 50
+					monarchism = 0
+					neutrality = 0
+					islamism = 0
+					radical_shiaism = 0
+				
+					Social_Democratic = 7.5
+					Social_Liberalism = 10
+					Salafism = 0
+					Liberal_Conservatism = 10
+					conservative = 0
+					Christian_Democratic = 0
+					socialist = 0
+					centrist = 0
+					liberal = 0
+					trotskyism = 0
+					maoism = 10
+			
+				}
+				set_portraits = { 
+					character = CHI_chiang_kai_shek
+					civilian = { large = "gfx/leaders/CHI/Chiang_Kai_Shek_50s_Defeat.dds" }
+					army = { large = "gfx/leaders/CHI/Chiang_Kai_Shek_60s_Gen.dds" }
+				}
+			 
+			}
+		}
+		YAN = {change_tag_from = ROOT}
+		 
+	}
+}	
+
+###China asks for help from West###
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+   id = bss.222
+	title = bss.222.t
+	desc = bss.222.d
+	picture = GFX_KMT_USA_Cooperation_no__news_event
+	
+	is_triggered_only = yes
+	
+	major = yes
+	
+	option = {
+	     name = bss.222.a
+		   
+	}
+	
+}
+
+
+
+###Defections###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = bss.227
+	title = bss.227.t
+	desc = bss.227.d
+	picture = GFX_YANSA_101
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+	    name = bss.227.a
+		add_political_power = -50
+		add_war_support = -0.05
+		army_experience = -50
+		add_manpower = -200000
+		retire_character = CHI_Liu_Wenhui
+		retire_character = CHI_sah_chenping
+		retire_character = CHI_Chen_Shaokuan
+		retire_character = CHI_ma_hongbin
+		retire_character = CHI_chen_mingren
+		retire_character = CHI_lu_han
+		retire_character = CHI_Cheng_qian
+		retire_character = CHI_ma_guangzong
+		retire_character = CHI_ma_dunjing
+		retire_character = CHI_tao_zhiyue
+		retire_character = CHI_an_enpu
+		retire_character = CHI_cao_maocong
+		retire_character = CHI_fang_chengde
+		retire_character = CHI_chen_kefei
+		retire_character = CHI_chen_baocang
+		retire_character = CHI_hou_jingru
+		retire_character = CHI_wang_zuanxu
+		retire_character = CHI_bai_haifeng
+		retire_character = CHI_wang_lingji
+		retire_character = CHI_manchukezhabu
+		retire_character = CHI_ma_yuanhai
+		retire_character = CHI_zhang_gan
+	}
+}
+
+###White Group Baituan###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = bss.228
+	title = bss.228.t
+	desc = bss.228.d
+	picture = GFX_Chiang_Investigating_troops
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+	    name = bss.228.a
+		army_experience = 50
+		add_command_power = 30
+		add_doctrine_cost_reduction = {
+			cost_reduction = 1
+			uses = 2
+			category = land_doctrine
+		}
+		set_country_flag = accepted_baituan
+	}
+
+	option = {
+	    name = bss.228.b
+		add_stability = 0.01
+		add_war_support = 0.05
+		add_political_power = 50
+		set_country_flag = denied_baituan
+	}
+}
+
+###Republic of China Victory Events###
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_VIN.0
+ immediate = { }
+	title = CHI_VIN.0.t2
+	desc = CHI_VIN.0.d
+	picture = GFX_CHI_VIN_0
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_VIN.0.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_VIN.1
+ immediate = { }
+	title = CHI_VIN.1.t2
+	desc = CHI_VIN.1.d
+	picture = GFX_CHI_VIN_1
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_VIN.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_TIB.0
+ immediate = { }
+	title = CHI_TIB.0.t2
+	desc = CHI_TIB.0.d
+	picture = GFX_CHI_TIB_0
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_TIB.0.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_KMT.0
+ immediate = { }
+	title = CHI_KMT.0.t2
+	desc = CHI_KMT.0.d
+	picture = GFX_CHI_KMT_0
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_KMT.0.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_KMT.1
+ immediate = { }
+	title = CHI_KMT.1.t2
+	desc = CHI_KMT.1.d
+	picture = GFX_CHI_KMT_1
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_KMT.1.a2
+		
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.1
+ immediate = { }
+	title = KMT_MIL.1.t2
+	desc = KMT_MIL.1.d
+	picture = GFX_KMT_MIL_1
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_NUCLEAR.1
+ immediate = { }
+	title = KMT_NUCLEAR.1.t2
+	desc = KMT_NUCLEAR.1.d
+	picture = GFX_KMT_NUCLEAR_1
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_NUCLEAR.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.0
+ immediate = { }
+	title = CHI_INDO.0.t2
+	desc = CHI_INDO.0.d
+	picture = GFX_Generic_1950s_Saigon
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_INDO.0.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.1
+ immediate = { }
+	title = CHI_INDO.1.t
+	desc = CHI_INDO.1.d
+	picture = GFX_Party_Congress
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_INDO.1.a
+		trigger = {
+			tag = VIE
+		}
+	}
+	option = {
+		name = CHI_INDO.1.b
+		trigger = {
+			tag = VIN
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.2
+ immediate = { }
+	title = CHI_INDO.2.t
+	desc = CHI_INDO.2.d
+	picture = GFX_Cho_Lon_Streets
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_INDO.2.a
+		add_political_power = -100
+		add_war_support = -0.15
+		add_stability = 0.10
+		CHI = {country_event = CHI_INDO.3}
+	}
+	option = {
+		name = CHI_INDO.2.b
+		CHI = {country_event = CHI_INDO.4}
+	}
+	
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.3
+ immediate = { }
+	title = CHI_INDO.3.t
+	desc = CHI_INDO.3.d
+	picture = GFX_Cho_Lon_Streets
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_INDO.3.a
+		add_war_support = 0.05
+		set_country_flag = vietnam_ends_anti_chinese_sentiment
+	}
+	
+	
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.4
+ immediate = { }
+	title = CHI_INDO.4.t
+	desc = CHI_INDO.4.d
+	picture = GFX_Cho_Lon_Streets
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_INDO.4.a
+		592 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+		}
+		add_manpower = 40000
+		add_political_power = -100
+		add_war_support = -0.02
+		set_country_flag = vietnam_ends_anti_chinese_sentiment
+	}
+	
+	
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.5
+ immediate = { }
+	title = CHI_INDO.5.t
+	desc = CHI_INDO.5.d
+	picture = GFX_FRA_KMT_1
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_INDO.5.a
+		VIE = {
+				add_offsite_building = {
+				type = industrial_complex
+				level = 3
+				}
+		}
+	}
+	
+	
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.6
+ immediate = { }
+	title = CHI_INDO.6.t
+	desc = CHI_INDO.6.d
+	picture = GFX_VNQDD_Event
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_INDO.6.a
+		add_stability = -0.02
+		
+	}
+	
+	
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.7
+ immediate = { }
+	title = CHI_INDO.7.t
+	desc = CHI_INDO.7.d
+	picture = GFX_CHI_INDO_7_pic
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_INDO.7.a
+		custom_effect_tooltip = Viet_Quoc_disbanded_TT
+		CHI = {
+			diplomatic_relation = {
+				country = VIE
+				relation = non_aggression_pact
+				active = yes
+			}
+			country_event = CHI_INDO.13
+		}
+		add_popularity = {
+			ideology = nationalist 
+			popularity = -0.05
+		}
+		
+	}
+
+	option = {
+		name = CHI_INDO.7.b
+		custom_effect_tooltip = antagonize_nanjing_tt
+		CHI = {
+			add_opinion_modifier = {
+				target = VIE
+				modifier = small_decrease
+			}	
+			add_political_power = -50
+			country_event = CHI_INDO.11
+		}
+		
+	}
+
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.8
+ immediate = { }
+	title = CHI_INDO.8.t
+	desc = CHI_INDO.8.d
+	picture = GFX_CHI_INDO_8_pic
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_INDO.8.a
+		trigger = { original_tag = CHI }
+		CHI = {
+			country_event = CHI_INDO.8
+			add_opinion_modifier = {
+					target = VIE
+					modifier = small_increase
+			}
+		}
+		VIE = {
+			country_event = CHI_INDO.8
+		}
+	}
+
+	option = {
+		name = CHI_INDO.8.ab
+		trigger = { original_tag = VIE }
+		effect_tooltip = {
+			army_experience = 30
+				add_offsite_building = {
+					type = arms_factory
+					level = 1
+				}
+		}
+		VIE = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = small_increase
+				}
+		}
+	}
+
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.9
+ immediate = { }
+	title = CHI_INDO.9.t
+	desc = CHI_INDO.9.d
+	picture = GFX_VNQDD_Event
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_INDO.9.a
+		trigger = { 
+			NOT = {
+				tag = CHI
+			}
+		}
+	}
+	option = {
+		name = CHI_INDO.9.b
+		
+		add_political_power = -50
+		custom_effect_tooltip = Viet_Quoc_made_better_TT
+		trigger = {
+			tag = CHI
+		}
+	}
+	
+	
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.10
+ immediate = { }
+	title = CHI_INDO.10.t
+	desc = CHI_INDO.10.d
+	picture = GFX_VNQDD_Event
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_INDO.10.a
+		trigger = { 
+			NOT = {
+				tag = CHI
+			}
+		}
+	}
+	option = {
+		name = CHI_INDO.10.b
+		
+		army_experience = 25
+		custom_effect_tooltip = Viet_Quoc_made_better_TT
+		trigger = {
+			tag = CHI
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.11
+ immediate = { }
+	title = CHI_INDO.11.t
+	desc = CHI_INDO.11.d
+	picture = GFX_VNQDD_Event
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_INDO.11.a
+		effect_tooltip = {
+			add_political_power = -50
+			add_opinion_modifier = {
+				target = VIE
+				modifier = small_decrease
+			}
+		}
+		complete_national_focus = KMT_Support_The_Viet_Quoc
+		set_global_flag = CHI_change_support_for_vnqdd
+		custom_effect_tooltip = antagonize_saigon_tt
+	}
+
+	option = {
+		name = CHI_INDO.11.b
+		effect_tooltip = {
+			add_political_power = -50
+			add_opinion_modifier = {
+				target = VIE
+				modifier = small_decrease
+			}
+		}
+		custom_effect_tooltip = keep_support_for_south_vietnam_tt
+		VIE = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_increase
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.12
+ immediate = { }
+	title = CHI_INDO.12.t
+	desc = CHI_INDO.12.d
+	picture = GFX_CHI_INDO_12_pic
+
+	is_triggered_only = yes 
+	
+	option = {
+		name = CHI_INDO.12.a
+		root = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_increase
+			}	
+		}
+		add_ideas = chinese_advisors
+
+		army_experience = 30
+		add_offsite_building = {
+			type = arms_factory
+			level = 1
+		}
+	}
+
+	option = {
+		name = CHI_INDO.12.b
+		custom_effect_tooltip = antagonize_nanjing_tt
+		CHI = {
+			add_opinion_modifier = {
+				target = root
+				modifier = small_decrease
+			}	
+		}
+		
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.13
+ immediate = { }
+	title = CHI_INDO.13.t
+	desc = CHI_INDO.13.d
+	picture = GFX_CHI_INDO_13_pic
+
+	is_triggered_only = yes 
+	fire_only_once = yes 
+
+	option = {
+		name = CHI_INDO.13.a
+		add_opinion_modifier = {
+			target = VIE
+			modifier = small_increase
+		}
+		add_political_power = 5
+	}
+}
+
+###Define Nationality Law###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.14
+ immediate = { }
+	title = CHI_INDO.14.t
+	desc = CHI_INDO.14.d
+	picture = GFX_CHI_INDO_14_pic
+
+	is_triggered_only = yes 
+	fire_only_once = yes 
+
+	option = {
+		name = CHI_INDO.14.a
+		add_political_power = 100	
+		set_country_flag = CHI_jus_sanguini
+		set_country_flag = CHI_defined_nationality
+	}
+
+	option = {
+		name = CHI_INDO.14.b
+		add_stability = 0.01
+		set_country_flag = CHI_new_nationality_law
+		set_country_flag = CHI_defined_nationality
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.15
+ immediate = { }
+	title = CHI_INDO.15.t
+	desc = CHI_INDO.15.d
+	picture = GFX_CHI_INDO_15_pic
+
+	is_triggered_only = yes 
+	fire_only_once = yes 
+
+	option = {
+		name = CHI_INDO.15.a
+		custom_effect_tooltip = antagonize_nanjing_tt
+		add_opinion_modifier = {
+			target = CHI
+			modifier = small_decrease
+		}
+		CHI = {
+			country_event = CHI_INDO.16
+		}
+	}
+
+	option = {
+		name = CHI_INDO.15.b
+		add_political_power = -50
+		root = {
+			add_opinion_modifier = {
+				target = SIA
+				modifier = small_increase
+			}	
+			country_event = CHI_INDO.17
+		}
+	}	
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.16
+ immediate = { }
+	title = CHI_INDO.16.t
+	desc = CHI_INDO.16.d
+	picture = GFX_CHI_INDO_16_pic
+
+	is_triggered_only = yes 
+	fire_only_once = yes 
+
+	option = {
+		name = CHI_INDO.16.a
+		ROOT = {
+			remove_opinion_modifier = {
+				target = CHI
+				modifier = small_increase
+			}	
+			if = {
+				limit = {
+					has_idea = chinese_advisors
+				}
+				SIA = {country_event = CHI_INDO.17}
+			}
+			remove_ideas = chinese_advisors
+			add_offsite_building = {
+				type = arms_factory
+				level = -1
+			}			
+		}
+	}
+
+	option = {
+		name = CHI_INDO.16.b
+		add_stability = -0.01
+		add_political_power = -100
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.17
+ immediate = { }
+	title = CHI_INDO.17.t
+	desc = CHI_INDO.17.d
+	picture = GFX_CHI_INDO_17_pic
+
+	is_triggered_only = yes 
+	fire_only_once = yes 
+
+	option = {
+		name = CHI_INDO.17.a
+		add_opinion_modifier = {
+			target = SIA 
+			modifier = small_increase
+		}
+		
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.18
+ immediate = { }
+	title = CHI_INDO.18.t
+	desc = CHI_INDO.18.d
+	picture = GFX_CHI_INDO_18_pic
+
+	is_triggered_only = yes 
+	fire_only_once = yes 
+
+	option = {
+		name = CHI_INDO.18.a
+		
+		add_opinion_modifier = {
+			target = CHI 
+			modifier = large_decrease
+		}
+		add_political_power = 150
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.19
+ immediate = { }
+	title = CHI_INDO.19.t
+	desc = CHI_INDO.19.d
+	picture = GFX_CHI_INDO_19_pic
+
+	is_triggered_only = yes 
+
+	option = {
+		name = CHI_INDO.19.a
+		trigger = {tag = CHI}
+	}
+
+	option = {
+		name = CHI_INDO.19.a
+		trigger = {NOT = {tag = CHI} }
+		if = {
+			limit = {
+				tag = INO
+			}
+			every_owned_state = {
+				add_manpower = -6500
+			}
+			hidden_effect = {
+				600 = {
+					add_manpower = 39000
+				}
+				1576 = {
+					add_manpower = 39000
+				}
+				1569 = {
+					add_manpower = 9750
+				}
+				1577 = {
+					add_manpower = 9750
+				}
+				591 = {
+					add_manpower = 9750
+				}
+				592 = {
+					add_manpower = 39000
+				}
+				595 = {
+					add_manpower = 58500
+				}
+				
+			}
+		}
+		if = {
+			limit = {
+				tag = SIA
+			}
+			every_owned_state = {
+				add_manpower = -56572
+			}
+			hidden_effect = {
+				592 = {
+					add_manpower = 221762
+				}
+				600 = {
+					add_manpower = 31680
+				}
+				1576 = {
+					add_manpower = 31680
+				}
+				591 = {
+					add_manpower = 43560
+				}
+				595 = {
+					add_manpower = 27720
+				}
+				1569 = {
+					add_manpower = 13860
+				}
+				1577 = {
+					add_manpower = 13860
+				}
+			}
+		}
+		if = {
+			limit = {
+				tag = MAL
+			}
+			every_owned_state = {
+				add_manpower = -1000
+			}
+			hidden_effect = {
+				595 = {
+					add_manpower = 1296
+				}
+				592 = {
+					add_manpower = 496
+				}
+				591 = {
+					add_manpower = 188
+				}
+				1569 = {
+					add_manpower = 520
+				}
+				1577 = {
+					add_manpower = 272
+				}
+				1576 = {
+					add_manpower = 440
+				}
+				600 = {
+					add_manpower = 444
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_INDO.20
+ immediate = { }
+	title = CHI_INDO.20.t
+	desc = CHI_INDO.20.d
+	picture = GFX_CHI_INDO_20_pic
+
+	is_triggered_only = yes 
+
+	option = {
+		name = CHI_INDO.20.a
+		CHI = {
+			custom_effect_tooltip = returning_nanyang_chinese_tt
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.2
+ immediate = { }
+	title = KMT_MIL.2.t2
+	desc = KMT_MIL.2.d
+	picture = GFX_KMT_MIL_2
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.2.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.3
+ immediate = { }
+	title = KMT_MIL.3.t2
+	desc = KMT_MIL.3.d
+	picture = GFX_KMT_MIL_3
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.3.a2
+		set_country_flag = KMT_Mil_purge
+	}
+
+	option = {
+		name = KMT_MIL.3.b
+		set_country_flag = KMT_Mil_exile
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.4
+ immediate = { }
+	title = KMT_MIL.4.t2
+	desc = KMT_MIL.4.d
+	picture = GFX_KMT_MIL_4
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.4.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.5
+ immediate = { }
+	title = KMT_MIL.5.t2
+	desc = KMT_MIL.5.d
+	picture = GFX_KMT_MIL_5
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.5.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.6
+ immediate = { }
+	title = KMT_MIL.6.t2
+	desc = KMT_MIL.6.d
+	picture = GFX_KMT_MIL_6
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.6.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.7
+ immediate = { }
+	title = KMT_MIL.7.t
+	desc = KMT_MIL.7.d
+	picture = GFX_Falkenhausen
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.7.a
+		WGR = {		
+			add_opinion_modifier = {
+					target = CHI
+					modifier = small_increase
+			}
+		}
+		CHI = {country_event = KMT_MIL.Falkenhausen_Back} 
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.Falkenhausen_Back
+ immediate = { }
+	title = KMT_MIL.Falkenhausen_Back.t
+	desc = KMT_MIL.Falkenhausen_Back.d
+	picture = GFX_Falkenhausen
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.Falkenhausen_Back.a 
+		CHI = {		
+			add_opinion_modifier = {
+					target = WGR
+					modifier = small_increase
+			}
+		}
+		swap_ideas = { 
+  			remove_idea = CHI_independent_army_structure_1 
+  			add_idea = CHI_independent_army_structure_2
+		}
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.8
+ immediate = { }
+	title = KMT_MIL.8.t
+	desc = KMT_MIL.8.d
+	picture = GFX_Training_Brigades
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.8.a
+		swap_ideas = { 
+  			remove_idea = CHI_independent_army_structure_2 
+  			add_idea = CHI_independent_army_structure_3
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.9
+ immediate = { }
+	title = KMT_MIL.9.t
+	desc = KMT_MIL.9.d
+	picture = GFX_Chiang_Investigating_troops
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.9.a
+		swap_ideas = { 
+  			remove_idea = CHI_independent_army_structure_3 
+  			add_idea = CHI_independent_army_structure_4
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.10
+ immediate = { }
+	title = KMT_MIL.10.t
+	desc = KMT_MIL.10.d
+	picture = GFX_60_Units_Army
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.10.a
+		custom_effect_tooltip = ROC_big_army_tt
+		hidden_effect = {
+			load_oob = CHI_60_divisions
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.11
+ immediate = { }
+	title = KMT_MIL.11.t
+	desc = KMT_MIL.11.d
+	picture = GFX_Vietnam_KMT_guns
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.11.a
+		swap_ideas = { 
+  			remove_idea = CHI_Legacy_of_the_inadequate_US_Army_Structure_2
+  			add_idea = CHI_Legacy_of_the_inadequate_US_Army_Structure_3
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.12
+ immediate = { }
+	title = KMT_MIL.12.t
+	desc = KMT_MIL.12.d
+	picture = GFX_Logistics_Reform
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.12.a
+		swap_ideas = { 
+  			remove_idea = CHI_Legacy_of_the_inadequate_US_Army_Structure_3
+  			add_idea = CHI_Legacy_of_the_inadequate_US_Army_Structure_4
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.13
+ immediate = { }
+	title = KMT_MIL.13.t
+	desc = KMT_MIL.13.d
+	picture = GFX_KMT_MIL_6
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.13.a
+		remove_ideas = CHI_Legacy_of_the_inadequate_US_Army_Structure_4
+		
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.14
+ immediate = { }
+	title = KMT_MIL.14.t
+	desc = KMT_MIL.14.d
+	picture = GFX_60_Units_Army
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.14.a
+		custom_effect_tooltip = ROC_big_army_tt
+		hidden_effect = {
+			load_oob = CHI_90_divisions
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.15
+ immediate = { }
+	title = KMT_MIL.15.t
+	desc = KMT_MIL.15.d
+	picture = GFX_Whampoa
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.15.a
+		army_experience = 25
+		
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_MIL.16
+ immediate = { }
+	title = KMT_MIL.16.t
+	desc = KMT_MIL.16.d
+	picture = GFX_sun_1
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_MIL.16.a
+		swap_ideas = {
+			remove_idea = CHI_Legacy_of_the_inadequate_US_Army_Structure_1
+			add_idea = CHI_Legacy_of_the_inadequate_US_Army_Structure_2
+		}
+		
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CHI_BANDIT.0
+ immediate = { }
+	title = CHI_BANDIT.0.t2
+	desc = CHI_BANDIT.0.d
+	picture = GFX_CHI_BANDIT_0
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CHI_BANDIT.0.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_LAND_REFORM.0
+ immediate = { }
+	title = KMT_LAND_REFORM.0.t2
+	desc = KMT_LAND_REFORM.0.d
+	picture = GFX_KMT_LAND_REFORM_0
+
+	is_triggered_only = yes
+	
+	option = {
+		name = KMT_LAND_REFORM.0.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TIBET_KMT.100
+ immediate = { }
+	title = TIBET_KMT.100.t2
+	desc = TIBET_KMT.100.d
+	picture = GFX_TIBET_KMT_100
+
+	is_triggered_only = yes
+	
+	option = {
+		name = TIBET_KMT.100.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TIBET_KMT.20
+ immediate = { }
+	title = TIBET_KMT.20.t2
+	desc = TIBET_KMT.20.d
+	picture = GFX_TIBET_KMT_20
+
+	is_triggered_only = yes
+	
+	option = {
+		name = TIBET_KMT.20.a2 
+		CHI = {
+			puppet = TIB
+		} 
+		
+		TIB = {
+		
+			set_cosmetic_tag = TIB_ROC_Province
+			set_politics = {
+				ruling_party = monarchism
+				elections_allowed = no
+			}
+			retire_character = TIB_Tenzin_gyatso
+			
+			add_country_leader_role = {
+			  character = TIB_Choekyi_Gyaltsen
+			  promote_leader = yes
+			  country_leader = {
+				ideology = monarchist
+				expire = "1989.3.1.1"
+			  }
+			}
+		
+		}
+		
+		news_event = TIBET_KMT.21
+				
+	}
+	option = {
+		name = TIBET_KMT.20.b2
+		news_event = TIBET_KMT.22
+		declare_war_on = { target = CHI type = annex_everything } 	
+	}
+}
+
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TIBET_KMT.4
+ immediate = { }
+	title = TIBET_KMT.4.t2
+	desc = TIBET_KMT.4.d
+	picture = GFX_TIBET_KMT_4
+
+	is_triggered_only = yes
+	
+	option = {
+		name = TIBET_KMT.4.a2
+		CHI = {
+			puppet = TIB
+		}
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = no
+		}
+		TIB = {
+			transfer_state = 1889
+			set_party_name = {
+				ideology = Social_Democratic
+				name = "TIP"
+				long_name = "Tibet Improvement Party"
+			}
+			set_party_name = { 
+			ideology = neutrality
+				long_name = "Xizang Jun Zhengfu"
+				name = "Xizang Jun Zhengfu"
+			}
+			set_party_name = { 
+				ideology = maoism
+				long_name = "Xizang Gongchandang"
+				name = "Xizang Gongchandang"
+			}
+			set_party_name = { 
+				ideology = conservative
+				name = "Kuomintang (Xizang)"
+				long_name = "Kuomintang (Xizang Provincial Cabinet)"
+			}
+			set_party_name = { 
+				ideology = monarchism
+				name = "Bod Dalai Lama's Kashag"
+				long_name = "Bod Dalai Lama's Kashag"
+			}
+			set_party_name = { 
+				ideology = nationalist
+				name = "Tibetan Nationalists"
+				long_name = "Tibetan Nationalists"
+			}
+			set_popularities = {
+				maoism = 12
+				communism = 0
+				trotskyism = 0
+				socialist = 0
+				Social_Democratic = 25
+				
+				democratic = 0
+				Social_Liberalism = 0
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 0
+				Christian_Democratic = 0
+				conservative = 8
+				
+				neutrality = 18
+				nationalist = 2
+				monarchism = 35
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+			TIB_Tenzin_Gyatso = {
+				promote_character = social_democrat
+			}
+			promote_character = TIB_Tenzin_Gyatso
+		}
+		set_cosmetic_tag = TIB_ROC_Province
+		news_event = TIBET_KMT.6
+		CHI = {complete_national_focus = KMT_Tibet_accepts_submission}
+		set_cosmetic_tag = TIB_ROC_Province
+		news_event = TIBET_KMT.6
+		CHI = {complete_national_focus = KMT_Tibet_accepts_submission}	
+	}
+	
+	option = {
+		name = TIBET_KMT.4.b2
+		news_event = TIBET_KMT.5
+		CHI = {complete_national_focus = KMT_Tibet_refuses_submission}
+	}
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_REFORM.1 
+ immediate = { }
+	title = KMT_REFORM.1.t2
+	desc = KMT_REFORM.1.d
+	picture = GFX_Central_Reform_Committee_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = "KMT_REFORM.1.a"
+		
+		news_event = { id = KMT_Coup.2  days = 0}
+	}
+	option = {
+		name = "KMT_REFORM.1.b"
+		news_event = { id = KMT_Coup.3 days = 0}
+		trigger = { has_country_flag = Li_zongren_leader }
+	}
+	
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ROC_SOV.1
+	immediate = { }
+	title = ROC_SOV.1.t2
+	desc = ROC_SOV.1.d
+	picture = GFX_ROC_SOV.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = ROC_SOV.1.a2
+		add_opinion_modifier = {
+			target = SOV
+			modifier = small_increase
+		}
+		SOV = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_increase
+			}
+		}
+	}
+	option = {
+		name = ROC_SOV.1.b2
+		add_opinion_modifier = {
+			target = SOV
+			modifier = small_decrease
+		}
+		SOV = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_decrease
+			}
+		}
+	}
+}
+
+
+
+#News Events
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Coup.1
+ immediate = { }
+	title = "KMT_Coup.1.t"
+	desc = KMT_Coup.1.d
+	picture = GFX_Sun_Li_Jen_Coup
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "KMT_Coup.1.a"
+	}
+}
+
+
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = KMT_Sinification.0
+    immediate = { }   
+	title = KMT_Sinification.0.t2   
+	desc = KMT_Sinification.0.d
+	picture = GFX_KMT_Sinification_0
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_Sinification.0.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = KMT_VICTORY_TERROR.0
+    immediate = { }   
+	title = KMT_VICTORY_TERROR.0.t2   
+	desc = KMT_VICTORY_TERROR.0.d
+	picture = GFX_KMT_VICTORY_TERROR_0
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_VICTORY_TERROR.0.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = KMT_CULTS.0
+    immediate = { }   
+	title = KMT_CULTS.0.t2   
+	desc = KMT_CULTS.0.d
+	picture = GFX_KMT_CULTS_1 
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_CULTS.0.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = KMT_CULTS.1
+    immediate = { }   
+	title = KMT_CULTS.1.t2   
+	desc = KMT_CULTS.1.d
+	picture = GFX_KMT_CULTS_0
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_CULTS.1.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = KMT_SHOW_TRIALS.1
+    immediate = { }   
+	title = KMT_SHOW_TRIALS.1.t2   
+	desc = KMT_SHOW_TRIALS.1.d
+	picture = GFX_KMT_SHOW_TRIALS_1
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_SHOW_TRIALS.1.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = KMT_LAND_REFORM.1
+    immediate = { }   
+	title = KMT_LAND_REFORM.1.t2   
+	desc = KMT_LAND_REFORM.1.d
+	picture = GFX_KMT_LAND_REFORM_1
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_LAND_REFORM.1.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = KMT_LAND_REFORM.2
+    immediate = { }   
+	title = KMT_LAND_REFORM.2.t2   
+	desc = KMT_LAND_REFORM.2.d
+	picture = GFX_KMT_LAND_REFORM_2
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_LAND_REFORM.2.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = CHI_MARTIAL_LAW.0
+    immediate = { }   
+	title = CHI_MARTIAL_LAW.0.t2   
+	desc = CHI_MARTIAL_LAW.0.d
+	picture = GFX_CHI_MARTIAL_LAW_0
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = CHI_MARTIAL_LAW.0.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = CHI_MARTIAL_LAW.1
+    immediate = { }   
+	title = CHI_MARTIAL_LAW.1.t2   
+	desc = CHI_MARTIAL_LAW.1.d
+	picture = GFX_CHI_MARTIAL_LAW_1
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = CHI_MARTIAL_LAW.1.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = TIBET_KMT.3
+    immediate = { }   
+	title = TIBET_KMT.3.t2   
+	desc = TIBET_KMT.3.d
+	picture = GFX_TIBET_KMT_3
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = TIBET_KMT.3.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = TIBET_KMT.10
+    immediate = { }   
+	title = TIBET_KMT.10.t2   
+	desc = TIBET_KMT.10.d
+	picture = GFX_TIBET_KMT_3
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = TIBET_KMT.10.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = TIBET_KMT.5
+    immediate = { }   
+	title = TIBET_KMT.5.t2   
+	desc = TIBET_KMT.5.d
+	picture = GFX_TIBET_KMT_5
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = TIBET_KMT.5.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = TIBET_KMT.6
+    immediate = { }   
+	title = TIBET_KMT.6.t2   
+	desc = TIBET_KMT.6.d
+	picture = GFX_TIBET_KMT_6
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = TIBET_KMT.6.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = TIBET_KMT.21
+    immediate = { }   
+	title = TIBET_KMT.21.t2   
+	desc = TIBET_KMT.21.d
+	picture = GFX_TIBET_KMT_21
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = TIBET_KMT.21.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = TIBET_KMT.22
+    immediate = { }   
+	title = TIBET_KMT.22.t2   
+	desc = TIBET_KMT.22.d
+	picture = GFX_TIBET_KMT_22
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = TIBET_KMT.22.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = TIBET_KMT.11
+    immediate = { }   
+	title = TIBET_KMT.11.t2   
+	desc = TIBET_KMT.11.d
+	picture = GFX_TIBET_KMT_11
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = TIBET_KMT.11.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = CHI_SEATO.1
+    immediate = { }   
+	title = CHI_SEATO.1.t2   
+	desc = CHI_SEATO.1.d
+	picture = GFX_CHI_SEATO_1
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = CHI_SEATO.1.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = TIBET_KMT.15
+    immediate = { }   
+	title = TIBET_KMT.15.t2   
+	desc = TIBET_KMT.15.d
+	picture = GFX_TIBET_KMT_15
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = TIBET_KMT.15.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = TIBET_KMT.16
+    immediate = { }   
+	title = TIBET_KMT.16.t2   
+	desc = TIBET_KMT.16.d
+	picture = GFX_TIBET_KMT_16
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = TIBET_KMT.16.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = TIBET_KMT.105
+    immediate = { }   
+	title = TIBET_KMT.105.t2   
+	desc = TIBET_KMT.105.d
+	picture = GFX_TIBET_KMT_105
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = TIBET_KMT.105.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = CC_CLIQUE_FALL.0
+    immediate = { }   
+	title = CC_CLIQUE_FALL.0.t2   
+	desc = CC_CLIQUE_FALL.0.d
+	picture = GFX_CC_CLIQUE_FALL_0
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = CC_CLIQUE_FALL.0.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = CC_CLIQUE_FALL.1
+    immediate = { }   
+	title = CC_CLIQUE_FALL.1.t2   
+	desc = CC_CLIQUE_FALL.1.d
+	picture = GFX_CC_CLIQUE_FALL_1
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = CC_CLIQUE_FALL.1.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = KMT_Atoms.1
+    immediate = { }   
+	title = KMT_Atoms.1.t2   
+	desc = KMT_Atoms.1.d
+	picture = GFX_KMT_Atoms_1
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_Atoms.1.a2
+	}
+}	
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = KMT_Atoms.2
+    immediate = { }   
+	title = KMT_Atoms.2.t   
+	desc = KMT_Atoms.2.d
+	picture = GFX_KMT_Atoms_2
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_Atoms.2.a
+	}
+}	
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = KMT_Atoms.3
+    immediate = { }   
+	title = KMT_Atoms.3.t   
+	desc = KMT_Atoms.3.d
+	picture = GFX_KMT_Atoms_3
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_Atoms.3.a
+		unlock_decision_tooltip = publicize_project_blue_sky_white_sun
+		set_global_flag = KMT_China_has_nukes_now
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = ROC_VICTORY.1
+    immediate = { }   
+	title = ROC_VICTORY.1.t2   
+	desc = ROC_VICTORY.1.d
+	picture = GFX_ROC_VICTORY_1
+
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ROC_VICTORY.1.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = ROC_CLIQUE.15
+    immediate = { }   
+	title = ROC_CLIQUE.15.t2   
+	desc = ROC_CLIQUE.15.d
+	picture = GFX_ROC_CLIQUE_15
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ROC_CLIQUE.15.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = ROC_CLIQUE.16
+    immediate = { }   
+	title = ROC_CLIQUE.16.t2   
+	desc = ROC_CLIQUE.16.d
+	picture = GFX_ROC_CLIQUE_16
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ROC_CLIQUE.16.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = ROC_CLIQUE.1
+    immediate = { }   
+	title = ROC_CLIQUE.1.t2   
+	desc = ROC_CLIQUE.1.d
+	picture = GFX_ROC_CLIQUE_1
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ROC_CLIQUE.1.a2
+	}
+}	
+	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = ROC_CLIQUE.3
+    immediate = { }   
+	title = ROC_CLIQUE.3.t2   
+	desc = ROC_CLIQUE.3.d
+	picture = GFX_ROC_CLIQUE_3
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ROC_CLIQUE.3.a2
+		
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = ROC_CLIQUE.4
+    immediate = { }   
+	title = ROC_CLIQUE.4.t2   
+	desc = ROC_CLIQUE.4.d
+	picture = GFX_ROC_CLIQUE_4
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ROC_CLIQUE.4.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = ROC_CLIQUE.5
+    immediate = { }   
+	title = ROC_CLIQUE.5.t2   
+	desc = ROC_CLIQUE.5.d
+	picture = GFX_ROC_CLIQUE_5
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ROC_CLIQUE.5.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = ROC_CLIQUE.6
+    immediate = { }   
+	title = ROC_CLIQUE.6.t2   
+	desc = ROC_CLIQUE.6.d
+	picture = GFX_ROC_CLIQUE_6
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ROC_CLIQUE.6.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = ROC_CLIQUE.7
+    immediate = { }   
+	title = ROC_CLIQUE.7.t2   
+	desc = ROC_CLIQUE.7.d
+	picture = GFX_ROC_CLIQUE_7
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ROC_CLIQUE.7.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = ROC_CLIQUE.100
+    immediate = { }   
+	title = ROC_CLIQUE.100.t2   
+	desc = ROC_CLIQUE.100.d
+	picture = GFX_ROC_CLIQUE_100
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ROC_CLIQUE.100.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = ROC_CLIQUE.101
+    immediate = { }   
+	title = ROC_CLIQUE.101.t2   
+	desc = ROC_CLIQUE.101.d
+	picture = GFX_ROC_CLIQUE_101
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ROC_CLIQUE.101.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = ROC_CLIQUE.102
+    immediate = { }   
+	title = ROC_CLIQUE.102.t2   
+	desc = ROC_CLIQUE.102.d
+	picture = GFX_ROC_CLIQUE_102
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ROC_CLIQUE.102.a2
+	}
+}	
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = ROC_CLIQUE.103
+    immediate = { }   
+	title = ROC_CLIQUE.103.t2   
+	desc = ROC_CLIQUE.103.d
+	picture = GFX_ROC_CLIQUE_103
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = ROC_CLIQUE.103.a2
+	}
+}
+
+	
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Coup.2
+ immediate = { }
+	title = KMT_Coup.2.t
+	desc = KMT_Coup.2.d
+	picture = GFX_Chiang_CRC
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "KMT_Coup.2.a"
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Coup.3
+ immediate = { }
+	title = KMT_Coup.3.t
+	desc = KMT_Coup.3.d
+	picture = GFX_Zongren_CRC
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = KMT_Coup.3.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Coup.4
+ immediate = { }
+	title = KMT_Coup.4.t
+	desc = KMT_Coup.4.d
+	picture = GFX_Chen_Cheng_election
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = KMT_Coup.4.a
+	}
+}
+
+####Embassies in Indochina Event #####
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.1
+ immediate = { }
+	title = KMT_50s_Mainland.1.t
+	desc = KMT_50s_Mainland.1.d
+	picture = GFX_ROC_50s_Mainland_Embassies_Indochina
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = "KMT_50s_Mainland.1.a"
+		add_political_power = 10
+		ROOT = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = medium_increase
+				}
+		}
+	}
+}
+
+####One China Policy#####
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.2
+ immediate = { }
+	title = KMT_50s_Mainland.2.t
+	desc = KMT_50s_Mainland.2.d
+	picture = GFX_KMT_USA_Cooperation_no__news_event
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = "KMT_50s_Mainland.2.a"
+		
+	}
+}
+
+####Kung Chao doctrine #####
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.3
+ immediate = { }
+	title = KMT_50s_Mainland.3.t
+	desc = KMT_50s_Mainland.3.d
+	picture = GFX_ROC_50s_Mainland_Kung_Chao
+
+	is_triggered_only = yes
+	
+
+	option = {
+		name = "KMT_50s_Mainland.3.a"
+		add_political_power = -10
+		ROOT = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = small_decrease
+				}
+		}
+		
+	}
+}
+
+####Recognize Malaysia #####
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.4
+ immediate = { }
+	title = KMT_50s_Mainland.4.t
+	desc = KMT_50s_Mainland.4.d
+	picture = GFX_ROC_50s_Recognize_Malaysia
+
+	is_triggered_only = yes
+	
+
+	option = {
+		name = "KMT_50s_Mainland.4.a"
+		add_political_power = 40
+		ROOT = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = medium_increase
+				}
+		}
+		
+	}
+}
+
+####Leave Tibet alone#####
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.5
+ immediate = { }
+	title = KMT_50s_Mainland.5.t
+	desc = KMT_50s_Mainland.5.d
+	
+
+	is_triggered_only = yes
+	
+
+	option = {
+		name = "KMT_50s_Mainland.5.a"
+		add_stability = 0.1
+		add_war_support = 0.1
+		
+	}
+}
+
+####Warlord Report#####
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.6
+ immediate = { }
+	title = KMT_50s_Mainland.6.t
+	desc = KMT_50s_Mainland.6.d
+	picture = GFX_Chiang_with_Other_Army_dudes2
+
+	is_triggered_only = yes
+	
+
+	option = {
+		name = "KMT_50s_Mainland.6.a"
+		add_political_power = -100
+		if = {
+			limit = {
+				has_dynamic_modifier = {modifier = National_Crisis_modifier}
+			}
+			custom_effect_tooltip = increase_party_crisis_penalty_big_TT
+			increase_party_crisis_penalty_bigger = yes
+		}
+		KMT_50s_Mainland_Increase_Warlord_Loyalty_Bigger = yes
+		
+	}
+	option = {
+		name = "KMT_50s_Mainland.6.b"
+		if = {
+			limit = {
+				has_dynamic_modifier = {modifier = National_Crisis_modifier}
+			}
+			custom_effect_tooltip = decrease_party_crisis_penalty_big_TT
+			decrease_party_crisis_penalty_bigger = yes
+		}
+		KMT_50s_Mainland_Decrease_Warlord_Loyalty_Tiny = yes
+	}
+}
+
+####Li Zongren resigns as VP#####
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.7
+ immediate = { }
+	title = KMT_50s_Mainland.7.t
+	desc = KMT_50s_Mainland.7.d
+	picture = GFX_KMT_50s_Li_Zongren_Resigns_as_VP
+
+	is_triggered_only = yes
+	
+
+	option = {
+		name = "KMT_50s_Mainland.7.a"
+		add_political_power = -25
+	}
+}
+
+####Tridemism Explanation Mainland#####
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.8
+ immediate = { }
+	title = KMT_50s_Mainland.8.t
+	desc = KMT_50s_Mainland.8.d
+	picture = GFX_Samin_Doctrine_Event
+
+	is_triggered_only = yes
+	
+
+	option = {
+		name = "KMT_50s_Mainland.8.a"
+		if = {
+			limit = {
+				has_dynamic_modifier = {modifier = National_Crisis_modifier}
+			}
+			custom_effect_tooltip = decrease_party_crisis_penalty_small_TT
+			decrease_party_crisis_penalty_tiny = yes
+		}
+	}
+}
+
+
+
+####Surpremacy of Chiangs Family#####
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.9
+ immediate = { }
+	title = KMT_50s_Mainland.9.t
+	desc = KMT_50s_Mainland.9.d
+	picture = GFX_KMT_50s_Chiang_Having_Dinner
+
+	is_triggered_only = yes
+	
+
+	option = {
+		name = "KMT_50s_Mainland.9.a"
+		add_country_leader_trait = leader_of_national_revolutionary_movement
+	}
+}
+
+####Introduction of Silver Yuan#####
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.10
+ immediate = { }
+	title = KMT_50s_Mainland.10.t
+	desc = KMT_50s_Mainland.10.d
+	picture = GFX_KMT_50s_Silver_Yuan
+
+	is_triggered_only = yes
+	
+
+	option = {
+		name = "KMT_50s_Mainland.10.a"
+		custom_effect_tooltip = decrease_economic_crisis_debuff_tt
+		decrease_economic_penalty = yes
+	}
+}
+
+####China applies for Reconstruction Aid#####
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.11
+ immediate = { }
+	title = KMT_50s_Mainland.11.t
+	desc = KMT_50s_Mainland.11.d
+	picture = GFX_KMT_USA_Cooperation_yes_event
+
+	is_triggered_only = yes
+	
+
+	option = {
+		name = "KMT_50s_Mainland.11.a"
+		add_political_power = 100
+		set_temp_variable = { money_to_gain = -10 }
+		add_money_with_tooltip_effect = yes
+		CHI = {
+			country_event = {
+				id = KMT_50s_Mainland.11b
+				days = 4
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.11b
+ immediate = { }
+	title = KMT_50s_Mainland.11b.t
+	desc = KMT_50s_Mainland.11b.d
+	picture = GFX_KMT_USA_Cooperation_yes_event
+
+	is_triggered_only = yes
+	
+
+	option = {
+		name = "KMT_50s_Mainland.11b.a"
+		add_political_power = 50
+		set_temp_variable = { money_to_gain = 10 }
+		add_money_with_tooltip_effect = yes
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.11c
+ immediate = { }
+	title = KMT_50s_Mainland.11c.t
+	desc = KMT_50s_Mainland.11c.d
+	picture = GFX_ROC_50s_Mainland_KMT_Uranium_Mine
+
+	is_triggered_only = yes
+	
+
+	option = {
+		name = "KMT_50s_Mainland.11c.a"
+	
+		597 = {
+			add_resource = {
+				type = chromium
+				amount = 50
+			}		
+		}
+		1580 = {
+			add_resource = {
+				type = chromium
+				amount = 25
+			}		
+		}
+		set_temp_variable = { money_to_gain = 75 }
+		add_money_with_tooltip_effect = yes
+		USA = {
+			country_event = {
+				id = KMT_50s_Mainland.11d
+				days = 3
+			}
+		}	
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.11d
+ immediate = { }
+	title = KMT_50s_Mainland.11d.t
+	desc = KMT_50s_Mainland.11d.d
+	picture = GFX_ROC_50s_Mainland_KMT_Uranium_Mine
+
+	is_triggered_only = yes
+	
+
+	option = {
+		name = "KMT_50s_Mainland.11d.a"
+	
+		CHI = {
+			give_resource_rights = { 
+				receiver = ENG 
+				state = 1580 
+			}
+		}
+		
+		set_temp_variable = { money_to_gain = 10 }
+		add_money_with_tooltip_effect = yes
+			
+	}
+}
+
+###The Need of Reform###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+    id = KMT_50s_Mainland.12
+	immediate = { }
+	title = KMT_50s_Mainland.12.t
+	desc = KMT_50s_Mainland.12.d	
+	is_triggered_only = yes
+	picture = GFX_Seventh_national_congress 
+	fire_only_once = yes
+	option = {
+		name = KMT_50s_Mainland.12.a
+		add_political_power = 20
+		add_stability = 0.02
+	}
+}
+
+###Jiangxinpo intro###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_mainlandburma.1
+ immediate = { }
+	title = KMT_mainlandburma.1.t
+	desc = KMT_mainlandburma.1.d
+	#picture = GFX_KMT_10
+
+
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_mainlandburma.1.a
+		country_event = { id = KMT_mainlandburma.2 days = 10}
+	}
+
+	option = {
+		name = KMT_mainlandburma.1.b
+		add_political_power = 50
+		
+	}
+}
+
+###Jiangxinpo gets retaken###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_mainlandburma.2
+ immediate = { }
+	title = KMT_mainlandburma.2.t
+	desc = KMT_mainlandburma.2.d
+	picture = GFX_Invasion_of_Jiangxinpo
+
+
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_mainlandburma.2.a
+		trigger = { original_tag = CHI }
+			CHI = { 
+				transfer_state = 1817
+				transfer_state = 1896
+			}
+			army_experience = 10
+			BRM = {
+				country_event = KMT_mainlandburma.2
+			}
+	}
+
+	option = {
+		name = KMT_mainlandburma.2.b
+		trigger = { original_tag = BRM }
+		effect_tooltip = {
+			CHI = { 
+				transfer_state = 1817
+				transfer_state = 1896
+			}
+		}
+		add_political_power = -10
+	}
+}
+
+###demand for puyi extradiction###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_punishments.1
+ immediate = { }
+	title = KMT_punishments.1.t
+	desc = KMT_punishments.1.d
+	picture = GFX_KMT_50s_Mainland_Puyi_Debate
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_punishments.1.a
+		set_global_flag = KMT_puyi
+		CHI = {
+			country_event = KMT_punishments.2
+		}
+	}
+
+	option = {
+		name = KMT_punishments.1.b
+		set_global_flag = PRC_puyi
+		CHI = {
+			country_event = KMT_punishments.2
+		}
+	}
+}
+
+###reply from the USSR###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_punishments.2
+ immediate = { }
+	title = KMT_punishments.2.t
+	desc = {
+        text = KMT_punishments.2.yes 
+        trigger = {
+            has_global_flag = KMT_puyi
+        }
+    }
+    desc = {
+        text = KMT_punishments.2.no 
+        trigger = {
+            has_global_flag = PRC_puyi
+        }
+    }
+	picture = GFX_KMT_50s_Mainland_Puyi_Debate
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_punishments.2.a
+		trigger = {
+            has_global_flag = KMT_puyi
+        }
+		add_stability = 0.025
+		add_opinion_modifier = {
+			target = SOV
+			modifier = small_increase
+		}
+	}
+
+	option = {
+		name = KMT_punishments.2.b
+		trigger = {
+            has_global_flag = PRC_puyi
+        }
+		add_political_power = -50
+		add_opinion_modifier = {
+			target = SOV
+			modifier = small_decrease
+		}
+	}
+}
+
+###fate of puyi###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_punishments.3
+ immediate = { }
+	title = KMT_punishments.3.t
+	desc = KMT_punishments.3.d
+    
+	picture = GFX_KMT_50s_Mainland_Puyi_Debate
+	is_triggered_only = yes 
+	fire_only_once = yes
+
+	option = {
+		name = KMT_punishments.3.a
+		
+		add_stability = 0.05
+	}
+
+	option = {
+		name = KMT_punishments.3.b
+		
+		add_political_power = 75
+	}
+}
+
+###fate of chen yi###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_punishments.4
+ immediate = { }
+	title = KMT_punishments.4.t
+	desc = KMT_punishments.4.d
+    
+	picture = GFX_Chen_Yi
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_punishments.4.a
+		
+		add_stability = 0.05
+	}
+
+	option = {
+		name = KMT_punishments.4.b
+		
+		add_political_power = 75
+	}
+
+	option = {
+		name = KMT_punishments.4.c
+		add_stability = -0.05
+		add_political_power = -150
+	}
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_punishments.6
+ immediate = { }
+	title = KMT_punishments.6.t
+	desc = KMT_punishments.6.d
+    
+	picture = GFX_Demand_Extraction_of_the_Prince
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_punishments.6.a 
+		trigger = { original_tag = CHI }
+		add_political_power = 25
+
+	}
+
+	option = {
+		name = KMT_punishments.6.b 
+		trigger = { 
+			OR = {
+				tag = MON 
+				tag = MEN
+			}
+		}
+		
+		add_political_power = -75
+	}
+	
+}
+
+###fate of Zhang Xueliang###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_punishments.7
+ immediate = { }
+	title = KMT_punishments.7.t
+	desc = KMT_punishments.7.d
+    
+	picture = GFX_Zhang_Xueliang_and_Chiang
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_punishments.7.c
+		add_command_power = 50
+		army_experience = 20
+		add_stability = 0.02
+	}
+}
+
+###Question of Hong Kong###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.13
+ immediate = { }
+	title = KMT_50s_Mainland.13.t
+	desc = KMT_50s_Mainland.13.d
+    
+	picture = GFX_Hong_Kong
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.13.a 
+	}
+}
+
+###Seize Hong Kong rahhhh###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.14
+ immediate = { }
+	title = KMT_50s_Mainland.14.t
+	desc = KMT_50s_Mainland.14.d
+    
+
+	picture = GFX_Hong_Kong
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.14.a 
+		add_war_support = -0.15
+	}
+
+	option = {
+		name = KMT_50s_Mainland.14.b 
+		CHI = {
+			transfer_state = 326
+		}
+		ENG = {
+			country_event = KMT_50s_Mainland.15
+		}
+		USA = {
+			country_event = KMT_50s_Mainland.15
+		}
+	}
+}
+
+###Hong Kong seized reply###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.15
+ immediate = { }
+	title = KMT_50s_Mainland.15.t
+	desc = KMT_50s_Mainland.15.d
+    
+	picture = GFX_Hong_Kong
+
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.15.a 
+		trigger = { original_tag = ENG }
+		CHI = {
+			add_political_power = -50
+			add_opinion_modifier = {
+			target = ENG
+			modifier = small_decrease
+		}
+		}
+	}
+	option = {
+		name = KMT_50s_Mainland.15.b
+		
+	}
+}
+
+###Seize Macau rahhhh###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.16
+ immediate = { }
+	title = KMT_50s_Mainland.16.t
+	desc = KMT_50s_Mainland.16.d
+    
+	picture = GFX_Macau
+	is_triggered_only = yes 
+	fire_only_once = yes
+
+	option = {
+		name = KMT_50s_Mainland.16.a 
+		add_war_support = -0.15
+	}
+
+	option = {
+		name = KMT_50s_Mainland.16.b 
+		CHI = {
+			transfer_state = 729
+		}
+		POR = {
+			country_event = KMT_50s_Mainland.17
+		}
+	}
+}
+
+###Chinese Invasion of Macau reply###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.17
+ immediate = { }
+	title = KMT_50s_Mainland.17.t
+	desc = KMT_50s_Mainland.17.d
+    
+	picture = GFX_Macau
+
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.17.a 
+		CHI = {
+			add_political_power = -50
+			add_opinion_modifier = {
+			target = POR
+			modifier = small_decrease
+		}
+		}
+	}
+	option = {
+		name = KMT_50s_Mainland.17.b
+		CHI = {
+			add_political_power = 50
+			add_opinion_modifier = {
+			target = POR
+			modifier = small_increase
+		}
+		country_event = KMT_50s_Mainland.18
+		}
+		add_offsite_building = {
+				type = office_park
+				level = 2
+			}
+			add_offsite_building = {
+				type = industrial_complex
+				level = 2
+			}
+			CHI = {
+				add_offsite_building = {
+				type = industrial_complex
+				level = 4
+				}
+			}
+	}
+}
+
+###Sino-Portugese cooperation or smt###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.18
+ immediate = { }
+	title = KMT_50s_Mainland.18.t
+	desc = KMT_50s_Mainland.18.d
+    
+	picture = GFX_KMT_50s_Mainland_18
+
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.18.a
+	
+	}
+}
+
+###Bai Chongxi becomes minister of National Defense again, basically diving guangxi clique again###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.19
+ immediate = { }
+	title = KMT_50s_Mainland.19.t
+	desc = KMT_50s_Mainland.19.d
+    
+	picture = GFX_Bai_Chongxi
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.19.a 
+		custom_effect_tooltip = Guangxi_Bribe
+		add_to_variable = {
+			GUX_Warlord_Loyalty = 0.1
+		}
+	}
+}
+
+###Reconstruction of Shanghai Region###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.20
+ immediate = { }
+	title = KMT_50s_Mainland.20.t
+	desc = KMT_50s_Mainland.20.d
+    
+	picture = GFX_Shanghai_reconstruction
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.20.a 
+		613 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+		}
+		
+	}
+}
+
+###Collapse of the Bamboo Curtain event###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.21
+ immediate = { }
+	title = KMT_50s_Mainland.21.t
+	desc = KMT_50s_Mainland.21.d
+    
+	picture = GFX_KMT_50s_Mainland_21
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.21.a 
+		custom_effect_tooltip = 50s_mainland_content_end_tt
+		
+	}
+}
+
+###National Chung-Shan Institute of Science and Technology###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.22
+ immediate = { }
+	title = KMT_50s_Mainland.22.t
+	desc = KMT_50s_Mainland.22.d
+    
+	picture = GFX_KMT_50s_Mainland_22
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.22.a 
+		add_tech_bonus = {
+			name = akm_bonus
+			bonus = 2.5
+			uses = 1
+			category = infantry_weapons
+		}
+		add_tech_bonus = {
+			name = modernization_bonus
+			bonus = 2.5
+			uses = 1
+			category = artillery
+		}
+		add_tech_bonus = {
+			name = modernization_bonus
+			bonus = 2.5
+			uses = 1
+			category = vehicles
+		}
+	}
+}
+
+###Private schooling###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.23
+ immediate = { }
+	title = KMT_50s_Mainland.23.t
+	desc = KMT_50s_Mainland.23.d
+    
+	picture = GFX_KMT_50s_Mainland_23
+
+	timeout_days = 100
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.23.a 
+		add_political_power = -250
+		KMT_decrease_illiteracy_rate = yes
+		custom_effect_tooltip = KMT_Decrease_Mainland_Education_Debuffs
+
+	}
+	option = {
+		name = KMT_50s_Mainland.23.b 
+		add_political_power = 150
+		add_stability = -0.07
+		add_war_support = -0.07
+		KMT_decrease_illiteracy_rate = yes
+		custom_effect_tooltip = KMT_Decrease_Mainland_Education_Debuffs
+
+	}
+}
+
+###Compulsory Education in China###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.25
+ immediate = { }
+	title = KMT_50s_Mainland.25.t
+	desc = KMT_50s_Mainland.25.d
+    
+	picture = GFX_KMT_50s_Mainland_25
+
+	timeout_days = 14
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.25.a
+		set_temp_variable = { money_to_gain = -190 }
+		add_money_with_tooltip_effect = yes
+		hidden_effect = {
+			increase_education_rate = yes 
+		}
+		custom_effect_tooltip = Education_Plus
+	}
+	option = {
+		name = KMT_50s_Mainland.25.b 
+		add_political_power = -200
+		add_war_support = 0.05
+		set_temp_variable = { money_to_gain = -300 }
+		add_money_with_tooltip_effect = yes
+		hidden_effect = {
+			increase_education_rate = yes 
+		}
+		custom_effect_tooltip = Education_Plus
+		KMT_decrease_illiteracy_rate = yes
+		custom_effect_tooltip = KMT_Decrease_Mainland_Education_Debuffs
+		
+	}
+	option = {
+		name = KMT_50s_Mainland.25.c 
+		set_temp_variable = { money_to_gain = 50 }
+		add_money_with_tooltip_effect = yes
+	}
+}
+
+###Sanmin Zhuyi Course###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.26
+ immediate = { }
+	title = KMT_50s_Mainland.26.t
+	desc = KMT_50s_Mainland.26.d
+    
+	picture = GFX_KMT_50s_Mainland_26
+
+	timeout_days = 100
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.26.a
+		add_political_power = 120
+		
+		if = {
+			limit = {
+				has_dynamic_modifier = {modifier = National_Crisis_modifier}
+			}
+			custom_effect_tooltip = decrease_urban_crisis_penalty_small_TT
+			decrease_urban_crisis_penalty_bigger = yes
+		}
+	}
+	option = {
+		name = KMT_50s_Mainland.26.b 
+		add_political_power = -75
+		if = {
+			limit = {
+				has_dynamic_modifier = {modifier = National_Crisis_modifier}
+			}
+			custom_effect_tooltip = decrease_urban_crisis_penalty_small_TT
+			decrease_urban_crisis_penalty_tiny = yes
+		}
+	}
+	option = {
+		name = KMT_50s_Mainland.26.c 
+		add_political_power = -140
+		add_stability = 0.02
+	}
+}
+
+###Hidden Event to Loop Communist Activities Mission###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.27
+	immediate = { }
+	title = KMT_50s_Mainland.27.t
+	desc = KMT_50s_Mainland.27.d
+	hidden = yes
+	fire_only_once = no
+	is_triggered_only = yes 
+	immediate = {
+        set_country_flag = CHI_Mainland_50s_Communist_Activities_flag
+    }
+	option = {
+		name = KMT_50s_Mainland.27.a	
+	}
+}
+
+###Hidden Event to Loop Peasant Activities Mission###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.28
+	immediate = { }
+	title = KMT_50s_Mainland.28.t
+	desc = KMT_50s_Mainland.28.d
+	hidden = yes
+	fire_only_once = no
+	is_triggered_only = yes 
+	immediate = {
+        set_country_flag = CHI_Mainland_50s_Peasant_Rebellions_flag
+    }
+	option = {
+		name = KMT_50s_Mainland.28.a	
+	}
+}
+
+###Prince Dem gets more Privileges###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.29
+ immediate = { }
+	title = KMT_50s_Mainland.29.t
+	desc = KMT_50s_Mainland.29.d
+    
+	picture = GFX_Demand_Extraction_of_the_Prince
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.29.a 
+		add_stability = 0.02
+			621 = {
+			add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex 
+					level = 1 
+					instant_build = yes
+				}
+			}
+		}
+	}
+}
+
+###Integration of Guangxi###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.30
+ immediate = { }
+	title = KMT_50s_Mainland.30.t
+	desc = KMT_50s_Mainland.30.d
+    
+	picture = GFX_Compromise_Chiang_Li
+
+	timeout_days = 14
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.30.a
+		
+	}
+	
+}
+
+###Integration of Shanxi###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.31
+ immediate = { }
+	title = KMT_50s_Mainland.31.t
+	desc = KMT_50s_Mainland.31.d
+    
+	picture = GFX_Yans_Offer
+
+	timeout_days = 14
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.31.a
+		
+	}
+	
+}
+
+###Integration of Yunnan###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.32
+ immediate = { }
+	title = KMT_50s_Mainland.32.t
+	desc = KMT_50s_Mainland.32.d
+    
+	picture = GFX_Kuming_50s
+
+	timeout_days = 14
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.32.a
+		
+	}
+	
+}
+
+###Integration of Sichuan###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.33
+ immediate = { }
+	title = KMT_50s_Mainland.33.t
+	desc = KMT_50s_Mainland.33.d
+    
+	picture = GFX_Chongqing_40s
+
+	timeout_days = 14
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.33.a
+		
+	}
+	
+}
+
+###Integration of Hunan###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.34
+ immediate = { }
+	title = KMT_50s_Mainland.34.t
+	desc = KMT_50s_Mainland.34.d
+    
+	picture = GFX_Hunan_Defection
+
+	timeout_days = 14
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.34.a
+		
+	}
+	
+}
+
+###Integration of Ma###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.35
+ immediate = { }
+	title = KMT_50s_Mainland.35.t
+	desc = KMT_50s_Mainland.35.d
+    
+	picture = GFX_KMT_Civilwar_26_pic
+
+	timeout_days = 14
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.35.a
+		
+	}
+	
+}
+
+###Integration of Tibet###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_50s_Mainland.36
+ immediate = { }
+	title = KMT_50s_Mainland.36.t
+	desc = KMT_50s_Mainland.36.d
+    
+	picture = GFX_TIB_KMT_50s_MTAC_Tibet
+
+	timeout_days = 14
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_50s_Mainland.36.a
+		
+	}
+	
+}
+
+
+####Chinese Civil War events###
+###############################
+###############################
+
+
+###Hidden Trigger Event for ROC Victory###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.0
+ immediate = { }
+	title = KMT_Civilwar.0.t
+	desc = KMT_Civilwar.0.d
+	picture = GFX_KMT_USA_Cooperation_no_event
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+
+	immediate = {PRC_Lose_CCW = yes}
+	
+	option = {
+		name = KMT_Civilwar.0.a
+		
+
+		
+	}
+}
+
+###Wartime Army Reforms###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.1
+ immediate = { }
+	title = KMT_Civilwar.1.t
+	desc = KMT_Civilwar.1.d
+	picture = GFX_Chiang_with_Other_Army_dudes
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_Civilwar.1.a
+		custom_effect_tooltip = KMT_defections_stop_tt
+
+		army_experience = 100
+		add_doctrine_cost_reduction = {
+			cost_reduction = 0.5
+			uses = 2
+			category = land_doctrine
+		}
+	}
+}
+
+###Revival of the 1947 Gexin Reform Movement###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.2
+ immediate = { }
+	title = KMT_Civilwar.2.t
+	desc = KMT_Civilwar.2.d
+	picture = GFX_Gexin_Movement
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_Civilwar.2.a
+		add_political_power = 100
+		add_stability = 0.05
+	}
+}
+
+###Mao Renfeng blamed for Intelligence Blunders###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.3
+ immediate = { }
+	title = KMT_Civilwar.3.t
+	desc = KMT_Civilwar.3.d
+	picture = GFX_Mao_Renfeng_Blamage
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_Civilwar.3.a
+
+		add_ideas = {
+			CHI_reformed_NBIS
+		}
+		
+	}
+}
+
+###USA PLEASE END ARMS EMBARGO PLS PLS PLS###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.4
+ immediate = { }
+	title = KMT_Civilwar.4.t
+	desc = KMT_Civilwar.4.d
+	picture = GFX_Sino_American_Flags
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_Civilwar.4.a
+		CHI = {
+			country_event = KMT_Civilwar.5
+		}
+		hidden_effect ={
+			country_event = {id = KMT_Civilwar.6 days = 1}
+		}
+	}
+}
+
+###USA says yes to no arms embargo###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.5
+ immediate = { }
+	title = KMT_Civilwar.5.t
+	desc = KMT_Civilwar.5.d
+	picture = GFX_Sino_American_Flags
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_Civilwar.5.a
+		set_global_flag = USA_end_armsembargo
+		custom_effect_tooltip = KMT_civilwar_5_tt
+	}
+}
+
+###China Lobby pressures for further support in China###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.6
+ immediate = { }
+	title = KMT_Civilwar.6.t
+	desc = KMT_Civilwar.6.d
+	picture = GFX_Sino_American_Flags
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_Civilwar.6.a
+		complete_national_focus = USA_50s_Direct_Involvement
+	}
+
+	option = {
+		name = KMT_Civilwar.6.b
+		add_political_power = -50
+	}
+}
+
+###CCP ATROCITIES!!!! ###
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+   id = KMT_Civilwar.7
+	title = KMT_Civilwar.7.t
+	desc = KMT_Civilwar.7.d
+	picture = GFX_PLA_Atrocities
+	
+	major = yes
+	
+	is_triggered_only = yes
+
+	
+	option = {
+	     name = KMT_Civilwar.7.a
+	 	   
+	}
+	
+}
+
+###American Support for ROC increased###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.8
+ immediate = { }
+	title = KMT_Civilwar.8.t
+	desc = KMT_Civilwar.8.d
+	picture = GFX_USA_Public_Backlash_China
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_Civilwar.8.a
+		complete_national_focus = USA_50s_Direct_Involvement
+		CHI = {
+			country_event = KMT_Civilwar.5
+		}
+	}
+
+	option = {
+		name = KMT_Civilwar.8.b
+		add_political_power = -100
+	}
+}
+
+###Li-Chiang conflict  ###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.9
+ immediate = { }
+	title = KMT_Civilwar.9.t
+	desc = KMT_Civilwar.9.d
+	picture = GFX_Li_Chiang_Conflict_Explained
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_Civilwar.9.a
+		hidden_effect = {
+			country_event = { id = KMT_Civilwar.10 days = 5}
+		}
+	}
+}
+
+###Yan Xishan offers assistance once again###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.10
+ immediate = { }
+	title = KMT_Civilwar.10.t
+	desc = KMT_Civilwar.10.d
+	picture = GFX_Yans_Offer
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_Civilwar.10.a
+		custom_effect_tooltip = Li_Chiang_Rivalry_Continues_tt
+	}
+
+	option = {
+		name = KMT_Civilwar.10.b
+		hidden_effect = {
+			country_event = { id = KMT_Civilwar.11 days = 5}
+		}
+	}
+}
+
+###Reconciliation and Compromise achieved###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.11
+ immediate = { }
+	title = KMT_Civilwar.11.t
+	desc = KMT_Civilwar.11.d
+	picture = GFX_Compromise_Chiang_Li
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_Civilwar.11.a
+		add_political_power = 100
+		hidden_effect = {
+			country_event = { id = KMT_Civilwar.12 days = 5}
+		}
+	}
+
+	option = {
+		name = KMT_Civilwar.11.b
+		swap_ideas = { 
+	  		remove_idea = CHI_Chiang_Li_Conflict_1
+  			add_idea = CHI_Chiang_li_conflict_2
+		}
+		add_political_power = -150
+		set_country_flag = Li_Chiang_Compromise
+
+	}
+}
+
+###Negotiations break down with the New Guangxi Clique###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.12
+ immediate = { }
+	title = KMT_Civilwar.12.t
+	desc = KMT_Civilwar.12.d
+	picture = GFX_Negotiations_Between_Warlords_Break_down
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_Civilwar.12.a
+		set_country_flag = Li_Chiang_No_Compromise
+	}
+}
+
+###Li Zongren discovers coup attempt###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.13
+ immediate = { }
+	title = KMT_Civilwar.13.t
+	desc = KMT_Civilwar.13.d
+	picture = GFX_Li_Zongren_discovers_Coup
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KMT_Civilwar.13.a
+		retire_character = CHI_li_zongren
+		retire_character = CHI_chen_jitang
+		retire_character = CHI_li_pinxian
+		set_country_flag = CHI_gxc_flees
+	}
+}
+
+###The upcoming Defense of Shanghai###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.14
+ immediate = { }
+	title = KMT_Civilwar.14.t
+	desc = KMT_Civilwar.14.d
+	picture = GFX_Shanghai_Defense
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = KMT_Civilwar.14.a
+		add_war_support = 0.05
+	}
+}
+
+###Recapture of Nanjing###
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.15
+	title = KMT_Civilwar.15.t
+	desc = KMT_Civilwar.15.d
+	picture = GFX_Battle_For_Nanjing
+	
+	major = yes
+	
+	is_triggered_only = yes 
+
+	
+	option = {
+		name = KMT_Civilwar.15.a
+	
+	}
+}
+
+###Recapture of Wuhan###
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.16
+	title = KMT_Civilwar.16.t
+	desc = KMT_Civilwar.16.d
+	picture = GFX_Battle_For_Wuhan
+	
+	is_triggered_only = yes 
+
+	
+	option = {
+		name = KMT_Civilwar.16.a
+	
+	}
+}
+
+###Recapture of Beiping###
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.17
+	title = KMT_Civilwar.17.t
+	desc = KMT_Civilwar.17.d
+	picture = GFX_Battle_For_Beiping
+	
+	major = yes
+	
+	is_triggered_only = yes 
+
+	
+	option = {
+		name = KMT_Civilwar.17.a
+	
+	}
+}
+
+###Return back to Nanjing###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.18
+ immediate = { }
+	title = KMT_Civilwar.18.t
+	desc = KMT_Civilwar.18.d
+	picture = GFX_Palace_Nanjing
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_Civilwar.18.a
+		add_political_power = 150
+	}
+}
+
+###Inevitable hunan defection###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.19
+ immediate = { }
+
+	title = KMT_Civilwar.19.t
+	desc = KMT_Civilwar.19.d
+	picture = GFX_Hunan_Defection
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		#hidden_effect = {
+		#	PRC = { transfer_state = 602 }
+		#	PRC = { transfer_state = 1575 }
+		#}
+	} 
+
+	option = {
+		name = KMT_Civilwar.19.a
+		add_political_power = -150
+		retire_character = CHI_Cheng_qian
+		retire_character = CHI_chen_mingren
+		retire_character = CHI_cao_maocong
+		retire_character = CHI_fang_chengde
+		PRC = { 
+			country_event = {
+				id = PRC_50s_Rework_event.1
+				hours = 5
+			}
+		}
+		#effect_tooltip = {
+		#	PRC = { 
+		#			transfer_state = 602 
+		#	        transfer_state = 1575 
+		#	}
+		#}
+	}
+}
+
+###Xikang defects###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.20
+ immediate = { }
+	title = KMT_Civilwar.20.t
+	desc = KMT_Civilwar.20.d
+	picture = GFX_Xikang_Desertation
+
+	fire_only_once = yes
+	is_triggered_only = yes  
+
+	immediate = {
+		hidden_effect = {
+			PRC = { transfer_state = 1557 }
+			CHI = {
+                transfer_units_fraction= {
+				    target = PRC
+				    size = 0.3
+				    stockpile_ratio = 0.03
+				    army_ratio = 0.01
+				    keep_unit_leaders_trigger = {
+				    	always = yes
+					}
+			    }
+            }
+			if = {
+				limit = {
+					has_country_flag = xichang_capital_city
+				}
+				add_victory_points = {
+					province = 7294
+						value = -10
+					}
+					set_capital = { state = 593 }
+					clr_country_flag = xichang_capital_city
+			}
+					
+		}
+
+	}
+			
+			
+
+	option = {
+		name = KMT_Civilwar.20.a
+		add_political_power = -150 
+		retire_character = CHI_Liu_Wenhui
+		retire_character = CHI_Wang_Zuanxu
+		retire_character = CHI_Wang_Lingji
+		retire_character = CHI_Deng_Xihou
+		effect_tooltip = {
+			PRC = { 
+					transfer_state = 1557 
+			}
+			CHI = {
+                transfer_units_fraction= {
+				    target = PRC
+				    size = 0.3
+				    stockpile_ratio = 0.03
+				    army_ratio = 0.01
+				    keep_unit_leaders_trigger = {
+				    	always = yes
+					}
+			    }
+            }
+		}
+	}
+}
+
+
+###Yunnan defects###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.21
+    immediate = { }
+	title = KMT_Civilwar.21.t
+	desc = KMT_Civilwar.21.d
+	picture = GFX_Yunnan_Desertation
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			PRC = { 
+				#transfer_state = 325 
+				#transfer_state = 1326 #致新加坡人组员：历史上是刷兵在云南，之后云南受KMT不完全控制数月
+				country_event = {
+					id = PRC_50s_Rework_event.2
+					hours = 5
+				}
+			}
+			CHI = {
+                transfer_units_fraction= {
+				    target = PRC
+				    size = 0.2
+					stockpile_ratio = 0.03
+				    army_ratio = 0.01
+				    keep_unit_leaders_trigger = {
+				    	always = yes
+					}
+			    }
+            }
+		}
+	} 
+
+	option = {
+		name = KMT_Civilwar.21.a
+		add_political_power = -150 
+		retire_character = CHI_lu_han
+		retire_character = CHI_an_enpu
+		effect_tooltip = {
+			PRC = { 
+				#transfer_state = 325
+			    #transfer_state = 1326
+				country_event = {
+					id = PRC_50s_Rework_event.2
+					hours = 8
+				}
+			}
+			CHI = {
+                transfer_units_fraction= {
+				    target = PRC
+				    size = 0.2
+				    stockpile_ratio = 0.03
+				    army_ratio = 0.01
+				    keep_unit_leaders_trigger = {
+				    	always = yes
+					}
+			    }
+            }
+		}
+						
+	}
+}
+
+###Xinjiang defects###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.22
+ immediate = { }
+	title = KMT_Civilwar.22.t
+	desc = KMT_Civilwar.22.d
+	picture = GFX_Xinjiang_Desertation
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			PRC = { 
+				transfer_state = 617
+				transfer_state = 287
+				transfer_state = 873
+				transfer_state = 1865
+				transfer_state = 1867
+				transfer_state = 1866
+				transfer_state = 1868
+				transfer_state = 1869
+				transfer_state = 1870
+				transfer_state = 1871
+				transfer_state = 619
+			}
+			CHI = {
+                transfer_units_fraction= {
+				    target = PRC
+				    size = 0.3
+				    stockpile_ratio = 0.03
+				    army_ratio = 0.02
+				    keep_unit_leaders_trigger = {
+				    	always = yes
+					}
+			}
+	}
+            	617 = {
+					remove_dynamic_modifier = { modifier = xinjiang_might_defect}
+				}
+				287 = {
+					remove_dynamic_modifier = { modifier = xinjiang_might_defect}
+				}
+				873= {
+					remove_dynamic_modifier = { modifier = xinjiang_might_defect}
+				}
+				1865 = {
+					remove_dynamic_modifier = { modifier = xinjiang_might_defect}
+				}
+				1867 = {
+					remove_dynamic_modifier = { modifier = xinjiang_might_defect}
+				}
+				1866 = {
+					remove_dynamic_modifier = { modifier = xinjiang_might_defect}
+				}
+				1868 = {
+					remove_dynamic_modifier = { modifier = xinjiang_might_defect}
+				}
+				1869 = {
+					remove_dynamic_modifier = { modifier = xinjiang_might_defect}
+				}
+				1870 = {
+					remove_dynamic_modifier = { modifier = xinjiang_might_defect}
+				}
+				1871 = {
+					remove_dynamic_modifier = { modifier = xinjiang_might_defect}
+				}
+				619 = {
+					remove_dynamic_modifier = { modifier = xinjiang_might_defect}
+				}
+			}
+		}
+
+	option = {
+		name = KMT_Civilwar.22.a
+		add_political_power = -150
+		retire_character = CHI_Tao_Zhiyue
+		retire_character = CHI_bai_haifeng
+		effect_tooltip = {
+			PRC = { 
+				transfer_state = 617
+				transfer_state = 287
+				transfer_state = 619
+				transfer_state = 873
+				transfer_state = 1865
+				transfer_state = 1867
+				transfer_state = 1866
+				transfer_state = 1868
+				transfer_state = 1869
+				transfer_state = 1870
+				transfer_state = 1871
+			}
+			CHI = {
+                transfer_units_fraction= {
+				    target = PRC
+				    size = 0.3
+				    stockpile_ratio = 0.03
+				    army_ratio = 0.01
+				    keep_unit_leaders_trigger = {
+				    	always = yes
+					}
+			    }
+            }
+		
+		}
+	}
+}
+
+###Fall of Yenan###
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.23
+	title = KMT_Civilwar.23.t
+	desc = KMT_Civilwar.23.d
+	picture = GFX_Fall_of_Yenan
+	
+	major = yes
+	fire_only_once = no
+	is_triggered_only = yes
+	
+	#trigger = {
+	#	has_global_flag = CCW_Started
+	#	NOT = {has_country_flag = CCW_Over}
+	#	CHI = {
+	#		controls_state = 622
+	#	}
+	#} 
+
+	
+	option = {
+		name = KMT_Civilwar.23.a
+	
+	}
+}
+
+###Return of the New Guangxi Clique###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.24
+	title = KMT_Civilwar.24.t
+	desc = KMT_Civilwar.24.d
+	picture = GFX_Li_Zongren_discovers_Coup
+	is_triggered_only = yes
+	fire_only_once = yes 
+	
+	option = {
+		name = KMT_Civilwar.24.a
+		add_political_power = -50
+	}
+}
+
+###Sun Li-Jen's Army in Taiwan finishes training###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.25
+ immediate = { }
+	title = KMT_Civilwar.25.t
+	desc = KMT_Civilwar.25.d
+	picture = GFX_Sun_Li_Jen
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_Civilwar.25.a
+		add_war_support = 0.05
+		army_experience = 50
+		set_country_flag = sun_li_jen_out_taiwan
+	}
+}
+
+###Ma Bufang asks for assistance###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.26
+ immediate = { }
+	title = KMT_Civilwar.26.t
+	desc = KMT_Civilwar.26.d
+	picture = GFX_KMT_Civilwar_26_pic
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = KMT_Civilwar.26.a
+		add_war_support = 0.05
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_0
+			amount = -2000
+			producer = CHI
+		}
+		custom_effect_tooltip = Ma_bufang_chad_tt
+		hidden_effect = {
+			612 = {
+				add_dynamic_modifier = { modifier = Airdropped_supplies_from_guangzhou }  
+			}
+			283 = {
+				add_dynamic_modifier = { modifier = Airdropped_supplies_from_guangzhou }  
+			}
+			604 = {
+				add_dynamic_modifier = { modifier = Airdropped_supplies_from_guangzhou }  
+			}
+			1359 = {
+				add_dynamic_modifier = { modifier = Airdropped_supplies_from_guangzhou }  
+			}
+			1787 = {
+				add_dynamic_modifier = { modifier = Airdropped_supplies_from_guangzhou }  
+			}
+			616 = {
+				add_dynamic_modifier = { modifier = Airdropped_supplies_from_guangzhou }  
+			}
+		}
+	}
+
+	option = {
+		name = KMT_Civilwar.26.b
+		add_war_support = -0.05
+		ai_chance = {
+  			factor = 4000
+		}
+	}
+}
+
+###Li Zongren economic reforms###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.27
+ immediate = { }
+	title = KMT_Civilwar.27.t
+	desc = KMT_Civilwar.27.d
+	picture = GFX_KMT_Civilwar_27_pic
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = KMT_Civilwar.27.a
+		add_political_power = -50
+		add_stability = 0.05
+		swap_ideas = {
+			remove_idea = CHI_Inflation_small
+			add_idea = CHI_Inflation_small2
+		}
+	}
+
+	option = {
+		name = KMT_Civilwar.27.b
+		add_political_power = 50
+		add_war_support = 0.05
+		swap_ideas = {
+			remove_idea = CHI_Inflation_small
+			add_idea = CHI_Inflation_small2
+		}
+	}
+	
+}
+
+###Choosing a Strategy ###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.28
+ immediate = { }
+	title = KMT_Civilwar.28.t
+	desc = KMT_Civilwar.28.d
+	picture = GFX_KMT_Civilwar_28_pic
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_Civilwar.28.a
+		add_political_power = 100
+		custom_effect_tooltip = Focus_Defend_Sichuan_tt
+		hidden_effect = {
+			605 = {
+				add_dynamic_modifier = { modifier = Fortress_Free_China }  
+			}
+			601 = {
+				add_dynamic_modifier = { modifier = Fortress_Free_China }  
+			}
+			1557 = {
+				add_dynamic_modifier = { modifier = Fortress_Free_China }  
+			}
+			2015 = {
+				add_dynamic_modifier = { modifier = Fortress_Free_China }  
+			}
+			1978 = {
+				add_dynamic_modifier = { modifier = Fortress_Free_China }  
+			}
+		}
+	}
+
+	option = {
+		name = KMT_Civilwar.28.b
+		add_political_power = -100
+		custom_effect_tooltip = Focus_Defend_Liangguang_tt
+		hidden_effect = {
+			592 = {
+				add_dynamic_modifier = { modifier = Fortress_Free_China }  
+			}
+			1569 = {
+				add_dynamic_modifier = { modifier = Fortress_Free_China }  
+			}
+			594 = {
+				add_dynamic_modifier = { modifier = Fortress_Free_China }  
+			}
+			1578 = {
+				add_dynamic_modifier = { modifier = Fortress_Free_China }  
+			}
+			1577 = {
+				add_dynamic_modifier = { modifier = Fortress_Free_China }  
+			}
+			591 = {
+				add_dynamic_modifier = { modifier = Fortress_Free_China }  
+			}
+			2031 = {
+				add_dynamic_modifier = { modifier = Fortress_Free_China }  
+			}
+			2014 = {
+				add_dynamic_modifier = { modifier = Fortress_Free_China }  
+			}
+		}
+	}
+
+	option = {
+		name = KMT_Civilwar.28.c
+		add_command_power = 50
+		
+	}
+	
+}
+
+###Li Zongren sick and leaves (Taiwan Route) ###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.29
+ immediate = { }
+	title = KMT_Civilwar.29.t
+	desc = KMT_Civilwar.29.d
+	picture = GFX_KMT_Civilwar_29_pic
+
+	is_triggered_only = yes
+
+	option = {
+	
+		name = KMT_Civilwar.29.a
+		add_political_power = 100
+		remove_ideas = CHI_Chiang_li_Conflict_1
+	
+	}
+}
+
+###Li Zongren sick but stays (Mainland Route) ###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.41
+ immediate = { }
+	title = KMT_Civilwar.41.t
+	desc = KMT_Civilwar.41.d
+	picture = GFX_KMT_Civilwar_29_pic
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+	
+		name = KMT_Civilwar.41.a
+		add_political_power = -50
+		add_war_support = 0.02
+		
+	
+	}
+}
+
+###Intercepted Hunan defection attempt###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.30
+ immediate = { }
+	title = KMT_Civilwar.30.t 
+	desc = KMT_Civilwar.30.d
+	picture = GFX_KMT_Civilwar_30_pic
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_Civilwar.30.a
+		country_event = KMT_Civilwar.31
+		hidden_effect = {
+			PRC = {
+				country_event = {id = KMT_Civilwar.31 days = 1}
+			}
+			CHI = {
+				country_event = {id = KMT_Civilwar.31 days = 1}
+			}
+		}
+
+	}
+	
+}
+
+###arrest of Cheng Qian###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.31
+ immediate = { }
+	title = KMT_Civilwar.31.t
+	desc = KMT_Civilwar.31.d
+	picture = GFX_KMT_Civilwar_31_pic
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	immediate = {
+		hidden_effect = {
+			PRC = {
+				country_event = {id = KMT_Civilwar.32 days = 5}
+			}
+			CHI = {
+				country_event = {id = KMT_Civilwar.32 days = 5}
+			}
+		}
+	}
+
+	option = {
+		name = KMT_Civilwar.31.a
+		add_war_support = 0.05
+		trigger = {tag = CHI}
+	}
+
+	option = {
+		name = KMT_Civilwar.31.b
+		add_war_support = -0.05
+		trigger = {tag = PRC}
+	}
+	
+}
+
+###Changheng Campaign###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.32
+ immediate = { }
+	title = KMT_Civilwar.32.t
+	desc = KMT_Civilwar.32.d
+	picture = GFX_KMT_Civilwar_32_pic
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	immediate = {
+		hidden_effect = {
+			CHI = {
+				activate_mission = Changheng_campaign
+			}
+		}
+	}
+
+	option = {
+		name = KMT_Civilwar.32.a
+		add_war_support = 0.05
+		trigger = {tag = CHI}
+	}
+
+	option = {
+		name = KMT_Civilwar.32.b
+		add_war_support = -0.05
+		trigger = {tag = PRC}
+	}
+}
+
+###Emergency Military Conference###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.33
+ immediate = { }
+	title = KMT_Civilwar.33.t
+	desc = KMT_Civilwar.33.d
+	picture = GFX_KMT_Civilwar_33_pic
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	immediate = {
+		hidden_effect = {
+			CHI = {
+				country_event = {id = KMT_Civilwar.28 days = 7}
+			}
+		}
+	}
+
+	option = {
+		name = KMT_Civilwar.33.a
+		add_political_power = 100
+		add_war_support = 0.01
+	}
+}
+
+###Annexation of Xinjiang###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.34
+ immediate = { }
+	title = KMT_Civilwar.34.t
+	desc = KMT_Civilwar.34.d
+	picture = GFX_KMT_Civilwar_34_pic
+	fire_only_once = yes
+
+	
+	is_triggered_only = yes 
+
+	immediate = {
+		hidden_effect = {
+			SOV = {
+				country_event = {id = KMT_Civilwar.34 days = 7}
+			}
+			PRC = {
+				country_event = {id = KMT_Civilwar.34 days = 7}
+			}
+		}
+	}
+
+	option = {
+		name = KMT_Civilwar.34.a
+		trigger = {tag = CHI}
+		CHI = {
+			annex_country = {
+				target = SIK
+			}
+		}
+	}
+	option = {
+		name = KMT_Civilwar.34.a
+		trigger = {
+			NOT = {
+				tag = CHI
+			}
+		}
+		add_political_power = -25
+	}
+}
+
+###Fall of Guangzhou###
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.35
+	title = KMT_Civilwar.35.t
+	desc = KMT_Civilwar.35.d
+	picture = GFX_Fall_of_Guangzhou
+	
+	major = yes
+	is_triggered_only = yes 
+
+	
+	option = {
+		name = KMT_Civilwar.35.a
+		hidden_effect = {
+				if = {
+				limit = {
+					AND = {
+						601 = {is_controlled_by = CHI}
+						NOT = {has_completed_focus = CHI_CIVILWAR_Relocate_the_government_to_Taipei}
+					}
+				}
+				CHI = {set_capital = {state = 601 }}
+				else_if = {
+					limit = {
+						AND = {
+						605 = {is_controlled_by = CHI}
+						NOT = {has_completed_focus = CHI_CIVILWAR_Relocate_the_government_to_Taipei}
+						}
+					}
+				CHI = {set_capital = {state = 605 }}
+				}
+				else_if = {
+					limit = {
+						AND = {
+							1557 = {is_controlled_by = CHI}
+							NOT = {has_completed_focus = CHI_CIVILWAR_Relocate_the_government_to_Taipei}
+						}
+					}
+					add_victory_points = {
+						province = 7294
+						value = 10
+					}
+					CHI = {set_capital = { state = 1557 }}
+					CHI = {set_country_flag = xichang_capital_city}
+				}
+				else = {
+					CHI = {set_capital = { state = 593 }}
+				}
+			}
+		}
+	}
+}
+
+###Fall of Chongqing###
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.36
+	title = KMT_Civilwar.36.t
+	desc = KMT_Civilwar.36.d
+	picture = GFX_Fall_of_Chongqing
+	
+	major = yes
+	is_triggered_only = yes 
+	
+
+	option = {
+		name = KMT_Civilwar.36.a
+		hidden_effect = {
+			
+			
+			if = {
+				limit = {
+
+					AND = {
+							1569 = {is_controlled_by = CHI}
+							NOT = {has_completed_focus = CHI_CIVILWAR_Relocate_the_government_to_Taipei}
+					}
+				}
+				CHI = {set_capital = {state = 1569}}
+			}
+			else_if = {
+				limit = {
+					AND = {
+							605 = {is_controlled_by = CHI}
+							NOT = {has_completed_focus = CHI_CIVILWAR_Relocate_the_government_to_Taipei}
+					}
+				}
+				CHI = {set_capital = {state = 605}}
+			}
+			else_if = {
+				limit = {
+					AND = {
+							1557 = {is_controlled_by = CHI}
+							NOT = {has_completed_focus = CHI_CIVILWAR_Relocate_the_government_to_Taipei}
+					}
+				}
+				add_victory_points = {
+					province = 7294
+					value = 10
+				}
+				CHI = {set_capital = { state = 1557 }}
+				CHI = {set_country_flag = xichang_capital_city}
+			}
+			else = {
+				CHI = {set_capital = { state = 593 }}
+			}
+
+		}
+	}
+}
+
+###CKS and CCK moves to Taiwan###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.37
+	title = KMT_Civilwar.37.t
+	desc = KMT_Civilwar.37.d
+	picture = GFX_Chiang_with_Other_Army_dudes2
+	
+	fire_only_once = yes
+	is_triggered_only = yes	
+
+
+	option = {
+		name = KMT_Civilwar.37.a
+		custom_effect_tooltip = CKS_and_CCK_evacuates_tooltip
+	}
+}
+
+###Defection Event Notification###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.38
+	title = KMT_Civilwar.38.t
+	desc = KMT_Civilwar.38.d
+	picture = GFX_YANSA_101
+	is_triggered_only = yes
+	fire_only_once = yes 
+
+	immediate = {
+	}
+
+	option = {
+		name = KMT_Civilwar.38.a
+		add_political_power = -50
+		add_war_support = -0.05
+		army_experience = -50
+		add_manpower = -200000
+		
+	}
+}
+
+###Du Yuming POW (PRC EVENT)###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.39
+	title = KMT_Civilwar.39.t
+	desc = KMT_Civilwar.39.d
+	picture = GFX_KMT_50s_Du_Yuming_and_other_POWs
+	is_triggered_only = yes
+	fire_only_once = yes 
+
+	
+
+	option = {
+		name = KMT_Civilwar.39.a
+		CHI = {
+			army_experience = -50
+			country_event = KMT_Civilwar.40
+		}
+	}
+}
+
+###Du Yuming POW (ROC EVENT)###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.40
+	title = KMT_Civilwar.40.t
+	desc = KMT_Civilwar.40.d
+	picture = GFX_KMT_50s_Du_Yuming_and_other_POWs
+	is_triggered_only = yes
+	fire_only_once = yes 
+
+	
+
+	option = {
+		name = KMT_Civilwar.40.a
+		CHI = {
+			army_experience = -10
+			add_war_support = 0.01
+		}
+	}
+}
+
+###Sichuan Holds###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.411
+	title = KMT_Civilwar.411.t
+	desc = KMT_Civilwar.411.d
+	picture = GFX_Sichuan_Holds
+	is_triggered_only = yes
+	fire_only_once = yes 
+
+	
+
+	option = {
+		name = KMT_Civilwar.411.a
+		add_war_support = 0.05
+		add_political_power = 50
+		add_command_power = 20
+		set_global_flag = roc_stalled_ccp
+		add_days_mission_timeout = {
+			mission = The_Chinese_Civil_war
+			days = 300
+		}
+		hidden_effect = {
+			USA = {
+				country_event = { id = KMT_Civilwar.8 days = 1}
+			}
+			CHI = {	
+				activate_mission = CHI_recapture_nanjing
+				activate_mission = CHI_recapture_wuhan
+				activate_mission = CHI_recapture_beiping
+			}	
+		}
+		
+		CHI_new_major_defense = yes 
+	}
+}
+
+###Sichuan Falls###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.42
+	title = KMT_Civilwar.42.t
+	desc = KMT_Civilwar.42.d
+	picture = GFX_Fall_of_Sichuan
+	is_triggered_only = yes
+	fire_only_once = yes 
+
+	
+
+	option = {
+		name = KMT_Civilwar.42.a
+		CHI_new_major_loss = yes 	
+		news_event = KMT_Civilwar.36
+		custom_effect_tooltip = southwest_defense_fail_loc
+		hidden_effect = {
+					CHI = {country_event = { id = KMT_Civilwar.20 days = 11} }
+					CHI =  {country_event = { id = KMT_Civilwar.21 days = 9} }
+		}
+	}
+}
+
+###North West falls###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.43
+	title = KMT_Civilwar.43.t
+	desc = KMT_Civilwar.43.d
+	picture = GFX_Xibei_Holds
+	is_triggered_only = yes
+	fire_only_once = yes 
+
+	
+
+	option = {
+		name = KMT_Civilwar.43.a
+		CHI_new_minor_loss = yes 
+		custom_effect_tooltip = northwest_defense_fail_loc
+			
+		hidden_effect = {
+				CHI = { set_country_flag = lost_northwest }
+				CHI =  {country_event = { id = KMT_Civilwar.22 days = 9} }
+		}
+	}
+}
+
+###North West holds###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.44
+	title = KMT_Civilwar.44.t
+	desc = KMT_Civilwar.44.d
+	picture = GFX_Xibei_Falls
+	is_triggered_only = yes
+	fire_only_once = yes 
+
+	
+
+	option = {
+		name = KMT_Civilwar.44.a
+		CHI_new_minor_defense = yes 
+		add_war_support = 0.05
+		add_political_power = 50
+		add_command_power = 20
+	}
+}
+
+###South Falls###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.45
+	title = KMT_Civilwar.45.t
+	desc = KMT_Civilwar.45.d
+	picture = GFX_Guangzhou_Falls
+	is_triggered_only = yes
+	fire_only_once = yes 
+
+	
+
+	option = {
+		name = KMT_Civilwar.45.a
+		news_event = KMT_Civilwar.35
+		CHI_new_major_loss = yes
+	}
+}
+
+###South Holds###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.46
+	title = KMT_Civilwar.46.t
+	desc = KMT_Civilwar.46.d
+	picture = GFX_Guangzhou_Holds
+	is_triggered_only = yes
+	fire_only_once = yes 
+
+	
+
+	option = {
+		name = KMT_Civilwar.46.a
+		CHI_new_major_defense = yes
+		add_war_support = 0.05
+		add_political_power = 50
+		add_command_power = 20
+	}
+}
+
+###Successful Evacuation of Shanghai###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.47
+	title = KMT_Civilwar.47.t
+	desc = KMT_Civilwar.47.d
+	picture = Shanghai_reconstruction
+	is_triggered_only = yes
+	fire_only_once = yes 
+
+	
+
+	option = {
+		name = KMT_Civilwar.47.a
+		CHI_new_minor_defense = yes
+	}
+}
+
+###Disaster in Shanghai###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Civilwar.48
+	title = KMT_Civilwar.48.t
+	desc = KMT_Civilwar.48.d
+	picture = GFX_Shanghai_Protestors
+	is_triggered_only = yes
+	fire_only_once = yes 
+
+	
+
+	option = {
+		name = KMT_Civilwar.48.a
+		news_event = Shanghai_Campaign.1
+		CHI_new_minor_loss = yes
+	}
+}
+
+
+###Ching-Kuo sent to Shanghai###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Shanghai.1
+ immediate = { }
+	title = KMT_Shanghai.1.t
+	desc = KMT_Shanghai.1.d
+    
+	picture = GFX_Young_Chiang_ching_kuo
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_Shanghai.1.a 
+		activate_mission = conclude_the_reforms_in_shanghai
+	}
+}
+
+###Start taming the tigers of Shanghai###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Shanghai.2
+ immediate = { }
+	title = KMT_Shanghai.2.t
+	desc = KMT_Shanghai.2.d
+    
+	picture = GFX_Shanghai_Defense
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_Shanghai.2.a 
+		add_stability = 0.01
+		add_political_power = 5
+		add_to_variable = {
+			var = Shanghai_Beating_Tigers_Reform_var
+			value = 10
+			tooltip = add_Shanghai_Tigers_10_tt
+		}
+	}
+}
+
+###restart pro-reformist movements in Shanghai###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Shanghai.3
+ immediate = { }
+	title = KMT_Shanghai.3.t
+	desc = KMT_Shanghai.3.d
+    
+	#picture = GFX_Hong_Kong
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_Shanghai.3.a 
+			add_popularity = {
+					ideology = nationalist
+					popularity = 0.02
+			}
+			add_popularity = {
+					ideology = fascism
+					popularity = 0.02
+			}
+			add_popularity = {
+					ideology = social_liberalism
+					popularity = 0.02
+			}
+			add_popularity = {
+					ideology = communism
+					popularity = 0.02
+			}
+			add_stability = -0.03
+			add_to_variable = {
+				var = Shanghai_Beating_Tigers_Reform_var
+				value = 10
+				tooltip = add_Shanghai_Tigers_10_tt
+			}
+		
+	}
+	option = {
+		name = KMT_Shanghai.3.b
+			add_popularity = {
+					ideology = nationalist
+					popularity = 0.05
+			}
+			add_popularity = {
+					ideology = fascism
+					popularity = 0.01
+			}
+			add_popularity = {
+					ideology = social_liberalism
+					popularity = 0.01
+			}
+			add_popularity = {
+					ideology = communism
+					popularity = 0.01
+			}
+			add_to_variable = {
+				var = Shanghai_Beating_Tigers_Reform_var
+				value = 5
+				tooltip = add_Shanghai_Tigers_5_tt
+			}
+		
+	}
+}
+
+###Lobby support from Government###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Shanghai.4
+ immediate = { }
+	title = KMT_Shanghai.4.t
+	desc = KMT_Shanghai.4.d
+    
+	#picture = GFX_Hong_Kong
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_Shanghai.4.a 
+		add_political_power = 150
+		add_command_power = 50
+		subtract_from_variable = {
+				var = Shanghai_Beating_Tigers_Reform_var
+				value = 5
+				tooltip = remove_Shanghai_Tigers_5_tt
+		}
+	}
+	option = {
+		name = KMT_Shanghai.4.a 
+		add_political_power = -100
+		add_to_variable = {
+				var = Shanghai_Beating_Tigers_Reform_var
+				value = 5
+				tooltip = add_Shanghai_Tigers_5_tt
+		}
+	}
+}
+
+###re-arrest Green Gang members###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Shanghai.5
+ immediate = { }
+	title = KMT_Shanghai.5.t
+	desc = KMT_Shanghai.5.d
+    
+	#picture = GFX_Hong_Kong
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_Shanghai.5.a
+		add_political_power = 50
+		add_stability = 0.05
+		613 = {
+		add_extra_state_shared_building_slots = -1
+			remove_building = {
+				type = industrial_complex 
+				level = 1 
+			}
+		}
+		add_to_variable = {
+				var = Shanghai_Beating_Tigers_Reform_var
+				value = 10
+				tooltip = add_Shanghai_Tigers_10_tt
+		}
+		custom_effect_tooltip = CHI_no_more_gangs_in_shanghai
+	}
+}
+
+###Attacks on Upperclass Merchants###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Shanghai.6
+ immediate = { }
+	title = KMT_Shanghai.6.t
+	desc = KMT_Shanghai.6.d
+    
+	#picture = GFX_Hong_Kong
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_Shanghai.6.a 
+		add_political_power = -200
+		add_war_support = 0.03
+		add_to_variable = {
+				var = Shanghai_Beating_Tigers_Reform_var
+				value = 5
+				tooltip = add_Shanghai_Tigers_5_tt
+		}
+	}
+	option = {
+		name = KMT_Shanghai.6.b 
+		add_political_power = 50
+		add_war_support = -0.03
+		
+	}
+}
+
+###Attacks on Middleclass Merchants###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Shanghai.7
+ immediate = { }
+	title = KMT_Shanghai.7.t
+	desc = KMT_Shanghai.7.d
+    
+	#picture = GFX_Hong_Kong
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_Shanghai.7.a 
+		add_political_power = -150
+		add_stability = -0.07
+		add_war_support = 0.05
+		add_to_variable = {
+				var = Shanghai_Beating_Tigers_Reform_var
+				value = 10
+				tooltip = add_Shanghai_Tigers_10_tt
+		}
+	}
+	option = {
+		name = KMT_Shanghai.7.b 
+		add_political_power = -300
+		add_stability = -0.15
+		add_war_support = 0.1
+		add_to_variable = {
+				var = Shanghai_Beating_Tigers_Reform_var
+				value = 20
+				tooltip = add_Shanghai_Tigers_20_tt
+		}
+		
+	}
+	option = {
+		name = KMT_Shanghai.7.c 
+		subtract_from_variable = {
+				var = Shanghai_Beating_Tigers_Reform_var
+				value = 5
+				tooltip = remove_Shanghai_Tigers_5_tt
+		}
+		
+	}
+}
+
+###Failure of the Campaign###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Shanghai.8
+ immediate = { }
+	title = KMT_Shanghai.8.t
+	desc = KMT_Shanghai.8.d
+    
+	#picture = GFX_Hong_Kong
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_Shanghai.8.a 
+		add_political_power = -150
+		613 = {
+			add_dynamic_modifier = {
+				modifier = Shanghai_fucked_modifier
+			}
+		}
+		set_country_flag = Shanghai_failure
+	}
+}
+
+###Success ###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_Shanghai.9
+ immediate = { }
+	title = KMT_Shanghai.9.t
+	desc = KMT_Shanghai.9.d
+    
+	#picture = GFX_Hong_Kong
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_Shanghai.9.a 
+		add_political_power = 150
+		613 = {
+			add_dynamic_modifier = {
+				modifier = Shanghai_reformed_modifier
+			}
+		}
+		set_country_flag = Shanghai_success
+	}
+}
+
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_qiaowuweiyuanhui.1
+ immediate = { }
+	title = KMT_qiaowuweiyuanhui.1.t
+	desc = KMT_qiaowuweiyuanhui.1.d
+    
+	picture = GFX_KMT_qiaowuweiyuanhui_1_pic
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_qiaowuweiyuanhui.1.a
+		CHI = {
+			add_opinion_modifier = {
+				target = SIA
+				modifier = large_decrease
+			}
+			add_opinion_modifier = {
+				target = VIE
+				modifier = large_decrease
+			}
+			add_opinion_modifier = {
+				target = MAL
+				modifier = large_decrease
+			}
+		}
+		trigger = { has_global_flag = ROC_Victory}
+	}
+
+	option = {
+		name = KMT_qiaowuweiyuanhui.1.b
+		add_political_power = 10
+		trigger = { has_global_flag = ROC_taiwan}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_qiaowuweiyuanhui.2
+ immediate = { }
+	title = KMT_qiaowuweiyuanhui.2.t
+	desc = KMT_qiaowuweiyuanhui.2.d
+    
+	picture = GFX_KMT_qiaowuweiyuanhui_2_pic 
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_qiaowuweiyuanhui.2.a
+		VIE = {
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = ROOT.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes  
+		}
+		SIA = {
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = ROOT.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes  
+		}
+		MAL = {
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = ROOT.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes  
+		}
+		LOS = {
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = ROOT.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes  
+		}
+		PHI = {
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = ROOT.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes  
+		}
+		INO = {
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = ROOT.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes  
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_qiaowuweiyuanhui.3
+ immediate = { }
+	title = KMT_qiaowuweiyuanhui.3.t
+	desc = KMT_qiaowuweiyuanhui.3.d
+    
+	picture = GFX_KMT_qiaowuweiyuanhui_3_pic 
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_qiaowuweiyuanhui.3.a
+		USA = {
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = ROOT.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes  
+		}
+		CAN = {
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = ROOT.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes  
+		}
+	}
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_diplomatic_report.1
+ immediate = { }
+	title = KMT_diplomatic_report.1.t
+	desc = KMT_diplomatic_report.1.d
+    
+	picture = GFX_KMT_diplomatic_report_1_pic
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_diplomatic_report.1.a
+		add_opinion_modifier = {
+			target = RAJ
+			modifier = small_increase
+		}
+	}
+
+	option = {
+		name = KMT_diplomatic_report.1.b
+		add_opinion_modifier = {
+			target = PAK
+			modifier = small_increase
+		}
+		add_opinion_modifier = {
+			target = RAJ
+			modifier = small_decrease
+		}
+	}
+
+	option = {
+		name = KMT_diplomatic_report.1.c
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_diplomatic_report.2
+ immediate = { }
+	title = KMT_diplomatic_report.2.t
+	desc = KMT_diplomatic_report.2.d
+    
+	picture = GFX_KMT_diplomatic_report_2_pic
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_diplomatic_report.2.a
+		JAP = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_increase
+			}
+		}
+	}
+
+	option = {
+		name = KMT_diplomatic_report.2.b
+
+	}
+}
+
+###Southeast ASia###
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KMT_diplomatic_report.3
+ immediate = { }
+	title = KMT_diplomatic_report.3.t
+	desc = KMT_diplomatic_report.3.d
+    
+	picture = GFX_KMT_diplomatic_report_3_pic
+
+
+	fire_only_once = yes
+	is_triggered_only = yes 
+
+	option = {
+		name = KMT_diplomatic_report.3.a 
+		INO = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_increase
+			}
+		}
+		MAL = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_increase
+			}
+		}
+		PHI = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_increase
+			}
+		}
+	}
+
+	option = {
+		name = KMT_diplomatic_report.3.b
+		INO = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_decrease
+			}
+		}
+		MAL = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_decrease
+			}
+		}
+		PHI = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_decrease
+			}
+		}
+	}
+
+	option = {
+		name = KMT_diplomatic_report.3.c
+	}
+}

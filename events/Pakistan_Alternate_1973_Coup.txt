@@ -1,0 +1,474 @@
+# KRCW (build/patch_residue.py): 22 OTL events dropped while KRCW_active
+add_namespace = Pakistan_Alt_1973_Coup
+
+#1973 Coup (If Mujibur Rehman leader from 1970 Democratic Election Tree
+
+news_event = {
+	id = Pakistan_Alt_1973_Coup.1    #(event fires if it is 1973, Mujibur Rahman is President in the Democratic Route)
+ immediate = { }
+	title = Pakistan_Alt_1973_Coup.1.t
+	desc = Pakistan_Alt_1973_Coup.1.d
+	picture = GFX_Pakistan_Alt_1973_Coup_1
+
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		PAK = { has_country_flag = Zia_Alt_Coup }
+		date > 1973.3.1
+		date < 1973.4.1
+	}
+	major = yes
+
+    option = {
+        name = Pakistan_Alt_1973_Coup.1.a
+        if = {
+            limit = {
+                tag = PAK
+            }
+            load_focus_tree = PAK_1973_Coup
+            complete_national_focus = PAK_70s_1973_Coup
+        }
+    }
+} country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Pakistan_Alt_1973_Coup.2
+ immediate = { }	
+	title = Pakistan_Alt_1973_Coup.2.t
+	desc = Pakistan_Alt_1973_Coup.2.d
+	picture = GFX_Pakistan_Alt_1973_Coup_2
+
+	is_triggered_only = yes
+    option = {
+        name = Pakistan_Alt_1973_Coup.2.a
+        country_event = {
+            id = Pakistan_Alt_1973_Coup.3
+            days = 7
+        }
+    }
+ } country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Pakistan_Alt_1973_Coup.3
+ immediate = { }	
+	title = Pakistan_Alt_1973_Coup.3.t
+	desc = Pakistan_Alt_1973_Coup.3.d
+	picture = GFX_Pakistan_Alt_1973_Coup_3
+
+	is_triggered_only = yes
+    option = {
+        name = Pakistan_Alt_1973_Coup.3.a
+    }
+ } country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Pakistan_Alt_1973_Coup.4
+ immediate = { }	
+	title = Pakistan_Alt_1973_Coup.4.t
+	desc = Pakistan_Alt_1973_Coup.4.d
+	picture = GFX_Pakistan_Alt_1973_Coup_4
+
+	is_triggered_only = yes
+    option = {
+        name = Pakistan_Alt_1973_Coup.4.a
+        set_country_flag = Bhutto_Assembles_Constitutional_Assembly
+    }
+    option = {
+        name = Pakistan_Alt_1973_Coup.4.b
+        set_country_flag = Corps_Commander_Meeting
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Pakistan_Alt_1973_Coup.5
+    immediate = { }	
+	title = Pakistan_Alt_1973_Coup.5.t
+	desc = Pakistan_Alt_1973_Coup.5.d
+	picture = GFX_Pakistan_Alt_1973_Coup_5
+
+	is_triggered_only = yes
+    option = {
+        name = Pakistan_Alt_1973_Coup.5.a
+        country_event = {
+            id = Pakistan_Alt_1973_Coup.6
+            days = 2
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Pakistan_Alt_1973_Coup.6
+    immediate = { }	
+	title = Pakistan_Alt_1973_Coup.6.t
+	desc = Pakistan_Alt_1973_Coup.6.d
+	picture = GFX_Pakistan_Alt_1973_Coup_6
+
+	is_triggered_only = yes
+    option = {
+        name = Pakistan_Alt_1973_Coup.6.a
+        country_event = {
+            id = Pakistan_Alt_1973_Coup.7
+            days = 45
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Pakistan_Alt_1973_Coup.7
+    immediate = { }	
+	title = Pakistan_Alt_1973_Coup.7.t
+	desc = Pakistan_Alt_1973_Coup.7.d
+	picture = GFX_Pakistan_Alt_1973_Coup_7
+
+	is_triggered_only = yes
+    option = {
+        name = Pakistan_Alt_1973_Coup.7.a
+        news_event = {
+            id = Pakistan_Alt_1973_Coup.8
+            days = 90
+        }
+    }
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Pakistan_Alt_1973_Coup.8
+ immediate = { }
+	title = Pakistan_Alt_1973_Coup.8.t
+	desc = Pakistan_Alt_1973_Coup.8.d
+	picture = GFX_Pakistan_Alt_1973_Coup_8
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					tag = PAK
+				}
+				release = BAN
+				BAN = {
+					set_politics = {
+						ruling_party = socialist
+						elections_allowed = no
+					}
+					load_focus_tree = BAN_70s_First_General_Election
+				}
+			}
+		}
+	}
+    option = {
+        name = Pakistan_Alt_1973_Coup.8.a
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Pakistan_Alt_1973_Coup.9
+    immediate = { }	
+	title = Pakistan_Alt_1973_Coup.9.t
+	desc = Pakistan_Alt_1973_Coup.9.d
+	picture = GFX_Pakistan_Alt_1973_Coup_9
+
+	is_triggered_only = yes
+    option = {
+        name = Pakistan_Alt_1973_Coup.9.a
+        set_country_flag = Use_the_Carrot
+    }
+    option = {
+        name = Pakistan_Alt_1973_Coup.9.b
+        set_country_flag = Socialist_Crackdown
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Pakistan_Alt_1973_Coup.10
+    immediate = { }	
+	title = Pakistan_Alt_1973_Coup.10.t
+	desc = Pakistan_Alt_1973_Coup.10.d
+	picture = GFX_Pakistan_Alt_1973_Coup_10
+
+	is_triggered_only = yes
+    option = {
+        name = Pakistan_Alt_1973_Coup.10.a
+        news_event = {
+            id = PAK_Contested_Elections.23
+            days = 90
+        }
+        country_event = {
+            id = PAK_Contested_Elections.24
+            days = 100
+        }
+    }
+}
+#News Event
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Pakistan_Alt_1973_Coup.11
+ immediate = { }
+	title = Pakistan_Alt_1973_Coup.11.t
+	desc = Pakistan_Alt_1973_Coup.11.d
+	picture = GFX_Pakistan_Alt_1973_Coup_11
+
+	is_triggered_only = yes
+	major = yes
+    option = {
+        name = Pakistan_Alt_1973_Coup.11.a
+        trigger = {
+            NOT = {
+                 tag = PAK
+            }
+        }
+    }
+    option = {
+        name = Pakistan_Alt_1973_Coup.11.b
+        trigger = {
+            tag = PAK
+        }
+        if = {
+            limit = {
+                tag = PAK
+            }
+            country_event = {
+                id = Pakistan_Alt_1973_Coup.12
+                days = 15
+            }
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Pakistan_Alt_1973_Coup.12
+    immediate = { }	
+	title = Pakistan_Alt_1973_Coup.12.t
+	desc = Pakistan_Alt_1973_Coup.12.d
+	picture = GFX_Pakistan_Alt_1973_Coup_12
+
+	is_triggered_only = yes
+    option = {
+        name = Pakistan_Alt_1973_Coup.12.a
+        country_event = {
+            id = Pakistan_Alt_1973_Coup.13
+            days = 90
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Pakistan_Alt_1973_Coup.13
+    immediate = { }	
+	title = Pakistan_Alt_1973_Coup.13.t
+	desc = Pakistan_Alt_1973_Coup.13.d
+	picture = GFX_Pakistan_Alt_1973_Coup_13
+
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					tag = PAK
+				}
+				release = BAN
+				BAN = {
+					set_politics = {
+						ruling_party = socialist
+						elections_allowed = no
+					}
+					load_focus_tree = BAN_70s_First_General_Election
+				}
+			}
+		}
+	}
+    option = {
+        name = Pakistan_Alt_1973_Coup.13.a
+        BAN = {
+            country_event = {
+                id = Pakistan_Alt_1973_Coup.14
+                days = 90
+            }
+        }
+    }
+    option = {
+        name = Pakistan_Alt_1973_Coup.13.b
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Pakistan_Alt_1973_Coup.14
+    immediate = { }	
+	title = Pakistan_Alt_1973_Coup.14.t
+	desc = Pakistan_Alt_1973_Coup.14.d
+	picture = GFX_Pakistan_Alt_1973_Coup_14
+
+	is_triggered_only = yes
+
+    option = {
+        name = Pakistan_Alt_1973_Coup.14.a
+        PAK = {
+            create_faction_from_template = { template = faction_template_generic name = "Pakistan-Bangladeshi Defense Pact" }
+            add_to_faction = BAN
+        }
+    }
+    option = {
+        name = Pakistan_Alt_1973_Coup.14.b
+ 		PAK = {
+			add_opinion_modifier = {
+				target = BAN
+				modifier = large_decrease
+			}
+		}
+		BAN = {
+			add_opinion_modifier = {
+				target = PAK
+				modifier = large_decrease
+			}
+		}       
+    }
+}
+
+#1973 coup failed 
+add_namespace = Rahman_Victorious
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rahman_Victorious.1
+ immediate = { }
+	title = Rahman_Victorious.1.t
+	desc = Rahman_Victorious.1.d
+	picture = GFX_Rahman_Victorious_1
+
+	is_triggered_only = yes
+	major = yes
+
+    option = {
+        name = Rahman_Victorious.1.a
+        if = {
+            limit = {
+                tag = PAK
+            }
+            news_event = {
+                id = Rahman_Victorious.2
+                days = 3
+            }
+        }
+    }
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rahman_Victorious.2
+ immediate = { }
+	title = Rahman_Victorious.2.t
+	desc = Rahman_Victorious.2.d
+	picture = GFX_Rahman_Victorious_2
+
+	is_triggered_only = yes
+	major = yes
+
+    option = {
+        name = Rahman_Victorious.2.a
+        if = {
+            limit = {
+                tag = PAK
+            }
+            country_event = {
+                id = Rahman_Victorious.3
+                days = 7
+            }
+            add_timed_idea = {
+                idea = Military_Discredited #drop in morale/organization and manpower growth, in a week "Military Tribunal Appointed")
+                days = 3650
+            }
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rahman_Victorious.3
+ immediate = { }	
+	title = Rahman_Victorious.3.t
+	desc = Rahman_Victorious.3.d
+	picture = GFX_Rahman_Victorious_3
+
+	is_triggered_only = yes
+    option = {
+        name = Rahman_Victorious.3.a
+        country_event = {
+            id = Rahman_Victorious.4
+            days = 90
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rahman_Victorious.4
+ immediate = { }	
+	title = Rahman_Victorious.4.t
+	desc = Rahman_Victorious.4.d
+	picture = GFX_Rahman_Victorious_4
+
+	is_triggered_only = yes
+    option = {
+        name = Rahman_Victorious.4.a
+        country_event = {
+            id = Rahman_Victorious.5
+            days = 5
+        }
+    }
+    option = {
+        name = Rahman_Victorious.4.b
+        country_event = {
+            id = Rahman_Victorious.7
+            days = 5
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rahman_Victorious.5
+ immediate = { }	
+	title = Rahman_Victorious.5.t
+	desc = Rahman_Victorious.5.d
+	picture = GFX_Rahman_Victorious_5
+
+	is_triggered_only = yes
+    option = {
+        name = Rahman_Victorious.5.a
+        retire_character = PAK_muhammad_zia
+        country_event = {
+            id = Rahman_Victorious.6
+            days = 5
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rahman_Victorious.6
+ immediate = { }	
+	title = Rahman_Victorious.6.t
+	desc = Rahman_Victorious.6.d
+	picture = GFX_Rahman_Victorious_6
+
+	is_triggered_only = yes
+    option = {
+        name = Rahman_Victorious.6.a
+        swap_ideas = {
+            remove_idea = Military_Discredited
+            add_idea = Military_Discredited0    #which effects morale/organization/movement/supply consumption) Less bad
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rahman_Victorious.7
+ immediate = { }	
+	title = Rahman_Victorious.7.t
+	desc = Rahman_Victorious.7.d
+	picture = GFX_Rahman_Victorious_57
+
+	is_triggered_only = yes
+    option = {
+        name = Rahman_Victorious.7.a
+        retire_character = PAK_muhammad_zia
+        country_event = {
+            id = Rahman_Victorious.8
+            days = 5
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rahman_Victorious.8
+ immediate = { }	
+	title = Rahman_Victorious.8.t
+	desc = Rahman_Victorious.8.d
+	picture = GFX_Rahman_Victorious_8
+
+	is_triggered_only = yes
+    option = {
+        name = Rahman_Victorious.8.a
+        swap_ideas = {
+            remove_idea = Military_Discredited
+            add_idea = Military_Discredited2    #worse
+        }
+    }
+}
+

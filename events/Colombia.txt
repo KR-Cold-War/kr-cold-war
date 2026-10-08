@@ -1,0 +1,384 @@
+# KRCW (build/patch_residue.py): 5 OTL events dropped while KRCW_active
+# Colombian Violencia events written by Taigazdrastvich
+
+add_namespace = COL_Vio				# 国家イベント用
+add_namespace = COL_COUP
+add_namespace = COL_POW				#Colombia Power Minigame
+add_namespace = COL_news			# ニュースイベント用
+
+
+
+# 国家イベント
+#Liberal and Conservative struggle Event
+country_event = {
+	id = COL_COUP.2										# ID
+	title = COL_COUP.2.t									# タイトル
+	desc = COL_COUP.2.d									# 本文
+	picture = GFX_report_event_generic_handshake		# 画像
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = COL 								#トリガー対象国家
+    	date > 1949.11.9
+    	date < 1949.11.10
+	}
+
+	option = {											# 選択肢
+		name = COL_COUP.2.a								# 選択肢の内容
+
+		trigger = {
+		    tag = COL
+		}						# 選択肢のトリガー（条件）
+
+		COL ={
+			COL = {
+    			add_popularity = {
+     			    ideology = democratic
+                    popularity = -20
+                }
+            }
+		}
+	}
+}
+
+country_event = {
+	id = COL_COUP.1										# ID
+	title = COL_COUP.1.t									# タイトル
+	desc = COL_COUP.1.d									# 本文
+	picture = GFX_report_event_generic_handshake		# 画像
+	trigger = { NOT = { has_global_flag = KRCW_active }  tag = COL 								#トリガー対象国家
+	date > 1949.11.9
+	date < 1949.11.24
+	}
+	fire_only_once = yes
+	option = {											# 選択肢
+		name = COL_COUP.1.a								# 選択肢の内容
+
+		trigger = { tag = COL
+		}						# 選択肢のトリガー（条件）
+
+		COL ={
+			COL = {
+			add_political_power = -100
+			add_stability = -20
+			add_war_support = -0.2
+			add_command_power = -0.1
+       			 }
+			}
+		}
+}
+
+#Revolt Event
+country_event = {
+	id = COL_Vio.1										# ID
+	title = COL_Vio.1.t									# タイトル
+	desc = COL_Vio.1.d									# 本文
+	picture = GFX_report_event_generic_handshake		# 画像
+
+	trigger = { NOT = { has_global_flag = KRCW_active }  tag = COL 								#トリガー対象国家
+	date > 1949.11.25									#1949年１１月９日以降
+	date < 1949.11.26										#1949年１１月２５日以前
+	}
+	fire_only_once = yes
+
+	immediate = {
+		CLL = {
+            set_state_owner = 486
+			add_state_core = 486
+			set_province_controller = 15879
+			set_province_controller = 16841
+        }
+        COL = {
+            set_province_controller = 1887
+            set_province_controller = 15880
+            set_province_controller = 15884
+            set_province_controller = 16838
+            set_province_controller = 16839
+            declare_war_on = {
+                target = CLL
+                type = annex_everything
+            }
+        }
+		CLM = {
+            set_state_owner = 1834
+			set_state_owner = 1533
+			add_state_core = 1834
+			add_state_core = 1533
+			set_province_controller = 15891
+			set_province_controller = 15877
+			declare_war_on = {
+                target = CLL
+                type = annex_everything
+            }
+        }
+		COL = {
+            set_province_controller = 12729
+            set_province_controller = 10792
+            set_province_controller = 5026
+            set_province_controller = 15878
+            set_province_controller = 15886
+			set_province_controller = 15887
+			set_province_controller = 7993 #SANTANDAR
+			set_province_controller = 12845
+			set_province_controller = 16843
+            declare_war_on = {
+                target = CLM
+                type = annex_everything
+            }
+
+        }
+	}
+	option = {											# 選択肢
+		name = COL_Vio.1.a								# 選択肢の内容
+
+		trigger = { tag = COL
+		}						# 選択肢のトリガー（条件）
+
+		COL ={
+				complete_national_focus = La_Violencia
+				set_country_flag = COL_PSG_GUI_First_Open
+			} #ラビオレンシアの国家方針を達成する
+
+		}
+
+	option = {											# 選択肢
+		name = COL_Vio.1.b								# 選択肢の内容
+
+		trigger = { tag = COL
+		}						# 選択肢のトリガー（条件）
+		CLL ={
+				change_tag_from = COL
+				set_country_flag = COL_PSG_GUI_First_Open
+			} #プレイヤーが保守派からリベラル派に乗り換える。
+
+		}
+
+	option = {											# 選択肢
+		name = COL_Vio.1.c								# 選択肢の内容
+
+		trigger = { tag = COL
+		}						# 選択肢のトリガー（条件）
+
+		CLM ={
+				change_tag_from = COL
+				set_country_flag = COL_PSG_GUI_First_Open
+			}
+		}
+	}
+
+country_event = {
+	id = COL_Vio.2										# ID
+	title = COL_Vio.2.t									# タイトル
+	desc = COL_Vio.2.d									# 本文
+	picture = GFX_report_event_generic_handshake		# 画像
+
+	trigger = { NOT = { has_global_flag = KRCW_active }  tag = COL 								#トリガー対象国家
+	date > 1949.11.26									#1949年１１月９日以降
+	date < 1949.11.27										#1949年１１月２５日以前
+	}
+	fire_only_once = yes
+	option = {											# 選択肢
+		name = COL_Vio.2.a								# 選択肢の内容
+
+		trigger = { tag = COL
+		}						# 選択肢のトリガー（条件）
+
+		if = {
+			limit = { country_exists = FRC }
+			FRC = {
+				change_tag_from = COL
+			}
+		}
+		}
+}
+
+
+
+#Colombia Power Minigame
+#Raid Success
+country_event = {
+	id = COL_POW.1										# ID
+	title = COL_POW.1.t									# タイトル
+	desc = COL_POW.1.d									# 本文
+	picture = GFX_report_event_generic_handshake		# 画像
+
+	trigger = { NOT = { has_global_flag = KRCW_active }  tag = COL 								#トリガー対象国家
+	date > 1949.1.1 									#1949年１月１日以降
+	date < 1949.6.1										#1949年６月１日以前
+	}
+
+	option = {											# 選択肢
+		name = COL_POW.1.a								# 選択肢の内容
+		trigger = { tag = COL }							# 選択肢のトリガー（条件）
+		ai_chance = { factor = 100 }						# AIが選択する確率
+		add_political_power = 100
+		# MONTHLY_POPULATION = 0.02  # Invalid effect
+	}
+	}
+
+
+
+
+
+
+
+############
+# Colombian Violencia and FARC events
+# Written by: Leon (SteamId: leon912)
+############
+
+#add_namespace = COL_pol
+
+
+#La Violencia happens, causing communist partisans to influence the nation
+#country_event = {
+#  id = COL_pol.1
+# immediate = {log = "[GetDateText]: [Root.GetTag]: id = COL_pol.1"}
+#  title = COL_pol.1.t
+#  picture = GFX_report_event_crowd_in_prague
+#  desc = COL_pol.1.d
+
+#  fire_only_once = yes #This should only trigger
+#  is_triggered_only = yes
+
+  #have to be colombian
+#  trigger = {
+#	tag = COL
+#	date > 1949.1.1 #sometime after the start of the 1949 year
+#	date < 1949.6.1
+#				OR = {
+#					has_government = conservative
+#					has_government = socialist
+#					has_government = democratic
+#					has_government = centrist
+#					has_government = liberal
+#					has_government = Liberal_Conservatism
+#					has_government = Christian_Democratic
+#					has_government = Social_Liberalism
+#				}
+#			}
+
+
+  #La Violencia was a civil war which lasted at least 10 years.
+#  option = {
+#	ai_chance = {
+#	  factor = 100
+#	}
+#	name = COL_pol.1.a
+	#add_timed_idea = { idea = communist_partisans_recruiting days = 3285 }
+	#maybe one day we can think of something better
+#  }
+#}
+
+
+# Formation of the FARC and the eruption of Civil war to immitate the guerrilla warfare.
+##you dont immitate guerilla warfare with a civil war ffs
+#country_event = {
+#
+#  id = COL_pol.2
+# immediate = {log = "[GetDateText]: [Root.GetTag]: id = COL_pol.2"}
+#  title = COL_pol.2.t
+#  picture = GFX_report_event_soviet_soldiers
+#  desc = COL_pol.2.d
+#
+#  fire_only_once = yes
+#
+#  is_triggered_only = yes
+#
+#  option = { #Support the Southern Bloc
+#	name = COL_pol.2.a
+#	custom_effect_tooltip = COL_pol.2.a.tt
+#	hidden_effect = {
+#	  set_capital = { state = 486 } #Jungle state Meta
+#	  start_civil_war = {
+#		ruling_party = communism
+#		ideology = democratic
+#		size = 0.5
+#		capital = 306 #Bogota
+#		states = { 306 493 }
+#	  }
+#
+#	  random_country = {
+#		limit = {
+#		  original_tag = COL
+#		  has_government = democratic
+#		}
+#		set_equipment_fraction = 0.3
+#		set_stability = 0.9
+#	  }
+#
+#	  D01 = { #Provinces the AI COL has
+#		  set_province_controller = 1887
+#		  set_province_controller = 5026
+#		  set_province_controller = 2023
+#		  set_province_controller = 12845
+#		  set_province_controller = 1937
+#		  set_province_controller = 8056
+#		  set_province_controller = 2085
+#	  }
+#
+#	  COL = { #Pronvices for the Human COL
+#		  set_province_controller = 10846
+#		  set_province_controller = 7991
+#		  set_province_controller = 4969
+#		  set_province_controller = 10494
+#		  set_province_controller = 12872
+#	  }
+#
+#	  add_popularity = {
+#		ideology = communism
+#		popularity = 1
+#	  }
+#	  set_equipment_fraction = 0.3
+#	  set_stability = 0.9
+#	}
+#  }
+#
+#  option = { #Stomp out the Guerillas
+#	  name = COL_pol.2.b
+#	  custom_effect_tooltip = COL_pol.2.b.tt
+#	  hidden_effect = {
+#		  start_civil_war = {
+#			  ideology = communism
+#			  size = 0.5
+#			  capital = 486
+#			  states = { 486 493 }
+#		  }
+#	#set_province_controller = { 1887 }
+#	  set_politics = { #Apparently civil wars stop elections indefinitely?
+#		  ruling_party = democratic
+#		  elections_allowed = yes
+#	  }
+#	random_country = {
+#		limit = {
+#			original_tag = COL
+#			has_government = communism
+#		}
+#		set_equipment_fraction = 0.3
+#		set_stability = 0.9
+#	  }
+#
+#	  COL = { #Provinces the Human COL has
+#		  set_province_controller = 1887
+#		  set_province_controller = 5026
+#		  set_province_controller = 2023
+#		  set_province_controller = 12845
+#		  set_province_controller = 1937
+#		  set_province_controller = 8056
+#		  set_province_controller = 2085
+#	  }
+#
+#	  D01 = { #Pronvices for the AI
+#		  set_province_controller = 10846
+#		  set_province_controller = 7991
+#	  }
+#
+#	  add_popularity = {
+#		  ideology = democratic
+#		  popularity = 0.35
+#	  }
+#	  set_equipment_fraction = 0.3
+#	  set_stability = 0.9
+#	}
+# }
+#}

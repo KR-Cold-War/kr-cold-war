@@ -1,0 +1,1396 @@
+# KRCW: copy of CWIC GetGovernmentTypes with KRCW rules first (build/gov_types.py)
+defined_text = {
+    name = GetGovernmentTypes
+# krcw residue_names govtypes begin
+    text = {
+        trigger = { has_global_flag = KRCW_active original_tag = RAJ has_government = monarchism }
+        localization_key = KRCW_GOV_RAJ
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active original_tag = PSA OR = { has_government = conservative has_government = liberal has_government = Liberal_Conservatism has_government = Christian_Democratic has_government = centrist has_government = Social_Liberalism has_government = democratic has_government = Social_Democratic } }
+        localization_key = KRCW_GOV_PSA
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active OR = { original_tag = KOR original_tag = VIN original_tag = CAM original_tag = LOS original_tag = BRM } has_government = trotskyism }
+        localization_key = KRCW_GOV_BRO
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active OR = { original_tag = HUN original_tag = MON } has_government = neutrality }
+        localization_key = KRCW_GOV_REG
+    }
+# krcw residue_names govtypes end
+    text = {
+        trigger = { has_global_flag = KRCW_active original_tag = SOV has_government = nationalist }
+        localization_key = KRCW_GOV_SOV
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active original_tag = DDR has_government = nationalist }
+        localization_key = KRCW_GOV_DDR
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active original_tag = USA has_government = nationalist }
+        localization_key = KRCW_GOV_USA
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active original_tag = CHI has_government = trotskyism }
+        localization_key = KRCW_GOV_CHI
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active original_tag = FRA has_government = trotskyism }
+        localization_key = KRCW_GOV_FRA
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active has_government = trotskyism }
+        localization_key = KRCW_GOV_SYND
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active OR = { original_tag = ARA original_tag = BCP original_tag = CPB original_tag = CZE original_tag = KPA original_tag = MLA original_tag = PRC original_tag = SIK original_tag = SOV original_tag = VIN original_tag = YUG } has_government = monarchism }
+        localization_key = GOV_TYPE_CROWN
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active OR = { original_tag = ARA original_tag = BCP original_tag = CPB original_tag = CZE original_tag = KPA original_tag = MLA original_tag = PRC original_tag = SIK original_tag = SOV original_tag = VIN original_tag = YUG } NOT = { has_government = trotskyism has_government = communism has_government = maoism } }
+        localization_key = KRCW_GOV_AUTH
+    }
+    text = {
+        trigger = {
+            OR = {
+                original_tag = SOV
+                original_tag = YUG
+                has_cosmetic_tag = BEN_COM
+                has_cosmetic_tag = LUX_SOV
+                has_cosmetic_tag = HOL_SOV
+                has_cosmetic_tag = BEL_SOV_2
+                has_cosmetic_tag = IBR
+            }
+            NOT = {
+                AND = {
+                    original_tag = SIK 
+                    has_cosmetic_tag = SIK_PRC_liberation
+                }
+                original_tag = BCP
+                original_tag = ARA
+                original_tag = CPB
+            }
+        }
+        localization_key = GOV_TYPE_COM
+    }
+    text = {
+        trigger = {
+            OR = {
+                has_government = communism
+                has_government = trotskyism
+                has_government = maoism
+                original_tag = PRC
+                original_tag = KPA
+                original_tag = MLA
+                original_tag = VIN
+                original_tag = CZE
+                has_cosmetic_tag = VietminhSouth
+            }
+            NOT = {
+                original_tag = YUG
+                original_tag = SOV
+                has_cosmetic_tag = GPLA
+                has_cosmetic_tag = DDR_SOV
+                has_cosmetic_tag = MOC_REP
+                has_cosmetic_tag = CPC
+                original_tag = BCP
+                original_tag = ARA
+                original_tag = CPB
+                has_cosmetic_tag = HUK_insurgency
+                has_cosmetic_tag = MAN_SOV
+            }
+        }
+        localization_key = GOV_TYPE_COM_2
+    }
+    text = {
+		trigger = {
+            OR = {
+                has_country_leader_ideology = islamic_monarchy
+                tag = SMI
+            }
+		}
+		localization_key = GOV_TYPE_ISLAM_CROWN
+	}
+    text = {
+        trigger = {
+            OR = {
+                has_country_leader_ideology = absolute_monarchy
+                has_country_leader_ideology = regency
+                has_government = monarchism
+                original_tag = SMI
+                original_tag = NEP
+            }
+            NOT = {
+                original_tag = PER
+                original_tag = EGY
+                original_tag = TIB
+                original_tag = VTC
+                original_tag = AFG
+                original_tag = ANR
+                original_tag = ETH
+                original_tag = MOC
+                original_tag = IRQ
+            }
+        }
+        localization_key = GOV_TYPE_CROWN
+    }
+    text = {
+		trigger = {
+			has_cosmetic_tag = DEI
+		}
+		localization_key = GOV_TYPE_DUUMVIRATE
+	}
+    text = {
+		trigger = {
+			tag = BRM
+		}
+		localization_key = GOV_TYPE_BRM
+	}
+    text = {
+		trigger = {
+			OR = {
+                AND = {
+                    original_tag = PDG 
+                    has_cosmetic_tag = GPLA
+                }
+                AND = {
+                    tag = PRC 
+                    has_cosmetic_tag = CPC
+                }
+                AND = {
+                    tag = HUK
+                    has_cosmetic_tag = HUK_insurgency
+                }
+                original_tag = BCP
+                original_tag = ARA
+                original_tag = CPB
+
+            }
+		}
+		localization_key = GOV_TYPE_REV
+	}
+    text = {
+        trigger = {
+            always = no
+        }
+        localization_key = GOV_TYPE_MAO
+    }
+    text = {
+		trigger = {
+			has_country_leader_ideology = un_mandate
+		}
+		localization_key = GOV_TYPE_UN_MANDATE
+	}
+    text = {
+		trigger = {
+			OR = {
+                original_tag = PHI
+                original_tag = CHL 
+                original_tag = PAR
+                original_tag = URG
+                original_tag = HON 
+                original_tag = BNN 
+                original_tag = COS
+                original_tag = HAI
+                original_tag = PAN
+                original_tag = NIC
+                original_tag = GUA
+                original_tag = BOL 
+                original_tag = COL 
+                original_tag = ECU
+                original_tag = KOR
+                AND = {
+                    original_tag = TMS
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = KYR
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = KAZ
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = ABK
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = AZR
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = VIE
+                    has_global_flag = VIE_Republic_Proclaimed
+                    NOT = {
+                        OR = {
+                            has_cosmetic_tag = VIE_FRA_ETAT
+                            has_cosmetic_tag = VIE_ETAT
+                            has_cosmetic_tag = VIE_RCB_ETAT
+                            has_cosmetic_tag = VIE_RCB_FRA_ETAT
+                            has_cosmetic_tag = VIE_CCC_ETAT
+                            has_cosmetic_tag = VIE_CCC_FRA_ETAT
+                            has_cosmetic_tag = VIE_CuongDe
+                        }
+                    }
+                }
+                has_country_leader_ideology = baathism
+                has_country_leader_ideology = pan_arabism
+                has_cosmetic_tag = CUB_1R
+            }
+		}
+		localization_key = GOV_TYPE_UNITARY_PRES
+	}
+    text = {
+		trigger = {
+			OR = {
+                has_government = fascism
+                original_tag = SPR
+            }
+            NOT = {
+                original_tag = SIA
+                original_tag = POR
+            }
+		}
+		localization_key = GOV_TYPE_SPR
+	}
+    text = {
+		trigger = {
+			OR = {
+                original_tag = TIB
+            }
+		}
+		localization_key = GOV_TYPE_VTC
+	}
+    text = {
+		trigger = {
+			OR = {
+                original_tag = UNS
+            }
+		}
+		localization_key = GOV_TYPE_UNS
+	}
+    text = {
+		trigger = {
+			OR = {
+                original_tag = VTC
+            }
+		}
+		localization_key = GOV_TYPE_VTC_2
+	}
+    text = {
+		trigger = {
+			tag = SWI
+		}
+		localization_key = GOV_TYPE_SWI
+	}
+    text = {
+        trigger = {
+            OR = {
+                tag = TNG
+                AND = {
+                    tag = MAN 
+                    has_cosmetic_tag = MAN_SOV
+                }
+            }
+        }
+        localization_key = GOV_TYPE_ZONE
+    }
+    text = {
+        trigger = {
+            OR = {
+                tag = AST
+                AND = {
+                    tag = RAJ 
+                    has_cosmetic_tag = IND_ENG
+                }
+            }
+        }
+        localization_key = GOV_TYPE_FED_MON
+    }
+    text = {
+		trigger = {
+			OR = {
+                has_autonomy_state = autonomy_colony
+                has_country_leader_ideology = colonial_regime
+                has_cosmetic_tag = ZIM_ENG
+                has_cosmetic_tag = NGA_ENG
+            }
+		}
+		localization_key = GOV_TYPE_COLONIAL
+	}
+    text = {
+		trigger = {
+			tag = ANR
+		}
+		localization_key = GOV_TYPE_ANR
+	}
+    text = {
+		trigger = {
+            OR = {
+                has_country_leader_ideology = interim_government
+                has_country_leader_ideology = provisional_government
+                has_country_leader_ideology = provisional_government_soclib
+                has_cosmetic_tag = VIE_FRA_PROV
+                original_tag = CCC
+                has_country_leader = {
+	                character = SMK_Johanis_Manuhutu
+	                ruling_only = yes
+                }
+                has_country_leader = {
+	                character = SMK_chris_soumokil
+	                ruling_only = yes
+                }
+                AND = {
+                    original_tag = SIK
+                    has_cosmetic_tag = SIK_PRC_liberation
+                }
+                original_tag = YAN
+            }
+            NOT = {
+                has_cosmetic_tag = INO_TEMP_1
+            }
+            NOT = {
+                has_country_flag = VIE_Main_Bao_Dai
+            }
+		}
+		localization_key = GOV_TYPE_PROV_GOV
+	}
+    text = {
+		trigger = {
+			has_country_leader_ideology = ethnic_nationalism
+		}
+		localization_key = GOV_TYPE_ETHNO_NAT
+	}
+    text = {
+		trigger = {
+			OR = {
+                AND = {
+                    has_country_leader_ideology = military_junta
+                    NOT = {
+                        original_tag = SAR
+                    }
+                }
+                has_country_leader_ideology = stratocracy
+                has_cosmetic_tag = JAP_USA
+                original_tag = RYU
+                original_tag = SIC
+                original_tag = SYR
+				AND = {
+					tag = WGR
+					has_government = nationalist
+				}
+                AND = {
+                    has_country_leader_ideology = military_junta
+                    has_country_leader = {
+                        character = INO_Abdul_Haris_Nasution
+	                    ruling_only = yes
+                    }
+                }
+                AND = {
+                    original_tag = DDR
+                    has_cosmetic_tag = DDR_SOV
+                }
+                AND = {
+                    original_tag = VIE
+                    has_country_leader = {
+                        character = VIE_Military_Transition_Government
+                        ruling_only = yes
+                    }
+                }
+            }
+		}
+		localization_key = GOV_TYPE_JUNTA
+	}
+    text = {
+		trigger = {
+			OR = {
+                original_tag = CHI
+                original_tag = FIN
+                AND = {
+                    tag = TIM
+                    NOT = {
+                        OR = {
+                            has_cosmetic_tag = POR_TIM
+                            has_cosmetic_tag = TIM_INO
+                            has_government = communism
+                        }
+                    }
+                }
+                AND = {
+                    original_tag = UKR
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = BLR
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = LIT
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = CHE
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = SOS
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = GEO
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = ARM
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = PMR
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = KUR
+                    has_cosmetic_tag = MAH
+                }
+            }
+		}
+		localization_key = GOV_TYPE_SEM_REP
+	}
+    text = {
+		trigger = {
+			OR = {
+                original_tag = MOC
+                AND = {
+                    original_tag = PER 
+                    NOT = {
+                        OR = {
+                            has_government = radical_shiaism
+                            has_government = Salafism
+                        }
+                    }
+                }
+                AND = {
+                    original_tag = VIE
+                    OR = {
+                        has_country_flag = VIE_Main_Bao_Dai
+                        has_cosmetic_tag = VIE_CuongDe
+                        has_country_leader_ideology = DanVuong_Model
+                    }
+                    OR = {
+                        has_cosmetic_tag = VIE_FRA_ETAT
+                        has_cosmetic_tag = VIE_ETAT
+                        has_cosmetic_tag = VIE_RCB_ETAT
+                        has_cosmetic_tag = VIE_RCB_FRA_ETAT
+                        has_cosmetic_tag = VIE_CCC_ETAT
+                        has_cosmetic_tag = VIE_CCC_FRA_ETAT
+                    }
+                    NOT = {
+                        OR = {
+                            has_country_leader_ideology = military_junta
+                            has_country_leader_ideology = stratocracy
+                        }
+                    }
+                }
+            }
+		}
+		localization_key = GOV_TYPE_SEM_MON
+	}
+    text = {
+		trigger = {
+			OR = {
+                AND = {
+                    original_tag = RUS 
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = UZB 
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+            }
+		}
+		localization_key = GOV_TYPE_FED_SEM
+	}
+    text = {
+		trigger = {
+			OR = {
+                original_tag = WGR
+                has_cosmetic_tag = USI
+                has_cosmetic_tag = INO_TEMP_1
+                original_tag = INS
+                original_tag = RAJ
+                has_cosmetic_tag = PAK_ENG
+                original_tag = AUS
+                original_tag = BOS
+            }
+		}
+		localization_key = GOV_TYPE_FED_PARL
+	}
+    text = {
+		trigger = {
+			OR = {
+                has_cosmetic_tag = FFR
+                original_tag = ITA
+                original_tag = POR
+                original_tag = ICE
+                original_tag = SNM
+                original_tag = LEB
+                original_tag = SAR
+                original_tag = BRM
+                original_tag = SRD
+                original_tag = IRE
+                original_tag = TUR
+                AND = {
+                    original_tag = HUN 
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                original_tag = ISR
+                has_cosmetic_tag = INO_TEMP
+                has_cosmetic_tag = INO_1950
+                has_cosmetic_tag = MOC_REP
+                AND = {
+                    original_tag = LAT
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = EST
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = MOL
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = NGK
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+            }
+            NOT = {
+                has_government = communism
+            }
+		}
+		localization_key = GOV_TYPE_REP_PARL
+	}
+    text = {
+		trigger = {
+			OR = {
+                original_tag = SIA
+                original_tag = AFG
+                original_tag = SWE
+                original_tag = NOR
+                original_tag = ENG
+                original_tag = MOC
+                original_tag = DEN
+                original_tag = LUX
+                original_tag = LIC
+                original_tag = PNG
+                original_tag = HOL
+                original_tag = BEL
+                original_tag = JAP
+                original_tag = CAN
+                original_tag = NZL
+                original_tag = CAM
+                original_tag = SIA
+                has_cosmetic_tag = GRE_mon
+                has_cosmetic_tag = SUR_HOL
+                has_cosmetic_tag = SAF_ENG
+                has_cosmetic_tag = SRL_ENG
+                AND = {
+                    original_tag = ETH
+                    has_country_leader_ideology = negusa_nagast
+                }
+                AND = {
+                    original_tag = MLD
+                    has_cosmetic_tag = MLD_sultanate
+                }
+                AND = {
+                    original_tag = NBO 
+                    has_cosmetic_tag = NBO_DOM
+                }
+                AND = {
+                    tag = EGY 
+                    has_government = monarchism
+                }
+                AND = {
+                    tag = IRQ
+                    has_government = monarchism
+                }
+            }
+            NOT = {
+                has_government = communism
+                has_cosmetic_tag = JAP_USA
+                has_country_leader_ideology = islamic_monarchy
+                has_country_leader_ideology = absolute_monarchy
+                has_country_leader_ideology = shia_monarchy
+            }
+		}
+		localization_key = GOV_TYPE_CROWN_EU
+	}
+    text = {
+        trigger = {
+            OR = {
+                original_tag = USA
+                original_tag = LIB
+                original_tag = BRA
+                original_tag = MEX
+                original_tag = NGA
+                original_tag = ARG
+            }
+        }
+        localization_key = GOV_TYPE_REP
+    }
+    text = {
+        trigger = {
+            OR = {
+                original_tag = DAR
+                original_tag = ROH
+            }
+        }
+        localization_key = GOV_TYPE_ISLAM
+    }
+    text = {
+        trigger = {
+            OR = {
+                AND = {
+                    tag = PER
+                    has_cosmetic_tag = ISLAMREP_PER
+                }
+                AND = {
+                    tag = IRQ
+                    has_cosmetic_tag = IRI
+                }
+            }
+        }
+        localization_key = GOV_TYPE_ISLAM_REPUBLIC
+    }
+    text = {
+        trigger = {
+            always = yes
+        }
+        localization_key = GOV_TYPE_UNK
+    }
+}
+defined_text = {
+    name = GetGovernmentTypesDesc
+# krcw residue_names govtypes begin
+    text = {
+        trigger = { has_global_flag = KRCW_active original_tag = RAJ has_government = monarchism }
+        localization_key = KRCW_GOV_RAJ_DESC
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active original_tag = PSA OR = { has_government = conservative has_government = liberal has_government = Liberal_Conservatism has_government = Christian_Democratic has_government = centrist has_government = Social_Liberalism has_government = democratic has_government = Social_Democratic } }
+        localization_key = KRCW_GOV_PSA_DESC
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active OR = { original_tag = KOR original_tag = VIN original_tag = CAM original_tag = LOS original_tag = BRM } has_government = trotskyism }
+        localization_key = KRCW_GOV_BRO_DESC
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active OR = { original_tag = HUN original_tag = MON } has_government = neutrality }
+        localization_key = KRCW_GOV_REG_DESC
+    }
+# krcw residue_names govtypes end
+    text = {
+        trigger = { has_global_flag = KRCW_active original_tag = SOV has_government = nationalist }
+        localization_key = KRCW_GOV_SOV_DESC
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active original_tag = DDR has_government = nationalist }
+        localization_key = KRCW_GOV_DDR_DESC
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active original_tag = USA has_government = nationalist }
+        localization_key = KRCW_GOV_USA_DESC
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active original_tag = CHI has_government = trotskyism }
+        localization_key = KRCW_GOV_CHI_DESC
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active original_tag = FRA has_government = trotskyism }
+        localization_key = KRCW_GOV_FRA_DESC
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active has_government = trotskyism }
+        localization_key = KRCW_GOV_SYND_DESC
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active OR = { original_tag = ARA original_tag = BCP original_tag = CPB original_tag = CZE original_tag = KPA original_tag = MLA original_tag = PRC original_tag = SIK original_tag = SOV original_tag = VIN original_tag = YUG } has_government = monarchism }
+        localization_key = GOV_TYPE_CROWN_DESC
+    }
+    text = {
+        trigger = { has_global_flag = KRCW_active OR = { original_tag = ARA original_tag = BCP original_tag = CPB original_tag = CZE original_tag = KPA original_tag = MLA original_tag = PRC original_tag = SIK original_tag = SOV original_tag = VIN original_tag = YUG } NOT = { has_government = trotskyism has_government = communism has_government = maoism } }
+        localization_key = KRCW_GOV_AUTH_DESC
+    }
+    text = {
+        trigger = {
+            OR = {
+                original_tag = SOV
+                original_tag = YUG
+                has_cosmetic_tag = BEN_COM
+                has_cosmetic_tag = LUX_SOV
+                has_cosmetic_tag = HOL_SOV
+                has_cosmetic_tag = BEL_SOV_2
+            }
+            NOT = {
+                AND = {
+                    original_tag = SIK 
+                    has_cosmetic_tag = SIK_PRC_liberation
+                }
+                original_tag = BCP
+                original_tag = ARA
+                original_tag = CPB
+            }
+        }
+        localization_key = GOV_TYPE_COM_DESC
+    }
+    text = {
+        trigger = {
+            OR = {
+                has_government = communism
+                has_government = trotskyism
+                has_government = maoism
+                original_tag = PRC
+                original_tag = KPA
+                original_tag = MLA
+                original_tag = VIN
+                original_tag = CZE
+                has_cosmetic_tag = VietminhSouth
+            }
+            NOT = {
+                original_tag = YUG
+                original_tag = SOV
+                has_cosmetic_tag = GPLA
+                has_cosmetic_tag = DDR_SOV
+                has_cosmetic_tag = MOC_REP
+                has_cosmetic_tag = CPC
+                original_tag = BCP
+                original_tag = ARA
+                original_tag = CPB
+                has_cosmetic_tag = HUK_insurgency
+            }
+        }
+        localization_key = GOV_TYPE_COM_2_DESC
+    }
+    text = {
+		trigger = {
+            OR = {
+                has_country_leader_ideology = islamic_monarchy
+                tag = SMI
+            }
+		}
+		localization_key = GOV_TYPE_ISLAM_CROWN_DESC
+	}
+    text = {
+        trigger = {
+            OR = {
+                has_country_leader_ideology = absolute_monarchy
+                has_country_leader_ideology = regency
+                has_government = monarchism
+                original_tag = SMI
+                original_tag = NEP
+            }
+            NOT = {
+                original_tag = PER
+                original_tag = EGY
+                original_tag = TIB
+                original_tag = VTC
+                original_tag = AFG
+                original_tag = ANR
+                original_tag = ETH
+                original_tag = MOC
+            }
+        }
+        localization_key = GOV_TYPE_CROWN_DESC
+    }
+    text = {
+		trigger = {
+			has_cosmetic_tag = DEI
+		}
+		localization_key = GOV_TYPE_DUUMVIRATE_DESC
+	}
+    text = {
+		trigger = {
+			tag = BRM
+		}
+		localization_key = GOV_TYPE_BRM_DESC
+	}
+    text = {
+		trigger = {
+			OR = {
+                AND = {
+                    original_tag = PDG 
+                    has_cosmetic_tag = GPLA
+                }
+                AND = {
+                    tag = PRC 
+                    has_cosmetic_tag = CPC
+                }
+                AND = {
+                    tag = HUK
+                    has_cosmetic_tag = HUK_insurgency
+                }
+                original_tag = BCP
+                original_tag = ARA
+                original_tag = CPB
+            }
+		}
+		localization_key = GOV_TYPE_REV_DESC
+	}
+    text = {
+        trigger = {
+            always = no
+        }
+        localization_key = GOV_TYPE_MAO_DESC
+    }
+    text = {
+		trigger = {
+			has_country_leader_ideology = un_mandate
+		}
+		localization_key = GOV_TYPE_UN_MANDATE_DESC
+	}
+    text = {
+		trigger = {
+			OR = {
+                original_tag = PHI
+                original_tag = CHL 
+                original_tag = PAR
+                original_tag = URG
+                original_tag = HON 
+                original_tag = BNN 
+                original_tag = COS
+                original_tag = HAI
+                original_tag = PAN
+                original_tag = NIC
+                original_tag = GUA
+                original_tag = BOL 
+                original_tag = COL 
+                original_tag = ECU
+                original_tag = KOR
+                AND = {
+                    original_tag = TMS
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = KYR
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = KAZ
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = ABK
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = AZR
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = KUR
+                    has_cosmetic_tag = MAH
+                }
+                AND = {
+                    original_tag = VIE
+                    has_global_flag = VIE_Republic_Proclaimed
+                    NOT = {
+                        OR = {
+                            has_cosmetic_tag = VIE_FRA_ETAT
+                            has_cosmetic_tag = VIE_ETAT
+                            has_cosmetic_tag = VIE_RCB_ETAT
+                            has_cosmetic_tag = VIE_RCB_FRA_ETAT
+                            has_cosmetic_tag = VIE_CCC_ETAT
+                            has_cosmetic_tag = VIE_CCC_FRA_ETAT
+                            has_cosmetic_tag = VIE_CuongDe
+                        }
+                    }
+                }
+                has_cosmetic_tag = CUB_1R
+            }
+		}
+		localization_key = GOV_TYPE_UNITARY_PRES_DESC
+	}
+    text = {
+		trigger = {
+			OR = {
+                has_government = fascism
+                original_tag = SPR
+            }
+            NOT = {
+                original_tag = SIA
+            }
+		}
+		localization_key = GOV_TYPE_SPR_DESC
+	}
+    text = {
+		trigger = {
+			OR = {
+                original_tag = TIB
+            }
+		}
+		localization_key = GOV_TYPE_VTC_DESC
+	}
+    text = {
+		trigger = {
+			OR = {
+                original_tag = VTC
+            }
+		}
+		localization_key = GOV_TYPE_VTC_2_DESC
+	}
+    text = {
+		trigger = {
+			tag = SWI
+		}
+		localization_key = GOV_TYPE_SWI_DESC
+	}
+    text = {
+        trigger = {
+            OR = {
+                tag = TNG
+                AND = {
+                    tag = MAN 
+                    has_cosmetic_tag = MAN_SOV
+                }
+            }
+        }
+        localization_key = GOV_TYPE_ZONE_DESC
+    }
+    text = {
+        trigger = {
+            OR = {
+                tag = AST
+                AND = {
+                    tag = RAJ 
+                    has_cosmetic_tag = IND_ENG
+                }
+            }
+        }
+        localization_key = GOV_TYPE_FED_MON_DESC
+    }
+    text = {
+		trigger = {
+			OR = {
+                has_autonomy_state = autonomy_colony
+                has_country_leader_ideology = colonial_regime
+                has_cosmetic_tag = ZIM_ENG
+                has_cosmetic_tag = NGA_ENG
+            }
+		}
+		localization_key = GOV_TYPE_COLONIAL_DESC
+	}
+    text = {
+		trigger = {
+			tag = ANR
+		}
+		localization_key = GOV_TYPE_ANR_DESC
+	}
+    text = {
+		trigger = {
+            OR = {
+                has_country_leader_ideology = interim_government
+                has_country_leader_ideology = provisional_government
+                has_country_leader_ideology = provisional_government_soclib
+                has_cosmetic_tag = VIE_FRA_PROV
+                original_tag = CCC
+                has_country_leader = {
+	                character = SMK_Johanis_Manuhutu
+	                ruling_only = yes
+                }
+                has_country_leader = {
+	                character = SMK_chris_soumokil
+	                ruling_only = yes
+                }
+                AND = {
+                    original_tag = SIK
+                    has_cosmetic_tag = SIK_PRC_liberation
+                }
+                original_tag = YAN
+            }
+            NOT = {
+                has_cosmetic_tag = INO_TEMP_1
+            }
+            NOT = {
+                has_country_flag = VIE_Main_Bao_Dai
+            }
+		}
+		localization_key = GOV_TYPE_PROV_GOV
+	}
+    text = {
+		trigger = {
+			has_country_leader_ideology = ethnic_nationalism
+		}
+		localization_key = GOV_TYPE_ETHNO_NAT_DESC
+	}
+    text = {
+		trigger = {
+			OR = {
+                AND = {
+                    has_country_leader_ideology = military_junta
+                    NOT = {
+                        original_tag = SAR
+                    }
+                }
+                has_country_leader_ideology = stratocracy
+                has_cosmetic_tag = JAP_USA
+                original_tag = RYU
+                original_tag = SIC
+                original_tag = SYR
+				AND = {
+					tag = WGR
+					has_government = nationalist
+				}
+                AND = {
+                    has_country_leader_ideology = military_junta
+                    has_country_leader = {
+                        character = INO_Abdul_Haris_Nasution
+	                    ruling_only = yes
+                    }
+                }
+                AND = {
+                    original_tag = DDR
+                    has_cosmetic_tag = DDR_SOV
+                }
+                AND = {
+                    original_tag = VIE
+                    has_country_leader = {
+                        character = VIE_Military_Transition_Government
+                        ruling_only = yes
+                    }
+                }
+            }
+		}
+		localization_key = GOV_TYPE_JUNTA_DESC
+	}
+    text = {
+		trigger = {
+			OR = {
+                original_tag = CHI
+                original_tag = FIN
+                AND = {
+                    original_tag = UKR
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = BLR
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = LIT
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = CHE
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = SOS
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = GEO
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = ARM
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = PMR
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+            }
+		}
+		localization_key = GOV_TYPE_SEM_REP_DESC
+	}
+    text = {
+		trigger = {
+			OR = {
+                original_tag = MOC
+                AND = {
+                    original_tag = PER 
+                    NOT = {
+                        OR = {
+                            has_government = radical_shiaism
+                            has_government = Salafism
+                        }
+                    }
+                }
+                AND = {
+                    original_tag = VIE
+                    OR = {
+                        has_country_flag = VIE_Main_Bao_Dai
+                        has_cosmetic_tag = VIE_CuongDe
+                        has_country_leader_ideology = DanVuong_Model
+                    }
+                    OR = {
+                        has_cosmetic_tag = VIE_FRA_ETAT
+                        has_cosmetic_tag = VIE_ETAT
+                        has_cosmetic_tag = VIE_RCB_ETAT
+                        has_cosmetic_tag = VIE_RCB_FRA_ETAT
+                        has_cosmetic_tag = VIE_CCC_ETAT
+                        has_cosmetic_tag = VIE_CCC_FRA_ETAT
+                    }
+                    NOT = {
+                        OR = {
+                            has_country_leader_ideology = military_junta
+                            has_country_leader_ideology = stratocracy
+                        }
+                    }
+                }
+            }
+		}
+		localization_key = GOV_TYPE_SEM_MON_DESC
+	}
+    text = {
+		trigger = {
+			OR = {
+                AND = {
+                    original_tag = RUS 
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = UZB 
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+            }
+		}
+		localization_key = GOV_TYPE_FED_SEM_DESC
+	}
+    text = {
+		trigger = {
+			OR = {
+                original_tag = WGR
+                has_cosmetic_tag = USI
+                has_cosmetic_tag = INO_TEMP_1
+                original_tag = INS
+                original_tag = RAJ
+                has_cosmetic_tag = PAK_ENG
+                original_tag = AUS
+                original_tag = BOS
+            }
+		}
+		localization_key = GOV_TYPE_FED_PARL_DESC
+	}
+    text = {
+		trigger = {
+			OR = {
+                has_cosmetic_tag = FFR
+                original_tag = ITA
+                original_tag = POR
+                original_tag = ICE
+                original_tag = SNM
+                original_tag = LEB
+                original_tag = SAR
+                original_tag = BRM
+                original_tag = SRD
+                original_tag = IRE
+                original_tag = TUR
+                AND = {
+                    original_tag = HUN 
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                original_tag = ISR
+                has_cosmetic_tag = INO_TEMP
+                has_cosmetic_tag = INO_1950
+                has_cosmetic_tag = MOC_REP
+                AND = {
+                    original_tag = LAT
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = EST
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = MOL
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+                AND = {
+                    original_tag = NGK
+                    NOT = {
+                        has_government = communism
+                    }
+                }
+            }
+            NOT = {
+                has_government = communism
+            }
+		}
+		localization_key = GOV_TYPE_REP_PARL_DESC
+	}
+    text = {
+		trigger = {
+			OR = {
+                original_tag = SIA
+                original_tag = AFG
+                original_tag = SWE
+                original_tag = NOR
+                original_tag = ENG
+                original_tag = MOC
+                original_tag = DEN
+                original_tag = LUX
+                original_tag = LIC
+                original_tag = PNG
+                original_tag = HOL
+				original_tag = BEL
+                original_tag = JAP
+                original_tag = CAN
+                original_tag = NZL
+                original_tag = CAM
+                original_tag = SIA
+                has_cosmetic_tag = GRE_mon
+                has_cosmetic_tag = SUR_HOL
+                has_cosmetic_tag = SAF_ENG
+                has_cosmetic_tag = SRL_ENG
+                AND = {
+                    original_tag = ETH
+                    has_country_leader_ideology = negusa_nagast
+                }
+                AND = {
+                    original_tag = MLD
+                    has_cosmetic_tag = MLD_sultanate
+                }
+                AND = {
+                    original_tag = NBO 
+                    has_cosmetic_tag = NBO_DOM
+                }
+                AND = {
+                    tag = EGY 
+                    has_government = monarchism
+                }
+            }
+            NOT = {
+                has_government = communism
+                has_cosmetic_tag = JAP_USA
+                has_country_leader_ideology = islamic_monarchy
+                has_country_leader_ideology = absolute_monarchy
+                has_country_leader_ideology = shia_monarchy
+            }
+		}
+		localization_key = GOV_TYPE_CROWN_EU_DESC
+	}
+    text = {
+        trigger = {
+            OR = {
+                original_tag = USA
+                original_tag = LIB
+                original_tag = BRA
+                original_tag = MEX
+                original_tag = NGA
+                original_tag = ARG
+            }
+        }
+        localization_key = GOV_TYPE_REP_DESC
+    }
+    text = {
+        trigger = {
+            OR = {
+                original_tag = DAR
+                original_tag = ROH
+            }
+        }
+        localization_key = GOV_TYPE_ISLAM_DESC
+    }
+    text = {
+        trigger = {
+            OR = {
+                AND = {
+                    tag = PER
+                    has_cosmetic_tag = ISLAMREP_PER
+                }
+                AND = {
+                    tag = IRQ
+                    has_cosmetic_tag = IRI
+                }
+            }
+        }
+        localization_key = GOV_TYPE_ISLAM_REPUBLIC_DESC
+    }
+    text = {
+        trigger = {
+            always = yes
+        }
+        localization_key = GOV_TYPE_UNK_DESC
+    }
+}

@@ -1,0 +1,824 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = MLA_Initial_Emergency
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = MLA
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+
+	focus = {
+		id = MLA_Anti_British_War
+		icon = GFX_Anti_british_warMLA
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 13
+		y = 0
+		completion_reward = {
+			country_event = MLA.11
+			add_manpower = 1000
+		}
+	}
+	focus = {
+		id = MLA_Retreat_to_the_Jungle
+		icon = GFX_Jungle_wolf
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		relative_position_id = MLA_Anti_British_War
+		prerequisite = {
+			focus = MLA_Anti_British_War
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = MLA_jungle_reorganization
+				days = 60
+			}
+			add_manpower = 500
+		}
+	}
+	focus = {
+		id = MLA_Take_Stock
+		icon = GFX_Take_StockMLA
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		relative_position_id = MLA_Retreat_to_the_Jungle
+		prerequisite = {
+			focus = MLA_Retreat_to_the_Jungle
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			remove_ideas = MLA_jungle_reorganization
+			add_stability = 0.05
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 500
+				producer = JAP
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 1000
+				producer = ENG
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_1
+				amount = 50
+				producer = ENG
+			}
+		}
+	}
+	focus = {
+		id = MLA_Show_Ethnic_Chinese_the_Rights_of_Humans
+		icon = GFX_Chinese_rightsMLA
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		relative_position_id = MLA_Take_Stock
+		prerequisite = {
+			focus = MLA_Take_Stock
+		}
+		mutually_exclusive = {
+			focus = MLA_Show_the_Malay_a_Better_Future
+		}
+		completion_reward = {
+			hidden_effect = {
+				remove_ideas = policy_minorities_temp_0
+				remove_ideas = policy_minorities_temp_1
+				remove_ideas = policy_minorities_temp_2
+				remove_ideas = policy_minorities_temp_3
+				remove_ideas = policy_minorities_temp_3a
+			}
+			hidden_effect = {
+				remove_ideas = policy_women_temp_0
+				remove_ideas = policy_women_temp_2
+				remove_ideas = policy_women_temp_1
+				remove_ideas = policy_women_temp_4
+				remove_ideas = policy_women_temp_4a
+			}
+			add_ideas = policy_women_temp_4a
+			add_ideas = policy_minorities_temp_3a
+			add_ideas = MLA_mass_support_network
+			add_manpower = 2500
+			add_war_support = 0.10
+			add_political_power = -50
+		}
+		x = -2
+		y = 1
+	}
+	focus = {
+		id = MLA_Show_the_Malay_a_Better_Future
+		icon = GFX_Malay_a_better_future
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		relative_position_id = MLA_Take_Stock
+		prerequisite = {
+			focus = MLA_Take_Stock
+		}
+		mutually_exclusive = {
+			focus = MLA_Show_Ethnic_Chinese_the_Rights_of_Humans
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_stability = 0.05
+			add_manpower = 1000
+		}
+		x = 2
+		y = 1
+	}
+	focus = {
+		id = MLA_Show_the_British_a_Way_Out
+		icon = GFX_Show_the_British_the_Way_Out
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		relative_position_id = MLA_Take_Stock
+		prerequisite = {
+			focus = MLA_Show_the_Malay_a_Better_Future
+			focus = MLA_Show_Ethnic_Chinese_the_Rights_of_Humans
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			MAL = {
+				add_manpower = -1000
+				add_war_support = -0.05
+				add_ideas = Government_Extremely_Unpopular
+			}
+		}
+	}
+	focus = {
+		id = MLA_Raid_Perak
+		icon = GFX_Raid_French_Supply_Lines
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		relative_position_id = MLA_Show_the_British_a_Way_Out
+		prerequisite = {
+			focus = MLA_Show_the_British_a_Way_Out
+		}
+		x = 0
+		y = 1
+		available = {
+			country_exists = MAL
+			has_border_war = no
+			NOT = {
+				has_country_flag = Victory_in_Malaysian_Emergency
+			}
+		}
+		completion_reward = {
+			set_country_flag = MLA_raid_perak_unlocked
+			custom_effect_tooltip = MLA_Unlock_Raid_Perak_tt
+			add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 250 producer = MLA }
+		}
+
+	}
+	focus = {
+		id = MLA_Attack_Kuala_Lumpur
+		icon = GFX_Attack_Kuala_Lumpur
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		relative_position_id = MLA_Show_the_British_a_Way_Out
+		prerequisite = {
+			focus = MLA_Show_the_British_a_Way_Out
+		}
+		x = -4
+		y = 1
+		available = {
+			country_exists = MAL
+			has_border_war = no
+			NOT = {
+				has_country_flag = Victory_in_Malaysian_Emergency
+			}
+		}
+		completion_reward = {
+			set_country_flag = MLA_attack_kuala_lumpur_unlocked
+			custom_effect_tooltip = MLA_Unlock_Attack_Kuala_Lumpur_tt
+			add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 350 producer = MLA }
+		}
+
+	}
+	focus = {
+		id = MLA_Assault_Terrengganu
+		icon = GFX_Assault_Terrenggu
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		relative_position_id = MLA_Show_the_British_a_Way_Out
+		prerequisite = {
+			focus = MLA_Show_the_British_a_Way_Out
+		}
+		x = 4
+		y = 1
+		available = {
+			country_exists = MAL
+			has_border_war = no
+			NOT = {
+				has_country_flag = Victory_in_Malaysian_Emergency
+			}
+		}
+		completion_reward = {
+			set_country_flag = MLA_assault_terengganu_unlocked
+			custom_effect_tooltip = MLA_Unlock_Assault_Terengganu_tt
+			add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 250 producer = MLA }
+		}
+
+	}
+	focus = {
+		id = MLA_Operations_of_1950
+		icon = GFX_Operations_of_1950
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		relative_position_id = MLA_Raid_Perak
+		prerequisite = {
+			focus = MLA_Assault_Terrengganu
+		}
+		prerequisite = {
+			focus = MLA_Attack_Kuala_Lumpur
+		}
+		prerequisite = {
+			focus = MLA_Raid_Perak
+		}
+		x = 0
+		y = 1
+		available = {
+			date > 1950.1.1
+			has_border_war = no
+			country_exists = MAL
+			NOT = {
+				has_country_flag = Victory_in_Malaysian_Emergency
+			}
+		}
+		completion_reward = {
+			set_country_flag = MLA_operations_1950_unlocked
+			custom_effect_tooltip = MLA_Unlock_Operations_of_1950_tt
+			add_manpower = 500
+			add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 300 producer = MLA }
+		}
+
+	}
+	focus = {
+		id = MLA_Lessons_From_Comrade_Mao_Zedong
+		icon = GFX_MLA_Lessons_From_Comrade_Mao_Zedong
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		relative_position_id = MLA_Operations_of_1950
+		prerequisite = {
+			focus = MLA_Operations_of_1950
+		}
+		mutually_exclusive = {
+			focus = MLA_Lessons_From_Uncle_Ho_Chi_Minh
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			add_ideas = MLA_mobile_guerrilla_doctrine
+			add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 750 producer = CUM }
+			army_experience = 10
+		}
+	}
+	focus = {
+		id = MLA_Lessons_From_Uncle_Ho_Chi_Minh
+		icon = GFX_MLA_Lessons_From_Uncle_Ho_Chi_Minh
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		relative_position_id = MLA_Operations_of_1950
+		prerequisite = {
+			focus = MLA_Operations_of_1950
+		}
+		mutually_exclusive = {
+			focus = MLA_Lessons_From_Comrade_Mao_Zedong
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			add_manpower = 2000
+			if = {
+			    limit = {
+					has_idea = MLA_mass_support_network
+				}
+				swap_ideas = {
+    			    remove_idea = MLA_mass_support_network
+    				add_idea = MLA_expanded_mass_support_network
+    			}
+			}
+			else = {
+			    add_ideas = MLA_mass_support_network
+			}
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = MLA_Victory_in_the_Hearts_and_Minds
+		icon = GFX_MLA_Victory_in_the_Hearts_and_Minds
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		relative_position_id = MLA_Operations_of_1950
+		prerequisite = {
+			focus = MLA_Lessons_From_Comrade_Mao_Zedong
+			focus = MLA_Lessons_From_Uncle_Ho_Chi_Minh
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			add_ideas = political_commissars_focus
+			add_stability = 0.05
+			add_political_power = 50
+			add_to_variable = { emergency_momentum = 8 }
+			MLA_clamp_emergency_momentum = yes
+		}
+	}
+	focus = {
+		id = MLA_Pengang_Ambush
+		icon = GFX_Pengang_ambush
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		relative_position_id = MLA_Victory_in_the_Hearts_and_Minds
+		prerequisite = {
+			focus = MLA_Victory_in_the_Hearts_and_Minds
+		}
+		x = 0
+		y = 1
+		available = {
+			date > 1950.1.1
+			has_border_war = no
+			country_exists = MAL
+			NOT = {
+				has_country_flag = Victory_in_Malaysian_Emergency
+			}
+		}
+		completion_reward = {
+			set_country_flag = MLA_pengang_ambush_unlocked
+			custom_effect_tooltip = MLA_Unlock_Pengang_Ambush_tt
+			add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 300 producer = MLA }
+		}
+
+	}
+	focus = {
+		id = MLA_Bukit_Kepong_Incident
+		icon = GFX_Bukit_Incident
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		relative_position_id = MLA_Victory_in_the_Hearts_and_Minds
+		prerequisite = {
+			focus = MLA_Victory_in_the_Hearts_and_Minds
+		}
+		x = -4
+		y = 1
+		available = {
+			country_exists = MAL
+			date > 1950.2.23
+			date < 1960.1.1
+			has_border_war = no
+			NOT = {
+				has_country_flag = Victory_in_Malaysian_Emergency
+			}
+		}
+		completion_reward = {
+			set_country_flag = MLA_bukit_kepong_unlocked
+			custom_effect_tooltip = MLA_Unlock_Bukit_Kepong_tt
+			add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 400 producer = MLA }
+		}
+
+	}
+	focus = {
+		id = MLA_Battle_of_Semur_River
+		icon = GFX_Battle_of_Semur_River
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		relative_position_id = MLA_Victory_in_the_Hearts_and_Minds
+		prerequisite = {
+			focus = MLA_Victory_in_the_Hearts_and_Minds
+		}
+		x = 4
+		y = 1
+		available = {
+			country_exists = MAL
+			date > 1950.3.1
+			date < 1960.1.1
+			has_border_war = no
+			NOT = {
+				has_country_flag = Victory_in_Malaysian_Emergency
+			}
+		}
+		completion_reward = {
+			set_country_flag = MLA_semur_river_unlocked
+			custom_effect_tooltip = MLA_Unlock_Semur_River_tt
+			add_manpower = 750
+			add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 500 producer = MLA }
+			add_timed_idea = { idea = MLA_prepared_operation days = 60 }
+		}
+
+	}
+	focus = {
+		id = MLA_OPERATION_TERMITE
+		icon = GFX_All_together
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		relative_position_id = MLA_Pengang_Ambush
+		prerequisite = {
+			focus = MLA_Battle_of_Semur_River
+		}
+		prerequisite = {
+			focus = MLA_Bukit_Kepong_Incident
+		}
+		prerequisite = {
+			focus = MLA_Pengang_Ambush
+		}
+		x = 0
+		y = 1
+		available = {
+			country_exists = MAL
+			date > 1951.1.1
+			has_border_war = no
+			NOT = {
+				has_country_flag = Victory_in_Malaysian_Emergency
+			}
+		}
+		completion_reward = {
+			set_country_flag = MLA_operation_termite_unlocked
+			custom_effect_tooltip = MLA_Unlock_Operation_Termite_tt
+			add_manpower = 1000
+			add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 750 producer = MLA }
+			add_timed_idea = { idea = MLA_prepared_operation days = 90 }
+		}
+
+	}
+	focus = {
+		id = MLA_Request_Eastern_Bloc_Equipment
+		icon = GFX_Soviet_EquipmentMLA
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		relative_position_id = MLA_OPERATION_TERMITE
+		prerequisite = {
+			focus = MLA_OPERATION_TERMITE
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			set_country_flag = MLA_eastern_bloc_aid_unlocked
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 1000
+				producer = CUM
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment_1
+				amount = 50
+				producer = CUM
+			}
+		}
+	}
+	focus = {
+		id = MLA_Intercept_British_Convoys
+		icon = GFX_Take_British_Supplies
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		relative_position_id = MLA_Request_Eastern_Bloc_Equipment
+		prerequisite = {
+			focus = MLA_Request_Eastern_Bloc_Equipment
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			MAL = {
+				add_war_support = -0.02
+			}
+			add_war_support = 0.01
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 1000
+				producer = ENG
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment_1
+				amount = 10
+				producer = ENG
+			}
+		}
+	}
+	focus = {
+		id = MLA_Intensify_Anti-Colonial_Propaganda
+		icon = GFX_Propaganda_Warfare
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		relative_position_id = MLA_Request_Eastern_Bloc_Equipment
+		prerequisite = {
+			focus = MLA_Request_Eastern_Bloc_Equipment
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			add_ideas = revolutionary_fervor
+		}
+	}
+	focus = {
+		id = MLA_Raid_Jungle_Bases_From_Perak
+		icon = GFX_Final_Assault_on_Perak
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		relative_position_id = MLA_Intensify_Anti-Colonial_Propaganda
+		prerequisite = {
+			focus = MLA_Intensify_Anti-Colonial_Propaganda
+		}
+		prerequisite = {
+			focus = MLA_Intercept_British_Convoys
+		}
+		x = 2
+		y = 1
+		available = {
+			country_exists = MAL
+			has_border_war = no
+			NOT = {
+				has_country_flag = Victory_in_Malaysian_Emergency
+			}
+		}
+		completion_reward = {
+			set_country_flag = MLA_final_perak_ready
+			custom_effect_tooltip = MLA_Unlock_Final_Offensive_tt
+			add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 350 producer = MLA }
+		}
+
+	}
+	focus = {
+		id = MLA_Raid_Jungle_Bases_From_Kuala_Lumpur
+		icon = GFX_57_days_of_hell
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		relative_position_id = MLA_Request_Eastern_Bloc_Equipment
+		prerequisite = {
+			focus = MLA_Intensify_Anti-Colonial_Propaganda
+		}
+		prerequisite = {
+			focus = MLA_Intercept_British_Convoys
+		}
+		x = 0
+		y = 2
+		available = {
+			country_exists = MAL
+			has_border_war = no
+			NOT = {
+				has_country_flag = Victory_in_Malaysian_Emergency
+			}
+		}
+		completion_reward = {
+			set_country_flag = MLA_final_kuala_lumpur_ready
+			custom_effect_tooltip = MLA_Unlock_Final_Offensive_tt
+			add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 500 producer = MLA }
+		}
+
+	}
+	focus = {
+		id = MLA_Raid_Jungle_Bases_From_Terrengganu
+		icon = GFX_Final_Assault_on_Terrenggu
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		relative_position_id = MLA_Intercept_British_Convoys
+		prerequisite = {
+			focus = MLA_Intercept_British_Convoys
+		}
+		x = -2
+		y = 1
+		available = {
+			country_exists = MAL
+			has_border_war = no
+			NOT = {
+				has_country_flag = Victory_in_Malaysian_Emergency
+			}
+		}
+		completion_reward = {
+			set_country_flag = MLA_final_terengganu_ready
+			custom_effect_tooltip = MLA_Unlock_Final_Offensive_tt
+			add_equipment_to_stockpile = { type = infantry_equipment_0 amount = 400 producer = MLA }
+		}
+
+	}
+	focus = {
+		id = MLA_Victory_Against_the_British
+		icon = GFX_All_out_of_steam
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 15
+		relative_position_id = MLA_Raid_Jungle_Bases_From_Kuala_Lumpur
+		prerequisite = {
+			focus = MLA_Raid_Jungle_Bases_From_Kuala_Lumpur
+		}
+		prerequisite = {
+			focus = MLA_Raid_Jungle_Bases_From_Perak
+		}
+		prerequisite = {
+			focus = MLA_Raid_Jungle_Bases_From_Terrengganu
+		}
+		available = {
+			country_exists = MAL
+			NOT = {
+				has_country_flag = Victory_in_Malaysian_Emergency
+			}
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = CHI_disorganized_military
+			add_ideas = incompetent_officer_corps
+			add_ideas = Government_Extremely_Unpopular
+			if = {
+			    limit = { has_idea = Expert_Guerilla_Fighters }
+				remove_ideas = Expert_Guerilla_Fighters
+			}
+		}
+	}
+	focus = {
+		id = MLA_Strike_the_Heart_of_Colonial_Rule
+		icon = GFX_strike_singapore
+		relative_position_id = MLA_Victory_in_the_Hearts_and_Minds
+		prerequisite = {
+			focus = MLA_Victory_in_the_Hearts_and_Minds
+		}
+		cost = 5
+		x = 10
+		y = 1
+		available = {
+			controls_state = 924
+		}
+		available = {
+			controls_state = 1128
+		}
+		completion_reward = {
+			country_event = MLA.12
+			add_manpower = 1000
+			add_war_support = 0.1
+		}
+	}
+	focus = {
+		id = MLA_Entrench_Johor_Bahru
+		icon = GFX_usa_50_fortify_the_line_of_control
+		relative_position_id = MLA_Strike_the_Heart_of_Colonial_Rule
+		prerequisite = {
+			focus = MLA_Strike_the_Heart_of_Colonial_Rule
+		}
+		cost = 5
+		x = 2
+		y = 1
+		completion_reward = {
+			1676 = {
+				add_building_construction = {
+					type = bunker
+					province = 4424
+					level = 4
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 10313
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					province = 16459
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = MLA_Inspire_the_People_of_Singapore
+		icon = GFX_Learn_from_our_chinese_comrades
+		cost = 5
+		relative_position_id = MLA_Strike_the_Heart_of_Colonial_Rule
+		prerequisite = {
+			focus = MLA_Strike_the_Heart_of_Colonial_Rule
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			SGP = {
+				remove_state_core = 336
+			}
+		}
+	}
+	focus = {
+		id = MLA_Shell_the_City
+		icon = GFX_Strike_Vieth_Minh_Positions
+		cost = 5
+		relative_position_id = MLA_Strike_the_Heart_of_Colonial_Rule
+		prerequisite = {
+			focus = MLA_Inspire_the_People_of_Singapore
+		}
+		prerequisite = {
+			focus = MLA_Entrench_Johor_Bahru
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			336 = {
+				damage_building = {
+					type = naval_base
+					damage = 10
+				}
+			}
+		}
+	}
+	focus = {
+		id = MLA_The_Battle_of_Singapore
+		icon = GFX_MLA_The_Battle_of_Singapore
+		cost = 5
+		relative_position_id = MLA_Shell_the_City
+		prerequisite = {
+			focus = MLA_Shell_the_City
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			hidden_effect = {
+				ENG = {
+					end_puppet = SGP
+				}
+			}
+			declare_war_on = {
+				target = SGP
+				type = annex_everything
+			}
+		}
+	}
+	focus = {
+		id = MLA_Transfer_the_Capital
+		icon = GFX_Move_the_capital_MLA
+		cost = 10
+		relative_position_id = MLA_The_Battle_of_Singapore
+		prerequisite = {
+			focus = MLA_The_Battle_of_Singapore
+		}
+		available = {
+			owns_state = 336
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			set_country_flag = Victory_in_Malaysian_Emergency
+			set_capital = { state = 336 }
+			hidden_effect = {
+				336 = {
+					set_state_name = "Xinjiapo"
+				}
+			}
+			set_province_name = {
+				id = 12299
+				name = "Xinjiapo"
+			}
+			load_focus_tree = {
+				tree = MLA_50s
+				keep_completed = yes
+			}
+		}
+	}
+}

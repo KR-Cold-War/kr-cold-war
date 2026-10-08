@@ -1,0 +1,99 @@
+# KRCW (build/patch_residue.py): 5 OTL events dropped while KRCW_active
+add_namespace = USA_Spratley
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USA_Spratley.1
+    immediate = { }
+	title = USA_Spratley.1.t
+	desc = USA_Spratley.1.d
+	picture = GFX_USA_Spratley_1
+	is_triggered_only = yes
+
+	option = {
+		name = USA_Spratley.1.a
+        USA = {
+            country_event = USA_Spratley.3
+        }
+	}
+	option = {
+		name = USA_Spratley.1.b
+        USA = {
+            country_event = USA_Spratley.2
+        }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USA_Spratley.2
+    immediate = { }
+	title = USA_Spratley.2.t
+	desc = USA_Spratley.2.d
+	picture = GFX_USA_Spratley_2
+	is_triggered_only = yes
+
+	option = {
+		name = USA_Spratley.2.a
+        USA = {
+            country_event = USA_Spratley.4
+        }
+        HUM = {
+            country_event = USA_Spratley.4
+        }
+        news_event = USA_Spratley.5
+	}
+	option = {
+		name = USA_Spratley.2.b
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USA_Spratley.3
+    immediate = { }
+	title = USA_Spratley.3.t
+	desc = USA_Spratley.3.d
+	picture = GFX_USA_Spratley_3
+	is_triggered_only = yes
+
+	option = {
+		name = USA_Spratley.3.a
+        HUM = {
+            give_military_access = USA
+            diplomatic_relation = {
+                country = USA
+                relation = docking_rights
+                active = no
+            }
+        }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USA_Spratley.4
+    immediate = { }
+	title = USA_Spratley.4.t
+	desc = USA_Spratley.4.d
+	picture = GFX_USA_Spratley_4
+	is_triggered_only = yes
+
+	option = {
+		name = USA_Spratley.4.a
+        USA = {
+            annex_country = {
+                target = HUM
+            }
+        }
+	}
+}
+news_event  = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USA_Spratley.5
+ immediate = { }
+	title = USA_Spratley.5.t
+	desc = USA_Spratley.5.d
+	picture = GFX_USA_Spratley_5
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = USA_Spratley.5.a
+	}
+}

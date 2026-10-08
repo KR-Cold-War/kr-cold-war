@@ -1,0 +1,359 @@
+on_actions = {
+	on_monthly_SOV = {
+		effect = {
+			if = {
+				limit = { has_global_flag = KRCW_active }
+				if = {
+					limit = {
+						NOT = { has_global_flag = KRCW_russian_succession_over }
+						has_variable = krcw_sov_mil
+					}
+					if = {
+						limit = { NOT = { has_power_balance = { id = krcw_sov_council_bop } } }
+						set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil }
+					}
+					set_temp_variable = { krcw_bop_d = krcw_sov_mil }
+					subtract_from_temp_variable = { krcw_bop_d = krcw_sov_civ }
+					if = { limit = { check_variable = { krcw_bop_d > 57 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 1.0 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 51 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.9 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 45 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.8 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 39 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.7 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 33 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.6 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 27 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.5 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 21 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.4 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 15 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.3 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 9 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.2 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 3 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.1 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -3 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.0 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -9 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.1 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -15 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.2 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -21 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.3 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -27 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.4 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -33 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.5 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -39 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.6 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -45 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.7 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -51 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.8 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -57 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.9 } }
+					else = { set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -1.0 } }
+				}
+				if = {
+					limit = { has_global_flag = KRCW_russian_succession_over has_power_balance = { id = krcw_sov_council_bop } }
+					remove_power_balance = { id = krcw_sov_council_bop }
+				}
+				if = {
+					limit = {
+						has_variable = global.krcw_ma_crisis
+						NOT = { has_global_flag = KRCW_cold_war_over }
+					}
+					set_variable = { krcw_dm_bloc_stab = global.krcw_ma_crisis }
+					multiply_variable = { krcw_dm_bloc_stab = -0.001 }
+					set_variable = { krcw_dm_bloc_pp = global.krcw_ma_crisis }
+					multiply_variable = { krcw_dm_bloc_pp = -0.002 }
+					if = { limit = { NOT = { has_dynamic_modifier = { modifier = krcw_dm_ma_crisis } } } add_dynamic_modifier = { modifier = krcw_dm_ma_crisis } }
+					force_update_dynamic_modifier = yes
+				}
+				if = {
+					limit = {
+						has_global_flag = KRCW_savinkov_dead
+						NOT = { has_global_flag = KRCW_russian_succession_over }
+						has_variable = krcw_sov_ext
+					}
+					set_variable = { krcw_dm_sov_stab = krcw_sov_ext }
+					multiply_variable = { krcw_dm_sov_stab = -0.0012 }
+					set_variable = { krcw_dm_sov_stab2 = krcw_sov_mon }
+					multiply_variable = { krcw_dm_sov_stab2 = -0.0008 }
+					set_variable = { krcw_dm_sov_ws = krcw_sov_ext }
+					multiply_variable = { krcw_dm_sov_ws = 0.001 }
+					if = { limit = { NOT = { has_dynamic_modifier = { modifier = krcw_dm_sov_street } } } add_dynamic_modifier = { modifier = krcw_dm_sov_street } }
+					force_update_dynamic_modifier = yes
+				}
+			}
+		}
+	}
+	on_monthly_CHI = {
+		effect = {
+			if = {
+				limit = { has_global_flag = KRCW_active }
+				if = {
+					limit = {
+						always = yes
+						has_variable = krcw_chi_f_revcom
+					}
+					if = {
+						limit = { NOT = { has_power_balance = { id = krcw_chi_cec_bop } } }
+						set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom }
+					}
+					set_temp_variable = { krcw_bop_d = krcw_chi_f_revcom }
+					subtract_from_temp_variable = { krcw_bop_d = krcw_chi_f_moderate }
+					if = { limit = { check_variable = { krcw_bop_d > 57 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 1.0 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 51 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.9 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 45 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.8 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 39 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.7 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 33 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.6 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 27 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.5 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 21 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.4 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 15 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.3 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 9 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.2 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > 3 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.1 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -3 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.0 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -9 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.1 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -15 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.2 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -21 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.3 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -27 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.4 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -33 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.5 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -39 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.6 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -45 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.7 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -51 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.8 } }
+					else_if = { limit = { check_variable = { krcw_bop_d > -57 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.9 } }
+					else = { set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -1.0 } }
+				}
+				if = {
+					limit = { always = no has_power_balance = { id = krcw_chi_cec_bop } }
+					remove_power_balance = { id = krcw_chi_cec_bop }
+				}
+				if = {
+					limit = {
+						has_variable = global.krcw_strait_tension
+						NOT = { has_global_flag = krcw_gv_qd_broke }
+					}
+					set_variable = { krcw_dm_strait_ws = global.krcw_strait_tension }
+					multiply_variable = { krcw_dm_strait_ws = 0.0008 }
+					set_variable = { krcw_dm_strait_nxp = global.krcw_strait_tension }
+					multiply_variable = { krcw_dm_strait_nxp = 0.001 }
+					if = { limit = { NOT = { has_dynamic_modifier = { modifier = krcw_dm_strait } } } add_dynamic_modifier = { modifier = krcw_dm_strait } }
+					force_update_dynamic_modifier = yes
+				}
+			}
+		}
+	}
+	on_monthly_DDR = {
+		effect = {
+			if = {
+				limit = { has_global_flag = KRCW_active }
+				if = {
+					limit = {
+						has_variable = krcw_ddr_emigration
+						check_variable = { krcw_ddr_emigration > 0 }
+					}
+					set_variable = { krcw_dm_ddr_pop = krcw_ddr_emigration }
+					multiply_variable = { krcw_dm_ddr_pop = -0.004 }
+					set_variable = { krcw_dm_ddr_res = krcw_ddr_emigration }
+					multiply_variable = { krcw_dm_ddr_res = -0.0008 }
+					set_variable = { krcw_dm_ddr_eff = krcw_ddr_emigration }
+					multiply_variable = { krcw_dm_ddr_eff = -0.0006 }
+					if = { limit = { NOT = { has_dynamic_modifier = { modifier = krcw_dm_ddr_exodus } } } add_dynamic_modifier = { modifier = krcw_dm_ddr_exodus } }
+					force_update_dynamic_modifier = yes
+				}
+			}
+		}
+	}
+	on_monthly_RAJ = {
+		effect = {
+			if = {
+				limit = { has_global_flag = KRCW_active }
+				if = {
+					limit = {
+						has_variable = krcw_raj_unrest
+					}
+					set_variable = { krcw_dm_raj_stab = krcw_raj_unrest }
+					multiply_variable = { krcw_dm_raj_stab = -0.002 }
+					set_variable = { krcw_dm_raj_build = krcw_raj_unrest }
+					multiply_variable = { krcw_dm_raj_build = -0.002 }
+					set_variable = { krcw_dm_raj_pp = krcw_raj_reform }
+					multiply_variable = { krcw_dm_raj_pp = 0.002 }
+					if = { limit = { NOT = { has_dynamic_modifier = { modifier = krcw_dm_raj_princes } } } add_dynamic_modifier = { modifier = krcw_dm_raj_princes } }
+					force_update_dynamic_modifier = yes
+				}
+			}
+		}
+	}
+	on_monthly_USA = {
+		effect = {
+			if = {
+				limit = { has_global_flag = KRCW_active }
+				if = {
+					limit = {
+						has_variable = global.krcw_ohio_tension
+						NOT = { has_global_flag = KRCW_american_war_restarted }
+					}
+					set_variable = { krcw_dm_ohio_ws = global.krcw_ohio_tension }
+					multiply_variable = { krcw_dm_ohio_ws = 0.001 }
+					set_variable = { krcw_dm_ohio_xp = global.krcw_ohio_tension }
+					multiply_variable = { krcw_dm_ohio_xp = 0.001 }
+					set_variable = { krcw_dm_ohio_cg = global.krcw_ohio_tension }
+					multiply_variable = { krcw_dm_ohio_cg = 0.0005 }
+					if = { limit = { NOT = { has_dynamic_modifier = { modifier = krcw_dm_ohio_line } } } add_dynamic_modifier = { modifier = krcw_dm_ohio_line } }
+					force_update_dynamic_modifier = yes
+				}
+			}
+		}
+	}
+	on_monthly_WCA = {
+		effect = {
+			if = {
+				limit = { has_global_flag = KRCW_active }
+				if = {
+					limit = {
+						has_variable = global.krcw_ohio_tension
+						NOT = { has_global_flag = KRCW_american_war_restarted }
+					}
+					set_variable = { krcw_dm_ohio_ws = global.krcw_ohio_tension }
+					multiply_variable = { krcw_dm_ohio_ws = 0.001 }
+					set_variable = { krcw_dm_ohio_xp = global.krcw_ohio_tension }
+					multiply_variable = { krcw_dm_ohio_xp = 0.001 }
+					set_variable = { krcw_dm_ohio_cg = global.krcw_ohio_tension }
+					multiply_variable = { krcw_dm_ohio_cg = 0.0005 }
+					if = { limit = { NOT = { has_dynamic_modifier = { modifier = krcw_dm_ohio_line } } } add_dynamic_modifier = { modifier = krcw_dm_ohio_line } }
+					force_update_dynamic_modifier = yes
+				}
+			}
+		}
+	}
+	on_monthly_JAP = {
+		effect = {
+			if = {
+				limit = { has_global_flag = KRCW_active }
+				if = {
+					limit = {
+						has_variable = global.krcw_strait_tension
+						NOT = { has_global_flag = krcw_gv_qd_broke }
+					}
+					set_variable = { krcw_dm_strait_ws = global.krcw_strait_tension }
+					multiply_variable = { krcw_dm_strait_ws = 0.0008 }
+					set_variable = { krcw_dm_strait_nxp = global.krcw_strait_tension }
+					multiply_variable = { krcw_dm_strait_nxp = 0.001 }
+					if = { limit = { NOT = { has_dynamic_modifier = { modifier = krcw_dm_strait } } } add_dynamic_modifier = { modifier = krcw_dm_strait } }
+					force_update_dynamic_modifier = yes
+				}
+			}
+		}
+	}
+	on_monthly_WGR = {
+		effect = {
+			if = {
+				limit = { has_global_flag = KRCW_active }
+				if = {
+					limit = {
+						has_variable = global.krcw_berlin_pressure
+						NOT = { has_global_flag = KRCW_berlin_war }
+					}
+					set_variable = { krcw_dm_berlin_ws = global.krcw_berlin_pressure }
+					multiply_variable = { krcw_dm_berlin_ws = 0.001 }
+					set_variable = { krcw_dm_berlin_build = global.krcw_berlin_pressure }
+					multiply_variable = { krcw_dm_berlin_build = -0.001 }
+					if = { limit = { NOT = { has_dynamic_modifier = { modifier = krcw_dm_berlin } } } add_dynamic_modifier = { modifier = krcw_dm_berlin } }
+					force_update_dynamic_modifier = yes
+				}
+			}
+		}
+	}
+	on_monthly_FRA = {
+		effect = {
+			if = {
+				limit = { has_global_flag = KRCW_active }
+				if = {
+					limit = {
+						has_variable = global.krcw_ti_crisis
+						NOT = { has_global_flag = KRCW_cold_war_over }
+					}
+					set_variable = { krcw_dm_bloc_stab = global.krcw_ti_crisis }
+					multiply_variable = { krcw_dm_bloc_stab = -0.001 }
+					set_variable = { krcw_dm_bloc_pp = global.krcw_ti_crisis }
+					multiply_variable = { krcw_dm_bloc_pp = -0.002 }
+					if = { limit = { NOT = { has_dynamic_modifier = { modifier = krcw_dm_ti_crisis } } } add_dynamic_modifier = { modifier = krcw_dm_ti_crisis } }
+					force_update_dynamic_modifier = yes
+				}
+			}
+		}
+	}
+	on_startup = {
+		effect = {
+			if = { limit = { country_exists = CHI } CHI = {
+			if = { limit = { NOT = { has_variable = krcw_chi_f_revcom } } set_variable = { krcw_chi_f_revcom = 40 } }
+			if = { limit = { NOT = { has_variable = krcw_chi_f_moderate } } set_variable = { krcw_chi_f_moderate = 30 } }
+			if = { limit = { NOT = { has_variable = krcw_chi_f_left } } set_variable = { krcw_chi_f_left = 20 } }
+			if = { limit = { NOT = { has_variable = krcw_chi_f_whampoa } } set_variable = { krcw_chi_f_whampoa = 25 } }
+			if = { limit = { NOT = { has_variable = krcw_chi_f_csp } } set_variable = { krcw_chi_f_csp = 20 } }
+			set_country_flag = krcw_chi_factions_open
+			} }
+			if = { limit = { country_exists = SOV } SOV = {
+			if = {
+				limit = {
+					NOT = { has_global_flag = KRCW_russian_succession_over }
+					has_variable = krcw_sov_mil
+				}
+				if = {
+					limit = { NOT = { has_power_balance = { id = krcw_sov_council_bop } } }
+					set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil }
+				}
+				set_temp_variable = { krcw_bop_d = krcw_sov_mil }
+				subtract_from_temp_variable = { krcw_bop_d = krcw_sov_civ }
+				if = { limit = { check_variable = { krcw_bop_d > 57 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 1.0 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 51 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.9 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 45 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.8 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 39 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.7 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 33 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.6 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 27 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.5 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 21 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.4 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 15 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.3 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 9 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.2 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 3 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.1 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -3 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = 0.0 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -9 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.1 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -15 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.2 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -21 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.3 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -27 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.4 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -33 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.5 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -39 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.6 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -45 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.7 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -51 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.8 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -57 } } set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -0.9 } }
+				else = { set_power_balance = { id = krcw_sov_council_bop left_side = krcw_sov_bop_civ right_side = krcw_sov_bop_mil set_value = -1.0 } }
+			}
+			if = {
+				limit = { has_global_flag = KRCW_russian_succession_over has_power_balance = { id = krcw_sov_council_bop } }
+				remove_power_balance = { id = krcw_sov_council_bop }
+			}
+			} }
+			if = { limit = { country_exists = CHI } CHI = {
+			if = {
+				limit = {
+					always = yes
+					has_variable = krcw_chi_f_revcom
+				}
+				if = {
+					limit = { NOT = { has_power_balance = { id = krcw_chi_cec_bop } } }
+					set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom }
+				}
+				set_temp_variable = { krcw_bop_d = krcw_chi_f_revcom }
+				subtract_from_temp_variable = { krcw_bop_d = krcw_chi_f_moderate }
+				if = { limit = { check_variable = { krcw_bop_d > 57 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 1.0 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 51 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.9 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 45 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.8 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 39 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.7 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 33 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.6 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 27 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.5 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 21 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.4 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 15 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.3 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 9 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.2 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > 3 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.1 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -3 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = 0.0 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -9 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.1 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -15 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.2 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -21 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.3 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -27 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.4 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -33 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.5 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -39 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.6 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -45 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.7 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -51 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.8 } }
+				else_if = { limit = { check_variable = { krcw_bop_d > -57 } } set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -0.9 } }
+				else = { set_power_balance = { id = krcw_chi_cec_bop left_side = krcw_chi_bop_moderate right_side = krcw_chi_bop_revcom set_value = -1.0 } }
+			}
+			if = {
+				limit = { always = no has_power_balance = { id = krcw_chi_cec_bop } }
+				remove_power_balance = { id = krcw_chi_cec_bop }
+			}
+			} }
+		}
+	}
+}

@@ -1,0 +1,132 @@
+# KRCW (build/patch_residue.py): 3 OTL events dropped while KRCW_active
+add_namespace = grenada
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = grenada.1
+    immediate = { }
+    title = grenada.1.t 
+    desc = grenada.1.d #NOT AVAILABLE!!!NO CONTENT FOR GRENADA
+    #picture = 
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = grenada.1.a
+        news_event = grenada.2
+        GND = {
+            retire_country_leader = yes
+            set_politics = {
+                ruling_party = communism
+                elections_allowed = no
+            }
+set_popularities = {
+				democratic = 0
+				communism = 100
+				fascism = 0
+				nationalist = 0
+				monarchism = 0
+				neutrality = 0
+				islamism = 0
+				radical_shiaism = 0
+				Social_Democratic = 0
+				Social_Liberalism = 0
+				Salafism = 0
+				Liberal_Conservatism = 0
+				conservative = 0
+				Christian_Democratic = 0
+				socialist = 0
+				centrist = 0
+				liberal = 0
+				trotskyism = 0
+				maoism = 0
+			}
+            create_country_leader = {
+                name = "Maurice Bishop"
+                picture = Maurice_Bishop.dds
+                ideology = marxism_leninism
+                traits = {
+                }
+            }
+        }
+    }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = grenada.2
+ immediate = { }
+	title = grenada.2.t
+	desc = grenada.2.d
+	picture = GFX_grenada_revolution
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = yes
+
+	option = {
+		name = grenada.2.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = grenada.3
+    immediate = { }
+    title = grenada.3.t 
+    desc = grenada.3.d #NOT AVAILABLE!!!NO CONTENT FOR GRENADA
+    #picture = 
+
+    is_triggered_only = yes
+    fire_only_once = yes
+
+    option = {
+        name = grenada.3.a
+        news_event = grenada.2
+        set_global_flag	= Grenada_Crisis_Start
+
+        USA ={
+            complete_national_focus = USA_FP80_The_Grenada_Crisis
+        }
+
+        GND = {
+            kill_country_leader = yes
+            set_politics = {
+                ruling_party = neutrality
+                elections_allowed = no
+            }
+            
+            set_popularities = {
+				democratic = 0
+				communism = 0
+				fascism = 0
+				nationalist = 0
+				monarchism = 0
+				neutrality = 100
+				islamism = 0
+				radical_shiaism = 0
+				Social_Democratic = 0
+				Social_Liberalism = 0
+				Salafism = 0
+				Liberal_Conservatism = 0
+				conservative = 0
+				Christian_Democratic = 0
+				socialist = 0
+				centrist = 0
+				liberal = 0
+				trotskyism = 0
+				maoism = 0
+			}
+            
+            create_country_leader = {
+                name = "Hudson Austin"
+                picture = Maurice_Bishop.dds
+                ideology = military_junta
+                traits = {
+                }
+            }
+        }
+    }
+}

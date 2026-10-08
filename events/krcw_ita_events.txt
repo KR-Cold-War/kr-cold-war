@@ -1,0 +1,83 @@
+# krcw: paced
+add_namespace = krcw_ita
+
+country_event = {
+	id = krcw_ita.1
+	title = krcw_ita_1_t
+	desc = krcw_ita_1_d
+	picture = GFX_krcw_eu_d12_ita_tirana
+	fire_only_once = yes
+	trigger = {
+		tag = ITA
+		date > 1949.12.7
+		date < 1952.1.18
+		country_exists = ALB
+		ALB = { is_in_faction_with = SOV }
+		NOT = { has_country_flag = krcw_ita_albania_question }
+	}
+	mean_time_to_happen = {
+		months = 8
+	}
+	immediate = {
+		set_country_flag = krcw_ita_albania_question
+	}
+	option = {
+		name = krcw_ita_1.a
+		ai_chance = {
+			factor = 60
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = 0.02
+	}
+	option = {
+		name = krcw_ita_1.b
+		ai_chance = {
+			factor = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -15
+		add_war_support = 0.02
+		krcw_tension_up_small = yes
+		if = { limit = { country_exists = ALB } ALB = { add_stability = -0.05 add_opinion_modifier = { target = ITA modifier = protectorate_dislikes_overlord } } }
+	}
+}
+
+country_event = {
+	id = krcw_ita.2
+	title = krcw_ita_2_t
+	desc = krcw_ita_2_d
+	picture = GFX_krcw_eu_d12_ita_adriatic
+	fire_only_once = yes
+	trigger = {
+		tag = ITA
+		date > 1950.5.10
+		date < 1952.6.21
+		country_exists = YUG
+		NOT = { has_country_flag = krcw_ita_dalmatia_question }
+	}
+	mean_time_to_happen = {
+		months = 11
+	}
+	immediate = {
+		set_country_flag = krcw_ita_dalmatia_question
+	}
+	option = {
+		name = krcw_ita_2.a
+		ai_chance = {
+			factor = 80
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		add_political_power = 50
+		add_stability = 0.03
+	}
+	option = {
+		name = krcw_ita_2.b
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = -0.02
+		add_war_support = 0.03
+		if = { limit = { country_exists = YUG } YUG = { add_opinion_modifier = { target = ITA modifier = protectorate_dislikes_overlord } } }
+	}
+}

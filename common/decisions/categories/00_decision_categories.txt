@@ -1,0 +1,1245 @@
+# KRCW (build/econ_cwic.py): categories that spend currentMoney hidden while KRCW_active (no currency in KRCW); UN Kashmir categories too
+Influence_Common_Market = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	#allowed = {
+	#	OR = {
+	#		tag = USA
+	#		tag = SOV
+	#		tag = FRA
+	#		tag = ENG
+	#		tag = BEL
+	#		tag = HOL
+	#		tag = CUB
+	#		tag = RAJ
+	#		tag = PAK
+	#		tag = VIN
+	#		tag = VIE
+	#		tag = SIA
+	#		tag = AST
+	#		tag = PRC
+	#		tag = CHI
+	#		tag = SAF
+	#		tag = JAP
+	#		tag = PER
+	#		tag = SAU
+	#		tag = VTC
+	#		tag = NGA
+	#		tag = EGY
+	#		tag = ETH
+	#	}
+	#}
+	icon = decision_category_army_reform
+	
+	#picture = GFX_decision_tutor
+	priority = 220
+	
+}
+CWIC_black_market = {
+	icon = decision_police
+	visible = { NOT = { has_global_flag = KRCW_active }  has_variable = CWIC_black_market_pressure }
+}
+
+CWIC_capital_controls = {
+	icon = decision_generic_economic
+	visible = { NOT = { has_global_flag = KRCW_active }  
+		has_variable = CWIC_inflation_mom 
+		NOT = { has_country_flag = CWIC_economic_collapse }
+		NOT = { has_country_flag = CWIC_capital_controls_off }
+	}
+}
+
+debug_decisions = {
+	icon = infiltration #GFX_decision_category_ethnic_tension
+	priority = 50000
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		is_debug = yes
+		is_ai = no
+	
+	}
+	#allowed = { #What happened?
+	#	is_debug = yes
+	#}
+	allowed = { 
+		always = yes
+	}
+}
+WGR_approval_bop_category = {
+	icon = infiltration #GFX_decision_category_ethnic_tension
+	priority = 500
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		tag = WGR
+	}
+	allowed = {
+		tag = WGR
+	}
+}
+DDR_approval_bop_category = {
+	icon = infiltration #GFX_decision_category_ethnic_tension
+	priority = 500
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		tag = DDR
+	}
+	allowed = {
+		tag = DDR
+	}
+}
+MAL_ethnic_influence_bop_category = {
+	icon = infiltration #GFX_decision_category_ethnic_tension
+	priority = 500
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		tag = MAL
+	}
+	allowed = {
+		tag = MAL
+	}
+}
+RUS_Constitutional_Crisis = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	icon = GFX_decision_Russia_Crisis_Icon
+
+	picture = GFX_decision_Russian_Crisis
+	priority = 1000
+	allowed = {
+		OR = {
+			tag = SOV
+			tag = RUS
+		}
+		has_global_flag = Russian_Constitutional_Crisis
+	}
+	scripted_gui = russia_constitutional_crisis_gui
+}
+CWIC_tutor = {
+
+	icon = decision_category_army_reform
+	
+	picture = GFX_decision_tutor
+	priority = 220
+	
+}
+space_missions = {
+
+	icon = decision_category_army_reform
+	visible = {
+		NOT = { tag = CHI }
+		NOT = { has_country_flag = space_missions_off }
+	}
+	
+	priority = 10
+	
+}
+Religious_Decisions = {
+
+	icon = decision_category_army_reform
+	allowed = {
+		custom_trigger_tooltip = {
+			tooltip = missionary_qualification_check_TT		
+			OR = {
+				check_variable = { num_of_preindustrial_states > 0 }     #industrialization_budget
+				check_variable = { num_of_industrial_states > 0 }        #development_budget
+			}
+		}
+	}
+	priority = 50
+	
+}
+The_October_War = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+	icon = revolt
+		
+}
+PAK_democratic_election_category = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	allowed = {
+		tag = PAK
+
+	}
+	scripted_gui = pakistan_democratic_gui
+	icon = generic_political_actions
+
+	#picture = decision_category_army_reform
+	priority = 500
+
+}
+UN_Kashmir_Refferendum_category = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	allowed = {
+		OR = {
+			tag = RAJ
+			tag = PAK
+			tag = UNS
+		}
+
+	}
+
+	icon = generic_political_actions
+
+	#picture = decision_category_army_reform
+	priority = 150
+
+}
+Burma_Communist_Conflict = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	allowed = {
+		OR = {
+			tag = BRM
+			tag = BCP
+		}
+		AND = {
+		country_exists = BRM
+		country_exists = BCP
+		}
+	}
+
+	icon = decision_category_army_reform
+
+	picture = decision_category_army_reform
+	priority = 500
+
+}
+Mon_Conflict = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	allowed = {
+		OR = {
+			tag = BRM
+			tag = MNL
+		}
+		AND = {
+		country_exists = BRM
+		country_exists = MNL
+		}
+	}
+
+	icon = decision_category_army_reform
+
+	picture = decision_category_army_reform
+	priority = 500
+
+}
+Karen_Conflict = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	allowed = {
+		OR = {
+			tag = BRM
+			tag = KAY
+		}
+		AND = {
+		country_exists = BRM
+		country_exists = KAY
+		}
+	}
+
+	icon = decision_category_army_reform
+
+	picture = decision_category_army_reform
+	priority = 500
+
+}
+
+kashmiri_plebiscite = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	priority = 100
+	icon = Morrocco_Decision_Cat
+	scripted_gui = UN_Kashmir_Refferendum
+	allowed = {
+		OR = {
+			tag = PAK
+			tag = RAJ
+		}
+	}
+}
+Angolan_War_Decisions_category = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+	icon = revolt
+	allowed = {
+
+	}	
+}
+communist_International_aid_category = {
+
+	icon = generic_propaganda
+	picture = GFX_decision_ussrmilitaryaid
+
+	allowed = {
+		OR = {
+		has_government = communism
+		has_government = maoism
+		}
+		country_exists = VIN 
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		NOT = { tag = VIN }
+	}
+	
+	visible_when_empty = no
+}
+soviet_economy_category = {
+
+	icon = generic_propaganda 
+
+	allowed = {
+		tag = SOV 
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		tag = SOV 
+	}
+}
+soviet_international_detente_category = {
+
+	icon = generic_propaganda 
+
+	allowed = {
+		tag = SOV 
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		tag = SOV
+	}
+}
+Iran_Iraq_War_decision_category = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+	icon = revolt
+	allowed = {
+		tag = IRQ
+	}	
+}
+biafra_war_categorty = {
+	icon = generic_propaganda
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		BFR = { has_war_with = NGA }
+		country_exists = BFR
+	}
+}
+propaganda_efforts = {
+	icon = generic_propaganda
+
+	visible = {
+
+	}
+}
+North_Yemen_Civil_War_decisions = {
+	icon = infiltration
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		CSA = { has_country_flag = North_Yemen_Civil_War }
+		country_exists = CSA
+		country_exists = YEM
+	}
+}
+Jebel_Adkhar_War_decisions = {
+	
+	icon = infiltration
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		country_exists = SMI
+		country_exists = OMA
+	}
+}
+Eritrean_War = {
+	
+	icon = infiltration
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		ETH = { 
+			has_country_flag = Eritrean_War 
+			owns_state = 1000
+		}	
+		country_exists = ERI
+		country_exists = ETH
+	}
+}
+korean_war = {
+	icon = generic_propaganda
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+	}
+}
+colonial_affairs = {
+	icon = GFX_mandates
+	picture = GFX_decision_banneraustraliacolonial
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+
+	}
+}
+
+SAF_anti_colonialist_crusade = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	allowed = {
+		original_tag = SAF
+	}
+}
+
+saf_military_category = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	allowed = {
+		original_tag = SAF
+	}
+}
+
+war_measures = {
+	icon = generic_propaganda
+
+	visible = {
+		has_war = yes
+	}
+	priority = 70
+}
+operations = {
+	icon = GFX_decision_category_military_operation
+
+	priority = 62
+}
+
+economy_decisions_reenable = {
+	icon = generic_economy
+	picture = GFX_decision_bannereconomic
+	priority = 40
+	visible = { has_country_flag = hide_economic_decisions }
+}
+economy_decisions = {
+	icon = generic_economy
+	picture = GFX_decision_bannereconomic
+	priority = 61
+	visible_when_empty = yes
+	visible = { NOT = { has_country_flag = hide_economic_decisions } }
+}
+economic_investments = {
+	icon = generic_economy
+	
+	picture = GFX_decision_category_economic_investment
+	priority = 59
+	visible_when_empty = yes
+	visible = { NOT = { has_global_flag = KRCW_active }  NOT = { has_country_flag = hide_economic_decisions } }
+}
+
+prospect_for_resources = {
+	icon = generic_prospect_for_resources
+	picture = GFX_decision_bannerRGO3
+	priority = 57
+	visible = { NOT = { has_global_flag = KRCW_active }  NOT = { has_country_flag = hide_economic_decisions } }
+}
+weapon_purchasing = {
+	icon = decision_category_army_reform
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		OR = {
+			has_war = yes
+			tag = CHI
+			has_idea = un_member
+			has_idea = semi_recognized_state
+			has_idea = unrecognized_state
+		}
+		NOT = {
+			tag = SOV 
+			tag = USA
+		}
+	}
+	picture = GFX_decision_banner1
+	priority = 54
+	visible = { NOT = { has_global_flag = KRCW_active }  NOT = { has_country_flag = hide_economic_decisions } }
+}
+
+
+weapon_sales = {
+	icon = GFX_decision_category_military_operation
+	
+	priority = 56
+	visible = { NOT = { has_global_flag = KRCW_active }  NOT = { has_country_flag = hide_economic_decisions } }
+}
+
+special_projects = {
+	
+	icon = generic_prospect_for_resources
+
+	allowed = {
+		has_dlc = "Waking the Tiger"
+	}
+	priority = 58
+	visible = { NOT = { has_country_flag = hide_economic_decisions } }
+}
+
+prestigious_projects = {
+	
+}
+
+influence_desicions = {
+	icon = generic_independence
+	picture = GFX_decision_category_influence
+	visible = {
+		NOT = { has_country_flag = hie_influence_desicions }
+	}
+	visible_when_empty = yes
+	priority = 75
+}
+imf_decisions = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	allowed = {
+
+	}
+	priority = 60
+}
+CWIC_IMF_Credit_Programs = {
+	icon = generic_goal_generic_major_war
+	priority = 60
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_variable = CWIC_imf_eligible
+		check_variable = { CWIC_imf_eligible > 0 }
+	}
+}
+foreign_support = {
+	icon = generic_political_actions
+	
+}
+
+foreign_politics = {
+	icon = GFX_decision_globedecision
+	#picture = GFX_foreign_politics_decision
+	priority = 150
+	visible_when_empty = no
+
+}
+Yugoslavia_influence_decisions = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	icon = generic_political_actions
+
+	allowed = {
+		always = no
+	}
+}
+political_actions = {
+	icon = generic_political_actions
+
+	allowed = {
+		
+	}
+}
+Iraqi_Kurdish_War_First = {
+	icon = generic_political_actions
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_global_flag = First_Iraqi_Kurdish_War
+	}
+}
+
+crisis = {
+	icon = generic_crisis
+	priority = 100
+
+	visible = {
+		has_country_flag = crisis_in_progress
+	}
+}
+
+demobilization = {
+	icon = generic_crisis
+	priority = 100
+	
+	visible = {
+		has_war = no
+	}
+}
+
+congo_zairianisation = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	icon = generic_political_actions
+	
+	allowed = {
+		original_tag = DOC
+	}
+}
+
+insurgency = {
+	icon = revolt
+}
+
+occupation_of_austria = {
+	icon = generic_political_actions
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		
+	}
+}
+
+occupation_of_korea = {
+	icon = generic_political_actions
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		
+	}
+}
+
+nationalization_of_suez = {
+	icon = generic_political_actions
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		tag = EGY
+	}
+}
+
+mobilize_the_old_fleet = {
+	icon = generic_political_actions
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		OR = {
+			tag = USA
+			tag = ENG
+		}
+	
+	}
+}
+
+lar_local_recruitment = {
+	allowed = { has_dlc = "La Resistance" }
+
+	visible = { has_done_agency_upgrade = operative_spy_cells }
+
+	visibility_type = map_and_decisions_view
+	
+	on_map_area = {
+		state = 8
+		name = LAR_recruitment_europe
+		zoom = 650
+		
+		target_root_trigger = {
+			OR = {
+				has_country_flag = europe_recruitment_unlocked
+				capital_scope = { is_on_continent = europe }
+			}
+		}
+	}
+
+	on_map_area = {
+		state = 373
+		name = LAR_recruitment_north_america
+		zoom = 850
+
+		target_root_trigger = {
+			OR = {
+				has_country_flag = north_america_recruitment_unlocked
+				capital_scope = { is_on_continent = north_america }
+			}
+		}
+	}
+
+	on_map_area = {
+		state = 487
+		name = LAR_recruitment_south_america
+		zoom = 850
+
+		target_root_trigger = {
+			OR = {
+				has_country_flag = south_america_recruitment_unlocked
+				capital_scope = { is_on_continent = south_america }
+			}
+		}
+	}
+
+	on_map_area = {
+		state = 295
+		name = LAR_recruitment_africa
+		zoom = 850
+
+		target_root_trigger = {
+			OR = {
+				has_country_flag = africa_recruitment_unlocked
+				capital_scope = { is_on_continent = africa }
+			}
+		}
+	}
+
+	on_map_area = {
+		state = 597
+		name = LAR_recruitment_asia
+		zoom = 850
+
+		target_root_trigger = {
+			OR = {
+				has_country_flag = asia_recruitment_unlocked
+				capital_scope = { is_on_continent = asia }
+			}
+			NOT = {
+				tag = RAJ
+				tag = PAK
+				tag = BAN
+				tag = NEP
+				tag = BHU
+				tag = SRL
+				tag = MLD
+			}
+		}
+	}
+
+	on_map_area = {
+		state = 521
+		name = LAR_recruitment_oceania
+		zoom = 850
+
+		target_root_trigger = {
+			OR = {
+				has_country_flag = australia_recruitment_unlocked
+				capital_scope = { is_on_continent = australia }
+			}
+		}
+	}
+
+	on_map_area = {
+		state = 439
+		name = LAR_recruitment_india
+		zoom = 850
+
+		target_root_trigger = {
+			OR = {
+				has_country_flag = india_recruitment_unlocked
+				tag = RAJ
+				tag = PAK
+				tag = BAN
+				tag = NEP
+				tag = BHU
+				tag = SRL
+				tag = MLD
+			}
+		}
+	}
+
+	on_map_area = {
+		state = 656
+		name = LAR_recruitment_middle_east
+		zoom = 850
+
+		target_root_trigger = {
+			OR = {
+				has_country_flag = middle_east_recruitment_unlocked
+				capital_scope = { is_on_continent = middle_east }
+			}
+		}
+	}
+}
+
+governments_in_exile = {
+	
+	icon = generic_formable_nations
+	picture = GFX_decision_cat_picture_government_in_exile
+	allowed = {
+		has_dlc = "Man the Guns"
+	}
+}
+
+category_exile_forces = {
+	
+	icon = infiltration
+	picture = GFX_decision_cat_picture_government_in_exile
+	allowed = {
+		has_dlc = "Man the Guns"
+	}
+}
+saf_demographics = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	priority = 100
+	icon = generic_political_actions
+	scripted_gui = saf_racial_gui
+	allowed = {
+		tag = SAF
+	}
+}
+morrocan_faction_decisions = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	priority = 100
+	icon = Morrocco_Decision_Cat
+	scripted_gui = morrocan_faction_gui
+	allowed = {
+		tag = MOR
+	}
+}
+Mau_Mau_decisions = {
+	
+	icon = infiltration
+	scripted_gui = country_state_target_KNA_menu_panel
+	allowed = {
+		tag = KEN
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = KLFA_uprising
+	}
+}
+JSD_Insurgency_Decisions = {
+	icon = infiltration	
+	allowed = {
+		tag = BAN
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = JSD_uprising
+	}
+}
+DMC_Insurgency_Decisions = {
+	icon = infiltration	
+	priority = 1000
+	allowed = {
+		tag = DOM
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = pro_bosch_insurgency
+	}
+}
+War_Crime_decisions = {
+	
+	icon = War_Crime_decisions
+	picture = GFX_decision_bannerWMD
+	visible = {
+		
+	}
+}
+Cultural_Revolution = {
+	
+	icon = infiltration
+	allowed = {
+		tag = PRC
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = PRC_Cultural_Revolution_Begin
+	}
+}
+parliament_decisions = {
+	
+	icon = generic_political_actions
+	visible = {
+
+	}
+	
+}
+Rohingya_Insurgency_Decisions = {
+	
+	icon = infiltration
+	priority = 500
+	#picture = GFX_decision_bannerUIA
+	allowed = {
+		tag = BRM
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = rohingya_insurgency
+	}
+}
+arakan_insurgency_Decisions = {
+	
+	icon = infiltration
+	priority = 500
+	#picture = GFX_decision_bannerUIA
+	allowed = {
+		tag = BRM
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = arakan_insurgency
+	}
+}
+	
+uia_decisions = {
+	icon = infiltration
+	picture = GFX_decision_bannerUIA
+	scripted_gui = country_state_target_menu_panel
+	allowed = {
+		tag = SOV
+	}
+	highlight_states = {
+		highlight_state_targets = {
+			state = 93
+			state = 1020
+			state = 73
+			state = 80
+			state = 199
+			state = 89
+			state = 243
+			state = 91
+		}
+		highlight_color_while_active = 0
+		highlight_color_before_active = 3
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = ukranian_seccessionism
+	}
+}
+
+FLN_decisions = {
+	
+	icon = infiltration
+	scripted_gui = country_state_target_FLN_menu_panel
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		OR = {
+			tag = ALG
+			tag = FRA
+			tag = ALE
+		}
+		OR = {
+			FRA = {
+				has_country_flag = algerian_seccessionism
+			}
+			ALE = {
+				has_country_flag = algerian_seccessionism
+			}
+		}
+		OR = {
+			has_country_flag = algerian_seccessionism
+			tag = ALG
+		}
+
+	}
+}
+UPC_decisions = {
+	
+	icon = infiltration
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		
+		OR = {
+			has_country_flag = bamileke_seccessionism
+			tag = FRA
+		}
+	}
+}
+Anyanya_decisions = {
+	
+	icon = infiltration
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_global_flag = Anyanya_Formed
+		country_exists = SSU
+	}
+}
+Maquis_decisions = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	
+	icon = infiltration
+	allowed = {
+		tag = SPR
+	}
+}
+
+agriculture_moderniazation = {
+	icon = generic_independence
+}
+Indochina_War_Rework = {
+	icon = GFX_Indochina_Decision
+	picture = GFX_vietnam_Desc_Pic
+	allowed = {
+		#OR = {
+		#	tag = FRA
+		#	tag = CAM
+		#	tag = LOS
+		#	tag = RCG
+		#	tag = SEN
+		#	tag = TOG
+		#	tag = CMR
+		#	tag = TUN
+		#	tag = MOR
+		#	tag = FRE
+		#	tag = AND
+		#	tag = SAR
+		#	tag = VIE
+		#	tag = CCC
+		#	tag = NUN
+		#	tag = FUL
+		#	tag = TAI
+		#	tag = TAM
+		#	tag = THO
+		#	tag = PQC
+		#	tag = USA
+		#	tag = SOV
+		#	tag = PRC
+		#	tag = CHI
+		#	tag = SIA
+		#	tag = KOR
+		#	tag = KPA
+		#	tag = HUM
+		#}
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+	}
+	priority = 500
+}
+Guinea_Bissau_War_of_Independence_category = {
+	#icon = GFX_Indochina_Decision
+
+	#picture = GFX_vietnam_Desc_Pic
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_global_flag = Portuguese_Colonial_War_GNB
+	}
+	priority = 85
+}
+
+Cambodian_Civil_War_Decisions = {
+	#icon = GFX_Indochina_Decision
+
+	#picture = GFX_vietnam_Desc_Pic
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_global_flag = Cambodian_Civil_War
+	}
+	priority = 85
+}
+
+Laotion_Civil_War_Decisions_category = {
+	#icon = GFX_Indochina_Decision
+
+	picture = GFX_decision_bannervietnam
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_global_flag = Laos_Intervention
+	}
+	priority = 85
+}
+organization_of_african_unity_cat = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	
+	icon = generic_independence
+	allowed = {
+		tag = ETH
+	}
+}
+ethiopian_decisions_0 = {
+	icon = generic_political_actions
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		tag = ETH
+		date < 1960.1.1
+	}
+}
+contra_insurgency_Decisions = {
+	icon = revolt
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = contra_insurgency
+		tag = NIC
+	}
+}
+afgahnistan_civil_war = {
+	icon = revolt
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		AFG = { has_war_with = TAL }
+	}
+}
+SSNP_Insurgency_Decisions = {
+	icon = revolt
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = ssnp_insurgency
+		tag = LEB
+	}
+}
+Crusader_Insurgency_Decisions = {
+	icon = revolt
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = crusader_insurgency
+		tag = YUG
+		always = no
+	}
+}
+
+ethiopian_decisions_1 = {
+	icon = generic_political_actions
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		tag = ETH
+		date > 1960.1.1
+		date < 1973.1.1
+	}
+}
+kenyan_decisions_0 = {
+	icon = generic_political_actions
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+		date > 1949.1.1
+		date < 1960.1.1
+	}
+}
+kenyan_decisions_1 = {
+	icon = generic_political_actions
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+		date > 1960.1.1
+		date < 1973.1.1
+	}
+}
+kenyan_national_parks = {
+	icon = generic_political_actions
+	picture = GFX_decision_kenyannationalpark
+
+	visible = {
+		tag = KEN
+		has_capitulated = no
+	}
+}
+ethiopian_national_parks = {
+	icon = generic_political_actions
+	picture = GFX_decision_ethiopianationalpark
+
+	visible = {
+		tag = ETH
+		has_capitulated = no
+	}
+}
+south_africa_national_parks = {
+	icon = generic_political_actions
+	picture = GFX_decision_southafricannationalpark
+	
+	visible = {
+		tag = SAF
+		has_capitulated = no
+	}
+}
+cyprus_decisions = {
+	
+	icon = infiltration
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_global_flag = cyprus_emergency
+		OR = {
+			tag = GRE
+			tag = ENG
+			tag = TUR
+			tag = CYP
+			tag = PDG
+		}
+	}
+}
+Vietnam_War_Decisions_category = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	icon = infiltration
+	picture = GFX_decision_bannervietnam
+	allowed = {
+		always = no
+	}
+}
+
+Eastern_bloc_category = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_political_actions
+		picture = generic
+		allowed = {
+			controls_state = 182
+			tag = PDG
+		}
+}
+
+reinstate_nkrumah_0 = {
+		icon = generic_political_actions
+		picture = generic_political_actions
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NGA = {
+				has_completed_focus = NGA_the_dynamic_party
+			}
+			tag = NGA
+		}
+}
+
+Eastern_Bloc = {
+	allowed = {
+		NOT = {
+			is_in_faction_with = SOV
+		}
+		tag = PRC
+	}
+	icon = generic_political_actions
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = PRC_Soviet_Aligned
+		has_country_flag = PRC_SOV_Victory
+	}
+	priority = 85
+}
+PRC_Beijing_Pact_Category1 = {
+	allowed = {
+		tag = prc
+	}
+	icon = generic_political_actions
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_completed_focus = PRC_SOV_Found_the_Bejing_Pact
+		has_war = no
+	}
+	priority = 65
+}
+PRC_Beijing_Pact_Category2 = {
+	allowed = {
+		tag = prc
+	}
+	icon = generic_political_actions
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_completed_focus = PRC_SOV_Launch_the_Second_5_Year_Plan
+		has_completed_focus = PRC_SOV_Found_the_Bejing_Pact
+		has_war = no
+	}
+	priority = 75
+}
+SOV_Sphere_Catagory = { 
+	icon = generic_propaganda
+	picture = GFX_decision_ussrmilitaryaid
+	allowed = {
+		always = yes
+	}
+	priority = 100000
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		tag = SOV
+	}
+}
+EBM_Insurgency_Decisions = {
+	icon = infiltration	
+	allowed = {
+		tag = CUB
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = anti_castro_insurgency
+	}
+}
+CMO_Insurgency_Decisions = {
+	icon = infiltration	
+	allowed = {
+		tag = DOM
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = dominican_civil_war
+	}
+}
+CWIC_currency_policy = {
+	icon = decision_generic_economic
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		NOT = { has_country_flag = CWIC_currency_policy_off }
+		has_variable = CWIC_inflation_mom
+		}
+	allowed = {  }
+}
+CWIC_fx_policy = {
+	icon = decision_trade
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_variable = CWIC_fx_regime
+		NOT = { has_country_flag = CWIC_fx_policy_off }
+		}
+	allowed = { always = yes }
+}
+CWIC_global_monetary_order = {
+	icon = decision_trade
+	visible = { NOT = { has_global_flag = KRCW_active }  has_variable = CWIC_fx_regime }
+	allowed = { tag = SOV }
+}
+cwic_mnc_invitations = {
+	icon = decision_trade
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		NOT = { has_country_flag = cwic_mnc_invitations_off }
+	}
+}
+# Shown only while the invitations are hidden; hosts the "Show" button so the
+# player can bring the invitations back. Same display name as the tab above, so
+# it looks like the Foreign Investment Invitations tab just collapsed to one button.
+cwic_mnc_invitations_restore = {
+	icon = decision_trade
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = cwic_mnc_invitations_off
+	}
+}
+cwic_mnc_nationalization_targeted_cat = {
+	icon = generic_political_reform
+	available = {  }
+	visible = { NOT = { has_global_flag = KRCW_active }  check_variable = { economic_x_axis < 9 } }
+}
+
+PRC_Classes_And_Strata_decision_category = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+	icon = generic_political_reform
+	allowed = { original_tag = PRC }
+}

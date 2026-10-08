@@ -1,0 +1,96 @@
+# KRCW (build/patch_residue.py): 3 OTL decisions hidden while KRCW_active
+influence_desicions = {
+	Launch_Coup_JOR = {
+
+		icon = generic_prepare_civil_war
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = EGY
+			has_country_leader = {
+				name = "Gamal Abdel Nasser"
+				ruling_only = yes
+			}
+			
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = EGY
+			date > 1957.04.01
+		}
+		
+		complete_effect = {
+			JOR = {
+				country_event = {
+					id = jordan.8
+				}
+			}
+		}
+
+		cost = 100
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+	Launch_Coup_SAU = {
+
+		icon = generic_prepare_civil_war
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = EGY
+			has_country_leader = {
+				name = "Gamal Abdel Nasser"
+				ruling_only = yes
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = EGY
+			date > 1958.05.01
+		}
+		
+		complete_effect = {
+			SAU = {
+				country_event = SAU_Focus_Events.401
+			}
+		}
+
+		cost = 100
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+	Launch_Coup_YEM = {
+
+		icon = generic_prepare_civil_war
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = EGY
+			has_country_leader = {
+				name = "Gamal Abdel Nasser"
+				ruling_only = yes
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = EGY
+			date > 1962.09.01
+		}
+		
+		complete_effect = {
+			YEM = {
+				country_event = Yemeni_Coup.1
+			}
+		}
+
+		cost = 100
+
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+}

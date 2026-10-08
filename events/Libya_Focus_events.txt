@@ -1,0 +1,636 @@
+# KRCW (build/patch_residue.py): 22 OTL events dropped while KRCW_active
+add_namespace = LBA
+add_namespace = libya_news
+
+country_event = {
+	id = LBA.1 
+ immediate = { }
+	title = LBA.1.t2
+	desc = LBA.1.d2
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+	immediate = {
+
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+
+		name = LBA.1.a2
+
+	}
+}
+
+country_event = {
+	id = LBA.2 
+ immediate = { }
+	title = LBA.2.t2
+	desc = LBA.2.d2
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		transfer_state = 775
+		transfer_state = 662
+		transfer_state = 448
+		transfer_state = 661
+		set_state_controller = 775
+		set_state_controller = 662
+		set_state_controller = 448
+		set_state_controller = 661
+		FRA = {
+			remove_state_core = 775
+		}
+		ENG = {
+			remove_state_core = 662
+			remove_state_core = 448
+			remove_state_core = 661
+		}
+		drop_cosmetic_tag = yes
+	}
+	option = {
+
+		name = LBA.2.a2
+
+	}
+}
+
+country_event = {
+	id = LBA.3 
+ immediate = { }
+	title = LBA.3.t2
+	desc = LBA.3.d2
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.3.a2
+		complete_national_focus = LBA_adopt_unitary_administration
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = LBA_administrative_structure
+					option = FEDERAL_KINGDOM
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = LBA.3.b2
+
+		complete_national_focus = LBA_adopt_federal_administration
+		set_cosmetic_tag = LBA_UK
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = LBA_administrative_structure
+					option = UNITARY_KINGDOM
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = LBA.4 
+ immediate = { }
+	title = LBA.4.t2
+	desc = LBA.4.d2
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.4.a2
+		complete_national_focus = LBA_form_parlimentary_monarchy
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = LBA_1952_constitution
+					option = STATUS_QUO_MONARCHY
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = LBA.4.b2
+
+		complete_national_focus = LBA_monarchial_status_quo
+
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = LBA_1952_constitution
+					option = LBA_CONSTITUTIONAL_MONARCHY
+				}
+				factor = 0
+			}
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = libya_news.1 
+ immediate = { }
+	title = libya_news.1.t2
+	desc = libya_news.1.d
+	picture = GFX_Bevin_Sforza
+	major = no
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = libya_news.1.a2
+	}
+}
+country_event = {
+	id = LBA.5 
+ immediate = { }
+	title = LBA.5.t2
+	desc = LBA.5.d
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.5.a2
+
+
+	}
+}
+country_event = {
+	id = LBA.6 
+ immediate = { }
+	title = LBA.6.t2
+	desc = LBA.6.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+	immediate = {
+		drop_cosmetic_tag = yes
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.6.a2
+		add_political_power = +50
+
+	}
+}
+country_event = {
+	id = LBA.7 
+ immediate = { }
+	title = LBA.7.t2
+	desc = LBA.7.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.7.a2
+		diplomatic_relation = {
+			country = USA
+			relation = military_access
+			active = no
+		}
+	}
+}
+country_event = {
+	id = LBA.8 
+ immediate = { }
+	title = LBA.8.t2
+	desc = LBA.8.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.8.a2
+		diplomatic_relation = {
+			country = ENG
+			relation = military_access
+			active = no
+		}
+	}
+}
+country_event = {
+	id = LBA.9 
+ immediate = { }
+	title = LBA.9.t2
+	desc = LBA.9.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.9.a2
+		add_political_power = +50
+	}
+}
+country_event = {
+	id = LBA.10 
+ immediate = { }
+	title = LBA.10.t2
+	desc = "LBA.10.d"
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.10.a2
+		add_stability = -0.1
+		add_popularity = {
+			ideology = nationalist
+			popularity = +0.2
+		}
+	}
+}
+country_event = {
+	id = LBA.11 
+ immediate = { }
+	title = LBA.11.t2
+	desc = "LBA.11.d"
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.11.a2
+		add_stability = -0.1
+	}
+}
+country_event = {
+	id = LBA.12 
+ immediate = { }
+	title = LBA.12.t2
+	desc = LBA.12.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.12.a2
+		add_stability = -0.1
+		add_political_power = -20
+	}
+}
+country_event = {
+	id = LBA.13 
+ immediate = { }
+	title = LBA.13.t2
+	desc = "LBA.13.d"
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+	immediate = {
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Hasan as-Senussi"
+			picture = "Hasan_as-Senussi_60s.dds"
+			ideology = monarchist
+			traits = {
+			inexperienced_monarch
+			}
+		}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.13.a2
+
+	}
+}
+country_event = {
+	id = LBA.14 
+ immediate = { }
+	title = LBA.14.t2
+	desc = "LBA.14.d"
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+	immediate = {
+		set_politics = {
+			ruling_party = nationalist
+			last_election = "1969.1.1"
+			election_frequency = 48
+			elections_allowed = no
+		}
+		set_popularities = {
+			maoism = 0
+			communism = 0
+			trotskyism = 0
+			socialist = 0
+			Social_Democratic = 0
+			
+			democratic = 0
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 0
+			Christian_Democratic = 0
+			conservative = 0
+			
+			neutrality = 0
+			nationalist = 100
+			monarchism = 0
+			fascism = 0
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		set_party_name = {
+			ideology = nationalist
+			long_name = "Arab Socialist Union"
+			name = "ASU"
+		}
+		add_country_leader_role = {
+			Character = LBA_Muammar_Gaddafi
+			Promote_leader = yes
+			Country_leader = {
+				desc = "POLITICS_MUAMMAR_QADDAFI_DESC"
+				ideology = pan_arabism
+				traits = {
+					war_industrialist
+				}
+				traits = {
+					popular_revolutionary
+					supporter_of_freedom_fighters
+					lover_of_the_libyan_people
+					narcissist
+				}
+			}
+		}
+		retire_character = LBA_hasan_assenussi
+		set_country_flag = libyan_revolution
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.14.a2
+
+	}
+}
+country_event = {
+	id = LBA.15 
+ 	immediate = { }
+	title = LBA.15.t2
+	desc = "LBA.15.d"
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+	immediate = {
+
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.15.a2
+
+	}
+}
+country_event = {
+	id = LBA.16 
+ immediate = { }
+	title = LBA.16.t2
+	desc = "LBA.16.d"
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.16.a2
+
+	}
+}
+country_event = {
+	id = LBA.17 
+ immediate = { }
+	title = LBA.17.t2
+	desc = LBA.17.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = EGY
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.17.a2
+			add_manpower = 5000
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = +1000
+				producer = LBA
+			}
+	}
+}
+country_event = {
+	id = LBA.18 
+ immediate = { }
+	title = LBA.18.t2
+	desc = LBA.18.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.18.a2
+		add_stability = -0.2
+	}
+}
+country_event = {
+	id = LBA.19 
+ immediate = { }
+	title = LBA.19.t2
+	desc = LBA.19.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.19.a2
+		add_stability = -0.2
+	}
+}
+country_event = {
+	id = LBA.20 
+ immediate = { }
+	title = LBA.20.t2
+	desc = "LBA.20.d"
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.20.a2
+		complete_national_focus = LBA_60s_qaddafi_asserts_control
+		retire_character = LBA_ahmed_alsenussi
+		retire_character = LBA_abdul_rahim_aqili
+		retire_character = LBA_ahmed_alfadil
+		retire_character = LBA_mohiuddin_almasoudi
+		retire_character = LBA_miftah_triki
+		retire_character = LBA_said_alatyoush
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = LBA_resignation
+					option = SENUSSI
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = LBA.20.b2
+		complete_national_focus = LBA_60s_ahmed_al_senussi_counter_coups
+		create_country_leader = {
+			name = "Ahmed Al-Senussi"
+			picture = "Ahmed_al-Senussi_70s.dds"
+			ideology = oligarchism
+			traits = {
+				inexperienced_monarch
+				Corrupt
+			}
+		}
+		set_politics = {
+			ruling_party = neutrality
+			last_election = "1969.1.1"
+			election_frequency = 48
+			elections_allowed = no
+		}
+		set_popularities = {
+			maoism = 0
+			communism = 0
+			trotskyism = 0
+			socialist = 0
+			Social_Democratic = 0
+			
+			democratic = 0
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 0
+			Christian_Democratic = 0
+			conservative = 0
+			
+			neutrality = 100
+			nationalist = 0
+			monarchism = 0
+			fascism = 0
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		retire_character = LBA_Muammar_Gaddafi
+		retire_character = LBA_Khalifa_Haftar
+		retire_character = LBA_Abu_Bakr_Yunis_Jabr
+		retire_character = LBA_Abdul_Fatah_Younis
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+country_event = {
+	id = LBA.21 
+ immediate = { }
+	title = LBA.21.t2
+	desc = LBA.21.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = LBA
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = LBA.21.a2
+
+	}
+}

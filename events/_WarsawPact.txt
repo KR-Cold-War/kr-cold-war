@@ -1,0 +1,63 @@
+# KRCW (build/patch_residue.py): 1 OTL events dropped while KRCW_active
+add_namespace = swf
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = swf.9 
+ immediate = { }
+	title = swf.9.t
+	desc = swf.9.d
+	picture = GFX_news_warsaw_pact
+
+	fire_only_once = yes
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = swf.9.a
+		trigger = {
+			or = {
+				TAG = USA
+				is_in_faction_with = USA
+			}
+		}
+	}
+
+	option = {
+		name = swf.9.b
+		trigger = {
+				is_in_faction_with = SOV
+				NOT = { TAG = SOV }
+		}
+	}
+
+	option = {
+		name = swf.9.c
+		trigger = {
+			or = {
+				TAG = SOV
+				is_in_faction_with = POL
+			}
+		}
+		SOV = {
+			add_to_faction = POL 
+			add_to_faction = GER
+			add_to_faction = CZE
+			add_to_faction = HUN
+			add_to_faction = ROM
+			add_to_faction = BUL
+			add_to_faction = ALB 
+		}
+	}
+
+	option = {
+		name = swf.9.d
+		trigger = {
+			NOT = { TAG = SOV }
+			NOT = { TAG = USA }
+			NOT = { is_in_faction_with = SOV }
+			NOT = { is_in_faction_with = USA }
+		}
+	}
+}

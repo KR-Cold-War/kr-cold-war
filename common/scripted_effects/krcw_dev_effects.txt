@@ -1,0 +1,953 @@
+# KRCW National Development (build/economy.py -> dev_effects.py). Plan: krcw-development-panel.md
+
+krcw_dev_state_level = {
+	if = { limit = { has_state_category = pop1 } set_variable = { krcw_dev_lvl = 0 } }
+	else_if = { limit = { has_state_category = pop1dev1 } set_variable = { krcw_dev_lvl = 1 } }
+	else_if = { limit = { has_state_category = pop1dev2 } set_variable = { krcw_dev_lvl = 2 } }
+	else_if = { limit = { has_state_category = pop1dev3 } set_variable = { krcw_dev_lvl = 3 } }
+	else_if = { limit = { has_state_category = pop1dev4 } set_variable = { krcw_dev_lvl = 4 } }
+	else_if = { limit = { has_state_category = pop1dev5 } set_variable = { krcw_dev_lvl = 5 } }
+	else_if = { limit = { has_state_category = pop2 } set_variable = { krcw_dev_lvl = 0 } }
+	else_if = { limit = { has_state_category = pop2dev1 } set_variable = { krcw_dev_lvl = 1 } }
+	else_if = { limit = { has_state_category = pop2dev2 } set_variable = { krcw_dev_lvl = 2 } }
+	else_if = { limit = { has_state_category = pop2dev3 } set_variable = { krcw_dev_lvl = 3 } }
+	else_if = { limit = { has_state_category = pop2dev4 } set_variable = { krcw_dev_lvl = 4 } }
+	else_if = { limit = { has_state_category = pop2dev5 } set_variable = { krcw_dev_lvl = 5 } }
+	else_if = { limit = { has_state_category = pop3 } set_variable = { krcw_dev_lvl = 0 } }
+	else_if = { limit = { has_state_category = pop3dev1 } set_variable = { krcw_dev_lvl = 1 } }
+	else_if = { limit = { has_state_category = pop3dev2 } set_variable = { krcw_dev_lvl = 2 } }
+	else_if = { limit = { has_state_category = pop3dev3 } set_variable = { krcw_dev_lvl = 3 } }
+	else_if = { limit = { has_state_category = pop3dev4 } set_variable = { krcw_dev_lvl = 4 } }
+	else_if = { limit = { has_state_category = pop3dev5 } set_variable = { krcw_dev_lvl = 5 } }
+	else_if = { limit = { has_state_category = pop4 } set_variable = { krcw_dev_lvl = 0 } }
+	else_if = { limit = { has_state_category = pop4dev1 } set_variable = { krcw_dev_lvl = 1 } }
+	else_if = { limit = { has_state_category = pop4dev2 } set_variable = { krcw_dev_lvl = 2 } }
+	else_if = { limit = { has_state_category = pop4dev3 } set_variable = { krcw_dev_lvl = 3 } }
+	else_if = { limit = { has_state_category = pop4dev4 } set_variable = { krcw_dev_lvl = 4 } }
+	else_if = { limit = { has_state_category = pop4dev5 } set_variable = { krcw_dev_lvl = 5 } }
+	else_if = { limit = { has_state_category = pop5 } set_variable = { krcw_dev_lvl = 0 } }
+	else_if = { limit = { has_state_category = pop5dev1 } set_variable = { krcw_dev_lvl = 1 } }
+	else_if = { limit = { has_state_category = pop5dev2 } set_variable = { krcw_dev_lvl = 2 } }
+	else_if = { limit = { has_state_category = pop5dev3 } set_variable = { krcw_dev_lvl = 3 } }
+	else_if = { limit = { has_state_category = pop5dev4 } set_variable = { krcw_dev_lvl = 4 } }
+	else_if = { limit = { has_state_category = pop5dev5 } set_variable = { krcw_dev_lvl = 5 } }
+	else_if = { limit = { has_state_category = pop7 } set_variable = { krcw_dev_lvl = 0 } }
+	else_if = { limit = { has_state_category = pop7dev1 } set_variable = { krcw_dev_lvl = 1 } }
+	else_if = { limit = { has_state_category = pop7dev2 } set_variable = { krcw_dev_lvl = 2 } }
+	else_if = { limit = { has_state_category = pop7dev3 } set_variable = { krcw_dev_lvl = 3 } }
+	else_if = { limit = { has_state_category = pop7dev4 } set_variable = { krcw_dev_lvl = 4 } }
+	else_if = { limit = { has_state_category = pop7dev5 } set_variable = { krcw_dev_lvl = 5 } }
+	else_if = { limit = { has_state_category = pop10 } set_variable = { krcw_dev_lvl = 0 } }
+	else_if = { limit = { has_state_category = pop10dev1 } set_variable = { krcw_dev_lvl = 1 } }
+	else_if = { limit = { has_state_category = pop10dev2 } set_variable = { krcw_dev_lvl = 2 } }
+	else_if = { limit = { has_state_category = pop10dev3 } set_variable = { krcw_dev_lvl = 3 } }
+	else_if = { limit = { has_state_category = pop10dev4 } set_variable = { krcw_dev_lvl = 4 } }
+	else_if = { limit = { has_state_category = pop10dev5 } set_variable = { krcw_dev_lvl = 5 } }
+	else_if = { limit = { has_state_category = pop15 } set_variable = { krcw_dev_lvl = 0 } }
+	else_if = { limit = { has_state_category = pop15dev1 } set_variable = { krcw_dev_lvl = 1 } }
+	else_if = { limit = { has_state_category = pop15dev2 } set_variable = { krcw_dev_lvl = 2 } }
+	else_if = { limit = { has_state_category = pop15dev3 } set_variable = { krcw_dev_lvl = 3 } }
+	else_if = { limit = { has_state_category = pop15dev4 } set_variable = { krcw_dev_lvl = 4 } }
+	else_if = { limit = { has_state_category = pop15dev5 } set_variable = { krcw_dev_lvl = 5 } }
+	else_if = { limit = { has_state_category = pop20 } set_variable = { krcw_dev_lvl = 0 } }
+	else_if = { limit = { has_state_category = pop20dev1 } set_variable = { krcw_dev_lvl = 1 } }
+	else_if = { limit = { has_state_category = pop20dev2 } set_variable = { krcw_dev_lvl = 2 } }
+	else_if = { limit = { has_state_category = pop20dev3 } set_variable = { krcw_dev_lvl = 3 } }
+	else_if = { limit = { has_state_category = pop20dev4 } set_variable = { krcw_dev_lvl = 4 } }
+	else_if = { limit = { has_state_category = pop20dev5 } set_variable = { krcw_dev_lvl = 5 } }
+	else = { set_variable = { krcw_dev_lvl = -1 } }
+}
+
+krcw_dev_state_upgrade = {
+	if = { limit = { has_state_category = pop1 } set_state_category = pop1dev1 }
+	else_if = { limit = { has_state_category = pop1dev1 } set_state_category = pop1dev2 }
+	else_if = { limit = { has_state_category = pop1dev2 } set_state_category = pop1dev3 }
+	else_if = { limit = { has_state_category = pop1dev3 } set_state_category = pop1dev4 }
+	else_if = { limit = { has_state_category = pop1dev4 } set_state_category = pop1dev5 }
+	else_if = { limit = { has_state_category = pop2 } set_state_category = pop2dev1 }
+	else_if = { limit = { has_state_category = pop2dev1 } set_state_category = pop2dev2 }
+	else_if = { limit = { has_state_category = pop2dev2 } set_state_category = pop2dev3 }
+	else_if = { limit = { has_state_category = pop2dev3 } set_state_category = pop2dev4 }
+	else_if = { limit = { has_state_category = pop2dev4 } set_state_category = pop2dev5 }
+	else_if = { limit = { has_state_category = pop3 } set_state_category = pop3dev1 }
+	else_if = { limit = { has_state_category = pop3dev1 } set_state_category = pop3dev2 }
+	else_if = { limit = { has_state_category = pop3dev2 } set_state_category = pop3dev3 }
+	else_if = { limit = { has_state_category = pop3dev3 } set_state_category = pop3dev4 }
+	else_if = { limit = { has_state_category = pop3dev4 } set_state_category = pop3dev5 }
+	else_if = { limit = { has_state_category = pop4 } set_state_category = pop4dev1 }
+	else_if = { limit = { has_state_category = pop4dev1 } set_state_category = pop4dev2 }
+	else_if = { limit = { has_state_category = pop4dev2 } set_state_category = pop4dev3 }
+	else_if = { limit = { has_state_category = pop4dev3 } set_state_category = pop4dev4 }
+	else_if = { limit = { has_state_category = pop4dev4 } set_state_category = pop4dev5 }
+	else_if = { limit = { has_state_category = pop5 } set_state_category = pop5dev1 }
+	else_if = { limit = { has_state_category = pop5dev1 } set_state_category = pop5dev2 }
+	else_if = { limit = { has_state_category = pop5dev2 } set_state_category = pop5dev3 }
+	else_if = { limit = { has_state_category = pop5dev3 } set_state_category = pop5dev4 }
+	else_if = { limit = { has_state_category = pop5dev4 } set_state_category = pop5dev5 }
+	else_if = { limit = { has_state_category = pop7 } set_state_category = pop7dev1 }
+	else_if = { limit = { has_state_category = pop7dev1 } set_state_category = pop7dev2 }
+	else_if = { limit = { has_state_category = pop7dev2 } set_state_category = pop7dev3 }
+	else_if = { limit = { has_state_category = pop7dev3 } set_state_category = pop7dev4 }
+	else_if = { limit = { has_state_category = pop7dev4 } set_state_category = pop7dev5 }
+	else_if = { limit = { has_state_category = pop10 } set_state_category = pop10dev1 }
+	else_if = { limit = { has_state_category = pop10dev1 } set_state_category = pop10dev2 }
+	else_if = { limit = { has_state_category = pop10dev2 } set_state_category = pop10dev3 }
+	else_if = { limit = { has_state_category = pop10dev3 } set_state_category = pop10dev4 }
+	else_if = { limit = { has_state_category = pop10dev4 } set_state_category = pop10dev5 }
+	else_if = { limit = { has_state_category = pop15 } set_state_category = pop15dev1 }
+	else_if = { limit = { has_state_category = pop15dev1 } set_state_category = pop15dev2 }
+	else_if = { limit = { has_state_category = pop15dev2 } set_state_category = pop15dev3 }
+	else_if = { limit = { has_state_category = pop15dev3 } set_state_category = pop15dev4 }
+	else_if = { limit = { has_state_category = pop15dev4 } set_state_category = pop15dev5 }
+	else_if = { limit = { has_state_category = pop20 } set_state_category = pop20dev1 }
+	else_if = { limit = { has_state_category = pop20dev1 } set_state_category = pop20dev2 }
+	else_if = { limit = { has_state_category = pop20dev2 } set_state_category = pop20dev3 }
+	else_if = { limit = { has_state_category = pop20dev3 } set_state_category = pop20dev4 }
+	else_if = { limit = { has_state_category = pop20dev4 } set_state_category = pop20dev5 }
+	krcw_dev_state_level = yes
+}
+
+# population, education and the two auto-picked project targets, in one pass over the owned states
+krcw_dev_census = {
+	set_temp_variable = { krcw_t_pop = 0 }
+	set_temp_variable = { krcw_ts_literate_educated = 0 }
+	set_temp_variable = { krcw_ts_primary_educated = 0 }
+	set_temp_variable = { krcw_ts_high_school_educated = 0 }
+	set_temp_variable = { krcw_ts_college_educated = 0 }
+	set_temp_variable = { krcw_t_best = 0 }
+	set_temp_variable = { krcw_t_rail = 0 }
+	clear_variable = krcw_dev_target
+	clear_variable = krcw_dev_rail_target
+	every_owned_state = {
+		set_temp_variable = { krcw_tp = state_population_k }
+		divide_temp_variable = { krcw_tp = 1000 }
+		add_to_temp_variable = { krcw_t_pop = krcw_tp }
+		if = { limit = { has_variable = literate_educated } set_temp_variable = { krcw_tx = literate_educated } multiply_temp_variable = { krcw_tx = krcw_tp } add_to_temp_variable = { krcw_ts_literate_educated = krcw_tx } }
+		if = { limit = { has_variable = primary_educated } set_temp_variable = { krcw_tx = primary_educated } multiply_temp_variable = { krcw_tx = krcw_tp } add_to_temp_variable = { krcw_ts_primary_educated = krcw_tx } }
+		if = { limit = { has_variable = high_school_educated } set_temp_variable = { krcw_tx = high_school_educated } multiply_temp_variable = { krcw_tx = krcw_tp } add_to_temp_variable = { krcw_ts_high_school_educated = krcw_tx } }
+		if = { limit = { has_variable = college_educated } set_temp_variable = { krcw_tx = college_educated } multiply_temp_variable = { krcw_tx = krcw_tp } add_to_temp_variable = { krcw_ts_college_educated = krcw_tx } }
+		if = {
+			limit = { is_core_of = ROOT is_controlled_by = ROOT }
+			if = {
+				limit = { check_variable = { ROOT.krcw_dev_plan = 3 } }
+				if = { limit = { has_variable = literate_educated } add_to_variable = { literate_educated = 0.05 } clamp_variable = { var = literate_educated min = 0 max = 100 } }
+				if = { limit = { has_variable = primary_educated } add_to_variable = { primary_educated = 0.05 } clamp_variable = { var = primary_educated min = 0 max = 100 } }
+			}
+			if = {
+				limit = { has_variable = krcw_dev_lvl check_variable = { krcw_dev_lvl > -1 } check_variable = { krcw_dev_lvl < 5 } }
+				set_temp_variable = { krcw_tx = 5 }
+				subtract_from_temp_variable = { krcw_tx = krcw_dev_lvl }
+				multiply_temp_variable = { krcw_tx = krcw_tp }
+				if = {
+					limit = { check_variable = { krcw_tx > krcw_t_best } }
+					set_temp_variable = { krcw_t_best = krcw_tx }
+					ROOT = { set_variable = { krcw_dev_target = PREV } }
+				}
+			}
+			if = {
+				limit = { check_variable = { infrastructure_level < 4 } check_variable = { krcw_tp > krcw_t_rail } }
+				set_temp_variable = { krcw_t_rail = krcw_tp }
+				ROOT = { set_variable = { krcw_dev_rail_target = PREV } }
+			}
+		}
+	}
+	if = { limit = { check_variable = { krcw_t_pop < 0.01 } } set_temp_variable = { krcw_t_pop = 0.01 } }
+	if = { limit = { has_variable = krcw_dev_pop } set_variable = { krcw_dev_pop_growth = krcw_t_pop } subtract_from_variable = { krcw_dev_pop_growth = krcw_dev_pop } multiply_variable = { krcw_dev_pop_growth = 1000 } }
+	set_variable = { krcw_dev_pop = krcw_t_pop }
+	set_variable = { krcw_dev_fac = num_of_civilian_factories }
+	add_to_variable = { krcw_dev_fac = num_of_military_factories }
+	add_to_variable = { krcw_dev_fac = num_of_naval_factories }
+	set_variable = { krcw_dev_edu = 0 }
+	set_temp_variable = { krcw_tx = krcw_ts_literate_educated }
+	divide_temp_variable = { krcw_tx = krcw_dev_pop }
+	set_variable = { krcw_dev_lit = krcw_tx }
+	multiply_temp_variable = { krcw_tx = 0.45 }
+	add_to_variable = { krcw_dev_edu = krcw_tx }
+	set_temp_variable = { krcw_tx = krcw_ts_primary_educated }
+	divide_temp_variable = { krcw_tx = krcw_dev_pop }
+	set_variable = { krcw_dev_prim = krcw_tx }
+	multiply_temp_variable = { krcw_tx = 0.1 }
+	add_to_variable = { krcw_dev_edu = krcw_tx }
+	set_temp_variable = { krcw_tx = krcw_ts_high_school_educated }
+	divide_temp_variable = { krcw_tx = krcw_dev_pop }
+	set_variable = { krcw_dev_hs = krcw_tx }
+	multiply_temp_variable = { krcw_tx = 0.5 }
+	add_to_variable = { krcw_dev_edu = krcw_tx }
+	set_temp_variable = { krcw_tx = krcw_ts_college_educated }
+	divide_temp_variable = { krcw_tx = krcw_dev_pop }
+	set_variable = { krcw_dev_col = krcw_tx }
+	multiply_temp_variable = { krcw_tx = 2.0 }
+	add_to_variable = { krcw_dev_edu = krcw_tx }
+	clamp_variable = { var = krcw_dev_edu min = 0 max = 100 }
+}
+
+# welfare moves toward 0.6 economy + 0.4 education; plans, war and hunger push it
+krcw_dev_welfare = {
+	set_temp_variable = { krcw_tx = krcw_econ }
+	multiply_temp_variable = { krcw_tx = 0.6 }
+	set_temp_variable = { krcw_ty = krcw_dev_edu }
+	multiply_temp_variable = { krcw_ty = 0.4 }
+	add_to_temp_variable = { krcw_tx = krcw_ty }
+	subtract_from_temp_variable = { krcw_tx = krcw_dev_wel }
+	multiply_temp_variable = { krcw_tx = 0.03 }
+	set_variable = { krcw_dev_w_base = krcw_tx }
+	set_variable = { krcw_dev_w_plan = 0 }
+	if = { limit = { check_variable = { krcw_dev_plan = 1 } } set_variable = { krcw_dev_w_plan = -0.3 } }
+	if = { limit = { check_variable = { krcw_dev_plan = 2 } } set_variable = { krcw_dev_w_plan = 0.4 } }
+	if = { limit = { check_variable = { krcw_dev_plan = 4 } } set_variable = { krcw_dev_w_plan = -0.3 } }
+	set_variable = { krcw_dev_w_war = 0 }
+	if = { limit = { has_war = yes } set_variable = { krcw_dev_w_war = -0.4 } }
+	if = { limit = { surrender_progress > 0.1 } set_variable = { krcw_dev_w_war = -1.0 } }
+	set_variable = { krcw_dev_w_food = 0 }
+	if = { limit = { check_variable = { resource@rubber < 0 } } set_variable = { krcw_dev_w_food = -0.5 } }
+	set_variable = { krcw_dev_w_trend = krcw_dev_w_base }
+	add_to_variable = { krcw_dev_w_trend = krcw_dev_w_plan }
+	add_to_variable = { krcw_dev_w_trend = krcw_dev_w_war }
+	add_to_variable = { krcw_dev_w_trend = krcw_dev_w_food }
+	clamp_variable = { var = krcw_dev_w_trend min = -3 max = 3 }
+	add_to_variable = { krcw_dev_wel = krcw_dev_w_trend }
+	clamp_variable = { var = krcw_dev_wel min = 0 max = 100 }
+}
+
+krcw_dev_gdp = {
+	set_temp_variable = { krcw_tx = num_of_civilian_factories }
+	add_to_temp_variable = { krcw_tx = num_of_military_factories }
+	add_to_temp_variable = { krcw_tx = num_of_naval_factories }
+	set_temp_variable = { krcw_ty = krcw_econ }
+	divide_temp_variable = { krcw_ty = 100 }
+	add_to_temp_variable = { krcw_ty = 0.5 }
+	multiply_temp_variable = { krcw_tx = krcw_ty }
+	multiply_temp_variable = { krcw_tx = 3.0 }
+	set_temp_variable = { krcw_ty = krcw_dev_edu }
+	divide_temp_variable = { krcw_ty = 100 }
+	add_to_temp_variable = { krcw_ty = 0.0 }
+	multiply_temp_variable = { krcw_ty = krcw_dev_pop }
+	multiply_temp_variable = { krcw_ty = 2.0 }
+	add_to_temp_variable = { krcw_tx = krcw_ty }
+	set_variable = { grossdomesticproduct = krcw_tx }
+	set_variable = { grossdomesticproductcapita = krcw_tx }
+	divide_variable = { grossdomesticproductcapita = krcw_dev_pop }
+}
+
+krcw_dev_rankings = {
+	get_sorted_scored_countries = {
+		scorer = krcw_dev_gdp_scorer
+		array = global.krcw_dev_rank_gdp_all
+		scores = global.krcw_dev_rank_gdp_scores
+	}
+	clear_array = global.krcw_dev_rank_gdp_a
+	clear_array = global.krcw_dev_rank_gdp_b
+	set_temp_variable = { krcw_t_rank = 0 }
+	for_each_scope_loop = {
+		array = global.krcw_dev_rank_gdp_all
+		if = {
+			limit = { has_variable = krcw_dev_edu }
+			add_to_temp_variable = { krcw_t_rank = 1 }
+			set_variable = { krcw_dev_rank_gdp = krcw_t_rank }
+			if = { limit = { check_variable = { krcw_t_rank < 11 } } add_to_array = { global.krcw_dev_rank_gdp_a = THIS } }
+			else_if = { limit = { check_variable = { krcw_t_rank < 21 } } add_to_array = { global.krcw_dev_rank_gdp_b = THIS } }
+		}
+		else = { set_variable = { krcw_dev_rank_gdp = 0 } }
+	}
+	get_sorted_scored_countries = {
+		scorer = krcw_dev_gdppc_scorer
+		array = global.krcw_dev_rank_gdppc_all
+		scores = global.krcw_dev_rank_gdppc_scores
+	}
+	clear_array = global.krcw_dev_rank_gdppc_a
+	clear_array = global.krcw_dev_rank_gdppc_b
+	set_temp_variable = { krcw_t_rank = 0 }
+	for_each_scope_loop = {
+		array = global.krcw_dev_rank_gdppc_all
+		if = {
+			limit = { has_variable = krcw_dev_edu check_variable = { krcw_dev_pop > 2.99 } }
+			add_to_temp_variable = { krcw_t_rank = 1 }
+			set_variable = { krcw_dev_rank_gdppc = krcw_t_rank }
+			if = { limit = { check_variable = { krcw_t_rank < 11 } } add_to_array = { global.krcw_dev_rank_gdppc_a = THIS } }
+			else_if = { limit = { check_variable = { krcw_t_rank < 21 } } add_to_array = { global.krcw_dev_rank_gdppc_b = THIS } }
+		}
+		else = { set_variable = { krcw_dev_rank_gdppc = 0 } }
+	}
+	get_sorted_scored_countries = {
+		scorer = krcw_dev_pop_scorer
+		array = global.krcw_dev_rank_pop_all
+		scores = global.krcw_dev_rank_pop_scores
+	}
+	clear_array = global.krcw_dev_rank_pop_a
+	clear_array = global.krcw_dev_rank_pop_b
+	set_temp_variable = { krcw_t_rank = 0 }
+	for_each_scope_loop = {
+		array = global.krcw_dev_rank_pop_all
+		if = {
+			limit = { has_variable = krcw_dev_edu }
+			add_to_temp_variable = { krcw_t_rank = 1 }
+			set_variable = { krcw_dev_rank_pop = krcw_t_rank }
+			if = { limit = { check_variable = { krcw_t_rank < 11 } } add_to_array = { global.krcw_dev_rank_pop_a = THIS } }
+			else_if = { limit = { check_variable = { krcw_t_rank < 21 } } add_to_array = { global.krcw_dev_rank_pop_b = THIS } }
+		}
+		else = { set_variable = { krcw_dev_rank_pop = 0 } }
+	}
+	get_sorted_scored_countries = {
+		scorer = krcw_dev_econ_scorer
+		array = global.krcw_dev_rank_econ_all
+		scores = global.krcw_dev_rank_econ_scores
+	}
+	clear_array = global.krcw_dev_rank_econ_a
+	clear_array = global.krcw_dev_rank_econ_b
+	set_temp_variable = { krcw_t_rank = 0 }
+	for_each_scope_loop = {
+		array = global.krcw_dev_rank_econ_all
+		if = {
+			limit = { has_variable = krcw_dev_edu check_variable = { krcw_dev_pop > 1.99 } }
+			add_to_temp_variable = { krcw_t_rank = 1 }
+			set_variable = { krcw_dev_rank_econ = krcw_t_rank }
+			if = { limit = { check_variable = { krcw_t_rank < 11 } } add_to_array = { global.krcw_dev_rank_econ_a = THIS } }
+			else_if = { limit = { check_variable = { krcw_t_rank < 21 } } add_to_array = { global.krcw_dev_rank_econ_b = THIS } }
+		}
+		else = { set_variable = { krcw_dev_rank_econ = 0 } }
+	}
+	get_sorted_scored_countries = {
+		scorer = krcw_dev_edu_scorer
+		array = global.krcw_dev_rank_edu_all
+		scores = global.krcw_dev_rank_edu_scores
+	}
+	clear_array = global.krcw_dev_rank_edu_a
+	clear_array = global.krcw_dev_rank_edu_b
+	set_temp_variable = { krcw_t_rank = 0 }
+	for_each_scope_loop = {
+		array = global.krcw_dev_rank_edu_all
+		if = {
+			limit = { has_variable = krcw_dev_edu check_variable = { krcw_dev_pop > 1.99 } }
+			add_to_temp_variable = { krcw_t_rank = 1 }
+			set_variable = { krcw_dev_rank_edu = krcw_t_rank }
+			if = { limit = { check_variable = { krcw_t_rank < 11 } } add_to_array = { global.krcw_dev_rank_edu_a = THIS } }
+			else_if = { limit = { check_variable = { krcw_t_rank < 21 } } add_to_array = { global.krcw_dev_rank_edu_b = THIS } }
+		}
+		else = { set_variable = { krcw_dev_rank_edu = 0 } }
+	}
+	get_sorted_scored_countries = {
+		scorer = krcw_dev_wel_scorer
+		array = global.krcw_dev_rank_wel_all
+		scores = global.krcw_dev_rank_wel_scores
+	}
+	clear_array = global.krcw_dev_rank_wel_a
+	clear_array = global.krcw_dev_rank_wel_b
+	set_temp_variable = { krcw_t_rank = 0 }
+	for_each_scope_loop = {
+		array = global.krcw_dev_rank_wel_all
+		if = {
+			limit = { has_variable = krcw_dev_edu check_variable = { krcw_dev_pop > 1.99 } }
+			add_to_temp_variable = { krcw_t_rank = 1 }
+			set_variable = { krcw_dev_rank_wel = krcw_t_rank }
+			if = { limit = { check_variable = { krcw_t_rank < 11 } } add_to_array = { global.krcw_dev_rank_wel_a = THIS } }
+			else_if = { limit = { check_variable = { krcw_t_rank < 21 } } add_to_array = { global.krcw_dev_rank_wel_b = THIS } }
+		}
+		else = { set_variable = { krcw_dev_rank_wel = 0 } }
+	}
+	get_sorted_scored_countries = {
+		scorer = krcw_dev_fac_scorer
+		array = global.krcw_dev_rank_fac_all
+		scores = global.krcw_dev_rank_fac_scores
+	}
+	clear_array = global.krcw_dev_rank_fac_a
+	clear_array = global.krcw_dev_rank_fac_b
+	set_temp_variable = { krcw_t_rank = 0 }
+	for_each_scope_loop = {
+		array = global.krcw_dev_rank_fac_all
+		if = {
+			limit = { has_variable = krcw_dev_edu }
+			add_to_temp_variable = { krcw_t_rank = 1 }
+			set_variable = { krcw_dev_rank_fac = krcw_t_rank }
+			if = { limit = { check_variable = { krcw_t_rank < 11 } } add_to_array = { global.krcw_dev_rank_fac_a = THIS } }
+			else_if = { limit = { check_variable = { krcw_t_rank < 21 } } add_to_array = { global.krcw_dev_rank_fac_b = THIS } }
+		}
+		else = { set_variable = { krcw_dev_rank_fac = 0 } }
+	}
+}
+
+krcw_dev_refresh = {
+	set_variable = { krcw_dev_m_consumer_goods_factor = 0 }
+	set_variable = { krcw_dev_m_industrial_capacity_factory = 0 }
+	set_variable = { krcw_dev_m_monthly_population = 0 }
+	set_variable = { krcw_dev_m_political_power_factor = 0 }
+	set_variable = { krcw_dev_m_production_factory_efficiency_gain_factor = 0 }
+	set_variable = { krcw_dev_m_production_speed_arms_factory_factor = 0 }
+	set_variable = { krcw_dev_m_production_speed_buildings_factor = 0 }
+	set_variable = { krcw_dev_m_production_speed_industrial_complex_factor = 0 }
+	set_variable = { krcw_dev_m_research_speed_factor = 0 }
+	set_variable = { krcw_dev_m_stability_factor = 0 }
+	set_temp_variable = { krcw_tx = krcw_econ }
+	subtract_from_temp_variable = { krcw_tx = 50 }
+	multiply_temp_variable = { krcw_tx = 0.002 }
+	add_to_variable = { krcw_dev_m_production_speed_buildings_factor = krcw_tx }
+	set_temp_variable = { krcw_tx = krcw_econ }
+	subtract_from_temp_variable = { krcw_tx = 50 }
+	multiply_temp_variable = { krcw_tx = 0.0015 }
+	add_to_variable = { krcw_dev_m_industrial_capacity_factory = krcw_tx }
+	set_temp_variable = { krcw_tx = krcw_econ }
+	subtract_from_temp_variable = { krcw_tx = 50 }
+	multiply_temp_variable = { krcw_tx = -0.0006 }
+	add_to_variable = { krcw_dev_m_consumer_goods_factor = krcw_tx }
+	set_temp_variable = { krcw_tx = krcw_dev_edu }
+	subtract_from_temp_variable = { krcw_tx = 50 }
+	multiply_temp_variable = { krcw_tx = 0.0015 }
+	add_to_variable = { krcw_dev_m_research_speed_factor = krcw_tx }
+	set_temp_variable = { krcw_tx = krcw_dev_edu }
+	subtract_from_temp_variable = { krcw_tx = 50 }
+	multiply_temp_variable = { krcw_tx = 0.0015 }
+	add_to_variable = { krcw_dev_m_production_factory_efficiency_gain_factor = krcw_tx }
+	set_temp_variable = { krcw_tx = krcw_dev_wel }
+	subtract_from_temp_variable = { krcw_tx = 50 }
+	multiply_temp_variable = { krcw_tx = 0.0015 }
+	add_to_variable = { krcw_dev_m_stability_factor = krcw_tx }
+	set_temp_variable = { krcw_tx = krcw_dev_wel }
+	subtract_from_temp_variable = { krcw_tx = 50 }
+	multiply_temp_variable = { krcw_tx = 0.0015 }
+	add_to_variable = { krcw_dev_m_political_power_factor = krcw_tx }
+	set_temp_variable = { krcw_tx = krcw_dev_wel }
+	subtract_from_temp_variable = { krcw_tx = 50 }
+	multiply_temp_variable = { krcw_tx = 0.004 }
+	add_to_variable = { krcw_dev_m_monthly_population = krcw_tx }
+	if = { limit = { check_variable = { krcw_dev_plan = 1 } }
+		add_to_variable = { krcw_dev_m_production_speed_industrial_complex_factor = 0.1 }
+		add_to_variable = { krcw_dev_m_consumer_goods_factor = 0.03 }
+	}
+	if = { limit = { check_variable = { krcw_dev_plan = 2 } }
+		add_to_variable = { krcw_dev_m_stability_factor = 0.03 }
+		add_to_variable = { krcw_dev_m_production_speed_buildings_factor = -0.05 }
+	}
+	if = { limit = { check_variable = { krcw_dev_plan = 3 } }
+		add_to_variable = { krcw_dev_m_research_speed_factor = 0.04 }
+	}
+	if = { limit = { check_variable = { krcw_dev_plan = 4 } }
+		add_to_variable = { krcw_dev_m_production_speed_arms_factory_factor = 0.15 }
+		add_to_variable = { krcw_dev_m_industrial_capacity_factory = 0.03 }
+	}
+	if = { limit = { check_variable = { krcw_dev_t_uni > 0 } } add_to_variable = { krcw_dev_m_research_speed_factor = 0.03 } }
+	if = { limit = { check_variable = { krcw_dev_t_health > 0 } } add_to_variable = { krcw_dev_m_monthly_population = 0.1 } }
+	if = { limit = { check_variable = { krcw_dev_t_goods > 0 } } add_to_variable = { krcw_dev_m_consumer_goods_factor = -0.05 } }
+	set_variable = { krcw_dev_m_civ = krcw_dev_civ_used }
+	set_variable = { krcw_dev_d_build = krcw_dev_m_production_speed_buildings_factor }
+	multiply_variable = { krcw_dev_d_build = 100 }
+	set_variable = { krcw_dev_d_ic = krcw_dev_m_industrial_capacity_factory }
+	multiply_variable = { krcw_dev_d_ic = 100 }
+	set_variable = { krcw_dev_d_research = krcw_dev_m_research_speed_factor }
+	multiply_variable = { krcw_dev_d_research = 100 }
+	set_variable = { krcw_dev_d_stab = krcw_dev_m_stability_factor }
+	multiply_variable = { krcw_dev_d_stab = 100 }
+	set_variable = { krcw_dev_d_pp = krcw_dev_m_political_power_factor }
+	multiply_variable = { krcw_dev_d_pp = 100 }
+	set_variable = { krcw_dev_d_pop = krcw_dev_m_monthly_population }
+	multiply_variable = { krcw_dev_d_pop = 100 }
+	set_variable = { krcw_dev_d_cg = krcw_dev_m_consumer_goods_factor }
+	multiply_variable = { krcw_dev_d_cg = 100 }
+	set_variable = { krcw_dev_f_econ = krcw_econ }
+	divide_variable = { krcw_dev_f_econ = 5 }
+	round_variable = krcw_dev_f_econ
+	add_to_variable = { krcw_dev_f_econ = 1 }
+	clamp_variable = { var = krcw_dev_f_econ min = 1 max = 21 }
+	set_variable = { krcw_dev_f_edu = krcw_dev_edu }
+	divide_variable = { krcw_dev_f_edu = 5 }
+	round_variable = krcw_dev_f_edu
+	add_to_variable = { krcw_dev_f_edu = 1 }
+	clamp_variable = { var = krcw_dev_f_edu min = 1 max = 21 }
+	set_variable = { krcw_dev_f_wel = krcw_dev_wel }
+	divide_variable = { krcw_dev_f_wel = 5 }
+	round_variable = krcw_dev_f_wel
+	add_to_variable = { krcw_dev_f_wel = 1 }
+	clamp_variable = { var = krcw_dev_f_wel min = 1 max = 21 }
+	if = { limit = { NOT = { has_dynamic_modifier = { modifier = krcw_dev_modifier } } } add_dynamic_modifier = { modifier = krcw_dev_modifier } }
+	force_update_dynamic_modifier = yes
+}
+
+krcw_dev_start_develop = {
+	custom_effect_tooltip = krcw_dev_start_develop_tt
+	hidden_effect = {
+		add_political_power = -60
+		set_variable = { krcw_dev_p_develop = 6 }
+		set_variable = { krcw_dev_civ_develop = krcw_dev_cost_develop }
+		add_to_variable = { krcw_dev_civ_used = krcw_dev_civ_develop }
+		add_to_variable = { krcw_dev_slots = 1 }
+		krcw_dev_refresh = yes
+	}
+}
+
+krcw_dev_start_literacy = {
+	custom_effect_tooltip = krcw_dev_start_literacy_tt
+	hidden_effect = {
+		add_political_power = -40
+		set_variable = { krcw_dev_p_literacy = 4 }
+		set_variable = { krcw_dev_civ_literacy = krcw_dev_cost_literacy }
+		add_to_variable = { krcw_dev_civ_used = krcw_dev_civ_literacy }
+		add_to_variable = { krcw_dev_slots = 1 }
+		krcw_dev_refresh = yes
+	}
+}
+
+krcw_dev_start_university = {
+	custom_effect_tooltip = krcw_dev_start_university_tt
+	hidden_effect = {
+		add_political_power = -60
+		set_variable = { krcw_dev_p_university = 6 }
+		set_variable = { krcw_dev_civ_university = krcw_dev_cost_university }
+		add_to_variable = { krcw_dev_civ_used = krcw_dev_civ_university }
+		add_to_variable = { krcw_dev_slots = 1 }
+		krcw_dev_refresh = yes
+	}
+}
+
+krcw_dev_start_housing = {
+	custom_effect_tooltip = krcw_dev_start_housing_tt
+	hidden_effect = {
+		add_political_power = -40
+		set_variable = { krcw_dev_p_housing = 4 }
+		set_variable = { krcw_dev_civ_housing = krcw_dev_cost_housing }
+		add_to_variable = { krcw_dev_civ_used = krcw_dev_civ_housing }
+		add_to_variable = { krcw_dev_slots = 1 }
+		krcw_dev_refresh = yes
+	}
+}
+
+krcw_dev_start_health = {
+	custom_effect_tooltip = krcw_dev_start_health_tt
+	hidden_effect = {
+		add_political_power = -40
+		set_variable = { krcw_dev_p_health = 4 }
+		set_variable = { krcw_dev_civ_health = krcw_dev_cost_health }
+		add_to_variable = { krcw_dev_civ_used = krcw_dev_civ_health }
+		add_to_variable = { krcw_dev_slots = 1 }
+		krcw_dev_refresh = yes
+	}
+}
+
+krcw_dev_start_rail = {
+	custom_effect_tooltip = krcw_dev_start_rail_tt
+	hidden_effect = {
+		add_political_power = -50
+		set_variable = { krcw_dev_p_rail = 5 }
+		set_variable = { krcw_dev_civ_rail = krcw_dev_cost_rail }
+		add_to_variable = { krcw_dev_civ_used = krcw_dev_civ_rail }
+		add_to_variable = { krcw_dev_slots = 1 }
+		krcw_dev_refresh = yes
+	}
+}
+
+krcw_dev_start_goods = {
+	custom_effect_tooltip = krcw_dev_start_goods_tt
+	hidden_effect = {
+		add_political_power = -50
+		set_variable = { krcw_dev_p_goods = 4 }
+		set_variable = { krcw_dev_civ_goods = krcw_dev_cost_goods }
+		add_to_variable = { krcw_dev_civ_used = krcw_dev_civ_goods }
+		add_to_variable = { krcw_dev_slots = 1 }
+		krcw_dev_refresh = yes
+	}
+}
+
+krcw_dev_start_reform = {
+	custom_effect_tooltip = krcw_dev_start_reform_tt
+	hidden_effect = {
+		add_political_power = -75
+		set_variable = { krcw_dev_p_reform = 3 }
+		set_variable = { krcw_dev_civ_reform = krcw_dev_cost_reform }
+		add_to_variable = { krcw_dev_civ_used = krcw_dev_civ_reform }
+		add_to_variable = { krcw_dev_slots = 1 }
+		krcw_dev_refresh = yes
+	}
+}
+
+krcw_dev_start_special = {
+	custom_effect_tooltip = krcw_dev_start_special_tt
+	hidden_effect = {
+		add_political_power = -60
+		set_variable = { krcw_dev_p_special = 4 }
+		set_variable = { krcw_dev_civ_special = krcw_dev_cost_special }
+		add_to_variable = { krcw_dev_civ_used = krcw_dev_civ_special }
+		add_to_variable = { krcw_dev_slots = 1 }
+		krcw_dev_refresh = yes
+	}
+}
+
+krcw_dev_project_tick = {
+	if = {
+		limit = { check_variable = { krcw_dev_p_develop > 0 } }
+		subtract_from_variable = { krcw_dev_p_develop = 1 }
+		if = {
+			limit = { check_variable = { krcw_dev_p_develop < 1 } }
+			set_variable = { krcw_dev_p_develop = 0 }
+			subtract_from_variable = { krcw_dev_civ_used = krcw_dev_civ_develop }
+			set_variable = { krcw_dev_civ_develop = 0 }
+			subtract_from_variable = { krcw_dev_slots = 1 }
+			if = {
+				limit = { has_variable = krcw_dev_target var:krcw_dev_target = { is_owned_by = ROOT } }
+				var:krcw_dev_target = { krcw_dev_state_upgrade = yes }
+			}
+			krcw_econ_up_small = yes
+			set_variable = { krcw_dev_last = 0 }
+			if = { limit = { is_ai = no } country_event = { id = krcw_econ.20 days = 1 } }
+		}
+	}
+	if = {
+		limit = { check_variable = { krcw_dev_p_literacy > 0 } }
+		subtract_from_variable = { krcw_dev_p_literacy = 1 }
+		if = {
+			limit = { check_variable = { krcw_dev_p_literacy < 1 } }
+			set_variable = { krcw_dev_p_literacy = 0 }
+			subtract_from_variable = { krcw_dev_civ_used = krcw_dev_civ_literacy }
+			set_variable = { krcw_dev_civ_literacy = 0 }
+			subtract_from_variable = { krcw_dev_slots = 1 }
+			every_owned_state = {
+				limit = { is_core_of = ROOT }
+				if = { limit = { has_variable = literate_educated } add_to_variable = { literate_educated = 4 } clamp_variable = { var = literate_educated min = 0 max = 100 } }
+				if = { limit = { has_variable = primary_educated } add_to_variable = { primary_educated = 2 } clamp_variable = { var = primary_educated min = 0 max = 100 } }
+			}
+			set_variable = { krcw_dev_last = 1 }
+			if = { limit = { is_ai = no } country_event = { id = krcw_econ.20 days = 1 } }
+		}
+	}
+	if = {
+		limit = { check_variable = { krcw_dev_p_university > 0 } }
+		subtract_from_variable = { krcw_dev_p_university = 1 }
+		if = {
+			limit = { check_variable = { krcw_dev_p_university < 1 } }
+			set_variable = { krcw_dev_p_university = 0 }
+			subtract_from_variable = { krcw_dev_civ_used = krcw_dev_civ_university }
+			set_variable = { krcw_dev_civ_university = 0 }
+			subtract_from_variable = { krcw_dev_slots = 1 }
+			every_owned_state = {
+				limit = { is_core_of = ROOT }
+				if = { limit = { has_variable = high_school_educated } add_to_variable = { high_school_educated = 3 } clamp_variable = { var = high_school_educated min = 0 max = 100 } }
+				if = { limit = { has_variable = college_educated } add_to_variable = { college_educated = 1 } clamp_variable = { var = college_educated min = 0 max = 100 } }
+			}
+			set_variable = { krcw_dev_t_uni = 12 }
+			set_variable = { krcw_dev_last = 2 }
+			if = { limit = { is_ai = no } country_event = { id = krcw_econ.20 days = 1 } }
+		}
+	}
+	if = {
+		limit = { check_variable = { krcw_dev_p_housing > 0 } }
+		subtract_from_variable = { krcw_dev_p_housing = 1 }
+		if = {
+			limit = { check_variable = { krcw_dev_p_housing < 1 } }
+			set_variable = { krcw_dev_p_housing = 0 }
+			subtract_from_variable = { krcw_dev_civ_used = krcw_dev_civ_housing }
+			set_variable = { krcw_dev_civ_housing = 0 }
+			subtract_from_variable = { krcw_dev_slots = 1 }
+			add_to_variable = { krcw_dev_wel = 6 }
+			clamp_variable = { var = krcw_dev_wel min = 0 max = 100 }
+			set_variable = { krcw_dev_last = 3 }
+			if = { limit = { is_ai = no } country_event = { id = krcw_econ.20 days = 1 } }
+		}
+	}
+	if = {
+		limit = { check_variable = { krcw_dev_p_health > 0 } }
+		subtract_from_variable = { krcw_dev_p_health = 1 }
+		if = {
+			limit = { check_variable = { krcw_dev_p_health < 1 } }
+			set_variable = { krcw_dev_p_health = 0 }
+			subtract_from_variable = { krcw_dev_civ_used = krcw_dev_civ_health }
+			set_variable = { krcw_dev_civ_health = 0 }
+			subtract_from_variable = { krcw_dev_slots = 1 }
+			add_to_variable = { krcw_dev_wel = 4 }
+			clamp_variable = { var = krcw_dev_wel min = 0 max = 100 }
+			set_variable = { krcw_dev_t_health = 12 }
+			set_variable = { krcw_dev_last = 4 }
+			if = { limit = { is_ai = no } country_event = { id = krcw_econ.20 days = 1 } }
+		}
+	}
+	if = {
+		limit = { check_variable = { krcw_dev_p_rail > 0 } }
+		subtract_from_variable = { krcw_dev_p_rail = 1 }
+		if = {
+			limit = { check_variable = { krcw_dev_p_rail < 1 } }
+			set_variable = { krcw_dev_p_rail = 0 }
+			subtract_from_variable = { krcw_dev_civ_used = krcw_dev_civ_rail }
+			set_variable = { krcw_dev_civ_rail = 0 }
+			subtract_from_variable = { krcw_dev_slots = 1 }
+			if = {
+				limit = { has_variable = krcw_dev_rail_target var:krcw_dev_rail_target = { is_owned_by = ROOT } }
+				var:krcw_dev_rail_target = {
+					add_building_construction = { type = infrastructure level = 2 instant_build = yes }
+					every_neighbor_state = {
+						limit = { is_owned_by = ROOT is_core_of = ROOT check_variable = { infrastructure_level < 5 } }
+						add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+					}
+				}
+			}
+			krcw_econ_up_small = yes
+			set_variable = { krcw_dev_last = 5 }
+			if = { limit = { is_ai = no } country_event = { id = krcw_econ.20 days = 1 } }
+		}
+	}
+	if = {
+		limit = { check_variable = { krcw_dev_p_goods > 0 } }
+		subtract_from_variable = { krcw_dev_p_goods = 1 }
+		if = {
+			limit = { check_variable = { krcw_dev_p_goods < 1 } }
+			set_variable = { krcw_dev_p_goods = 0 }
+			subtract_from_variable = { krcw_dev_civ_used = krcw_dev_civ_goods }
+			set_variable = { krcw_dev_civ_goods = 0 }
+			subtract_from_variable = { krcw_dev_slots = 1 }
+			krcw_econ_up_small = yes
+			add_to_variable = { krcw_dev_wel = 3 }
+			clamp_variable = { var = krcw_dev_wel min = 0 max = 100 }
+			set_variable = { krcw_dev_t_goods = 12 }
+			set_variable = { krcw_dev_last = 6 }
+			if = { limit = { is_ai = no } country_event = { id = krcw_econ.20 days = 1 } }
+		}
+	}
+	if = {
+		limit = { check_variable = { krcw_dev_p_reform > 0 } }
+		subtract_from_variable = { krcw_dev_p_reform = 1 }
+		if = {
+			limit = { check_variable = { krcw_dev_p_reform < 1 } }
+			set_variable = { krcw_dev_p_reform = 0 }
+			subtract_from_variable = { krcw_dev_civ_used = krcw_dev_civ_reform }
+			set_variable = { krcw_dev_civ_reform = 0 }
+			subtract_from_variable = { krcw_dev_slots = 1 }
+			if = { limit = { check_variable = { krcw_econ_system = 1 } } krcw_econ_bloat_down = yes add_stability = -0.02 }
+			else_if = { limit = { check_variable = { krcw_econ_system = 2 } } krcw_econ_heat_down = yes krcw_econ_down_small = yes }
+			else = {
+				krcw_econ_up_small = yes
+				if = { limit = { has_variable = krcw_rouble_debt } subtract_from_variable = { krcw_rouble_debt = 5 } clamp_variable = { var = krcw_rouble_debt min = 0 max = 100 } }
+				add_stability = -0.02
+			}
+			set_variable = { krcw_dev_last = 7 }
+			if = { limit = { is_ai = no } country_event = { id = krcw_econ.20 days = 1 } }
+		}
+	}
+	if = {
+		limit = { check_variable = { krcw_dev_p_special > 0 } }
+		subtract_from_variable = { krcw_dev_p_special = 1 }
+		if = {
+			limit = { check_variable = { krcw_dev_p_special < 1 } }
+			set_variable = { krcw_dev_p_special = 0 }
+			subtract_from_variable = { krcw_dev_civ_used = krcw_dev_civ_special }
+			set_variable = { krcw_dev_civ_special = 0 }
+			subtract_from_variable = { krcw_dev_slots = 1 }
+			if = {
+				limit = { check_variable = { krcw_econ_system = 1 } }
+				krcw_econ_up_small = yes
+				random_country = {
+					limit = { NOT = { tag = ROOT } krcw_econ_pcu_member = yes has_variable = krcw_econ }
+					krcw_econ_up_small = yes
+					add_opinion_modifier = { target = ROOT modifier = krcw_econ_aid_received }
+				}
+			}
+			else_if = {
+				limit = { check_variable = { krcw_econ_system = 2 } }
+				krcw_econ_up_medium = yes
+				add_to_variable = { krcw_econ_heat = 10 }
+				clamp_variable = { var = krcw_econ_heat min = 0 max = 100 }
+			}
+			else = {
+				krcw_econ_up_medium = yes
+				add_to_variable = { krcw_dev_wel = -2 }
+				if = { limit = { krcw_is_ma = yes } add_to_variable = { krcw_rouble_debt = 5 } }
+			}
+			set_variable = { krcw_dev_last = 8 }
+			if = { limit = { is_ai = no } country_event = { id = krcw_econ.20 days = 1 } }
+		}
+	}
+	if = { limit = { check_variable = { krcw_dev_t_uni > 0 } } subtract_from_variable = { krcw_dev_t_uni = 1 } }
+	if = { limit = { check_variable = { krcw_dev_t_health > 0 } } subtract_from_variable = { krcw_dev_t_health = 1 } }
+	if = { limit = { check_variable = { krcw_dev_t_goods > 0 } } subtract_from_variable = { krcw_dev_t_goods = 1 } }
+	if = { limit = { check_variable = { krcw_dev_civ_used < 0 } } set_variable = { krcw_dev_civ_used = 0 } }
+	if = { limit = { check_variable = { krcw_dev_slots < 0 } } set_variable = { krcw_dev_slots = 0 } }
+}
+
+krcw_dev_set_plan_0 = {
+	custom_effect_tooltip = krcw_dev_plan_0_tt
+	hidden_effect = {
+		add_political_power = -50
+		set_variable = { krcw_dev_plan = 0 }
+		set_variable = { krcw_dev_plan_lock = 12 }
+		krcw_dev_refresh = yes
+	}
+}
+
+krcw_dev_set_plan_1 = {
+	custom_effect_tooltip = krcw_dev_plan_1_tt
+	hidden_effect = {
+		add_political_power = -50
+		set_variable = { krcw_dev_plan = 1 }
+		set_variable = { krcw_dev_plan_lock = 12 }
+		krcw_dev_refresh = yes
+	}
+}
+
+krcw_dev_set_plan_2 = {
+	custom_effect_tooltip = krcw_dev_plan_2_tt
+	hidden_effect = {
+		add_political_power = -50
+		set_variable = { krcw_dev_plan = 2 }
+		set_variable = { krcw_dev_plan_lock = 12 }
+		krcw_dev_refresh = yes
+	}
+}
+
+krcw_dev_set_plan_3 = {
+	custom_effect_tooltip = krcw_dev_plan_3_tt
+	hidden_effect = {
+		add_political_power = -50
+		set_variable = { krcw_dev_plan = 3 }
+		set_variable = { krcw_dev_plan_lock = 12 }
+		krcw_dev_refresh = yes
+	}
+}
+
+krcw_dev_set_plan_4 = {
+	custom_effect_tooltip = krcw_dev_plan_4_tt
+	hidden_effect = {
+		add_political_power = -50
+		set_variable = { krcw_dev_plan = 4 }
+		set_variable = { krcw_dev_plan_lock = 12 }
+		krcw_dev_refresh = yes
+	}
+}
+
+# AI: every 3 months pick a national plan and one project by need (scripted-GUI AI weights are not used)
+krcw_dev_ai = {
+	add_to_variable = { krcw_dev_ai_clock = 1 }
+	if = {
+		limit = { check_variable = { krcw_dev_ai_clock > 2 } }
+		set_variable = { krcw_dev_ai_clock = 0 }
+		set_temp_variable = { krcw_t_plan = 0 }
+		if = { limit = { OR = { has_war = yes AND = { has_variable = global.krcw_tension check_variable = { global.krcw_tension > 85 } } } } set_temp_variable = { krcw_t_plan = 4 } }
+		else_if = { limit = { check_variable = { krcw_dev_wel < 35 } } set_temp_variable = { krcw_t_plan = 2 } }
+		else_if = { limit = { check_variable = { krcw_dev_edu < 35 } } set_temp_variable = { krcw_t_plan = 3 } }
+		else_if = { limit = { check_variable = { krcw_dev_wel > 55 } check_variable = { krcw_econ < 55 } } set_temp_variable = { krcw_t_plan = 1 } }
+		if = { limit = { check_variable = { krcw_t_plan = 0 } krcw_dev_can_plan_0 = yes has_political_power > 100 } krcw_dev_set_plan_0 = yes }
+		if = { limit = { check_variable = { krcw_t_plan = 1 } krcw_dev_can_plan_1 = yes has_political_power > 100 } krcw_dev_set_plan_1 = yes }
+		if = { limit = { check_variable = { krcw_t_plan = 2 } krcw_dev_can_plan_2 = yes has_political_power > 100 } krcw_dev_set_plan_2 = yes }
+		if = { limit = { check_variable = { krcw_t_plan = 3 } krcw_dev_can_plan_3 = yes has_political_power > 100 } krcw_dev_set_plan_3 = yes }
+		if = { limit = { check_variable = { krcw_t_plan = 4 } krcw_dev_can_plan_4 = yes has_political_power > 100 } krcw_dev_set_plan_4 = yes }
+		if = {
+			limit = { has_political_power > 120 check_variable = { krcw_dev_slots < krcw_dev_slots_max } }
+			if = { limit = { OR = { check_variable = { krcw_econ_bloat > 35 } check_variable = { krcw_econ_heat > 70 } } krcw_dev_can_reform = yes } krcw_dev_start_reform = yes }
+			else_if = { limit = { check_variable = { krcw_dev_wel < 35 } krcw_dev_can_housing = yes } krcw_dev_start_housing = yes }
+			else_if = { limit = { check_variable = { krcw_dev_edu < 50 } krcw_dev_can_literacy = yes } krcw_dev_start_literacy = yes }
+			else_if = { limit = { always = yes krcw_dev_can_develop = yes } krcw_dev_start_develop = yes }
+			else_if = { limit = { check_variable = { krcw_dev_wel < 55 } krcw_dev_can_health = yes } krcw_dev_start_health = yes }
+			else_if = { limit = { check_variable = { krcw_econ < 45 } krcw_dev_can_goods = yes } krcw_dev_start_goods = yes }
+			else_if = { limit = { always = yes krcw_dev_can_rail = yes } krcw_dev_start_rail = yes }
+			else_if = { limit = { check_variable = { krcw_dev_edu > 60 } krcw_dev_can_university = yes } krcw_dev_start_university = yes }
+		}
+	}
+}
+
+krcw_dev_milestones = {
+	if = { limit = { check_variable = { krcw_dev_edu > 60 } NOT = { has_country_flag = krcw_dev_ms_21 } } set_country_flag = krcw_dev_ms_21 if = { limit = { is_ai = no } country_event = { id = krcw_econ.21 days = 1 } } }
+	if = { limit = { check_variable = { krcw_dev_edu > 80 } NOT = { has_country_flag = krcw_dev_ms_22 } } set_country_flag = krcw_dev_ms_22 if = { limit = { is_ai = no } country_event = { id = krcw_econ.22 days = 1 } } }
+	if = { limit = { check_variable = { krcw_dev_wel > 70 } NOT = { has_country_flag = krcw_dev_ms_23 } } set_country_flag = krcw_dev_ms_23 if = { limit = { is_ai = no } country_event = { id = krcw_econ.23 days = 1 } } }
+	if = { limit = { is_ai = no check_variable = { krcw_dev_wel < 20 } NOT = { has_country_flag = krcw_dev_ms_24 } } set_country_flag = { flag = krcw_dev_ms_24 value = 1 days = 1095 } country_event = { id = krcw_econ.24 days = 1 } }
+}
+
+# start of game (country scope; states have krcw_dev_lvl from on_startup every_state)
+krcw_dev_setup = {
+	krcw_dev_setup_vars = yes
+	krcw_dev_census = yes
+	krcw_dev_setup_rest = yes
+}
+krcw_dev_setup_vars = {
+	set_variable = { krcw_dev_plan = 0 }
+	set_variable = { krcw_dev_plan_lock = 0 }
+	set_variable = { krcw_dev_slots = 0 }
+	set_variable = { krcw_dev_civ_used = 0 }
+	set_variable = { krcw_dev_ai_clock = 0 }
+		set_variable = { krcw_dev_p_develop = 0 }
+	set_variable = { krcw_dev_civ_develop = 0 }
+	set_variable = { krcw_dev_p_literacy = 0 }
+	set_variable = { krcw_dev_civ_literacy = 0 }
+	set_variable = { krcw_dev_p_university = 0 }
+	set_variable = { krcw_dev_civ_university = 0 }
+	set_variable = { krcw_dev_p_housing = 0 }
+	set_variable = { krcw_dev_civ_housing = 0 }
+	set_variable = { krcw_dev_p_health = 0 }
+	set_variable = { krcw_dev_civ_health = 0 }
+	set_variable = { krcw_dev_p_rail = 0 }
+	set_variable = { krcw_dev_civ_rail = 0 }
+	set_variable = { krcw_dev_p_goods = 0 }
+	set_variable = { krcw_dev_civ_goods = 0 }
+	set_variable = { krcw_dev_p_reform = 0 }
+	set_variable = { krcw_dev_civ_reform = 0 }
+	set_variable = { krcw_dev_p_special = 0 }
+	set_variable = { krcw_dev_civ_special = 0 }
+	set_variable = { krcw_dev_t_uni = 0 }
+	set_variable = { krcw_dev_t_health = 0 }
+	set_variable = { krcw_dev_t_goods = 0 }
+}
+# welfare, slots, GDP, milestones and the modifier, once krcw_econ and the census are known
+krcw_dev_setup_rest = {
+	set_variable = { krcw_dev_wel = krcw_econ }
+	multiply_variable = { krcw_dev_wel = 0.6 }
+	set_temp_variable = { krcw_tx = krcw_dev_edu }
+	multiply_temp_variable = { krcw_tx = 0.4 }
+	add_to_variable = { krcw_dev_wel = krcw_tx }
+	set_temp_variable = { krcw_tx = stability }
+	subtract_from_temp_variable = { krcw_tx = 0.5 }
+	multiply_temp_variable = { krcw_tx = 20 }
+	add_to_variable = { krcw_dev_wel = krcw_tx }
+	clamp_variable = { var = krcw_dev_wel min = 10 max = 90 }
+	krcw_dev_slots_and_budget = yes
+	krcw_dev_gdp = yes
+	if = { limit = { check_variable = { krcw_dev_edu > 60 } } set_country_flag = krcw_dev_ms_21 }
+	if = { limit = { check_variable = { krcw_dev_edu > 80 } } set_country_flag = krcw_dev_ms_22 }
+	if = { limit = { check_variable = { krcw_dev_wel > 70 } } set_country_flag = krcw_dev_ms_23 }
+	krcw_dev_refresh = yes
+}
+krcw_dev_slots_and_budget = {
+	set_variable = { krcw_dev_slots_max = 2 }
+	if = { limit = { OR = { is_faction_leader = yes num_of_civilian_factories > 49 } } set_variable = { krcw_dev_slots_max = 3 } }
+	set_variable = { krcw_dev_budget = num_of_civilian_factories }
+	multiply_variable = { krcw_dev_budget = 0.04 }
+	round_variable = krcw_dev_budget
+	clamp_variable = { var = krcw_dev_budget min = 1 max = 6 }
+	set_variable = { krcw_dev_cost_develop = krcw_dev_budget }
+	multiply_variable = { krcw_dev_cost_develop = 1.0 }
+	round_variable = krcw_dev_cost_develop
+	if = { limit = { check_variable = { krcw_dev_cost_develop < 1 } } set_variable = { krcw_dev_cost_develop = 1 } }
+	set_variable = { krcw_dev_cost_literacy = krcw_dev_budget }
+	multiply_variable = { krcw_dev_cost_literacy = 0.75 }
+	round_variable = krcw_dev_cost_literacy
+	if = { limit = { check_variable = { krcw_dev_cost_literacy < 1 } } set_variable = { krcw_dev_cost_literacy = 1 } }
+	set_variable = { krcw_dev_cost_university = krcw_dev_budget }
+	multiply_variable = { krcw_dev_cost_university = 1.0 }
+	round_variable = krcw_dev_cost_university
+	if = { limit = { check_variable = { krcw_dev_cost_university < 1 } } set_variable = { krcw_dev_cost_university = 1 } }
+	set_variable = { krcw_dev_cost_housing = krcw_dev_budget }
+	multiply_variable = { krcw_dev_cost_housing = 0.75 }
+	round_variable = krcw_dev_cost_housing
+	if = { limit = { check_variable = { krcw_dev_cost_housing < 1 } } set_variable = { krcw_dev_cost_housing = 1 } }
+	set_variable = { krcw_dev_cost_health = krcw_dev_budget }
+	multiply_variable = { krcw_dev_cost_health = 0.75 }
+	round_variable = krcw_dev_cost_health
+	if = { limit = { check_variable = { krcw_dev_cost_health < 1 } } set_variable = { krcw_dev_cost_health = 1 } }
+	set_variable = { krcw_dev_cost_rail = krcw_dev_budget }
+	multiply_variable = { krcw_dev_cost_rail = 1.0 }
+	round_variable = krcw_dev_cost_rail
+	if = { limit = { check_variable = { krcw_dev_cost_rail < 1 } } set_variable = { krcw_dev_cost_rail = 1 } }
+	set_variable = { krcw_dev_cost_goods = krcw_dev_budget }
+	multiply_variable = { krcw_dev_cost_goods = 1.0 }
+	round_variable = krcw_dev_cost_goods
+	if = { limit = { check_variable = { krcw_dev_cost_goods < 1 } } set_variable = { krcw_dev_cost_goods = 1 } }
+	set_variable = { krcw_dev_cost_reform = krcw_dev_budget }
+	multiply_variable = { krcw_dev_cost_reform = 0.5 }
+	round_variable = krcw_dev_cost_reform
+	if = { limit = { check_variable = { krcw_dev_cost_reform < 1 } } set_variable = { krcw_dev_cost_reform = 1 } }
+	set_variable = { krcw_dev_cost_special = krcw_dev_budget }
+	multiply_variable = { krcw_dev_cost_special = 0.75 }
+	round_variable = krcw_dev_cost_special
+	if = { limit = { check_variable = { krcw_dev_cost_special < 1 } } set_variable = { krcw_dev_cost_special = 1 } }
+}
+# every month, after the economy (econ_effects.py krcw_econ_monthly_tick)
+krcw_dev_monthly = {
+	krcw_dev_welfare = yes
+	krcw_dev_gdp = yes
+	krcw_dev_slots_and_budget = yes
+	krcw_dev_project_tick = yes
+	if = { limit = { check_variable = { krcw_dev_plan_lock > 0 } } subtract_from_variable = { krcw_dev_plan_lock = 1 } }
+	if = { limit = { is_ai = yes } krcw_dev_ai = yes }
+	krcw_dev_milestones = yes
+	krcw_dev_refresh = yes
+}

@@ -1,0 +1,1062 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = FRE_50s_Indochina
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = FRE
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+
+	focus = {
+		id = FRE_The_Situation_in_Route_Coloniale_4
+		icon = GFX_Generic_National_Focus_Military_1
+		cost = 3.4
+		x = 11
+		y = 0
+		completion_reward = {
+			add_political_power = 100
+			set_country_flag = FRE_RC4_Assessment_Complete
+			country_event = { id = FRE_Events.1 days = 1 }
+		}
+	}
+	focus = {
+		id = FRE_The_Fallout_of_the_Revers_Report
+		icon = GFX_Generic_National_Focus_Politics_1
+		cost = 3.4
+		x = -3
+		y = 1
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_The_Situation_in_Route_Coloniale_4
+		}
+		completion_reward = {
+			add_stability = -0.08
+			add_war_support = 0.05
+			set_country_flag = FRE_Revers_Report_Addressed
+			country_event = { id = FRE_Events.2 days = 1 }
+		}
+	}
+	focus = {
+		id = FRE_Send_De_lattre_de_Tassigny
+		icon = GFX_Generic_National_Focus_Military_10
+		cost = 3.4
+		x = 0
+		y = 1
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_The_Situation_in_Route_Coloniale_4
+		}
+		completion_reward = {
+			set_country_flag = FRE_De_Lattre_In_Command
+			country_event = { id = FRE_Events.3 days = 1 }
+		}
+	}
+	focus = {
+		id = FRE_Prepare_for_the_Battle_of_Na_San
+		icon = GFX_Generic_National_Focus_Military_11
+		cost = 3.4
+		x = -4
+		y = 2
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_The_Fallout_of_the_Revers_Report
+		}
+		prerequisite = {
+			focus = FRE_Send_De_lattre_de_Tassigny
+		}
+		continue_if_invalid = yes
+		available = {
+			OR = { date > 1952.10.15 VIN = { has_country_flag = VIN_Campaign_Tay_Bac_Active } }
+			NOT = { has_global_flag = Indochina_War_Over }
+			NOT = { has_global_flag = geneva_conference_concluded }
+			check_variable = { global.Indochina_War_Active_Phase < 9 }
+			country_exists = VIN
+			VIN = { NOT = { VIN_na_san_terminal_trigger = yes } }
+		}
+		bypass = {
+			OR = { has_global_flag = Indochina_War_Over has_global_flag = geneva_conference_concluded check_variable = { global.Indochina_War_Active_Phase > 8 } NOT = { country_exists = VIN } VIN = { VIN_na_san_terminal_trigger = yes } }
+		}
+		completion_reward = {
+			set_country_flag = FRE_Na_San_Prepared
+		}
+	}
+	focus = {
+		id = FRE_Operation_Lorraine
+		icon = GFX_Generic_National_Focus_Military_12
+		cost = 1.4	# a ten-day response focus; it must finish while the parent campaign is still live
+		x = -2
+		y = 2
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_The_Fallout_of_the_Revers_Report
+		}
+		prerequisite = {
+			focus = FRE_Send_De_lattre_de_Tassigny
+		}
+		continue_if_invalid = yes
+		available = {
+			OR = {
+				VIN = { has_country_flag = VIN_Campaign_Tay_Bac_Active }
+				date > 1952.10.15
+				has_country_flag = FRE_Operations_Accelerated
+			}
+			NOT = { has_global_flag = Indochina_War_Over }
+			NOT = { has_global_flag = geneva_conference_concluded }
+			check_variable = { global.Indochina_War_Active_Phase < 9 }
+			custom_trigger_tooltip = {
+				tooltip = FRE_Operation_Lorraine_Available_tt
+				always = yes
+			}
+		}
+		bypass = {
+			OR = {
+				has_global_flag = Indochina_War_Over
+				has_global_flag = geneva_conference_concluded
+			}
+		}
+		completion_reward = {
+			set_country_flag = FRE_Operation_Lorraine_Launched
+			set_country_flag = FRE_Lorraine_Response_Unlocked
+			fre_lorraine_focus_complete = yes
+		}
+	}
+	focus = {
+		id = FRE_Operation_Hirondelle
+		icon = GFX_Generic_National_Focus_Military_13
+		cost = 3.4
+		x = -3
+		y = 3
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Operation_Lorraine
+		}
+		prerequisite = {
+			focus = FRE_Prepare_for_the_Battle_of_Na_San
+		}
+		continue_if_invalid = yes
+		available = {
+			OR = {
+				date > 1953.07.01
+				has_country_flag = FRE_Operations_Accelerated
+			}
+			FRE_no_operation_running_trigger = yes
+			FRE_limited_operation_window_trigger = yes
+			VIN = { VIN_na_san_terminal_trigger = yes }
+			custom_trigger_tooltip = {
+				tooltip = FRE_Operation_Hirondelle_Available_tt
+				always = yes
+			}
+		}
+		bypass = {
+			OR = { has_global_flag = Indochina_War_Over has_global_flag = geneva_conference_concluded check_variable = { global.Indochina_War_Active_Phase > 8 } NOT = { country_exists = VIN } }
+		}
+		completion_reward = {
+			set_country_flag = FRE_Operation_Hirondelle_Launched
+			set_temp_variable = { fre_op_id = 2 }
+			fre_operation_begin = yes
+		}
+	}
+	focus = {
+		id = FRE_Prepare_for_the_Battle_of_Vinh_Yen
+		icon = GFX_Generic_National_Focus_Military_14
+		cost = 3.4
+		x = 3
+		y = 1
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_The_Situation_in_Route_Coloniale_4
+		}
+		continue_if_invalid = yes
+		available = {
+			OR = { date > 1950.12.01 has_country_flag = FRE_Operations_Accelerated }
+			NOT = { has_global_flag = Indochina_War_Over }
+			NOT = { has_global_flag = geneva_conference_concluded }
+			check_variable = { global.Indochina_War_Active_Phase < 9 }
+			country_exists = VIN
+			VIN = { NOT = { VIN_vinh_yen_terminal_trigger = yes } }
+		}
+		bypass = {
+			OR = { has_global_flag = Indochina_War_Over has_global_flag = geneva_conference_concluded check_variable = { global.Indochina_War_Active_Phase > 8 } NOT = { country_exists = VIN } VIN = { VIN_vinh_yen_terminal_trigger = yes } }
+		}
+		completion_reward = {
+			set_country_flag = FRE_Vinh_Yen_Prepared
+		}
+	}
+	focus = {
+		id = FRE_Recruit_Germans_to_the_FFL
+		icon = GFX_Generic_National_Focus_Military_15
+		cost = 3.4
+		x = 2
+		y = 2
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Prepare_for_the_Battle_of_Vinh_Yen
+		}
+		prerequisite = {
+			focus = FRE_Send_De_lattre_de_Tassigny
+		}
+		completion_reward = {
+			add_manpower = 20000
+			army_experience = 40
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						StruggleInvolvedNationsIndochinaProFranceScore = 15
+						tooltip = Add_to_French_Victory_Points_TT
+					}
+					add_to_variable = {
+						global.Indochina_War_Next_Phase_A_Points = 25
+						tooltip = Add_to_Escalation_Phase_TT
+					}
+					indochina_struggle_recalculate_total_anti_communist_score = yes
+				}
+			}
+			set_country_flag = FRE_German_FFL_Recruitment
+		}
+	}
+	focus = {
+		id = FRE_Secure_American_Financing
+		icon = GFX_Generic_National_Focus_USA_1
+		cost = 3.4
+		x = 0
+		y = 3
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Recruit_Germans_to_the_FFL
+		}
+		prerequisite = {
+			focus = FRE_Operation_Lorraine
+		}
+		prerequisite = {
+			focus = FRE_Prepare_for_the_Battle_of_Vinh_Yen
+		}
+		prerequisite = {
+			focus = FRE_Send_De_lattre_de_Tassigny
+		}
+		completion_reward = {
+			add_political_power = 50
+			set_temp_variable = { fre_credit_amount = 150 }	# American money buys war, not politics
+			fre_change_war_credits = yes
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						StruggleInvolvedNationsIndochinaProFranceScore = 15
+						tooltip = Add_to_French_Victory_Points_TT
+					}
+					add_to_variable = {
+						global.Indochina_War_Next_Phase_B_Points = 50
+						tooltip = Add_to_De_Escalation_Phase_TT
+					}
+					indochina_struggle_recalculate_total_anti_communist_score = yes
+				}
+			}
+			if = {
+				limit = { country_exists = USA }
+				USA = {
+					add_opinion_modifier = {
+						target = FRE
+						modifier = FRE_American_Financing
+					}
+				}
+			}
+			if = {
+				limit = { country_exists = VIE }
+				VIE = {
+					add_stability = 0.05
+				}
+			}
+			set_country_flag = FRE_American_Financing_Secured
+		}
+	}
+	focus = {
+		id = FRE_Operation_Mouette
+		icon = GFX_Generic_National_Focus_Military_16
+		cost = 3.4
+		x = -2
+		y = 4
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Secure_American_Financing
+		}
+		prerequisite = {
+			focus = FRE_Operation_Hirondelle
+		}
+		continue_if_invalid = yes
+		available = {
+			OR = {
+				date > 1953.10.01
+				has_country_flag = FRE_Operations_Accelerated
+			}
+			FRE_no_operation_running_trigger = yes
+			FRE_limited_operation_window_trigger = yes
+			FRE_hirondelle_terminal_trigger = yes
+			custom_trigger_tooltip = {
+				tooltip = FRE_Operation_Mouette_Available_tt
+				always = yes
+			}
+		}
+		bypass = {
+			OR = { has_global_flag = Indochina_War_Over has_global_flag = geneva_conference_concluded check_variable = { global.Indochina_War_Active_Phase > 8 } NOT = { country_exists = VIN } }
+		}
+		completion_reward = {
+			set_country_flag = FRE_Operation_Mouette_Launched
+			set_temp_variable = { fre_op_id = 3 }
+			fre_operation_begin = yes
+		}
+	}
+	focus = {
+		id = FRE_Prepare_for_the_Battle_of_Mao_Khe
+		icon = GFX_Generic_National_Focus_Military_17
+		cost = 3.4
+		x = 4
+		y = 2
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Prepare_for_the_Battle_of_Vinh_Yen
+		}
+		prerequisite = {
+			focus = FRE_Send_De_lattre_de_Tassigny
+		}
+		continue_if_invalid = yes
+		available = {
+			OR = { VIN = { VIN_vinh_yen_terminal_trigger = yes } date > 1951.04.15 }
+			NOT = { has_global_flag = Indochina_War_Over }
+			NOT = { has_global_flag = geneva_conference_concluded }
+			check_variable = { global.Indochina_War_Active_Phase < 9 }
+			country_exists = VIN
+			VIN = { NOT = { VIN_mao_khe_terminal_trigger = yes } }
+		}
+		bypass = {
+			OR = { has_global_flag = Indochina_War_Over has_global_flag = geneva_conference_concluded check_variable = { global.Indochina_War_Active_Phase > 8 } NOT = { country_exists = VIN } VIN = { VIN_mao_khe_terminal_trigger = yes } }
+		}
+		completion_reward = {
+			set_country_flag = FRE_Mao_Khe_Prepared
+		}
+	}
+	focus = {
+		id = FRE_Operation_Brochet
+		icon = GFX_Generic_National_Focus_Military_18
+		cost = 3.4
+		x = 3
+		y = 3
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Prepare_for_the_Battle_of_Mao_Khe
+		}
+		prerequisite = {
+			focus = FRE_Recruit_Germans_to_the_FFL
+		}
+		continue_if_invalid = yes
+		available = {
+			OR = {
+				date > 1953.08.15
+				has_country_flag = FRE_Operations_Accelerated
+			}
+			FRE_no_operation_running_trigger = yes
+			FRE_limited_operation_window_trigger = yes
+			VIN = { VIN_mao_khe_terminal_trigger = yes }
+			custom_trigger_tooltip = {
+				tooltip = FRE_Operation_Brochet_Available_tt
+				always = yes
+			}
+		}
+		bypass = {
+			OR = { has_global_flag = Indochina_War_Over has_global_flag = geneva_conference_concluded check_variable = { global.Indochina_War_Active_Phase > 8 } NOT = { country_exists = VIN } }
+		}
+		completion_reward = {
+			set_country_flag = FRE_Operation_Brochet_Launched
+			set_temp_variable = { fre_op_id = 4 }
+			fre_operation_begin = yes
+		}
+	}
+	focus = {
+		id = FRE_Operation_Castor
+		icon = GFX_Generic_National_Focus_Military_19
+		cost = 1.4
+		x = 2
+		y = 4
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Operation_Brochet
+		}
+		prerequisite = {
+			focus = FRE_Secure_American_Financing
+		}
+		continue_if_invalid = yes
+		available = {
+			OR = {
+				date > 1953.11.01
+				has_country_flag = FRE_Operations_Accelerated
+			}
+			FRE_no_operation_running_trigger = yes
+			FRE_operation_cooldown_ready_trigger = yes
+			NOT = { has_global_flag = Indochina_War_Over }
+			NOT = { has_global_flag = geneva_conference_concluded }
+			check_variable = { global.Indochina_War_Active_Phase < 9 }
+			country_exists = VIN
+			country_exists = TAI
+			fre_dbp_french_aligned_controls_camp_trigger = yes
+			FRE_brochet_terminal_trigger = yes
+			VIN = { NOT = { has_country_flag = VIN_Campaign_Dien_Bien_Active } }
+			custom_trigger_tooltip = {
+				tooltip = FRE_Operation_Castor_Available_tt
+				always = yes
+			}
+		}
+		bypass = {
+			OR = {
+				has_global_flag = Indochina_War_Over
+				has_global_flag = geneva_conference_concluded
+				has_country_flag = FRE_Dien_Bien_Phu_Established
+				NOT = { country_exists = VIN }
+				NOT = { country_exists = TAI }
+			}
+		}
+		completion_reward = {
+			fre_castor_focus_complete = yes
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = { factor = 100 is_historical_focus_on = yes }
+		}
+	}
+	focus = {
+		id = FRE_Operation_Pollux
+		icon = GFX_Generic_National_Focus_Military_19
+		cost = 0.7
+		x = -1
+		y = 5
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Operation_Mouette
+		}
+		prerequisite = {
+			focus = FRE_Operation_Castor
+		}
+		continue_if_invalid = yes
+		available = {
+			OR = {
+				date > 1953.11.22
+				has_country_flag = FRE_Operations_Accelerated
+			}
+			FRE_no_operation_running_trigger = yes
+			fre_pollux_live_window_trigger = yes
+			custom_trigger_tooltip = {
+				tooltip = FRE_Operation_Pollux_Available_tt
+				always = yes
+			}
+		}
+		bypass = {
+			OR = {
+				has_global_flag = Indochina_War_Over
+				has_global_flag = geneva_conference_concluded
+				check_variable = { global.Indochina_War_Active_Phase > 8 }
+				NOT = { country_exists = VIN }
+				NOT = { country_exists = TAI }
+				has_country_flag = FRE_Operation_Castor_Result_Failure
+				has_country_flag = FRE_Operation_Castor_Result_Superseded
+				VIN = { has_country_flag = VIN_Campaign_Dien_Bien_Active }
+				AND = {
+					has_country_flag = FRE_Dien_Bien_Phu_Established
+					NOT = { fre_dbp_french_aligned_controls_camp_trigger = yes }
+				}
+			}
+		}
+		completion_reward = {
+			fre_pollux_focus_complete = yes
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = { factor = 100 is_historical_focus_on = yes }
+		}
+	}
+	focus = {
+		id = FRE_Operation_Atlante
+		icon = GFX_Generic_National_Focus_Military_19
+		cost = 1.4
+		x = 1
+		y = 5
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Operation_Mouette
+		}
+		prerequisite = {
+			focus = FRE_Operation_Castor
+		}
+		continue_if_invalid = yes
+		available = {
+			OR = {
+				date > 1954.01.14
+				has_country_flag = FRE_Operations_Accelerated
+			}
+			FRE_no_operation_running_trigger = yes
+			fre_atlante_live_window_trigger = yes
+			custom_trigger_tooltip = {
+				tooltip = FRE_Operation_Atlante_Available_tt
+				always = yes
+			}
+		}
+		bypass = {
+			OR = {
+				has_global_flag = Indochina_War_Over
+				has_global_flag = geneva_conference_concluded
+				check_variable = { global.Indochina_War_Active_Phase > 8 }
+				NOT = { country_exists = VIE }
+				NOT = { country_exists = NLF }
+				VIE = { NOT = { has_war_with = NLF } }
+			}
+		}
+		completion_reward = {
+			fre_atlante_focus_complete = yes
+		}
+	}
+	focus = {
+		id = FRE_Preparing_for_the_Final_Push
+		icon = GFX_Generic_National_Focus_Military_2
+		cost = 3.4
+		x = 0
+		y = 6
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Operation_Pollux
+		}
+		prerequisite = {
+			focus = FRE_Operation_Atlante
+		}
+		available = {
+			FRE_mouette_terminal_trigger = yes
+			fre_atlante_terminal_trigger = yes
+		}
+		bypass = {
+			OR = {
+				has_global_flag = Indochina_War_Over
+				has_global_flag = geneva_conference_concluded
+				check_variable = { global.Indochina_War_Active_Phase > 8 }
+				NOT = { country_exists = VIN }
+			}
+		}
+		completion_reward = {
+			army_experience = 50
+			set_temp_variable = { fre_credit_amount = 20 }
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = FRE_Operation_Mouette_Result_Clean
+						has_country_flag = FRE_Operation_Mouette_Result_Costly
+				}
+					OR = {
+						has_country_flag = FRE_Operation_Atlante_Result_Central_Success
+						has_country_flag = FRE_Operation_Atlante_Result_Vietnamese_Foothold
+				}
+			}
+				army_experience = 50
+				set_temp_variable = { fre_credit_amount = 50 }
+				if = { limit = { country_exists = VIE } VIE = { add_stability = 0.05 add_war_support = 0.05 } }
+				}
+			fre_change_war_credits = yes
+			set_country_flag = FRE_Final_Push_Preparation
+		}
+	}
+	focus = {
+		id = FRE_Proclaim_Victory_in_Indochina
+		icon = GFX_Generic_National_Focus_Diplomacy_1
+		cost = 3.4
+		x = -2
+		y = 7
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Preparing_for_the_Final_Push
+		}
+		mutually_exclusive = {
+			focus = FRE_The_Geneva_Accords
+			focus = FRE_The_Fall_of_Saigon
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = FRE_Proclaim_Victory_Available_tt
+				FRE_indochina_military_victory_trigger = yes
+			}
+		}
+		completion_reward = {
+			add_stability = 0.20
+			add_war_support = 0.20
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						StruggleInvolvedNationsIndochinaProFranceScore = 350
+						tooltip = Add_to_French_Victory_Points_TT
+					}
+					indochina_struggle_recalculate_total_anti_communist_score = yes
+				}
+			}
+			if = {
+				limit = { country_exists = VIE }
+				VIE = {
+					add_stability = 0.15
+					add_war_support = 0.15
+				}
+			}
+			set_global_flag = FRE_Victory_in_Indochina
+		}
+	}
+	focus = {
+		id = FRE_The_Geneva_Accords
+		icon = GFX_Generic_National_Focus_Diplomacy_10
+		cost = 3.4
+		x = 2
+		y = 7
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Preparing_for_the_Final_Push
+		}
+		mutually_exclusive = {
+			focus = FRE_Proclaim_Victory_in_Indochina
+			focus = FRE_The_Fall_of_Saigon
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = FRE_The_Geneva_Accords_Available_tt
+				FRE_indochina_stalemate_trigger = yes
+			}
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						StruggleInvolvedNationsIndochinaProFranceScore = 50
+						tooltip = Add_to_French_Victory_Points_TT
+					}
+					add_to_variable = {
+						global.Indochina_War_Next_Phase_B_Points = 175
+						tooltip = Add_to_De_Escalation_Phase_TT
+					}
+					indochina_struggle_recalculate_total_anti_communist_score = yes
+				}
+			}
+			if = {
+				limit = {
+					geneva_conference_should_be_available_trigger = yes
+				}
+			set_variable = { global.Indochina_Geneva_Pursuit_Source = 1 }
+			set_global_flag = Geneva_Conference_Preparations
+			indochina_struggle_invite_countries_to_geneva = yes
+			}
+			else = {
+				set_variable = { global.Indochina_Geneva_Pursuit_Source = 1 }
+				set_global_flag = Indochina_Geneva_Pursuit
+				custom_effect_tooltip = FRE_Geneva_Pursuit_tt
+				if = {
+					limit = {
+						NOT = { has_global_flag = Indochina_War_Over }
+					}
+					FRA = {
+						add_to_variable = {
+							global.Indochina_War_Next_Phase_B_Points = 175
+							tooltip = Add_to_De_Escalation_Phase_TT
+						}
+					}
+				}
+			}
+			if = {
+				limit = { country_exists = VIE }
+				VIE = {
+					add_stability = 0.10
+				}
+			}
+		}
+	}
+	focus = {
+		id = FRE_The_Fall_of_Saigon
+		icon = GFX_Generic_National_Focus_Diplomacy_11
+		cost = 3.4
+		x = 0
+		y = 7
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Preparing_for_the_Final_Push
+		}
+		mutually_exclusive = {
+			focus = FRE_The_Geneva_Accords
+			focus = FRE_Proclaim_Victory_in_Indochina
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = FRE_The_Fall_of_Saigon_Available_tt
+				FRE_indochina_defeat_trigger = yes
+			}
+		}
+		completion_reward = {
+			add_stability = -0.30
+			add_war_support = -0.30
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						StruggleInvolvedNationsIndochinaProFranceScore = -350
+						tooltip = Add_to_French_Victory_Points_TT
+					}
+					indochina_struggle_recalculate_total_anti_communist_score = yes
+				}
+			}
+			set_global_flag = FRE_Defeat_in_Indochina
+			if = {
+				limit = { country_exists = VIE }
+				VIE = {
+					add_stability = -0.20
+					add_war_support = -0.20
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = FRE_Lobby_the_National_Assembly
+		icon = GFX_Generic_National_Focus_Politics_2
+		cost = 3.4
+		x = -7
+		y = 0
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		completion_reward = {
+			add_political_power = 50
+			set_temp_variable = { fre_patience_delta = 10 }
+			fre_metropole_patience_change = yes
+		}
+	}
+	focus = {
+		id = FRE_Streamline_Colonial_Logistics
+		icon = GFX_Generic_National_Focus_Production_1
+		cost = 3.4
+		x = -8
+		y = 1
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Lobby_the_National_Assembly
+		}
+		completion_reward = {
+			set_country_flag = FRE_Logistics_Streamlined
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 5000
+				producer = FRA
+			}
+		}
+	}
+	focus = {
+		id = FRE_Manage_the_Press_Corps
+		icon = GFX_Generic_National_Focus_Politics_3
+		cost = 3.4
+		x = -6
+		y = 1
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Lobby_the_National_Assembly
+		}
+		completion_reward = {
+			set_country_flag = FRE_Press_Managed
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = FRE_The_Expeditionary_Budget
+		icon = GFX_Generic_National_Focus_Economics_1
+		cost = 3.4
+		x = -8
+		y = 2
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Streamline_Colonial_Logistics
+		}
+		completion_reward = {
+			set_country_flag = FRE_Budget_Secured
+			add_political_power = 25
+			set_temp_variable = { fre_credit_amount = 60 }
+			fre_change_war_credits = yes
+		}
+	}
+	focus = {
+		id = FRE_Court_the_American_Mission
+		icon = GFX_Generic_National_Focus_USA_1
+		cost = 3.4
+		x = -6
+		y = 2
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Manage_the_Press_Corps
+		}
+		completion_reward = {
+			set_country_flag = FRE_US_Mission_Courted
+			if = {
+				limit = { country_exists = USA }
+				USA = {
+					add_opinion_modifier = {
+						target = FRE
+						modifier = FRE_American_Financing
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						StruggleInvolvedNationsIndochinaProFranceScore = 15
+						tooltip = Add_to_French_Victory_Points_TT
+					}
+					indochina_struggle_recalculate_total_anti_communist_score = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = FRE_A_Telegram_to_Paris
+		icon = GFX_Generic_National_Focus_Diplomacy_2
+		cost = 3.4
+		x = -7
+		y = 3
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_The_Expeditionary_Budget
+		}
+		prerequisite = {
+			focus = FRE_Court_the_American_Mission
+		}
+		completion_reward = {
+			add_political_power = 100
+			set_temp_variable = { fre_patience_delta = 15 }
+			fre_metropole_patience_change = yes
+			if = {
+				limit = { country_exists = FRA }
+				FRA = {
+					add_war_support = 0.02
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = FRE_Jaunissement
+		icon = GFX_Generic_National_Focus_Diplomacy_3
+		cost = 3.4
+		x = 7
+		y = 0
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		completion_reward = {
+			set_country_flag = FRE_Jaunissement_Started
+			if = {
+				limit = { country_exists = VIE }
+				VIE = {
+					add_stability = 0.05
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						StruggleInvolvedNationsIndochinaProFranceScore = 15
+						tooltip = Add_to_French_Victory_Points_TT
+					}
+					indochina_struggle_recalculate_total_anti_communist_score = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = FRE_Arm_the_National_Army
+		icon = GFX_Generic_National_Focus_Military_3
+		cost = 3.4
+		x = 6
+		y = 1
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Jaunissement
+		}
+		available = {
+			country_exists = VIE
+			has_equipment = { infantry_equipment_1 > 10000 }
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = -10000
+			}
+			if = {
+				limit = { country_exists = VIE }
+				VIE = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment_1
+						amount = 10000
+						producer = FRA
+					}
+					add_war_support = 0.05
+				}
+			}
+			set_temp_variable = { fre_patience_delta = 3 }
+			fre_metropole_patience_change = yes
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						StruggleInvolvedNationsIndochinaProFranceScore = 15
+						tooltip = Add_to_French_Victory_Points_TT
+					}
+					indochina_struggle_recalculate_total_anti_communist_score = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = FRE_The_GCMA
+		icon = GFX_Generic_National_Focus_Military_4
+		cost = 3.4
+		x = 8
+		y = 1
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Jaunissement
+		}
+		completion_reward = {
+			set_country_flag = FRE_GCMA_Unlocked
+			army_experience = 25
+		}
+	}
+	focus = {
+		id = FRE_Joint_General_Staff
+		icon = GFX_Generic_National_Focus_Military_5
+		cost = 3.4
+		x = 6
+		y = 2
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Arm_the_National_Army
+		}
+		available = {
+			country_exists = VIE
+		}
+		completion_reward = {
+			set_variable = { FRE_VNA_Coordination = 10 }
+			custom_effect_tooltip = FRE_VNA_Coordination_tt
+			if = {
+				limit = { country_exists = VIE }
+				VIE = {
+					add_opinion_modifier = {
+						target = FRE
+						modifier = FRE_Military_Coordination
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						StruggleInvolvedNationsIndochinaProFranceScore = 15
+						tooltip = Add_to_French_Victory_Points_TT
+					}
+					indochina_struggle_recalculate_total_anti_communist_score = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = FRE_Montagnard_Loyalty
+		icon = GFX_Generic_National_Focus_Diplomacy_4
+		cost = 3.4
+		x = 8
+		y = 2
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_The_GCMA
+		}
+		available = {
+			OR = {
+				country_exists = TAM
+				country_exists = TAI
+				country_exists = NUN
+				country_exists = THO
+			}
+		}
+		completion_reward = {
+			add_to_variable = { FRE_GCMA_Network = 1 }
+			clamp_variable = {
+				var = FRE_GCMA_Network
+				min = 0
+				max = 4
+			}
+			custom_effect_tooltip = FRE_GCMA_Network_Grows_tt
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						StruggleInvolvedNationsIndochinaProEthnicScore = 50
+						tooltip = Add_to_Ethnic_Victory_Points_TT
+					}
+					indochina_struggle_recalculate_total_anti_communist_score = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = FRE_Coordinate_with_Saigon
+		icon = GFX_Generic_National_Focus_Diplomacy_5
+		cost = 3.4
+		x = 7
+		y = 3
+		relative_position_id = FRE_The_Situation_in_Route_Coloniale_4
+		prerequisite = {
+			focus = FRE_Joint_General_Staff
+			focus = FRE_Montagnard_Loyalty
+		}
+		completion_reward = {
+			if = {
+				limit = { country_exists = CCC }
+				CCC = {
+					add_stability = 0.03
+				}
+			}
+			if = {
+				limit = { country_exists = VIE }
+				VIE = {
+					add_stability = 0.03
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						StruggleInvolvedNationsIndochinaProFranceScore = 15
+						tooltip = Add_to_French_Victory_Points_TT
+					}
+					indochina_struggle_recalculate_total_anti_communist_score = yes
+				}
+			}
+		}
+	}
+}

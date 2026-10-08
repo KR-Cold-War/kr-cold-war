@@ -1,0 +1,268 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = KOR_Cho_Bongam_1956
+	country = {
+		factor = 0
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	shared_focus = KOR_50s_the_kacic
+	shared_focus = KOR_50s_national_economy_reinvigoration_plan
+	shared_focus = KOR_50s_ministry_of_foreign_affairs
+	shared_focus = KOR_50s_daehanminguk_gukgun
+	shared_focus = KOR_50s_the_war_of_625
+	focus = {
+		id = KOR_CHOBONGAM56_cho_bongam_administration
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_political_power = 150
+		}
+	}
+
+	focus = {
+		id = KOR_CHOBONGAM56_promote_egalitarian_values
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_ideas = KOR_egalitarian_values
+		}
+		relative_position_id = KOR_CHOBONGAM56_cho_bongam_administration
+		prerequisite = { focus = KOR_CHOBONGAM56_cho_bongam_administration }
+	}
+
+	focus = {
+		id = KOR_CHOBONGAM56_increase_the_income_tax
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = KOR_tax_raises
+				days = 1400
+			}
+		}
+		relative_position_id = KOR_CHOBONGAM56_cho_bongam_administration
+		prerequisite = { focus = KOR_CHOBONGAM56_cho_bongam_administration }
+	}
+
+	focus = {
+		id = KOR_CHOBONGAM56_changes_to_the_national_security_act
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			set_country_flag = national_security_act_amendment_enabled
+			custom_effect_tooltip = kor.na.bill
+			custom_effect_tooltip = kor.na.bill.hard
+		}
+		relative_position_id = KOR_CHOBONGAM56_increase_the_income_tax
+		prerequisite = { focus = KOR_CHOBONGAM56_increase_the_income_tax }
+		prerequisite = { focus = KOR_CHOBONGAM56_promote_egalitarian_values }
+	}
+
+	focus = {
+		id = KOR_CHOBONGAM56_provide_agricultural_subsidies
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = KOR_agricultural_subsidies
+				days = 1350
+			}
+		}
+		relative_position_id = KOR_CHOBONGAM56_changes_to_the_national_security_act
+		prerequisite = { focus = KOR_CHOBONGAM56_changes_to_the_national_security_act }
+	}
+
+	focus = {
+		id = KOR_CHOBONGAM56_promote_retail_trade
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			set_country_flag = retail_trade_promotion_act_enabled
+			custom_effect_tooltip = kor.na.bill
+		}
+		relative_position_id = KOR_CHOBONGAM56_changes_to_the_national_security_act
+		prerequisite = { focus = KOR_CHOBONGAM56_changes_to_the_national_security_act }
+	}
+
+	focus = {
+		id = KOR_CHOBONGAM56_free_education
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_research_slot = 1
+			add_political_power = -500
+		}
+		relative_position_id = KOR_CHOBONGAM56_promote_retail_trade
+		prerequisite = { focus = KOR_CHOBONGAM56_provide_agricultural_subsidies }
+		prerequisite = { focus = KOR_CHOBONGAM56_promote_retail_trade }
+	}
+
+	focus = {
+		id = KOR_CHOBONGAM56_launch_healthcare_programs
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = KOR_healthcare_programs
+				days = 800
+			}
+		}
+		relative_position_id = KOR_CHOBONGAM56_free_education
+		prerequisite = { focus = KOR_CHOBONGAM56_free_education }
+	}
+
+	focus = {
+		id = KOR_CHOBONGAM56_new_housing_construction_plans
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+		relative_position_id = KOR_CHOBONGAM56_free_education
+		prerequisite = { focus = KOR_CHOBONGAM56_free_education }
+	}
+
+	focus = {
+		id = KOR_CHOBONGAM56_debate_on_the_presence_of_united_states_force_korea
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			#news_event = issue of usfk presence
+		}
+		relative_position_id = KOR_CHOBONGAM56_new_housing_construction_plans
+		prerequisite = { focus = KOR_CHOBONGAM56_new_housing_construction_plans }
+		prerequisite = { focus = KOR_CHOBONGAM56_launch_healthcare_programs }
+	}
+
+	focus = {
+		id = KOR_CHOBONGAM56_settle_diplomatic_problems_with_the_second_world
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = medium_increase
+			}
+			SOV = {
+				add_opinion_modifier = {
+					target = KOR
+					modifier = medium_increase
+				}
+			}
+		}
+		relative_position_id = KOR_CHOBONGAM56_debate_on_the_presence_of_united_states_force_korea
+		prerequisite = { focus = KOR_CHOBONGAM56_debate_on_the_presence_of_united_states_force_korea }
+	}
+
+	focus = {
+		id = KOR_CHOBONGAM56_secure_finance_for_further_reforms
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			#news_event = budget for the new 'economic' and 'social' reform
+		}
+		relative_position_id = KOR_CHOBONGAM56_debate_on_the_presence_of_united_states_force_korea
+		prerequisite = { focus = KOR_CHOBONGAM56_debate_on_the_presence_of_united_states_force_korea }
+	}
+
+	focus = {
+		id = KOR_CHOBONGAM56_support_atoms_for_peace
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = nuclear
+				category = nuclear_weapons
+			}
+		}
+		relative_position_id = KOR_CHOBONGAM56_settle_diplomatic_problems_with_the_second_world
+		prerequisite = { focus = KOR_CHOBONGAM56_settle_diplomatic_problems_with_the_second_world }
+		prerequisite = { focus = KOR_CHOBONGAM56_secure_finance_for_further_reforms }
+	}
+
+	focus = {
+		id = KOR_CHOBONGAM56_advocate_peaceful_integration
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_stability = 0.2
+		}
+		relative_position_id = KOR_CHOBONGAM56_support_atoms_for_peace
+		prerequisite = { focus = KOR_CHOBONGAM56_support_atoms_for_peace }
+	}
+}

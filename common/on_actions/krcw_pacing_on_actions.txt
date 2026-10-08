@@ -1,0 +1,84 @@
+on_actions = {
+	on_monthly_FRA = {
+		effect = {
+			if = {
+				limit = { has_global_flag = KRCW_active NOT = { has_global_flag = KRCW_world_war } NOT = { has_global_flag = KRCW_cold_war_over } }
+			if = {
+				limit = { NOT = { has_variable = global.krcw_ohio_tension } }
+				set_variable = { global.krcw_ohio_tension = 30 }
+			}
+			if = {
+				limit = { NOT = { has_global_flag = KRCW_american_war_restarted } NOT = { has_global_flag = krcw_gv_ohio_hold } }
+				add_to_variable = { global.krcw_ohio_tension = 1 }
+				clamp_variable = { var = global.krcw_ohio_tension min = 0 max = 100 }
+			}
+			if = {
+				limit = { check_variable = { global.krcw_ohio_tension > 50 } NOT = { has_global_flag = KRCW_inc_krcw_ohio_tension_50 } NOT = { has_global_flag = KRCW_american_war_restarted } }
+				set_global_flag = KRCW_inc_krcw_ohio_tension_50
+				random_country = { limit = { has_country_flag = KRCW_country } news_event = { id = krcw_pace.1 days = 2 } }
+				krcw_tension_up_small = yes
+			}
+			if = {
+				limit = { check_variable = { global.krcw_ohio_tension > 75 } NOT = { has_global_flag = KRCW_inc_krcw_ohio_tension_75 } NOT = { has_global_flag = KRCW_american_war_restarted } }
+				set_global_flag = KRCW_inc_krcw_ohio_tension_75
+				random_country = { limit = { has_country_flag = KRCW_country } news_event = { id = krcw_pace.1 days = 2 } }
+				krcw_tension_up_small = yes
+			}
+			if = {
+				limit = { NOT = { has_variable = global.krcw_berlin_pressure } }
+				set_variable = { global.krcw_berlin_pressure = 30 }
+			}
+			if = {
+				limit = { NOT = { has_global_flag = KRCW_berlin_war } NOT = { has_global_flag = krcw_gv_elbe_hold } }
+				add_to_variable = { global.krcw_berlin_pressure = 1 }
+				clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+			}
+			if = {
+				limit = { check_variable = { global.krcw_berlin_pressure > 50 } NOT = { has_global_flag = KRCW_inc_krcw_berlin_pressure_50 } NOT = { has_global_flag = KRCW_berlin_war } }
+				set_global_flag = KRCW_inc_krcw_berlin_pressure_50
+				random_country = { limit = { has_country_flag = KRCW_country } news_event = { id = krcw_pace.2 days = 2 } }
+				krcw_tension_up_small = yes
+			}
+			if = {
+				limit = { check_variable = { global.krcw_berlin_pressure > 75 } NOT = { has_global_flag = KRCW_inc_krcw_berlin_pressure_75 } NOT = { has_global_flag = KRCW_berlin_war } }
+				set_global_flag = KRCW_inc_krcw_berlin_pressure_75
+				random_country = { limit = { has_country_flag = KRCW_country } news_event = { id = krcw_pace.2 days = 2 } }
+				krcw_tension_up_small = yes
+			}
+			if = {
+				limit = { NOT = { has_variable = global.krcw_strait_tension } }
+				set_variable = { global.krcw_strait_tension = 30 }
+			}
+			if = {
+				limit = { NOT = { has_global_flag = krcw_gv_qd_broke } NOT = { has_global_flag = krcw_gv_qd_hold } }
+				add_to_variable = { global.krcw_strait_tension = 1 }
+				clamp_variable = { var = global.krcw_strait_tension min = 0 max = 100 }
+			}
+			if = {
+				limit = { check_variable = { global.krcw_strait_tension > 50 } NOT = { has_global_flag = KRCW_inc_krcw_strait_tension_50 } NOT = { has_global_flag = krcw_gv_qd_broke } }
+				set_global_flag = KRCW_inc_krcw_strait_tension_50
+				random_country = { limit = { has_country_flag = KRCW_country } news_event = { id = krcw_pace.4 days = 2 } }
+				krcw_tension_up_small = yes
+			}
+			if = {
+				limit = { check_variable = { global.krcw_strait_tension > 75 } NOT = { has_global_flag = KRCW_inc_krcw_strait_tension_75 } NOT = { has_global_flag = krcw_gv_qd_broke } }
+				set_global_flag = KRCW_inc_krcw_strait_tension_75
+				random_country = { limit = { has_country_flag = KRCW_country } news_event = { id = krcw_pace.4 days = 2 } }
+				krcw_tension_up_small = yes
+			}
+			if = {
+				limit = { country_exists = TIB TIB = { is_subject_of = CHI } NOT = { has_global_flag = KRCW_tibet_revolt_started } }
+				TIB = {
+					add_to_variable = { krcw_revolt_progress = 2 }
+					clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+				}
+				if = {
+					limit = { TIB = { check_variable = { krcw_revolt_progress > 60 } } NOT = { has_global_flag = KRCW_inc_himalaya_60 } }
+					set_global_flag = KRCW_inc_himalaya_60
+					random_country = { limit = { has_country_flag = KRCW_country } news_event = { id = krcw_pace.3 days = 2 } }
+				}
+			}
+			}
+		}
+	}
+}

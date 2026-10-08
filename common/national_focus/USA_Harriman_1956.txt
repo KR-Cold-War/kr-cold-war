@@ -1,0 +1,484 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = USA_Harriman_1956
+	country = {
+		factor = 0
+		modifier = {
+			add = 0
+			tag = USA
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	shared_focus = USA_50s_The_State_Department
+	shared_focus = USA_50s_The_American_Armed_Forces
+	shared_focus = USA_50s_The_CIA
+	default = no
+	focus = {
+		id = USA_HARRIMAN56_The_Harriman_Administration_1956
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_usa_harriman_administration
+		cost = 5
+		x = 5
+		y = 0
+		completion_reward = {
+			add_political_power = 200
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Invest_in_Satellite_Technology
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_focus_rocketry
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_The_Harriman_Administration_1956
+		}
+		x = 3
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = rocket_bonus
+				bonus = 0.5
+				uses = 2
+				category = rocketry
+			}
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Establish_NASA
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_spacerace
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Invest_in_Satellite_Technology
+		}
+		x = 1
+		y = 2
+		completion_reward = {
+			set_country_flag = nasa_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = nasa
+			}
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Area_Redevelopment_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_The_Harriman_Administration_1956
+		}
+		x = 7
+		y = 1
+		completion_reward = {
+			set_country_flag = Area_Redevelopment_Act_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_area_redevelopment
+			}
+			custom_effect_tooltip = usa.jfk.2
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Second_Public_Works_Appropriations_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Invest_in_Satellite_Technology
+		}
+		prerequisite = {
+			focus = USA_HARRIMAN56_Area_Redevelopment_Act
+		}
+		x = 5
+		y = 2
+		completion_reward = {
+			set_country_flag = Second_Public_Works_Appropriations_Act_vote
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Federal_Aviation_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_airliner
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Establish_NASA
+		}
+		prerequisite = {
+			focus = USA_HARRIMAN56_Second_Public_Works_Appropriations_Act
+		}
+		x = 3
+		y = 3
+		completion_reward = {
+			set_country_flag = Federal_Aviation_Act_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_federal_aviation
+			}
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_National_Defense_Education_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_IntotheFlames
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Federal_Aviation_Act
+		}
+		x = 2
+		y = 4
+		completion_reward = {
+			set_country_flag = National_Defense_Education_Act_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = National_Defense_Education_Act
+			}
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Full_Employment_by_Arms_Production
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Cash_and_Carry
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Area_Redevelopment_Act
+		}
+		x = 9
+		y = 2
+		completion_reward = {
+			add_offsite_building = {
+				type = arms_factory
+				level = 3
+			}
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Establish_ARPA
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Cash_for_Forts
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Full_Employment_by_Arms_Production
+		}
+		prerequisite = {
+			focus = USA_HARRIMAN56_Second_Public_Works_Appropriations_Act
+		}
+		x = 7
+		y = 3
+		completion_reward = {
+			set_country_flag = arpa_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = ARPA
+			}
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Establish_the_United_State_Space_Force
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Recruitment
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Federal_Aviation_Act
+		}
+		prerequisite = {
+			focus = USA_HARRIMAN56_Establish_ARPA
+		}
+		x = 5
+		y = 4
+		completion_reward = {
+			air_experience = 30
+			# 2026-07-05: was add_tech_bonus category = space_research (tree deleted)
+			add_breakthrough_points = {
+				specialization = specialization_space
+				value = 1
+			}
+			# 2026-07-05: was add_tech_bonus category = space_research (tree deleted)
+			add_breakthrough_points = {
+				specialization = specialization_space
+				value = 1
+			}
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Transportation_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_FocusBuildRoads
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Establish_ARPA
+		}
+		x = 8
+		y = 4
+		completion_reward = {
+			set_country_flag = Transportation_Act_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_transportation_act
+			}
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Repeal_the_Selective_Service_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_military_service_reduction
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Transportation_Act
+		}
+		prerequisite = {
+			focus = USA_HARRIMAN56_Establish_the_United_State_Space_Force
+		}
+		x = 7
+		y = 5
+		completion_reward = {
+			set_country_flag = Repeal_the_Selective_Service_Act_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_end_the_draft
+			}
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Strengthen_the_Walsh_Healey_Contracts_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Money
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Repeal_the_Selective_Service_Act
+		}
+		x = 9
+		y = 6
+		completion_reward = {
+			set_country_flag = Revise_the_Walsh_Healey_Contracts_Act_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_walsh_healey
+			}
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Department_of_Defense_Reorganization_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_focus_american_advisors
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_National_Defense_Education_Act
+		}
+		prerequisite = {
+			focus = USA_HARRIMAN56_Establish_the_United_State_Space_Force
+		}
+		x = 3
+		y = 5
+		completion_reward = {
+			set_country_flag = Department_of_Defense_Reorganization_Act_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_dod_reorganization
+			}
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Admission_of_Alaska_and_Hawaii
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_focus_renounce_the_treaty_of_triannon
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Department_of_Defense_Reorganization_Act
+		}
+		x = 1
+		y = 6
+		completion_reward = {
+			set_country_flag = Admission_of_Alaska_and_Hawaii_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_statehood_expansion
+			}
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Increase_Military_Spending
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Gold
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Expand_NASA
+		}
+		prerequisite = {
+			focus = USA_HARRIMAN56_Admission_of_Alaska_and_Hawaii
+		}
+		x = 3
+		y = 7
+		completion_reward = {
+			add_timed_idea = {
+				idea = military_expansion
+				days = 800
+			}
+			set_variable = { THIS.idea_len_@token:military_expansion = 800 }
+			set_variable = { THIS.idea_date_@token:military_expansion = global.num_days }
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Combat_Inflation
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_RootoutFunding
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Reverse_Fall_in_Farm_Prices
+		}
+		prerequisite = {
+			focus = USA_HARRIMAN56_Increase_Military_Spending
+		}
+		x = 6
+		y = 8
+		completion_reward = {
+			add_timed_idea = {
+				idea = combat_inflation
+				days = 900
+			}
+			set_variable = { THIS.idea_len_@token:combat_inflation = 900 }
+			set_variable = { THIS.idea_date_@token:combat_inflation = global.num_days }
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Expand_NASA
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Brainpower
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Repeal_the_Selective_Service_Act
+		}
+		prerequisite = {
+			focus = USA_HARRIMAN56_Department_of_Defense_Reorganization_Act
+		}
+		x = 5
+		y = 6
+		completion_reward = {
+			# 2026-07-05: was add_tech_bonus category = space_research (tree deleted)
+			add_breakthrough_points = {
+				specialization = specialization_space
+				value = 1
+			}
+			# 2026-07-05: was add_tech_bonus category = space_research (tree deleted)
+			add_breakthrough_points = {
+				specialization = specialization_space
+				value = 1
+			}
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Reverse_Fall_in_Farm_Prices
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_wheat
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Expand_NASA
+		}
+		prerequisite = {
+			focus = USA_HARRIMAN56_Strengthen_the_Walsh_Healey_Contracts_Act
+		}
+		x = 7
+		y = 7
+		completion_reward = {
+			set_country_flag = Continue_Agricultural_Subsidies_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = agricultural_price_controls
+			}
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Expand_the_Federal_Water_Pollution_Control_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Combat_Inflation
+		}
+		prerequisite = {
+			focus = USA_HARRIMAN56_Coal_Research_and_Development_Commission_Act
+		}
+		x = 5
+		y = 9
+		completion_reward = {
+			custom_effect_tooltip = d_pvi_gain
+			custom_effect_tooltip = rgo_cost_penalty
+			add_to_variable = {
+				focus_adjustment_USA = 0.02
+			}
+			add_to_variable = {
+				RGO_COST_PENALTY = 0.05
+			}
+			add_political_power = 75
+			add_stability = 0.03
+		}
+	}
+	focus = {
+		id = USA_HARRIMAN56_Coal_Research_and_Development_Commission_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		cost = 5
+		prerequisite = {
+			focus = USA_HARRIMAN56_Reverse_Fall_in_Farm_Prices
+		}
+		prerequisite = {
+			focus = USA_HARRIMAN56_Increase_Military_Spending
+		}
+		x = 4
+		y = 8
+		completion_reward = {
+			add_tech_bonus = {
+				name = coal_production_bonus
+				bonus = 1
+				uses = 2
+				category = rgo
+			}
+			859 = {
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+}

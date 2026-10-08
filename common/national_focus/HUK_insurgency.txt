@@ -1,0 +1,608 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = HUK_insurgency
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = HUK
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	focus = {
+		id = HUK_Condemn_Quezon_Raid
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_49
+		search_filters = {
+			IC_FILTER
+		}
+		cancelable = no
+		cost = 10
+		x = 8
+		y = 0
+		completion_reward = {
+			add_war_support = -0.3
+			add_stability = -0.15
+			add_ideas = huk_loss_of_support
+		}
+	}
+	focus = {
+		id = HUK_Make_Village_Contacts
+		completion_reward = {
+		}
+		icon = GFX_Make_Village_Contacts
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Condemn_Quezon_Raid
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = -2
+		y = 1
+		completion_reward = {
+			custom_effect_tooltip = barrio_raid_unlock_tt
+			set_country_flag = barrio_raid_unlock
+			add_command_power = 10
+		}
+	}
+	focus = {
+		id = HUK_Disrupt_Enemy_Convoys
+		completion_reward = {
+		}
+		icon = GFX_Disrupt_Enemy_Convoys
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Condemn_Quezon_Raid
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = 0
+		y = 1
+		completion_reward = {
+			custom_effect_tooltip = convoy_raid_unlock_tt
+			set_country_flag = convoy_raid_unlock
+			add_command_power = 10
+		}
+	}
+	focus = {
+		id = HUK_Capture_Enemy_Equipment
+		completion_reward = {
+		}
+		icon = GFX_Capture_Enemy_Equipment
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Condemn_Quezon_Raid
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = 2
+		y = 1
+		completion_reward = {
+			custom_effect_tooltip = supply_raid_unlock_tt
+			set_country_flag = supply_raid_unlock
+			add_command_power = 10
+		}
+	}
+	focus = {
+		id = HUK_Declare_Election_Fraud
+		completion_reward = {
+		}
+		icon = GFX_Declare_Election_Fraud
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Make_Village_Contacts
+		}
+		prerequisite = {
+			focus = HUK_Disrupt_Enemy_Convoys
+		}
+		prerequisite = {
+			focus = HUK_Capture_Enemy_Equipment
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = 0
+		y = 2
+		completion_reward = {
+			add_manpower = 5000
+		}
+	}
+	focus = {
+		id = HUK_Declare_Revolutionary_Situation
+		completion_reward = {
+		}
+		icon = GFX_Declare_Revolutionary_Situation
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Declare_Election_Fraud
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = 0
+		y = 3
+		completion_reward = {
+			set_cosmetic_tag = HUK_insurgency2
+			hidden_effect = {
+				set_party_name = {
+					ideology = maoism
+					name = "Hukbong Mapagpalaya ng Bayan"
+					long_name = "Hukbong Mapagpalaya ng Bayan"
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUK_Ideological_Purity
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_48
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Declare_Revolutionary_Situation
+		}
+		mutually_exclusive = {
+			focus = HUK_Mend_Schism
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = -3
+		y = 4
+		completion_reward = {
+			add_ideas = ideological_fanaticism_focus
+		}
+	}
+	focus = {
+		id = HUK_Ignore_China_Branch
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_45
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Ideological_Purity
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = -4
+		y = 5
+		completion_reward = {
+			remove_ideas = huk_chinese_advisors
+			set_temp_variable = { percent_change = -5 }
+			set_temp_variable = { tag_index = PRC.id }
+			set_temp_variable = { influence_target = HUK.id }
+			change_influence_percentage = yes
+		}
+	}
+	focus = {
+		id = HUK_Mountain_Homes
+		completion_reward = {
+		}
+		icon = GFX_PRC_50s_Launch_The_Crossing_Yangtze_River_Campaign
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Ignore_China_Branch
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = -4
+		y = 6
+		completion_reward = {
+			add_ideas = huk_mountain_bases
+		}
+	}
+	focus = {
+		id = HUK_Focus_On_Production_Bases
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Agriculture_4
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Ideological_Purity
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = -2
+		y = 5
+		completion_reward = {
+			random_owned_state = {
+				limit = { is_capital = yes }
+                add_building_construction = {
+                    type = agri_industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+			}
+			random_owned_state = {
+				limit = { is_capital = no }
+                add_building_construction = {
+                    type = agri_industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+			}
+			random_owned_state = {
+				limit = { is_capital = no }
+                add_building_construction = {
+                    type = agri_industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+			}
+		}
+	}
+	focus = {
+		id = HUK_Villager_Intel
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Agriculture_14
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Focus_On_Production_Bases
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = -2
+		y = 6
+		completion_reward = {
+			add_intel = {
+				target = PHI
+				civilian_intel = 10
+				army_intel = 30
+			}
+		}
+	}
+	focus = {
+		id = HUK_Discipline_Remaining_Army
+		completion_reward = {
+		}
+		icon = GFX_Repress_The_Bandits
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Villager_Intel
+		}
+		prerequisite = {
+			focus = HUK_Mountain_Homes
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = -3
+		y = 7
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = huk_bandits_in_army
+				add_idea = huk_bandits_in_army2
+			}
+		}
+	}
+	focus = {
+		id = HUK_Mend_Schism
+		completion_reward = {
+		}
+		icon = GFX_Mend_Ideological_Schism
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Declare_Revolutionary_Situation
+		}
+		mutually_exclusive = {
+			focus = HUK_Ideological_Purity
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = 3
+		y = 4
+		completion_reward = {
+			custom_effect_tooltip = huks_promised_party_tt
+			add_popularity = {
+				ideology = communism
+				popularity = 0.3
+			}
+			set_country_flag = huks_promised_party
+		}
+	}
+	focus = {
+		id = HUK_Rebuild_Credibility
+		completion_reward = {
+		}
+		icon = GFX_Rebuild_Our_International_Credibility
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Mend_Schism
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = 2
+		y = 5
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = huk_loss_of_support
+				}
+				remove_ideas = huk_loss_of_support
+			}
+			if = {
+				limit = {
+					has_idea = huk_loss_of_support2
+				}
+				remove_ideas = huk_loss_of_support2
+			}
+		}
+	}
+	focus = {
+		id = HUK_Assure_People
+		completion_reward = {
+		}
+		icon = GFX_Promises_Of_Total_Independence
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Rebuild_Credibility
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = 2
+		y = 6
+		completion_reward = {
+			set_temp_variable = { percent_change = 10 }
+			change_domestic_influence_percentage = yes
+		}
+	}
+	focus = {
+		id = HUK_Urban_Intel
+		completion_reward = {
+		}
+		icon = GFX_Urban_Information_Networks
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Mend_Schism
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = 4
+		y = 5
+		completion_reward = {
+			add_intel = {
+				target = PHI
+				civilian_intel = 30
+				army_intel = 10
+			}
+		}
+	}
+	focus = {
+		id = HUK_Economic_Struggle_Units
+		completion_reward = {
+		}
+		icon = GFX_Expand_Reliance_On_Economic_Struggle_Units
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Urban_Intel
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = 4
+		y = 6
+		completion_reward = {
+			set_temp_variable = { money_to_gain = 10 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = HUK_No_Bandit_Army
+		completion_reward = {
+		}
+		icon = GFX_Leaving_No_Room_For_Criminals
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Assure_People
+		}
+		prerequisite = {
+			focus = HUK_Economic_Struggle_Units
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = 3
+		y = 7
+		completion_reward = {
+			remove_ideas = huk_bandits_in_army
+			add_manpower = -5000
+		}
+	}
+	focus = {
+		id = HUK_Reform_Internal_Organization
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_13
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Declare_Revolutionary_Situation
+		}
+		bypass = { has_idea = huk_politburo_captured }
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = 0
+		y = 5
+		completion_reward = {
+			custom_effect_tooltip = huk_barrio_success_tt
+			add_to_variable = { huk_barrios = 10 }
+			add_ideas = huk_strong_command_chain
+		}
+	}
+	focus = {
+		id = HUK_Expand_Operations
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_50
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Reform_Internal_Organization
+		}
+		prerequisite = {
+			focus = HUK_Discipline_Remaining_Army
+			focus = HUK_No_Bandit_Army
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = 0
+		y = 8
+		completion_reward = {
+			custom_effect_tooltip = huk_expand_operation_tt
+			623 = { set_state_flag = huk_can_raid }
+			1954 = { set_state_flag = huk_can_raid }
+			1955 = { set_state_flag = huk_can_raid }
+			1958 = { set_state_flag = huk_can_raid }
+			1959 = { set_state_flag = huk_can_raid }
+			1960 = { set_state_flag = huk_can_raid }
+			1961 = { set_state_flag = huk_can_raid }
+		}
+	}
+	focus = {
+		id = HUK_Double_Taxation
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_28
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Expand_Operations
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = -2
+		y = 9
+		completion_reward = {
+			custom_effect_tooltip = huk_barrio_tax_tt
+			subtract_from_variable = { huk_barrios = 15 }
+			set_temp_variable = { money_to_gain = 20 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = HUK_Round_Up_Spies
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_26
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Expand_Operations
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = 0
+		y = 9
+		completion_reward = {
+			add_manpower = -1500
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = HUK_Mass_Recruitments
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Military_36
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Expand_Operations
+		}
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = 2
+		y = 9
+		completion_reward = {
+			add_ideas = huk_mass_recruits
+		}
+	}
+	focus = {
+		id = HUK_Finish_Phase_One
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Military_6
+		search_filters = {
+			IC_FILTER
+		}
+		prerequisite = {
+			focus = HUK_Double_Taxation
+		}
+		prerequisite = {
+			focus = HUK_Round_Up_Spies
+		}
+		prerequisite = {
+			focus = HUK_Mass_Recruitments
+		}
+		available = { owns_state = 327 }
+		cost = 10
+		relative_position_id = HUK_Condemn_Quezon_Raid
+		x = 0
+		y = 10
+		completion_reward = {
+			custom_effect_tooltip = huk_phase_one_tt
+			set_global_flag = huk_phase_one_victory
+			load_focus_tree = HUK_50s
+			news_event = HUK_insurgency.10
+			hidden_effect = {
+				transfer_state = 327
+				transfer_state = 623
+				transfer_state = 624
+				transfer_state = 872
+				transfer_state = 1007
+				transfer_state = 1947
+				transfer_state = 1948
+				transfer_state = 1949
+				transfer_state = 1950
+				transfer_state = 1951
+				transfer_state = 1952
+				transfer_state = 1953
+				transfer_state = 1954
+				transfer_state = 1955
+				transfer_state = 1956
+				transfer_state = 1957
+				transfer_state = 1958
+				transfer_state = 1959
+				transfer_state = 1960
+				transfer_state = 1961
+			}
+		}
+	}
+	
+	
+}

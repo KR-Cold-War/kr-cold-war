@@ -1,0 +1,1712 @@
+# KRCW (build/patch_residue.py): 101 OTL events dropped while KRCW_active
+add_namespace = ADA_Veto
+add_namespace = AbortionModGOP
+add_namespace = AEFTA
+add_namespace = AIDSGOP
+add_namespace = AIDSLib
+add_namespace = CAAA_Veto
+add_namespace = CRA90_Veto
+add_namespace = CRRA_Veto
+add_namespace = CUBUSA80s
+add_namespace = DEM88
+add_namespace = DoVA
+add_namespace = EnvironmentUSA
+add_namespace = FedReserve80s
+add_namespace = IRCA_Veto
+add_namespace = JurisdictionStripping80s
+add_namespace = NAFTA
+add_namespace = NLRB_Packing
+add_namespace = Reaganomics
+add_namespace = Savings_and_Loan_Crisis
+add_namespace = USA80
+add_namespace = SSPurge
+add_namespace = USA_Monetary
+add_namespace = USENT
+add_namespace = USA80
+add_namespace = USA_Nuclear_Energy
+add_namespace = Fairness_Doctrine
+add_namespace = ERA80s
+add_namespace = ERA_Extension
+add_namespace = OilCrisis80s
+
+#USA Monetary Policy
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USA_Monetary.1
+    immediate = { }
+	title = USA_Monetary.1.t
+	desc = USA_Monetary.1.d
+	picture = GFX_USA_Monetary_1
+	is_triggered_only = yes
+
+	option = {
+		name = USA_Monetary.1.a
+        Decrease_USA_Inflation = yes
+        add_ideas = Higher_Interest_Rates
+        hidden_effect = {
+            country_event = {
+                id = USA_Monetary.2
+                days = 100
+            }
+        }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USA_Monetary.2
+    immediate = { }
+	title = USA_Monetary.2.t
+	desc = USA_Monetary.2.d
+	picture = GFX_USA_Monetary_2
+	is_triggered_only = yes
+
+	option = {
+		name = USA_Monetary.2.a
+        Decrease_USA_Inflation = yes
+        hidden_effect = {
+            country_event = {
+                id = USA_Monetary.3
+                days = 50
+            }
+        }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USA_Monetary.3
+    immediate = { }
+	title = USA_Monetary.3.t
+	desc = USA_Monetary.3.d
+	picture = GFX_USA_Monetary_3
+	is_triggered_only = yes
+
+	option = {
+		name = USA_Monetary.3.a
+        hidden_effect = {
+            country_event = {
+                id = USA_Monetary.4
+                days = 90
+            }
+        }
+	}
+    option = {
+        name = USA_Monetary.3.b
+        remove_ideas = Higher_Interest_Rates
+        hidden_effect = {
+            country_event = {
+                id = USA_Monetary.5
+                days = 400
+            }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USA_Monetary.4
+    immediate = { }
+	title = USA_Monetary.4.t
+	desc = USA_Monetary.4.d
+	picture = GFX_USA_Monetary_4
+	is_triggered_only = yes
+
+	option = {
+		name = USA_Monetary.4.a
+        add_ideas = economic_recession
+		remove_dynamic_modifier = { modifier = Stagflation_Modifier }
+        hidden_effect = {
+            country_event = {
+                id = USA_Monetary.10
+                days = 365
+            }
+        }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USA_Monetary.5
+    immediate = { }
+	title = USA_Monetary.5.t
+	desc = USA_Monetary.5.d
+	picture = GFX_USA_Monetary_5
+	is_triggered_only = yes
+
+	option = {
+		name = USA_Monetary.5.a
+		remove_dynamic_modifier = { modifier = Stagflation_Modifier }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USA_Monetary.10
+    immediate = { }
+	title = USA_Monetary.10.t
+	desc = USA_Monetary.10.d
+	picture = GFX_USA_Monetary_10
+	is_triggered_only = yes
+
+	option = {
+		name = USA_Monetary.10.a
+        remove_ideas = Higher_Interest_Rates
+        remove_ideas = economic_recession
+        increase_public_support
+        add_timed_idea = {
+            idea = Slashed_Interest_Rates
+            days = 1825
+        }
+        set_variable = { THIS.idea_len_@token:Slashed_Interest_Rates = 1825 }
+        set_variable = { THIS.idea_date_@token:Slashed_Interest_Rates = global.num_days }
+	}
+}
+#NLRB Packing
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NLRB_Packing.1
+    immediate = { }
+	title = NLRB_Packing.1.t
+	desc = NLRB_Packing.1.d
+	picture = GFX_NLRB_Packing_1
+	is_triggered_only = yes
+
+	option = {
+		name = NLRB_Packing.1.a
+        decrease_union_policy = yes
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NLRB_Packing.2
+    immediate = { }
+	title = NLRB_Packing.2.t
+	desc = NLRB_Packing.2.d
+	picture = GFX_NLRB_Packing_2
+	is_triggered_only = yes
+
+	option = {
+		name = NLRB_Packing.2.a
+        increase_union_policy = yes
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NLRB_Packing.3
+    immediate = { }
+	title = NLRB_Packing.3.t
+	desc = NLRB_Packing.3.d
+	picture = GFX_NLRB_Packing_3
+	is_triggered_only = yes
+
+	option = {
+		name = NLRB_Packing.3.a
+        increase_union_policy = yes
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NLRB_Packing.4
+    immediate = { }
+	title = NLRB_Packing.4.t
+	desc = NLRB_Packing.4.d
+	picture = GFX_NLRB_Packing_4
+	is_triggered_only = yes
+
+	option = {
+		name = NLRB_Packing.4.a
+        increase_union_policy = yes
+	}
+	option = {
+		name = NLRB_Packing.4.b
+        decrease_union_policy = yes
+	}
+}
+#GOP Moderate Abortion
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AbortionModGOP.1
+    immediate = { }
+	title = AbortionModGOP.1.t
+	desc = AbortionModGOP.1.d
+	picture = GFX_AbortionModGOP_1
+	is_triggered_only = yes
+
+	option = {
+		name = AbortionModGOP.1.a
+        hidden_effect = {
+            country_event = {
+                id = AbortionModGOP.4
+                days = 14
+            }
+        }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AbortionModGOP.2
+    immediate = { }
+	title = AbortionModGOP.2.t
+	desc = AbortionModGOP.2.d
+	picture = GFX_AbortionModGOP_2
+	is_triggered_only = yes
+
+	option = {
+		name = AbortionModGOP.2.a
+        set_country_flag = Womens_Health_Choices_Funding_Act_Vote
+        custom_effect_tooltip = Womens_Health_Choices_Funding_Act_Vote_TT
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AbortionModGOP.3
+    immediate = { }
+	title = AbortionModGOP.3.t
+	desc = AbortionModGOP.3.d
+	picture = GFX_AbortionModGOP_3
+	is_triggered_only = yes
+
+	option = {
+		name = AbortionModGOP.3.a
+        set_country_flag = Abortion_Reduction_Safeguards_and_Pre_Natal_Support_Act_Vote
+        custom_effect_tooltip = Abortion_Reduction_Safeguards_and_Pre_Natal_Support_Act_Vote_TT
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AbortionModGOP.4
+    immediate = { }
+	title = AbortionModGOP.4.t
+	desc = AbortionModGOP.4.d
+	picture = GFX_AbortionModGOP_4
+	is_triggered_only = yes
+
+	option = {
+		name = AbortionModGOP.4.a
+        set_country_flag = Womens_Health_Choices_Funding_Act_Vote
+        custom_effect_tooltip = Womens_Health_Choices_Funding_Act_Vote_TT
+	}
+	option = {
+		name = AbortionModGOP.4.b
+        set_country_flag = Abortion_Reduction_Safeguards_and_Pre_Natal_Support_Act_Vote
+        custom_effect_tooltip = Abortion_Reduction_Safeguards_and_Pre_Natal_Support_Act_Vote_TT
+	}
+	option = {
+		name = AbortionModGOP.4.c
+        
+	}
+}
+#CAAA Veto
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = CAAA_Veto.1
+    immediate = { }
+	title = CAAA_Veto.1.t
+	desc = CAAA_Veto.1.d
+	picture = GFX_CAAA_Veto_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = CAAA_Veto.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CAAA_Veto.2
+    immediate = { }
+	title = CAAA_Veto.2.t
+	desc = CAAA_Veto.2.d
+	picture = GFX_CAAA_Veto_2
+	is_triggered_only = yes
+
+	option = {
+		name = CAAA_Veto.2.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = CAAA_Veto.3
+    immediate = { }
+	title = CAAA_Veto.3.t
+	desc = CAAA_Veto.3.d
+	picture = GFX_CAAA_Veto_3
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = CAAA_Veto.3.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = CAAA_Veto.4
+    immediate = { }
+	title = CAAA_Veto.4.t
+	desc = CAAA_Veto.4.d
+	picture = GFX_CAAA_Veto_4
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = CAAA_Veto.4.a
+	}
+}
+#War on Drugs
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = War_on_Drugs80s.1
+    immediate = { }
+	title = War_on_Drugs80s.1.t
+	desc = War_on_Drugs80s.1.d
+	picture = GFX_War_on_Drugs80s_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = War_on_Drugs80s.1.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = War_on_Drugs80s.2
+    immediate = { }
+	title = War_on_Drugs80s.2.t
+	desc = War_on_Drugs80s.2.d
+	picture = GFX_War_on_Drugs80s_2
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = War_on_Drugs80s.2.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = War_on_Drugs80s.10
+    immediate = { }
+	title = War_on_Drugs80s.10.t
+	desc = War_on_Drugs80s.10.d
+	picture = GFX_War_on_Drugs80s_10
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = War_on_Drugs80s.10.a
+	}
+}
+#Nuclear Energy Freeze
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = USA_Nuclear_Energy.4
+    immediate = { }
+	title = USA_Nuclear_Energy.4.t
+	desc = USA_Nuclear_Energy.4.d
+	picture = GFX_USA_Nuclear_Energy_4
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = USA_Nuclear_Energy.4.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = USA_Nuclear_Energy.5
+    immediate = { }
+	title = USA_Nuclear_Energy.5.t
+	desc = USA_Nuclear_Energy.5.d
+	picture = GFX_USA_Nuclear_Energy_5
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = USA_Nuclear_Energy.5.a
+	}
+}
+
+#Americans with Disabilities Act Veto Events
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ADA_Veto.1
+    immediate = { }
+	title = ADA_Veto.1.t
+	desc = ADA_Veto.1.d
+	picture = GFX_ADA_Veto_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = ADA_Veto.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ADA_Veto.2
+    immediate = { }
+	title = ADA_Veto.2.t
+	desc = ADA_Veto.2.d
+	picture = GFX_ADA_Veto_2
+	is_triggered_only = yes
+
+	option = {
+		name = ADA_Veto.2.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ADA_Veto.3
+    immediate = { }
+	title = ADA_Veto.3.t
+	desc = ADA_Veto.3.d
+	picture = GFX_ADA_Veto_3
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = ADA_Veto.3.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ADA_Veto.4
+    immediate = { }
+	title = ADA_Veto.4.t
+	desc = ADA_Veto.4.d
+	picture = GFX_ADA_Veto_4
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = ADA_Veto.4.a
+	}
+}
+#Reaganomics
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Reaganomics.1
+	immediate = { }
+	title = Reaganomics.1.t
+	desc = Reaganomics.1.d
+	picture = GFX_Reaganomics_1
+	is_triggered_only = yes
+
+	option = {
+		name = Reaganomics.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Reaganomics.10
+	immediate = { }
+	title = Reaganomics.10.t
+	desc = Reaganomics.10.d
+	picture = GFX_Reaganomics_10
+	is_triggered_only = yes
+
+	option = {
+		name = Reaganomics.10.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Reaganomics.5
+	immediate = { }
+	title = Reaganomics.5.t
+	desc = Reaganomics.5.d
+	picture = GFX_Reaganomics_5
+	is_triggered_only = yes
+
+	option = {
+		name = Reaganomics.5.a
+        complete_national_focus = USA_REAGAN84_Food_Security_Act_of_1985
+	}
+	option = {
+		name = Reaganomics.5.b
+        complete_national_focus = USA_REAGAN84_Push_for_Eliminating_Farm_Subsidies
+	}
+}
+#Social Security Purge
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = SSPurge.1
+    immediate = { }
+	title = SSPurge.1.t
+	desc = SSPurge.1.d
+	picture = GFX_SSPurge_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = SSPurge.1.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = SSPurge.50
+    immediate = { }
+	title = SSPurge.50.t
+	desc = SSPurge.50.d
+	picture = GFX_SSPurge_50
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = SSPurge.50.a
+	}
+}
+
+#Clinton SS Purge Review
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SSPurge.60
+	immediate = { }
+	title = SSPurge.60.t
+	desc = SSPurge.60.d
+	picture = GFX_SSPurge_60
+	is_triggered_only = yes
+
+	option = {
+		name = SSPurge.60.a
+        country_event = {
+            id = SSPurge.61
+            days = 50
+        }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SSPurge.61
+	immediate = { }
+	title = SSPurge.61.t
+	desc = SSPurge.61.d
+	picture = GFX_SSPurge_61
+	is_triggered_only = yes
+	option = {
+		name = SSPurge.61.a
+        increase_welfare_rate = yes
+	}
+	option = {
+		name = SSPurge.61.b
+        country_event = {
+            id = SSPurge.62
+            days = 5
+        }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SSPurge.62
+	immediate = { }
+	title = SSPurge.62.t
+	desc = SSPurge.62.d
+	picture = GFX_SSPurge_62
+	is_triggered_only = yes
+	option = {
+		name = SSPurge.62.a
+        increase_welfare_rate = yes
+	}
+}
+#Jurisdiction Stripping
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = JurisdictionStripping80s.1
+	immediate = { }
+	title = JurisdictionStripping80s.1.t
+	desc = JurisdictionStripping80s.1.d
+	picture = GFX_JurisdictionStripping80s_1
+	is_triggered_only = yes
+	option = {
+		name = JurisdictionStripping80s.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = JurisdictionStripping80s.2
+	immediate = { }
+	title = JurisdictionStripping80s.2.t  #McDonald Alt
+	desc = JurisdictionStripping80s.2.d
+	picture = GFX_JurisdictionStripping80s_2
+	is_triggered_only = yes
+	option = {
+		name = JurisdictionStripping80s.2.a
+	}
+}
+#Fairness Doctrine
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = Fairness_Doctrine.1
+    immediate = { }
+	title = Fairness_Doctrine.1.t
+	desc = Fairness_Doctrine.1.d
+	picture = GFX_Fairness_Doctrine_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Fairness_Doctrine.1.a
+	}
+}
+#ERA Stuff
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ERA80s.2
+    immediate = { }
+	title = ERA80s.2.t
+	desc = ERA80s.2.d
+	picture = GFX_ERA80s_2
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = ERA80s.2.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ERA_Extension.1
+    immediate = { }
+	title = ERA_Extension.1.t
+	desc = ERA_Extension.1.d
+	picture = GFX_ERA_Extension_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = ERA_Extension.1.a
+	}
+}
+#NAFTA
+
+#News
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = NAFTA.1
+    immediate = { }
+	title = NAFTA.1.t
+	desc = NAFTA.1.d
+	picture = GFX_NAFTA_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = NAFTA.1.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = NAFTA.9
+    immediate = { }
+	title = NAFTA.9.t
+	desc = NAFTA.9.d
+	picture = GFX_NAFTA_9
+
+	is_triggered_only = yes
+	major = yes
+
+    immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					tag = USA
+				}
+				add_ideas = NAFTA_USA
+				MEX = {
+					add_ideas = NAFTA_MEX
+				}
+				CAN = {
+					add_ideas = NAFTA_CAN
+				}
+			}
+		}
+    }
+
+	option = {
+		name = NAFTA.9.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = NAFTA.10
+    immediate = { }
+	title = NAFTA.10.t
+	desc = NAFTA.10.d
+	picture = GFX_NAFTA_10
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = NAFTA.10.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = NAFTA.100
+    immediate = { }
+	title = NAFTA.100.t
+	desc = NAFTA.100.d
+	picture = GFX_NAFTA_100
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = NAFTA.100.a
+	}
+}
+
+#Country
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NAFTA.2
+	immediate = { }
+	title = NAFTA.2.t  #
+	desc = NAFTA.2.d
+	picture = GFX_NAFTA_2
+	is_triggered_only = yes
+	option = {
+		name = NAFTA.2.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NAFTA.3
+	immediate = { }
+	title = NAFTA.3.t 
+	desc = NAFTA.3.d
+	picture = GFX_NAFTA_3
+	is_triggered_only = yes
+	option = {
+		name = NAFTA.3.a
+        add_to_variable = {
+            USA.NAFTA_Support_International = 1
+        }
+        USA = {
+            country_event = NAFTA.4
+        }
+	}
+	option = {
+		name = NAFTA.3.b
+        USA = {
+            country_event = NAFTA.5
+        }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NAFTA.4
+	immediate = { }
+	title = NAFTA.4.t 
+	desc = NAFTA.4.d
+	picture = GFX_NAFTA_4
+	is_triggered_only = yes
+	option = {
+		name = NAFTA.4.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NAFTA.5
+	immediate = { }
+	title = NAFTA.5.t 
+	desc = NAFTA.5.d
+	picture = GFX_NAFTA_5
+	is_triggered_only = yes
+	option = {
+		name = NAFTA.5.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NAFTA.6
+	immediate = { }
+	title = NAFTA.6.t 
+	desc = NAFTA.6.d
+	picture = GFX_NAFTA_6
+	is_triggered_only = yes
+	option = {
+		name = NAFTA.6.a
+        add_to_variable = {
+            USA.NAFTA_Support_International = 1
+        }
+        USA = {
+            country_event = NAFTA.7
+        }
+	}
+	option = {
+		name = NAFTA.6.b
+        USA = {
+            country_event = NAFTA.8
+        }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NAFTA.7
+	immediate = { }
+	title = NAFTA.7.t 
+	desc = NAFTA.7.d
+	picture = GFX_NAFTA_7
+	is_triggered_only = yes
+	option = {
+		name = NAFTA.7.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NAFTA.8
+	immediate = { }
+	title = NAFTA.8.t 
+	desc = NAFTA.8.d
+	picture = GFX_NAFTA_8
+	is_triggered_only = yes
+	option = {
+		name = NAFTA.8.a
+	}
+}
+
+#Federal Reserve
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = FedReserve80s.1
+	immediate = { }
+	title = FedReserve80s.1.t 
+	desc = FedReserve80s.1.d
+	picture = GFX_FedReserve80s_1
+	is_triggered_only = yes
+	option = {
+		name = FedReserve80s.1.a
+		news_event = FedReserve80s.6
+		set_country_flag = Volcker_Federal_Reserve
+	}
+	option = {
+		name = FedReserve80s.1.b
+		news_event = FedReserve80s.7
+		set_country_flag = Alan_Greenspan_Federal_Reserve
+	}
+	option = {
+		name = FedReserve80s.1.c
+		news_event = FedReserve80s.5
+		set_country_flag = Felix_Rohatyn_Federal_Reserve
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = FedReserve80s.5
+    immediate = { }
+	title = FedReserve80s.5.t
+	desc = FedReserve80s.5.d
+	picture = GFX_FedReserve80s_5
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = FedReserve80s.5.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = FedReserve80s.6
+    immediate = { }
+	title = FedReserve80s.6.t
+	desc = FedReserve80s.6.d
+	picture = GFX_FedReserve80s_6
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = FedReserve80s.6.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = FedReserve80s.7
+    immediate = { }
+	title = FedReserve80s.7.t
+	desc = FedReserve80s.7.d
+	picture = GFX_FedReserve80s_7
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = FedReserve80s.7.a
+	}
+}
+#Savings and Loan Crisis
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Savings_and_Loan_Crisis.10
+	immediate = { }
+	title = Savings_and_Loan_Crisis.10.t 
+	desc = Savings_and_Loan_Crisis.10.d
+	picture = GFX_Savings_and_Loan_Crisis_10
+	is_triggered_only = yes
+	option = {
+		name = Savings_and_Loan_Crisis.10.a
+		news_event = Savings_and_Loan_Crisis.11
+		hidden_effect = {
+			add_timed_idea = {
+				idea = Savings_and_Loan_Bailout
+				days = 1825
+			}
+			set_variable = { THIS.idea_len_@token:Savings_and_Loan_Bailout = 1825 }
+			set_variable = { THIS.idea_date_@token:Savings_and_Loan_Bailout = global.num_days }
+		}
+	}
+	option = {
+		name = Savings_and_Loan_Crisis.10.b
+		news_event = Savings_and_Loan_Crisis.12
+		hidden_effect = {
+			add_timed_idea = {
+				idea = Savings_and_Loan_Collapse
+				days = 1825
+			}
+			set_variable = { THIS.idea_len_@token:Savings_and_Loan_Bailout = 1825 }
+			set_variable = { THIS.idea_date_@token:Savings_and_Loan_Bailout = global.num_days }
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = Savings_and_Loan_Crisis.11
+    immediate = { }
+	title = Savings_and_Loan_Crisis.11.t
+	desc = Savings_and_Loan_Crisis.11.d
+	picture = GFX_Savings_and_Loan_Crisis_11
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Savings_and_Loan_Crisis.11.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = Savings_and_Loan_Crisis.12
+    immediate = { }
+	title = Savings_and_Loan_Crisis.12.t
+	desc = Savings_and_Loan_Crisis.12.d
+	picture = GFX_Savings_and_Loan_Crisis_12
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Savings_and_Loan_Crisis.12.a
+	}
+}
+#Immigration Reform and Control Act Veto
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = IRCA_Veto.1
+    immediate = { }
+	title = IRCA_Veto.1.t
+	desc = IRCA_Veto.1.d
+	picture = GFX_IRCA_Veto_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = IRCA_Veto.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = IRCA_Veto.2
+    immediate = { }
+	title = IRCA_Veto.2.t
+	desc = IRCA_Veto.2.d
+	picture = GFX_IRCA_Veto_2
+	is_triggered_only = yes
+
+	option = {
+		name = IRCA_Veto.2.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = IRCA_Veto.3
+    immediate = { }
+	title = IRCA_Veto.3.t
+	desc = IRCA_Veto.3.d
+	picture = GFX_IRCA_Veto_3
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = IRCA_Veto.3.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = IRCA_Veto.4
+    immediate = { }
+	title = IRCA_Veto.4.t
+	desc = IRCA_Veto.4.d
+	picture = GFX_IRCA_Veto_4
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = IRCA_Veto.4.a
+	}
+}
+#Civil Rights Act of 1990 Veto
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = CRA90_Veto.1
+    immediate = { }
+	title = CRA90_Veto.1.t
+	desc = CRA90_Veto.1.d
+	picture = GFX_CRA90_Veto_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = CRA90_Veto.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CRA90_Veto.2
+    immediate = { }
+	title = CRA90_Veto.2.t
+	desc = CRA90_Veto.2.d
+	picture = GFX_CRA90_Veto_2
+	is_triggered_only = yes
+
+	option = {
+		name = CRA90_Veto.2.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = CRA90_Veto.3
+    immediate = { }
+	title = CRA90_Veto.3.t
+	desc = CRA90_Veto.3.d
+	picture = GFX_CRA90_Veto_3
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = CRA90_Veto.3.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = CRA90_Veto.4
+    immediate = { }
+	title = CRA90_Veto.4.t
+	desc = CRA90_Veto.4.d
+	picture = GFX_CRA90_Veto_4
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = CRA90_Veto.4.a
+	}
+}
+#Civil Rights Restoration Act Veto
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = CRRA_Veto.1
+    immediate = { }
+	title = CRRA_Veto.1.t
+	desc = CRRA_Veto.1.d
+	picture = GFX_CRRA_Veto_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = CRRA_Veto.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CRRA_Veto.2
+    immediate = { }
+	title = CRRA_Veto.2.t
+	desc = CRRA_Veto.2.d
+	picture = GFX_CRRA_Veto_2
+	is_triggered_only = yes
+
+	option = {
+		name = CRRA_Veto.2.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = CRRA_Veto.3
+    immediate = { }
+	title = CRRA_Veto.3.t
+	desc = CRRA_Veto.3.d
+	picture = GFX_CRRA_Veto_3
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = CRRA_Veto.3.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = CRRA_Veto.4
+    immediate = { }
+	title = CRRA_Veto.4.t
+	desc = CRRA_Veto.4.d
+	picture = GFX_CRRA_Veto_4
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = CRRA_Veto.4.a
+	}
+}
+#AEFTA
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = AEFTA.1
+    immediate = { }
+	title = AEFTA.1.t
+	desc = AEFTA.1.d
+	picture = GFX_AEFTA_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = AEFTA.1.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = AEFTA.20
+    immediate = { }
+	title = AEFTA.20.t
+	desc = AEFTA.20.d
+	picture = GFX_AEFTA_20
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = AEFTA.20.a
+	}
+}
+#Country
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.2
+    immediate = { }
+	title = AEFTA.2.t
+	desc = AEFTA.2.d
+	picture = GFX_AEFTA_2
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.2.a
+		add_to_variable = { USA.AEFTA_Support_International = 1 }
+		USA = {
+			country_event = AEFTA.3
+		}
+	}
+	option = {
+		name = AEFTA.2.b
+		add_to_variable = { USA.AEFTA_Support_International = 1 }
+		USA = {
+			country_event = AEFTA.4
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.3
+    immediate = { }
+	title = AEFTA.3.t
+	desc = AEFTA.3.d
+	picture = GFX_AEFTA_3
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.3.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.4
+    immediate = { }
+	title = AEFTA.4.t
+	desc = AEFTA.4.d
+	picture = GFX_AEFTA_4
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.4.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.5
+    immediate = { }
+	title = AEFTA.5.t
+	desc = AEFTA.5.d
+	picture = GFX_AEFTA_2
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.5.a
+		add_to_variable = { USA.AEFTA_Support_International = 1 }
+		USA = {
+			country_event = AEFTA.6
+		}
+	}
+	option = {
+		name = AEFTA.5.b
+		add_to_variable = { USA.AEFTA_Support_International = 1 }
+		USA = {
+			country_event = AEFTA.7
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.6
+    immediate = { }
+	title = AEFTA.6.t
+	desc = AEFTA.6.d
+	picture = GFX_AEFTA_6
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.6.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.7
+    immediate = { }
+	title = AEFTA.7.t
+	desc = AEFTA.7.d
+	picture = GFX_AEFTA_7
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.7.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.8
+    immediate = { }
+	title = AEFTA.8.t
+	desc = AEFTA.8.d
+	picture = GFX_AEFTA_2
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.8.a
+		add_to_variable = { USA.AEFTA_Support_International = 1 }
+		USA = {
+			country_event = AEFTA.9
+		}
+	}
+	option = {
+		name = AEFTA.8.b
+		add_to_variable = { USA.AEFTA_Support_International = 1 }
+		USA = {
+			country_event = AEFTA.10
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.9
+    immediate = { }
+	title = AEFTA.9.t
+	desc = AEFTA.9.d
+	picture = GFX_AEFTA_9
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.9.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.10
+    immediate = { }
+	title = AEFTA.10.t
+	desc = AEFTA.10.d
+	picture = GFX_AEFTA_10
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.10.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.11
+    immediate = { }
+	title = AEFTA.11.t
+	desc = AEFTA.11.d
+	picture = GFX_AEFTA_2
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.11.a
+		add_to_variable = { USA.AEFTA_Support_International = 1 }
+		USA = {
+			country_event = AEFTA.12
+		}
+	}
+	option = {
+		name = AEFTA.11.b
+		add_to_variable = { USA.AEFTA_Support_International = 1 }
+		USA = {
+			country_event = AEFTA.13
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.12
+    immediate = { }
+	title = AEFTA.12.t
+	desc = AEFTA.12.d
+	picture = GFX_AEFTA_12
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.12.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.13
+    immediate = { }
+	title = AEFTA.13.t
+	desc = AEFTA.13.d
+	picture = GFX_AEFTA_13
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.13.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.14
+    immediate = { }
+	title = AEFTA.14.t
+	desc = AEFTA.14.d
+	picture = GFX_AEFTA_2
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.14.a
+		add_to_variable = { USA.AEFTA_Support_International = 1 }
+		USA = {
+			country_event = AEFTA.15
+		}
+	}
+	option = {
+		name = AEFTA.14.b
+		add_to_variable = { USA.AEFTA_Support_International = 1 }
+		USA = {
+			country_event = AEFTA.16
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.15
+    immediate = { }
+	title = AEFTA.15.t
+	desc = AEFTA.15.d
+	picture = GFX_AEFTA_15
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.15.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.16
+    immediate = { }
+	title = AEFTA.16.t
+	desc = AEFTA.16.d
+	picture = GFX_AEFTA_16
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.16.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.17
+    immediate = { }
+	title = AEFTA.17.t
+	desc = AEFTA.17.d
+	picture = GFX_AEFTA_2
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.17.a
+		add_to_variable = { USA.AEFTA_Support_International = 1 }
+		USA = {
+			country_event = AEFTA.18
+		}
+	}
+	option = {
+		name = AEFTA.17.b
+		add_to_variable = { USA.AEFTA_Support_International = 1 }
+		USA = {
+			country_event = AEFTA.19
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.18
+    immediate = { }
+	title = AEFTA.18.t
+	desc = AEFTA.18.d
+	picture = GFX_AEFTA_18
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.18.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AEFTA.19
+    immediate = { }
+	title = AEFTA.19.t
+	desc = AEFTA.19.d
+	picture = GFX_AEFTA_19
+	is_triggered_only = yes
+
+	option = {
+		name = AEFTA.19.a
+	}
+}
+
+#American-Anglo Free Trade (USENT)
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = USENT.1
+    immediate = { }
+	title = USENT.1.t
+	desc = USENT.1
+	picture = GFX_USENT_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = USENT.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USENT.2
+    immediate = { }
+	title = USENT.2.t
+	desc = USENT.2.d
+	picture = GFX_USENT_2
+	is_triggered_only = yes
+
+	option = {
+		name = USENT.2.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USENT.3
+    immediate = { }
+	title = USENT.3.t
+	desc = USENT.3.d
+	picture = GFX_USENT_3
+	is_triggered_only = yes
+
+	option = {
+		name = USENT.3.a
+		add_ideas = American_Anglo_Trade_Deal_ENG
+		USA = {
+			add_ideas = American_Anglo_Trade_Deal_USA
+			country_event = USENT.4
+			news_event = USENT.6
+		}
+	}
+	option = {
+		name = USENT.3.b
+		USA = {
+			country_event = USENT.5
+			news_event = USENT.7
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USENT.4
+    immediate = { }
+	title = USENT.4.t
+	desc = USENT.4.d
+	picture = GFX_USENT_4
+	is_triggered_only = yes
+
+	option = {
+		name = USENT.4.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USENT.5
+    immediate = { }
+	title = USENT.5.t
+	desc = USENT.5.d
+	picture = GFX_USENT_5
+	is_triggered_only = yes
+
+	option = {
+		name = USENT.5.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = USENT.6
+    immediate = { }
+	title = USENT.6.t
+	desc = USENT.6
+	picture = GFX_USENT_6
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = USENT.6.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = USENT.7
+    immediate = { }
+	title = USENT.7.t
+	desc = USENT.7
+	picture = GFX_USENT_7
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = USENT.7.a
+	}
+}
+
+
+#Other
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = OilCrisis80s.1
+    immediate = { }
+	title = OilCrisis80s.1.t
+	desc = OilCrDEM88.1	
+	picture = GFX_OilCrisis80s_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = OilCrisis80s.1.a
+	}
+}
+#Country offensives
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DEM88.1
+	immediate = { }
+	title = DEM88.1.t 
+	desc = DEM88.1.d
+	picture = GFX_DEM88_1
+	is_triggered_only = yes
+
+	option = {
+		name = DEM88.1.a
+        set_country_flag = Medicare_for_All_Act_Vote
+        custom_effect_tooltip = Medicare_for_All_Act_Vote_TT
+	}
+	option = {
+		name = DEM88.1.b
+        set_country_flag = Healthcare_Cost_Reduction_and_Access_Act_Vote
+        custom_effect_tooltip = Healthcare_Cost_Reduction_and_Access_Act_Vote_TT
+	}
+	option = {
+		name = DEM88.1.c
+        set_country_flag = Access_to_Affordable_Quality_Accountable_Health_Care_Act_Vote
+        custom_effect_tooltip = Access_to_Affordable_Quality_Accountable_Health_Care_Act_Vote_TT
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DoVA.1
+	immediate = { }
+	title = DoVA.1.t 
+	desc = DoVA.1.d
+	picture = GFX_DoVA_1
+	is_triggered_only = yes
+
+	option = {
+		name = DoVA.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EnvironmentUSA.1
+	immediate = { }
+	title = EnvironmentUSA.1.t 
+	desc = EnvironmentUSA.1.d
+	picture = GFX_EnvironmentUSA_1
+	is_triggered_only = yes
+
+	option = {
+		name = EnvironmentUSA.1.a
+	}
+}

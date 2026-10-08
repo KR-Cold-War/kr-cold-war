@@ -1,0 +1,888 @@
+# KRCW (build/patch_un.py): international_status re-stated as standing in the ceasefire regime
+ideas = {
+	international_status = {
+		law = yes
+		use_list_view = yes
+		UN_Security_Council_Member_Perm = {
+			cost = 0
+			available = {
+				custom_trigger_tooltip = {
+					tooltip = law_change_disabled_trigger
+					always = no
+				}
+			}
+			removal_cost = -1
+			cancel_if_invalid = no
+			modifier = {
+				political_power_gain = 0.25
+				stability_factor = 0.05
+			}
+			rule = {
+				can_send_volunteers = yes
+			}
+		}
+		krcw_ceasefire_guarantor = {
+			cost = 0
+			available = {
+				custom_trigger_tooltip = {
+					tooltip = law_change_disabled_trigger
+					always = no
+				}
+			}
+			removal_cost = -1
+			cancel_if_invalid = no
+			modifier = {
+				political_power_gain = 0.25
+				stability_factor = 0.05
+			}
+			rule = {
+				can_send_volunteers = yes
+			}
+		}
+		un_member = {
+			cost = 0
+			available = {
+				custom_trigger_tooltip = {
+					tooltip = law_change_disabled_trigger
+					always = no
+				}
+			}
+			removal_cost = -1
+			cancel_if_invalid = no
+			rule = {
+				can_send_volunteers = yes
+			}
+		}
+		semi_recognized_state = {
+			cost = 0
+			available = {
+				custom_trigger_tooltip = {
+					tooltip = law_change_disabled_trigger
+					always = no
+				}
+			}
+			removal_cost = -1
+			cancel_if_invalid = no
+			rule = {
+				can_send_volunteers = yes
+			}
+			default = yes
+		}
+		unrecognized_state = {
+			cost = 0
+			available = {
+				custom_trigger_tooltip = {
+					tooltip = law_change_disabled_trigger
+					always = no
+				}
+			}
+			removal_cost = -1
+			cancel_if_invalid = no
+			modifier = {
+				stability_factor = -0.05
+				consumer_goods_factor = 0.1
+				send_volunteers_tension = 100
+			}
+			default = no
+		}
+	}
+	economy = {
+		law = yes
+		use_list_view = yes
+		undisturbed_isolation = {
+			allowed = {
+				always = no
+			}
+			removal_cost = -1
+			modifier = {
+				consumer_goods_expected_value = 0.25
+				generate_wargoal_tension = 1
+				join_faction_tension = 0.2
+				lend_lease_tension = 0.5
+				send_volunteers_tension = 0.2
+				guarantee_tension = 0.75
+			}
+			allowed_to_remove = {
+				OR = {
+					has_war_support > 0.5
+					has_war = yes
+				}
+				NOT = { has_country_flag = JAP_Allied_Occupation_of_Japan }
+			}
+			cancel_if_invalid = no
+		}
+		isolation = {
+			allowed = {
+				always = no
+			}
+			removal_cost = -1
+			modifier = {
+				consumer_goods_expected_value = 0.25
+				generate_wargoal_tension = 1
+				join_faction_tension = 0.2
+				send_volunteers_tension = 0.2
+				guarantee_tension = 0.5
+			}
+			allowed_to_remove = {
+				OR = {
+					has_war_support > 0.75
+					has_war = yes
+				}
+				NOT = { has_country_flag = JAP_Allied_Occupation_of_Japan }
+			}
+			cancel_if_invalid = no
+		}
+		civilian_economy = {
+			cost = 150
+			removal_cost = -1
+			modifier = {
+				consumer_goods_expected_value = 0.3
+				production_speed_industrial_complex_factor = 0.05
+				production_speed_office_park_factor = 0.05
+				production_speed_agri_industrial_complex_factor = 0.05
+				production_speed_water_infrastructure_factor = 0.05
+			}
+			default = yes
+			cancel_if_invalid = no
+			ai_will_do = {
+				factor = 50
+			}
+			allowed_to_remove = {
+				NOT = { has_country_flag = JAP_Allied_Occupation_of_Japan }
+			}
+		}
+		low_economic_mobilisation = {
+			available = {
+				has_war_support > 0.3
+			}
+			cost = 150
+			removal_cost = -1
+			modifier = {
+				consumer_goods_expected_value = 0.25
+				production_speed_industrial_complex_factor = -0.05
+				production_speed_arms_factory_factor = 0.05
+				production_speed_dockyard_factor = 0.05
+				production_speed_office_park_factor = -0.1
+				production_speed_agri_industrial_complex_factor = -0.05
+				production_speed_infrastructure_factor = 0.05
+				production_speed_water_infrastructure_factor = -0.05
+				production_speed_bunker_factor = 0.15
+				production_speed_coastal_bunker_factor = 0.15
+				production_speed_anti_air_building_factor = 0.15
+				production_speed_naval_base_factor = 0.15
+				production_speed_air_base_factor = 0.15
+				production_speed_radar_station_factor = 0.15
+				production_speed_rail_way_factor = 0.15
+				production_speed_supply_node_factor = 0.15
+			}
+			cancel_if_invalid = no
+			ai_will_do = {
+				factor = 0
+				modifier = {
+					add = 100
+					has_war = yes
+				}
+			}
+			allowed_to_remove = {
+				NOT = { has_country_flag = JAP_Allied_Occupation_of_Japan }
+			}
+		}
+		partial_economic_mobilisation = {
+			available = {
+				has_war_support > 0.5
+			}
+			cost = 150
+			removal_cost = -1
+			modifier = {
+				consumer_goods_expected_value = 0.15
+				production_speed_industrial_complex_factor = -0.1
+				production_speed_arms_factory_factor = 0.1
+				production_speed_dockyard_factor = 0.1
+				production_speed_office_park_factor = -0.2
+				production_speed_agri_industrial_complex_factor = -0.1
+				production_speed_infrastructure_factor = 0.1
+				production_speed_water_infrastructure_factor = -0.1
+				production_speed_bunker_factor = 0.3
+				production_speed_coastal_bunker_factor = 0.3
+				production_speed_anti_air_building_factor = 0.3
+				production_speed_naval_base_factor = 0.3
+				production_speed_air_base_factor = 0.3
+				production_speed_radar_station_factor = 0.3
+				production_speed_rail_way_factor = 0.3
+				production_speed_supply_node_factor = 0.3
+			}
+			cancel_if_invalid = no
+			ai_will_do = {
+				factor = 0
+				modifier = {
+					add = 150
+					has_war = yes
+				}
+			}
+			allowed_to_remove = {
+				NOT = { has_country_flag = JAP_Allied_Occupation_of_Japan }
+			}
+		}
+		war_economy = {
+			available = {
+				has_war_support > 0.7
+			}
+			cost = 300
+			removal_cost = -1
+			modifier = {
+				consumer_goods_expected_value = -0.15
+				recruitable_population_factor = -0.1
+				production_speed_industrial_complex_factor = -0.2
+				production_speed_arms_factory_factor = 0.2
+				production_speed_dockyard_factor = 0.2
+				production_speed_office_park_factor = -0.35
+				production_speed_agri_industrial_complex_factor = -0.2
+				production_speed_infrastructure_factor = 0.2
+				production_speed_water_infrastructure_factor = -0.2
+				production_speed_bunker_factor = 0.45
+				production_speed_coastal_bunker_factor = 0.45
+				production_speed_anti_air_building_factor = 0.45
+				production_speed_naval_base_factor = 0.45
+				production_speed_air_base_factor = 0.45
+				production_speed_radar_station_factor = 0.45
+				production_speed_rail_way_factor = 0.45
+				production_speed_supply_node_factor = 0.45
+			}
+			cancel_if_invalid = no
+			ai_will_do = {
+				factor = 0
+				modifier = {
+					add = 200
+					has_war = yes
+				}
+			}
+			allowed_to_remove = {
+				NOT = { has_country_flag = JAP_Allied_Occupation_of_Japan }
+			}
+		}
+		tot_economic_mobilisation = {
+			available = {
+				has_war_support > 0.95
+			}
+			ai_will_do = {
+				factor = 0
+			}
+			cost = 400
+			removal_cost = -1
+			modifier = {
+				consumer_goods_expected_value = -0.25
+				recruitable_population_factor = -0.2
+				production_speed_industrial_complex_factor = -0.45
+				production_speed_arms_factory_factor = 0.45
+				production_speed_dockyard_factor = 0.45
+				production_speed_office_park_factor = -0.6
+				production_speed_agri_industrial_complex_factor = -0.45
+				production_speed_infrastructure_factor = 0.45
+				production_speed_water_infrastructure_factor = -0.45
+				production_speed_bunker_factor = 0.6
+				production_speed_coastal_bunker_factor = 0.6
+				production_speed_anti_air_building_factor = 0.6
+				production_speed_naval_base_factor = 0.6
+				production_speed_air_base_factor = 0.6
+				production_speed_radar_station_factor = 0.6
+				production_speed_rail_way_factor = 0.6
+				production_speed_supply_node_factor = 0.6
+			}
+			cancel_if_invalid = no
+			allowed_to_remove = {
+				NOT = { has_country_flag = JAP_Allied_Occupation_of_Japan }
+			}
+		}
+	}
+	trade_laws = {
+		law = yes
+		use_list_view = yes
+		free_trade = {
+			cost = 150
+			removal_cost = -1
+			modifier = {
+				#min_export = 0.8
+				chromium_export_rate = 0.25
+				food_export_rate = 0.45
+				oil_export_rate = 0.7
+				steel_export_rate = 0.7
+				rare_earth_export_rate = 0.7
+				aluminum_export_rate = 0.7
+				consumer_goods_export_rate = 0.5
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+				research_speed_factor = 0.02
+				civilian_intel_to_others = 40
+				navy_intel_to_others = 20
+			}
+			cancel_if_invalid = no
+			ai_will_do = {
+				factor = 0
+			}
+			allowed_to_remove = {
+				NOT = { has_country_flag = JAP_Allied_Occupation_of_Japan }
+			}
+		}
+		export_focus = {
+			cost = 150
+			removal_cost = -1
+			modifier = {
+				#min_export = 0.6
+				chromium_export_rate = 0.2
+				food_export_rate = 0.3
+				oil_export_rate = 0.6
+				steel_export_rate = 0.6
+				rare_earth_export_rate = 0.6
+				aluminum_export_rate = 0.6
+				consumer_goods_export_rate = 0.4
+				industrial_capacity_factory = 0.025
+				industrial_capacity_dockyard = 0.025
+				research_speed_factor = 0.01
+				civilian_intel_to_others = 20
+				navy_intel_to_others = 10
+			}
+			default = yes
+			cancel_if_invalid = no
+			ai_will_do = {
+				factor = 500
+			}
+			allowed_to_remove = {
+				NOT = { has_country_flag = JAP_Allied_Occupation_of_Japan }
+			}
+		}
+		limited_exports = {
+			cost = 150
+			removal_cost = -1
+			modifier = {
+				#min_export = 0.4
+				chromium_export_rate = 0.1
+				food_export_rate = 0.15
+				oil_export_rate = 0.4
+				steel_export_rate = 0.4
+				rare_earth_export_rate = 0.4
+				aluminum_export_rate = 0.8
+				consumer_goods_export_rate = 0.25
+			}
+			cancel_if_invalid = no
+			ai_will_do = {
+				factor = 0
+			}
+			allowed_to_remove = {
+				NOT = { has_country_flag = JAP_Allied_Occupation_of_Japan }
+			}
+		}
+		closed_economy = {
+			cost = 150
+			removal_cost = -1
+			modifier = {
+				#min_export = 0.2
+				chromium_export_rate = 0
+				food_export_rate = 0.05
+				oil_export_rate = 0.2
+				steel_export_rate = 0.2
+				rare_earth_export_rate = 0.2
+				aluminum_export_rate = 0.2
+				consumer_goods_export_rate = 0.05
+				industrial_capacity_factory = -0.025
+				industrial_capacity_dockyard = -0.025
+				research_speed_factor = -0.01
+				civilian_intel_to_others = -20
+				navy_intel_to_others = -10
+			}
+			cancel_if_invalid = no
+			ai_will_do = {
+				factor = 0
+			}
+			allowed_to_remove = {
+				NOT = { has_country_flag = JAP_Allied_Occupation_of_Japan }
+			}
+		}
+	}
+	saga = {
+		law = yes
+		use_list_view = yes
+		policy_saga_temp_0 = {
+			removal_cost = -1
+			picture = Criminalization
+			modifier = {
+				MONTHLY_POPULATION = 0.05
+				drift_defence_factor = 0.25
+				consumer_goods_factor = 0.015
+				stability_factor = -0.025 #Persecution unrest
+				policing_spending_modifier = 0.025 #Enforcement cost
+			}
+		}
+		policy_saga_temp_1 = {
+			removal_cost = -1
+			picture = Persecution
+			modifier = {
+				MONTHLY_POPULATION = 0.03
+				drift_defence_factor = 0.15
+				consumer_goods_factor = 0.01
+				policing_spending_modifier = 0.015 #Enforcement cost
+			}
+		}
+		policy_saga_temp_2 = {
+			removal_cost = -1
+			picture = Tolerance_with_Discrimination
+			modifier = {
+				MONTHLY_POPULATION = 0.02
+			}
+		}
+		policy_saga_temp_3 = {
+			removal_cost = -1
+			picture = Partial_Equality
+			modifier = {
+				war_support_factor = 0.025
+				conscription_factor = 0.025
+			}
+		}
+		policy_saga_temp_4 = {
+			removal_cost = -1
+			picture = Legal_Equality
+			modifier = {
+				war_support_factor = 0.05
+				conscription_factor = 0.05
+				consumer_goods_factor = -0.01
+				stability_factor = 0.025
+			}
+		}
+		policy_saga_temp_4a = {
+			removal_cost = -1
+			picture = Positive_Action
+			modifier = {
+				war_support_factor = 0.1
+				conscription_factor = 0.075
+				consumer_goods_factor = -0.015
+				stability_factor = 0.025
+				drift_defence_factor = -0.05
+			}
+		}
+	}
+	workers = {
+		law = yes
+		use_list_view = yes
+		policy_union_temp_0 = {
+			removal_cost = -1
+			picture = Unions_Outlawed
+			modifier = {
+				production_speed_buildings_factor = 0.2
+				industrial_capacity_factory = 0.15
+				industrial_capacity_dockyard = 0.15
+				production_factory_max_efficiency_factor = -0.1
+				stability_factor = -0.05
+				drift_defence_factor = 0.1
+				productivity_factor = -0.03
+			}
+		}
+		policy_union_temp_1 = {
+			removal_cost = -1
+			picture = No_Legal_Labor_Protection
+			modifier = {
+				production_speed_buildings_factor = 0.15
+				industrial_capacity_factory = 0.1
+				industrial_capacity_dockyard = 0.1
+				production_factory_max_efficiency_factor = -0.075
+				stability_factor = -0.025
+				productivity_factor = -0.02
+			}
+		}
+		policy_union_temp_2 = {
+			removal_cost = -1
+			picture = Yellow_Trade_Unions
+			modifier = {
+				production_speed_buildings_factor = 0.1
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+				production_factory_max_efficiency_factor = -0.05
+				political_power_gain = 0.1
+				productivity_factor = -0.01
+			}
+		}
+		policy_union_temp_3 = {
+			removal_cost = -1
+			picture = Minimal_State_Regulations
+			modifier = {
+				production_speed_buildings_factor = 0.05
+				production_factory_efficiency_gain_factor = 0.025
+				production_factory_max_efficiency_factor = 0.025
+				stability_factor = 0.01
+			}
+		}
+		policy_union_temp_4 = {
+			removal_cost = -1
+			picture = Limited_State_Regulations
+			modifier = {
+				production_factory_efficiency_gain_factor = 0.05
+				production_factory_max_efficiency_factor = 0.05
+				stability_factor = 0.025
+				drift_defence_factor = 0.05
+				productivity_factor = 0.01
+			}
+		}
+		policy_union_temp_5 = {
+			removal_cost = -1
+			picture = Well_Regulated_Workers_Rights
+			modifier = {
+				production_speed_buildings_factor = -0.05
+				production_factory_efficiency_gain_factor = 0.075
+				production_factory_max_efficiency_factor = 0.075
+				stability_factor = 0.05
+				drift_defence_factor = 0.1
+				productivity_factor = 0.02
+				consumer_goods_factor = 0.01
+			}
+		}
+		policy_union_temp_6 = {
+			removal_cost = -1
+			picture = Full_Worker_Protections
+			modifier = {
+				production_speed_buildings_factor = -0.1
+				production_factory_efficiency_gain_factor = 0.1
+				production_factory_max_efficiency_factor = 0.1
+				stability_factor = 0.075
+				drift_defence_factor = 0.15
+				productivity_factor = 0.03
+				consumer_goods_factor = 0.02
+			}
+		}
+		policy_union_temp_7 = {
+			removal_cost = -1
+			picture = Self_Management
+			modifier = {
+				production_speed_buildings_factor = -0.15
+				production_factory_efficiency_gain_factor = 0.15
+				production_factory_max_efficiency_factor = 0.125
+				stability_factor = 0.1
+				drift_defence_factor = 0.2
+				productivity_factor = 0.04
+				consumer_goods_factor = 0.03
+				political_power_factor = -0.05
+			}
+		}
+	}
+	media = {
+		law = yes
+		use_list_view = yes
+		policy_media_temp_0 = {
+			removal_cost = -1
+			picture = Total_State_Control_and_Propaganda
+			modifier = {
+				political_power_gain = 0.2
+				war_support_factor = 0.15
+				drift_defence_factor = 0.35
+				stability_factor = -0.1
+				foreign_influence_defense_modifier = 0.15
+				research_speed_factor = -0.02
+				policing_spending_modifier = 0.05 #Censorship apparatus
+			}
+		}
+		policy_media_temp_1 = {
+			removal_cost = -1
+			picture = Strict_Censorship_with_State_Run_Media
+			modifier = {
+				political_power_gain = 0.125
+				war_support_factor = 0.1
+				drift_defence_factor = 0.25
+				stability_factor = -0.05
+				foreign_influence_defense_modifier = 0.1
+				research_speed_factor = -0.01
+				policing_spending_modifier = 0.025 #Censorship apparatus
+			}
+		}
+		policy_media_temp_2 = {
+			removal_cost = -1
+			picture = State_Influence_with_Partial_Media_Freedom
+			modifier = {
+				political_power_gain = 0.05
+				war_support_factor = 0.05
+				drift_defence_factor = 0.15
+				foreign_influence_defense_modifier = 0.05
+			}
+		}
+		policy_media_temp_3 = {
+			removal_cost = -1
+			picture = Government_Regulation_with_Free_Press
+			modifier = {
+				drift_defence_factor = -0.15
+				stability_factor = 0.05
+				foreign_influence_defense_modifier = -0.05
+			}
+		}
+		policy_media_temp_3a = {
+			removal_cost = -1
+			picture = Free_Media_with_Minimal_Regulation
+			modifier = {
+				drift_defence_factor = -0.25
+				production_speed_office_park_factor = 0.15
+				office_park_income_bonus = 0.02 #Private media industry
+				war_support_factor = 0.05
+				stability_factor = -0.05
+				foreign_influence_defense_modifier = -0.1
+			}
+		}
+	}
+	womens = {
+		law = yes
+		use_list_view = yes
+		policy_women_temp_0 = {
+			removal_cost = -1
+			picture = Patriarchal_Society
+			modifier = {
+				production_factory_efficiency_gain_factor = -0.15
+				MONTHLY_POPULATION = 0.45
+				conscription_factor = -0.15
+				workforce_ratio = 0.35
+				research_speed_factor = -0.05
+				stability_factor = 0.1
+				education_gain_rate = -0.02
+			}
+		}
+		policy_women_temp_1 = {
+			removal_cost = -1
+			picture = Limited_Rights
+			modifier = {
+				production_factory_efficiency_gain_factor = -0.1
+				MONTHLY_POPULATION = 0.3
+				conscription_factor = -0.1
+				stability_factor = 0.05
+				workforce_ratio = 0.45
+				education_gain_rate = -0.01
+			}
+		}
+		policy_women_temp_2 = {
+			removal_cost = -1
+			picture = Partial_Womens_Equality
+			modifier = {
+				MONTHLY_POPULATION = 0.15
+				conscription_factor = -0.05
+				workforce_ratio = 0.5
+			}
+		}
+		policy_women_temp_3 = {
+			removal_cost = -1
+			picture = Legal_Womens_Equality
+			rule = {
+				can_generate_female_aces = yes
+			}
+			modifier = {
+				production_factory_efficiency_gain_factor = 0.1
+				MONTHLY_POPULATION = -0.2
+				conscription_factor = 0.1
+				workforce_ratio = 0.55
+				education_gain_rate = 0.01
+			}
+		}
+		policy_women_temp_4 = {
+			removal_cost = -1
+			picture = Progressive_Society
+			rule = {
+				can_generate_female_aces = yes
+			}
+			modifier = {
+				production_factory_efficiency_gain_factor = 0.2
+				MONTHLY_POPULATION = -0.25
+				conscription_factor = 0.15
+				workforce_ratio = 0.65
+				stability_factor = -0.05
+				education_gain_rate = 0.02
+			}
+		}
+		policy_women_temp_4a = {
+			removal_cost = -1
+			picture = State_Enforced_Discrimination
+			rule = {
+				can_generate_female_aces = yes
+			}
+			visible = {
+				has_idea = policy_women_temp_4a
+			}
+			modifier = {
+				production_factory_efficiency_gain_factor = 0.25
+				MONTHLY_POPULATION = -0.30
+				conscription_factor = 0.25
+				workforce_ratio = 0.75
+				stability_factor = -0.1
+				education_gain_rate = 0.03
+			}
+		}
+	}
+	minorities = {
+		law = yes
+		use_list_view = yes
+		policy_minorities_temp_0 = {
+			removal_cost = -1
+			picture = State_Enforced_Discrimination
+			modifier = {
+				conscription_factor = -0.15
+				production_speed_state_infrastructure_factor = 0.2 #Forced labor
+				production_speed_water_infrastructure_factor = 0.2
+				production_speed_agri_industrial_complex_factor = 0.2
+				war_support_factor = 0.15
+				drift_defence_factor = 0.45
+				workforce_ratio = -0.05 #Minorities excluded from formal economy
+				research_speed_factor = -0.03
+				#Stability and production penalties in segregationValue that is raised with this idea
+			}
+		}
+		policy_minorities_temp_1 = {
+			removal_cost = -1
+			picture = Institutional_Discrimination
+			modifier = {
+				conscription_factor = -0.1
+				production_speed_state_infrastructure_factor = 0.1
+				production_speed_water_infrastructure_factor = 0.1
+				production_speed_agri_industrial_complex_factor = 0.1
+				war_support_factor = 0.1
+				drift_defence_factor = 0.3
+				workforce_ratio = -0.03
+				research_speed_factor = -0.02
+				#Stability and production penalties in segregationValue that is raised with this idea
+			}
+		}
+		policy_minorities_temp_2 = {
+			removal_cost = -1
+			picture = Limited_Minorities_Rights
+			modifier = {
+				conscription_factor = -0.05
+				production_speed_state_infrastructure_factor = 0.05
+				production_speed_water_infrastructure_factor = 0.05
+				production_speed_agri_industrial_complex_factor = 0.05
+				war_support_factor = 0.05
+				drift_defence_factor = 0.15
+				workforce_ratio = -0.015
+				research_speed_factor = -0.01
+				#Stability and production penalties in segregationValue that is raised with this idea
+			}
+		}
+		policy_minorities_temp_3 = {
+			removal_cost = -1
+			picture = Equal_Rights_on_Paper
+			modifier = {
+				conscription_factor = 0.05
+				research_speed_factor = 0.05
+				production_speed_office_park_factor = 0.1
+				drift_defence_factor = -0.1
+				stability_factor = 0.1
+				workforce_ratio = 0.015
+			}
+		}
+		policy_minorities_temp_3a = {
+			removal_cost = -1
+			picture = Affirmative_Action
+			modifier = {
+				research_speed_factor = 0.075
+				production_speed_office_park_factor = 0.2
+				war_support_factor = -0.1
+				drift_defence_factor = -0.2
+				workforce_ratio = 0.03
+				productivity_factor = 0.01
+				political_power_factor = -0.05 #Political controversy
+			}
+		}
+	}
+	voting = {
+		law = yes
+		use_list_view = yes
+		policy_voting_temp_0 = {
+			removal_cost = -1
+			modifier = {
+				political_power_gain = -0.1
+				drift_defence_factor = 0.5
+				stability_factor = -0.1
+			}
+		}
+		policy_voting_temp_1 = {
+			removal_cost = -1
+			modifier = {
+				political_power_gain = -0.05
+				drift_defence_factor = 0.25
+				stability_factor = -0.05
+			}
+		}
+		policy_voting_temp_2 = {
+			removal_cost = -1
+			modifier = {
+				political_power_gain = 0.05
+				drift_defence_factor = 0.15
+				stability_factor = -0.025
+			}
+		}
+		policy_voting_temp_3 = {
+			removal_cost = -1
+			modifier = {
+				political_power_gain = 0.15
+				drift_defence_factor = -0.15
+				stability_factor = 0.05
+				foreign_influence_defense_modifier = 0.05 #Legitimacy resists subversion
+			}
+		}
+	}
+	religion = {
+		law = yes
+		use_list_view = yes
+		policy_religion_temp_0 = {
+			removal_cost = -1
+			picture = Religious_Propaganda
+			modifier = {
+				MONTHLY_POPULATION = 0.25
+				research_speed_factor = -0.08
+				education_gain_rate = -0.02
+				drift_defence_factor = 0.2
+				stability_factor = 0.05
+			}
+		}
+		policy_religion_temp_0a = {
+			removal_cost = -1
+			picture = policy_religion_temp_0a
+			modifier = {
+				MONTHLY_POPULATION = -0.1
+				research_speed_factor = 0.02
+				education_gain_rate = 0.04
+				drift_defence_factor = 0.1 #State atheism enforcement
+				stability_factor = -0.025
+			}
+		}
+		policy_religion_temp_1 = {
+			removal_cost = -1
+			picture = State_Religion
+			modifier = {
+				MONTHLY_POPULATION = 0.2
+				research_speed_factor = -0.05
+				education_gain_rate = -0.01
+				drift_defence_factor = 0.15
+				stability_factor = 0.05
+			}
+		}
+		policy_religion_temp_2 = {
+			removal_cost = -1
+			picture = Religious_Education
+			modifier = {
+				MONTHLY_POPULATION = 0.1
+				research_speed_factor = -0.03
+				education_gain_rate = 0.01
+				drift_defence_factor = 0.05
+				stability_factor = 0.025
+			}
+		}
+		policy_religion_temp_3 = {
+			removal_cost = -1
+			picture = Religious_Freedom
+			modifier = {
+				research_speed_factor = 0.01
+				education_gain_rate = 0.02
+				stability_factor = 0.025
+			}
+		}
+		policy_religion_temp_3a = {
+			removal_cost = -1
+			picture = Religious_Tolerance
+			modifier = {
+				MONTHLY_POPULATION = -0.05
+				research_speed_factor = 0.02
+				education_gain_rate = 0.03
+				drift_defence_factor = -0.05
+			}
+		}
+	}
+}

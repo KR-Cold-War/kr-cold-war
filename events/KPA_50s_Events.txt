@@ -1,0 +1,55 @@
+# KRCW (build/patch_residue.py): 3 OTL events dropped while KRCW_active
+add_namespace = KPA_cho_mansik
+add_namespace = KPA_SOV
+
+country_event = {
+	id = KPA_SOV.1
+	immediate = { }
+	title = KPA_SOV.1.t
+	desc = KPA_SOV.1.d
+	picture = GFX_KPA_cho_mansik.1
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+	option = {
+		name = KPA_SOV.1.a
+	}
+}
+
+country_event = {
+	id = KPA_cho_mansik.1
+	immediate = { }
+	title = KPA_cho_mansik.1.t
+	desc = KPA_cho_mansik.1.d
+	picture = GFX_KPA_cho_mansik.1
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+	option = {
+		name = KPA_cho_mansik.1.a
+		KOR = {
+			country_event = KPA_cho_mansik.2
+		}
+	}
+}
+country_event = {
+	id = KPA_cho_mansik.2
+	immediate = { }
+	title = KPA_cho_mansik.2.t
+	desc = KPA_cho_mansik.2.d
+	picture = GFX_KPA_cho_mansik.2
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+	option = {
+		name = KPA_cho_mansik.2.a
+	}
+	option = {
+		name = KPA_cho_mansik.2.b
+		custom_effect_tooltip = "KPA_cho_mansik.yes"
+		set_country_flag = KOR_cho_mansik_survived
+	}
+}

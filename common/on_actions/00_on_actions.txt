@@ -1,0 +1,553 @@
+# KRCW override of CWIC 00_on_actions.txt: identical except on_new_term_election
+# OTL election event chains for USA/CAN/RAJ/ITA/BEL/KOR removed.
+on_actions = {
+	on_monthly_INO = {
+		effect = {
+			set_temp_variable = {
+				temp_INO = modifier@PM_Approval_Rating
+			}
+			multiply_variable = {
+				temp_INO = 100
+			}
+			add_to_variable = {
+				INO_Approval_factor_var_temp = temp_INO
+			}
+		}
+	}
+	on_monthly_VTC = {
+		effect = {
+			if = { limit = { NOT = { has_global_flag = KRCW_active } } cwic_mnc_monthly_rollover = yes } # KRCW econ gate
+			if = { limit = { NOT = { has_global_flag = KRCW_active } } cwic_mnc_auto_invest_global = yes } # KRCW econ gate
+			if = { limit = { NOT = { has_global_flag = KRCW_active } } cwic_mnc_process_invites_global = yes } # KRCW econ gate
+			set_variable = {
+				global.federation_european_union_entrance = 0
+			}
+			set_variable = {
+				global.federation_european_union_count = 0
+			}
+			every_country = {
+				clr_country_flag = federation_member
+				clr_country_flag = common_market_member
+				ic_pulse_monthly = yes
+			}
+			federation_calculator_global = yes
+		}
+	}
+	on_monthly = {
+		effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = active_insurgency
+					}
+				}
+				monthly_education_pulse = yes
+			}
+			ic_financial_monthly_pulse = yes
+			if = {
+				limit = {
+					is_ai = no
+					NOT = {
+						has_country_flag = active_insurgency
+					}
+				}
+				if = { limit = { NOT = { has_global_flag = KRCW_active } } GDP_Graph_Financial_Tab_Update = yes } # KRCW econ gate
+				if = { limit = { NOT = { has_global_flag = KRCW_active } } GDP_Debt_Graph_Financial_Tab_Update = yes } # KRCW econ gate
+				Food_Graph_Financial_Tab_Update = yes
+				if = { limit = { NOT = { has_global_flag = KRCW_active } } Income_Graph_Financial_Tab_Update = yes } # KRCW econ gate
+				Electricity_Graph_Financial_Tab_Update = yes
+			}
+			add_to_variable = {
+				Current_Month = 1
+			}
+			add_to_variable = {
+				month_counter = 1
+			}
+			if = {
+				limit = {
+					check_variable = {
+						Current_Month > 12
+					}
+				}
+				set_variable = {
+					Current_Month = 1
+				}
+				set_variable = {
+					yoy_change_gdp = grossdomesticproduct
+				}
+				subtract_from_variable = {
+					yoy_change_gdp = last_year_gdp
+				}
+				set_variable = {
+					last_year_gdp = grossdomesticproduct
+				}
+				set_variable = {
+					yoy_change_debt = GDP_Debt_Ratio
+				}
+				subtract_from_variable = {
+					yoy_change_debt = last_year_debt
+				}
+				set_variable = {
+					last_year_debt = GDP_Debt_Ratio
+				}
+				set_variable = {
+					yoy_change_food = FoodBalanceTotal
+				}
+				subtract_from_variable = {
+					yoy_change_food = last_year_food
+				}
+				set_variable = {
+					last_year_food = FoodBalanceTotal
+				}
+				set_variable = {
+					yoy_change_electricty = resource@coal
+				}
+				subtract_from_variable = {
+					yoy_change_electricty = last_year_electricty
+				}
+				set_variable = {
+					last_year_electricty = resource@coal
+				}
+				set_variable = {
+					yoy_change_balance = IncomeCheck
+				}
+				subtract_from_variable = {
+					yoy_change_balance = last_year_balance
+				}
+				set_variable = {
+					last_year_balance = IncomeCheck
+				}
+			}
+			add_to_array = {
+				Month_Label = Current_Month
+			}
+			if = {
+				limit = {
+					check_variable = {
+						month_counter > 20
+					}
+				}
+				remove_from_array = {
+					array = Month_Label
+					index = 0
+				}
+			}
+		}
+	}
+	on_new_term_election = {
+		random_events = {
+			100 = cw_saf.20
+			100 = cw_saf.1
+		}
+		random_events = {
+			100 = election.1
+		}
+		random_events = {
+			100 = por.1
+			100 = por.2
+		}
+		random_events = {
+			100 = fin.200
+			100 = fin.201
+			100 = fin.202
+			100 = fin.203
+			100 = fin.204
+			100 = fin.205
+			100 = fin.206
+		}
+		random_events = {
+			100 = cw_saf.1
+			100 = cw_saf.20
+			100 = saf_elections.1
+			100 = saf_elections.2
+			100 = saf_elections.3
+		}
+		random_events = {
+			100 = rho.1
+			100 = rho.104
+			100 = rho.126
+			100 = rho.127
+			100 = rho.128
+		}
+		random_events = {
+			100 = cuba.25
+		}
+		random_events = {
+			100 = iree.1
+			100 = iree.2
+			100 = iree.3
+		}
+		random_events = {
+			100 = swi_elections.1
+			100 = swi_elections.2
+			100 = swi_elections.3
+			100 = swi_elections.4
+		}
+	}
+	on_justifying_wargoal_pulse = {
+		random_events = {
+			1000 = NATO.1
+		}
+		random_events = {
+			100 = war_justification.1
+			100 = war_justification.2
+			100 = war_justification.3
+			100 = war_justification.4
+			100 = war_justification.5
+			100 = war_justification.6
+			100 = war_justification.7
+			100 = war_justification.8
+			100 = war_justification.9
+			100 = war_justification.10
+			100 = war_justification.11
+			100 = war_justification.12
+			100 = war_justification.13
+			100 = war_justification.14
+			100 = war_justification.15
+			100 = war_justification.16
+			100 = war_justification.17
+			100 = war_justification.18
+			100 = war_justification.19
+			17000 = 0
+		}
+	}
+	on_wargoal_expire = {
+		random_events = {
+			100 = war_justification.301
+		}
+	}
+	on_leave_faction = {
+		effect = {
+			if = {
+				limit = {
+					FROM = {
+						has_idea = nato_member
+					}
+				}
+				remove_ideas = nato_member
+			}
+		}
+	}
+	on_join_faction = {
+		effect = {
+			if = {
+				limit = {
+					FROM = {
+						has_idea = nato_member
+					}
+				}
+				add_ideas = nato_member
+			}
+		}
+	}
+	on_release_as_puppet = {
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						tag = YUG
+					}
+					FROM = {
+						tag = SOV
+					}
+				}
+				remove_ideas = YUG_anti_soviet
+				set_politics = {
+					ruling_party = trotskyism
+				}
+				add_popularity = {
+					ideology = trotskyism
+					popularity = 0.6
+				}
+				add_popularity = {
+					ideology = communism
+					popularity = 0.4
+				}
+			}
+		}
+	}
+	on_declare_war = {
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						AND = {
+							ROOT = {
+								tag = SOV
+							}
+							FROM = {
+								tag = PRC
+							}
+						}
+						AND = {
+							ROOT = {
+								tag = PRC
+							}
+							FROM = {
+								tag = SOV
+							}
+						}
+					}
+				}
+				Sino_Soviet_War = yes
+			}
+			hidden_effect = {
+				FROM = {
+					country_event = influence.10
+				}
+			}
+		}
+	}
+	on_faction_formed = {
+		effect = {
+			news_event = news.159
+		}
+	}
+	on_nuke_drop = {
+		effect = {
+			if = {
+				limit = {
+					FROM = {
+						is_core_of = USA
+					}
+					USA = {
+						has_country_flag = SDI_suceed
+					}
+				}
+			}
+			if = {
+				limit = {
+					ROOT = {
+						has_war = yes
+					}
+					NOT = {
+						has_global_flag = nuketest
+					}
+					AND = {
+						NOT = {
+							has_global_flag = wmd_first_nuke
+						}
+						OR = {
+							NOT = {
+								original_tag = SOV
+								original_tag = ENG
+								original_tag = USA
+								original_tag = FRA
+								original_tag = PRC
+								original_tag = ROC
+								original_tag = INO
+								original_tag = PAK
+								original_tag = KPA
+								original_tag = KOR
+							}
+						}
+					}
+				}
+				set_global_flag = wmd_first_nuke
+				news_event = nuke_dropped.1
+			}
+			if = {
+				limit = {
+					FROM = {
+						state = 529
+					}
+					NOT = {
+						has_global_flag = hiroshima_nuked
+					}
+				}
+				news_event = nuke_dropped.2
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						state = 528
+					}
+					NOT = {
+						has_global_flag = nagasaki_nuked
+					}
+				}
+				news_event = nuke_dropped.3
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						state = 742
+					}
+					NOT = {
+						has_global_flag = berlin_nuked
+					}
+				}
+				news_event = nuke_dropped.4
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						state = 744
+					}
+					NOT = {
+						has_global_flag = berlin_nuked
+					}
+				}
+				news_event = nuke_dropped.4
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						state = 126
+					}
+					NOT = {
+						has_global_flag = london_nuked
+					}
+				}
+				news_event = nuke_dropped.5
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						state = 531
+					}
+					NOT = {
+						has_global_flag = kyoto_nuked
+					}
+				}
+				news_event = nuke_dropped.6
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						state = 282
+					}
+					NOT = {
+						has_global_flag = tokyo_nuked
+					}
+				}
+				news_event = nuke_dropped.7
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						state = 1200
+					}
+					NOT = {
+						has_global_flag = washington_nuked
+					}
+				}
+				news_event = nuke_dropped.8
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						state = 2
+					}
+					NOT = {
+						has_global_flag = rome_nuked
+					}
+				}
+				news_event = nuke_dropped.9
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						state = 16
+					}
+					NOT = {
+						has_global_flag = paris_nuked
+					}
+				}
+				news_event = nuke_dropped.10
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						state = 219
+					}
+					NOT = {
+						has_global_flag = moscow_nuked
+					}
+				}
+				news_event = nuke_dropped.11
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						state = 37
+					}
+					NOT = {
+						has_global_flag = copenhagen_nuked
+					}
+				}
+				news_event = nuke_dropped.12
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						state = 141
+					}
+					NOT = {
+						has_global_flag = stockholm_nuked
+					}
+				}
+				news_event = nuke_dropped.13
+			}
+			wmd_damage_loop_effect = yes
+		}
+		random_events = {
+		}
+	}
+	on_unit_leader_level_up = {
+		effect = {
+			if = {
+				limit = {
+					character = {
+						has_trait = incompetent_officer
+						skill > 5
+					}
+				}
+				character = {
+					remove_trait = {
+						trait = incompetent_officer
+					}
+				}
+			}
+			if = {
+				limit = {
+					character = {
+						has_trait = young_officer
+						skill > 5
+					}
+				}
+				character = {
+					remove_trait = {
+						trait = young_officer
+					}
+					if = {
+						limit = {
+							is_army_leader = yes
+						}
+						random_list = {
+							50 = {
+								add_planning = 1
+								add_logistics = 1
+							}
+							50 = {
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					character = {
+						has_trait = honorary_position
+						skill > 5
+					}
+				}
+				character = {
+					remove_trait = {
+						trait = honorary_position
+					}
+				}
+			}
+		}
+	}
+}

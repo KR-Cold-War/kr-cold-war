@@ -1,0 +1,3322 @@
+# KRCW (build/patch_residue.py): 80 OTL decisions hidden while KRCW_active
+WGR_Speidel_Stabilization = {
+
+	WGR_Speidel_Deal_with_NSDAP_Bureaucracy = {
+
+		icon = generic_GER_flag
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+			has_completed_focus = WGR_Junta_Speidel_Bar_Nazi_Officials_from_Civil_Service
+
+		}
+		days_remove = 7
+		custom_cost_trigger = {
+            command_power > 20
+        }
+        custom_cost_text = WGR_cost_20_CP_and_100_PP
+		ai_hint_pp_cost = 110
+		fire_only_once = yes
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			add_command_power = -20
+			add_political_power = -100
+		}
+		remove_effect = {
+			country_event = Speidel.25
+		}
+	}
+	WGR_Speidel_Allow_SPD_Reorganisation = {
+
+		icon = eng_trade_unions_support
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+			has_completed_focus = WGR_Junta_Speidel_Place_Limits_on_Communist_Activities
+
+		}
+
+		cost = 100
+
+		fire_only_once = yes
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			add_popularity = {
+				ideology = Social_Democratic
+				popularity = 0.1
+			}
+			create_country_leader = {
+				name = "Egon Franke"
+				picture = "Egon_Franke.dds"
+				desc = "POLITICS_EGON_FRANKE_DESC"
+				ideology = social_democrat
+			}
+			add_stability = 0.05
+		
+		}
+	}
+	
+	WGR_Speidel_Reopen_Hamburg_Stock_Exchange = {
+
+		icon = generic_construction
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+			has_completed_focus = WGR_Junta_Speidel_Present_New_Junta_Economic_Plan
+
+		}
+
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 10 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money10
+		ai_hint_pp_cost = 110
+		cost = 0
+
+		fire_only_once = yes
+		days_remove = 7
+		
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		
+		complete_effect = {
+			set_temp_variable = { money_to_gain = -10 }
+			add_money_with_tooltip_effect = yes
+		}
+		
+		remove_effect = {
+			WGR_Increase_Wirtschaftswunder = yes
+			news_event = Ollenhauer57.51
+			custom_effect_tooltip = WGR_Increase_Wirtschaftswunder_tt
+		}
+	}
+	
+	WGR_Speidel_Volkswagen_Kaefer = {
+
+		icon = kaefer
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+			has_completed_focus = WGR_Junta_Speidel_Subsidize_BMW_VW_and_BASF
+
+		}
+
+		cost = 100
+
+		fire_only_once = yes
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			56 = {
+				remove_building = { type = industrial_complex  level = 1 } 
+			}
+			country_event = Speidel.26
+			set_temp_variable = { money_to_gain = 5 }
+		    add_money_with_tooltip_effect = yes
+		
+
+		}
+	}
+	WGR_Speidel_Roll_Back_Nationalisation = {
+
+		icon = generic_decision
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+			has_completed_focus = WGR_Junta_Speidel_Allow_Limited_Workers_Organizations
+
+		}
+
+		cost = 100
+
+		fire_only_once = yes
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			add_political_power = -100
+		    WGR_Increase_Wirtschaftswunder = yes
+		    custom_effect_tooltip = WGR_Increase_Wirtschaftswunder_tt
+		    add_war_support = -0.1
+		}
+	}
+	WGR_Speidel_Enable_Democracy_Again = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = SWI_swiss_democratic_tradition_campaign
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		priority = 0
+		allowed = {always = no}
+		days_mission_timeout = 500
+		selectable_mission = no
+		fire_only_once = yes
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+		
+			If = {
+				limit = {
+					NOT = {
+						has_completed_focus = WGR_Road_to_Democracy_Speidel_Initiate_the_1958_Provisional_Federal_Elections
+					}
+				}
+				add_war_support = -0.3
+				add_stability = -0.3
+				add_political_power = -300
+				add_popularity = {
+					ideology = Christian_Democratic
+					popularity = 0.1
+				}
+				add_popularity = {
+					ideology = conservative
+					popularity = 0.1
+				}
+				add_popularity = {
+					ideology = Social_Democratic
+					popularity = 0.05
+				}
+			}
+			
+
+		 }
+}
+	}
+}
+
+WGR_Bundeswehr_Decisions_1950s = {
+
+	WGR_Bundeswehr_Officially_Declare_Bundeswehr = {
+
+		icon = Israel_Treaty
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+			has_completed_focus = WGR_Bundeswehr_Speidel_Expand_Bundeswehr_Development	
+
+		}
+
+		cost = 200
+
+		fire_only_once = yes
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+			add_timed_idea = { idea = Founding_the_Bundeswehr  days = 730 }
+			news_event = {
+				id = Adenauer53.1711
+				days = 2
+			}
+
+		}
+	}
+	
+	WGR_Bundeswehr_Recall_Generals = {
+
+		icon = Phone
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+			OR = {
+				has_completed_focus = WGR_Junta_Speidel_Introduce_Elite_Defensive_Training
+				has_completed_focus = WGR_Junta_Speidel_Expand_Bundeswehr_Commmand_Staff_Academy
+			}
+		}
+
+		fire_only_once = yes
+		days_remove = 20
+
+		custom_cost_trigger = {
+            has_army_experience > 100
+        }
+        custom_cost_text = WGR_cost_100_army_xp
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Bundeswehr_Speidel_Expand_Bundeswehr_Development	
+
+		}
+
+		complete_effect = {
+			army_experience = -100
+			add_political_power = -100
+		}
+		remove_effect = {
+			add_field_marshal_role = {
+				Character = WGR_ulrich_de_maiziere
+				skill=5
+				attack_skill=5
+				defense_skill=4
+				planning_skill=5
+				logistics_skill=4
+				legacy_id=-1
+			}
+			add_corps_commander_role = {
+				Character = WGR_albert_schnez
+				skill=2
+				attack_skill=2
+				defense_skill=2
+				planning_skill=2
+				logistics_skill=2
+				legacy_id=-1
+			}
+			add_corps_commander_role = {
+				Character = WGR_max_josef_pemsel
+				skill=3
+				attack_skill=2
+				defense_skill=2
+				planning_skill=3
+				logistics_skill=3
+				legacy_id=-1
+			}
+			add_corps_commander_role = {
+				Character = WGR_jurgen_bennecke
+				skill=4
+				attack_skill=4
+				defense_skill=4
+				planning_skill=3
+				logistics_skill=3
+				legacy_id=-1
+			}
+			add_corps_commander_role = {
+				Character = WGR_alfred_zerbel
+				skill=4
+				attack_skill=4
+				defense_skill=3
+				planning_skill=4
+				logistics_skill=3
+				legacy_id=-1
+			}
+		}
+	}
+	
+	WGR_Request_American_Armor = {
+
+		icon = generic_decision
+
+		target_trigger = {
+			FROM = {tag = USA}
+		}
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = WGR_Junta_Speidel_Receive_American_Tanks_and_Armored_Vehicles
+				has_completed_focus = WGR_Junta_Speidel_Receive_American_Anti_Tank_Weapons_and_TDs
+			}
+		}
+
+		fire_only_once = no
+		days_remove = 180
+
+		cost = 150
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+		complete_effect = {
+			if = {
+				limit = {
+					has_completed_focus = WGR_Junta_Speidel_Receive_American_Tanks_and_Armored_Vehicles
+				}
+				
+				add_equipment_to_stockpile = {
+					type = mechanized_equipment_3
+					amount = 200
+					producer = USA
+				}
+				add_equipment_to_stockpile = {
+					type = mbt_equipment_2
+					amount = 100
+					producer = USA
+				}
+				add_equipment_to_stockpile = {
+					type = motorized_equipment_1
+					amount = 200
+					producer = USA
+				}
+				add_to_variable = {
+					currentMoney = -10
+				}
+			}
+			else_if = {
+				limit = {
+					has_completed_focus = WGR_Junta_Speidel_Receive_American_Anti_Tank_Weapons_and_TDs
+				}
+				add_equipment_to_stockpile = {
+                type = mechanized_equipment_3
+                amount = 200
+                producer = USA
+				}
+				add_equipment_to_stockpile = {
+					type = medium_tank_destroyer_equipment_2
+					amount = 100
+					producer = USA
+				}
+				add_equipment_to_stockpile = {
+					type = motorized_equipment_1
+					amount = 200
+					producer = USA
+				}
+				add_to_variable = {
+					currentMoney = -10
+				}
+			}	
+		}
+		remove_effect = {
+			
+		}
+	}
+	
+	WGR_Reintegration_of_Former_Wehrmacht_Soldiers = {
+
+		icon = Stahlhelm
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+			has_completed_focus = WGR_Junta_Speidel_Enforce_Volunteer_Only_Policies
+			has_completed_focus = WGR_Junta_Speidel_Pass_the_Conscription_Act
+			}
+		}
+
+		fire_only_once = yes
+		days_remove = 10
+
+		custom_cost_trigger = {
+			has_political_power > 100
+            has_army_experience > 50
+			
+        }
+        custom_cost_text = WGR_cost_50_army_xp_100_pp
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+		complete_effect = {
+			army_experience = -50
+			add_political_power = -100
+		}
+		remove_effect = {
+			country_event = Speidel.23
+		}
+	}
+	
+	
+	WGR_Debate_UN_Intervention = {
+
+		icon = INO_UN
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Junta_Speidel_Discuss_Contributing_to_UN_Peacekeeping
+		}
+
+		fire_only_once = yes
+		days_remove = 10
+
+		cost = 0
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			country_event = Speidel.24
+		}
+	}
+	
+	WGR_Hold_Military_Drill = {
+
+		icon = Police_hat
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+			has_completed_focus = WGR_Junta_Speidel_Expand_Military_to_Counter_Soviet_Threat
+			has_completed_focus = WGR_Junta_Speidel_Maintain_Bundeswehr_As_Defense_Force
+			}
+		}
+
+		fire_only_once = no
+		days_remove = 90
+
+		custom_cost_trigger = {
+            command_power > 20
+        }
+        custom_cost_text = WGR_cost_20_CP_and_100_PP
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+		complete_effect = {
+			add_command_power = -20
+			add_political_power = -100
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = -200
+				producer = WGR
+			}
+			add_equipment_to_stockpile = {
+				type = light_artillery_equipment_1
+				amount = -70
+				producer = WGR
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_1
+				amount = -50
+				producer = WGR
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = -50
+				producer = WGR
+			}
+		}
+		remove_effect = {
+			add_war_support = 0.05
+			army_experience = 50
+		}
+	}
+}	
+
+WGR_NATO_Trust = {
+
+	WGR_NATO_Trust_Request_Further_Arms = {
+
+		icon = Phone
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+			AND = {
+				has_completed_focus = WGR_Junta_Gehlen_Ask_for_US_UK_Support
+
+				custom_trigger_tooltip = {
+					tooltip = Nato_Trust_Above_50_tt
+					check_variable = {
+						Nato_Trust > 50
+					}
+				}
+
+			}
+
+		}
+
+		cost = 100
+
+		fire_only_once = no
+		days_remove = 365
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+		complete_effect = {
+			add_opinion_modifier = {
+                target = USA
+                modifier = small_increase
+            }
+            add_opinion_modifier = {
+                target = ENG
+                modifier = small_increase
+            }
+            USA = {
+                add_opinion_modifier = {
+                    target = WGR
+                    modifier = small_increase
+                }
+            }
+            ENG = {
+                add_opinion_modifier = {
+                    target = WGR
+                    modifier = small_increase
+                }
+            }
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 1000
+				producer = USA
+			}
+			add_equipment_to_stockpile = {
+				type = light_artillery_equipment_1
+				amount = 700
+				producer = USA
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_1
+				amount = 400
+				producer = BEL
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 350
+				producer = ENG
+			}
+
+            custom_effect_tooltip = WGR_Increase_Nato_Trust_tt
+
+			add_to_variable = {
+                var = Nato_Trust
+                value = 2.5
+            }
+
+			set_temp_variable = { percent_change = 5.0 }
+			set_temp_variable = { tag_index = USA.id }
+			set_temp_variable = { influence_target = WGR.id }
+			change_influence_percentage = yes
+
+			set_temp_variable = { percent_change = 2.5 }
+			set_temp_variable = { tag_index = ENG.id }
+			set_temp_variable = { influence_target = WGR.id }
+			change_influence_percentage = yes
+
+
+		}
+	}
+
+	WGR_NATO_Enter_ECSC_Negotiations = {
+
+		icon = ECSC_Logo_Smaller
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				has_completed_focus = WGR_Junta_Gehlen_Join_the_ECSC_Treaty
+			}
+		}
+
+		cost = 100
+		days_remove = 15
+		fire_only_once = yes
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+
+		}
+		remove_effect = {
+			country_event = Gehlen.25
+		}
+	}
+
+	WGR_NATO_Promote_Cultural_Exchange = {
+
+		icon = Hand_Reaching_Compromise
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+				has_completed_focus = WGR_Junta_Gehlen_Pan_German_Framework
+		}
+
+		cost = 50
+
+		fire_only_once = no
+		days_remove = 180
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			add_war_support = 0.02
+			 custom_effect_tooltip = WGR_Increase_Nato_Trust_tt
+
+			add_to_variable = {
+                var = Nato_Trust
+                value = 2.5
+            }
+		}
+	}
+
+	WGR_GEHLEN_NATO_Join_NATO = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = NATO_Decision_Category
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Junta_Gehlen_Pursue_Commitment_to_NATO
+		}
+		priority = 60
+
+		cost = 100
+		days_remove = 15
+		fire_only_once = yes
+
+		remove_effect = {
+			USA = {
+                add_to_faction = WGR
+            }
+            add_ideas = nato_member
+            custom_effect_tooltip = WGR_Increase_Nato_Trust_tt
+			add_to_variable = {
+                var = Nato_Trust
+                value = 2.5
+            }
+			news_event = nato_expansion.10
+		}
+	}
+
+	WGR_NATO_Bielefeld_Conference = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = Conference_Building
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		priority = 0
+		allowed = {always = no}
+		days_mission_timeout = 60
+		selectable_mission = no
+		fire_only_once = yes
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			If = {
+				limit = {
+					AND = {
+						has_country_flag = WGR_Bielefeld_Conference_Successful
+						has_country_flag = WGR_Bielefeld_Conference_Harsh_Demands_Accepted
+					}
+				}
+			remove_ideas = WGR_Western_Occupation
+			remove_ideas = NATO_Military_Restrictions
+			clr_country_flag = WGR_Bielefeld_Conference_Successful
+			clr_country_flag = WGR_Bielefeld_Conference_Harsh_Demands_Accepted
+			news_event = Gehlen.42
+			transfer_state = 1565
+			annex_country = { target = SAR transfer_troops = yes }
+			}
+			else_if = {
+				limit = {
+					AND = {
+						has_country_flag = WGR_Bielefeld_Conference_Successful
+						has_country_flag = WGR_Bielefeld_Conference_Moderate_Demands_Accepted
+					}
+				}
+			remove_ideas = WGR_Western_Occupation
+			remove_ideas = NATO_Military_Restrictions
+			clr_country_flag = WGR_Bielefeld_Conference_Successful
+			clr_country_flag = WGR_Bielefeld_Conference_Moderate_Demands_Accepted
+			news_event = Gehlen.42
+			}
+			else_if = {
+				limit = {
+					has_country_flag = WGR_Bielefeld_Conference_Failure
+				}
+			clr_country_flag = WGR_Bielefeld_Conference_Failure
+			set_country_flag = WGR_Bielefeld_Conference_Failed_New_Attempt
+			news_event = Gehlen.43
+			}
+			else = {
+				custom_effect_tooltip = Bielefeld_Conference_Explaination_tt
+			}
+
+		 }
+}
+	}
+	WGR_NATO_Bielefeld_Conference_Second_Attempt = {
+
+		icon = Conference_Building
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = WGR_Bielefeld_Conference_Failed_New_Attempt
+		}
+		priority = 60
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = WGR_Bielefeld_Conference_Failed_New_Attempt
+		}
+		cost = 100
+		days_remove = 365
+		fire_only_once = yes
+
+		remove_effect = {
+
+		}
+	}
+
+}
+
+WGR_UPRISINGS_50s = {
+
+	WGR_UPRISINGS_50s_End_State_of_Emergency = {
+
+		icon = Phone
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+			custom_trigger_tooltip = {
+					tooltip = WGR_Gehlen_Unrest_lower_20_tt
+					check_variable = {
+						WGR_Gehlen_Unrest < 20
+					}
+			}
+			has_completed_focus = WGR_Junta_Gehlen_Crush_the_RAF
+			custom_trigger_tooltip = { tooltip = WGR_Gehlen_Unrest_Cities_Dealt_With_tt }
+			NOT = {
+					AND = {
+						42 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest
+							}
+						}
+						1628 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest
+							}
+						}
+						51 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest
+							}
+						}
+						1630 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest
+							}
+						}
+						55 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest
+							}
+						}
+						54 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest
+							}
+						}
+						56 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest
+							}
+						}
+						1629 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest
+							}
+						}
+						1632 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest
+							}
+						}
+						1631 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest
+							}
+						}
+						1626 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest
+							}
+						}
+						1633 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest
+							}
+						}
+						59 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest
+							}
+						}
+						58 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest
+							}
+						}
+					}
+			}
+			NOT = {
+					AND = {
+						42 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest_2
+							}
+						}
+						1628 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest_2
+							}
+						}
+						51 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest_2
+							}
+						}
+						1630 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest_2
+							}
+						}
+						55 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest_2
+							}
+						}
+						54 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest_2
+							}
+						}
+						56 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest_2
+							}
+						}
+						1629 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest_2
+							}
+						}
+						1632 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest_2
+							}
+						}
+						1631 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest_2
+							}
+						}
+						1626 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest_2
+							}
+						}
+						1633 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest_2
+							}
+						}
+						59 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest_2
+							}
+						}
+						58 = {
+							has_dynamic_modifier = {
+								modifier = WGR_Socialist_Unrest_2
+							}
+						}
+					}
+			}
+
+		}
+
+
+
+		cost = 0
+		days_remove = 15
+		fire_only_once = yes
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+
+		}
+		remove_effect = {
+			remove_ideas = WGR_Socialist_Unrests_Gehlen
+		}
+	}
+	WGR_UPRISINGS_50s_Send_Army_to_Hamburg = {
+
+		icon = Police_hat
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Junta_Gehlen_Step_Up_Counterinsurgency_Programs_in_Major_Cities
+			command_power > 20
+			has_political_power > 100
+			has_manpower > 1000
+            has_equipment = {
+                infantry_equipment_1 > 999
+            }
+		}
+
+        custom_cost_trigger = {
+            has_manpower > 999
+        }
+        custom_cost_text = WGR_cost_1k_man
+
+		cost = 0
+		days_remove = 15
+		fire_only_once = yes
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			add_manpower = -1000
+            add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = -1000
+                producer = WGR
+            }
+            add_command_power = -20
+			add_political_power = -100
+		}
+		remove_effect = {
+			59 = {
+				remove_dynamic_modifier = { modifier = WGR_Socialist_Unrest	 }
+				add_dynamic_modifier = { modifier = WGR_Socialist_Unrest_2 }
+			}
+			58 = {
+				remove_dynamic_modifier = { modifier = WGR_Socialist_Unrest	 }
+				add_dynamic_modifier = { modifier = WGR_Socialist_Unrest_2 }
+			}
+			1633 = {
+				remove_dynamic_modifier = { modifier = WGR_Socialist_Unrest	 }
+				add_dynamic_modifier = { modifier = WGR_Socialist_Unrest_2 }
+			}
+			1626 = {
+				remove_dynamic_modifier = { modifier = WGR_Socialist_Unrest	 }
+				add_dynamic_modifier = { modifier = WGR_Socialist_Unrest_2 }
+			}
+
+		}
+	}
+	WGR_UPRISINGS_50s_Send_Army_to_Ruhrpott = {
+
+		icon = Police_hat
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Junta_Gehlen_Step_Up_Counterinsurgency_Programs_in_Major_Cities
+			command_power > 20
+			has_political_power > 100
+			has_manpower > 1000
+            has_equipment = {
+                infantry_equipment_1 > 999
+            }
+		}
+
+        custom_cost_trigger = {
+            has_manpower > 999
+        }
+        custom_cost_text = WGR_cost_1k_man
+
+		cost = 0
+		days_remove = 15
+		fire_only_once = yes
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			add_manpower = -1000
+            add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = -1000
+                producer = WGR
+            }
+            add_command_power = -20
+			add_political_power = -100
+		}
+		remove_effect = {
+
+				42 = {
+					remove_dynamic_modifier = { modifier = WGR_Socialist_Unrest	 }
+					add_dynamic_modifier = { modifier = WGR_Socialist_Unrest_2 }
+				}
+				51 = {
+					remove_dynamic_modifier = { modifier = WGR_Socialist_Unrest	 }
+					add_dynamic_modifier = { modifier = WGR_Socialist_Unrest_2 }
+				}
+				1628 = {
+					remove_dynamic_modifier = { modifier = WGR_Socialist_Unrest	 }
+					add_dynamic_modifier = { modifier = WGR_Socialist_Unrest_2 }
+				}
+
+
+
+		}
+	}
+	WGR_UPRISINGS_50s_Send_Army_to_Hannover = {
+
+		icon = Police_hat
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Junta_Gehlen_Step_Up_Counterinsurgency_Programs_in_Major_Cities
+			command_power > 20
+			has_political_power > 100
+			has_manpower > 1000
+            has_equipment = {
+                infantry_equipment_1 > 999
+            }
+		}
+
+        custom_cost_trigger = {
+            has_manpower > 999
+        }
+        custom_cost_text = WGR_cost_1k_man
+
+		cost = 0
+		days_remove = 15
+		fire_only_once = yes
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			add_manpower = -1000
+            add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = -1000
+                producer = WGR
+            }
+            add_command_power = -20
+			add_political_power = -100
+		}
+		remove_effect = {
+			1629 = {
+				remove_dynamic_modifier = { modifier = WGR_Socialist_Unrest	 }
+				add_dynamic_modifier = { modifier = WGR_Socialist_Unrest_2 }
+			}
+			1632 = {
+				remove_dynamic_modifier = { modifier = WGR_Socialist_Unrest	 }
+				add_dynamic_modifier = { modifier = WGR_Socialist_Unrest_2 }
+			}
+			1631 = {
+				remove_dynamic_modifier = { modifier = WGR_Socialist_Unrest	 }
+				add_dynamic_modifier = { modifier = WGR_Socialist_Unrest_2 }
+			}
+			56 = {
+				remove_dynamic_modifier = { modifier = WGR_Socialist_Unrest	 }
+				add_dynamic_modifier = { modifier = WGR_Socialist_Unrest_2 }
+			}
+			54 = {
+				remove_dynamic_modifier = { modifier = WGR_Socialist_Unrest	 }
+				add_dynamic_modifier = { modifier = WGR_Socialist_Unrest_2 }
+			}
+		}
+	}
+	WGR_UPRISINGS_50s_Send_Army_to_Northern_Hessen = {
+
+		icon = Police_hat
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Junta_Gehlen_Step_Up_Counterinsurgency_Programs_in_Major_Cities
+			command_power > 20
+			has_political_power > 100
+			has_manpower > 1000
+            has_equipment = {
+                infantry_equipment_1 > 999
+            }
+		}
+
+        custom_cost_trigger = {
+            has_manpower > 999
+        }
+        custom_cost_text = WGR_cost_1k_man
+
+		cost = 0
+		days_remove = 15
+		fire_only_once = yes
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			add_manpower = -1000
+            add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = -1000
+                producer = WGR
+            }
+            add_command_power = -20
+			add_political_power = -100
+		}
+		remove_effect = {
+			1630 = {
+				remove_dynamic_modifier = { modifier = WGR_Socialist_Unrest	 }
+				add_dynamic_modifier = { modifier = WGR_Socialist_Unrest_2 }
+			}
+			55 = {
+				remove_dynamic_modifier = { modifier = WGR_Socialist_Unrest	 }
+				add_dynamic_modifier = { modifier = WGR_Socialist_Unrest_2 }
+			}
+		}
+	}
+
+	WGR_UPRISINGS_50s_Border_Conflict = {
+
+		icon = border_war
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Junta_Gehlen_Prepare_For_Border_Skirmishes
+		}
+
+		custom_cost_trigger = {
+			command_power > 50
+		}
+		custom_cost_text = Command_Power_cost_50
+		days_remove = 15
+		fire_only_once = yes
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			add_command_power = -50
+		}
+		remove_effect = {
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 959
+					num_provinces = 3
+					on_win = Gehlen.61
+					on_lose = Gehlen.62
+					on_cancel = Gehlen.63
+					modifier = 0.1
+					dig_in_factor = 0
+					terrain_factor = 0
+				}
+				defender = {
+					state = 60
+					num_provinces = 2
+					on_win = Gehlen.62
+					on_lose = Gehlen.61
+					on_cancel = Gehlen.63
+				}
+			}
+		}
+	}
+
+}
+
+WGR_SPD_Influence_Battle = {
+
+	WGR_SPD_Power_Struggle_Explaination = {
+
+		icon = generic_research
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+
+		cost = 0
+
+		fire_only_once = no
+		days_re_enable = 0
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+		complete_effect = {
+			country_event = Schumacher49.111
+		}
+	}
+	WGR_SPD_Power_Struggle_Favour_Ollenhauer = {
+
+		icon = Paper_Signed
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Schumacher_49_Bundeskanzler_Kurt_Schumacher
+		}
+
+
+		cost = 100
+
+		fire_only_once = no
+		days_remove = 270
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+		complete_effect = {
+			add_to_variable = {
+                Franke_Influence = -5
+            }
+			add_to_variable = {
+				Ollenhauer_Influence = 5
+			}
+			add_popularity = {
+				ideology = Social_Democratic
+				popularity = 0.03
+			}
+			custom_effect_tooltip = WGR_Ollenhauer_Increase_tt
+		}
+	}
+
+	WGR_SPD_Power_Struggle_Favour_Franke = {
+
+		icon = Phone
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Schumacher_49_Bundeskanzler_Kurt_Schumacher
+		}
+
+
+		cost = 100
+
+		fire_only_once = no
+		days_remove = 270
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+		complete_effect = {
+			add_to_variable = {
+                Franke_Influence = 5
+            }
+			add_to_variable = {
+				Ollenhauer_Influence = -5
+			}
+			add_popularity = {
+				ideology = Christian_Democratic
+				popularity = 0.03
+			}
+			WGR_Increase_Party_Cooperation = yes
+			custom_effect_tooltip = WGR_Franke_Increase_tt
+			custom_effect_tooltip = WGR_Increase_Party_Cooperation_tt
+		}
+	}
+}
+
+WGR_SPD_Bundestag_1949 = {
+
+	WGR_SPD_Reach_out_to_FDP_1949 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_decision
+
+		allowed = { always = no }
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Schumacher_49_Bundeskanzler_Kurt_Schumacher
+		}
+
+		cost = 10
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Schumacher49.1211
+		}
+	}
+	WGR_SPD_Reach_out_to_BP_1949 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_decision
+
+		allowed = { always = no }
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Schumacher_49_Bundeskanzler_Kurt_Schumacher
+		}
+
+		cost = 5
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Schumacher49.1311
+		}
+	}
+	WGR_SPD_Reach_out_to_Zentrum_1949 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_decision
+
+		allowed = { always = no }
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Schumacher_49_Bundeskanzler_Kurt_Schumacher
+		}
+
+		cost = 5
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Schumacher49.1411
+		}
+	}
+	WGR_SPD_Reach_out_to_KPD_1949 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_decision
+
+		allowed = { always = no }
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Schumacher_49_Bundeskanzler_Kurt_Schumacher
+		}
+
+		cost = 5
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Schumacher49.1511
+		}
+	}
+
+
+}
+
+WGR_SPD_Ollenhauer_Bundestag_1953 = {
+
+	WGR_SPD_Ollenhauer_Continue_Zentrum_Cooperation_1953 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_decision
+
+		allowed = { always = no }
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Ollenhauer_53_Make_a_Report_to_the_Bundestag
+		}
+
+		cost = 75
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Ollenhauer53.15
+		}
+	}
+	WGR_SPD_Ollenhauer_CDU_VS_Franke_Debate_1953 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_decision
+
+		allowed = { always = no }
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Ollenhauer_53_Make_a_Report_to_the_Bundestag
+		}
+
+		cost = 75
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Ollenhauer53.16
+		}
+	}
+
+}
+
+WGR_SPD_Ollenhauer_Bundestag_1957 = {
+
+	WGR_SPD_Ollenhauer_Continue_Zentrum_Cooperation_1957 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_decision
+
+		allowed = { always = no }
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Ollenhauer_57_Make_Speech_to_German_People
+		}
+
+		cost = 75
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Ollenhauer57.10
+		}
+	}
+	WGR_SPD_Ollenhauer_CDU_VS_Franke_Debate_1957 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_decision
+
+		allowed = { always = no }
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Ollenhauer_57_Make_Speech_to_German_People
+		}
+
+		cost = 75
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Ollenhauer57.11
+		}
+	}
+
+}
+
+
+WGR_SPD_Franke_Bundestag_1953 = {
+
+	WGR_SPD_Franke_Continue_Zentrum_Cooperation_1953 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_decision
+
+		allowed = { always = no }
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Franke_53_Make_a_Report_to_the_Bundestag
+		}
+
+		cost = 75
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Franke53.10
+		}
+	}
+	WGR_SPD_Franke_CDU_VS_Ollenhauer_Debate_1953 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_decision
+
+		allowed = { always = no }
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Franke_53_Make_a_Report_to_the_Bundestag
+		}
+
+		cost = 75
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Franke53.11
+		}
+	}
+
+}
+
+WGR_SPD_Franke_Bundestag_1957 = {
+
+	WGR_SPD_Franke_Continue_Zentrum_Cooperation_1957 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_decision
+
+		allowed = { always = no }
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Franke_57_A_Second_Franke_Government
+		}
+
+		cost = 75
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Franke57.18
+		}
+	}
+	WGR_SPD_Franke_CDU_VS_Ollenhauer_Debate_1957 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_decision
+
+		allowed = { always = no }
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Franke_57_A_Second_Franke_Government
+		}
+
+		cost = 75
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Franke57.19
+		}
+	}
+
+}
+
+WGR_Reconstruction_of_Germany_Decisions = {
+
+	Reconstruction_of_Frankfurt = {
+
+		icon = WGR_Frankfurt
+		allowed = { original_tag = WGR }
+
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money25
+		highlight_states = {
+    		highlight_state_targets = {
+        		state = 1630
+    		}
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				owns_state = 1630
+				NOT = {has_country_flag = WGR_City_Currently_Being_Rebuilt}
+				has_political_power > 200
+			}
+		}
+		ai_hint_pp_cost = 210
+		cost = 0
+		fire_only_once = yes
+		days_remove = 365
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1630
+		}
+		complete_effect = {
+			set_country_flag = WGR_City_Currently_Being_Rebuilt
+			add_political_power = -200
+			set_temp_variable = { money_to_gain = -25 }
+			add_money_with_tooltip_effect = yes
+		}
+		remove_effect = {
+			WGR_Increase_Reconstruction_Efforts = yes
+			clr_country_flag = WGR_City_Currently_Being_Rebuilt
+			if = {
+				limit = {
+					has_completed_focus = WGR_Junta_Gehlen_Speed_Up_Reconstruction
+				}
+				1630 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = state_infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	Reconstruction_of_Hamburg = {
+
+		icon = WGR_Hamburg
+		allowed = { original_tag = WGR }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				owns_state = 59
+				NOT = {has_country_flag = WGR_City_Currently_Being_Rebuilt}
+
+				has_political_power > 200
+
+			}
+		}
+
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money25
+		ai_hint_pp_cost = 210
+
+		cost = 0
+		fire_only_once = yes
+		days_remove = 365
+		highlight_states = {
+    		highlight_state_targets = {
+        		state = 59
+    		}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 59
+		}
+		complete_effect = {
+			set_country_flag = WGR_City_Currently_Being_Rebuilt
+
+			add_political_power = -200
+			set_temp_variable = { money_to_gain = -25 }
+			add_money_with_tooltip_effect = yes
+		}
+		remove_effect = {
+			WGR_Increase_Reconstruction_Efforts = yes
+			clr_country_flag = WGR_City_Currently_Being_Rebuilt
+			if = {
+				limit = {
+					has_completed_focus = WGR_Junta_Gehlen_Speed_Up_Reconstruction
+				}
+				59 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = state_infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	Reconstruction_of_Muenchen = {
+
+		icon = WGR_München
+		allowed = { original_tag = WGR }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				owns_state = 52
+				NOT = {has_country_flag = WGR_City_Currently_Being_Rebuilt}
+
+				has_political_power > 200
+
+			}
+		}
+
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money25
+
+		ai_hint_pp_cost = 210
+
+		cost = 0
+		fire_only_once = yes
+		days_remove = 365
+		highlight_states = {
+    		highlight_state_targets = {
+        		state = 52
+    		}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 52
+		}
+		complete_effect = {
+			set_country_flag = WGR_City_Currently_Being_Rebuilt
+
+			add_political_power = -200
+
+			set_temp_variable = { money_to_gain = -25 }
+			add_money_with_tooltip_effect = yes
+		}
+		remove_effect = {
+			WGR_Increase_Reconstruction_Efforts = yes
+			clr_country_flag = WGR_City_Currently_Being_Rebuilt
+			if = {
+				limit = {
+					has_completed_focus = WGR_Junta_Gehlen_Speed_Up_Reconstruction
+				}
+				52 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = state_infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	Reconstruction_of_Nuernberg = {
+
+		icon = WGR_Nürnberg
+		allowed = { original_tag = WGR }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				owns_state = 959
+				NOT = {has_country_flag = WGR_City_Currently_Being_Rebuilt}
+
+				has_political_power > 200
+
+			}
+		}
+
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money25
+
+		ai_hint_pp_cost = 210
+
+		cost = 0
+		fire_only_once = yes
+		days_remove = 365
+		highlight_states = {
+    		highlight_state_targets = {
+        		state = 959
+    		}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 959
+		}
+		complete_effect = {
+			set_country_flag = WGR_City_Currently_Being_Rebuilt
+
+			add_political_power = -200
+
+			set_temp_variable = { money_to_gain = -25 }
+			add_money_with_tooltip_effect = yes
+		}
+		remove_effect = {
+			WGR_Increase_Reconstruction_Efforts = yes
+			clr_country_flag = WGR_City_Currently_Being_Rebuilt
+			if = {
+				limit = {
+					has_completed_focus = WGR_Junta_Gehlen_Speed_Up_Reconstruction
+				}
+				959 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = state_infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	Reconstruction_of_Ruhrpott = {
+
+		icon = WGR_Essen
+		allowed = { original_tag = WGR }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				owns_state = 51
+				NOT = {has_country_flag = WGR_City_Currently_Being_Rebuilt}
+				has_political_power > 200
+
+			}
+		}
+
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money25
+		ai_hint_pp_cost = 210
+
+		cost = 0
+		fire_only_once = yes
+		days_remove = 365
+		highlight_states = {
+    		highlight_state_targets = {
+        		state = 51
+    		}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 51
+		}
+		complete_effect = {
+			set_country_flag = WGR_City_Currently_Being_Rebuilt
+
+			add_political_power = -200
+
+			set_temp_variable = { money_to_gain = -25 }
+			add_money_with_tooltip_effect = yes
+		}
+		remove_effect = {
+			WGR_Increase_Reconstruction_Efforts = yes
+			clr_country_flag = WGR_City_Currently_Being_Rebuilt
+			if = {
+				limit = {
+					has_completed_focus = WGR_Junta_Gehlen_Speed_Up_Reconstruction
+				}
+				51 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = state_infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	Reconstruction_of_Stuttgart = {
+
+		icon = WGR_Stuttgart
+		allowed = { original_tag = WGR }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				owns_state = 50
+				NOT = {has_country_flag = WGR_City_Currently_Being_Rebuilt}
+				has_political_power > 200
+
+			}
+		}
+
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money25
+
+		ai_hint_pp_cost = 210
+
+		cost = 0
+		fire_only_once = yes
+		days_remove = 365
+		highlight_states = {
+    		highlight_state_targets = {
+        		state = 50
+    		}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 50
+		}
+		complete_effect = {
+			set_country_flag = WGR_City_Currently_Being_Rebuilt
+
+			add_political_power = -200
+
+			set_temp_variable = { money_to_gain = -25 }
+			add_money_with_tooltip_effect = yes
+		}
+		remove_effect = {
+			WGR_Increase_Reconstruction_Efforts = yes
+			clr_country_flag = WGR_City_Currently_Being_Rebuilt
+			if = {
+				limit = {
+					has_completed_focus = WGR_Junta_Gehlen_Speed_Up_Reconstruction
+				}
+				50 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = state_infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	Reconstruction_of_Hanover_Braunschweig = {
+
+		icon = WGR_Hannover
+		allowed = { original_tag = WGR }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				owns_state = 56
+				NOT = {has_country_flag = WGR_City_Currently_Being_Rebuilt}
+
+				has_political_power > 200
+
+			}
+		}
+
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money25
+
+		ai_hint_pp_cost = 210
+
+		cost = 0
+		fire_only_once = yes
+		days_remove = 365
+		highlight_states = {
+    		highlight_state_targets = {
+        		state = 56
+    		}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 56
+		}
+		complete_effect = {
+			set_country_flag = WGR_City_Currently_Being_Rebuilt
+
+			add_political_power = -200
+
+			set_temp_variable = { money_to_gain = -25 }
+			add_money_with_tooltip_effect = yes
+		}
+		remove_effect = {
+			WGR_Increase_Reconstruction_Efforts = yes
+			clr_country_flag = WGR_City_Currently_Being_Rebuilt
+			if = {
+				limit = {
+					has_completed_focus = WGR_Junta_Gehlen_Speed_Up_Reconstruction
+				}
+				56 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = state_infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	Reconstruction_of_Kiel = {
+
+		icon = WGR_Kiel
+		allowed = { original_tag = WGR }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				owns_state = 1626
+				NOT = {has_country_flag = WGR_City_Currently_Being_Rebuilt}
+
+				has_political_power > 200
+
+			}
+		}
+
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money25
+		cost = 0
+		fire_only_once = yes
+		days_remove = 365
+		highlight_states = {
+    		highlight_state_targets = {
+        		state = 1626
+    		}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1626
+		}
+		complete_effect = {
+			set_country_flag = WGR_City_Currently_Being_Rebuilt
+
+			add_political_power = -200
+
+			set_temp_variable = { money_to_gain = -25 }
+			add_money_with_tooltip_effect = yes
+		}
+		remove_effect = {
+			WGR_Increase_Reconstruction_Efforts = yes
+			clr_country_flag = WGR_City_Currently_Being_Rebuilt
+			if = {
+				limit = {
+					has_completed_focus = WGR_Junta_Gehlen_Speed_Up_Reconstruction
+				}
+				1626 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = state_infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	Rebuild_Bavarian_Railways = {
+
+		icon = WGR_Railway
+		allowed = { original_tag = WGR }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				owns_state = 52
+				owns_state = 1627
+				owns_state = 959
+				has_political_power > 150
+				OR = {
+					has_completed_focus = WGR_Junta_Gehlen_Bundesbahn_Expansion
+					has_completed_focus = WGR_Junta_Speidel_Expand_Rail_Networks_Between_Major_German_Cities
+				}
+			}
+		}
+
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 10 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money10
+		ai_hint_pp_cost = 160
+		cost = 0
+		fire_only_once = yes
+		days_remove = 140
+		on_map_mode = map_and_decisions_view
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				owns_state = 52
+				owns_state = 1627
+				owns_state = 959
+				OR = {
+					has_completed_focus = WGR_Junta_Gehlen_Bundesbahn_Expansion
+					has_completed_focus = WGR_Junta_Speidel_Expand_Rail_Networks_Between_Major_German_Cities
+				}
+			}
+		}
+		complete_effect = {
+
+			add_political_power = -150
+
+		}
+		remove_effect = {
+			build_railway = {
+                level = 3
+                build_only_on_allied = yes
+                fallback = yes
+                start_state = 52
+                target_state = 959
+            }
+		}
+	}
+
+	Rebuild_Rhineland_Railways = {
+
+		icon = WGR_Railway
+		allowed = { original_tag = WGR }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				owns_state = 1628
+				owns_state = 1629
+				owns_state = 42
+				owns_state = 51
+				has_political_power > 150
+				OR = {
+					has_completed_focus = WGR_Junta_Gehlen_Bundesbahn_Expansion
+					has_completed_focus = WGR_Junta_Speidel_Expand_Rail_Networks_Between_Major_German_Cities
+				}
+			}
+		}
+
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 10 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money10
+		ai_hint_pp_cost = 160
+		cost = 0
+		fire_only_once = yes
+		days_remove = 140
+		on_map_mode = map_and_decisions_view
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				owns_state = 1628
+				owns_state = 1629
+				owns_state = 42
+				owns_state = 51
+				OR = {
+					has_completed_focus = WGR_Junta_Gehlen_Bundesbahn_Expansion
+					has_completed_focus = WGR_Junta_Speidel_Expand_Rail_Networks_Between_Major_German_Cities
+				}
+			}
+		}
+		complete_effect = {
+
+			add_political_power = -150
+
+		}
+		remove_effect = {
+			build_railway = {
+                level = 3
+                build_only_on_allied = yes
+                fallback = yes
+                start_state = 51
+                target_state = 1629
+            }
+		}
+	}
+
+	Rebuild_Hessen_Hamburg_Railways = {
+
+		icon = WGR_Railway
+		allowed = { original_tag = WGR }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				owns_state = 55
+				owns_state = 56
+				owns_state = 1633
+				owns_state = 59
+				has_political_power > 150
+				OR = {
+					has_completed_focus = WGR_Junta_Gehlen_Bundesbahn_Expansion
+					has_completed_focus = WGR_Junta_Speidel_Expand_Rail_Networks_Between_Major_German_Cities
+				}	
+			}
+		}
+
+		custom_cost_trigger = {
+			check_variable = { var = currentMoney value = 10 compare = greater_than_or_equals }
+		}
+		custom_cost_text = decision_cost_money10
+		ai_hint_pp_cost = 160
+		cost = 0
+		fire_only_once = yes
+		days_remove = 140
+		on_map_mode = map_and_decisions_view
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				owns_state = 55
+				owns_state = 56
+				owns_state = 1633
+				owns_state = 59
+				OR = {
+					has_completed_focus = WGR_Junta_Gehlen_Bundesbahn_Expansion
+					has_completed_focus = WGR_Junta_Speidel_Expand_Rail_Networks_Between_Major_German_Cities
+				}
+			}
+		}
+		complete_effect = {
+
+			add_political_power = -150
+
+		}
+		remove_effect = {
+			build_railway = {
+                level = 3
+                build_only_on_allied = yes
+                fallback = yes
+                start_state = 55
+                target_state = 59
+            }
+		}
+	}
+}
+
+lebensraum = {
+
+	reichsland_elsass_lothringen = {
+
+		icon = generic_research
+
+		allowed = {
+
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 28
+		}
+
+		cost = 50
+
+		fire_only_once = yes
+
+		days_remove = 1
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 28
+		}
+
+		complete_effect = {
+			set_global_flag = elsass_lothringen
+			28 = { set_state_name = "Elsaß-Lothringen" }
+			set_province_name = { id = 9503 name = "Straßburg" }
+			set_province_name = { id = 678 name = "Mülhausen" }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	nordschleswig = {
+
+		icon = generic_research
+
+		allowed = {
+
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 776
+		}
+
+		cost = 50
+
+		fire_only_once = yes
+
+		days_remove = 1
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 776
+		}
+
+		complete_effect = {
+			set_global_flag = nordschleswig
+			776 = { set_state_name = "Nordschleswig" }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	provinz_schlesien = {
+
+		icon = generic_research
+
+		allowed = {
+
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 66
+			owns_state = 795
+			owns_state = 950
+			owns_state = 67
+		}
+
+		cost = 50
+
+		fire_only_once = yes
+
+		days_remove = 1
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 66
+			owns_state = 795
+			owns_state = 950
+			owns_state = 67
+		}
+
+		complete_effect = {
+			set_global_flag = provinz_schlesien
+			66 = { set_state_name = "Niederschlesien" }
+			set_province_name = { id = 9570 name = "Breslau" }
+			795 = { set_state_name = "Oberschlesien" }
+			950 = { set_state_name = "Glatz" }
+			67 = { set_state_name = "Schlesien" }
+			set_province_name = { id = 6464 name = "Kattowitz" }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	ostpreussen = {
+
+		icon = generic_research
+
+		allowed = {
+
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 5
+			owns_state = 188
+			owns_state = 892
+		}
+
+		cost = 50
+
+		fire_only_once = yes
+
+		days_remove = 1
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 5
+			owns_state = 188
+			owns_state = 892
+		}
+
+		complete_effect = {
+			set_global_flag = ostpreussen
+			5 = { set_state_name = "Allenstein" }
+			set_province_name = { id = 9346 name = "Allenstein" }
+			892 = { set_state_name = "Königsberg" }
+			set_province_name = { id = 6332 name = "Königsberg" }
+			188 = { set_state_name = "Memel" }
+			set_province_name = { id = 3288 name = "Memel" }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+		provinz_westpreussen = {
+
+		icon = generic_research
+
+		allowed = {
+
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 85
+			owns_state = 797
+		}
+
+		cost = 50
+
+		fire_only_once = yes
+
+		days_remove = 1
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 85
+			owns_state = 797
+		}
+
+		complete_effect = {
+			set_global_flag = westpreussen
+			85 = { set_state_name = "Westpreußen" }
+			set_province_name = { id = 362 name = "Danzig" }
+			797 = { set_state_name = "Kujawien-Pommern" }
+			set_province_name = { id = 243 name = "Bromberg" }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	hinterpommern = {
+
+		icon = generic_research
+
+		allowed = {
+
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 63
+		}
+
+		cost = 50
+
+		fire_only_once = yes
+
+		days_remove = 1
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 63
+		}
+
+		complete_effect = {
+			set_global_flag = hinterpommern
+			63 = { set_state_name = "Hinterpommern" }
+			set_province_name = { id = 6282 name = "Stettin" }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	grosspolen = {
+
+		icon = generic_research
+
+		allowed = {
+
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 68
+			owns_state = 86
+		}
+
+		cost = 50
+
+		fire_only_once = yes
+
+		days_remove = 1
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 68
+			owns_state = 86
+		}
+
+		complete_effect = {
+			set_global_flag = grosspolen
+			68 = { set_state_name = "Lebus" }
+			86 = { set_state_name = "Großpolen" }
+			set_province_name = { id = 6558 name = "Posen" }
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+}
+
+
+WGR_Adenauer_1953_election_category = {
+
+	WGR_CDU_Reach_out_to_SDP_1953 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_decision_SPD_Logo_Small_Icon
+
+		allowed = { original_tag = WGR }
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Adenauer_53_A_Second_Adenauer_Government
+		}
+
+		cost = 50
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Adenauer53.1511
+		}
+	}
+
+	WGR_CDU_Reach_out_to_DP_1953 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_decision_eng_propaganda_campaigns
+
+		allowed = { always = no }
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Adenauer_53_A_Second_Adenauer_Government
+		}
+
+		cost = 50
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Adenauer53.1211
+		}
+	}
+
+	WGR_CDU_Reach_out_to_BHE_1953 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_decision_eng_propaganda_campaigns
+
+		allowed = { always = no }
+
+		targets = {WGR}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Adenauer_53_A_Second_Adenauer_Government
+		}
+
+		cost = 50
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Adenauer53.1311
+		}
+	}
+
+	WGR_CDU_Reach_out_to_FDP_1953 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_decision_eng_propaganda_campaigns
+
+		allowed = { always = no }
+
+		targets = {WGR}
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Adenauer_53_A_Second_Adenauer_Government
+		}
+
+		cost = 50
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Adenauer53.1411
+		}
+	}
+
+}
+
+WGR_Adenauer_1957_election_category = {
+
+	WGR_CDU_Reach_out_to_SDP_1957 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_decision_SPD_Logo_Small_Icon
+
+		allowed = { original_tag = WGR }
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Adenauer_57_A_Third_Adenauer_Government
+		}
+
+		cost = 50
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Adenauer57.1211
+		}
+	}
+
+	WGR_CDU_Reach_out_to_DP_1957 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_decision_eng_propaganda_campaigns
+
+		allowed = { always = no }
+
+		targets = {WGR}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Adenauer_57_A_Third_Adenauer_Government
+		}
+
+		cost = 50
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Adenauer57.1311
+		}
+	}
+
+
+
+}
+
+WGR_1949_election_category = {
+
+	WGR_CDU_Reach_out_to_FDP_1949 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_decision_eng_propaganda_campaigns
+
+		allowed = { always = no }
+
+		targets = {WGR}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Adenauer_49_Bundeskanzler_Konrad_Adenauer
+		}
+
+		cost = 50
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Adenauer49.1211
+		}
+	}
+
+	WGR_CDU_Reach_out_to_DP_1949 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_decision_eng_propaganda_campaigns
+
+		allowed = { always = no }
+
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Adenauer_49_Bundeskanzler_Konrad_Adenauer
+		}
+
+		cost = 25
+
+		days_remove = 3
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Adenauer49.1311
+		}
+	}
+
+	WGR_CDU_Reach_out_to_SPD_1949 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_decision_SPD_Logo_Small_Icon
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Adenauer_49_Bundeskanzler_Konrad_Adenauer
+		}
+
+		days_remove = 7
+
+		fire_only_once = yes
+
+		ai_will_do = { factor = 100 }
+
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = Adenauer49.1411
+		}
+	}
+}
+
+WGR_Adenauer = {
+
+	Reinforce_Chancellor_Democracy = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = WGR_Kanzlerstandarte
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				OR = {
+					has_completed_focus = WGR_Adenauer_49_Bundeskanzler_Konrad_Adenauer
+					has_completed_focus = WGR_Adenauer_53_A_Second_Adenauer_Government
+					has_completed_focus = WGR_Adenauer_57_A_Third_Adenauer_Government
+				}
+				Social_Democratic < 0.3
+			}
+		}
+
+
+
+		cost = 0
+
+		fire_only_once = no
+		days_remove = 365
+
+
+		complete_effect = {
+			add_political_power = 100
+			add_stability = -0.05
+		}
+	}
+	Support_Other_Bourgeoise_Parties = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = WGR_Zylinder
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = WGR_Adenauer_49_Form_a_Coalition_With_the_FDP_and_DP
+				has_completed_focus = WGR_Adenauer_53_Form_an_FDP_Coalition
+				has_completed_focus = WGR_Adenauer_53_Form_CDU_Majority_in_Bundestag
+				has_completed_focus = WGR_Adenauer_57_A_Third_Adenauer_Government
+			}
+		}
+
+
+		cost = 50
+
+		fire_only_once = no
+		days_re_enable = 180
+
+
+
+		complete_effect = {
+			add_popularity = {
+				ideology = Christian_Democratic
+				popularity = 0.02
+			}
+			add_popularity = {
+                ideology = conservative
+                popularity = 0.01
+			}
+			add_popularity = {
+                ideology = Social_Liberalism
+                popularity = 0.01
+			}
+			add_stability = 0.01
+			add_war_support = -0.01
+			WGR_Decrease_Party_Cooperation = yes
+			custom_effect_tooltip = WGR_Decrease_Party_Cooperation_tt
+		}
+	}
+	Zuckerbrot_for_the_SPD = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = WGR_Hand_Reaching_Out
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_country_flag = WGR_1949_Adenauer_SPD_Talks_Successful
+				has_country_flag = WGR_1953_Adenauer_SPD_Appeased
+				has_country_flag = WGR_1957_Adenauer_SPD_Appeased
+			}
+		}
+
+
+		cost = 100
+
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 50
+
+
+
+		complete_effect = {
+			add_popularity = {
+				ideology = Social_Democratic
+				popularity = 0.05
+			}
+			add_war_support = 0.01
+			add_stability = -0.02
+			WGR_Increase_Party_Cooperation = yes
+			custom_effect_tooltip = WGR_Increase_Party_Cooperation_tt
+			set_country_flag = SPD_Concessions
+			custom_effect_tooltip = SPD_Concessions_active_tt
+		}
+		remove_effect = {
+			clr_country_flag = SPD_Concessions
+		}
+	}
+	Anti_Communist_Propaganda = {
+
+		icon = WGR_Broken_Hammer_Sichle
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = WGR_Adenauer_49_Bundeskanzler_Konrad_Adenauer
+				has_completed_focus = WGR_Adenauer_53_A_Second_Adenauer_Government
+				has_completed_focus = WGR_Adenauer_57_A_Third_Adenauer_Government
+			}
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = WGR_Adenauer_49_Bundeskanzler_Konrad_Adenauer
+				has_completed_focus = WGR_Adenauer_53_A_Second_Adenauer_Government
+				has_completed_focus = WGR_Adenauer_57_A_Third_Adenauer_Government
+			}
+		}
+
+
+		cost = 100
+
+		fire_only_once = no
+		days_re_enable = 90
+		days_remove = 50
+
+
+
+		complete_effect = {
+			add_popularity = {
+				ideology = Communism
+				popularity = -0.005
+			}
+			add_manpower = -500
+			set_country_flag = Anti_Communist_Campaign
+			custom_effect_tooltip = Anti_Communist_Campaign_active_tt
+		}
+		remove_effect = {
+			clr_country_flag = Anti_Communist_Campaign
+		}
+
+	}
+
+	Invite_American_Diplomats_Abendessen = {
+
+		icon = eng_blackshirt_march
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = WGR_Adenauer_49_Officially_End_the_State_of_War_with_US
+				has_completed_focus = WGR_Adenauer_53_A_Second_Adenauer_Government
+				has_completed_focus = WGR_Adenauer_57_A_Third_Adenauer_Government
+			}
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = WGR_Adenauer_49_Bundeskanzler_Konrad_Adenauer
+				has_completed_focus = WGR_Adenauer_53_A_Second_Adenauer_Government
+				has_completed_focus = WGR_Adenauer_57_A_Third_Adenauer_Government
+			}
+		}
+
+		cost = 100
+
+		fire_only_once = no
+		days_re_enable = 730
+
+
+
+		complete_effect = {
+			USA = {
+				add_opinion_modifier = {
+					target = WGR
+					modifier = small_increase
+				}
+			}
+			add_offsite_building = { type = arms_factory level = 1 }
+		}
+	}
+	Asylum_for_the_Displaced = {
+
+		icon = infiltrate_state
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = WGR_Adenauer_57_Found_the_Association_of_Expellees_in_Germany
+		}
+
+
+
+		cost = 100
+
+		fire_only_once = yes
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			WGR = {
+				OR = {
+					has_completed_focus = WGR_Adenauer_49_Bundeskanzler_Konrad_Adenauer
+					has_completed_focus = WGR_Adenauer_53_A_Second_Adenauer_Government
+					has_completed_focus = WGR_Adenauer_57_A_Third_Adenauer_Government
+				}
+			}
+		}
+
+		complete_effect = {
+			swap_ideas = {
+				remove_idea = wgr_ddr_refugees
+				add_idea = wgr_ddr_refugees2
+			}
+		}
+	}
+}
+
+WGR_Adenauer_Denazification = {
+
+	Amnesty_Law = {
+
+		icon = generic_decision
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+
+		cost = 50
+		priority = 70
+		days_remove = 30
+		fire_only_once = yes
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+		complete_effect = {
+			country_event = {
+                id = Adenauer49.106
+                days = 2
+            }
+		}
+	}
+
+	WGR_131_Law_decision = {
+
+		icon = ger_mefo_bills
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+
+		cost = 50
+		priority = 60
+		days_remove = 30
+		fire_only_once = yes
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+		complete_effect = {
+			country_event = {
+                id = Adenauer49.111
+                days = 2
+            }
+		}
+	}
+
+	Support_the_Organisation_Gehlen = {
+
+		icon = BND_logo_decision
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+
+		cost = 50
+		priority = 50
+		fire_only_once = no
+		days_remove = 180
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+		complete_effect = {
+			country_event = {
+                id = Adenauer49.102
+                days = 2
+            }
+		}
+	}
+
+	Apologize_to_Victims_Compensation = {
+
+		icon = Hand_Reaching_Compromise
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			WGR = {has_completed_focus = WGR_Adenauer_49_Focus_on_Apologies_and_Compensation}
+		}
+
+
+		cost = 50
+
+		days_remove = 180
+		fire_only_once = no
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		priority = 40
+
+		complete_effect = {
+			add_popularity = {
+				ideology = Fascism
+				popularity = -0.02
+			}
+			add_manpower = -1000
+			add_war_support = 0.02
+
+		}
+	}
+
+	Sign_Israel_Reperation_Treaty = {
+
+		#icon =
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			WGR = {has_completed_focus = WGR_Adenauer_49_Sign_Reparations_Agreement_with_Israel}
+		}
+
+		target_trigger = {
+			FROM = {tag = ISR}
+		}
+
+		cost = 100
+		priority = 25
+		days_remove = 10
+		fire_only_once = yes
+
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+		remove_effect = {
+			add_popularity = {
+				ideology = Fascism
+				popularity = -0.01
+			}
+			#set_temp_variable = { money_to_gain = -100 }
+			#add_money_with_tooltip_effect = yes
+			ISR = {country_event = Adenauer49.141}
+		}
+	}
+
+	The_Globke_Dilemna = {
+
+		icon = Globke_Dilemna
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			WGR = {has_completed_focus = WGR_Adenauer_49_The_Globke_Scandal}
+		}
+
+
+		cost = 50
+		priority = 30
+		days_remove = 10
+		fire_only_once = yes
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+		remove_effect = {
+			country_event = {
+                id = Adenauer49.10
+                days = 2
+            }
+		}
+	}
+
+	Lobbyism_Pardon_for_War_Criminals = {
+
+		icon = Lobbyism
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			WGR = {has_completed_focus = WGR_Adenauer_49_Dealing_with_Landsberg_Prisoners}
+		}
+
+
+
+		cost = 100
+		priority = 20
+		days_remove = 5
+		fire_only_once = yes
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+		remove_effect = {
+			USA = {
+				country_event = {
+					id = Adenauer49.103
+					days = 2
+				}
+			}
+			FRA = {
+				country_event = {
+					id = Adenauer49.103
+					days = 2
+				}
+			}
+			ENG = {
+				country_event = {
+					id = Adenauer49.103
+					days = 2
+				}
+			}
+			BEL = {
+				country_event = {
+					id = Adenauer49.103
+					days = 2
+				}
+			}
+			HOL = {
+				country_event = {
+					id = Adenauer49.103
+					days = 2
+				}
+			}
+			LUX = {
+				country_event = {
+					id = Adenauer49.103
+					days = 2
+				}
+			}
+		}
+	}
+
+	End_Denazification = {
+
+		icon = Israel_Treaty
+
+		allowed = { original_tag = WGR }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			WGR = {has_completed_focus = WGR_Adenauer_49_Vote_on_Laws_Ending_Denazification}
+		}
+
+		priority = 10
+
+		cost = 150
+
+		days_remove = 10
+		fire_only_once = yes
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = end_of_denazification_tt
+			remove_ideas = Anti_Nazi_Sentiment
+            add_popularity = {
+                ideology = Christian_Democratic
+                popularity = 0.02
+            }
+			add_popularity = {
+				ideology = Fascism
+				popularity = 0.01
+			}
+			clr_country_flag = Adenauer_Denazification
+
+		}
+	}
+
+}

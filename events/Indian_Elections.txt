@@ -1,0 +1,810 @@
+# KRCW (build/patch_residue.py): 6 OTL events dropped while KRCW_active
+add_namespace = India_Elections
+
+
+country_event = {
+	id = India_Elections.1 
+ immediate = { }
+	title = India_Elections.1.t
+	desc = India_Elections.1.d
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = IND_The_First_General_Election
+	}
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = RAJ
+		date > 1951.1.1
+		date < 1953.1.31
+	}
+
+	option = {
+		name = India_Elections.1.a
+		complete_national_focus = IND_Indian_National_Congress_Victory
+		set_politics = {
+			ruling_party = Social_Democratic
+
+			election_frequency = 72
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_first_general_election
+						option = RAJ_BHARATYA_JANA_SINGH_1950
+					}
+					has_game_rule = {
+						rule = RAJ_first_general_election
+						option = RAJ_COMMUNIST_PARTY_1950
+					}
+					has_game_rule = {
+						rule = RAJ_first_general_election
+						option = RAJ_SOCIALISTS
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = India_Elections.1.b
+		complete_national_focus = IND_Socialist_Party_Victory
+
+		set_politics = {
+			ruling_party = socialist
+
+			election_frequency = 72
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				AND = {
+					is_historical_focus_on = yes
+					NOT = {
+						has_game_rule = {
+							rule = RAJ_first_general_election
+							option = RAJ_SOCIALISTS
+						}
+					}
+				}
+				factor = 0
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_first_general_election
+						option = RAJ_BHARATYA_JANA_SINGH_1950
+					}
+					has_game_rule = {
+						rule = RAJ_first_general_election
+						option = RAJ_COMMUNIST_PARTY_1950
+					}
+					has_game_rule = {
+						rule = RAJ_first_general_election
+						option = RAJ_INDIAN_NATIONAL_CONGRESS_1950
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = India_Elections.1.c
+		complete_national_focus = IND_Communist_Party_of_India_Victory
+
+		set_politics = {
+			ruling_party = communism
+
+			election_frequency = 72
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				AND = {
+					is_historical_focus_on = yes
+					NOT = {
+						has_game_rule = {
+							rule = RAJ_first_general_election
+							option = RAJ_COMMUNIST_PARTY_1950
+						}
+					}
+				}
+				factor = 0
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_first_general_election
+						option = RAJ_BHARATYA_JANA_SINGH_1950
+					}
+					has_game_rule = {
+						rule = RAJ_first_general_election
+						option = RAJ_SOCIALISTS
+					}
+					has_game_rule = {
+						rule = RAJ_first_general_election
+						option = RAJ_INDIAN_NATIONAL_CONGRESS_1950
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = India_Elections.1.d
+		complete_national_focus = IND_Bharatya_Jana_Singh_Victory
+
+		set_politics = {
+			ruling_party = nationalist
+
+			election_frequency = 72
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				AND = {
+					is_historical_focus_on = yes
+					NOT = {
+						has_game_rule = {
+							rule = RAJ_first_general_election
+							option = RAJ_BHARATYA_JANA_SINGH_1950
+						}
+					}
+				}
+				factor = 0
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_first_general_election
+						option = RAJ_SOCIALISTS
+					}
+					has_game_rule = {
+						rule = RAJ_first_general_election
+						option = RAJ_COMMUNIST_PARTY_1950
+					}
+					has_game_rule = {
+						rule = RAJ_first_general_election
+						option = RAJ_INDIAN_NATIONAL_CONGRESS_1950
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	id = India_Elections.2 
+ immediate = { }
+	title = India_Elections.2.t
+	desc = India_Elections.2.d
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = IND_The_Elections_of_1957
+	}
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = RAJ
+		date > 1957.1.1
+		date < 1958.1.31
+	}
+
+	option = {
+		name = India_Elections.2.a
+		complete_national_focus = IND_Jarwarlal_Nehru_Victory
+		set_politics = {
+			ruling_party = Social_Democratic
+
+			election_frequency = 60
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_1957_elections
+						option = RAJ_BHARATYA_JANA_SINGH_1957
+					}
+					has_game_rule = {
+						rule = RAJ_1957_elections
+						option = RAJ_COMMUNIST_PARTY_1957
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = India_Elections.2.b
+		complete_national_focus = IND_The_Naboordiripad_Administration
+
+		set_politics = {
+			ruling_party = communism
+
+			election_frequency = 60
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				AND = {
+					is_historical_focus_on = yes
+					NOT = {
+						has_game_rule = {
+							rule = RAJ_1957_elections
+							option = RAJ_COMMUNIST_PARTY_1957
+						}
+					}
+				}
+				factor = 0
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_1957_elections
+						option = RAJ_BHARATYA_JANA_SINGH_1957
+					}
+					has_game_rule = {
+						rule = RAJ_1957_elections
+						option = RAJ_INDIAN_NATIONAL_CONGRESS_1957
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = India_Elections.2.c
+		complete_national_focus = IND_The_Ghosh_Administration
+
+		set_politics = {
+			ruling_party = nationalist
+
+			election_frequency = 60
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				AND = {
+					is_historical_focus_on = yes
+					NOT = {
+						has_game_rule = {
+							rule = RAJ_1957_elections
+							option = RAJ_BHARATYA_JANA_SINGH_1957
+						}
+					}
+				}
+				factor = 0
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_1957_elections
+						option = RAJ_COMMUNIST_PARTY_1957
+					}
+					has_game_rule = {
+						rule = RAJ_1957_elections
+						option = RAJ_INDIAN_NATIONAL_CONGRESS_1957
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}country_event = {
+	id = India_Elections.3 
+ immediate = { }
+	title = India_Elections.3.t
+	desc = India_Elections.3.d
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			complete_national_focus = IND_60s_1962_General_Elections
+			create_country_leader = {
+				name = "Shripad Amrit Dange"
+				picture = "Shripad_Amrit_Dange.dds"
+				ideology = marxism_leninism
+			}			
+		}
+	}
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = RAJ
+		date > 1962.1.1
+		date < 1963.1.31
+	}
+
+	option = {
+		name = India_Elections.3.a
+		set_politics = {
+			ruling_party = Social_Democratic
+
+			election_frequency = 60
+			elections_allowed = yes
+		}
+		complete_national_focus = IND_60s_INC_Victory
+		ai_chance = {
+			factor = 15
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_1962_elections
+						option = RAJ_COMMUNIST_PARTY_1962
+					}
+					has_game_rule = {
+						rule = RAJ_1962_elections
+						option = RAJ_SWATANTRA_1962
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = India_Elections.3.b
+		set_politics = {
+			ruling_party = communism
+
+			election_frequency = 60
+			elections_allowed = yes
+		}
+		complete_national_focus = IND_60s_CPI_Victory
+		ai_chance = {
+			factor = 15
+			modifier = {
+				AND = {
+					is_historical_focus_on = yes
+					NOT = {
+						has_game_rule = {
+							rule = RAJ_1962_elections
+							option = RAJ_COMMUNIST_PARTY_1962
+						}
+					}
+				}
+				factor = 0
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_1962_elections
+						option = RAJ_INDIAN_NATIONAL_CONGRESS_1962
+					}
+					has_game_rule = {
+						rule = RAJ_1962_elections
+						option = RAJ_SWATANTRA_1962
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+#	option = {
+#		name = "Bharatya Jana Singh"
+#		set_politics = {
+#			ruling_party = nationalist
+#
+#			election_frequency = 60
+#			elections_allowed = yes
+#		}
+#		complete_national_focus =
+#		ai_chance = {
+#			factor = 15
+#			modifier = {
+#				is_historical_focus_on = yes
+#				factor = 0
+#			}
+#		}
+#	}
+	option = {
+		name = India_Elections.3.c
+		set_politics = {
+			ruling_party = centrist
+
+			election_frequency = 60
+			elections_allowed = yes
+		}
+		complete_national_focus = IND_60s_Swatantra_Victory
+		ai_chance = {
+			factor = 15
+			modifier = {
+				AND = {
+					is_historical_focus_on = yes
+					NOT = {
+						has_game_rule = {
+							rule = RAJ_1962_elections
+							option = RAJ_SWATANTRA_1962
+						}
+					}
+				}
+				factor = 0
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_1962_elections
+						option = RAJ_COMMUNIST_PARTY_1962
+					}
+					has_game_rule = {
+						rule = RAJ_1962_elections
+						option = RAJ_INDIAN_NATIONAL_CONGRESS_1962
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+
+}country_event = {
+	id = India_Elections.4 
+ immediate = { }
+	title = India_Elections.4.t
+	desc = India_Elections.4.d
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = IND_60s_1967_General_Elections
+	}
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = RAJ
+		date > 1967.1.1
+		date < 1968.1.31
+	}
+
+	option = {
+		name = India_Elections.4.a
+		set_politics = {
+			ruling_party = Social_Democratic
+
+			election_frequency = 49
+			elections_allowed = yes
+		}
+		complete_national_focus = IND_60s_INC_Victory67
+		ai_chance = {
+			factor = 15
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_1967_elections
+						option = RAJ_COMMUNIST_PARTY_1967
+					}
+					has_game_rule = {
+						rule = RAJ_1967_elections
+						option = RAJ_SWATANTRA_1967
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = India_Elections.4.b
+		set_politics = {
+			ruling_party = communism
+
+			election_frequency = 49
+			elections_allowed = yes
+		}
+		complete_national_focus = IND_60s_CPI_Victory67
+		ai_chance = {
+			factor = 15
+			modifier = {
+				AND = {
+					is_historical_focus_on = yes
+					NOT = {
+						has_game_rule = {
+							rule = RAJ_1967_elections
+							option = RAJ_COMMUNIST_PARTY_1967
+						}
+					}
+				}
+				factor = 0
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_1967_elections
+						option = RAJ_SWATANTRA_1967
+					}
+					has_game_rule = {
+						rule = RAJ_1967_elections
+						option = RAJ_INDIAN_NATIONAL_CONGRESS_1967
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+#	option = {
+#		name = "Bharatya Jana Singh"
+#
+#		set_politics = {
+#			ruling_party = nationalist
+#
+#			election_frequency = 49
+#			elections_allowed = yes
+#		}
+#		ai_chance = {
+#			factor = 15
+#			modifier = {
+#				is_historical_focus_on = yes
+#				factor = 0
+#			}
+#		}
+#	}
+	option = {
+		name = India_Elections.4.c
+		set_politics = {
+			ruling_party = centrist
+
+			election_frequency = 49
+			elections_allowed = yes
+		}
+		complete_national_focus = IND_60s_Swatantra_Victory67
+		ai_chance = {
+			factor = 15
+			modifier = {
+				AND = {
+					is_historical_focus_on = yes
+					NOT = {
+						has_game_rule = {
+							rule = RAJ_1967_elections
+							option = RAJ_SWATANTRA_1967
+						}
+					}
+				}
+				factor = 0
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_1967_elections
+						option = RAJ_COMMUNIST_PARTY_1967
+					}
+					has_game_rule = {
+						rule = RAJ_1967_elections
+						option = RAJ_INDIAN_NATIONAL_CONGRESS_1967
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	id = India_Elections.5 
+ immediate = { }
+	title = India_Elections.5.t
+	desc = India_Elections.5.d
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = IND_60s_1971_General_Elections
+	}
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = RAJ
+		date > 1971.1.1
+		date < 1972.1.31
+	}
+
+	option = {
+		name = India_Elections.5.a
+		set_politics = {
+			ruling_party = Social_Democratic
+
+			election_frequency = 72
+			elections_allowed = yes
+		}
+		complete_national_focus = IND_60s_INC_Victory71
+		ai_chance = {
+			factor = 15
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_1971_elections
+						option = RAJ_COMMUNIST_PARTY_1971
+					}
+					has_game_rule = {
+						rule = RAJ_1971_elections
+						option = RAJ_INC_ORGANIZATION_1971
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = India_Elections.5.b
+
+		set_politics = {
+			ruling_party = communism
+
+			election_frequency = 72
+			elections_allowed = yes
+		}
+		complete_national_focus = IND_60s_CPI_Victory71
+		ai_chance = {
+			factor = 15
+			modifier = {
+				AND = {
+					is_historical_focus_on = yes
+					NOT = {
+						has_game_rule = {
+							rule = RAJ_1971_elections
+							option = RAJ_COMMUNIST_PARTY_1971
+						}
+					}
+				}
+				factor = 0
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_1971_elections
+						option = RAJ_INDIAN_NATIONAL_CONGRESS_1971
+					}
+					has_game_rule = {
+						rule = RAJ_1971_elections
+						option = RAJ_INC_ORGANIZATION_1971
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+#	option = {
+#		name = "Bharatya Jana Singh"
+#
+#		set_politics = {
+#			ruling_party = nationalist
+#
+#			election_frequency = 72
+#			elections_allowed = yes
+#		}
+#		ai_chance = {
+#			factor = 15
+#			modifier = {
+#				is_historical_focus_on = yes
+#				factor = 0
+#			}
+#		}
+#	}
+	option = {
+		name = India_Elections.5.c
+
+		set_politics = {
+			ruling_party = centrist
+
+			election_frequency = 72
+			elections_allowed = yes
+		}
+		complete_national_focus = IND_60s_NCO_Victory71
+		ai_chance = {
+			factor = 15
+			modifier = {
+				AND = {
+					is_historical_focus_on = yes
+					NOT = {
+						has_game_rule = {
+							rule = RAJ_1971_elections
+							option = RAJ_INC_ORGANIZATION_1971
+						}
+					}
+				}
+				factor = 0
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RAJ_1971_elections
+						option = RAJ_INDIAN_NATIONAL_CONGRESS_1971
+					}
+					has_game_rule = {
+						rule = RAJ_1971_elections
+						option = RAJ_COMMUNIST_PARTY_1971
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}country_event = {
+	id = India_Elections.6 
+ immediate = { }
+	title = India_Elections.6.t
+	desc = India_Elections.6.d
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = IND_70s_Indian_General_Elections
+	}
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = RAJ
+		date > 1977.1.1
+		date < 1978.1.31
+	}
+
+	option = {
+		name = India_Elections.6.a
+		set_politics = {
+			ruling_party = Social_Democratic
+
+			election_frequency = 36
+			elections_allowed = yes
+		}
+		complete_national_focus = IND_70s_Gandhi_And_Congress_Win
+		ai_chance = {
+			factor = 70
+			modifier = {
+				has_game_rule = {
+					rule = RAJ_1977_elections
+					option = RAJ_JANATA_1977
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = India_Elections.6.b
+
+		set_politics = {
+			ruling_party = centrist
+
+			election_frequency = 36
+			elections_allowed = yes
+		}
+		complete_national_focus = IND_70s_Desai_And_Janata_Alliance_Triump
+		ai_chance = {
+			factor = 15
+			modifier = {
+				AND = {
+					is_historical_focus_on = yes
+					NOT = {
+						has_game_rule = {
+							rule = RAJ_1977_elections
+							option = RAJ_JANATA_1977
+						}
+					}
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = RAJ_1977_elections
+					option = RAJ_INDIAN_NATIONAL_CONGRESS_1977
+				}
+				factor = 0
+			}
+		}
+	}
+}

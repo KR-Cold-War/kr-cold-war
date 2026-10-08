@@ -1,0 +1,358 @@
+# KRCW (build/patch_residue.py): 20 OTL events dropped while KRCW_active
+add_namespace = POL
+add_namespace = pol_mil_coup
+
+# SOV - DDR pressures us to side with them and let them take German lands in Poland
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = POL.7 
+ immediate = { }
+	title = POL.7.t
+	Desc = "Poland Requests Return of Kresy"
+	picture = GFX_news_event_india_troops
+
+	is_triggered_only = yes
+
+	option = { #Support DDR
+		name = POL.7.a
+		ai_chance = {
+			factor = 15
+		}
+		POL = {
+			country_event = { days = 3 id = POL.8 } 
+		}
+	}
+
+	option = { #Support Poland and kick DDR out of warsaw pact
+		name = POL.7.b
+		ai_chance = {
+			factor = 85
+		}
+		if = {
+			limit = {
+				tag = SOV
+			}
+			POL = {
+				country_event = { days = 1 id = POL.10 } 
+			}
+		}
+	}
+}
+# USSR supports us. Take Polish states
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = POL.8 
+ immediate = { }
+	title = POL.8.t
+	Desc = POL.8.d
+	picture = GFX_news_event_india_troops
+
+	is_triggered_only = yes
+
+	option = {
+		name = POL.8.o1
+		transfer_state = 89
+		89 = { add_core_of = POL }
+		transfer_state = 91
+		91 = { add_core_of = POL }
+		transfer_state = 93
+		93 = { add_core_of = POL }
+		transfer_state = 94
+		94 = { add_core_of = POL }
+		transfer_state = 95
+		95 = { add_core_of = POL }
+		transfer_state = 96
+		96 = { add_core_of = POL }
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = POL.10 
+ immediate = { }
+	title = POL.10.t
+	Desc = "Soviets Reject Our Request to Give Back Kresy"
+	picture = GFX_news_event_india_troops
+
+	is_triggered_only = yes
+
+	option = {
+		name = POL.8.o1
+		89 = { add_core_of = POL }
+		91 = { add_core_of = POL }
+		93 = { add_core_of = POL }
+		94 = { add_core_of = POL }
+		95 = { add_core_of = POL }
+		96 = { add_core_of = POL }
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.11
+    immediate = { }   
+	title = POL.11.t
+	desc = POL.11.d
+	picture = GFX_SRT_Eastern_Bloc_Gay
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = POL.11.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.12
+    immediate = { }   
+	title = POL.12.t
+	desc = POL.12.d
+	picture = GFX_PRC_Great_Leap_Forward
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = POL.12.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.13
+    immediate = { }   
+	title = POL.13.t
+	desc = POL.13.d
+	picture = GFX_Polish_October_2
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = POL.13.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.14
+    immediate = { }   
+	title = POL.14.t
+	desc = POL.14.d
+	picture = GFX_POL_NATOLIN_1
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = POL.14.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.15
+    immediate = { }   
+	title = POL.15.t
+	desc = POL.15.d
+	picture = GFX_POL_NATOLIN_2
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = POL.15.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.16
+    immediate = { }   
+	title = POL.16.t
+	desc = POL.16.d
+	picture = GFX_Mao_Retired_News
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = POL.16.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.17
+    immediate = { }   
+	title = POL.17.t
+	desc = POL.17.d
+	picture = GFX_Turkey_Soviet_2
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = POL.17.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.18
+    immediate = { }   
+	title = POL.18.t
+	desc = POL.18.d
+	picture = GFX_news_event_helsinki_falls_to_ussr
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = POL.18.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.20
+    immediate = { }   
+	title = POL.20.t
+	desc = POL.20.d
+	picture = GFX_
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = POL.20.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.21
+    immediate = { }   
+	title = POL.21.t
+	desc = POL.21.d
+	picture = GFX_Gierek_Takes_Poland
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = POL.21.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.22
+    immediate = { }   
+	title = POL.22.t
+	desc = POL.22.d
+	picture = GFX_Polish_October_2
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = POL.22.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.23
+    immediate = { }   
+	title = POL.23.t
+	desc = POL.23.d
+	picture = GFX_POL_Jewish_Persecution
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = POL.23.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.24
+    immediate = { }   
+	title = POL.24.t
+	desc = POL.24.d
+	picture = GFX_Poland_50s_1
+
+	is_triggered_only = yes
+	option = {
+		name = POL.24.a
+		POL = {complete_national_focus = POL_60s_Attempt_to_Quell_Chaos_in_the_PZPR}
+		clr_country_flag = POL_Radical
+		set_country_flag = POL_radical2
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = POL.24.b
+		POL = {complete_national_focus = POL_60s_The_Failure_of_Jaros}
+		ai_chance = {
+			factor = 90
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.25
+    immediate = { }   
+	title = POL.25.t
+	desc = POL.25.d
+	picture = GFX_Gomulka_1
+
+	is_triggered_only = yes
+	option = {
+		name = POL.25.a
+		ai_chance = {
+			factor = 70
+		}
+	}
+	option = {
+		name = POL.25.b
+		POL = {
+			complete_national_focus = POL_60s_The_Warsaw_Pact_Invasion_of_Poland
+			set_country_flag = Warsaw_Pact_invasion_POL
+	}
+		ai_chance = {
+			factor = 30
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.26
+    immediate = { }   
+	title = POL.26.t
+	desc = POL.26.d
+	picture = GFX_Gomulka_2
+
+	is_triggered_only = yes
+	option = {
+		name = POL.26.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = POL.27
+    immediate = { }   
+	title = POL.27.t 
+	desc = POL.27.desc
+	picture = GFX_Gomulka_2
+
+	is_triggered_only = yes
+	option = {
+		name = POL.27.a
+		load_focus_tree = {
+			tree = 60s_POL
+			keep_completed = yes
+		}
+	}
+	option = {
+		name = POL.27.b
+		load_focus_tree = {
+			tree = Poland_1949
+			keep_completed = yes
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = POL.999 
+ immediate = { }
+	title = POL.999.t
+	Desc = POL.999.d
+	#picture = 
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = POL.999.a
+		drop_cosmetic_tag = yes
+	}
+}

@@ -1,0 +1,206 @@
+# KRCW (build/patch_residue.py): 7 OTL events dropped while KRCW_active
+add_namespace = tur
+add_namespace = TUR
+add_namespace = cyp_invasion
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = tur.1000 
+ immediate = { }
+	title = tur.1000.t2
+	desc = tur.1000.d2
+	picture = GFX_report_BCR_Berlin_Crisis
+
+	is_triggered_only = yes
+
+	option = {
+		name = tur.1000.a2
+		#complete_national_focus = TUR_Failure_of_coup
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+	option = {
+		name = tur.1000.b2
+		#complete_national_focus = TUR_New_Turkey
+		ai_chance = {
+			factor = 80
+			modifier = {
+				factor = 1
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR.1010 
+ immediate = { }
+	title = TUR.1010.t2
+	desc = TUR.1010.d2
+	picture = GFX_report_BCR_Berlin_Crisis
+
+	is_triggered_only = yes
+
+	option = {
+		name = TUR.1010.a2
+		add_stability = 0.10
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+	}
+
+	option = {
+		name = TUR.1010.b2
+		add_to_war = { targeted_alliance = TUR enemy = KUR }
+		ai_chance = {
+			factor = 80
+			modifier = {
+				factor = 1
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR.1015 
+ immediate = { }
+	title = TUR.1015.t2
+	desc = TUR.1015.d2
+	picture = GFX_report_BCR_Berlin_Crisis
+
+	is_triggered_only = yes
+
+	option = {
+		name = TUR.1015.a2
+		set_politics = {
+			ruling_party = democratic
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+
+	option = {
+		name = TUR.1015.b2
+		start_civil_war = { ideology = democratic size = 0.5 }
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = TUR.1020 
+ immediate = { }
+	title = TUR.1020.t2
+	desc = TUR.1020.d2
+	picture = GFX_report_BCR_Berlin_Crisis
+
+	is_triggered_only = yes
+
+	option = {
+		name = TUR.1020.a2
+		release = NCY
+		TUR = {
+			puppet = NCY
+		}
+		GRE = {
+			country_event = TUR.1025
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+
+	option = {
+		name = TUR.1020.b2
+		TUR = { declare_war_on = { target = CYP type = annex_everything } }
+		GRE = {
+			country_event = TUR.1025
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cyp_invasion.1 
+ immediate = { }
+	title = cyp_invasion.1.t
+	desc = cyp_invasion.1.d
+	picture = GFX_report_BCR_Berlin_Crisis
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = cyp_invasion.1.a
+		news_event = cyp_invasion.3
+		declare_war_on = { target = CYP type = annex_everything }
+		load_oob = TUR_Cyprus_Invasion
+		country_event = {
+			id = cyp_invasion.2
+			days = 28
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cyp_invasion.2 
+ immediate = { }
+	title = cyp_invasion.2.t
+	desc = cyp_invasion.2.d
+	picture = GFX_report_BCR_Berlin_Crisis
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = cyp_invasion.2.a
+		912 = {
+			transfer_state_to = TUR
+		}
+
+		white_peace = CYP
+
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cyp_invasion.3
+ immediate = { }
+	title = cyp_invasion.3.t
+	desc = cyp_invasion.3.d
+	picture = GFX_turkish_invasion_of_cyprus
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = cyp_invasion.3.a
+	}
+}

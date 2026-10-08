@@ -1,0 +1,353 @@
+# krcw: paced
+add_namespace = krcw_ddr
+
+country_event = {
+	id = krcw_ddr.30
+	title = krcw_ddr_30_t
+	desc = krcw_ddr_30_d
+	picture = GFX_report_event_german_reichstag_gathering
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_ddr_30.a
+		ai_chance = {
+			base = 50
+		}
+		set_country_flag = krcw_ddr_road_loyal
+		add_political_power = 50
+		if = { limit = { country_exists = SOV } add_opinion_modifier = { target = SOV modifier = krcw_ddr_loyal_ally } }
+	}
+	option = {
+		name = krcw_ddr_30.b
+		ai_chance = {
+			base = 25
+		}
+		set_country_flag = krcw_ddr_monarchist_path
+		add_stability = 0.03
+	}
+	option = {
+		name = krcw_ddr_30.c
+		ai_chance = {
+			base = 25
+		}
+		set_country_flag = krcw_ddr_liberal_opening
+		add_stability = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_ddr.31
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		ai_chance = {
+			base = 1
+		}
+		random_list = {
+			50 = {
+				modifier = { factor = 1.5 SOV = { has_opinion = { target = ROOT value > 30 } } }
+				modifier = { factor = 1.4 has_global_flag = KRCW_savinkov_dead }
+				modifier = { factor = 0.6 has_country_flag = krcw_ddr_liberal_opening }
+				modifier = { factor = 0.7 has_country_flag = krcw_ddr_strike_negotiated }
+				country_event = { id = krcw_ddr.32 days = 1 }
+			}
+			50 = {
+				# the postponement is Savinkov's own; his successors decide on the merits
+				modifier = { factor = 0 has_global_flag = KRCW_savinkov_dead }
+				modifier = { factor = 1.3 NOT = { SOV = { has_opinion = { target = ROOT value > 0 } } } }
+				country_event = { id = krcw_ddr.33 days = 1 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = krcw_ddr.32
+	title = krcw_ddr_32_t
+	desc = krcw_ddr_32_d
+	picture = GFX_report_event_german_reichstag_gathering
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_ddr_32.a
+		ai_chance = {
+			base = 80
+		}
+		set_country_flag = krcw_ddr_crown_approved
+		add_political_power = 50
+	}
+	option = {
+		name = krcw_ddr_32.b
+		ai_chance = {
+			base = 20
+		}
+		add_political_power = -25
+		add_stability = -0.03
+		clr_country_flag = krcw_ddr_monarchist_path
+	}
+}
+
+country_event = {
+	id = krcw_ddr.33
+	title = krcw_ddr_33_t
+	desc = krcw_ddr_33_d
+	picture = GFX_report_event_german_reichstag_gathering
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_ddr_33.a
+		ai_chance = {
+			base = 70
+		}
+		set_country_flag = krcw_ddr_crown_deferred
+		add_stability = -0.02
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_ddr_33.b
+		ai_chance = {
+			base = 20
+		}
+		set_country_flag = krcw_ddr_crown_defiant
+		add_stability = 0.03
+		add_political_power = -50
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+		krcw_tension_up_small = yes
+	}
+	option = {
+		name = krcw_ddr_33.c
+		ai_chance = {
+			base = 10
+		}
+		clr_country_flag = krcw_ddr_monarchist_path
+		remove_ideas = krcw_ddr_crown_in_waiting
+		add_political_power = 50
+	}
+}
+
+country_event = {
+	id = krcw_ddr.1
+	title = krcw_ddr_1_t
+	desc = krcw_ddr_1_d
+	picture = GFX_krcw_eu_d12_ger_wilhelmiii_c
+	fire_only_once = yes
+	trigger = {
+		tag = DDR
+		date > 1950.5.10
+		date < 1952.6.21
+		has_government = nationalist
+		NOT = { has_country_flag = krcw_ddr_kaiser_letter }
+	}
+	mean_time_to_happen = {
+		months = 8
+	}
+	immediate = {
+		set_country_flag = krcw_ddr_kaiser_letter
+	}
+	option = {
+		name = krcw_ddr_1.a
+		ai_chance = {
+			factor = 90
+		}
+		add_ideas = krcw_ddr_kaiser_shadow
+		add_political_power = -25
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = DDR modifier = krcw_ddr_monarchist_sympathy } } }
+	}
+}
+
+country_event = {
+	id = krcw_ddr.2
+	title = krcw_ddr_2_t
+	desc = krcw_ddr_2_d
+	picture = GFX_krcw_eu_d12_ger_reichstag
+	fire_only_once = yes
+	trigger = {
+		tag = DDR
+		date > 1951.3.15
+		date < 1953.4.26
+		has_government = nationalist
+		NOT = { has_country_flag = krcw_ddr_succession_question }
+	}
+	mean_time_to_happen = {
+		months = 11
+	}
+	immediate = {
+		set_country_flag = krcw_ddr_succession_question
+	}
+	option = {
+		name = krcw_ddr_2.a
+		ai_chance = {
+			factor = 60
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		add_political_power = 50
+		add_stability = 0.02
+	}
+	option = {
+		name = krcw_ddr_2.b
+		ai_chance = {
+			factor = 10
+		}
+		add_political_power = -30
+		add_stability = -0.03
+		if = { limit = { has_idea = krcw_ddr_kaiser_shadow } remove_ideas = krcw_ddr_kaiser_shadow }
+		set_country_flag = krcw_ddr_monarchist_path
+	}
+	option = {
+		name = krcw_ddr_2.c
+		ai_chance = {
+			factor = 10
+		}
+		add_political_power = 25
+		add_stability = -0.02
+		set_country_flag = krcw_ddr_liberal_opening
+	}
+}
+
+country_event = {
+	id = krcw_ddr.3
+	title = krcw_ddr_3_t
+	desc = krcw_ddr_3_d
+	picture = GFX_krcw_eu_d12_ger_strike_c
+	fire_only_once = yes
+	trigger = {
+		tag = DDR
+		date > 1950.12.15
+		date < 1952.6.21
+		has_government = nationalist
+		NOT = { has_country_flag = krcw_ddr_leipzig_strike }
+	}
+	mean_time_to_happen = {
+		months = 7
+	}
+	immediate = {
+		set_country_flag = krcw_ddr_leipzig_strike
+		add_ideas = krcw_ddr_reparations_unrest
+	}
+	option = {
+		name = krcw_ddr_3.a
+		ai_chance = {
+			factor = 30
+		}
+		add_stability = -0.05
+		add_war_support = 0.03
+		add_political_power = -50
+		if = { limit = { has_idea = krcw_ddr_reparations_unrest } remove_ideas = krcw_ddr_reparations_unrest }
+		set_country_flag = krcw_ddr_strike_crushed
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = DDR modifier = MA_protectorate_loyal } } }
+	}
+	option = {
+		name = krcw_ddr_3.b
+		ai_chance = {
+			factor = 50
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		add_stability = 0.04
+		add_political_power = -25
+		add_manpower = -5000
+		set_country_flag = krcw_ddr_strike_negotiated
+	}
+	option = {
+		name = krcw_ddr_3.c
+		ai_chance = {
+			factor = 20
+		}
+		add_political_power = -30
+		custom_effect_tooltip = krcw_ddr_moscow_decides_tt
+		random_list = {
+			35 = {
+				modifier = { factor = 1.5 SOV = { has_opinion = { target = ROOT value > 30 } } }
+				modifier = { factor = 1.5 has_global_flag = KRCW_savinkov_dead }
+				modifier = { factor = 1.3 has_country_flag = krcw_ddr_road_loyal }
+				country_event = { id = krcw_ddr.5 days = 14 }
+			}
+			65 = {
+				country_event = { id = krcw_ddr.4 days = 14 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = krcw_ddr.4
+	title = krcw_ddr_4_t
+	desc = krcw_ddr_4_d
+	picture = GFX_krcw_eu_d12_ger_soldiers_c
+	is_triggered_only = yes
+	option = {
+		name = krcw_ddr_4.a
+		ai_chance = {
+			factor = 90
+		}
+		add_stability = -0.03
+		add_political_power = -25
+		set_country_flag = krcw_ddr_relief_refused
+	}
+	option = {
+		name = krcw_ddr_4.b
+		ai_chance = {
+			base = 10
+		}
+		add_stability = 0.02
+		add_war_support = -0.03
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+		set_country_flag = krcw_ddr_relief_refused
+	}
+}
+
+country_event = {
+	id = krcw_ddr.5
+	title = krcw_ddr_5_t
+	desc = krcw_ddr_5_d
+	picture = GFX_krcw_eu_d12_ger_reichstag
+	is_triggered_only = yes
+	option = {
+		name = krcw_ddr_5.a
+		ai_chance = {
+			factor = 90
+		}
+		if = { limit = { has_idea = krcw_ddr_reparations_unrest } remove_ideas = krcw_ddr_reparations_unrest }
+		add_stability = 0.04
+		army_experience = -10
+		set_country_flag = krcw_ddr_relief_granted
+		if = { limit = { country_exists = SOV } add_opinion_modifier = { target = SOV modifier = krcw_ddr_loyal_ally } }
+	}
+	option = {
+		name = krcw_ddr_5.b
+		ai_chance = {
+			base = 20
+		}
+		if = { limit = { has_idea = krcw_ddr_reparations_unrest } remove_ideas = krcw_ddr_reparations_unrest }
+		add_political_power = -50
+		set_country_flag = krcw_ddr_relief_granted
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+	}
+}
+
+country_event = {
+	id = krcw_ddr.10
+	title = krcw_ddr_10_t
+	desc = krcw_ddr_10_d
+	picture = GFX_krcw_eu_d12_ger_reichstag
+	is_triggered_only = yes
+	option = {
+		name = krcw_ddr_10.a
+		ai_chance = {
+			factor = 90
+		}
+		add_stability = 0.02
+		add_to_variable = { global.krcw_ti_crisis = 1 }
+		clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+	}
+	option = {
+		name = krcw_ddr_10.b
+		ai_chance = {
+			base = 30
+		}
+		add_political_power = -25
+		add_stability = -0.01
+		add_to_variable = { global.krcw_ti_crisis = -1 }
+		clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+	}
+}

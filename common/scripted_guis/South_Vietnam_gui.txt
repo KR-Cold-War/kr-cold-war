@@ -1,0 +1,2517 @@
+# KRCW (build/patch_residue.py): 5 OTL country GUIs hidden while KRCW_active
+scripted_gui = {
+	VIE_Conflict_Prompt_Display = {
+		context_type = player_context
+		window_name = "VIE_Conflict_Prompt"
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = VIE
+			check_variable = {
+				show_vie_sect_conflict = 1
+			}
+		}
+		ai_enabled = {
+			original_tag = VIE
+		}
+		ai_test_interval = 48
+		ai_weights = {
+			okay_button_click = {
+				ai_will_do = {
+					base = 1000
+				}
+			}
+		}
+		properties = {
+			flag_for_conflict_screen = {
+				image = "[VIE.GetFlag]"
+			}
+			flag_for_conflict_screen_VIE = {
+				image = "[VIE.GetFlag]"
+			}
+		}
+		effects = {
+			okay_button_click = {
+				if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 1
+						}
+						check_variable = {
+							VIE_Conflict_ID = 1
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 2
+						}
+						check_variable = {
+							VIE_Conflict_ID = 1
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 3
+						}
+						check_variable = {
+							VIE_Conflict_ID = 1
+						}
+					}
+					set_country_flag = Binh_Xuyen_Facilities_Seized
+					286 = {
+						add_extra_state_shared_building_slots = 2
+						add_building_construction = {
+							type = office_park
+							level = 2
+							instant_build = yes
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 4
+						}
+						check_variable = {
+							VIE_Conflict_ID = 1
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 1
+						}
+						check_variable = {
+							VIE_Conflict_ID = 2
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 2
+						}
+						check_variable = {
+							VIE_Conflict_ID = 2
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 3
+						}
+						check_variable = {
+							VIE_Conflict_ID = 2
+						}
+					}
+					set_country_flag = Cao_Dai_Facilities_Seized
+					1755 = {
+						add_extra_state_shared_building_slots = 2
+						add_building_construction = {
+							type = arms_factory
+							level = 2
+							instant_build = yes
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 4
+						}
+						check_variable = {
+							VIE_Conflict_ID = 2
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 1
+						}
+						check_variable = {
+							VIE_Conflict_ID = 3
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 2
+						}
+						check_variable = {
+							VIE_Conflict_ID = 3
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 3
+						}
+						check_variable = {
+							VIE_Conflict_ID = 3
+						}
+					}
+					set_country_flag = Harmonist_Facilities_Seized
+					1285 = {
+						add_extra_state_shared_building_slots = 2
+						add_building_construction = {
+							type = agri_industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = infrastructure
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 4
+						}
+						check_variable = {
+							VIE_Conflict_ID = 3
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 1
+						}
+						check_variable = {
+							VIE_Conflict_ID = 4
+						}
+					}
+
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 2
+						}
+						check_variable = {
+							VIE_Conflict_ID = 4
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 3
+						}
+						check_variable = {
+							VIE_Conflict_ID = 4
+						}
+					}
+					set_country_flag = Hoa_Hao_Facilities_Seized
+					1285 = {
+						add_extra_state_shared_building_slots = 2
+						add_building_construction = {
+							type = agri_industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 4
+						}
+						check_variable = {
+							VIE_Conflict_ID = 4
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 1
+						}
+						check_variable = {
+							VIE_Conflict_ID = 5
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 2
+						}
+						check_variable = {
+							VIE_Conflict_ID = 5
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 3
+						}
+						check_variable = {
+							VIE_Conflict_ID = 5
+						}
+					}
+					set_country_flag = UMDC_Facilities_Seized
+					1285 = {
+						add_extra_state_shared_building_slots = 2
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+						add_building_construction = {
+							type = arms_factory
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							VIE_Sect_Conflict_Prompt = 4
+						}
+						check_variable = {
+							VIE_Conflict_ID = 5
+						}
+					}
+				}
+				else = { }
+				set_variable = {
+					show_vie_sect_conflict = 0
+				}
+				set_variable = {
+					VIE_Sect_Conflict_Prompt = 0
+				}
+				clamp_variable = {
+					var = Binh_Xuyen_Loyalty
+					min = 0
+					max = 100
+				}
+				clamp_variable = {
+					var = Binh_Xuyen_Annihilation
+					min = 0
+					max = 100
+				}
+				clamp_variable = {
+					var = Cao_Dai_Annihilation
+					min = 0
+					max = 100
+				}
+				clamp_variable = {
+					var = Cao_Dai_Loyalty
+					min = 0
+					max = 100
+				}
+				clamp_variable = {
+					var = Harmonism_Annihilation
+					min = 0
+					max = 100
+				}
+				clamp_variable = {
+					var = Harmonism_Loyalty
+					min = 0
+					max = 100
+				}
+				clamp_variable = {
+					var = UMDC_Annihilation
+					min = 0
+					max = 100
+				}
+				clamp_variable = {
+					var = UMDC_Loyalty
+					min = 0
+					max = 100
+				}
+				clamp_variable = {
+					var = Hoa_Hao_Annihilation
+					min = 0
+					max = 100
+				}
+				clamp_variable = {
+					var = Hoa_Hao_Loyalty
+					min = 0
+					max = 100
+				}
+			}
+
+		}
+	}
+	VIE_Sectarian_Conflict_GUI_Menu = {
+		context_type = player_context
+		window_name = "VIE_Sectarian_Conflict_GUI"
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = VIE
+			has_country_flag = activate_sect_menu
+			OR = {
+				is_ai = yes
+				check_variable = {
+					show_vie_sect_gui = 1
+				}
+			}
+		}
+		ai_enabled = {
+			original_tag = VIE
+			has_country_flag = activate_sect_menu
+		}
+		ai_test_interval = 24
+		ai_max_weight_taken_per_test = 3
+		ai_weights = {
+			# NOTE: Loyalty/Annihilation variables are inverted (0 = fully loyal / fully annihilated)
+			Sect_Slot_1_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 4
+						check_variable = { Binh_Xuyen_Loyalty > 2 }
+						NOT = { VIE_ai_opposes_binh_xuyen = yes }
+					}
+					modifier = {
+						factor = 1.5
+						has_country_flag = VIE_Main_Bao_Dai
+					}
+					modifier = {
+						factor = 5
+						check_variable = { Binh_Xuyen_Annihilation > 2 }
+						VIE_ai_opposes_binh_xuyen = yes
+					}
+					modifier = {
+						factor = 0
+						OR = {
+							has_country_flag = crushed_binh_xuyen
+							has_country_flag = integrated_binh_xuyen
+						}
+					}
+				}
+			}
+			Sect_Slot_2_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { Cao_Dai_Loyalty > 2 }
+					}
+					modifier = {
+						factor = 0
+						OR = {
+							has_country_flag = crushed_cao_dai
+							has_country_flag = integrated_cao_dai
+						}
+					}
+				}
+			}
+			Sect_Slot_3_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 2
+						check_variable = { Harmonism_Loyalty > 40 }
+					}
+					modifier = {
+						factor = 0
+						OR = {
+							has_country_flag = crushed_harmonism
+							has_country_flag = integrated_harmonism
+						}
+					}
+					modifier = {
+						factor = 0
+						NOT = { has_country_flag = activate_harmonism }
+					}
+				}
+			}
+			Sect_Slot_4_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { Hoa_Hao_Loyalty > 2 }
+					}
+					modifier = {
+						factor = 0
+						OR = {
+							has_country_flag = crushed_hoa_hao
+							has_country_flag = integrated_hoa_hao
+						}
+					}
+				}
+			}
+			Sect_Slot_5_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 4
+						check_variable = { UMDC_Loyalty > 2 }
+					}
+					modifier = {
+						factor = 0
+						OR = {
+							has_country_flag = crushed_umdc
+							has_country_flag = integrated_umdc
+						}
+					}
+				}
+			}
+			VIE_Transparent_Region_1_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_1_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_2_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_2_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_3_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_3_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_4_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_4_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_5_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_5_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_6_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_6_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_7_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_7_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_8_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_8_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_9_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_9_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_10_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_10_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_11_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_11_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_12_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_12_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_13_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_13_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_14_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_14_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_15_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_15_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_16_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_16_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_17_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_17_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_18_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_18_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_19_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_19_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_20_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_20_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_21_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_21_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_22_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_22_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_23_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_23_Faction > 1 }
+					}
+				}
+			}
+			VIE_Transparent_Region_24_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 3
+						check_variable = { VIE_Region_24_Faction > 1 }
+					}
+				}
+			}
+			Warlord_Slot_1_Button_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 2
+						OR = {
+							check_variable = { VIE_Warlord_Status_1 = 2 }
+							check_variable = { VIE_Warlord_Status_1 = 4 }
+						}
+					}
+				}
+			}
+			Warlord_Slot_2_Button_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 2
+						OR = {
+							check_variable = { VIE_Warlord_Status_2 = 2 }
+							check_variable = { VIE_Warlord_Status_2 = 4 }
+						}
+					}
+				}
+			}
+			Warlord_Slot_3_Button_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 2
+						OR = {
+							check_variable = { VIE_Warlord_Status_3 = 2 }
+							check_variable = { VIE_Warlord_Status_3 = 4 }
+						}
+					}
+				}
+			}
+			Warlord_Slot_4_Button_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 2
+						OR = {
+							check_variable = { VIE_Warlord_Status_4 = 2 }
+							check_variable = { VIE_Warlord_Status_4 = 4 }
+						}
+					}
+				}
+			}
+			Warlord_Slot_5_Button_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 2
+						OR = {
+							check_variable = { VIE_Warlord_Status_5 = 2 }
+							check_variable = { VIE_Warlord_Status_5 = 4 }
+						}
+					}
+				}
+			}
+			Warlord_Slot_6_Button_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 2
+						OR = {
+							check_variable = { VIE_Warlord_Status_6 = 2 }
+							check_variable = { VIE_Warlord_Status_6 = 4 }
+						}
+					}
+				}
+			}
+			Warlord_Slot_7_Button_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 2
+						OR = {
+							check_variable = { VIE_Warlord_Status_7 = 2 }
+							check_variable = { VIE_Warlord_Status_7 = 4 }
+						}
+					}
+				}
+			}
+			Warlord_Slot_8_Button_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 2
+						OR = {
+							check_variable = { VIE_Warlord_Status_8 = 2 }
+							check_variable = { VIE_Warlord_Status_8 = 4 }
+						}
+					}
+				}
+			}
+		}
+		properties = {
+			Faction_Leader = { image = "[GetVieFactionLeaderPortrait]" }
+			Sect_Slot_1_Bar_1 = { frame = Binh_Xuyen_Loyalty }
+			Sect_Slot_1_Bar_2 = { frame = Binh_Xuyen_Annihilation }
+			Sect_Slot_2_Bar_1 = { frame = Cao_Dai_Loyalty }
+			Sect_Slot_2_Bar_2 = { frame = Cao_Dai_Annihilation }
+			Sect_Slot_3_Bar_1 = { frame = Harmonism_Loyalty }
+			Sect_Slot_3_Bar_2 = { frame = Harmonism_Annihilation }
+			Sect_Slot_4_Bar_1 = { frame = Hoa_Hao_Loyalty }
+			Sect_Slot_4_Bar_2 = { frame = Hoa_Hao_Annihilation }
+			Sect_Slot_5_Bar_1 = { frame = UMDC_Loyalty }
+			Sect_Slot_5_Bar_2 = { frame = UMDC_Annihilation }
+
+			VIE_Region_1 = { frame = VIE_Region_1_Faction }
+			VIE_Region_2 = { frame = VIE_Region_2_Faction }
+			VIE_Region_3 = { frame = VIE_Region_3_Faction }
+			VIE_Region_4 = { frame = VIE_Region_4_Faction }
+			VIE_Region_5 = { frame = VIE_Region_5_Faction }
+			VIE_Region_6 = { frame = VIE_Region_6_Faction }
+			VIE_Region_7 = { frame = VIE_Region_7_Faction }
+			VIE_Region_8 = { frame = VIE_Region_8_Faction }
+			VIE_Region_9 = { frame = VIE_Region_9_Faction }
+			VIE_Region_10 = { frame = VIE_Region_10_Faction }
+			VIE_Region_11 = { frame = VIE_Region_11_Faction }
+			VIE_Region_12 = { frame = VIE_Region_12_Faction }
+			VIE_Region_13 = { frame = VIE_Region_13_Faction }
+			VIE_Region_14 = { frame = VIE_Region_14_Faction }
+			VIE_Region_15 = { frame = VIE_Region_15_Faction }
+			VIE_Region_16 = { frame = VIE_Region_16_Faction }
+			VIE_Region_17 = { frame = VIE_Region_17_Faction }
+			VIE_Region_18 = { frame = VIE_Region_18_Faction }
+			VIE_Region_19 = { frame = VIE_Region_19_Faction }
+			VIE_Region_20 = { frame = VIE_Region_20_Faction }
+			VIE_Region_21 = { frame = VIE_Region_21_Faction }
+			VIE_Region_22 = { frame = VIE_Region_22_Faction }
+			VIE_Region_23 = { frame = VIE_Region_23_Faction }
+			VIE_Region_24 = { frame = VIE_Region_24_Faction }
+		}
+		effects = {
+			VIE_Transparent_Region_1_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 1 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_1_Faction }
+			}
+			VIE_Transparent_Region_2_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 2 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_2_Faction }
+			}
+			VIE_Transparent_Region_3_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 3 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_3_Faction }
+			}
+			VIE_Transparent_Region_4_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 4 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_4_Faction }
+			}
+			VIE_Transparent_Region_5_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 5 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_5_Faction }
+			}
+			VIE_Transparent_Region_6_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 6 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_6_Faction }
+			}
+			VIE_Transparent_Region_7_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 7 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_7_Faction }
+			}
+			VIE_Transparent_Region_8_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 8 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_8_Faction }
+			}
+			VIE_Transparent_Region_9_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 9 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_9_Faction }
+			}
+			VIE_Transparent_Region_10_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 10 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_10_Faction }
+			}
+			VIE_Transparent_Region_11_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 11 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_11_Faction }
+			}
+			VIE_Transparent_Region_12_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 12 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_12_Faction }
+			}
+			VIE_Transparent_Region_13_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 13 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_13_Faction }
+			}
+			VIE_Transparent_Region_14_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 14 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_14_Faction }
+			}
+			VIE_Transparent_Region_15_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 15 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_15_Faction }
+			}
+			VIE_Transparent_Region_16_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 16 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_16_Faction }
+			}
+			VIE_Transparent_Region_17_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 17 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_17_Faction }
+			}
+			VIE_Transparent_Region_18_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 18 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_18_Faction }
+			}
+			VIE_Transparent_Region_19_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 19 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_19_Faction }
+			}
+			VIE_Transparent_Region_20_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 20 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_20_Faction }
+			}
+			VIE_Transparent_Region_21_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 21 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_21_Faction }
+			}
+			VIE_Transparent_Region_22_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 22 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_22_Faction }
+			}
+			VIE_Transparent_Region_23_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 23 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_23_Faction }
+			}
+			VIE_Transparent_Region_24_click = {
+				set_variable = { VIE_PROVINCE_DISPLAY = 24 }
+				set_variable = { VIE_PROVINCE_DISPLAY_CONTROLLER = VIE_Region_24_Faction }
+			}
+			Sect_Slot_1_click = {
+				set_variable = { FACTION_OVERVIEW_DISPLAY = 1 }
+				add_binh_xuyen_decisions = yes
+			}
+			Sect_Slot_2_click = {
+				set_variable = { FACTION_OVERVIEW_DISPLAY = 2 }
+				add_cao_dai_decisions = yes
+			}
+			Sect_Slot_3_click = {
+				set_variable = { FACTION_OVERVIEW_DISPLAY = 3 }
+				add_harmonism_decisions = yes
+			}
+			Sect_Slot_4_click = {
+				set_variable = { FACTION_OVERVIEW_DISPLAY = 4 }
+				add_hoa_hao_decisions = yes
+			}
+			Sect_Slot_5_click = {
+				set_variable = { FACTION_OVERVIEW_DISPLAY = 5 }
+				add_umdc_decisions = yes
+			}
+			Warlord_Slot_1_Button_click = {
+				set_variable = { FACTION_OVERVIEW_DISPLAY = 6 }
+				add_cao_dai_decisions = yes
+			}
+			Warlord_Slot_2_Button_click = {
+				set_variable = { FACTION_OVERVIEW_DISPLAY = 7 }
+				add_binh_xuyen_decisions = yes
+			}
+			Warlord_Slot_3_Button_click = {
+				set_variable = { FACTION_OVERVIEW_DISPLAY = 8 }
+				add_umdc_decisions = yes
+			}
+			Warlord_Slot_4_Button_click = {
+				set_variable = { FACTION_OVERVIEW_DISPLAY = 9 }
+				add_hoa_hao_decisions = yes
+			}
+			Warlord_Slot_5_Button_click = {
+				set_variable = { FACTION_OVERVIEW_DISPLAY = 10 }
+				add_hoa_hao_decisions = yes
+			}
+			Warlord_Slot_6_Button_click = {
+				set_variable = { FACTION_OVERVIEW_DISPLAY = 11 }
+				add_hoa_hao_decisions = yes
+			}
+			Warlord_Slot_7_Button_click = {
+				set_variable = { FACTION_OVERVIEW_DISPLAY = 12 }
+				add_hoa_hao_decisions = yes
+			}
+			Warlord_Slot_8_Button_click = {
+				set_variable = { FACTION_OVERVIEW_DISPLAY = 13 }
+				add_cao_dai_decisions = yes
+			}
+			close_button_click = {
+				set_variable = {
+					show_vie_sect_gui = 0
+				}
+				vietnam_sect_conditions_met_check = yes
+				vietnam_faction_ui_update_number = yes
+			}
+		}
+	}
+	vietnam_factionalism_decisions = {
+		context_type = player_context
+		window_name = "vietnam_factionalism_decisions_list_menu"
+		parent_scripted_gui = "VIE_Sectarian_Conflict_GUI_Menu"
+
+		dynamic_lists = {
+			vietnam_factionalism_decisions_listing_grid = {
+				array = vietnam_factionalism_decisions_list
+				change_scope = no
+				entry_container = vietnam_factionalism_decisions_list_entry
+			}
+		}
+		ai_enabled = {
+			original_tag = VIE
+			has_country_flag = activate_sect_menu
+		}
+		ai_test_interval = 15
+		ai_test_variance = 5
+		ai_max_weight_taken_per_test = 1
+		ai_weights = {
+			decision_item_bg_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 10
+						has_political_power > 50
+					}
+					modifier = {
+						factor = 0
+						has_political_power < 40
+					}
+					modifier = {
+						factor = 0
+						has_country_flag = Recent_VIE_Sect_Decision
+					}
+					modifier = {
+						factor = 0
+						NOT = { vietnam_sect_pseudo_decision_enabled = yes }
+					}
+
+					# they start high and grind DOWN to 0 (< 3 = integration/dismantle ready)
+
+					# ===== BINH-XUYEN (1xx): positive/pragmatic by default =====
+					modifier = {
+						factor = 8
+						NOT = { VIE_ai_opposes_binh_xuyen = yes }
+						check_variable = { Binh_Xuyen_Loyalty > 2 }
+						OR = {
+							check_variable = { vietnam_factionalism_decisions_list^i = 100 }	#Recognize the Cong-an Xung-phong
+							check_variable = { vietnam_factionalism_decisions_list^i = 101 }	#Promote Le Van Vien
+							check_variable = { vietnam_factionalism_decisions_list^i = 102 }	#Permit the opium trade
+							check_variable = { vietnam_factionalism_decisions_list^i = 103 }	#Allow casino and brothel expansion
+							check_variable = { vietnam_factionalism_decisions_list^i = 114 }	#Court the Binh-Xuyen bosses
+						}
+					}
+					modifier = {
+						factor = 12
+						NOT = { VIE_ai_opposes_binh_xuyen = yes }
+						OR = {
+							check_variable = { vietnam_factionalism_decisions_list^i = 107 }	#Recognize the Binh-Xuyen monopoly
+							AND = {
+								check_variable = { vietnam_factionalism_decisions_list^i = 113 }	#Integrate the Binh-Xuyen
+								check_variable = { Binh_Xuyen_Loyalty < 3 }
+							}
+						}
+					}
+					modifier = {
+						factor = 2
+						NOT = { VIE_ai_opposes_binh_xuyen = yes }
+						OR = {
+							check_variable = { vietnam_factionalism_decisions_list^i = 104 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 105 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 106 }
+						}
+					}
+					modifier = {
+						factor = 0.1
+						NOT = { VIE_ai_opposes_binh_xuyen = yes }
+						OR = {
+							check_variable = { vietnam_factionalism_decisions_list^i = 108 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 109 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 110 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 111 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 112 }
+						}
+					}
+					modifier = {
+						factor = 8
+						VIE_ai_opposes_binh_xuyen = yes
+						check_variable = { Binh_Xuyen_Annihilation > 2 }
+						OR = {
+							check_variable = { vietnam_factionalism_decisions_list^i = 109 }	#Attack the Binh-Xuyen army
+							check_variable = { vietnam_factionalism_decisions_list^i = 110 }	#Seize Binh-Xuyen facilities
+						}
+					}
+					modifier = {
+						factor = 20
+						VIE_ai_opposes_binh_xuyen = yes
+						check_variable = { vietnam_factionalism_decisions_list^i = 112 }	#Dismantle the Binh-Xuyen
+						check_variable = { Binh_Xuyen_Annihilation < 3 }
+					}
+					modifier = {
+						factor = 0
+						VIE_ai_opposes_binh_xuyen = yes
+						OR = {
+							check_variable = { vietnam_factionalism_decisions_list^i = 100 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 101 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 102 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 103 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 107 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 113 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 114 }
+						}
+					}
+
+					# ===== POSITIVE SECTS: CAO-DAI (2xx) and HOA-HAO (4xx) =====
+					modifier = {
+						factor = 8
+						OR = {
+							AND = {
+								check_variable = { Cao_Dai_Loyalty > 2 }
+								OR = {
+									check_variable = { vietnam_factionalism_decisions_list^i = 200 }
+									check_variable = { vietnam_factionalism_decisions_list^i = 201 }
+									check_variable = { vietnam_factionalism_decisions_list^i = 202 }
+									check_variable = { vietnam_factionalism_decisions_list^i = 203 }
+									check_variable = { vietnam_factionalism_decisions_list^i = 214 }
+								}
+							}
+							AND = {
+								check_variable = { Hoa_Hao_Loyalty > 2 }
+								OR = {
+									check_variable = { vietnam_factionalism_decisions_list^i = 400 }
+									check_variable = { vietnam_factionalism_decisions_list^i = 401 }
+									check_variable = { vietnam_factionalism_decisions_list^i = 402 }
+									check_variable = { vietnam_factionalism_decisions_list^i = 403 }
+									check_variable = { vietnam_factionalism_decisions_list^i = 414 }
+								}
+							}
+						}
+					}
+					modifier = {
+						factor = 12
+						OR = {
+							check_variable = { vietnam_factionalism_decisions_list^i = 207 }	#Recognize the Cao-Dai faith
+							check_variable = { vietnam_factionalism_decisions_list^i = 407 }	#Recognize the Hoa-Hao faith
+							AND = {
+								check_variable = { vietnam_factionalism_decisions_list^i = 213 }
+								check_variable = { Cao_Dai_Loyalty < 3 }
+							}
+							AND = {
+								check_variable = { vietnam_factionalism_decisions_list^i = 413 }
+								check_variable = { Hoa_Hao_Loyalty < 3 }
+							}
+						}
+					}
+					modifier = {
+						factor = 2
+						OR = {
+							check_variable = { vietnam_factionalism_decisions_list^i = 204 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 205 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 206 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 404 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 405 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 406 }
+						}
+					}
+					modifier = {
+						factor = 0.1
+						OR = {
+							check_variable = { vietnam_factionalism_decisions_list^i = 208 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 209 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 210 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 211 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 212 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 408 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 409 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 410 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 411 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 412 }
+						}
+					}
+
+					# ===== UMDC (5xx): neutral cooperation directed toward integration =====
+					modifier = {
+						factor = 6
+						check_variable = { UMDC_Loyalty > 2 }
+						OR = {
+							check_variable = { vietnam_factionalism_decisions_list^i = 500 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 502 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 503 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 514 }
+						}
+					}
+					modifier = {
+						factor = 20
+						check_variable = { vietnam_factionalism_decisions_list^i = 513 }	#Integrate the UMDC
+						check_variable = { UMDC_Loyalty < 3 }
+					}
+					modifier = {
+						factor = 0.1
+						OR = {
+							check_variable = { vietnam_factionalism_decisions_list^i = 507 }	#Do not privilege Catholicism
+							check_variable = { vietnam_factionalism_decisions_list^i = 508 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 509 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 510 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 511 }
+							check_variable = { vietnam_factionalism_decisions_list^i = 512 }
+						}
+					}
+
+					# ===== NEUTRAL SECT: Harmonism (3xx) - placate while relations are poor =====
+					modifier = {
+						factor = 4
+						OR = {
+							AND = {
+								check_variable = { vietnam_factionalism_decisions_list^i = 300 }	#Recognize the Harmonious Way Movement
+								check_variable = { Harmonism_Loyalty > 40 }
+							}
+							AND = {
+								check_variable = { vietnam_factionalism_decisions_list^i = 302 }	#Permit Coconut Monk's Radio Broadcasting
+								check_variable = { Harmonism_Loyalty > 40 }
+							}
+							AND = {
+								check_variable = { vietnam_factionalism_decisions_list^i = 314 }	#Court the Coconut Monk's Disciples
+								check_variable = { Harmonism_Loyalty > 40 }
+							}
+						}
+					}
+					modifier = {
+						factor = 0
+						OR = {
+							check_variable = { vietnam_factionalism_decisions_list^i = 301 }	#Exploit Coconut Monk's Wealth
+							check_variable = { vietnam_factionalism_decisions_list^i = 307 }	#Subsidize the Coconut Faith
+							check_variable = { vietnam_factionalism_decisions_list^i = 309 }	#Attack Harmonist Forces
+							check_variable = { vietnam_factionalism_decisions_list^i = 310 }	#Seize Harmonist Facilities
+							check_variable = { vietnam_factionalism_decisions_list^i = 312 }	#Crush Harmonism
+						}
+					}
+				}
+			}
+		}
+		effects = {
+			decision_item_bg_click = {
+				set_country_flag = {
+					flag = Recent_VIE_Sect_Decision
+					days = 3
+					value = 1
+				}
+				vietnam_faction_ui_decision_click = yes
+			}
+		}
+		triggers = {
+			decision_item_bg_click_enabled = {
+				NOT = {
+					has_country_flag = Recent_VIE_Sect_Decision
+				}
+				has_political_power > 15
+				vietnam_sect_pseudo_decision_enabled = yes
+			}
+		}
+	}
+	VIE_Bao_Dai_Power_Minigame_Panel = {
+		context_type = decision_category
+		window_name = "VIE_Bao_Dai_Power_Minigame_Menu"
+		dirty = VIE_Refresh_Variable
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = VIE
+		}
+		ai_enabled = {
+			always = no
+		}
+
+		properties = {
+			country_flag_for_trade_screen = {
+				image = "[VIE.GetFlag]"
+			}
+			country_flag_for_trade_screen_second = {
+				image = "[FRA.GetFlag]"
+			}
+			Influence_progress_bar = {
+				frame = VIE_Influence
+			}
+			Main_French_progress_bar = {
+				frame = Main_Favoritism
+			}
+			Main_Frame = {
+				image = [GetMainPortraitVie]
+			}
+			Alt_French_progress_bar = {
+				frame = Alt_Favoritism
+			}
+			Alt_Frame = {
+				image = [GetAltPortraitVie]
+			}
+		}
+	}
+	VIE_State_Integration_Panel = {
+		context_type = decision_category
+		window_name = "VIE_State_Integration_GUI"
+		dirty = VIE_Refresh_State_Gui
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			always = yes
+		}
+
+		ai_enabled ={
+			original_tag = VIE
+		}
+		ai_test_interval = 24
+		ai_max_weight_taken_per_test = 1
+        ai_weights = {
+			VIE_State_1_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_1_Status }
+							check_variable = { VIE_State_1_Status = 1 }
+							check_variable = { VIE_State_1_Status = 2 }
+							check_variable = { VIE_State_1_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_1_Status = 3 }
+							check_variable = { VIE_State_1_Status = 4 }
+							check_variable = { VIE_State_1_Status = 5 }
+							check_variable = { VIE_State_1_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_2_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_2_Status }
+							check_variable = { VIE_State_2_Status = 1 }
+							check_variable = { VIE_State_2_Status = 2 }
+							check_variable = { VIE_State_2_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_2_Status = 3 }
+							check_variable = { VIE_State_2_Status = 4 }
+							check_variable = { VIE_State_2_Status = 5 }
+							check_variable = { VIE_State_2_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_3_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_3_Status }
+							check_variable = { VIE_State_3_Status = 1 }
+							check_variable = { VIE_State_3_Status = 2 }
+							check_variable = { VIE_State_3_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_3_Status = 3 }
+							check_variable = { VIE_State_3_Status = 4 }
+							check_variable = { VIE_State_3_Status = 5 }
+							check_variable = { VIE_State_3_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_4_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_4_Status }
+							check_variable = { VIE_State_4_Status = 1 }
+							check_variable = { VIE_State_4_Status = 2 }
+							check_variable = { VIE_State_4_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_4_Status = 3 }
+							check_variable = { VIE_State_4_Status = 4 }
+							check_variable = { VIE_State_4_Status = 5 }
+							check_variable = { VIE_State_4_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_5_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_5_Status }
+							check_variable = { VIE_State_5_Status = 1 }
+							check_variable = { VIE_State_5_Status = 2 }
+							check_variable = { VIE_State_5_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_5_Status = 3 }
+							check_variable = { VIE_State_5_Status = 4 }
+							check_variable = { VIE_State_5_Status = 5 }
+							check_variable = { VIE_State_5_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_6_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_6_Status }
+							check_variable = { VIE_State_6_Status = 1 }
+							check_variable = { VIE_State_6_Status = 2 }
+							check_variable = { VIE_State_6_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_6_Status = 3 }
+							check_variable = { VIE_State_6_Status = 4 }
+							check_variable = { VIE_State_6_Status = 5 }
+							check_variable = { VIE_State_6_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_7_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_7_Status }
+							check_variable = { VIE_State_7_Status = 1 }
+							check_variable = { VIE_State_7_Status = 2 }
+							check_variable = { VIE_State_7_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_7_Status = 3 }
+							check_variable = { VIE_State_7_Status = 4 }
+							check_variable = { VIE_State_7_Status = 5 }
+							check_variable = { VIE_State_7_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_8_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_8_Status }
+							check_variable = { VIE_State_8_Status = 1 }
+							check_variable = { VIE_State_8_Status = 2 }
+							check_variable = { VIE_State_8_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_8_Status = 3 }
+							check_variable = { VIE_State_8_Status = 4 }
+							check_variable = { VIE_State_8_Status = 5 }
+							check_variable = { VIE_State_8_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_9_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_9_Status }
+							check_variable = { VIE_State_9_Status = 1 }
+							check_variable = { VIE_State_9_Status = 2 }
+							check_variable = { VIE_State_9_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_9_Status = 3 }
+							check_variable = { VIE_State_9_Status = 4 }
+							check_variable = { VIE_State_9_Status = 5 }
+							check_variable = { VIE_State_9_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_10_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_10_Status }
+							check_variable = { VIE_State_10_Status = 1 }
+							check_variable = { VIE_State_10_Status = 2 }
+							check_variable = { VIE_State_10_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_10_Status = 3 }
+							check_variable = { VIE_State_10_Status = 4 }
+							check_variable = { VIE_State_10_Status = 5 }
+							check_variable = { VIE_State_10_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_11_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_11_Status }
+							check_variable = { VIE_State_11_Status = 1 }
+							check_variable = { VIE_State_11_Status = 2 }
+							check_variable = { VIE_State_11_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_11_Status = 3 }
+							check_variable = { VIE_State_11_Status = 4 }
+							check_variable = { VIE_State_11_Status = 5 }
+							check_variable = { VIE_State_11_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_12_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_12_Status }
+							check_variable = { VIE_State_12_Status = 1 }
+							check_variable = { VIE_State_12_Status = 2 }
+							check_variable = { VIE_State_12_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_12_Status = 3 }
+							check_variable = { VIE_State_12_Status = 4 }
+							check_variable = { VIE_State_12_Status = 5 }
+							check_variable = { VIE_State_12_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_13_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_13_Status }
+							check_variable = { VIE_State_13_Status = 1 }
+							check_variable = { VIE_State_13_Status = 2 }
+							check_variable = { VIE_State_13_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_13_Status = 3 }
+							check_variable = { VIE_State_13_Status = 4 }
+							check_variable = { VIE_State_13_Status = 5 }
+							check_variable = { VIE_State_13_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_14_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_14_Status }
+							check_variable = { VIE_State_14_Status = 1 }
+							check_variable = { VIE_State_14_Status = 2 }
+							check_variable = { VIE_State_14_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_14_Status = 3 }
+							check_variable = { VIE_State_14_Status = 4 }
+							check_variable = { VIE_State_14_Status = 5 }
+							check_variable = { VIE_State_14_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_15_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_15_Status }
+							check_variable = { VIE_State_15_Status = 1 }
+							check_variable = { VIE_State_15_Status = 2 }
+							check_variable = { VIE_State_15_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_15_Status = 3 }
+							check_variable = { VIE_State_15_Status = 4 }
+							check_variable = { VIE_State_15_Status = 5 }
+							check_variable = { VIE_State_15_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_16_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_16_Status }
+							check_variable = { VIE_State_16_Status = 1 }
+							check_variable = { VIE_State_16_Status = 2 }
+							check_variable = { VIE_State_16_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_16_Status = 3 }
+							check_variable = { VIE_State_16_Status = 4 }
+							check_variable = { VIE_State_16_Status = 5 }
+							check_variable = { VIE_State_16_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_17_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_17_Status }
+							check_variable = { VIE_State_17_Status = 1 }
+							check_variable = { VIE_State_17_Status = 2 }
+							check_variable = { VIE_State_17_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_17_Status = 3 }
+							check_variable = { VIE_State_17_Status = 4 }
+							check_variable = { VIE_State_17_Status = 5 }
+							check_variable = { VIE_State_17_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_18_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_18_Status }
+							check_variable = { VIE_State_18_Status = 1 }
+							check_variable = { VIE_State_18_Status = 2 }
+							check_variable = { VIE_State_18_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_18_Status = 3 }
+							check_variable = { VIE_State_18_Status = 4 }
+							check_variable = { VIE_State_18_Status = 5 }
+							check_variable = { VIE_State_18_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_19_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_19_Status }
+							check_variable = { VIE_State_19_Status = 1 }
+							check_variable = { VIE_State_19_Status = 2 }
+							check_variable = { VIE_State_19_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_19_Status = 3 }
+							check_variable = { VIE_State_19_Status = 4 }
+							check_variable = { VIE_State_19_Status = 5 }
+							check_variable = { VIE_State_19_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_20_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_20_Status }
+							check_variable = { VIE_State_20_Status = 1 }
+							check_variable = { VIE_State_20_Status = 2 }
+							check_variable = { VIE_State_20_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_20_Status = 3 }
+							check_variable = { VIE_State_20_Status = 4 }
+							check_variable = { VIE_State_20_Status = 5 }
+							check_variable = { VIE_State_20_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_21_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_21_Status }
+							check_variable = { VIE_State_21_Status = 1 }
+							check_variable = { VIE_State_21_Status = 2 }
+							check_variable = { VIE_State_21_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_21_Status = 3 }
+							check_variable = { VIE_State_21_Status = 4 }
+							check_variable = { VIE_State_21_Status = 5 }
+							check_variable = { VIE_State_21_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_22_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_22_Status }
+							check_variable = { VIE_State_22_Status = 1 }
+							check_variable = { VIE_State_22_Status = 2 }
+							check_variable = { VIE_State_22_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_22_Status = 3 }
+							check_variable = { VIE_State_22_Status = 4 }
+							check_variable = { VIE_State_22_Status = 5 }
+							check_variable = { VIE_State_22_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_23_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_23_Status }
+							check_variable = { VIE_State_23_Status = 1 }
+							check_variable = { VIE_State_23_Status = 2 }
+							check_variable = { VIE_State_23_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_23_Status = 3 }
+							check_variable = { VIE_State_23_Status = 4 }
+							check_variable = { VIE_State_23_Status = 5 }
+							check_variable = { VIE_State_23_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_24_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_24_Status }
+							check_variable = { VIE_State_24_Status = 1 }
+							check_variable = { VIE_State_24_Status = 2 }
+							check_variable = { VIE_State_24_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_24_Status = 3 }
+							check_variable = { VIE_State_24_Status = 4 }
+							check_variable = { VIE_State_24_Status = 5 }
+							check_variable = { VIE_State_24_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_25_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_25_Status }
+							check_variable = { VIE_State_25_Status = 1 }
+							check_variable = { VIE_State_25_Status = 2 }
+							check_variable = { VIE_State_25_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_25_Status = 3 }
+							check_variable = { VIE_State_25_Status = 4 }
+							check_variable = { VIE_State_25_Status = 5 }
+							check_variable = { VIE_State_25_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_26_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_26_Status }
+							check_variable = { VIE_State_26_Status = 1 }
+							check_variable = { VIE_State_26_Status = 2 }
+							check_variable = { VIE_State_26_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_26_Status = 3 }
+							check_variable = { VIE_State_26_Status = 4 }
+							check_variable = { VIE_State_26_Status = 5 }
+							check_variable = { VIE_State_26_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_27_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_27_Status }
+							check_variable = { VIE_State_27_Status = 1 }
+							check_variable = { VIE_State_27_Status = 2 }
+							check_variable = { VIE_State_27_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_27_Status = 3 }
+							check_variable = { VIE_State_27_Status = 4 }
+							check_variable = { VIE_State_27_Status = 5 }
+							check_variable = { VIE_State_27_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_28_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_28_Status }
+							check_variable = { VIE_State_28_Status = 1 }
+							check_variable = { VIE_State_28_Status = 2 }
+							check_variable = { VIE_State_28_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_28_Status = 3 }
+							check_variable = { VIE_State_28_Status = 4 }
+							check_variable = { VIE_State_28_Status = 5 }
+							check_variable = { VIE_State_28_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_29_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_29_Status }
+							check_variable = { VIE_State_29_Status = 1 }
+							check_variable = { VIE_State_29_Status = 2 }
+							check_variable = { VIE_State_29_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_29_Status = 3 }
+							check_variable = { VIE_State_29_Status = 4 }
+							check_variable = { VIE_State_29_Status = 5 }
+							check_variable = { VIE_State_29_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_30_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_30_Status }
+							check_variable = { VIE_State_30_Status = 1 }
+							check_variable = { VIE_State_30_Status = 2 }
+							check_variable = { VIE_State_30_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_30_Status = 3 }
+							check_variable = { VIE_State_30_Status = 4 }
+							check_variable = { VIE_State_30_Status = 5 }
+							check_variable = { VIE_State_30_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_31_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_31_Status }
+							check_variable = { VIE_State_31_Status = 1 }
+							check_variable = { VIE_State_31_Status = 2 }
+							check_variable = { VIE_State_31_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_31_Status = 3 }
+							check_variable = { VIE_State_31_Status = 4 }
+							check_variable = { VIE_State_31_Status = 5 }
+							check_variable = { VIE_State_31_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_32_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_32_Status }
+							check_variable = { VIE_State_32_Status = 1 }
+							check_variable = { VIE_State_32_Status = 2 }
+							check_variable = { VIE_State_32_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_32_Status = 3 }
+							check_variable = { VIE_State_32_Status = 4 }
+							check_variable = { VIE_State_32_Status = 5 }
+							check_variable = { VIE_State_32_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_33_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_33_Status }
+							check_variable = { VIE_State_33_Status = 1 }
+							check_variable = { VIE_State_33_Status = 2 }
+							check_variable = { VIE_State_33_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_33_Status = 3 }
+							check_variable = { VIE_State_33_Status = 4 }
+							check_variable = { VIE_State_33_Status = 5 }
+							check_variable = { VIE_State_33_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_34_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_34_Status }
+							check_variable = { VIE_State_34_Status = 1 }
+							check_variable = { VIE_State_34_Status = 2 }
+							check_variable = { VIE_State_34_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_34_Status = 3 }
+							check_variable = { VIE_State_34_Status = 4 }
+							check_variable = { VIE_State_34_Status = 5 }
+							check_variable = { VIE_State_34_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_35_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_35_Status }
+							check_variable = { VIE_State_35_Status = 1 }
+							check_variable = { VIE_State_35_Status = 2 }
+							check_variable = { VIE_State_35_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_35_Status = 3 }
+							check_variable = { VIE_State_35_Status = 4 }
+							check_variable = { VIE_State_35_Status = 5 }
+							check_variable = { VIE_State_35_Status = 6 }
+						}
+					}
+				}
+			}
+			VIE_State_36_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						OR = {
+							NOT = { has_variable = VIE_State_36_Status }
+							check_variable = { VIE_State_36_Status = 1 }
+							check_variable = { VIE_State_36_Status = 2 }
+							check_variable = { VIE_State_36_Status = 7 }
+						}
+					}
+					modifier = {
+						factor = 50
+						OR = {
+							check_variable = { VIE_State_36_Status = 3 }
+							check_variable = { VIE_State_36_Status = 4 }
+							check_variable = { VIE_State_36_Status = 5 }
+							check_variable = { VIE_State_36_Status = 6 }
+						}
+					}
+				}
+			}
+
+			Integrate_Option_click = {
+				ai_will_do = {
+					base = 100
+					modifier = {
+						factor = 0
+						NOT = { VIE_Can_Integrate_trigger = yes }
+					}
+				}
+			}
+
+			SendTroops_Option_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						NOT = { VIE_Can_Send_Army_trigger = yes }
+					}
+					modifier = {
+						factor = 2
+						VIE_Can_Send_Army_trigger = yes
+					}
+				}
+			}
+
+			PromiseFunds_Option_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						NOT = { VIE_Can_Promise_Funds_trigger = yes }
+					}
+					modifier = {
+						factor = 2
+						VIE_Can_Promise_Funds_trigger = yes
+					}
+				}
+			}
+
+			MaintainOrder_Option_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						NOT = { VIE_Can_Maintain_Order_trigger = yes }
+					}
+					modifier = {
+						factor = 3
+						VIE_Can_Maintain_Order_trigger = yes
+					}
+				}
+			}
+
+			OpenDiplomacy_Option_click = {
+				ai_will_do = {
+					base = 1
+					modifier = {
+						factor = 0
+						NOT = { VIE_Can_Open_Diplomacy_trigger = yes }
+					}
+					modifier = {
+						factor = 2
+						VIE_Can_Open_Diplomacy_trigger = yes
+					}
+				}
+			}
+        }
+
+		triggers = {
+			SendTroops_Option_click_enabled = {
+				VIE_Can_Send_Army_trigger = yes
+			}
+			MaintainOrder_Option_click_enabled = {
+				VIE_Can_Maintain_Order_trigger = yes
+			}
+			OpenDiplomacy_Option_click_enabled = {
+				VIE_Can_Open_Diplomacy_trigger = yes
+			}
+			PromiseFunds_Option_click_enabled = {
+				VIE_Can_Promise_Funds_trigger = yes
+			}
+			Integrate_Option_click_enabled = {
+				VIE_Can_Integrate_trigger = yes
+			}
+		}
+
+		effects = {
+			SendTroops_Option_click = {
+				VIE_Send_Army_effect = yes
+				VIE_state_dirty_variable = yes
+			}
+			MaintainOrder_Option_click = {
+				VIE_MaintainOrder_effect = yes
+				VIE_state_dirty_variable = yes
+			}
+			OpenDiplomacy_Option_click = {
+				VIE_OpenDiplomacy_effect = yes
+				VIE_state_dirty_variable = yes
+			}
+			PromiseFunds_Option_click = {
+				VIE_PromiseFunds_effect = yes
+				VIE_state_dirty_variable = yes
+			}
+			Integrate_Option_click = {
+				VIE_Integrate_effect = yes
+				VIE_state_dirty_variable = yes
+			}
+
+			VIE_State_1_click = {
+				set_variable = { VIE_STATE_DISPLAY = 1 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_1_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_1_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_2_click = {
+				set_variable = { VIE_STATE_DISPLAY = 2 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_2_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_2_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_3_click = {
+				set_variable = { VIE_STATE_DISPLAY = 3 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_3_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_3_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_4_click = {
+				set_variable = { VIE_STATE_DISPLAY = 4 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_4_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_4_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_5_click = {
+				set_variable = { VIE_STATE_DISPLAY = 5 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_5_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_5_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_6_click = {
+				set_variable = { VIE_STATE_DISPLAY = 6 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_6_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_6_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_7_click = {
+				set_variable = { VIE_STATE_DISPLAY = 7 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_7_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_7_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_8_click = {
+				set_variable = { VIE_STATE_DISPLAY = 8 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_8_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_8_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_9_click = {
+				set_variable = { VIE_STATE_DISPLAY = 9 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_9_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_9_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_10_click = {
+				set_variable = { VIE_STATE_DISPLAY = 10 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_10_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_10_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_11_click = {
+				set_variable = { VIE_STATE_DISPLAY = 11 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_11_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_11_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_12_click = {
+				set_variable = { VIE_STATE_DISPLAY = 12 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_12_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_12_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_13_click = {
+				set_variable = { VIE_STATE_DISPLAY = 13 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_13_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_13_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_14_click = {
+				set_variable = { VIE_STATE_DISPLAY = 14 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_14_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_14_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_15_click = {
+				set_variable = { VIE_STATE_DISPLAY = 15 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_15_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_15_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_16_click = {
+				set_variable = { VIE_STATE_DISPLAY = 16 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_16_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_16_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_17_click = {
+				set_variable = { VIE_STATE_DISPLAY = 17 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_17_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_17_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_18_click = {
+				set_variable = { VIE_STATE_DISPLAY = 18 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_18_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_18_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_19_click = {
+				set_variable = { VIE_STATE_DISPLAY = 19 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_19_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_19_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_20_click = {
+				set_variable = { VIE_STATE_DISPLAY = 20 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_20_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_20_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_21_click = {
+				set_variable = { VIE_STATE_DISPLAY = 21 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_21_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_21_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_22_click = {
+				set_variable = { VIE_STATE_DISPLAY = 22 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_22_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_22_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_23_click = {
+				set_variable = { VIE_STATE_DISPLAY = 23 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_23_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_23_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_24_click = {
+				set_variable = { VIE_STATE_DISPLAY = 24 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_24_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_24_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_25_click = {
+				set_variable = { VIE_STATE_DISPLAY = 25 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_25_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_25_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_26_click = {
+				set_variable = { VIE_STATE_DISPLAY = 26 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_26_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_26_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_27_click = {
+				set_variable = { VIE_STATE_DISPLAY = 27 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_27_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_27_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_28_click = {
+				set_variable = { VIE_STATE_DISPLAY = 28 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_28_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_28_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_29_click = {
+				set_variable = { VIE_STATE_DISPLAY = 29 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_29_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_29_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_30_click = {
+				set_variable = { VIE_STATE_DISPLAY = 30 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_30_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_30_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_31_click = {
+				set_variable = { VIE_STATE_DISPLAY = 31 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_31_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_31_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_32_click = {
+				set_variable = { VIE_STATE_DISPLAY = 32 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_32_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_32_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_33_click = {
+				set_variable = { VIE_STATE_DISPLAY = 33 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_33_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_33_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_34_click = {
+				set_variable = { VIE_STATE_DISPLAY = 34 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_34_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_34_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_35_click = {
+				set_variable = { VIE_STATE_DISPLAY = 35 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_35_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_35_Owner }
+				VIE_state_dirty_variable = yes
+			}
+			VIE_State_36_click = {
+				set_variable = { VIE_STATE_DISPLAY = 36 }
+				set_variable = { VIE_STATE_DISPLAY_STATUS = VIE_State_36_Status }
+				set_variable = { VIE_STATE_DISPLAY_OWNER  = VIE_State_36_Owner }
+				VIE_state_dirty_variable = yes
+			}
+		}
+
+		properties = {
+			VIE_State_1 = { frame = VIE_State_1_Status }
+			VIE_State_2 = { frame = VIE_State_2_Status }
+			VIE_State_3 = { frame = VIE_State_3_Status }
+			VIE_State_4 = { frame = VIE_State_4_Status }
+			VIE_State_5 = { frame = VIE_State_5_Status }
+			VIE_State_6 = { frame = VIE_State_6_Status }
+			VIE_State_7 = { frame = VIE_State_7_Status }
+			VIE_State_8 = { frame = VIE_State_8_Status }
+			VIE_State_9 = { frame = VIE_State_9_Status }
+			VIE_State_10 = { frame = VIE_State_10_Status }
+			VIE_State_11 = { frame = VIE_State_11_Status }
+			VIE_State_12 = { frame = VIE_State_12_Status }
+			VIE_State_13 = { frame = VIE_State_13_Status }
+			VIE_State_14 = { frame = VIE_State_14_Status }
+			VIE_State_15 = { frame = VIE_State_15_Status }
+			VIE_State_16 = { frame = VIE_State_16_Status }
+			VIE_State_17 = { frame = VIE_State_17_Status }
+			VIE_State_18 = { frame = VIE_State_18_Status }
+			VIE_State_19 = { frame = VIE_State_19_Status }
+			VIE_State_20 = { frame = VIE_State_20_Status }
+			VIE_State_21 = { frame = VIE_State_21_Status }
+			VIE_State_22 = { frame = VIE_State_22_Status }
+			VIE_State_23 = { frame = VIE_State_23_Status }
+			VIE_State_24 = { frame = VIE_State_24_Status }
+			VIE_State_25 = { frame = VIE_State_25_Status }
+			VIE_State_26 = { frame = VIE_State_26_Status }
+			VIE_State_27 = { frame = VIE_State_27_Status }
+			VIE_State_28 = { frame = VIE_State_28_Status }
+			VIE_State_29 = { frame = VIE_State_29_Status }
+			VIE_State_30 = { frame = VIE_State_30_Status }
+			VIE_State_31 = { frame = VIE_State_31_Status }
+			VIE_State_32 = { frame = VIE_State_32_Status }
+			VIE_State_33 = { frame = VIE_State_33_Status }
+			VIE_State_34 = { frame = VIE_State_34_Status }
+			VIE_State_35 = { frame = VIE_State_35_Status }
+			VIE_State_36 = { frame = VIE_State_36_Status }
+
+			Status_Bar = { frame = VIE_STATE_DISPLAY_STATUS }
+
+			SendTroops_Option = { frame = VIE_Can_Send_Army }
+			MaintainOrder_Option = { frame = VIE_Can_Maintain_Order }
+			OpenDiplomacy_Option = { frame = VIE_Can_Open_Diplomacy }
+			PromiseFunds_Option = { frame = VIE_Can_Promise_Funds }
+			Integrate_Option = { frame = VIE_Can_Integrate }
+		}
+	}
+
+	VIE_ProFrench_Coup_Warning_Display = {
+		context_type = player_context
+		window_name = "VIE_ProFrench_Coup_Warning_Prompt"
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = VIE
+			check_variable = { FRA_Influence < 11 }
+			NOT = { has_country_flag = VIE_ProFrench_Coup_Warning_Dismissed }
+			NOT = { has_country_flag = VIE_FRA_Coup }
+			NOT = { has_country_flag = VIE_Matignon_Treaty_Signed }
+		}
+		ai_enabled = {
+			always = no
+		}
+		effects = {
+			okay_button_click = {
+    			set_country_flag = {
+                    flag = VIE_ProFrench_Coup_Warning_Dismissed
+                    days = 14 # 2 week cooldown
+                    value = 1
+                }
+			}
+		}
+	}
+}

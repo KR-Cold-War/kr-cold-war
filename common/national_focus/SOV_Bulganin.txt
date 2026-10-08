@@ -1,0 +1,333 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+
+	id = SOV_Bulganin
+	country = {
+		factor = 0
+		modifier = {
+			add = 0
+			tag = SOV
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	
+#			SOV = {
+#				country_event = { id = Bulg.39 days = 3 }
+#			}
+			
+	default = no
+	focus = {
+		id = SOV_APG_takeover
+		icon = GFX_SOV_APG_win
+		cost = 0
+		x = 8
+		y = 0
+		completion_reward = {
+			news_event = SOV_CornManOutAPG.1
+			add_stability = -0.15
+     	}
+	}
+	focus = {
+		id = SOV_bulganin_union
+		icon = GFX_SOV_bulganin_union
+		relative_position_id = SOV_APG_takeover
+		prerequisite = {
+			focus = SOV_APG_takeover
+		}
+		cost = 5
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = Bulg.1
+			add_to_variable = {
+             	tooltip = party_strength_tt
+             	party_strength = 0.1
+            }
+		}
+	}
+	focus = {
+		id = SOV_pr_take_mea_again_cornman
+		icon = GFX_SOV_pr_take_mea_again_cornman
+		relative_position_id = SOV_APG_takeover
+		available = { always = no }
+		bypass = { always = no }
+		prerequisite = {
+			focus = SOV_bulganin_union
+		}
+		cost = 5
+		x = 0
+		y = 2
+		completion_reward = {
+			country_event = Bulg.2
+			swap_ideas = {
+				remove_idea = SOV_Anti_Party_Group_Coup
+				add_idea = SOV_Measures_Against_Khrushchevites
+			}
+		}
+	}
+	focus = {
+		id = SOV_rev_pol_bureau
+		icon = GFX_SOV_rev_pol_bureau
+		relative_position_id = SOV_pr_take_mea_again_cornman
+		prerequisite = {
+			focus = SOV_pr_take_mea_again_cornman
+		}
+		cost = 1
+		x = -3
+		y = 1
+		completion_reward = {
+			add_to_variable = {
+             	party_strength = 0.15
+             	tooltip = party_strength_tt
+            }
+			add_ideas = SOV_Revamped_Political_Bureau
+		}
+	}
+	focus = {
+		id = SOV_mol_coun_min_chairman
+		icon = GFX_SOV_mol_coun_min_chairman
+		relative_position_id = SOV_rev_pol_bureau
+		prerequisite = {
+			focus = SOV_rev_pol_bureau
+		}
+		cost = 5
+		x = -1
+		y = 1
+		completion_reward = {
+			country_event = Bulg.3
+			add_to_variable = {
+				kaganovich_support = 0.05
+				tooltip = hardline_strength_tt
+			}
+			add_ideas = SOV_Chairman_Molotov
+		}
+	}
+		focus = {
+		id = SOV_kag_dep_chairman
+		icon = GFX_SOV_kag_dep_chairman
+		relative_position_id = SOV_rev_pol_bureau
+		prerequisite = {
+			focus = SOV_rev_pol_bureau
+		}
+		cost = 5
+		x = 1
+		y = 1
+		completion_reward = {
+			country_event = Bulg.31
+			add_to_variable = {
+				kaganovich_support = 0.05
+				tooltip = hardline_strength_tt
+			}
+			add_ideas =  SOV_Dep_Chairman_Kaganovich
+		}
+	}
+	focus = {
+		id = SOV_low_destalinization
+		icon = GFX_SOV_low_destalinization
+		relative_position_id = SOV_pr_take_mea_again_cornman
+		prerequisite = {
+			focus = SOV_pr_take_mea_again_cornman
+		}
+		cost = 1
+		x = 3
+		y = 1
+		completion_reward = {
+			add_ideas = SOV_Stalinist_Cult
+		}		
+	}
+		focus = {
+		id = SOV_return_stalin_agroculture_methods
+		icon = GFX_SOV_return_stalin_agroculture_methods
+		relative_position_id = SOV_rem_khrush_cpsu_dogma
+		prerequisite = {
+			focus = SOV_rem_khrush_cpsu_dogma
+		}
+		cost = 5
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = Bulg.5
+			add_to_variable = {
+				shepilov_support = 0.05
+				tooltip = revisionism_shift_tt
+			}
+		}
+	}
+		focus = {
+		id = SOV_reg_com_purge_khrush
+		icon = GFX_SOV_reg_com_purge_khrush
+		relative_position_id = SOV_mol_coun_min_chairman
+		prerequisite = {
+			focus = SOV_mol_coun_min_chairman
+		}
+		prerequisite = {
+			focus = SOV_kag_dep_chairman
+		}
+		cost = 5
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = Bulg.6
+			add_to_variable = {
+				shepilov_support = 0.05
+				tooltip = revisionism_shift_tt
+			}
+			swap_ideas = {
+				remove_idea = SOV_Measures_Against_Khrushchevites
+				add_idea = SOV_Khrushchevites_Purge
+			}
+		}
+	}
+		focus = {
+		id = SOV_khrush_affairs
+		icon = GFX_SOV_khrush_affairs
+		relative_position_id = SOV_kag_dep_chairman
+		prerequisite = {
+			focus = SOV_kag_dep_chairman
+		}
+		prerequisite = {
+			focus = SOV_mol_coun_min_chairman
+		}		
+		cost = 5
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = Bulg.7
+			swap_ideas = {
+				remove_idea = SOV_Revamped_Political_Bureau
+				add_idea = SOV_Khrushchevite_Affair
+			}
+		}
+	}
+		focus = {
+		id = SOV_return_stalin_stat
+		icon = GFX_SOV_return_stalin_stat
+		relative_position_id = SOV_low_destalinization
+		prerequisite = {
+			focus = SOV_low_destalinization
+		}
+		cost = 5
+		x = -1
+		y = 1
+		completion_reward = {
+			country_event = Bulg.4
+			add_to_variable = {
+				kaganovich_support = 0.05
+				tooltip = hardline_strength_tt
+			}
+		}
+	}
+	
+		focus = {
+		id = SOV_inves_posp_report
+		icon = GFX_SOV_bulganin_byebye
+		relative_position_id = SOV_return_stalin_stat
+		prerequisite = {
+			focus = SOV_return_stalin_stat
+		}
+		cost = 5
+		x = 0
+		y = 1
+		completion_reward = {
+		    country_event = Bulg.41
+			add_to_variable = {
+				shepilov_support = 0.05
+				tooltip = revisionism_shift_tt
+			}
+		}
+	}
+	
+		focus = {
+		id = SOV_revisionism_deafeated
+		icon = GFX_SOV_union_saved
+		relative_position_id = SOV_pr_take_mea_again_cornman
+		prerequisite = {
+			focus = SOV_inves_posp_report
+		}
+		prerequisite = {
+			focus = SOV_khrush_affairs
+		}
+		prerequisite = {
+			focus = SOV_reg_com_purge_khrush
+		}
+		prerequisite = {
+			focus = SOV_return_stalin_agroculture_methods
+		}
+		cost = 5
+		x = 0
+		y = 4
+		completion_reward = {
+			add_ideas = sov_revisionism_defeated
+		}
+	}
+		focus = {
+		id = SOV_rem_khrush_cpsu_dogma
+		icon = GFX_SOV_rem_khrush_cpsu_dogma
+		relative_position_id = SOV_low_destalinization
+		prerequisite = {
+			focus = SOV_low_destalinization
+		}
+		cost = 5
+		x = 1
+		y = 1
+		completion_reward = {
+            add_ideas = sov_dekhrushchevization
+		}
+	}
+		focus = {
+		id = SOV_trip_to_tirana
+		icon = GFX_SOV_trip_to_tirana
+		relative_position_id = SOV_pr_take_mea_again_cornman
+		prerequisite = {
+			focus = SOV_revisionism_deafeated
+		}
+		cost = 5
+		x = -2
+		y = 5
+		completion_reward = {
+			country_event = Bulg_trips.1
+			add_to_variable = {
+				kaganovich_support = 0.05
+				tooltip = hardline_strength_tt
+			}
+		}
+	}
+		focus = {
+		id = SOV_trip_to_beijing
+		icon = GFX_SOV_trip_to_beijing
+		relative_position_id = SOV_pr_take_mea_again_cornman
+		prerequisite = {
+			focus = SOV_revisionism_deafeated
+		}
+		cost = 5
+		x = 2
+		y = 5
+		completion_reward = {
+			country_event = Bulg_trips.2
+			add_to_variable = {
+				shepilov_support = 0.1
+				tooltip = revisionism_shift_tt
+			}
+		}
+	}
+		focus = {
+		id = SOV_bulganin_byebye
+		icon = GFX_SOV_bulganin_byebye
+		relative_position_id = SOV_pr_take_mea_again_cornman
+		prerequisite = {
+			focus = SOV_trip_to_tirana
+		}
+		prerequisite = {
+			focus = SOV_trip_to_beijing
+		}
+		cost = 5
+		x = 0
+		y = 6
+		completion_reward = {
+			country_event = Bulg.9
+			remove_ideas = SOV_Khrushchevites_Purge
+			remove_ideas = SOV_Khrushchevite_Affair
+			add_ideas = SOV_Stabiilised_Politiburo
+		}
+	}
+}

@@ -1,0 +1,1257 @@
+add_namespace = krcw_reun
+
+country_event = {
+	id = krcw_reun.1
+	title = krcw_reun_1_t
+	desc = {
+		text = krcw_reun_1_d0
+		trigger = {
+			PSA = { is_subject_of = ROOT }
+			NOT = { PSA = { has_country_flag = krcw_psa_presidio_rule } }
+		}
+	}
+	desc = {
+		text = krcw_reun_1_d1
+		trigger = {
+			PSA = { has_country_flag = krcw_psa_presidio_rule }
+		}
+	}
+	desc = {
+		text = krcw_reun_1_d2
+		trigger = {
+			has_country_flag = krcw_reun_reopened
+		}
+	}
+	desc = {
+		text = krcw_reun_1_d3
+		trigger = {
+			PSA = { has_country_flag = krcw_reun_overture }
+		}
+	}
+	desc = {
+		text = krcw_reun_1_d4
+		trigger = {
+			has_global_flag = KRCW_psa_neutral_guaranteed
+		}
+	}
+	desc = {
+		text = krcw_reun_1_d5
+		trigger = {
+			tag = WCA
+		}
+	}
+	desc = {
+		text = krcw_reun_1_d6
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_continental_map
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = krcw_reun_winner
+		country_exists = PSA
+		NOT = { has_global_flag = KRCW_reun_done }
+	}
+	option = {
+		name = krcw_reun_1.a
+		trigger = {
+			PSA = { is_subject_of = ROOT }
+		}
+		ai_chance = {
+			base = 60
+			modifier = { factor = 1.5 has_war = no }
+		}
+		clr_country_flag = krcw_reun_reopened
+		set_country_flag = krcw_reun_vote_asked
+		PSA = { country_event = { id = krcw_reun.30 days = 10 } }
+	}
+	option = {
+		name = krcw_reun_1.b
+		trigger = {
+			PSA = { is_subject_of = ROOT }
+			NOT = { has_global_flag = KRCW_reun_compact }
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+			modifier = { factor = 2 has_war = yes }
+		}
+		clr_country_flag = krcw_reun_reopened
+		krcw_reun_compact = yes
+	}
+	option = {
+		name = krcw_reun_1.c
+		trigger = {
+			NOT = { PSA = { is_subject_of = ROOT } }
+		}
+		ai_chance = {
+			base = 55
+			modifier = { factor = 2 PSA = { has_country_flag = krcw_reun_overture } }
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+			modifier = { factor = 1.5 has_global_flag = KRCW_psa_neutral_guaranteed }
+		}
+		clr_country_flag = krcw_reun_reopened
+		PSA = { country_event = { id = krcw_reun.10 days = 10 } }
+	}
+	option = {
+		name = krcw_reun_1.d
+		trigger = {
+			NOT = { PSA = { is_subject_of = ROOT } }
+		}
+		ai_chance = {
+			base = 20
+			modifier = { factor = 2 has_government = nationalist }
+			modifier = { factor = 1.5 has_war_support > 0.6 }
+			modifier = { factor = 1.5 PSA = { has_country_flag = krcw_psa_presidio_rule } }
+			modifier = { factor = 0.3 PSA = { has_country_flag = krcw_reun_overture } }
+			modifier = { factor = 0.5 has_global_flag = KRCW_psa_neutral_guaranteed }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		clr_country_flag = krcw_reun_reopened
+		set_global_flag = KRCW_reun_ultimatum
+		add_war_support = 0.02
+		krcw_tension_up_small = yes
+		PSA = { country_event = { id = krcw_reun.20 days = 5 } }
+	}
+	option = {
+		name = krcw_reun_1.e
+		trigger = {
+			NOT = { PSA = { is_subject_of = ROOT } }
+		}
+		ai_chance = {
+			base = 10
+			modifier = { factor = 3 has_war = yes }
+		}
+		clr_country_flag = krcw_reun_reopened
+		set_country_flag = krcw_reun_deferred
+		add_political_power = 15
+	}
+}
+
+country_event = {
+	id = krcw_reun.2
+	title = krcw_reun_2_t
+	desc = {
+		text = krcw_reun_2_d0
+		trigger = {
+			has_country_flag = krcw_psa_presidio_rule
+		}
+	}
+	desc = {
+		text = krcw_reun_2_d1
+		trigger = {
+			has_global_flag = KRCW_reun_by_wca
+		}
+	}
+	desc = {
+		text = krcw_reun_2_d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_golden_gate
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_reun_2.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 krcw_route_historical = yes }
+			modifier = { factor = 2 AND = { has_global_flag = KRCW_reun_by_wca check_variable = { krcw_psa_lean_ti > 49 } } }
+			modifier = { factor = 2 AND = { has_global_flag = KRCW_reun_by_usa check_variable = { krcw_psa_lean_ma > 49 } } }
+			modifier = { factor = 0.3 has_country_flag = krcw_psa_presidio_rule }
+		}
+		set_country_flag = krcw_reun_overture
+		add_stability = 0.02
+	}
+	option = {
+		name = krcw_reun_2.b
+		ai_chance = {
+			base = 25
+			modifier = { factor = 3 has_country_flag = krcw_psa_presidio_rule }
+			modifier = { factor = 0.5 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_reun_psa_fortified
+		add_war_support = 0.04
+		379 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+		} }
+		387 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+		} }
+	}
+	option = {
+		name = krcw_reun_2.c
+		ai_chance = {
+			base = 30
+		}
+		add_political_power = 25
+	}
+}
+
+country_event = {
+	id = krcw_reun.10
+	title = krcw_reun_10_t
+	desc = {
+		text = krcw_reun_10_d0
+		trigger = {
+			has_global_flag = KRCW_reun_by_wca
+			has_country_flag = krcw_psa_presidio_rule
+		}
+	}
+	desc = {
+		text = krcw_reun_10_d1
+		trigger = {
+			has_global_flag = KRCW_reun_by_wca
+		}
+	}
+	desc = {
+		text = krcw_reun_10_d2
+		trigger = {
+			has_country_flag = krcw_psa_presidio_rule
+		}
+	}
+	desc = {
+		text = krcw_reun_10_d3
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_legislature
+	is_triggered_only = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_reun_10.a
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 has_country_flag = krcw_reun_overture }
+			modifier = { factor = 2 AND = { has_global_flag = KRCW_reun_by_wca check_variable = { krcw_psa_lean_ti > 49 } } }
+			modifier = { factor = 2 AND = { has_global_flag = KRCW_reun_by_usa check_variable = { krcw_psa_lean_ma > 49 } } }
+			modifier = { factor = 0.2 has_country_flag = krcw_psa_presidio_rule }
+			modifier = { factor = 0.5 has_country_flag = krcw_reun_psa_fortified }
+		}
+		if = {
+			limit = { has_global_flag = KRCW_reun_by_wca country_exists = WCA }
+			WCA = {
+				country_event = { id = krcw_reun.11 days = 3 }
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = KRCW_reun_by_usa country_exists = USA }
+			USA = {
+				country_event = { id = krcw_reun.11 days = 3 }
+			}
+		}
+	}
+	option = {
+		name = krcw_reun_10.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+			modifier = { factor = 1.5 has_global_flag = KRCW_psa_neutral_guaranteed }
+		}
+		if = {
+			limit = { has_global_flag = KRCW_reun_by_wca country_exists = WCA }
+			WCA = {
+				country_event = { id = krcw_reun.12 days = 3 }
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = KRCW_reun_by_usa country_exists = USA }
+			USA = {
+				country_event = { id = krcw_reun.12 days = 3 }
+			}
+		}
+	}
+	option = {
+		name = krcw_reun_10.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 3 has_country_flag = krcw_psa_presidio_rule }
+			modifier = { factor = 2 has_country_flag = krcw_reun_psa_fortified }
+			modifier = { factor = 0.4 has_country_flag = krcw_reun_overture }
+			modifier = { factor = 0.5 krcw_route_historical = yes }
+		}
+		add_war_support = 0.03
+		if = {
+			limit = { has_global_flag = KRCW_reun_by_wca country_exists = WCA }
+			WCA = {
+				country_event = { id = krcw_reun.13 days = 3 }
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = KRCW_reun_by_usa country_exists = USA }
+			USA = {
+				country_event = { id = krcw_reun.13 days = 3 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = krcw_reun.11
+	title = krcw_reun_11_t
+	desc = {
+		text = krcw_reun_11_d0
+		trigger = {
+			has_country_flag = krcw_reun_vote_asked
+		}
+	}
+	desc = {
+		text = krcw_reun_11_d1
+		trigger = {
+			PSA = { has_country_flag = krcw_psa_presidio_rule }
+		}
+	}
+	desc = {
+		text = krcw_reun_11_d2
+		trigger = {
+			has_global_flag = KRCW_reun_ultimatum
+		}
+	}
+	desc = {
+		text = krcw_reun_11_d3
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_legislature
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = krcw_reun_winner
+		country_exists = PSA
+		NOT = { has_global_flag = KRCW_reun_done }
+	}
+	option = {
+		name = krcw_reun_11.a
+		ai_chance = {
+			base = 1
+		}
+		clr_country_flag = krcw_reun_vote_asked
+		clr_global_flag = KRCW_reun_how_war
+		clr_global_flag = KRCW_reun_how_forced
+		set_global_flag = KRCW_reun_how_talks
+		krcw_detente_up_small = yes
+		krcw_reun_annex_west = yes
+	}
+}
+
+country_event = {
+	id = krcw_reun.12
+	title = krcw_reun_12_t
+	desc = krcw_reun_12_d
+	picture = GFX_krcw_us_legislature
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = krcw_reun_winner
+		country_exists = PSA
+		NOT = { has_global_flag = KRCW_reun_done }
+	}
+	option = {
+		name = krcw_reun_12.a
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+			modifier = { factor = 1.5 has_global_flag = KRCW_psa_neutral_guaranteed }
+		}
+		krcw_reun_compact = yes
+	}
+	option = {
+		name = krcw_reun_12.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 has_government = nationalist }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		set_global_flag = KRCW_reun_ultimatum
+		krcw_tension_up_small = yes
+		PSA = { country_event = { id = krcw_reun.20 days = 5 } }
+	}
+	option = {
+		name = krcw_reun_12.c
+		ai_chance = {
+			base = 15
+		}
+		krcw_reun_cold_peace = yes
+	}
+}
+
+country_event = {
+	id = krcw_reun.13
+	title = krcw_reun_13_t
+	desc = {
+		text = krcw_reun_13_d0
+		trigger = {
+			PSA = { has_country_flag = krcw_psa_presidio_rule }
+		}
+	}
+	desc = {
+		text = krcw_reun_13_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_legislature
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = krcw_reun_winner
+		country_exists = PSA
+		NOT = { has_global_flag = KRCW_reun_done }
+	}
+	option = {
+		name = krcw_reun_13.a
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 PSA = { has_country_flag = krcw_psa_presidio_rule } }
+			modifier = { factor = 1.5 has_war_support > 0.6 }
+			modifier = { factor = 0.5 has_global_flag = KRCW_psa_neutral_guaranteed }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		set_global_flag = KRCW_reun_ultimatum
+		krcw_tension_up_small = yes
+		PSA = { country_event = { id = krcw_reun.20 days = 5 } }
+	}
+	option = {
+		name = krcw_reun_13.b
+		ai_chance = {
+			base = 65
+		}
+		krcw_reun_cold_peace = yes
+	}
+}
+
+country_event = {
+	id = krcw_reun.20
+	title = krcw_reun_20_t
+	desc = {
+		text = krcw_reun_20_d0
+		trigger = {
+			has_global_flag = KRCW_reun_by_wca
+		}
+	}
+	desc = {
+		text = krcw_reun_20_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_army
+	is_triggered_only = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_reun_20.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+			modifier = { factor = 0.2 has_country_flag = krcw_psa_presidio_rule }
+			modifier = { factor = 0.6 has_country_flag = krcw_reun_psa_fortified }
+		}
+		if = {
+			limit = { has_global_flag = KRCW_reun_by_wca country_exists = WCA }
+			WCA = {
+				country_event = { id = krcw_reun.11 days = 3 }
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = KRCW_reun_by_usa country_exists = USA }
+			USA = {
+				country_event = { id = krcw_reun.11 days = 3 }
+			}
+		}
+	}
+	option = {
+		name = krcw_reun_20.b
+		trigger = {
+			country_exists = FRA
+			FRA = { is_faction_leader = yes }
+			OR = {
+				PSA = { is_in_faction_with = FRA }
+				AND = {
+					PSA = { is_in_faction = no }
+					OR = {
+						AND = { has_global_flag = KRCW_reun_by_usa NOT = { AND = { country_exists = USA USA = { is_in_faction_with = FRA } } } }
+						AND = { has_global_flag = KRCW_reun_by_wca AND = { country_exists = WCA WCA = { is_in_faction_with = SOV } } }
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 is_in_faction = yes }
+			modifier = { factor = 0.5 krcw_route_historical = yes }
+		}
+		set_global_flag = KRCW_reun_protector_fra
+		add_war_support = 0.02
+		FRA = { country_event = { id = krcw_reun.25 days = 3 } }
+	}
+	option = {
+		name = krcw_reun_20.c
+		trigger = {
+			country_exists = SOV
+			SOV = { is_faction_leader = yes }
+			OR = {
+				PSA = { is_in_faction_with = SOV }
+				AND = {
+					PSA = { is_in_faction = no }
+					OR = {
+						AND = { has_global_flag = KRCW_reun_by_wca NOT = { AND = { country_exists = WCA WCA = { is_in_faction_with = SOV } } } }
+						AND = { has_global_flag = KRCW_reun_by_usa AND = { country_exists = USA USA = { is_in_faction_with = FRA } } }
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 is_in_faction = yes }
+			modifier = { factor = 0.5 krcw_route_historical = yes }
+		}
+		set_global_flag = KRCW_reun_protector_sov
+		add_war_support = 0.02
+		SOV = { country_event = { id = krcw_reun.25 days = 3 } }
+	}
+	option = {
+		name = krcw_reun_20.d
+		ai_chance = {
+			base = 20
+			modifier = { factor = 3 has_country_flag = krcw_psa_presidio_rule }
+			modifier = { factor = 1.5 has_country_flag = krcw_reun_psa_fortified }
+			modifier = { factor = 0.3 krcw_route_historical = yes }
+		}
+		add_war_support = 0.05
+		if = { limit = { is_in_faction = yes } leave_faction = yes }
+		if = {
+			limit = { has_global_flag = KRCW_reun_by_wca country_exists = WCA }
+			WCA = {
+				country_event = { id = krcw_reun.21 days = 3 }
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = KRCW_reun_by_usa country_exists = USA }
+			USA = {
+				country_event = { id = krcw_reun.21 days = 3 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = krcw_reun.25
+	title = krcw_reun_25_t
+	desc = {
+		text = krcw_reun_25_d0
+		trigger = {
+			AND = { has_global_flag = KRCW_reun_by_wca country_exists = WCA WCA = { is_in_faction_with = ROOT } }
+		}
+	}
+	desc = {
+		text = krcw_reun_25_d1
+		trigger = {
+			AND = { has_global_flag = KRCW_reun_by_usa country_exists = USA USA = { is_in_faction_with = ROOT } }
+		}
+	}
+	desc = {
+		text = krcw_reun_25_d2
+		trigger = {
+			has_global_flag = KRCW_reun_by_wca
+		}
+	}
+	desc = {
+		text = krcw_reun_25_d3
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		OR = { tag = FRA tag = SOV }
+		country_exists = PSA
+		NOT = { has_global_flag = KRCW_reun_done }
+	}
+	option = {
+		name = krcw_reun_25.a
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 NOT = { OR = { AND = { has_global_flag = KRCW_reun_by_wca country_exists = WCA WCA = { is_in_faction_with = ROOT } } AND = { has_global_flag = KRCW_reun_by_usa country_exists = USA USA = { is_in_faction_with = ROOT } } } } }
+			modifier = { factor = 0.2 OR = { AND = { has_global_flag = KRCW_reun_by_wca country_exists = WCA WCA = { is_in_faction_with = ROOT } } AND = { has_global_flag = KRCW_reun_by_usa country_exists = USA USA = { is_in_faction_with = ROOT } } } }
+			modifier = { factor = 0.5 krcw_high_detente = yes }
+			modifier = { factor = 0.5 krcw_route_historical = yes }
+		}
+		set_global_flag = KRCW_reun_protected
+		if = { limit = { is_faction_leader = yes country_exists = PSA PSA = { is_in_faction = no } } add_to_faction = PSA }
+		if = {
+			limit = { country_exists = PSA }
+			PSA = {
+				add_stability = 0.02
+			}
+		}
+		krcw_tension_up_small = yes
+		if = {
+			limit = { has_global_flag = KRCW_reun_by_wca country_exists = WCA }
+			WCA = {
+				country_event = { id = krcw_reun.26 days = 3 }
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = KRCW_reun_by_usa country_exists = USA }
+			USA = {
+				country_event = { id = krcw_reun.26 days = 3 }
+			}
+		}
+	}
+	option = {
+		name = krcw_reun_25.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 3 OR = { AND = { has_global_flag = KRCW_reun_by_wca country_exists = WCA WCA = { is_in_faction_with = ROOT } } AND = { has_global_flag = KRCW_reun_by_usa country_exists = USA USA = { is_in_faction_with = ROOT } } } }
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+			modifier = { factor = 1.5 krcw_high_detente = yes }
+		}
+		krcw_detente_up_small = yes
+		if = {
+			limit = { country_exists = PSA }
+			PSA = {
+				country_event = { id = krcw_reun.27 days = 3 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = krcw_reun.26
+	title = krcw_reun_26_t
+	desc = {
+		text = krcw_reun_26_d0
+		trigger = {
+			has_global_flag = KRCW_reun_protector_fra
+			is_in_faction_with = FRA
+		}
+	}
+	desc = {
+		text = krcw_reun_26_d1
+		trigger = {
+			has_global_flag = KRCW_reun_protector_fra
+		}
+	}
+	desc = {
+		text = krcw_reun_26_d2
+		trigger = {
+			is_in_faction_with = SOV
+		}
+	}
+	desc = {
+		text = krcw_reun_26_d3
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = krcw_reun_winner
+		country_exists = PSA
+		NOT = { has_global_flag = KRCW_reun_done }
+	}
+	option = {
+		name = krcw_reun_26.a
+		ai_chance = {
+			base = 70
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		krcw_reun_cold_peace = yes
+	}
+	option = {
+		name = krcw_reun_26.b
+		trigger = {
+			country_exists = PSA
+		}
+		ai_chance = {
+			base = 10
+			modifier = { factor = 2 has_government = nationalist }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		krcw_reun_war_west = yes
+	}
+}
+
+country_event = {
+	id = krcw_reun.27
+	title = krcw_reun_27_t
+	desc = {
+		text = krcw_reun_27_d0
+		trigger = {
+			has_global_flag = KRCW_reun_protector_fra
+		}
+	}
+	desc = {
+		text = krcw_reun_27_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_golden_gate
+	is_triggered_only = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_reun_27.a
+		ai_chance = {
+			base = 65
+			modifier = { factor = 0.3 has_country_flag = krcw_psa_presidio_rule }
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		if = {
+			limit = { has_global_flag = KRCW_reun_by_wca country_exists = WCA }
+			WCA = {
+				country_event = { id = krcw_reun.11 days = 3 }
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = KRCW_reun_by_usa country_exists = USA }
+			USA = {
+				country_event = { id = krcw_reun.11 days = 3 }
+			}
+		}
+	}
+	option = {
+		name = krcw_reun_27.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 has_country_flag = krcw_psa_presidio_rule }
+			modifier = { factor = 0.3 krcw_route_historical = yes }
+		}
+		add_war_support = 0.05
+		if = { limit = { is_in_faction = yes } leave_faction = yes }
+		if = {
+			limit = { has_global_flag = KRCW_reun_by_wca country_exists = WCA }
+			WCA = {
+				country_event = { id = krcw_reun.21 days = 3 }
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = KRCW_reun_by_usa country_exists = USA }
+			USA = {
+				country_event = { id = krcw_reun.21 days = 3 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = krcw_reun.21
+	title = krcw_reun_21_t
+	desc = {
+		text = krcw_reun_21_d0
+		trigger = {
+			PSA = { has_country_flag = krcw_psa_presidio_rule }
+		}
+	}
+	desc = {
+		text = krcw_reun_21_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_macarthur
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = krcw_reun_winner
+		country_exists = PSA
+		NOT = { has_global_flag = KRCW_reun_done }
+	}
+	option = {
+		name = krcw_reun_21.a
+		trigger = {
+			country_exists = PSA
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 has_war_support > 0.6 }
+			modifier = { factor = 0.5 has_war = yes }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		krcw_reun_war_west = yes
+	}
+	option = {
+		name = krcw_reun_21.b
+		ai_chance = {
+			base = 60
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		krcw_reun_cold_peace = yes
+	}
+}
+
+country_event = {
+	id = krcw_reun.22
+	title = krcw_reun_22_t
+	desc = {
+		text = krcw_reun_22_d0
+		trigger = {
+			has_global_flag = KRCW_reun_by_wca
+		}
+	}
+	desc = {
+		text = krcw_reun_22_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_victory
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = krcw_reun_winner
+		country_exists = PSA
+		NOT = { has_global_flag = KRCW_reun_done }
+		has_war_with = PSA
+	}
+	option = {
+		name = krcw_reun_22.a
+		ai_chance = {
+			base = 50
+		}
+		clr_global_flag = KRCW_reun_how_talks
+		clr_global_flag = KRCW_reun_how_forced
+		set_global_flag = KRCW_reun_how_war
+		army_experience = 15
+		krcw_reun_annex_west = yes
+	}
+	option = {
+		name = krcw_reun_22.b
+		ai_chance = {
+			base = 50
+		}
+		clr_global_flag = KRCW_reun_how_talks
+		clr_global_flag = KRCW_reun_how_forced
+		set_global_flag = KRCW_reun_how_war
+		add_stability = 0.03
+		krcw_reun_annex_west = yes
+	}
+}
+
+country_event = {
+	id = krcw_reun.23
+	title = krcw_reun_23_t
+	desc = {
+		text = krcw_reun_23_d0
+		trigger = {
+			PSA = { surrender_progress > 0.5 }
+		}
+	}
+	desc = {
+		text = krcw_reun_23_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = krcw_reun_winner
+		country_exists = PSA
+		NOT = { has_global_flag = KRCW_reun_done }
+		has_war_with = PSA
+	}
+	option = {
+		name = krcw_reun_23.a
+		trigger = {
+			PSA = { surrender_progress > 0.5 }
+		}
+		ai_chance = {
+			base = 60
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		white_peace = PSA
+		clr_global_flag = KRCW_reun_war
+		krcw_reun_compact = yes
+	}
+	option = {
+		name = krcw_reun_23.b
+		trigger = {
+			NOT = { PSA = { surrender_progress > 0.5 } }
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 3 surrender_progress > 0.3 }
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		white_peace = PSA
+		clr_global_flag = KRCW_reun_war
+		krcw_detente_up_small = yes
+		krcw_reun_cold_peace = yes
+	}
+	option = {
+		name = krcw_reun_23.c
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0.3 surrender_progress > 0.3 }
+		}
+		add_war_support = 0.03
+		add_stability = -0.02
+	}
+}
+
+country_event = {
+	id = krcw_reun.30
+	title = krcw_reun_30_t
+	desc = {
+		text = krcw_reun_30_d0
+		trigger = {
+			has_global_flag = KRCW_reun_compact
+		}
+	}
+	desc = {
+		text = krcw_reun_30_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_legislature
+	is_triggered_only = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_reun_30.a
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 OR = { AND = { has_global_flag = KRCW_reun_by_wca has_global_flag = KRCW_psa_ti } AND = { has_global_flag = KRCW_reun_by_usa has_global_flag = KRCW_psa_ma } } }
+			modifier = { factor = 0.3 has_country_flag = krcw_psa_presidio_rule }
+		}
+		if = {
+			limit = { has_global_flag = KRCW_reun_by_wca country_exists = WCA }
+			WCA = {
+				country_event = { id = krcw_reun.11 days = 3 }
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = KRCW_reun_by_usa country_exists = USA }
+			USA = {
+				country_event = { id = krcw_reun.11 days = 3 }
+			}
+		}
+	}
+	option = {
+		name = krcw_reun_30.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 3 has_country_flag = krcw_psa_presidio_rule }
+			modifier = { factor = 1.3 krcw_route_historical = yes }
+		}
+		if = {
+			limit = { has_global_flag = KRCW_reun_by_wca country_exists = WCA }
+			WCA = {
+				country_event = { id = krcw_reun.31 days = 3 }
+			}
+		}
+		else_if = {
+			limit = { has_global_flag = KRCW_reun_by_usa country_exists = USA }
+			USA = {
+				country_event = { id = krcw_reun.31 days = 3 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = krcw_reun.31
+	title = krcw_reun_31_t
+	desc = krcw_reun_31_d
+	picture = GFX_krcw_us_legislature
+	is_triggered_only = yes
+	trigger = {
+		has_country_flag = krcw_reun_winner
+		country_exists = PSA
+		NOT = { has_global_flag = KRCW_reun_done }
+	}
+	option = {
+		name = krcw_reun_31.a
+		ai_chance = {
+			base = 60
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		clr_country_flag = krcw_reun_vote_asked
+		add_stability = 0.02
+		if = {
+			limit = { has_global_flag = KRCW_reun_compact }
+			clr_country_flag = krcw_reun_compact_since
+			set_country_flag = krcw_reun_compact_since
+		}
+		else = { krcw_reun_compact = yes }
+	}
+	option = {
+		name = krcw_reun_31.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 has_government = nationalist }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		clr_country_flag = krcw_reun_vote_asked
+		clr_global_flag = KRCW_reun_how_war
+		clr_global_flag = KRCW_reun_how_talks
+		set_global_flag = KRCW_reun_how_forced
+		add_timed_idea = { idea = krcw_reun_west_bitter days = 730 }
+		krcw_tension_up_small = yes
+		krcw_reun_annex_west = yes
+	}
+}
+
+country_event = {
+	id = krcw_reun.40
+	title = krcw_reun_40_t
+	desc = {
+		text = krcw_reun_40_d0
+		trigger = {
+			tag = WCA
+			has_global_flag = KRCW_reun_how_war
+		}
+	}
+	desc = {
+		text = krcw_reun_40_d1
+		trigger = {
+			tag = WCA
+		}
+	}
+	desc = {
+		text = krcw_reun_40_d2
+		trigger = {
+			has_global_flag = KRCW_reun_how_war
+		}
+	}
+	desc = {
+		text = krcw_reun_40_d3
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_reconstruction
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		has_country_flag = krcw_reun_winner
+	}
+	option = {
+		name = krcw_reun_40.a
+		trigger = {
+			tag = WCA
+		}
+		ai_chance = {
+			base = 55
+		}
+		add_ideas = krcw_reun_wca_dockers
+	}
+	option = {
+		name = krcw_reun_40.b
+		trigger = {
+			tag = WCA
+		}
+		ai_chance = {
+			base = 45
+		}
+		add_ideas = krcw_reun_wca_committee
+	}
+	option = {
+		name = krcw_reun_40.c
+		trigger = {
+			NOT = { tag = WCA }
+		}
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		add_ideas = krcw_reun_usa_states
+	}
+	option = {
+		name = krcw_reun_40.d
+		trigger = {
+			NOT = { tag = WCA }
+		}
+		ai_chance = {
+			base = 45
+			modifier = { factor = 2 has_government = nationalist }
+		}
+		add_ideas = krcw_reun_usa_machine
+	}
+}
+
+news_event = {
+	id = krcw_reun.50
+	title = krcw_reun_50_t
+	desc = {
+		text = krcw_reun_50_d0
+		trigger = {
+			has_global_flag = KRCW_reun_by_wca
+			has_global_flag = KRCW_reun_how_war
+		}
+	}
+	desc = {
+		text = krcw_reun_50_d1
+		trigger = {
+			has_global_flag = KRCW_reun_by_wca
+			has_global_flag = KRCW_reun_how_forced
+		}
+	}
+	desc = {
+		text = krcw_reun_50_d2
+		trigger = {
+			has_global_flag = KRCW_reun_by_wca
+		}
+	}
+	desc = {
+		text = krcw_reun_50_d3
+		trigger = {
+			has_global_flag = KRCW_reun_by_usa
+			has_global_flag = KRCW_reun_how_war
+		}
+	}
+	desc = {
+		text = krcw_reun_50_d4
+		trigger = {
+			has_global_flag = KRCW_reun_by_usa
+			has_global_flag = KRCW_reun_how_forced
+		}
+	}
+	desc = {
+		text = krcw_reun_50_d5
+		trigger = {
+			has_global_flag = KRCW_reun_by_usa
+		}
+	}
+	picture = GFX_krcw_us_victory_n
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_reun_50.a
+		trigger = {
+			has_country_flag = krcw_reun_winner
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = krcw_reun_50.b
+		trigger = {
+			NOT = { has_country_flag = krcw_reun_winner }
+			OR = { AND = { krcw_is_ti = yes has_global_flag = KRCW_reun_by_wca } AND = { krcw_is_ma = yes has_global_flag = KRCW_reun_by_usa } }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = krcw_reun_50.c
+		trigger = {
+			NOT = { has_country_flag = krcw_reun_winner }
+			OR = { AND = { krcw_is_ti = yes has_global_flag = KRCW_reun_by_usa } AND = { krcw_is_ma = yes has_global_flag = KRCW_reun_by_wca } }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = krcw_reun_50.d
+		trigger = {
+			NOT = { has_country_flag = krcw_reun_winner }
+			NOT = { OR = { AND = { krcw_is_ti = yes has_global_flag = KRCW_reun_by_wca } AND = { krcw_is_ma = yes has_global_flag = KRCW_reun_by_usa } } }
+			NOT = { OR = { AND = { krcw_is_ti = yes has_global_flag = KRCW_reun_by_usa } AND = { krcw_is_ma = yes has_global_flag = KRCW_reun_by_wca } } }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+news_event = {
+	id = krcw_reun.51
+	title = krcw_reun_51_t
+	desc = {
+		text = krcw_reun_51_d0
+		trigger = {
+			has_global_flag = KRCW_reun_by_wca
+		}
+	}
+	desc = {
+		text = krcw_reun_51_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_news_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = krcw_reun_51.a
+		trigger = {
+			OR = { has_country_flag = krcw_reun_winner tag = PSA }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = krcw_reun_51.b
+		trigger = {
+			NOT = { OR = { has_country_flag = krcw_reun_winner tag = PSA } }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+news_event = {
+	id = krcw_reun.52
+	title = krcw_reun_52_t
+	desc = {
+		text = krcw_reun_52_d0
+		trigger = {
+			has_global_flag = KRCW_reun_by_wca
+		}
+	}
+	desc = {
+		text = krcw_reun_52_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_civil_war_n
+	is_triggered_only = yes
+	option = {
+		name = krcw_reun_52.a
+		trigger = {
+			has_country_flag = krcw_reun_winner
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = krcw_reun_52.b
+		trigger = {
+			tag = PSA
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = krcw_reun_52.c
+		trigger = {
+			NOT = { OR = { has_country_flag = krcw_reun_winner tag = PSA } }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}

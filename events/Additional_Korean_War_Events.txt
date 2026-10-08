@@ -1,0 +1,369 @@
+# KRCW (build/patch_residue.py): 6 OTL events dropped while KRCW_active
+add_namespace = FRAkorea
+add_namespace = ROCkorea
+add_namespace = USAkorea
+
+# Korean War - USA enters
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = FRAkorea.3 
+ immediate = { }
+	title = FRAkorea.3.t
+	desc = FRAkorea.3.d
+	picture = GFX_report_event_soviet_invasion_map
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = korea.3.o.a
+		set_global_flag = korean_war_fra_enters
+		news_event = { hours = 6 id = FRAkorea.4 } 
+		KOR = {
+			add_to_faction = FRA
+		}
+		declare_war_on = {
+			target = KPA
+			type = annex_everything
+		}
+		every_country = {
+			limit = {
+				is_subject_of = FRA
+			}
+			declare_war_on = {
+				target = KPA
+				type = annex_everything
+			}
+		}
+	}
+}
+# Korean War - USA enters - News
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = FRAkorea.4 
+ immediate = { }
+	title = FRAkorea.4.t
+	desc = FRAkorea.4.d
+	picture = GFX_news_event_001
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = korea.4.o.a
+		trigger = {
+			NOT = {
+				tag = KPA
+				tag = PRC
+				tag = KOR
+				tag = SOV
+				tag = USA
+			}
+		}
+	}
+	option = {
+		name = korea.4.o.b
+		trigger = {
+			OR = {
+				tag = KPA
+				tag = PRC
+				tag = SOV }
+		}
+	}
+	option = {
+		name = korea.4.o.c
+		trigger = { tag = KOR }
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USAkorea.10 
+ immediate = { }
+	title = USAkorea.10.t
+	desc = USAkorea.4.d
+	picture = GFX_mcarthur_dissmissal
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = USAkorea.10.a
+	}
+}add_namespace = korean_war_devastation
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = korean_war_devastation.1
+ immediate = { }
+	title = korean_war_devastation.1.t
+	desc = korean_war_devastation.1.d
+	picture = GFX_Korea_War_Devastation
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = korean_war_devastation.1.a
+		trigger = {
+			OR = {
+				tag = KPA
+				tag = KOR
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					tag = KOR
+					tag = KPA
+				}
+			}
+			set_country_flag = korea_devestated
+			every_owned_state = {
+				add_province_modifier = {
+					static_modifiers = { korean_war_devastation }
+					province = {
+						all_provinces = yes
+					}
+				}				
+			}
+		}
+	}
+	option = {
+		name = korean_war_devastation.1.b
+		trigger = {
+			NOT = {
+				tag = KOR
+				tag = KPA
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = korean_war_devastation.2 
+ immediate = { }
+	title = korean_war_devastation.2.t
+	desc = korean_war_devastation.2.d
+	picture = GFX_Korean_War_Devastation_2
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = korean_war_devastation.2.a
+		add_ideas = Firebombing_Devastation
+		custom_effect_tooltip = Korean_War_Devastation_2_TT
+		hidden_effect = {
+			1131 = {
+				remove_building = {
+					type = agri_industrial_complex   
+					level = 1	
+				}		
+				remove_building = {
+					type = infrastructure   
+					level = 2	
+				}		
+				remove_building = {
+					type = state_infrastructure   
+					level = 2	
+				}		
+			}
+			1205 = {
+				remove_building = {
+					type = infrastructure  
+					level = 2	
+				}		
+				remove_building = {
+					type = state_infrastructure  
+					level = 1	
+				}		
+				remove_building = {
+					type = agri_industrial_complex  
+					level = 1	
+				}		
+			}
+			527 = {
+				remove_building = {
+					type = fossil_fuel_powerplant  
+					level = 1	
+				}		
+				remove_building = {
+					type = industrial_complex  
+					level = 1	
+				}		
+				remove_building = {
+					type = infrastructure  
+					level = 1	
+				}		
+				remove_building = {
+					type = state_infrastructure  
+					level = 2	
+				}		
+			}
+			745 = {
+				remove_building = {
+					type = infrastructure  
+					level = 2	
+				}		
+				remove_building = {
+					type = state_infrastructure  
+					level = 2	
+				}		
+				remove_building = {
+					type = water_infrastructure  
+					level = 1	
+				}		
+				remove_building = {
+					type = industrial_complex  
+					level = 2	
+				}		
+				remove_building = {
+					type = arms_factory  
+					level = 2	
+				}		
+				remove_building = {
+					type = office_park  
+					level = 1	
+				}		
+				remove_building = {
+					type = fossil_fuel_powerplant  
+					level = 2	
+				}		
+				remove_building = {
+					type = dockyard  
+					level = 1	
+				}		
+				remove_building = {
+					type = air_base  
+					level = 2	
+				}		
+				remove_building = {
+					type = agri_industrial_complex  
+					level = 2	
+				}		
+			}
+			746 = {
+				remove_building = {
+					type = infrastructure  
+					level = 2	
+				}		
+				remove_building = {
+					type = state_infrastructure  
+					level = 2	
+				}		
+				remove_building = {
+					type = industrial_complex  
+					level = 1	
+				}		
+				remove_building = {
+					type = arms_factory 	
+					level = 1
+				}		
+				remove_building = {
+					type = fossil_fuel_powerplant  
+					level = 1	
+				}		
+			}
+			747 = {
+				remove_building = {
+					type = infrastructure  
+					level = 1	
+				}		
+				remove_building = {
+					type = state_infrastructure  
+					level = 2	
+				}		
+				remove_building = {
+					type = agri_industrial_complex  
+					level = 1		
+				}				
+			}
+			748 = {
+				remove_building = {
+					type = infrastructure 
+					level = 1
+				}
+				remove_building = {
+					type = state_infrastructure 
+					level = 2
+				}
+				remove_building = {
+					type = water_infrastructure 
+					level = 1
+				}
+
+				remove_building = {
+					type = industrial_complex 
+					level = 1
+				}
+				remove_building = {
+					type = fossil_fuel_powerplant 
+					level = 1
+				}
+				remove_building = {
+					type = agri_industrial_complex
+					level = 1	
+				}		
+			}
+
+			920 = {
+				remove_building = {
+					type = infrastructure
+					level = 2
+				}
+				remove_building = {
+					type = state_infrastructure
+					level = 2
+				}			
+			}
+
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = korean_war_devastation.3
+ immediate = { }
+	title = korean_war_devastation.3.t
+	desc = korean_war_devastation.3.d
+	picture = GFX_Korea_War_Devastation_3
+
+	major = yes
+
+	is_triggered_only = yes
+	option = {
+		name = korean_war_devastation.3.a
+		trigger = { tag = USA }
+	}
+	option = {
+		name = korean_war_devastation.3.b
+		trigger = { tag = KPA }
+	}
+	option = {
+		name = korean_war_devastation.3.c
+		trigger = {
+			OR = {
+				tag = PRC
+				tag = SOV 
+				tag = KPA
+			}
+		}
+	}
+	option = {
+		name = korean_war_devastation.3.d
+		trigger = { tag = KOR }
+	}
+	option = {
+		name = korean_war_devastation.3.e
+		trigger = { 
+			NOT = { tag = KOR }
+			NOT = { tag = KPA }
+			NOT = { tag = SOV }
+			NOT = { tag = PRC }
+			NOT = { tag = USA }
+		}
+	}
+}

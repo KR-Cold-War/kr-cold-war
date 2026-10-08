@@ -1,0 +1,1168 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = HUM_1950s
+	country = {
+		factor = 0
+		modifier = {
+			add = 20 
+			tag = HUM
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	continuous_focus_position = {
+		x = 100
+		y = 4500
+	}
+	initial_show_position = {
+		focus = HUM_Requesting_UN_Recognition
+	}
+	# start of foreign policy branch
+	focus = {
+		id = HUM_Requesting_UN_Recognition
+		icon = GFX_HUM_Requesting_UN_Recognition
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 2
+		y = 0
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	#American bases branch
+	focus = {
+		id = HUM_Offer_to_Host_US_Bases
+		icon = GFX_HUM_Offer_to_Host_US_Bases
+		completion_reward = {
+		}
+		cost = 10
+		prerequisite = {
+			focus = HUM_Requesting_UN_Recognition
+		}
+		x = 6
+		y = 1
+		completion_reward = {
+			HUM = {
+				add_opinion_modifier = {
+					target = USA
+					modifier = small_increase
+				}
+			}
+			USA = {
+				add_opinion_modifier = {
+					target = HUM
+					modifier = small_increase
+				}
+			}
+			USA = {
+				complete_national_focus = USA_50s_FP_Reach_Out_to_the_Meads
+			}
+		}
+	}
+	focus = {
+		id = HUM_American_Investment
+		icon = GFX_SWK_Welcome_US_Investments
+		completion_reward = {
+		}
+		cost = 10
+		prerequisite = {
+			focus = HUM_Offer_to_Host_US_Bases
+		}
+		x = 5
+		y = 2
+		completion_reward = {
+			add_offsite_building = {
+				type = industrial_complex
+				level = 1
+			}
+			add_offsite_building = {
+				type = arms_factory
+				level = 1
+			}
+		}
+	}
+	focus = {
+		id = HUM_American_Security
+		icon = GFX_SWK_US_mil_aid
+		completion_reward = {
+		}
+		cost = 10
+		prerequisite = {
+			focus = HUM_Offer_to_Host_US_Bases
+		}
+		x = 7
+		y = 2
+		completion_reward = {
+			add_timed_idea = {
+				idea = military_boost_general
+				days = 180
+			}
+			set_variable = { THIS.idea_len_@token:military_boost_general = 180 }
+			set_variable = { THIS.idea_date_@token:military_boost_general = global.num_days }
+			1855 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUM_American_CIA
+		icon = GFX_SWK_US_CIA
+		completion_reward = {
+		}
+		cost = 10
+		prerequisite = {
+			focus = HUM_American_Security
+		}
+		prerequisite = {
+			focus = HUM_American_Investment
+		}
+		x = 6
+		y = 3
+		completion_reward = {
+			1855 = {
+				add_manpower = -10
+			}
+			add_stability = 0.01
+			add_ideas = SWK_CIA
+			
+		}
+	}
+	#End of american bases branch
+	focus = {
+		id = HUM_Permit_French_Garrison
+		icon = GFX_HUM_Permit_French_Garrison
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		prerequisite = {
+			focus = HUM_Requesting_UN_Recognition
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 100
+				producer = FRA
+			}
+			HUM = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = small_increase
+				}
+				give_military_access = FRA
+			}
+			FRA = {
+				add_opinion_modifier = {
+					target = HUM
+					modifier = small_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUM_Liberate_Itu-aba_Island
+		completion_reward = {
+		}
+		cost = 10
+		prerequisite = {
+			focus = HUM_Permit_French_Garrison
+		}
+		mutually_exclusive = {
+			focus = HUM_Ignore_ROC_Itu-aba_Garrison
+		}
+		x = 1
+		y = 2
+		completion_reward = {
+			HUM = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = huge_decrease
+				}
+			}
+			CHI = {
+				add_opinion_modifier = {
+					target = HUM
+					modifier = huge_decrease
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUM_Ignore_ROC_Itu-aba_Garrison
+		icon = GFX_HUM_Ignore_ROC_Itu-aba_Garrison
+		completion_reward = {
+		}
+		cost = 10
+		prerequisite = {
+			focus = HUM_Permit_French_Garrison
+		}
+		mutually_exclusive = {
+			focus = HUM_Liberate_Itu-aba_Island
+		}
+		x = 3
+		y = 2
+		completion_reward = {
+			HUM = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = small_increase
+				}
+			}
+			CHI = {
+				add_opinion_modifier = {
+					target = HUM
+					modifier = small_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUM_Contact_South_Vietnam
+		completion_reward = {
+		}
+		cost = 10
+		prerequisite = {
+			focus = HUM_Liberate_Itu-aba_Island
+			focus = HUM_Ignore_ROC_Itu-aba_Garrison
+		}
+		x = 2
+		y = 3
+		completion_reward = {
+			VIE = {
+				country_event = VIE_Humanity.1
+				add_opinion_modifier = {
+					target = HUM
+					modifier = tiny_increase
+				}
+				reverse_add_opinion_modifier = {
+					target = HUM
+					modifier = tiny_increase
+				}
+				every_subject_country = {
+					add_opinion_modifier = {
+						target = HUM
+						modifier = tiny_increase
+					}
+					reverse_add_opinion_modifier = {
+						target = HUM
+						modifier = tiny_increase
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUM_Approach_the_Phillipine_government
+		completion_reward = {
+		}
+		cost = 10
+		prerequisite = {
+			focus = HUM_Contact_South_Vietnam
+		}
+		x = 2
+		y = 4
+		completion_reward = {
+			PHI = {
+				country_event = PHI_Humanity.1
+				add_opinion_modifier = {
+					target = HUM
+					modifier = tiny_increase
+				}
+				reverse_add_opinion_modifier = {
+					target = HUM
+					modifier = tiny_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUM_Request_Bruneis_Recognition
+		completion_reward = {
+		}
+		cost = 10
+		prerequisite = {
+			focus = HUM_Approach_the_Phillipine_government
+		}
+		x = 2
+		y = 5
+		completion_reward = {
+			BRU = {
+				country_event = BRU_Humanity.1
+				add_opinion_modifier = {
+					target = HUM
+					modifier = tiny_increase
+				}
+				reverse_add_opinion_modifier = {
+					target = HUM
+					modifier = tiny_increase
+				}
+			}
+		}
+	}
+	# end of foreign policy branch
+
+	# start of domestic policy branch
+	focus = {
+		id = HUM_Recolonize_the_Archipelago
+		icon = GFX_unknown
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 10
+		y = 0
+		completion_reward = {
+			add_state_core = 1855
+		}
+	}
+	focus = {
+		id = HUM_Attract_White_Settlers
+		icon = GFX_HUM_Attract_White_Settlers
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 9
+		y = 1
+		prerequisite = {
+			focus = HUM_Recolonize_the_Archipelago
+		}
+		mutually_exclusive = {
+			focus = HUM_Invite_Filipino_Settlers
+		}
+		completion_reward = {
+			add_manpower = 50
+			HUM = {
+				add_opinion_modifier = {
+					target = USA
+					modifier = small_increase
+				}
+			}
+			USA = {
+				add_opinion_modifier = {
+					target = HUM
+					modifier = small_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUM_Rebuild_Southwark
+		icon = GFX_Rebuild_Southwark
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 9
+		y = 2
+		prerequisite = {
+			focus = HUM_Attract_White_Settlers
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = HUM_Invite_Filipino_Settlers
+		icon = GFX_HUM_Invite_Filipino_Settlers
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 11
+		y = 1
+		prerequisite = {
+			focus = HUM_Recolonize_the_Archipelago
+		}
+		mutually_exclusive = {
+			focus = HUM_Attract_White_Settlers
+		}
+		completion_reward = {
+			add_manpower = 2000
+			HUM = {
+				add_opinion_modifier = {
+					target = PHI
+					modifier = small_increase
+				}
+			}
+			PHI = {
+				add_opinion_modifier = {
+					target = HUM
+					modifier = small_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUM_Fight_off_the_Pirates
+		icon = GFX_HUM_Fight_off_the_Pirates
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 11
+		y = 2
+		prerequisite = {
+			focus = HUM_Invite_Filipino_Settlers
+		}
+		completion_reward = {
+			add_manpower = -100
+			add_stability = 0.1
+		}
+	}
+	focus = {
+		id = HUM_Host_a_Referrendum
+		icon = GFX_HUM_Host_a_Referrendum
+		completion_reward = {
+		}
+		cost = 10
+		x = 10
+		y = 3
+		prerequisite = {
+			focus = HUM_Rebuild_Southwark
+			focus = HUM_Fight_off_the_Pirates
+		}
+		completion_reward = {
+			country_event = HUM.1
+		}
+	}
+	focus = {
+		id = HUM_Re-open_the_University_of_Southwark
+		icon = GFX_HUM_Re-open_the_University_of_Southwark
+		completion_reward = {
+		}
+		cost = 11
+		x = 10
+		y = 5
+		prerequisite = {
+			focus = HUM_Host_a_Referrendum
+		}
+		completion_reward = {
+			add_research_slot = 1
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = office_park
+					level = 1
+				}
+			}
+		}
+	}
+
+		# -- start of Republican sub-branch
+		focus = {
+			id = HUM_Support_Republican_Movement
+			icon = GFX_HUM_Support_Republican_Movement
+			completion_reward = {
+			}
+			available = {
+				always = no
+			}
+			cost = 10
+			x = 7
+			y = 4
+			prerequisite = {
+				focus = HUM_Host_a_Referrendum
+			}
+			mutually_exclusive = {
+				focus = HUM_Maintain_the_Monarchy
+			}
+			completion_reward = {
+				add_political_power = 50
+				
+			}
+		}
+		focus = {
+			id = HUM_Exile_the_Meads
+			icon = GFX_HUM_Exile_the_Meads
+			completion_reward = {
+			}
+			cost = 10
+			x = 6
+			y = 5
+			prerequisite = {
+				focus = HUM_Support_Republican_Movement
+			}
+			completion_reward = {
+				add_popularity = {
+					ideology = Liberal_Conservatism
+					popularity = 5
+				}
+				set_party_name = {
+					ideology = monarchism
+					long_name = BANNED
+					name = BANNED
+				}
+				set_politics = {
+					ruling_party = Liberal_Conservatism
+				}
+				HUM_christopher_schroeder = {
+					promote_leader = yes
+				}
+				retire_character = HUM_morton_f_meads
+			}
+		}
+		focus = {
+			id = HUM_Declare_the_Republic
+			icon = GFX_HUM_Declare_the_Republic
+			completion_reward = {
+			}
+			cost = 10
+			x = 7
+			y = 6
+			prerequisite = {
+				focus = HUM_Support_Republican_Movement
+			}
+			completion_reward = {
+				hidden_effect = {
+					keep_current_politics = yes
+				}
+				retire_country_leader = yes
+				retire_ideology_leader = monarchism
+				add_country_leader_role = {
+					character = HUM_christopher_schroeder
+					promote_leader = yes
+					country_leader = {
+						ideology = conservative_liberalism
+					}
+				}
+				set_politics = {
+					ruling_party = Liberal_Conservatism
+				}
+			}
+		}
+		focus = {
+			id = HUM_Align_with_Western_Powers
+			icon = GFX_HUM_Align_with_Western_Powers
+			completion_reward = {
+			}
+			cost = 10
+			x = 8
+			y = 5
+			prerequisite = {
+				focus = HUM_Support_Republican_Movement
+			}
+			completion_reward = {
+				add_offsite_building = {
+					type = industrial_complex
+					level = 1
+				}
+				every_country = {
+					limit = {
+						is_ally_with = USA
+					}
+					add_opinion_modifier = {
+						target = HUM
+						modifier = medium_increase
+					}
+					reverse_add_opinion_modifier = {
+						target = PREV
+						modifier = medium_increase
+					}
+				}
+			}
+		}
+		# -- end of Republican sub-branch
+
+		# -- start of Monarchist sub-branch
+		focus = {
+			id = HUM_Maintain_the_Monarchy
+			icon = GFX_HUM_Maintain_the_Monarchy
+			completion_reward = {
+			}
+			available = {
+				always = no
+			}
+			cost = 10
+			x = 13
+			y = 4
+			prerequisite = {
+				focus = HUM_Host_a_Referrendum
+			}
+			mutually_exclusive = {
+				focus = HUM_Support_Republican_Movement
+			}
+			completion_reward = {
+				add_political_power = 50
+			}
+		}
+		focus = {
+			id = HUM_Maintain_Strict_Neutrality
+			icon = GFX_HUM_Maintain_Strict_Neutrality
+			completion_reward = {
+			}
+			cost = 10
+			x = 12
+			y = 5
+			prerequisite = {
+				focus = HUM_Maintain_the_Monarchy
+			}
+			completion_reward = {
+				add_stability = 0.05
+				add_political_power = 50
+			}
+		}
+		focus = {
+			id = HUM_Reintegrate_Outer_Reef_Banks
+			icon = GFX_HUM_Reintegrate_Outer_Reef_Banks
+			completion_reward = {
+			}
+			cost = 10
+			x = 13
+			y = 6
+			prerequisite = {
+				focus = HUM_Maintain_the_Monarchy
+			}
+			completion_reward = {
+				add_stability = 0.05
+				add_political_power = 50
+			}
+		}
+		focus = {
+			id = HUM_Intensify_Anti-Communist_Measures
+			icon = GFX_HUM_Intensify_Anti-Communist_Measures
+			completion_reward = {
+			}
+			cost = 10
+			x = 14
+			y = 5
+			prerequisite = {
+				focus = HUM_Maintain_the_Monarchy
+			}
+			completion_reward = {
+				random_owned_controlled_state = {
+					add_extra_state_shared_building_slots = 2
+				}
+				add_state_core = 997
+			}
+		}
+		# -- end of Monarchist sub-branch
+
+	# end of domestic policy branch
+
+	# start of military branch
+	focus = {
+		id = HUM_Rebuild_the_IJA_Shinnan-Shoto_Base
+		icon = GFX_Generic_Construction
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 19
+		y = 0
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 750
+				producer = JAP
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment_1
+				amount = 250
+				producer = JAP
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_1
+				amount = 25
+				producer = JAP
+			}
+			add_equipment_to_stockpile = {
+				type = lt_equipment_1
+				amount = 5
+				producer = JAP
+			}
+		}
+	}
+	focus = {
+		id = HUM_Smuggling_Pirate_Weapons
+		icon = GFX_HUM_Smuggling_Pirate_Weapons
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 19
+		y = 1
+		prerequisite = {
+			focus = HUM_Rebuild_the_IJA_Shinnan-Shoto_Base
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 250
+				producer = CHI
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_1
+				amount = 5
+				producer = CHI
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment_1
+				amount = 10
+			}
+		}
+	}
+	focus = {
+		id = HUM_Resettle_the_Nagashima_Submarine_Base
+		icon = GFX_HUM_Resettle_the_Nagashima_Submarine_Base
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 16
+		y = 2
+		prerequisite = {
+			focus = HUM_Smuggling_Pirate_Weapons
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_coastal = yes
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					province = {
+						limit_to_coastal = yes
+						limit_to_victory_point = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUM_Repair_Leftover_IJA_Patrol_Craft
+		icon = GFX_HUM_Repair_Leftover_IJA_Patrol_Craft
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 16
+		y = 3
+		prerequisite = {
+			focus = HUM_Resettle_the_Nagashima_Submarine_Base
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 10
+			}
+			create_ship = {
+				type = destroyer_1
+				equipment_variant = 0
+			}
+		}
+	}
+	focus = {
+		id = HUM_Rebuild_the_Shinnan_Runway
+		icon = GFX_HUM_Rebuild_the_Shinnan_Runway
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 22
+		y = 2
+		prerequisite = {
+			focus = HUM_Smuggling_Pirate_Weapons
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = air_base
+					level = 1
+				}
+			}
+			air_experience = 10
+		}
+	}
+	focus = {
+		id = HUM_Repair_Leftover_IJA_Planes
+		icon = GFX_HUM_Repair_Leftover_IJA_Planes
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 22
+		y = 3
+		prerequisite = {
+			focus = HUM_Rebuild_the_Shinnan_Runway
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment_0
+				amount = 5
+				producer = JAP
+			}
+			add_equipment_to_stockpile = {
+				type = CAS_equipment_1
+				amount = 5
+				producer = JAP
+			}
+			air_experience = 5
+		}
+	}
+	focus = {
+		id = HUM_Expand_the_Grenadiers
+		icon = GFX_Expand_the_Grenadiers
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 19
+		y = 2
+		prerequisite = {
+			focus = HUM_Smuggling_Pirate_Weapons
+		}
+		completion_reward = {
+			division_template = {
+            name = "Royal Sentinels"
+            priority = 0
+            template_counter = 0
+            regiments = {
+                infantry = { x = 0 y = 0 }
+                light_artillery = { x = 1 y = 0 }
+                }
+            support = {
+                signal_company = { x = 0 y = 0 }
+				}
+			}
+			capital_scope = {
+				create_unit = {
+                    division = "name = \"1st Royal Sentinels\" division_template = \"Royal Sentinels\" start_experience_factor = 0.2 start_manpower_factor = 1"
+                    owner = HUM
+                }
+			}
+			add_manpower = -100
+		}
+	}
+	focus = {
+		id = HUM_Emulate_USMC_Tactics
+		icon = GFX_HUM_Emulate_USMC_Tactics
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 18
+		y = 3
+		prerequisite = {
+			focus = HUM_Expand_the_Grenadiers
+		}
+		completion_reward = {
+			add_ideas = Emulating_USMC_Tactics
+			army_experience = 10
+			navy_experience = 10
+			add_command_power = 20
+		}
+	}
+	focus = {
+		id = HUM_Copy_the_M1_Garand
+		icon = GFX_Copy_the_M1_Garand
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 20
+		y = 3
+		prerequisite = {
+			focus = HUM_Expand_the_Grenadiers
+		}
+		completion_reward = {
+			set_technology = {
+				infantry_equip_2 = 1
+				popup = yes
+			}
+			army_experience = 5
+		}
+	}
+	focus = {
+		id = HUM_Expand_the_Sea_Fortifications
+		icon = GFX_HUM_Expand_the_Sea_Fortifications
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 19
+		y = 4
+		prerequisite = {
+			focus = HUM_Expand_the_Grenadiers
+		}
+		prerequisite = {
+			focus = HUM_Emulate_USMC_Tactics
+		}
+		prerequisite = {
+			focus = HUM_Copy_the_M1_Garand
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 1
+				}
+			}
+		}
+	}
+	# end of military branch
+
+	# begin of tourism & industry branch
+	focus = {
+		id = HUM_Building_up_a_Tourism_Industry
+		icon = GFX_Building_a_tourism_industry
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 19
+		y = 6
+		completion_reward = {
+			add_to_variable = { 
+				currentMoney = -0.15
+			}
+			set_temp_variable = {
+				x = -150
+				tooltip = adjust_money_mil_tt
+			}
+			1855 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUM_Rebuild_the_Royal_Hotel
+		icon = GFX_HUM_Rebuild_the_Royal_Hotel
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 18
+		y = 7
+		prerequisite = {
+			focus = HUM_Building_up_a_Tourism_Industry
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = office_park
+					level = 1
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUM_Widen_the_Southwark_Port
+		icon = GFX_HUM_Widen_the_Southwark_Port
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 20
+		y = 7
+		prerequisite = {
+			focus = HUM_Building_up_a_Tourism_Industry
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 5
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = naval_base
+					level = 1
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUM_Modernizing_Southwark
+		icon = GFX_HUM_Modernizing_Southwark
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 19
+		y = 8
+		prerequisite = {
+			focus = HUM_Building_up_a_Tourism_Industry
+		}
+		prerequisite = {
+			focus = HUM_Rebuild_the_Royal_Hotel
+		}
+		prerequisite = {
+			focus = HUM_Widen_the_Southwark_Port
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 4
+			}
+		}
+	}
+	focus = {
+		id = HUM_Finding_an_Oil_Drilling_Partner
+		icon = GFX_HUM_Finding_an_Oil_Drilling_Partner
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 19
+		y = 9
+		prerequisite = {
+			focus = HUM_Modernizing_Southwark
+		}
+		completion_reward = {
+			add_resource = {
+				type = oil
+				amount = 7
+			}
+		}
+	}
+	# end of tourism & industry branch
+
+	# begin of electricity branch
+	focus = {
+		id = HUM_Electrification_of_Southwark
+		icon = GFX_HUM_Electrification_of_Southwark
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 24
+		y = 6
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUM_Import_De-salination_Treatment_Machines
+		icon = GFX_HUM_Import_De-salination_Treatment_Machines
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 23
+		y = 7
+		prerequisite = {
+			focus = HUM_Electrification_of_Southwark
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+				add_building_construction = {
+					type = water_infrastructure
+					level = 1
+				}
+			}
+		}
+	}
+	focus = {
+		id = HUM_Invest_in_Salt-tolerant_Crops
+		icon = GFX_HUM_Invest_in_Salt-tolerant_Crops
+		completion_reward = {
+		}
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 10
+		x = 25
+		y = 7
+		prerequisite = {
+			focus = HUM_Electrification_of_Southwark
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	# end of electricity branch
+}

@@ -1,0 +1,45 @@
+# KRCW (build/patch_residue.py): 1 OTL decisions hidden while KRCW_active
+HUM_Oil_drilling_partner = {
+    HUM_Find_an_oil_drilling_partner = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+            1855 = {
+				oil < 16
+            }
+        }
+        cost = 150
+        days_remove = 30
+        fire_only_once = no
+        complete_effect = {
+			if = {
+				limit = {
+					1855 = {
+						oil > 5
+					}    
+				}  
+				1855 = {
+					add_resource = {
+						type = oil
+						amount = 5
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					1855 = {
+						oil < 6
+					}
+				}
+				1855 = {
+					add_resource = {
+						type = oil
+						amount = 6
+					}
+				}
+			}
+        }
+    }
+}

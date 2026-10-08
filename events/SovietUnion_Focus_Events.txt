@@ -1,0 +1,2522 @@
+# KRCW (build/patch_residue.py): 98 OTL events dropped while KRCW_active
+################################
+# Events for the Soviet union
+################################
+add_namespace = sov
+add_namespace = sov_congress
+add_namespace = every1
+add_namespace = COMECON
+add_namespace = build_building
+add_namespace = Beria_Arriest
+add_namespace = sov_death
+add_namespace = sov_maki
+add_namespace = Khruschev_SU
+add_namespace = Sov_Missle
+add_namespace = malenkov_resign
+add_namespace = destalinization
+add_namespace = 11th_5yp_food
+add_namespace = sov_comp_purchase
+add_namespace = sov_ibm_purchase
+add_namespace = Soviet_Don_Volga
+add_namespace = Soviet_Nuke_Test
+add_namespace = sov_sell_tech
+add_namespace = chernobyl
+add_namespace = SOV_PRC_Treaty
+add_namespace = soviet_help
+add_namespace = soviet_industry
+add_namespace = SOV_STL
+add_namespace = sov_guide
+add_namespace = sov_guide
+add_namespace = sov_percentage_agreement
+add_namespace = sov_german_question
+add_namespace = sov_turkey_in_nato
+add_namespace = SOV_VIN
+add_namespace = SOV_CornManOutAPG
+add_namespace = SOV_AlbaniaVisit
+
+add_namespace = Soviet_WW3_Debug
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOV_VIN.0
+	immediate = { }
+	title = SOV_VIN.0.t
+	desc = SOV_VIN.0.d
+	picture = GFX_sov_sell_tech
+	is_triggered_only = yes
+
+	option = {
+		name = SOV_VIN.0.a
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOV_VIN.1
+	immediate = { }
+	title = SOV_VIN.1.t
+	desc = SOV_VIN.1.d
+	picture = GFX_sov_sell_tech
+	is_triggered_only = yes
+
+	option = {
+		name = SOV_VIN.1.a
+		country_event = {
+			id = SOV_VIN.2
+			days = 50
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOV_VIN.2
+	immediate = { }
+	title = SOV_VIN.2.t
+	desc = SOV_VIN.2.d
+	picture = GFX_sov_sell_tech
+	is_triggered_only = yes
+
+	option = {
+		name = SOV_VIN.2.a
+		country_event = {
+			id = SOV_VIN.3
+			days = 20
+		}
+	}
+	option = {
+		name = SOV_VIN.2.b
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOV_VIN.3
+	immediate = { }
+	title = SOV_VIN.3.t
+	desc = SOV_VIN.3.d
+	picture = GFX_sov_sell_tech
+	is_triggered_only = yes
+
+	option = {
+		name = SOV_VIN.3.a
+		VIN = {
+			set_country_leader_ideology = ho_chi_minh_thought_revsoc
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOV_VIN.4
+	immediate = { }
+	title = SOV_VIN.4.t
+	desc = SOV_VIN.4.d
+	picture = GFX_sov_sell_tech
+	is_triggered_only = yes
+
+	option = {
+		name = SOV_VIN.4.a
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOV_VIN.5
+	immediate = { }
+	title = SOV_VIN.5.t
+	desc = SOV_VIN.5.d
+	picture = GFX_sov_sell_tech
+	is_triggered_only = yes
+
+	option = {
+		name = SOV_VIN.5.a
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Percentage go or not
+	id = Soviet_WW3_Debug.1
+	immediate = { }
+	title = Soviet_WW3_Debug.1.t
+	desc = Soviet_WW3_Debug.1.d
+	#picture = GFX_SOV_STL_1
+	is_triggered_only = yes
+	option = {
+		name = Soviet_WW3_Debug.1.a
+		load_focus_tree = SOV_WW3_1950s
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Percentage go or not
+	id = sov_congress.1
+	immediate = { }
+	title = sov_congress.1.t
+	desc = "sov_congress.1.d"
+	#picture = GFX_SOV_STL_1
+	is_triggered_only = yes
+	option = {
+		name = sov_congress.1.a
+		complete_national_focus = SOV_Stalin_19th_Congress_Of_The_Communist_Party
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Percentage go or not
+	id = sov_percentage_agreement.1
+	immediate = { }
+	title = sov_percentage_agreement.1.t
+	desc = sov_percentage_agreement.1.desc
+	picture = GFX_SOV_STL_1
+	is_triggered_only = yes
+	option = {
+		name = sov_percentage_agreement.1.a
+		set_country_flag = SOV_Followed_Percentage_Agreements
+		mark_focus_tree_layout_dirty = yes
+		complete_national_focus = SOV_gpa_honour_the_agreement
+		ai_chance = {
+			factor = 99
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+		}
+	}
+	option = {
+		name = sov_percentage_agreement.1.b
+		set_country_flag = SOV_Rejected_Percentage_Agreements
+		mark_focus_tree_layout_dirty = yes
+		complete_national_focus = SOV_gci_intervene_in_greece
+	}
+}
+
+# ==========================================================================
+#  Greek Civil War side branch flavour (news only, no choices). Fired from
+#  the matching focus in common/national_focus/SOV_Greek_Civil_War_Branch.txt.
+# ==========================================================================
+add_namespace = sov_greek_question
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_greek_question.1			# SOV_gpa_abandon_the_kke
+	title = sov_greek_question.1.t
+	desc = sov_greek_question.1.d
+	picture = GFX_Guns_for_PDG
+
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = sov_greek_question.1.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_greek_question.2			# SOV_gpa_restore_diplomatic_relations
+	title = sov_greek_question.2.t
+	desc = sov_greek_question.2.d
+	picture = GFX_news_event_BCR_sov_am_pull_back_troops
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = sov_greek_question.2.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_greek_question.3			# SOV_gpa_the_cyprus_question
+	title = sov_greek_question.3.t
+	desc = sov_greek_question.3.d
+	picture = GFX_news_event_BCR_sov_am_pull_back_troops
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = sov_greek_question.3.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_greek_question.4			# SOV_gci_a_peoples_republic_in_greece
+	title = sov_greek_question.4.t
+	desc = sov_greek_question.4.d
+	picture = GFX_PDG_Integration
+
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = sov_greek_question.4.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_greek_question.5			# SOV_gci_the_greek_defeat
+	title = sov_greek_question.5.t
+	desc = sov_greek_question.5.d
+	picture = GFX_Guns_for_PDG
+
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = sov_greek_question.5.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_greek_question.6			# SOV_gci_hold_the_albanian_line
+	title = sov_greek_question.6.t
+	desc = sov_greek_question.6.d
+	picture = GFX_Albania_Eight
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = sov_greek_question.6.a
+	}
+}
+# The German Question - entry point for the 1949 West German election arc.
+# Fired by SOV_Stalin_The_Zhdanov_Doctrine. Hands off to SOV_WGR.1, which
+# carries the actual interfere / stay-out choice. If the KPD subsequently wins
+# (WGRElection.1 option c) the Soviet side branch SOV_wge_a_red_bonn is
+# revealed; otherwise nothing further happens.
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_german_question.1
+	immediate = { }
+	title = sov_german_question.1.t
+	desc = sov_german_question.1.desc
+	picture = GFX_WGR_Bundeshaus_Bonn
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = sov_german_question.1.a
+		add_political_power = 25
+		hidden_effect = {
+			country_event = { id = SOV_WGR.1 days = 3 }
+		}
+	}
+}
+
+# ==========================================================================
+#  A RED BONN - fired from WGRElection.1 option c when the KPD wins. This is
+#  what reveals the SOV_wge_a_red_bonn side branch (see
+#  common/national_focus/SOV_WGR_Communist_Branch.txt).
+# ==========================================================================
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_german_question.2
+	title = sov_german_question.2.t
+	desc = sov_german_question.2.d
+	picture = GFX_WGR_Bundeshaus_Bonn
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		set_country_flag = SOV_WGR49_kpd_victory
+		mark_focus_tree_layout_dirty = yes
+	}
+
+	option = {
+		name = sov_german_question.2.a
+		add_political_power = 50
+		complete_national_focus = SOV_wge_a_red_bonn
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_german_question.3
+	title = sov_german_question.3.t
+	desc = sov_german_question.3.d
+	picture = GFX_WGR_Reunification_of_Germany
+
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = sov_german_question.3.a
+	}
+}
+
+# --- Branch flavour (news only, no choices) -------------------------------
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_german_question.4			# SOV_wge_recognize_the_reimann_government
+	title = sov_german_question.4.t
+	desc = sov_german_question.4.d
+	picture = GFX_news_event_BCR_sov_am_pull_back_troops
+
+	is_triggered_only = yes
+
+	option = {
+		name = sov_german_question.4.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_german_question.5			# SOV_wge_two_states_one_road
+	title = sov_german_question.5.t
+	desc = sov_german_question.5.d
+	picture = GFX_WGR_Saar_NEWS_EVENT_goes_to_West_Germany
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = sov_german_question.5.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_german_question.6			# SOV_wge_the_atlantic_recoils
+	title = sov_german_question.6.t
+	desc = sov_german_question.6.d
+	picture = GFX_news_event_DDR_Invade_WGR
+
+	is_triggered_only = yes
+
+	option = {
+		name = sov_german_question.6.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Percentage go or not
+	id = sov_turkey_in_nato.1
+	immediate = { }
+	title = sov_turkey_in_nato.1.t
+	desc = sov_turkey_in_nato.1.desc
+	picture = GFX_SOV_STL_1
+	is_triggered_only = yes
+	option = {
+		name = sov_turkey_in_nato.1.a #Push for their removal
+		ai_chance = {
+			factor = 15
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_turkey_question option = DEFAULT }
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_turkey_question option = SOV_TUR_ULTIMATUM }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_turkey_question option = SOV_TUR_RELENT }
+			}
+		}
+		complete_national_focus = SOV_Turkish_NATO_Application
+		TUR = {
+			country_event = sov_turkey_in_nato.2
+		}
+	}
+	option = {
+		name = sov_turkey_in_nato.1.b #Backdown
+		ai_chance = {
+			factor = 85
+			modifier = {
+				factor = 1000
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_turkey_question option = DEFAULT }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_turkey_question option = SOV_TUR_ULTIMATUM }
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_turkey_question option = SOV_TUR_RELENT }
+			}
+		}
+		complete_national_focus = SOV_Turkey_Defiance
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Percentage go or not
+	id = sov_turkey_in_nato.2
+	immediate = { }
+	title = sov_turkey_in_nato.2.t
+	desc = sov_turkey_in_nato.2.desc
+	picture = GFX_SOV_STL_1
+	is_triggered_only = yes
+	option = {
+		name = sov_turkey_in_nato.2.a #Push for their removal
+		remove_ideas = nato_member
+		ai_chance = { factor = 99 }
+		leave_faction = yes
+		SOV = {
+			complete_national_focus = SOV_Turkey_Fold
+		}
+	}
+	option = {
+		name = sov_turkey_in_nato.2.b #Backdown
+		ai_chance = { factor = 1 }
+		SOV = {
+			country_event = sov_turkey_in_nato.3
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Percentage go or not
+	id = sov_turkey_in_nato.3
+	immediate = { }
+	title = sov_turkey_in_nato.3.t
+	desc = sov_turkey_in_nato.3.desc
+	picture = GFX_SOV_STL_1
+	is_triggered_only = yes
+
+	option = {
+		name = sov_turkey_in_nato.3.a #WW3
+		ai_chance = {
+			factor = 25
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_turkey_question option = DEFAULT }
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_turkey_question option = SOV_TUR_ULTIMATUM }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_turkey_question option = SOV_TUR_RELENT }
+			}
+		}
+		complete_national_focus = SOV_Turkey_Fold
+		complete_national_focus = SOV_Demand_Turkish_Subordination
+	}
+	option = {
+		name = sov_turkey_in_nato.3.b #Backdown
+		ai_chance = {
+			factor = 75
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_turkey_question option = SOV_TUR_ULTIMATUM }
+			}
+		}
+		complete_national_focus = SOV_Turkey_Defiance
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Guide to Soviet
+	id = sov_guide.2
+	immediate = { }
+	title = sov_guide.2.t
+	desc = sov_guide.2.desc
+	picture = GFX_SOV_STL_1
+	is_triggered_only = yes
+	option = {
+		name = sov_guide.2.a
+		set_variable = { soviet_leader_list^0 = 1 }
+	}
+	option = {
+		name = sov_guide.2.b
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Guide to Soviet
+	id = sov_guide.1
+	immediate = { }
+	title = sov_guide.1.t
+	desc = sov_guide.1.desc
+	picture = GFX_SOV_STL_1
+	is_triggered_only = yes
+	option = {
+		name = sov_guide.1.a
+		remove_from_array = { disputed_countries = AUS }
+	}
+	option = {
+		name = sov_guide.1.b
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Arrestation of Vasily Stalin
+	id = SOV_STL.1
+	immediate = { }
+	title = SOV_STL.1.t
+	desc = SOV_STL.1.desc
+	picture = GFX_SOV_STL_1
+	is_triggered_only = yes
+	option = {
+		name = SOV_STL.1.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Beria hint to reformism
+	id = SOV_STL.2
+	immediate = { }
+	title = SOV_STL.2.t
+	desc = SOV_STL.2.desc
+	picture = GFX_SOV_STL_2
+	is_triggered_only = yes
+	option = {
+		name = SOV_STL.2.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Beria raises the issue of ensuring the stability and security of the state
+	id = SOV_STL.3
+	immediate = { }
+	title = SOV_STL.3.t
+	desc = SOV_STL.3.desc
+	picture = GFX_SOV_STL_3
+	is_triggered_only = yes
+	option = {
+		name = SOV_STL.3.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Great Trials
+	id = SOV_STL.4
+	immediate = { }
+	title = SOV_STL.4.t
+	desc = SOV_STL.4.desc
+	picture = GFX_SOV_STL_4
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = SOV_STL.4.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Stalin Cult of Personality Problem
+	id = SOV_STL.5
+	immediate = { }
+	title = SOV_STL.5.t
+	desc = SOV_STL.5.desc
+	picture = GFX_SOV_STL_5
+	is_triggered_only = yes
+	option = {
+		name = SOV_STL.5.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #September Plenum of 1953
+	id = SOV_STL.6
+	immediate = { }
+	title = SOV_STL.6.t
+	desc = SOV_STL.6.desc
+	picture = GFX_SOV_STL_6
+	is_triggered_only = yes
+	option = { #Oppose Bulganin Proposition
+		name = SOV_STL.6.a
+		complete_national_focus =SOV_oppose_bulganins_proposition_malenkov_elected_as_fs
+		set_country_flag = Malenkov_Reign
+		ai_chance = {
+			base = 50
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_INTERNAL_AI_BEHAVIOR option = HISTORICAL }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_INTERNAL_AI_BEHAVIOR option = DEFAULT }
+				is_historical_focus_on = yes
+			}
+		}
+	}
+	option = { #Accept Bulganin Proposition
+		name = SOV_STL.6.b
+		complete_national_focus =SOV_accept_bulganins_proposition_khrushchov_elected_as_fs
+		set_country_flag = Khruschev_Reign
+		ai_chance = {
+			base = 50
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Khrushchev visit to China
+	id = SOV_STL.7
+	immediate = { }
+	title = SOV_STL.7.t
+	desc = SOV_STL.7.desc
+	picture = GFX_SOV_STL_7
+	is_triggered_only = yes
+	major = yes
+	option = { #Corny man
+		name = SOV_STL.7.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #AntiParty Coups Cornman
+	id = SOV_CornManOutAPG.1
+	immediate = { }
+	title = SOV_CornManOutAPG.1.t
+	desc = SOV_CornManOutAPG.1.desc
+	picture = GFX_SOV_CornManOutAPG
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = SOV_CornManOutAPG.1.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #AntiParty Vists Hoxha
+	id = SOV_AlbaniaVisit.1
+	immediate = { }
+	title = SOV_AlbaniaVisit.t
+	desc = SOV_AlbaniaVisit.desc
+	picture = GFX_SOV_CornManOutAPG
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = SOV_AlbaniaVisit.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Belgrade Declaration
+	id = SOV_STL.8
+	immediate = { }
+	title = SOV_STL.8.t
+	desc = SOV_STL.8.desc
+	picture = GFX_SOV_STL_8
+	is_triggered_only = yes
+	major = yes
+	option = { #Corny man
+		name = SOV_STL.8.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Khrushchev Establish relationship with West Germany
+	id = SOV_STL.9
+	immediate = { }
+	title = SOV_STL.9.t
+	desc = SOV_STL.9.desc
+	picture = GFX_SOV_STL_9
+	is_triggered_only = yes
+	major = yes
+	option = { #Corny man
+		name = SOV_STL.9.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Agricultural Debate Malenkov
+	id = SOV_STL.11
+	immediate = { }
+	title = SOV_STL.11.t
+	desc = SOV_STL.11.desc
+	picture = GFX_SOV_STL_11
+	is_triggered_only = yes
+	option = { #Malenkov Plan
+		name = SOV_STL.11.a
+		add_political_power = 50
+		complete_national_focus = SOV_accept_malenkovmolotovvoroshilov_agricultural_plan
+	}
+	option = { #Khrushchev Plan
+		name = SOV_STL.11.b
+		add_political_power = 150
+		complete_national_focus = SOV_khrushchev_wins_virgin_lands_campaign_starts_otl
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Agricultural Debate Khrushchev
+	id = SOV_STL.12
+	immediate = { }
+	title = SOV_STL.12.t
+	desc = SOV_STL.12.desc
+	picture = GFX_SOV_STL_12
+	is_triggered_only = yes
+	option = { #Malenkov Plan
+		name = SOV_STL.12.a
+		add_political_power = -150
+		complete_national_focus = SOV_accept_malenkovmolotovvoroshilov_agricultural_plan
+	}
+	option = { #Khrushchev Plan
+		name = SOV_STL.12.b
+		add_political_power = 100
+		complete_national_focus = SOV_khrushchev_wins_virgin_lands_campaign_starts_otl
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Beria Execution
+	id = SOV_STL.13
+	immediate = { }
+	title = SOV_STL.13.t
+	desc = SOV_STL.13.desc
+	picture = GFX_SOV_STL_13
+	is_triggered_only = yes
+	option = { #
+		name = SOV_STL.13.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Ryumin Execution
+	id = SOV_STL.14
+	immediate = { }
+	title = SOV_STL.14.t
+	desc = SOV_STL.14.desc
+	picture = GFX_SOV_STL_14
+	is_triggered_only = yes
+	option = { #
+		name = SOV_STL.14.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Abamukov Execution
+	id = SOV_STL.15
+	immediate = { }
+	title = SOV_STL.15.t
+	desc = SOV_STL.15.desc
+	picture = GFX_SOV_STL_15
+	is_triggered_only = yes
+	option = { #
+		name = SOV_STL.15.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #shatalin Commission
+	id = SOV_STL.16
+	immediate = { }
+	title = SOV_STL.16.t
+	desc = SOV_STL.16.desc
+	picture = GFX_SOV_STL_16
+	is_triggered_only = yes
+	option = { #
+		name = SOV_STL.16.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #pospelov Execution
+	id = SOV_STL.17
+	immediate = { }
+	title = SOV_STL.17.t
+	desc = SOV_STL.17.desc
+	picture = GFX_SOV_STL_17
+	is_triggered_only = yes
+	option = { #
+		name = SOV_STL.17.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #State of the Agriculture
+	id = SOV_STL.18
+	immediate = { }
+	title = SOV_STL.18.t
+	desc = SOV_STL.18.desc
+	picture = GFX_SOV_STL_18
+	is_triggered_only = yes
+	option = { #
+		name = SOV_STL.18.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = soviet_industry.1
+	immediate = { }
+	title = soviet_industry.1.t
+	desc = soviet_industry.1.desc
+	#picture = GFX_chernobyl1
+	is_triggered_only = yes
+
+	option = {
+		name = soviet_industry.1.a
+		add_to_variable = { ukrainian_opinion = 5 }
+		202 = {
+			add_building_construction = {
+				type = steel_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+		226 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		227 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	option = {
+		name = soviet_industry.1.b
+		add_to_variable = { russian_opinion = 5 }
+		260 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		577 = {
+			add_building_construction = {
+				type = steel_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		653 = {
+			add_building_construction = {
+				type = steel_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	option = {
+		name = soviet_indudstry.e
+		country_event = soviet_industry.11
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = soviet_industry.11
+	immediate = { }
+	title = soviet_industry.1.t
+	desc = soviet_industry.1.desc
+	#picture = GFX_chernobyl1
+	is_triggered_only = yes
+
+	option = {
+		name = soviet_industry.1.c
+		add_to_variable = { kazakhstani_opinion = 10 }
+		590 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+				instant_build = yes
+			}
+		}
+		588 = {
+			add_building_construction = {
+				type = steel_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+	option = {
+		name = soviet_industry.1.d
+		add_to_variable = { tajikistani_opinion = 15 }
+		405 = {
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+		804 = {
+			add_building_construction = {
+				type = steel_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+	option = {
+		name = soviet_indudstry.f
+		country_event = soviet_industry.1
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = soviet_industry.2
+	immediate = { }
+	title = soviet_industry.2.t
+	desc = soviet_industry.2.desc
+	#picture = GFX_chernobyl1
+	is_triggered_only = yes
+
+	option = {
+		name = soviet_industry.2.a
+		add_to_variable = { lithuanian_opinion = 5 }
+		add_to_variable = { estonian_opinion = 5 }
+		add_to_variable = { latvian_opinion = 5 }
+		189 = {
+			add_building_construction = {
+				type = state_infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		1042 = {
+			add_building_construction = {
+				type = state_infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		1049 = {
+			add_building_construction = {
+				type = state_infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		191	 = {
+			add_building_construction = {
+				type = state_infrastructure
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		12 = {
+			add_building_construction = {
+				type = state_infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		11 = {
+			add_building_construction = {
+				type = state_infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	option = {
+		name = soviet_industry.2.b
+		add_to_variable = { belarussian_opinion = 10 }
+		94 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		95 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		204 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		207 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		194 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	option = {
+		name = soviet_industry.2.e
+		country_event = soviet_industry.21
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = soviet_industry.21
+	immediate = { }
+	title = soviet_industry.2.t
+	desc = soviet_industry.2.desc
+	#picture = GFX_chernobyl1
+	is_triggered_only = yes
+
+	option = {
+		name = soviet_industry.2.c
+		add_to_variable = { russian_opinion = 5 }
+		208 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		263 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		247 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		254 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		257 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		239 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		401 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		250 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		256 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		580 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		563 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		561 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		40 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		569 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		565 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	option = {
+		name = soviet_industry.2.d
+		add_to_variable = { georgian_opinion = 15 }
+		934 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		567 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		933 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		231 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		add_tech_bonus = {
+			name = industrial_bonus
+			bonus = 1
+			uses = 1
+			category = industry
+		}
+	}
+	option = {
+		name = soviet_industry.2.f
+		country_event = soviet_industry.2
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = soviet_industry.3
+	immediate = { }
+	title = soviet_industry.3.t
+	desc = soviet_industry.3.desc
+	#picture = GFX_chernobyl1
+	is_triggered_only = yes
+
+	option = {
+		name = soviet_industry.3.a
+		add_to_variable = { russian_opinion = 10 }
+		build_railway = {
+			level = 1
+			start_state = 653
+			target_state = 403
+		}
+		build_railway = {
+			level = 1
+			start_state = 577
+			target_state = 579
+		}
+		build_railway = {
+			level = 1
+			start_state = 653
+			target_state = 579
+		}
+		build_railway = {
+			level = 2
+			start_state = 403
+			target_state = 579
+		}
+		build_railway = {
+			level = 2
+			start_state = 403
+			target_state = 566
+		}
+		build_railway = {
+			level = 2
+			start_state = 408
+			target_state = 566
+		}
+		653 = {
+			add_building_construction = {
+				type = state_infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		403 = {
+			add_building_construction = {
+				type = state_infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	option = {
+		name = soviet_industry.3.b
+		add_to_variable = { russian_opinion = 5 }
+		add_to_variable = { lithuanian_opinion = 10 }
+		add_to_variable = { estonian_opinion = 10 }
+		add_to_variable = { latvian_opinion = 10 }
+		build_railway = {
+			level = 2
+			start_state = 892
+			target_state = 11
+		}
+		build_railway = {
+			level = 2
+			start_state = 12
+			target_state = 11
+		}
+		build_railway = {
+			level = 2
+			start_state = 12
+			target_state = 191
+		}
+		build_railway = {
+			level = 2
+			start_state = 13
+			target_state = 191
+		}
+		build_railway = {
+			level = 1
+			start_state = 13
+			target_state = 195
+		}
+		build_railway = {
+			level = 1
+			start_state = 1049
+			target_state = 12
+		}
+		build_railway = {
+			level = 1
+			start_state = 892
+			target_state = 219
+		}
+		892 = {
+			add_to_variable = {
+				tourism_infrastructure = 3
+				tooltip = tourism_infra_tt
+			}
+		}
+		13 = {
+			add_to_variable = {
+				tourism_infrastructure = 3
+				tooltip = tourism_infra_tt
+			}
+		}
+	}
+	option = {
+		name = soviet_industry.3.c
+		add_to_variable = { kazakhstani_opinion = 10 }
+		add_to_variable = { uzbekistani_opinion = 5 }
+		add_to_variable = { turkmenistani_opinion = 5 }
+		add_to_variable = { tajikistani_opinion = 10 }
+		add_to_variable = { kyrgyzstani_opinion = 10 }
+		build_railway = {
+			level = 1
+			start_state = 590
+			target_state = 404
+		}
+		build_railway = {
+			level = 1
+			start_state = 589
+			target_state = 404
+		}
+		build_railway = {
+			level = 1
+			start_state = 589
+			target_state = 586
+		}
+		build_railway = {
+			level = 1
+			start_state = 888
+			target_state = 586
+		}
+		build_railway = {
+			level = 1
+			start_state = 888
+			target_state = 887
+		}
+		build_railway = {
+			level = 1
+			start_state = 405
+			target_state = 887
+		}
+		build_railway = {
+			level = 1
+			start_state = 584
+			target_state = 887
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = soviet_help.1
+	immediate = { }
+	title = soviet_help.1.t
+	desc = soviet_help.1.d
+	#picture = GFX_chernobyl1
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = soviet_help.1.a
+		SOV = {
+			add_to_variable = {
+				custom_expenses = 2
+			}
+		}
+		PDG = {
+			add_to_variable = {
+				custom_expenses = -2
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = soviet_help.2
+	immediate = { }
+	title = soviet_help.1.t
+	desc = soviet_help.2.d
+	#picture = GFX_chernobyl1
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = soviet_help.1.a
+		SOV = {
+			add_to_variable = {
+				custom_expenses = 3
+			}
+		}
+		SRT = {
+			add_to_variable = {
+				custom_expenses = -3
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = chernobyl.1
+	immediate = { }
+	title = chernobyl.1.t
+	desc = chernobyl.1.d
+	#picture = GFX_chernobyl1
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = chernobyl.1.a
+		Super_Event_chernobyl_Play = yes
+
+	}
+}
+add_namespace = Soviet_Op_North
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Soviet_Op_North.1
+	immediate = { }
+	title = Soviet_Op_North.1.t
+	desc = Soviet_Op_North.1.d
+	picture = GFX_Soviet_Op_North_1
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = Soviet_Op_North.1.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOV_PRC_Treaty.1
+	immediate = { }
+	title = SOV_PRC_Treaty.1.t
+	desc = SOV_PRC_Treaty.1.d
+	picture = GFX_SOV_PRC_Treaty_1
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOV_PRC_Treaty.1.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Soviet_Nuke_Test.1
+	immediate = { }
+	title = Soviet_Nuke_Test.1.t
+	desc = Soviet_Nuke_Test.1.d
+	picture = GFX_Soviet_Nuclear_Test_1
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = Soviet_Nuke_Test.1.a
+
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Soviet_Don_Volga.1
+	immediate = { }
+	title = Soviet_Don_Volga.1.t
+	desc = Soviet_Don_Volga.1.d
+	picture = GFX_Soviet_Nuclear_Test_1
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = Soviet_Don_Volga.1.a
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_sell_tech.0
+	immediate = { }
+	title = sov_sell_tech.0.t
+	desc = sov_sell_tech.0.d
+	picture = GFX_sov_sell_tech
+	is_triggered_only = yes
+
+	option = {
+		name = sov_sell_tech.0.a
+		SOV = {
+			country_event = sov_sell_tech.1
+		}
+		ai_chance = {
+			factor = 50
+			
+		}
+		add_to_variable = { currentMoney = -200 }
+		custom_effect_tooltip = sov_minus_200_bil_tooltip
+		add_tech_bonus = {
+				bonus = 0.7
+				uses = 2
+				category = electronics
+			}
+
+	}
+	option = {
+		name = sov_sell_tech.0.b
+		SOV = {
+			country_event = sov_sell_tech.2
+		}
+		add_political_power = -200
+		ai_chance = {
+			factor = 50
+		}
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_sell_tech.1
+	immediate = { }
+	title = sov_sell_tech.1.t
+	desc = sov_sell_tech.1.d
+	picture = GFX_sov_sell_tech
+	is_triggered_only = yes
+
+	option = {
+		name = sov_sell_tech.1.a
+		add_to_variable = { currentMoney = 200 }
+		custom_effect_tooltip = sov_plus_200_bil_tooltip
+		
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_sell_tech.2
+	immediate = { }
+	title = sov_sell_tech.2.t
+	desc = sov_sell_tech.2.d
+	picture = GFX_sov_sell_tech
+	is_triggered_only = yes
+
+	option = {
+		name = sov_sell_tech.2.a
+		add_political_power = -100
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_ibm_purchase.0
+	immediate = { }
+	title = sov_ibm_purchase.0.t
+	desc = sov_ibm_purchase.0.d
+	picture = GFX_sov_ibm_purchase
+	is_triggered_only = yes
+
+	option = {
+		name = sov_ibm_purchase.0.a
+		SOV = {
+			country_event = sov_ibm_purchase.1
+		}
+		add_to_variable = { currentMoney = 200 }
+		custom_effect_tooltip = sov_plus_200_bil_tooltip
+		add_tech_bonus = {
+				bonus = 0.7
+				uses = 1
+				category = electronics
+			}
+		USA = {
+			add_opinion_modifier = {
+						target = SOV
+						modifier = large_increase
+			}
+		}
+		SOV = {
+			add_opinion_modifier = {
+						target = USA
+						modifier = large_increase
+			}
+		}
+		ai_chance = {
+			factor = 60
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+		}
+
+
+	}
+	option = {
+		name = sov_ibm_purchase.0.b
+		SOV = {
+			country_event = sov_ibm_purchase.2
+		}
+		USA = {
+			add_opinion_modifier = {
+						target = SOV
+						modifier = large_decrease
+			}
+		}
+		SOV = {
+			add_opinion_modifier = {
+						target = USA
+						modifier = large_decrease
+			}
+		}
+		ai_chance = {
+			factor = 40
+		}
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_ibm_purchase.1
+	immediate = { }
+	title = sov_ibm_purchase.1.t
+	desc = sov_ibm_purchase.1.d
+	picture = GFX_sov_ibm_purchase
+	is_triggered_only = yes
+
+	option = {
+		name = sov_ibm_purchase.1.a
+		add_to_variable = { currentMoney = -200 }
+		custom_effect_tooltip = sov_plus_-200_bil_tooltip
+		
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_ibm_purchase.2
+	immediate = { }
+	title = sov_ibm_purchase.2.t
+	desc = sov_ibm_purchase.2.d
+	picture = GFX_sov_ibm_purchase
+	is_triggered_only = yes
+
+	option = {
+		name = sov_ibm_purchase.2.a
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_comp_purchase.0
+	immediate = { }
+	title = sov_comp_purchase.0.t
+	desc = sov_comp_purchase.0.d
+	picture = GFX_sov_comp_purchase
+	is_triggered_only = yes
+
+	option = {
+		name = sov_comp_purchase.0.a
+		add_to_variable = { currentMoney = 400 }
+		custom_effect_tooltip = sov_plus_400_bil_tooltip
+		SOV = {
+			country_event = sov_comp_purchase.1
+		}
+		add_tech_bonus = {
+				bonus = 0.7
+				uses = 2
+				category = electronics
+			}
+		USA = {
+			add_opinion_modifier = {
+						target = SOV
+						modifier = large_increase
+			}
+		}
+		SOV = {
+			add_opinion_modifier = {
+						target = USA
+						modifier = large_increase
+			}
+		}
+		ai_chance = {
+			factor = 60
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+		}
+
+
+	}
+	option = {
+		name = sov_comp_purchase.0.b
+		SOV = {
+			country_event = sov_comp_purchase.2
+		}
+		USA = {
+			add_opinion_modifier = {
+						target = SOV
+						modifier = large_decrease
+			}
+		}
+		SOV = {
+			add_opinion_modifier = {
+						target = USA
+						modifier = large_decrease
+			}
+		}
+		ai_chance = {
+			factor = 40
+		}
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_comp_purchase.1
+	immediate = { }
+	title = sov_comp_purchase.1.t
+	desc = sov_comp_purchase.1.d
+	picture = GFX_sov_comp_purchase
+
+	is_triggered_only = yes
+
+	option = {
+		name = sov_comp_purchase.1.a
+		add_to_variable = { currentMoney = -400 }
+		custom_effect_tooltip = sov_minus_400_bil_tooltip
+		
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_comp_purchase.2
+	immediate = { }
+	title = sov_comp_purchase.2.t
+	desc = sov_comp_purchase.2.d
+	picture = GFX_sov_comp_purchase
+
+	is_triggered_only = yes
+
+	option = {
+		name = sov_comp_purchase.2.a
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = 11th_5yp_food.0
+	immediate = { }
+	title = 11th_5yp_food.0.t
+	desc = 11th_5ypfood.0.d
+	picture = GFX_report_event_gorbi_tik
+
+	is_triggered_only = yes
+
+	option = {
+		name = 11th_5yp_food.0.a
+		ai_chance = {
+			factor = 60
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+		}
+		complete_national_focus = SOV_ECON_Empower_Gorbachav
+
+	}
+	option = {
+		name = 11th_5yp_food.0.b
+		ai_chance = {
+			factor = 40
+		}
+		complete_national_focus = SOV_ECON_Empower_Tikhlov
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = malenkov_resign.1
+	immediate = { }
+	title = malenkov_resign.1.t
+	desc = malenkov_resign.1.d
+	picture = GFX_Malenkov_Resignation
+
+	is_triggered_only = yes
+
+	option = {
+		name = malenkov_resign.1.a
+		create_country_leader = {
+			name = "Nikita Khrushchev"
+			desc = malenkov_resign.1.d
+			picture = "Nikita_Khrushchev_50s.dds"
+			ideology = marxism_leninism
+			traits = {
+				Popular_Premier
+				Ingenuous_Reformer
+				Eccentric_Research_Enthusiast
+				Affable_Diplomat
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Sov_Missle.1
+	immediate = { }
+	title = Sov_Missle.1.t
+	desc = Sov_Missle.1.d
+	picture = GFX_Sov_Missle_Forces
+
+	is_triggered_only = yes
+
+	option = {
+		name = Sov_Missle.1.a
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Khruschev_SU.1
+	immediate = { }
+	title = Khruschev_SU.1.t
+	desc = Khruschev_SU.1.d
+	picture = GFX_DPRK_Coup
+
+	is_triggered_only = yes
+
+	option = {
+		name = Khruschev_SU.1.a
+		if = {
+			limit = {
+				tag = KPA
+			}
+			load_focus_tree = generic_focus
+			create_country_leader = {
+				name = "Ho Ka-i"
+				picture = "Ho_Ka_I.dds"
+				ideology = stalinism
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = COMECON.100
+	immediate = { }
+	title = COMECON.100.t
+	desc = COMECON.100.d
+	picture = GFX_report_event_help_PRC
+
+	is_triggered_only = yes
+
+	option = {
+		name = COMECON.100.a
+		FROM = {
+			add_manpower = 25000
+		}
+		add_manpower = -25000
+		ai_chance = {
+			factor = 75
+		}
+
+	}
+	option = {
+		name = COMECON.100.b
+		ai_chance = {
+			factor = 25
+		}
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = COMECON.101
+	immediate = { }
+	title = COMECON.101.t
+	desc = COMECON.101.d
+	picture = GFX_report_event_help_PRC
+
+	is_triggered_only = yes
+
+	option = {
+		name = COMECON.101.a
+		FROM = { country_event = build_building.1 }
+		subtract_from_variable = { var = money value = 250  }
+		ai_chance = {
+			factor = 75
+		}
+
+	}
+	option = {
+		name = COMECON.101.b
+		ai_chance = {
+			factor = 25
+		}
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = COMECON.102
+	immediate = { }
+	title = COMECON.102.t
+	desc = COMECON.102.d
+	picture = GFX_report_event_help_PRC
+
+	is_triggered_only = yes
+
+	option = {
+		name = COMECON.102.a
+		FROM = { country_event = build_building.2 }
+		subtract_from_variable = { var = money value = 250  }
+		ai_chance = {
+			factor = 75
+		}
+
+	}
+	option = {
+		name = COMECON.102.b
+		ai_chance = {
+			factor = 25
+		}
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = COMECON.103
+	immediate = { }
+	title = COMECON.103.t
+	desc = COMECON.103.d
+	picture = GFX_report_event_help_PRC
+
+	is_triggered_only = yes
+
+	option = {
+		name = COMECON.103.a
+		FROM = { every_owned_state = { add_extra_state_shared_building_slots = 1 } }
+		subtract_from_variable = { var = money value = 200  }
+		ai_chance = {
+			factor = 75
+		}
+
+	}
+	option = {
+		name = COMECON.103.b
+		ai_chance = {
+			factor = 25
+		}
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = COMECON.300
+	immediate = { }
+	title = COMECON.300.t
+	desc = COMECON.300.d
+	picture = GFX_report_event_help_PRC
+
+	is_triggered_only = yes
+
+	option = {
+		name = COMECON.300.a
+		add_ideas = comecon_agri
+		ai_chance = {
+			factor = 90
+		}
+
+	}
+	option = {
+		name = COMECON.300.b
+		ai_chance = {
+			factor = 10
+		}
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = COMECON.301
+	immediate = { }
+	title = COMECON.301.t
+	desc = COMECON.301.d
+	picture = GFX_report_event_help_PRC
+
+	is_triggered_only = yes
+
+	option = {
+		name = COMECON.301.a
+		add_ideas = comecon_industrial
+		ai_chance = {
+			factor = 90
+		}
+
+	}
+	option = {
+		name = COMECON.301.b
+		ai_chance = {
+			factor = 10
+		}
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = COMECON.302
+	immediate = { }
+	title = COMECON.302.t
+	desc = COMECON.302.d
+	picture = GFX_report_event_help_PRC
+
+	is_triggered_only = yes
+
+	option = {
+		name = COMECON.302.a
+		add_ideas = comecon_heavy_industrial
+		ai_chance = {
+			factor = 75
+		}
+
+	}
+	option = {
+		name = COMECON.302.b
+		ai_chance = {
+			factor = 25
+		}
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = COMECON.303
+	immediate = { }
+	title = COMECON.303.t
+	desc = COMECON.303.d
+	picture = GFX_report_event_help_PRC
+
+	is_triggered_only = yes
+
+	option = {
+		name = COMECON.303.a
+		add_ideas = comecon_technology_focus
+		ai_chance = {
+			factor = 75
+		}
+
+	}
+	option = {
+		name = COMECON.303.b
+		ai_chance = {
+			factor = 25
+		}
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = COMECON.304
+	immediate = { }
+	title = COMECON.304.t
+	desc = COMECON.304.d
+	picture = GFX_report_event_help_PRC
+
+	is_triggered_only = yes
+
+	option = {
+		name = COMECON.304.a
+		add_ideas = comecon_military
+		ai_chance = {
+			factor = 75
+		}
+
+	}
+	option = {
+		name = COMECON.304.b
+		ai_chance = {
+			factor = 25
+		}
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = COMECON.305
+	immediate = { }
+	title = COMECON.305.t
+	desc = COMECON.305.d
+	picture = GFX_report_event_help_PRC
+
+	is_triggered_only = yes
+
+	option = {
+		name = COMECON.305.a
+		add_ideas = comecon_resource_extraction
+		ai_chance = {
+			factor = 75
+		}
+
+	}
+	option = {
+		name = COMECON.305.b
+		ai_chance = {
+			factor = 25
+		}
+
+	}
+}# Yes or No to help to PRC?
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov.1
+	immediate = { }
+	title = sov.1.t
+	desc = sov.1.d
+	picture = GFX_report_event_help_PRC
+
+	is_triggered_only = yes
+
+	option = {
+		name = sov.1.a
+		send_equipment = { target = PRC type = infantry_equipment_1 amount = 10000 }
+		add_opinion_modifier = { target = PRC modifier = SOV_yes_intervention_opinion }
+		ai_chance = {
+			factor = 75
+		}
+		hidden_effect = {
+			PRC = {
+				news_event = prc.6
+			}
+		}
+	}
+	option = {
+		name = sov.1.b
+		add_opinion_modifier = { target = PRC modifier = SOV_no_intervention_opinion }
+		ai_chance = {
+			factor = 25
+		}
+		hidden_effect = {
+			PRC = {
+				news_event = prc.7
+			}
+		}
+	}
+}
+# Yes or No XXX joins faction
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov.2
+	immediate = { }
+	title = sov.2.t
+	desc = sov.2.d
+	picture = GFX_report_event_help_PRC
+
+	is_triggered_only = yes
+
+	option = {
+		name = sov.2.a
+		add_to_Faction = FROM
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			news_event = news.1012
+		}
+	}
+	option = {
+		name = sov.2.b
+		add_opinion_modifier = { target = FROM modifier = SOV_no_faction_opinion }
+		ai_chance = {
+			factor = 1
+		}
+		hidden_effect = {
+			FROM = {
+				news_event = prc.8
+			}
+		}
+	}
+}
+# UN recognition of PRC
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov.4
+	immediate = { }
+	title = sov.4.t
+	desc = sov.4.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = sov.4.a
+		set_global_flag = sov_yes_prc_un_recognition
+		ai_chance = {
+			factor = 15
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 1
+		}
+		name = sov.4.b
+		set_global_flag = sov_no_prc_un_recognition
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Beria_Arriest.1
+	immediate = { }
+	title = Beria_Arriest.1.t
+	desc = Beria_Arriest.1.d
+	picture = GFX_Beria_Execution
+
+	is_triggered_only = yes
+
+	option = {
+		name = Beria_Arriest.1.a
+		trigger = {
+			tag = SOV
+		}
+		set_country_flag = BERIA_Dead
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	option = {
+		name = Beria_Arriest.1.b
+		trigger = {
+			NOT = {
+				tag = SOV
+			}
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Beria_Arriest.2
+	immediate = { }
+	title = Beria_Arriest.2.t
+	desc = Beria_Arriest.2.d
+	picture = GFX_news_event_Soviet_in_France
+
+	is_triggered_only = yes
+
+	option = {
+		name = Beria_Arriest.2.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Beria_Arriest.3
+	immediate = { }
+	title = Beria_Arriest.3.t
+	desc = Beria_Arriest.3.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = Beria_Arriest.3.a
+		trigger = {
+			tag = SOV
+		}
+		retire_character = SOV_georgy_zhukov
+		ai_chance = {
+			factor = 1
+		}
+	}
+
+	option = {
+		name = Beria_Arriest.3.b
+		trigger = {
+			NOT = {
+				tag = SOV
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov.1001
+	immediate = { }
+	hidden = yes
+
+	is_triggered_only = yes
+
+	option = {
+		set_country_flag = ukranian_seccessionism
+		93 = {
+			set_state_flag = uia_target
+			set_state_flag = insurg_lvl1
+			set_state_flag = actively_resisting_state
+			start_resistance = yes
+			set_resistance = 50
+			add_resistance_target = 40
+			set_compliance = 0
+		}
+		1020 = {
+			set_state_flag = uia_target
+			set_state_flag = insurg_lvl1
+			set_state_flag = actively_resisting_state
+			start_resistance = yes
+			set_resistance = 50
+			add_resistance_target = 40
+			set_compliance = 0
+		}
+		199 = {
+			set_state_flag = uia_target
+			set_state_flag = insurg_lvl1
+			set_state_flag = actively_resisting_state
+			start_resistance = yes
+			set_resistance = 50
+			add_resistance_target = 40
+			set_compliance = 0
+		}
+
+		243 = {
+			set_state_flag = uia_target
+			set_state_flag = insurg_lvl2
+			set_state_flag = actively_resisting_state
+			start_resistance = yes
+			set_resistance = 50
+			add_resistance_target = 40
+			set_compliance = 0
+		}
+		91 = {
+			set_state_flag = uia_target
+			set_state_flag = insurg_lvl2
+			set_state_flag = actively_resisting_state
+			set_resistance = 50
+			add_resistance_target = 40
+			set_compliance = 0
+		}
+		80 = {
+			set_state_flag = uia_target
+			set_state_flag = insurg_lvl2
+			set_state_flag = actively_resisting_state
+			start_resistance = yes
+			set_resistance = 50
+			add_resistance_target = 40
+			set_compliance = 0
+		}
+		89 = {
+			set_state_flag = uia_target
+			set_state_flag = insurg_lvl2
+			set_state_flag = actively_resisting_state
+			start_resistance = yes
+			set_resistance = 50
+			add_resistance_target = 40
+			set_compliance = 0
+		}
+		73 = {
+			set_state_flag = uia_target
+			set_state_flag = insurg_lvl2
+			set_state_flag = actively_resisting_state
+			start_resistance = yes
+			set_resistance = 50
+			add_resistance_target = 40
+			set_compliance = 0
+		}
+		every_owned_state = {
+			limit = {
+				has_state_flag = uia_target
+			}
+			add_to_array = { ROOT.target_state_array = THIS }
+		}
+		every_owned_state = {
+			limit = {
+				is_core_of = FBK
+			}
+			set_state_flag = fbk_target
+			set_state_flag = insurg_lvl2
+			set_state_flag = actively_resisting_state
+			start_resistance = yes
+			set_resistance = 50
+			add_resistance_target = 40
+			set_compliance = 0
+		}
+	}
+}
+# ==========================================================================
+#  Chinese Civil War side branch flavour (news only, no choices). Fired from
+#  the matching focus in common/national_focus/SOV_Chinese_Civil_War_Branch.txt.
+# ==========================================================================
+add_namespace = sov_china_branch
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_china_branch.1			# SOV_ccw_the_156_projects
+	title = sov_china_branch.1.t
+	desc = sov_china_branch.1.d
+	picture = GFX_Comecon_Aid
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = sov_china_branch.1.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_china_branch.2			# SOV_ccw_return_port_arthur
+	title = sov_china_branch.2.t
+	desc = sov_china_branch.2.d
+	picture = GFX_Sino_Soviet_Friendship
+
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = sov_china_branch.2.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_china_branch.3			# SOV_ccw_the_twentieth_congress_in_peking
+	title = sov_china_branch.3.t
+	desc = sov_china_branch.3.d
+	picture = GFX_twentieth_congress_of_the_cpsu
+
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = sov_china_branch.3.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_china_branch.4			# SOV_ccw_the_manchurian_redoubt
+	title = sov_china_branch.4.t
+	desc = sov_china_branch.4.d
+	picture = GFX_Sino_Soviet_Friendship
+
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = sov_china_branch.4.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_china_branch.5			# SOV_ccw_shelter_the_chinese_party
+	title = sov_china_branch.5.t
+	desc = sov_china_branch.5.d
+	picture = GFX_Sino_Soviet_Friendship
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = sov_china_branch.5.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_china_branch.6			# SOV_ccw_the_southern_insurgency
+	title = sov_china_branch.6.t
+	desc = sov_china_branch.6.d
+	picture = GFX_Guns_for_PDG
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = sov_china_branch.6.a
+	}
+}
+
+# ==========================================================================
+#  Post-war Korea side branch flavour (news only, no choices). Fired from the
+#  matching focus in common/national_focus/SOV_Korean_Settlement_Branch.txt.
+# ==========================================================================
+add_namespace = sov_korea_settlement
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_korea_settlement.1		# SOV_kwp_two_koreas_one_peninsula
+	title = sov_korea_settlement.1.t
+	desc = sov_korea_settlement.1.d
+	picture = GFX_Korean_War_Taiwan_Yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = sov_korea_settlement.1.a }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_korea_settlement.2		# SOV_kwp_a_unified_korea
+	title = sov_korea_settlement.2.t
+	desc = sov_korea_settlement.2.d
+	picture = GFX_Korean_War_Taiwan_Yes
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = sov_korea_settlement.2.a }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_korea_settlement.3		# SOV_kwp_the_government_in_exile
+	title = sov_korea_settlement.3.t
+	desc = sov_korea_settlement.3.d
+	picture = GFX_Korean_War_Taiwan_Yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = sov_korea_settlement.3.a }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_korea_settlement.4		# SOV_kwp_the_korean_disaster
+	title = sov_korea_settlement.4.t
+	desc = sov_korea_settlement.4.d
+	picture = GFX_Korean_War_Taiwan_Yes
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = sov_korea_settlement.4.a }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sov_korea_settlement.5		# SOV_kwp_shelter_the_korean_comrades
+	title = sov_korea_settlement.5.t
+	desc = sov_korea_settlement.5.d
+	picture = GFX_KPA_Sov_Air_Volunteers
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { name = sov_korea_settlement.5.a }
+}

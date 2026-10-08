@@ -1,0 +1,625 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = CCC_50s
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = CCC
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+
+	# CCC Initial Tree
+	focus = {
+		id = CCC_Accept_Reunification
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 50 }
+				indochina_struggle_grant_pro_independence = yes
+				set_temp_variable = { indochina_phase_amount = 50 }
+				indochina_struggle_deescalate = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_Diplomacy_48
+		cost = 5
+		mutually_exclusive = {
+			focus = CCC_Xu_Namky
+		}
+		available = { always = no }
+		x = 6
+		y = 0
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = CCC_Prepare_Annexation
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 50 }
+				indochina_struggle_grant_pro_independence = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_Military_33
+		cost = 5
+		relative_position_id = CCC_Accept_Reunification
+		prerequisite = {
+			focus = CCC_Accept_Reunification
+			focus = CCC_Xu_Namky
+		}
+		available = { always = no }
+		x = 0
+		y = 1
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+		}
+	}
+	focus = {
+		id = CCC_Xu_Namky
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 50 }
+				indochina_struggle_grant_pro_independence = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_Politics_39
+		cost = 5
+		relative_position_id = CCC_Accept_Reunification
+		mutually_exclusive = {
+			focus = CCC_Accept_Reunification
+		}
+		available = { always = no }
+		x = 4
+		y = 0
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+			add_political_power = 50
+			set_country_flag = CCC_Xu_Namky_flag
+		}
+	}
+	focus = {
+		id = CCC_Declare_Independence
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 100 }
+				indochina_struggle_grant_pro_independence = yes
+				set_temp_variable = { indochina_phase_amount = 50 }
+				indochina_struggle_escalate = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_Diplomacy_33
+		cost = 5
+		relative_position_id = CCC_Xu_Namky
+		prerequisite = {
+			focus = CCC_Xu_Namky
+		}
+		available = { always = no }
+		x = 0
+		y = 1
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+			add_political_power = 50
+			set_country_flag = CCC_Independent_flag
+		}
+	}
+	focus = {
+		id = CCC_CuongDe_Voyage
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Diplomacy_29
+		cost = 5
+		relative_position_id = CCC_Xu_Namky
+		allow_branch = {
+			VIE = { has_country_flag = VIE_CuongDe_Succeeds }
+		}
+		x = 6
+		y = 0
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = CCC_Secular_vs_CaoDai
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_24
+		cost = 5
+		relative_position_id = CCC_CuongDe_Voyage
+		prerequisite = {
+			focus = CCC_CuongDe_Voyage
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			set_country_flag = CCC_Secular_NamKy_flag
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = CCC_Destroy_Bandits
+		completion_reward = {
+		}
+		icon = GFX_crackdown_on_terrorism
+		cost = 5
+		relative_position_id = CCC_CuongDe_Voyage
+		prerequisite = {
+			focus = CCC_CuongDe_Voyage
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			286 = { add_compliance = 5 }
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 500
+				producer = CCC
+			}
+		}
+	}
+	focus = {
+		id = CCC_NgoDinh_Bros
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_42
+		cost = 5
+		relative_position_id = CCC_CuongDe_Voyage
+		prerequisite = {
+			focus = CCC_Secular_vs_CaoDai
+		}
+		prerequisite = {
+			focus = CCC_Destroy_Bandits
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = CCC_Hijack_QuocGia_cause
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_31
+		cost = 5
+		relative_position_id = CCC_Declare_Independence
+		prerequisite = {
+			focus = CCC_Declare_Independence
+		}
+		mutually_exclusive = {
+			focus = CCC_Delay_Reunification_Attempts
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = CCC_Delay_Reunification_Attempts
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_pro_ethnic = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_Politics_40
+		cost = 5
+		relative_position_id = CCC_Declare_Independence
+		prerequisite = {
+			focus = CCC_Declare_Independence
+		}
+		prerequisite = {
+			focus = CCC_Secular_vs_CaoDai
+		}
+		mutually_exclusive = {
+			focus = CCC_Hijack_QuocGia_cause
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = CCC_Formalize_NamKy_Culture
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_pro_ethnic = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_Politics_22
+		cost = 5
+		relative_position_id = CCC_Delay_Reunification_Attempts
+		prerequisite = {
+			focus = CCC_Delay_Reunification_Attempts
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			add_stability = 0.03
+			set_country_flag = CCC_NamKy_Identity_flag
+		}
+	}
+	focus = {
+		id = CCC_Codify_NamKy_Language
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_pro_ethnic = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_Research_3
+		cost = 5
+		relative_position_id = CCC_Delay_Reunification_Attempts
+		prerequisite = {
+			focus = CCC_Delay_Reunification_Attempts
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			add_political_power = 75
+		}
+	}
+	focus = {
+		id = CCC_Intensify_AntiBacKyism
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 50 }
+				indochina_struggle_grant_pro_ethnic = yes
+				set_temp_variable = { ic_award = -25 }
+				indochina_struggle_grant_pro_independence = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_Politics_50
+		cost = 5
+		relative_position_id = CCC_Formalize_NamKy_Culture
+		prerequisite = {
+			focus = CCC_Formalize_NamKy_Culture
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = CCC_Seek_US_Recognition
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 50 }
+				indochina_struggle_grant_pro_independence = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_USA_18
+		cost = 5
+		relative_position_id = CCC_Codify_NamKy_Language
+		prerequisite = {
+			focus = CCC_Codify_NamKy_Language
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = CCC_Finish_NhonDao_Constitution
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_political_pressure
+		cost = 5
+		relative_position_id = CCC_Delay_Reunification_Attempts
+		prerequisite = {
+			focus = CCC_Formalize_NamKy_Culture
+		}
+		prerequisite = {
+			focus = CCC_Codify_NamKy_Language
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			set_country_flag = CCC_NhonDao_Constitution_flag
+			add_stability = 0.05
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = CCC_National_Identity_Question
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_national_unity
+		cost = 5
+		relative_position_id = CCC_Finish_NhonDao_Constitution
+		prerequisite = {
+			focus = CCC_Finish_NhonDao_Constitution
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			country_event = { id = CCC_Pol.1 hours = 12 }
+		}
+	}
+	focus = {
+		id = CCC_End_Saigon_Strikes
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_demand_territory
+		cost = 5
+		relative_position_id = CCC_Finish_NhonDao_Constitution
+		prerequisite = {
+			focus = CCC_Finish_NhonDao_Constitution
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			add_stability = 0.03
+			286 = { add_compliance = 5 }
+		}
+	}
+
+	# CCC Independence - Initial Political Tree
+	focus = {
+		id = CCC_Maintain_Xuan_Junta
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Military_34
+		cost = 5
+		relative_position_id = CCC_Xu_Namky
+		mutually_exclusive = {
+			focus = CCC_Host_Elections
+		}
+		allow_branch = {
+			has_completed_focus = CCC_Declare_Independence
+		}
+		x = -1
+		y = 7
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.05
+			set_country_flag = CCC_Junta_flag
+		}
+	}
+	focus = {
+		id = CCC_Host_Elections
+		completion_reward = {
+		}
+		icon = GFX_goal_support_democracy
+		cost = 5
+		relative_position_id = CCC_Maintain_Xuan_Junta
+		mutually_exclusive = {
+			focus = CCC_Maintain_Xuan_Junta
+		}
+		allow_branch = {
+			has_completed_focus = CCC_Declare_Independence
+		}
+		x = 4
+		y = 0
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = CCC_Intensify_AntiCommunism
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_pro_independence = yes
+				set_temp_variable = { ic_award = -8 }
+				indochina_struggle_grant_communist = yes
+				set_temp_variable = { indochina_phase_amount = 25 }
+				indochina_struggle_escalate = yes
+			}
+		}
+		icon = GFX_goal_support_communism
+		cost = 5
+		relative_position_id = CCC_Maintain_Xuan_Junta
+		prerequisite = {
+			focus = CCC_Maintain_Xuan_Junta
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = CCC_Maintain_French_Ties
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 50 }
+				indochina_struggle_grant_pro_france = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_Diplomacy_32
+		cost = 5
+		relative_position_id = CCC_Maintain_Xuan_Junta
+		prerequisite = {
+			focus = CCC_Maintain_Xuan_Junta
+			focus = CCC_Host_Elections
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = CCC_End_TranVanOn
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_45
+		cost = 5
+		relative_position_id = CCC_Host_Elections
+		prerequisite = {
+			focus = CCC_Host_Elections
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			add_stability = 0.03
+		}
+	}
+	focus = {
+		id = CCC_Undermine_VietMinh
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_pro_independence = yes
+				set_temp_variable = { ic_award = -8 }
+				indochina_struggle_grant_communist = yes
+				set_temp_variable = { indochina_phase_amount = 25 }
+				indochina_struggle_escalate = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_Military_42
+		cost = 5
+		relative_position_id = CCC_Intensify_AntiCommunism
+		prerequisite = {
+			focus = CCC_Intensify_AntiCommunism
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			add_manpower = 10000
+		}
+	}
+	focus = {
+		id = CCC_Promote_Francophilia
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_pro_france = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_Diplomacy_24
+		cost = 5
+		relative_position_id = CCC_Intensify_AntiCommunism
+		prerequisite = {
+			focus = CCC_Intensify_AntiCommunism
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = CCC_Suppress_BinhXuyen
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_pro_independence = yes
+			}
+		}
+		icon = GFX_Generic_National_Focus_Military_21
+		cost = 5
+		relative_position_id = CCC_Undermine_VietMinh
+		prerequisite = {
+			focus = CCC_Undermine_VietMinh
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			add_stability = 0.03
+			286 = { add_compliance = 5 }
+		}
+	}
+	focus = {
+		id = CCC_Embrace_NhonDao
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_25
+		cost = 5
+		relative_position_id = CCC_Undermine_VietMinh
+		prerequisite = {
+			focus = CCC_Undermine_VietMinh
+		}
+		prerequisite = {
+			focus = CCC_Promote_Francophilia
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			
+		}
+	}
+	focus = {
+		id = CCC_HoiDong_TuVan_Power
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_41
+		cost = 5
+		relative_position_id = CCC_Promote_Francophilia
+		prerequisite = {
+			focus = CCC_Promote_Francophilia
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			add_political_power = 50
+			set_country_flag = CCC_Advisory_Council_flag
+		}
+	}
+	focus = {
+		id = CCC_Intensify_QuanQuan
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Military_23
+		cost = 5
+		relative_position_id = CCC_Suppress_BinhXuyen
+		prerequisite = {
+			focus = CCC_Suppress_BinhXuyen
+		}
+		prerequisite = {
+			focus = CCC_Embrace_NhonDao
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			add_manpower = 50000
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 500
+				producer = CCC
+			}
+		}
+	}
+	focus = {
+		id = CCC_Modernize_Mandarin_Bureaucracy
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_18
+		cost = 5
+		relative_position_id = CCC_Embrace_NhonDao
+		prerequisite = {
+			focus = CCC_Embrace_NhonDao
+		}
+		prerequisite = {
+			focus = CCC_HoiDong_TuVan_Power
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 25
+		}
+	}
+}

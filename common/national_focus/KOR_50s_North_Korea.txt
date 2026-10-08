@@ -1,0 +1,189 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = KOR_50s_North_Korea
+	country = {
+		factor = 0
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	focus = {
+		id = KOR_50s_only_together_can_we_survive
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 15
+		y = 10
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_political_power = 200
+		}
+	}
+
+	focus = {
+		id = KOR_50s_the_nationwide_reconstruction_act
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			set_country_flag = the_nationwide_reconstruction_act_enabled
+			custom_effect_tooltip = kor.na.bill
+		}
+		relative_position_id = KOR_50s_only_together_can_we_survive
+		prerequisite = { focus = KOR_50s_only_together_can_we_survive }
+	}
+
+	focus = {
+		id = KOR_50s_the_embrace_specialist_and_highly_trained_personnel_act
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			set_country_flag = the_embrace_specialist_and_highly_trained_personnel_act_enabled
+			custom_effect_tooltip = kor.na.bill
+		}
+		relative_position_id = KOR_50s_the_nationwide_reconstruction_act
+		prerequisite = { focus = KOR_50s_the_nationwide_reconstruction_act }
+	}
+
+	focus = {
+		id = KOR_50s_the_north_region_development_act
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			745 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+			}
+			747 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			1778 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_country_flag = the_north_region_development_act_enabled
+			custom_effect_tooltip = kor.na.bill
+		}
+		relative_position_id = KOR_50s_the_embrace_specialist_and_highly_trained_personnel_act
+		prerequisite = { focus = KOR_50s_the_embrace_specialist_and_highly_trained_personnel_act }
+	}
+
+	focus = {
+		id = KOR_50s_destroy_remains_of_communism
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_stability = 0.3
+		}
+		relative_position_id = KOR_50s_only_together_can_we_survive
+		prerequisite = { focus = KOR_50s_only_together_can_we_survive }
+	}
+
+	focus = {
+		id = KOR_50s_trials_of_north_korean_war_criminals
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			news_event = KOR_nk50s.1
+		}
+		relative_position_id = KOR_50s_destroy_remains_of_communism
+		prerequisite = { focus = KOR_50s_destroy_remains_of_communism }
+	}
+
+	focus = {
+		id = KOR_50s_the_anticommunism_education_act
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			set_country_flag = the_anticommunism_education_act
+			custom_effect_tooltip = kor.na.bill
+		}
+		relative_position_id = KOR_50s_trials_of_north_korean_war_criminals
+		prerequisite = { focus = KOR_50s_trials_of_north_korean_war_criminals }
+	}
+
+	focus = {
+		id = KOR_50s_presidents_regionwide_tour_in_the_north
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			news_event = KOR_nk50s.2
+		}
+		relative_position_id = KOR_50s_the_anticommunism_education_act
+		prerequisite = { focus = KOR_50s_the_anticommunism_education_act }
+		prerequisite = { focus = KOR_50s_the_north_region_development_act }
+	}
+
+	focus = {
+		id = KOR_50s_the_cultural_interactions_and_development_act
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			set_country_flag = the_cultural_interactions_and_development_act
+			custom_effect_tooltip = kor.na.bill
+		}
+		relative_position_id = KOR_50s_presidents_regionwide_tour_in_the_north
+		prerequisite = { focus = KOR_50s_presidents_regionwide_tour_in_the_north }
+	}
+}

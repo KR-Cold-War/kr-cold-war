@@ -1,0 +1,1844 @@
+# KRCW (build/patch_residue.py): 8 OTL events dropped while KRCW_active
+# Generic Events
+add_namespace = CWIC_ITALY_NEWS
+add_namespace = generic
+add_namespace = generic_idea
+add_namespace = fusion
+add_namespace = mod_stuff
+add_namespace = testsoviet
+add_namespace = alaskawaii
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = alaskawaii.1
+	title = alaskawaii.1.t
+	desc = alaskawaii.1.d
+	picture = GFX_alaska_hawaii
+	is_triggered_only = yes
+
+	option = {
+		trigger = {
+			tag = USA
+		}
+		name = alaskawaii.1.a
+
+	}
+	option = {
+		trigger = {
+			tag = SOV
+		}
+		name = alaskawaii.1.b
+
+	}
+	option = {
+		trigger = {
+			NOT = {
+				AND = {
+					tag = USA
+					tag = SOV
+				}
+			}
+		}
+		name = alaskawaii.1.c
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = testsoviet.1
+ immediate = { }
+	title = testsoviet.1.t
+	desc = testsoviet.1.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = testsoviet.1.a
+		set_country_flag = chose_passive_ddr
+		clr_country_flag = chose_active_ddr
+		mark_focus_tree_layout_dirty = yes
+	}
+	option = {
+		name = testsoviet.1.b
+		set_country_flag = chose_active_ddr
+		clr_country_flag = chose_passive_ddr
+		mark_focus_tree_layout_dirty = yes
+
+	}
+	option = {
+		name = testsoviet.1.c
+		set_country_flag = chose_active_ddr
+		clr_country_flag = chose_passive_ddr
+		mark_focus_tree_layout_dirty = yes
+
+	}
+	option = {
+		name = testsoviet.1.d2
+		set_country_flag = chose_active_ddr
+		clr_country_flag = chose_passive_ddr
+		mark_focus_tree_layout_dirty = yes
+
+	}
+	option = {
+		name = testsoviet.1.e
+		set_country_flag = chose_active_ddr
+		clr_country_flag = chose_passive_ddr
+		mark_focus_tree_layout_dirty = yes
+
+	}
+	option = {
+		name = testsoviet.1.f
+		set_country_flag = chose_active_ddr
+		clr_country_flag = chose_passive_ddr
+		mark_focus_tree_layout_dirty = yes
+
+	}
+}
+
+country_event = {
+  id = generic_idea.1
+ immediate = { }
+	title = generic_idea.1.t
+	desc = generic_idea.1.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic_idea.1.a
+		set_country_flag = moving_toward_religious_propaganda
+		show_ideas_tooltip = policy_religion_temp_0
+		trigger = {
+			NOT = {
+				has_idea = policy_religion_temp_0
+			}
+		}
+	}
+	option = {
+		name = generic_idea.1.b
+		set_country_flag = moving_toward_state_atheism
+		show_ideas_tooltip = policy_religion_temp_0a
+		trigger = {
+			NOT = {
+				has_idea = policy_religion_temp_0a
+			}
+		}
+	}
+	option = {
+		name = generic_idea.1.c
+		set_country_flag = moving_toward_state_religion
+		show_ideas_tooltip = policy_religion_temp_1
+		trigger = {
+			NOT = {
+				has_idea = policy_religion_temp_1
+			}
+		}
+	}
+
+	# War
+	option = {
+		name = generic_idea.1.d
+		country_event = generic_idea.2
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+country_event = {
+  id = generic_idea.2
+ immediate = { }
+	title = generic_idea.2.t
+	desc = generic_idea.2.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic_idea.2.a
+		set_country_flag = moving_toward_religious_education
+		show_ideas_tooltip = policy_religion_temp_2
+		trigger = {
+			NOT = {
+				has_idea = policy_religion_temp_2
+			}
+		}
+	}
+	option = {
+		name = generic_idea.2.b
+		set_country_flag = moving_toward_religious_freedom
+		show_ideas_tooltip = policy_religion_temp_3
+		trigger = {
+			NOT = {
+				has_idea = policy_religion_temp_3
+			}
+		}
+	}
+
+	# War
+	option = {
+		name = generic_idea.2.d
+		country_event = generic_idea.3
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+country_event = {
+  id = generic_idea.3
+ immediate = { }
+	title = generic_idea.3.t
+	desc = generic_idea.3.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic_idea.3.a
+		set_country_flag = moving_toward_religious_tolerance
+		show_ideas_tooltip = policy_religion_temp_3a
+		trigger = {
+			NOT = {
+				has_idea = policy_religion_temp_3a
+			}
+		}
+	}
+
+	# War
+	option = {
+		name = generic_idea.3.b
+		country_event = generic_idea.1
+		ai_chance = {
+		  factor = 50
+		}
+	}
+	option = {
+		name = generic_idea.3.c
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+news_event = {
+  id = generic_idea.4
+ immediate = { }
+	title = generic_idea.4.t
+	desc = generic_idea.4.d
+	picture = GFX_event_fusion_0
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = generic_idea.4.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+country_event = {
+  id = generic_idea.6
+ immediate = { }
+	title = generic_idea.6.t
+	desc = generic_idea.6.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic_idea.6.a
+		set_country_flag = moving_toward_criminalization
+		show_ideas_tooltip = policy_saga_temp_0
+		trigger = {
+			NOT = {
+				has_idea = policy_saga_temp_0
+			}
+		}
+	}
+	option = {
+		name = generic_idea.6.b
+		set_country_flag = moving_toward_persecution
+		show_ideas_tooltip = policy_saga_temp_1
+		trigger = {
+			NOT = {
+				has_idea = policy_saga_temp_1
+			}
+		}
+	}
+	option = {
+		name = generic_idea.6.c
+		set_country_flag = moving_toward_tolerance_with_discrimination
+		show_ideas_tooltip = policy_saga_temp_2
+		trigger = {
+			NOT = {
+				has_idea = policy_saga_temp_2
+			}
+		}
+	}
+
+	# War
+	option = {
+		name = generic_idea.6.d
+		country_event = generic_idea.7
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+country_event = {
+  id = generic_idea.7
+ immediate = { }
+	title = generic_idea.7.t
+	desc = generic_idea.7.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic_idea.7.a
+		set_country_flag = moving_toward_partial_equality
+		show_ideas_tooltip = policy_saga_temp_3
+		trigger = {
+			NOT = {
+				has_idea = policy_saga_temp_3
+			}
+		}
+	}
+	option = {
+		name = generic_idea.7.b
+		set_country_flag = moving_toward_legal_equality
+		show_ideas_tooltip = policy_saga_temp_4
+		trigger = {
+			NOT = {
+				has_idea = policy_saga_temp_4
+			}
+		}
+	}
+
+	# War
+	option = {
+		name = generic_idea.7.d
+		country_event = generic_idea.8
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+country_event = {
+  id = generic_idea.8
+ immediate = { }
+	title = generic_idea.8.t
+	desc = generic_idea.8.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic_idea.8.a
+		set_country_flag = moving_toward_positive_action
+		show_ideas_tooltip = policy_saga_temp_4a
+		trigger = {
+			NOT = {
+				has_idea = policy_saga_temp_4a
+			}
+		}
+	}
+
+	# War
+	option = {
+		name = generic_idea.8.b
+		country_event = generic_idea.6
+		ai_chance = {
+		  factor = 50
+		}
+	}
+	option = {
+		name = generic_idea.8.c
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+news_event = {
+  id = generic_idea.5
+ immediate = { }
+	title = generic_idea.5.t
+	desc = generic_idea.5.d
+	picture = GFX_event_fusion_0
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = generic_idea.5.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+country_event = {
+  id = generic_idea.9
+ immediate = { }
+	title = generic_idea.9.t
+	desc = generic_idea.9.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic_idea.9.a
+		set_country_flag = moving_toward_patriarchal_society
+		show_ideas_tooltip = policy_women_temp_0
+		trigger = {
+			NOT = {
+				has_idea = policy_women_temp_0
+			}
+		}
+	}
+	option = {
+		name = generic_idea.9.b
+		set_country_flag = moving_toward_limited_rights
+		show_ideas_tooltip = policy_women_temp_1
+		trigger = {
+			NOT = {
+				has_idea = policy_women_temp_1
+			}
+		}
+	}
+	option = {
+		name = generic_idea.9.c
+		set_country_flag = moving_toward_partial_womens_equality
+		show_ideas_tooltip = policy_women_temp_2
+		trigger = {
+			NOT = {
+				has_idea = policy_women_temp_2
+			}
+		}
+	}
+
+	# War
+	option = {
+		name = generic_idea.9.d
+		country_event = generic_idea.10
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+country_event = {
+  id = generic_idea.10
+ immediate = { }
+	title = generic_idea.10.t
+	desc = generic_idea.10.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic_idea.10.a
+		set_country_flag = moving_toward_legal_womens_equality
+		show_ideas_tooltip = policy_women_temp_3
+		trigger = {
+			NOT = {
+				has_idea = policy_women_temp_3
+			}
+		}
+	}
+	option = {
+		name = generic_idea.10.b
+		set_country_flag = moving_toward_progressive_society
+		show_ideas_tooltip = policy_women_temp_4
+		trigger = {
+			NOT = {
+				has_idea = policy_women_temp_4
+			}
+		}
+	}
+	# War
+	option = {
+		name = generic_idea.10.c
+		country_event = generic_idea.9
+		ai_chance = {
+		  factor = 50
+		}
+	}
+	option = {
+		name = generic_idea.10.d
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+
+news_event = {
+  id = generic_idea.11
+ immediate = { }
+	title = generic_idea.11.t
+	desc = generic_idea.11.d
+	picture = GFX_event_fusion_0
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = generic_idea.11.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+news_event = {
+  id = generic_idea.12
+ immediate = { }
+	title = generic_idea.12.t
+	desc = generic_idea.12.d
+	picture = GFX_event_fusion_0
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = generic_idea.12.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+country_event = {
+  id = generic_idea.13
+ immediate = { }
+	title = generic_idea.13.t
+	desc = generic_idea.13.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic_idea.13.a
+		set_country_flag = moving_toward_unions_outlawed
+		show_ideas_tooltip = policy_union_temp_0
+		trigger = {
+			NOT = {
+				has_idea = policy_union_temp_0
+			}
+		}
+	}
+	option = {
+		name = generic_idea.13.b
+		set_country_flag = moving_toward_no_legal_labor_protection
+		show_ideas_tooltip = policy_union_temp_1
+		trigger = {
+			NOT = {
+				has_idea = policy_union_temp_1
+			}
+		}
+	}
+	option = {
+		name = generic_idea.13.c
+		set_country_flag = moving_toward_yellow_trade_unions
+		show_ideas_tooltip = policy_union_temp_2
+		trigger = {
+			NOT = {
+				has_idea = policy_union_temp_2
+			}
+		}
+	}
+	option = {
+		name = generic_idea.13.d
+		country_event = generic_idea.14
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+country_event = {
+  id = generic_idea.14
+ immediate = { }
+	title = generic_idea.14.t
+	desc = generic_idea.14.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic_idea.14.a
+		set_country_flag = moving_toward_minimal_state_regulations
+		show_ideas_tooltip = policy_union_temp_3
+		trigger = {
+			NOT = {
+				has_idea = policy_union_temp_3
+			}
+		}
+	}
+	option = {
+		name = generic_idea.14.b
+		set_country_flag = moving_toward_limited_state_regulations
+		show_ideas_tooltip = policy_union_temp_4
+		trigger = {
+			NOT = {
+				has_idea = policy_union_temp_4
+			}
+		}
+	}
+	option = {
+		name = generic_idea.14.c
+		set_country_flag = moving_toward_well_regulated_workers_rights
+		show_ideas_tooltip = policy_union_temp_5
+		trigger = {
+			NOT = {
+				has_idea = policy_union_temp_5
+			}
+		}
+	}
+	option = {
+		name = generic_idea.14.d
+		country_event = generic_idea.15
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+country_event = {
+  id = generic_idea.15
+ immediate = { }
+	title = generic_idea.15.t
+	desc = generic_idea.15.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic_idea.15.a
+		set_country_flag = moving_toward_full_worker_protections
+		show_ideas_tooltip = policy_union_temp_6
+		trigger = {
+			NOT = {
+				has_idea = policy_union_temp_6
+			}
+		}
+	}
+	# War
+	option = {
+		name = generic_idea.15.b
+		country_event = generic_idea.13
+		ai_chance = {
+		  factor = 50
+		}
+	}
+	option = {
+		name = generic_idea.15.c
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+news_event = {
+  id = generic_idea.16
+ immediate = { }
+	title = generic_idea.16.t
+	desc = generic_idea.16.d
+	picture = GFX_event_fusion_0
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = generic_idea.16.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+country_event = {
+  id = generic_idea.17
+ immediate = { }
+	title = generic_idea.17.t
+	desc = generic_idea.17.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic_idea.17.a
+		set_country_flag = moving_toward_total_state_control_and_propaganda
+		show_ideas_tooltip = policy_media_temp_0
+		trigger = {
+			NOT = {
+				has_idea = policy_media_temp_0
+			}
+		}
+	}
+	option = {
+		name = generic_idea.17.b
+		set_country_flag = moving_toward_strict_censorship_with_state_run_media
+		show_ideas_tooltip = policy_media_temp_1
+		trigger = {
+			NOT = {
+				has_idea = policy_media_temp_1
+			}
+		}
+	}
+	option = {
+		name = generic_idea.17.c
+		set_country_flag = moving_toward_state_influence_with_partial_media_freedom
+		show_ideas_tooltip = policy_media_temp_2
+		trigger = {
+			NOT = {
+				has_idea = policy_media_temp_2
+			}
+		}
+	}
+	option = {
+		name = generic_idea.17.d
+		country_event = generic_idea.18
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+country_event = {
+  id = generic_idea.18
+ immediate = { }
+	title = generic_idea.18.t
+	desc = generic_idea.18.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic_idea.18.a
+		set_country_flag = moving_toward_government_regulation_with_free_press
+		show_ideas_tooltip = policy_media_temp_3
+		trigger = {
+			NOT = {
+				has_idea = policy_media_temp_3
+			}
+		}
+	}
+	option = {
+		name = generic_idea.18.b
+		set_country_flag = moving_toward_free_media_with_minimal_regulation
+		show_ideas_tooltip = policy_media_temp_3a
+		trigger = {
+			NOT = {
+				has_idea = policy_media_temp_3a
+			}
+		}
+	}
+	# War
+	option = {
+		name = generic_idea.18.c
+		country_event = generic_idea.17
+		ai_chance = {
+		  factor = 50
+		}
+	}
+	option = {
+		name = generic_idea.18.d
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+country_event = {
+  id = generic_idea.19
+ immediate = { }
+	title = generic_idea.19.t
+	desc = generic_idea.19.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic_idea.19.a
+		set_country_flag = moving_toward_state_enforced_discrimination
+		show_ideas_tooltip = policy_minorities_temp_0
+		trigger = {
+			NOT = {
+				has_idea = policy_minorities_temp_0
+			}
+		}
+	}
+	option = {
+		name = generic_idea.19.b
+		set_country_flag = moving_toward_institutional_discrimination
+		show_ideas_tooltip = policy_minorities_temp_1
+		trigger = {
+			NOT = {
+				has_idea = policy_minorities_temp_1
+			}
+		}
+	}
+	option = {
+		name = generic_idea.19.c
+		set_country_flag = moving_toward_limited_minorities_rights
+		show_ideas_tooltip = policy_minorities_temp_2
+		trigger = {
+			NOT = {
+				has_idea = policy_minorities_temp_2
+			}
+		}
+	}
+	option = {
+		name = generic_idea.19.d
+		country_event = generic_idea.20
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+country_event = {
+  id = generic_idea.20
+ immediate = { }
+	title = generic_idea.20.t
+	desc = generic_idea.20.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic_idea.20.a
+		set_country_flag = moving_toward_equal_rights_on_paper
+		show_ideas_tooltip = policy_minorities_temp_3
+		trigger = {
+			NOT = {
+				has_idea = policy_minorities_temp_3
+			}
+		}
+	}
+	option = {
+		name = generic_idea.20.b
+		set_country_flag = moving_toward_affirmative_action
+		show_ideas_tooltip = policy_minorities_temp_3a
+		trigger = {
+			NOT = {
+				has_idea = policy_minorities_temp_3a
+			}
+		}
+	}
+	# War
+	option = {
+		name = generic_idea.20.c
+		country_event = generic_idea.19
+		ai_chance = {
+		  factor = 50
+		}
+	}
+	option = {
+		name = generic_idea.20.d
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+news_event = {
+  id = generic_idea.21
+ immediate = { }
+	title = generic_idea.21.t
+	desc = generic_idea.21.d
+	picture = GFX_event_fusion_0
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = generic_idea.21.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+# WAR: Get Annexed or War, 50/50 chance
+country_event = {
+  id = generic.1
+ immediate = { }
+	title = generic.1.t
+	desc = generic.1.d
+
+	is_triggered_only = yes
+
+	# Get Annexed
+	option = {
+		name = generic.1.a
+		FROM = { annex_country = { target = ROOT } }
+		ai_chance = {
+			factor = 50
+		}
+	}
+
+	# War
+	option = {
+		name = generic.1.b
+		FROM = { declare_war_on = { target = ROOT type = annex_everything } }
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+# FACTION: Wanna join my faction?, 85/15 chance
+country_event = {
+  id = generic.2
+ immediate = { }
+	title = generic.2.t
+	desc = generic.2.d
+
+	is_triggered_only = yes
+
+	# Join
+	option = {
+		name = generic.2.a
+		FROM = {
+			add_to_faction = ROOT
+			country_event = { id = generic.3 hours = 6 }
+		}
+		ai_chance = {
+			factor = 85
+		}
+	}
+
+	# Nope
+	option = {
+		name = generic.2.b
+		FROM = { country_event = { id = generic.4 hours = 6 } }
+		ai_chance = {
+		  factor = 15
+		}
+	}
+}
+# FACTION: Yes, I want to join
+country_event = {
+  id = generic.3
+ immediate = { }
+	title = generic.3.t
+	desc = generic.3.d
+
+	is_triggered_only = yes
+
+	# Nice
+	option = {
+		name = generic.3.a
+	}
+}
+# FACTION: No, I'm staying out
+country_event = {
+  id = generic.4
+ immediate = { }
+	title = generic.4.t
+	desc = generic.4.d
+
+	is_triggered_only = yes
+
+	# That's sad
+	option = {
+		name = generic.4.a
+	}
+}
+# UNIFICATION: Wanna unite countries?, 50/50 chance
+country_event = {
+  id = generic.5
+ immediate = { }
+	title = generic.5.t
+	desc = generic.5.d
+
+	is_triggered_only = yes
+
+	# Join
+	option = {
+		name = generic.5.a
+		FROM = {
+			annex_country = { target = ROOT }
+			country_event = { id = generic.6 hours = 6 }
+		}
+		ROOT = { every_owned_state = { add_core_of = FROM } }
+		ai_chance = {
+			factor = 50
+		}
+	}
+
+	# Nope
+	option = {
+		name = generic.5.b
+		FROM = { country_event = { id = generic.7 hours = 6 } }
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+# UNIFICATION: Yes, let's unite
+country_event = {
+  id = generic.6
+ immediate = { }
+	title = generic.6.t
+	desc = generic.6.d
+
+	is_triggered_only = yes
+
+	# Great
+	option = {
+		name = generic.6.a
+	}
+}
+# UNIFICATION: No thanks
+country_event = {
+  id = generic.7
+ immediate = { }
+	title = generic.7.t
+	desc = generic.7.d
+
+	is_triggered_only = yes
+
+	# Great
+	option = {
+		name = generic.7.a
+	}
+}
+# FACTION: Can I join your faction?, 80/20 chance
+country_event = {
+  id = generic.8
+ immediate = { }
+	title = generic.8.t
+	desc = generic.8.d
+
+	is_triggered_only = yes
+
+	# Yes
+	option = {
+		name = generic.8.a
+		ROOT = { add_to_faction = FROM }
+		FROM = { country_event = { id = generic.9 hours = 6 } }
+		ai_chance = {
+			factor = 80
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = USA }
+			}
+			FROM = { add_ideas = nato_member }
+		}
+	}
+
+	# No
+	option = {
+		name = generic.8.b
+		FROM = { country_event = { id = generic.10 hours = 6 } }
+		ai_chance = {
+		  factor = 20
+		}
+	}
+}
+# FACTION: Yes, you can
+country_event = {
+  id = generic.9
+ immediate = { }
+	title = generic.9.t
+	desc = generic.9.d
+
+	is_triggered_only = yes
+
+	# Nice
+	option = {
+		name = generic.9.a
+	}
+}
+# FACTION: No, I don't want you
+country_event = {
+  id = generic.10
+ immediate = { }
+	title = generic.10.t
+	desc = generic.10.d
+
+	is_triggered_only = yes
+
+	# That's sad
+	option = {
+		name = generic.10.a
+	}
+}
+
+###############################################
+###############################################
+# VANILLA GENERIC EVENTS HERE (generic.12 - generic.18)
+###############################################
+###############################################
+
+
+
+# Enemy attempting to destroy Suez
+country_event = {
+	id = generic.12
+ immediate = { }
+	title = generic.12.t
+	desc = generic.12.d
+
+	picture = GFX_report_event_merchant_ship_01
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic.12.a
+		custom_effect_tooltip = canals_tt
+	}
+}
+# Enemy attempting to destroy Panama
+country_event = {
+	id = generic.13
+ immediate = { }
+	title = generic.13.t
+	desc = generic.13.d
+
+	picture = GFX_report_event_merchant_ship_01
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic.12.a
+		custom_effect_tooltip = canals_tt
+	}
+}
+# Object to Attaches
+country_event = {
+	id = generic.14
+ immediate = { }
+	title = generic.14.t
+	desc = generic.14.d
+
+	picture = GFX_report_event_generic_read_write
+
+	is_triggered_only = yes
+
+	# Agree - recall attache
+	option = {
+		name = generic.14.a
+		ai_chance = {
+			base = 80
+			modifier = {
+				factor = 1.5
+				has_opinion = { target = FROM value > 50 }
+			}
+			modifier = {
+				factor = 1.5
+				has_opinion = { target = FROM value > 75 }
+			}
+		}
+		random_other_country = {
+			limit = {
+				has_war_with = FROM
+				has_attache_from = ROOT
+			}
+			ROOT = { recall_attache = PREV }
+		}
+		FROM = {
+			country_event = { id = generic.15 days = 1 }
+		}
+		clr_country_flag = object_attache_going_on
+	}
+
+	# Reject demands
+	option = {
+		name = generic.14.b
+		ai_chance = {
+			base = 20
+			modifier = {
+				factor = 2
+				has_opinion = { target = FROM value < 0 }
+			}
+			modifier = {
+				factor = 3
+				has_opinion = { target = FROM value < -20 }
+			}
+			modifier = {
+				factor = 3
+				has_opinion = { target = FROM value < -50 }
+			}
+		}
+		custom_effect_tooltip = attache_political_power_tt
+		if = {
+			limit = {
+				NOT = { strength_ratio = { tag = FROM ratio < 3 } }
+			}
+			if = {
+				limit = {
+					has_opinion = { target = FROM value > -25 }
+					NOT = { has_opinion = { target = FROM value > 0 } }
+				}
+				add_political_power = -5
+			}
+			if = {
+				limit = {
+					has_opinion = { target = FROM value > 0 }
+					NOT = { has_opinion = { target = FROM value > 50 } }
+
+				}
+				add_political_power = -10
+			}
+			if = {
+				limit = { has_opinion = { target = FROM value > 50 } }
+				add_political_power = -15
+			}
+		}
+		if = {
+			limit = {
+				strength_ratio = { tag = FROM ratio < 3 }
+				NOT = { strength_ratio = { tag = FROM ratio < 2.5 } }
+			}
+			if = {
+				limit = {
+					has_opinion = { target = FROM value > -25 }
+					NOT = { has_opinion = { target = FROM value > 0 } }
+				}
+				add_political_power = -10
+			}
+			if = {
+				limit = {
+					has_opinion = { target = FROM value > 0 }
+					NOT = { has_opinion = { target = FROM value > 50 } }
+
+				}
+				add_political_power = -20
+			}
+			if = {
+				limit = { has_opinion = { target = FROM value > 50 } }
+				add_political_power = -30
+			}
+		}
+		if = {
+			limit = {
+				strength_ratio = { tag = FROM ratio < 2.5 }
+				NOT = { strength_ratio = { tag = FROM ratio < 2 } }
+			}
+			if = {
+				limit = {
+					has_opinion = { target = FROM value > -25 }
+					NOT = { has_opinion = { target = FROM value > 0 } }
+				}
+				add_political_power = -15
+			}
+			if = {
+				limit = {
+					has_opinion = { target = FROM value > 0 }
+					NOT = { has_opinion = { target = FROM value > 50 } }
+
+				}
+				add_political_power = -30
+			}
+			if = {
+				limit = { has_opinion = { target = FROM value > 50 } }
+				add_political_power = -45
+			}
+		}
+		if = {
+			limit = {
+				strength_ratio = { tag = FROM ratio < 2 }
+				NOT = { strength_ratio = { tag = FROM ratio < 1.5 } }
+			}
+			if = {
+				limit = {
+					has_opinion = { target = FROM value > -25 }
+					NOT = { has_opinion = { target = FROM value > 0 } }
+				}
+				add_political_power = -20
+			}
+			if = {
+				limit = {
+					has_opinion = { target = FROM value > 0 }
+					NOT = { has_opinion = { target = FROM value > 50 } }
+
+				}
+				add_political_power = -40
+			}
+			if = {
+				limit = { has_opinion = { target = FROM value > 50 } }
+				add_political_power = -60
+			}
+		}
+		if = {
+			limit = {
+				strength_ratio = { tag = FROM ratio < 1.5 }
+			}
+			if = {
+				limit = {
+					has_opinion = { target = FROM value > -25 }
+					NOT = { has_opinion = { target = FROM value > 0 } }
+				}
+				add_political_power = -25
+			}
+			if = {
+				limit = {
+					has_opinion = { target = FROM value > 0 }
+					NOT = { has_opinion = { target = FROM value > 50 } }
+
+				}
+				add_political_power = -50
+			}
+			if = {
+				limit = { has_opinion = { target = FROM value > 50 } }
+				add_political_power = -75
+			}
+		}
+		FROM = {
+			add_opinion_modifier = { target = ROOT modifier = rejected_demands }
+			country_event = { id = generic.16 days = 1 }
+		}
+		hidden_effect = {
+			set_country_flag = { flag = rejected_withdrawing_attache value = 1 days = 90 }
+			set_country_flag = { flag = rejected_withdrawing_attache@FROM value = 1 days = 365 }
+			clr_country_flag = object_attache_going_on
+		}
+		if = {
+			limit = {
+				FROM = { has_government = fascism }
+				NOT = { has_government = fascism }
+				fascism > 0.1
+				NOT = { fascism > 0.2 }
+				strength_ratio = { tag = FROM ratio < 1.2 }
+			}
+			custom_effect_tooltip = attache_fascism_tt
+			add_stability = -0.025
+		}
+		if = {
+			limit = {
+				FROM = { has_government = fascism }
+				NOT = { has_government = fascism }
+				fascism > 0.2
+				NOT = { fascism > 0.3 }
+				strength_ratio = { tag = FROM ratio < 1.2 }
+			}
+			custom_effect_tooltip = attache_fascism_tt
+			add_stability = -0.05
+		}
+		if = {
+			limit = {
+				FROM = { has_government = fascism }
+				NOT = { has_government = fascism }
+				fascism > 0.3
+				NOT = { fascism > 0.4 }
+				strength_ratio = { tag = FROM ratio < 1.2 }
+			}
+			custom_effect_tooltip = attache_fascism_tt
+			add_stability = -0.075
+		}
+		if = {
+			limit = {
+				FROM = { has_government = fascism }
+				NOT = { has_government = fascism }
+				fascism > 0.4
+				strength_ratio = { tag = FROM ratio < 1.2 }
+			}
+			custom_effect_tooltip = attache_fascism_tt
+			add_stability = -0.1
+		}
+		if = {
+			limit = {
+				FROM = { has_government = communism }
+				communism > 0.1
+				NOT = { communism > 0.2 }
+				strength_ratio = { tag = FROM ratio < 1.2 }
+			}
+			custom_effect_tooltip = attache_communism_tt
+			add_stability = -0.025
+		}
+		if = {
+			limit = {
+				FROM = { has_government = communism }
+				NOT = { has_government = communism }
+				communism > 0.2
+				NOT = { communism > 0.3 }
+				strength_ratio = { tag = FROM ratio < 1.2 }
+			}
+			custom_effect_tooltip = attache_communism_tt
+			add_stability = -0.05
+		}
+		if = {
+			limit = {
+				FROM = { has_government = communism }
+				NOT = { has_government = communism }
+				communism > 0.3
+				NOT = { communism > 0.4 }
+				strength_ratio = { tag = FROM ratio < 1.2 }
+			}
+			custom_effect_tooltip = attache_communism_tt
+			add_stability = -0.075
+		}
+		if = {
+			limit = {
+				FROM = { has_government = communism }
+				NOT = { has_government = communism }
+				communism > 0.4
+				strength_ratio = { tag = FROM ratio < 1.2 }
+			}
+			custom_effect_tooltip = attache_communism_tt
+			add_stability = -0.1
+		}
+		if = {
+			limit = {
+				FROM = { has_government = democratic }
+				NOT = { has_government = democratic }
+				democratic > 0.1
+				NOT = { democratic > 0.2 }
+				strength_ratio = { tag = FROM ratio < 1.2 }
+			}
+			custom_effect_tooltip = attache_democratic_tt
+			add_stability = -0.025
+		}
+		if = {
+			limit = {
+				FROM = { has_government = democratic }
+				NOT = { has_government = democratic }
+				democratic > 0.2
+				NOT = { democratic > 0.3 }
+				strength_ratio = { tag = FROM ratio < 1.2 }
+			}
+			custom_effect_tooltip = attache_democratic_tt
+			add_stability = -0.05
+		}
+		if = {
+			limit = {
+				FROM = { has_government = democratic }
+				NOT = { has_government = democratic }
+				democratic > 0.3
+				NOT = { democratic > 0.4 }
+				strength_ratio = { tag = FROM ratio < 1.2 }
+			}
+			custom_effect_tooltip = attache_democratic_tt
+			add_stability = -0.075
+		}
+		if = {
+			limit = {
+				FROM = { has_government = democratic }
+				NOT = { has_government = democratic }
+				democratic > 0.4
+				strength_ratio = { tag = FROM ratio < 1.2 }
+			}
+			custom_effect_tooltip = attache_democratic_tt
+			add_stability = -0.1
+		}
+	}
+}
+# Notification event that TAG withdrew attache
+country_event = {
+	id = generic.15
+ immediate = { }
+	title = generic.15.t
+	desc = generic.15.d
+
+	picture = GFX_report_event_generic_read_write
+
+	is_triggered_only = yes
+
+	option = {
+		name = excellent
+	}
+}
+# Notification event that TAG refused to withdraw attache
+country_event = {
+	id = generic.16
+ immediate = { }
+	title = generic.16.t
+	desc = generic.16.d
+
+	picture = GFX_report_event_generic_read_write
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic.16.a
+		effect_tooltip = {
+			add_opinion_modifier = { target = FROM modifier = rejected_demands }
+		}
+	}
+}
+# Notification event that leader has gotten sick
+unit_leader_event = {
+	id = generic.17
+ immediate = { }
+	title = generic.17.t
+	desc = generic.17.d
+
+	picture = GFX_report_event_military_planning
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			FROM = {
+				set_unit_leader_flag = {
+					flag = recently_sick
+					value = 1
+					days = 180
+				}
+			}
+		}
+	}
+
+	option = {
+		name = unfortunate
+		effect_tooltip = {
+			FROM = {
+				add_timed_unit_leader_trait = {
+					trait = sick
+					days = 30
+				}
+			}
+		}
+	}
+}
+# Notification event that leader has been wounded
+country_event = {
+	id = generic.18
+ immediate = { }
+	title = generic.18.t
+	desc = generic.18.d
+
+	picture = GFX_report_event_military_planning
+
+	is_triggered_only = yes
+
+	option = {
+		name = unfortunate
+		effect_tooltip = {
+			FROM = {
+				add_timed_unit_leader_trait = {
+					trait = wounded
+					days = 90
+				}
+			}
+		}
+	}
+}
+###############################################
+###############################################
+# COLD WAR GENERIC EVENTS AGAIN (generic.19 - generic.x)
+###############################################
+###############################################
+
+# RELATION: LICENCE ALIGNMENT: from X, 90/10 chance
+country_event = {
+  id = generic.19
+ immediate = { }
+	title = generic.19.t
+	desc = generic.19.d
+
+	is_triggered_only = yes
+
+	# Okay
+	option = {
+		name = generic.19.a
+		FROM = {
+			add_relation_modifier = {
+				target = ROOT
+				modifier = alignment_licenses
+			}
+			country_event = { id = generic.20 hours = 6 }
+		}
+		ROOT = {
+			add_relation_modifier = {
+				target = FROM
+				modifier = alignment_licenses
+			}
+		}
+	  	ai_chance = {
+			factor = 90
+			modifier = {
+				factor = 1
+				has_idea = Member_of_European_Defense_Community
+			}
+		}
+	}
+
+	# No
+	option = {
+		name = generic.19.b
+		country_event = { id = generic.21 hours = 6 }
+	  	ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				has_idea = Member_of_European_Defense_Community
+			}
+		}
+	}
+}
+# RELATION: LICENCE ALIGNTMENT: Country said yes
+country_event = {
+	id = generic.20
+ immediate = { }
+	title = generic.20.t
+	desc = generic.20.d
+
+	is_triggered_only = yes
+
+	# Very good
+	option = {
+		name = generic.20.a
+	}
+}
+# RELATION: LICENCE ALIGNTMENT: Country said no
+country_event = {
+	id = generic.21
+ immediate = { }
+	title = generic.21.t
+	desc = generic.21.d
+
+	is_triggered_only = yes
+
+	# Aww
+	option = {
+		name = generic.21.a
+	}
+}
+# NATO: Can I join NATO? 80/20 chance
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = generic.22
+ immediate = { }
+	title = generic.22.t
+	desc = generic.22.d
+
+	is_triggered_only = yes
+
+	# Yes
+	option = {
+		name = generic.22.a
+		FROM = {
+			country_event = { id = generic.23 hours = 6 }
+			add_ideas = nato_member
+		}
+		ai_chance = {
+			factor = 8
+		}
+	}
+
+	# No
+	option = {
+		name = generic.22.a
+		FROM = {
+			country_event = { id = generic.24 hours = 6 }
+		}
+		ai_chance = {
+			factor = 2
+		}
+	}
+}
+# NATO: Country said yes
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = generic.23
+ immediate = { }
+	title = generic.23.t
+	desc = generic.23.d
+
+	is_triggered_only = yes
+
+	# Very good
+	option = {
+		name = generic.23.a
+	}
+}
+# NATO: Country said no
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = generic.24
+ immediate = { }
+	title = generic.24.t
+	desc = generic.24.d
+
+	is_triggered_only = yes
+
+	# Aww
+	option = {
+		name = generic.24.a
+	}
+}#100% Odds
+country_event = {
+  id = generic.30
+ immediate = { }
+	title = generic.5.t
+	desc = generic.5.d
+
+	is_triggered_only = yes
+
+	# Join
+	option = {
+		name = generic.5.a
+		FROM = {
+			annex_country = { target = ROOT }
+			country_event = { id = generic.6 hours = 6 }
+		}
+		ROOT = { every_owned_state = { add_core_of = FROM } }
+		ai_chance = {
+			factor = 100
+		}
+	}
+
+	# Nope
+	option = {
+		name = generic.5.b
+		FROM = { country_event = { id = generic.7 hours = 6 } }
+		ai_chance = {
+		  factor = 0
+		}
+	}
+}
+country_event = { #race-related problems arise
+  id = generic.31
+ immediate = { }
+	title = generic.31.t
+	desc = generic.31.d
+	picture = GFX_event_generic_31
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic.31.a
+	}
+}country_event = { #race-related problems dissipate
+  id = generic.32
+ immediate = { }
+	title = generic.32.t
+	desc = generic.32.d
+	picture = GFX_event_generic_32
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic.32.a
+	}
+}
+country_event = { #kuwait
+  id = generic.33
+ immediate = { }
+	title = generic.33.t
+	desc = generic.33.d
+	picture = GFX_event_generic_32
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic.33.a
+		add_country_leader_role = {
+            character = KUW_Abdullah_Al_Salim_Al_Sabah
+            promote_leader = yes
+            country_leader = {
+                ideology = islamic_monarchy
+                expire = "1965.1.1.1"
+                traits = { }
+            }
+        }
+		retire_character = KUW_ahmad_aljaber_alsabah
+		hidden_effect = {
+			country_event = {
+				id = generic.34
+				days = 4159
+			}
+		}
+	}
+}
+country_event = { #kuwait
+  id = generic.34
+ immediate = { }
+	title = generic.34.t
+	desc = generic.34.d
+	picture = GFX_event_generic_32
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic.34.a
+		ENG = {
+			end_puppet = KUW
+		}
+		KUW = {
+			drop_cosmetic_tag = yes
+		}
+	}
+}
+country_event = { #kuwait
+  id = generic.35
+ immediate = { }
+	title = generic.35.t
+	desc = generic.35.d
+	picture = GFX_event_generic_32
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic.35.a
+		retire_character = OMA_Said_bin_Taimur
+		OMA = {
+			drop_cosmetic_tag = yes
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #kuwait
+  id = generic.36
+ immediate = { }
+	title = generic.36.t
+	desc = generic.36.d
+	picture = GFX_event_generic_32
+
+	is_triggered_only = yes
+
+	option = {
+		name = generic.36.a
+		retire_character = PER_haj_ali_razmara
+		complete_national_focus = PER_The_Assasination_of_General_Haj_Ali_Razmara
+	}
+}
+news_event = {
+  id = fusion.0
+ immediate = { }
+	title = fusion.0.t
+	desc = fusion.0.d
+	picture = GFX_event_fusion_0
+
+	is_triggered_only = yes
+	major = yes
+
+	immediate = {
+		set_global_flag = fusion_first
+	}
+	option = {
+		name = fusion.0.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}country_event = {
+  id = fusion.1
+ immediate = { }
+	title = fusion.1.t
+	desc = fusion.1.d
+	picture = GFX_event_fusion_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = fusion.1.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+country_event = {
+  id = mod_stuff.1
+ immediate = { }
+	title = mod_stuff.1.t
+	desc = mod_stuff.1.d
+	picture = GFX_event_fusion_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = mod_stuff.1.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = CWIC_ITALY_NEWS.1
+ immediate = { }
+	title = CWIC_ITALY_NEWS.1.t
+	desc = CWIC_ITALY_NEWS.1.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = CWIC_ITALY_NEWS.1.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = CWIC_ITALY_NEWS.2
+ immediate = { }
+	title = CWIC_ITALY_NEWS.2.t
+	desc = CWIC_ITALY_NEWS.2.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = CWIC_ITALY_NEWS.2.a
+	}
+}

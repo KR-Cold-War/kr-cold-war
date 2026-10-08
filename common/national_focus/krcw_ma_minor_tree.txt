@@ -1,0 +1,1317 @@
+# krcw: paced
+# krcw: x-coords doubled for icon clearance
+focus_tree = {
+	id = krcw_ma_minor_tree
+	continuous_focus_position = { x = 50 y = 1490 }
+	country = {
+		factor = 0
+		modifier = { add = 3000 tag = TUR }
+		modifier = { add = 3000 tag = GRE }
+		modifier = { add = 3000 tag = CZE }
+		modifier = { add = 3000 tag = YUG }
+		modifier = { add = 3000 tag = POL }
+		modifier = { add = 3000 tag = HUN }
+		modifier = { add = 3000 tag = ROM }
+		modifier = { add = 3000 tag = BUL }
+		modifier = { add = 3000 tag = PER }
+		modifier = { add = 3000 tag = AFG }
+		modifier = { add = 3000 tag = MON }
+		modifier = { add = 3000 tag = ALB }
+		modifier = { add = 3000 tag = ADR }
+	}
+	default = no
+	reset_on_civilwar = no
+	focus = {
+		id = krcw_ma_member_of_the_accord
+		icon = GFX_focus_generic_little_entente
+		x = 12
+		y = 0
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_political_power = 75
+			if = { limit = { NOT = { OR = { original_tag = PER original_tag = AFG original_tag = MON } } } if = { limit = { NOT = { has_idea = krcw_ma_cordon_state } } add_ideas = krcw_ma_cordon_state } }
+			else = { add_stability = 0.03 }
+			if = { limit = { original_tag = TUR }
+			navy_experience = 10
+			}
+			else_if = { limit = { original_tag = GRE }
+			army_experience = 10
+			}
+			else_if = { limit = { original_tag = CZE }
+			capital_scope = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			}
+			}
+			else_if = { limit = { original_tag = YUG }
+			army_experience = 15
+			}
+			else_if = { limit = { original_tag = POL }
+			army_experience = 10
+			if = { limit = { NOT = { has_idea = krcw_ma_agrarian_reaction } } add_ideas = krcw_ma_agrarian_reaction }
+			}
+			else_if = { limit = { original_tag = HUN }
+			if = { limit = { NOT = { has_idea = krcw_ma_agrarian_reaction } } add_ideas = krcw_ma_agrarian_reaction }
+			}
+			else_if = { limit = { original_tag = ROM }
+			if = { limit = { NOT = { has_idea = krcw_ma_agrarian_reaction } } add_ideas = krcw_ma_agrarian_reaction }
+			}
+			else_if = { limit = { original_tag = PER }
+			capital_scope = {
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			}
+			}
+			else_if = { limit = { original_tag = AFG }
+			add_manpower = 5000
+			}
+			else_if = { limit = { original_tag = MON }
+			army_experience = 10
+			}
+		}
+	}
+	focus = {
+		id = krcw_ma_the_officers_republic
+		icon = GFX_focus_generic_military_dictatorship
+		x = 4
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ma_member_of_the_accord }
+		mutually_exclusive = { focus = krcw_ma_a_civilian_cabinet }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			if = { limit = { NOT = { has_idea = krcw_ma_officers_republic } } add_ideas = krcw_ma_officers_republic }
+			add_war_support = 0.03
+		}
+	}
+	focus = {
+		id = krcw_ma_a_civilian_cabinet
+		icon = GFX_focus_generic_improve_the_administration
+		x = 8
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ma_member_of_the_accord }
+		mutually_exclusive = { focus = krcw_ma_the_officers_republic }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 8
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_ma_officers_republic } remove_ideas = krcw_ma_officers_republic }
+			add_stability = 0.05
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_ma_the_belated_land_reform
+		icon = GFX_focus_generic_land_redistribution
+		x = 4
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_officers_republic focus = krcw_ma_a_civilian_cabinet }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_ma_agrarian_reaction } remove_ideas = krcw_ma_agrarian_reaction }
+			add_ideas = krcw_ma_land_reform
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_ma_roads_to_the_frontier
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 8
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_officers_republic focus = krcw_ma_a_civilian_cabinet }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			capital_scope = {
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			}
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			}
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+		}
+	}
+	focus = {
+		id = krcw_ma_the_national_bank
+		icon = GFX_goal_generic_trade
+		x = 8
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ma_roads_to_the_frontier }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.03
+			add_tech_bonus = { name = krcw_ma_bank bonus = 0.5 uses = 1 category = production }
+		}
+	}
+	focus = {
+		id = krcw_ma_arms_from_moscow
+		icon = GFX_focus_generic_license_production
+		x = 12
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ma_member_of_the_accord }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { NOT = { has_idea = krcw_ma_russian_armaments } } add_ideas = krcw_ma_russian_armaments }
+			army_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_ma_our_own_arsenal
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 12
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ma_arms_from_moscow }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			capital_scope = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			}
+			add_tech_bonus = { name = krcw_ma_arsenal bonus = 0.5 uses = 1 category = infantry_weapons }
+		}
+	}
+	focus = {
+		id = krcw_ma_fortify_the_frontier
+		icon = GFX_focus_generic_mountain_fortification
+		x = 14
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ma_arms_from_moscow }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			every_owned_state = {
+				limit = { any_neighbor_state = { NOT = { is_owned_by = ROOT } } }
+				add_building_construction = { type = bunker level = 1 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			}
+			add_war_support = 0.02
+		}
+	}
+	focus = {
+		id = krcw_ma_mountain_and_steppe
+		icon = GFX_focus_generic_mountain_troops
+		x = 16
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ma_arms_from_moscow }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_ma_terrain bonus = 0.5 uses = 1 category = land_doctrine }
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_ma_the_front_state
+		icon = GFX_goal_generic_defence
+		x = 16
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_ma_fortify_the_frontier }
+		prerequisite = { focus = krcw_ma_mountain_and_steppe }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 15
+			add_manpower = 10000
+			add_tech_bonus = { name = krcw_ma_front_state bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_ma_fidelity_to_moscow
+		icon = GFX_goal_generic_military_sphere
+		x = 20
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ma_member_of_the_accord }
+		mutually_exclusive = { focus = krcw_ma_an_independent_line }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_political_power = 50
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_loyal_member } } }
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_ma_an_independent_line
+		icon = GFX_focus_generic_approach_the_west
+		x = 24
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ma_member_of_the_accord }
+		mutually_exclusive = { focus = krcw_ma_fidelity_to_moscow }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 6
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.02
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+			add_to_variable = { global.krcw_ma_crisis = 2 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_ma_crisis_tt
+		}
+	}
+	focus = {
+		id = krcw_ma_a_regional_pact
+		icon = GFX_focus_generic_balkan_diplomacy
+		x = 22
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ma_fidelity_to_moscow focus = krcw_ma_an_independent_line }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			add_tech_bonus = { name = krcw_ma_regional_pact bonus = 0.5 uses = 1 category = infrastructure }
+			every_country = { limit = { is_in_faction_with = ROOT NOT = { tag = ROOT } NOT = { tag = SOV } } add_opinion_modifier = { target = ROOT modifier = krcw_ma_loyal_member } }
+		}
+	}
+	focus = {
+		id = krcw_ma_a_neutral_window
+		icon = GFX_focus_generic_secret_service_agency
+		x = 22
+		y = 4
+		cost = 8
+		prerequisite = { focus = krcw_ma_a_regional_pact }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_political_power = 25
+			add_stability = 0.02
+			add_to_variable = { global.krcw_ma_crisis = -3 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_ma_crisis_tt
+			add_tech_bonus = { name = krcw_ma_frontier_police bonus = 0.5 uses = 1 category = decryption_tech }
+		}
+	}
+	focus = {
+		id = krcw_ma_the_shield_of_the_east
+		icon = GFX_goal_generic_national_unity
+		x = 36
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ma_fidelity_to_moscow }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_ideas = krcw_ma_cordon_doctrine
+			if = { limit = { NOT = { has_idea = krcw_ma_russian_armaments } } add_ideas = krcw_ma_russian_armaments }
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_ma_the_warsaw_protocols
+		icon = GFX_goal_generic_military_sphere
+		x = 36
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_shield_of_the_east }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_ma_joint_staff bonus = 0.5 uses = 1 category = land_doctrine }
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_loyal_member } } }
+			add_war_support = 0.03
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_ma_the_marshal_of_the_frontier
+		icon = GFX_goal_generic_army_doctrines
+		x = 36
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_warsaw_protocols }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			army_experience = 25
+			add_manpower = 20000
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_loyal_member } } }
+		}
+	}
+	focus = {
+		id = krcw_ma_reward_of_loyalty
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 36
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_marshal_of_the_frontier }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			capital_scope = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = arms_factory level = 2 instant_build = yes }
+			}
+			add_tech_bonus = { name = krcw_ma_reward bonus = 1.0 uses = 2 category = armor }
+			air_experience = 20
+		}
+	}
+	focus = {
+		id = krcw_ma_the_juniors_league
+		icon = GFX_focus_generic_little_entente
+		x = 26
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ma_a_regional_pact }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_ideas = krcw_ma_collective_bargaining
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = krcw_ma_shared_industry
+		icon = GFX_goal_generic_production
+		x = 26
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_juniors_league }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+			add_tech_bonus = { name = krcw_ma_shared bonus = 0.5 uses = 1 category = production }
+			if = { limit = { country_exists = POL } POL = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_regional_partner } } }
+		}
+	}
+	focus = {
+		id = krcw_ma_the_league_staff
+		icon = GFX_goal_generic_army_motorized
+		x = 30
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_juniors_league }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			army_experience = 15
+			add_tech_bonus = { name = krcw_ma_league_staff bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_ma_bargain_with_moscow
+		icon = GFX_goal_generic_political_pressure
+		x = 26
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_ma_shared_industry focus = krcw_ma_the_league_staff }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_stability = 0.03
+			country_event = { id = krcw_mam.10 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_ma_the_league_charter
+		icon = GFX_goal_generic_alliance
+		x = 26
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_ma_bargain_with_moscow }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.05
+			every_country = { limit = { is_in_faction_with = ROOT NOT = { tag = ROOT } NOT = { tag = SOV } has_completed_focus = krcw_ma_the_juniors_league } add_opinion_modifier = { target = ROOT modifier = krcw_ma_regional_partner } }
+		}
+	}
+	focus = {
+		id = krcw_ma_quiet_contacts
+		icon = GFX_goal_generic_dangerous_deal
+		x = 60
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ma_an_independent_line }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 8
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+			add_political_power = 25
+			if = { limit = { country_exists = FRA } FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_the_window_west } } }
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+			add_to_variable = { global.krcw_ma_crisis = 3 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_ma_crisis_tt
+		}
+	}
+	focus = {
+		id = krcw_ma_trade_both_ways
+		icon = GFX_goal_generic_dangerous_deal
+		x = 60
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_ma_quiet_contacts }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 8
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_ma_the_open_window
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+			add_to_variable = { global.krcw_ma_crisis = 2 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_ma_crisis_tt
+		}
+	}
+	focus = {
+		id = krcw_ma_the_neutral_temptation
+		icon = GFX_goal_generic_forceful_treaty
+		x = 64
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_ma_quiet_contacts }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 6
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_political_power = 25
+			country_event = { id = krcw_mam.20 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_ma_leave_the_cordon
+		icon = GFX_focus_generic_the_giant_wakes
+		x = 60
+		y = 5
+		cost = 8
+		prerequisite = { focus = krcw_ma_trade_both_ways focus = krcw_ma_the_neutral_temptation }
+		available = {
+			OR = { has_global_flag = KRCW_savinkov_dead check_variable = { global.krcw_ma_crisis > 39 } }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 6
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			if = { limit = { is_in_faction = yes } leave_faction = yes }
+			if = { limit = { has_idea = krcw_ma_cordon_state } remove_ideas = krcw_ma_cordon_state }
+			add_stability = 0.03
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+			add_to_variable = { global.krcw_ma_crisis = 6 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_ma_crisis_tt
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_ma_the_neutral_belt
+		icon = GFX_goal_generic_major_alliance
+		x = 60
+		y = 6
+		cost = 8
+		prerequisite = { focus = krcw_ma_leave_the_cordon }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 8
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			if = { limit = { country_exists = FRA } FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_the_window_west } } }
+			if = { limit = { country_exists = FRA } add_opinion_modifier = { target = FRA modifier = krcw_ma_the_window_west } }
+			every_owned_state = {
+				limit = { any_neighbor_state = { NOT = { is_owned_by = ROOT } } }
+				add_building_construction = { type = bunker level = 1 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			}
+			add_war_support = 0.05
+			army_experience = 15
+			add_to_variable = { global.krcw_ma_crisis = 3 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_ma_crisis_tt
+			krcw_tension_up_medium = yes
+			set_country_flag = krcw_ma_western_guarantee
+		}
+	}
+	focus = {
+		id = krcw_ma_the_question_of_the_regime
+		icon = GFX_goal_generic_political_pressure
+		x = 48
+		y = 0
+		cost = 5
+		prerequisite = { focus = krcw_ma_member_of_the_accord }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			country_event = { id = krcw_mam.1 days = 3 }
+		}
+	}
+	focus = {
+		id = krcw_ma_the_crown_reigns
+		icon = GFX_focus_hun_elect_a_king
+		x = 44
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_question_of_the_regime }
+		mutually_exclusive = { focus = krcw_ma_the_officers_take_over focus = krcw_ma_the_civilian_settlement }
+		available = {
+			OR = { original_tag = ROM original_tag = BUL original_tag = AFG original_tag = MON original_tag = HUN }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ma_reigning_monarch
+			add_stability = 0.05
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = krcw_ma_the_royal_prerogative
+		icon = GFX_focus_rom_handle_king
+		x = 44
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_crown_reigns }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 75
+			if = { limit = { original_tag = ROM }
+			add_stability = 0.03
+			}
+			else_if = { limit = { original_tag = BUL }
+			add_stability = 0.03
+			}
+			else_if = { limit = { original_tag = AFG }
+			add_manpower = 5000
+			}
+			else_if = { limit = { original_tag = MON }
+			army_experience = 10
+			}
+			else_if = { limit = { original_tag = HUN }
+			add_political_power = 25
+			}
+			add_war_support = 0.03
+			# reward_fill.py
+			add_ideas = krcw_fill_ma_royal_guard
+		}
+	}
+	focus = {
+		id = krcw_ma_dynasty_and_accord
+		icon = GFX_focus_generic_monarchist_sentiment
+		x = 44
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_royal_prerogative }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.04
+			add_political_power = 50
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_loyal_member } } }
+		}
+	}
+	focus = {
+		id = krcw_ma_the_officers_take_over
+		icon = GFX_focus_SOV_the_last_purge
+		x = 48
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_question_of_the_regime }
+		mutually_exclusive = { focus = krcw_ma_the_crown_reigns focus = krcw_ma_the_civilian_settlement }
+		available = {
+			NOT = { has_completed_focus = krcw_ma_a_civilian_cabinet }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ma_colonels_in_office
+			add_war_support = 0.05
+			add_political_power = 75
+		}
+	}
+	focus = {
+		id = krcw_ma_the_national_command
+		icon = GFX_goal_generic_army_doctrines
+		x = 48
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_officers_take_over }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			if = { limit = { original_tag = TUR }
+			army_experience = 15
+			}
+			else_if = { limit = { original_tag = GRE }
+			army_experience = 10
+			}
+			else_if = { limit = { original_tag = POL }
+			army_experience = 15
+			}
+			else_if = { limit = { original_tag = CZE }
+			capital_scope = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			}
+			}
+			else_if = { limit = { original_tag = YUG }
+			army_experience = 15
+			}
+			add_war_support = 0.03
+		}
+	}
+	focus = {
+		id = krcw_ma_the_permanent_emergency
+		icon = GFX_goal_generic_political_pressure
+		x = 48
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_national_command }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = -0.02
+			add_war_support = 0.03
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_loyal_member } } }
+		}
+	}
+	focus = {
+		id = krcw_ma_the_civilian_settlement
+		icon = GFX_focus_generic_improve_the_administration
+		x = 52
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_question_of_the_regime }
+		mutually_exclusive = { focus = krcw_ma_the_crown_reigns focus = krcw_ma_the_officers_take_over }
+		available = {
+			NOT = { has_completed_focus = krcw_ma_the_officers_republic }
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 8
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_ma_officers_republic } remove_ideas = krcw_ma_officers_republic }
+			add_stability = 0.06
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_ma_managed_elections
+		icon = GFX_focus_generic_improve_the_administration
+		x = 52
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_civilian_settlement }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 8
+		}
+		completion_reward = {
+			add_stability = 0.04
+			add_political_power = 50
+			add_popularity = { ideology = neutrality popularity = 0.05 }
+		}
+	}
+	focus = {
+		id = krcw_ma_a_breathing_society
+		icon = GFX_focus_generic_improve_the_administration
+		x = 52
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ma_managed_elections }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 8
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+			add_to_variable = { global.krcw_ma_crisis = -2 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_ma_crisis_tt
+			# reward_fill.py
+			add_ideas = krcw_fill_ma_university_charters
+		}
+	}
+	focus = {
+		id = krcw_ma_arms_from_the_licence
+		icon = GFX_goal_generic_small_arms
+		x = 32
+		y = 7
+		cost = 8
+		prerequisite = { focus = krcw_ma_arms_from_moscow }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ma_licenced_arsenal
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			}
+			if = { limit = { country_exists = SOV } add_opinion_modifier = { target = SOV modifier = krcw_ma_loyal_member } }
+		}
+	}
+	focus = {
+		id = krcw_ma_the_land_question
+		icon = GFX_focus_generic_agricultural_subsidies
+		x = 26
+		y = 8
+		cost = 8
+		prerequisite = { focus = krcw_ma_arms_from_moscow }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ma_belated_land_reform
+			add_stability = 0.05
+			country_event = { id = krcw_mad.10 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_ma_rail_to_the_frontier
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 38
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_ma_arms_from_the_licence }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ma_the_frontier_economy
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			}
+			capital_scope = {
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			}
+		}
+	}
+	focus = {
+		id = krcw_ma_our_own_arsenal_f
+		icon = GFX_focus_generic_industry_3
+		x = 32
+		y = 9
+		cost = 8
+		prerequisite = { focus = krcw_ma_the_land_question focus = krcw_ma_rail_to_the_frontier }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			}
+			add_tech_bonus = { name = krcw_ma_own_arsenal bonus = 0.5 uses = 1 category = artillery }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_ma_the_resource_bargain
+		icon = GFX_goal_generic_positive_trade_relations
+		x = 40
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_ma_our_own_arsenal_f }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { original_tag = TUR }
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+			}
+			else_if = { limit = { original_tag = ROM }
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+			}
+			else_if = { limit = { original_tag = YUG }
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+			}
+			else_if = { limit = { original_tag = POL }
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+			}
+			add_political_power = 25
+			country_event = { id = krcw_mad.12 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_ma_the_cordon_fortifications
+		icon = GFX_goal_generic_fortify_city
+		x = 48
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_ma_fortify_the_frontier }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			every_owned_state = {
+				limit = { any_neighbor_state = { NOT = { is_owned_by = ROOT } } }
+				add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			}
+			add_war_support = 0.03
+		}
+	}
+	focus = {
+		id = krcw_ma_mountain_and_marsh
+		icon = GFX_goal_generic_army_doctrines
+		x = 44
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_cordon_fortifications }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_ma_terrain bonus = 0.5 uses = 2 category = land_doctrine }
+			army_experience = 20
+		}
+	}
+	focus = {
+		id = krcw_ma_the_air_defence_net
+		icon = GFX_focus_generic_air_defense
+		x = 52
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_cordon_fortifications }
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			capital_scope = {
+				add_building_construction = { type = anti_air_building level = 2 instant_build = yes }
+			}
+			add_tech_bonus = { name = krcw_ma_flak bonus = 0.5 uses = 1 category = artillery }
+			air_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_ma_the_counter_insurgency_school
+		icon = GFX_focus_generic_secret_service_agency
+		x = 48
+		y = 9
+		cost = 8
+		prerequisite = { focus = krcw_ma_mountain_and_marsh focus = krcw_ma_the_air_defence_net }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 25
+			add_stability = 0.04
+			add_war_support = 0.02
+			# reward_fill.py
+			add_ideas = krcw_fill_ma_counter_insurgency_school
+		}
+	}
+	focus = {
+		id = krcw_ma_the_pencil_lines
+		icon = GFX_goal_generic_dangerous_deal
+		x = 78
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ma_a_regional_pact }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ma_the_disputed_border
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_ma_the_pindus_campaign
+		icon = GFX_goal_generic_army_doctrines
+		x = 70
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_pencil_lines }
+		available = {
+			original_tag = GRE
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 20
+			every_owned_state = {
+				limit = { any_neighbor_state = { NOT = { is_owned_by = ROOT } } }
+				add_building_construction = { type = bunker level = 1 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			}
+			krcw_tension_up_small = yes
+			country_event = { id = krcw_mad.20 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_ma_the_macedonian_question
+		icon = GFX_focus_generic_little_entente
+		x = 74
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_pencil_lines }
+		available = {
+			OR = { original_tag = YUG original_tag = BUL original_tag = GRE }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			if = { limit = { original_tag = YUG }
+			add_stability = 0.03
+			if = { limit = { country_exists = BUL } BUL = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+			}
+			else_if = { limit = { original_tag = BUL }
+			add_war_support = 0.03
+			if = { limit = { country_exists = YUG } YUG = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+			}
+			else_if = { limit = { original_tag = GRE }
+			add_stability = 0.02
+			}
+			country_event = { id = krcw_mad.22 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_ma_the_straits_question
+		icon = GFX_goal_generic_navy_cruiser
+		x = 82
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_pencil_lines }
+		available = {
+			original_tag = TUR
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_war_support = 0.04
+			add_political_power = 25
+			country_event = { id = krcw_mad.24 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_ma_transylvania
+		icon = GFX_focus_generic_treaty
+		x = 86
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_pencil_lines }
+		available = {
+			OR = { original_tag = ROM original_tag = HUN }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			if = { limit = { original_tag = ROM }
+			add_stability = 0.03
+			if = { limit = { country_exists = HUN } HUN = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+			}
+			else_if = { limit = { original_tag = HUN }
+			add_war_support = 0.03
+			if = { limit = { country_exists = ROM } ROM = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+			}
+			country_event = { id = krcw_mad.26 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_ma_the_german_line
+		icon = GFX_goal_generic_forceful_treaty
+		x = 78
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_pencil_lines }
+		available = {
+			original_tag = POL
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_war_support = 0.04
+			if = { limit = { country_exists = DDR } DDR = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+			country_event = { id = krcw_mad.28 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_ma_moscow_arbitrates
+		icon = GFX_focus_generic_conference
+		x = 78
+		y = 8
+		cost = 8
+		prerequisite = { focus = krcw_ma_the_pindus_campaign focus = krcw_ma_the_macedonian_question focus = krcw_ma_the_straits_question focus = krcw_ma_transylvania focus = krcw_ma_the_german_line }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_ma_the_disputed_border } remove_ideas = krcw_ma_the_disputed_border }
+			add_stability = 0.05
+			add_political_power = 50
+			if = { limit = { country_exists = SOV } add_opinion_modifier = { target = SOV modifier = krcw_ma_loyal_member } }
+		}
+	}
+	focus = {
+		id = krcw_ma_the_national_mobilisation_plan
+		icon = GFX_focus_ARG_preparations_for_war
+		x = 16
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_front_state }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_ideas = krcw_ma_mobilisation_plan
+			add_manpower = 15000
+			army_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_ma_organise_civil_defence
+		icon = GFX_focus_generic_air_defense
+		x = 12
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_national_mobilisation_plan }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			capital_scope = {
+				add_building_construction = { type = anti_air_building level = 2 instant_build = yes }
+			}
+			add_war_support = 0.03
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_ma_stockpile_war_materiel
+		icon = GFX_goal_generic_small_arms
+		x = 16
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_national_mobilisation_plan }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 1500 producer = SOV }
+			add_equipment_to_stockpile = { type = support_equipment amount = 200 producer = SOV }
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_ma_open_the_airfields
+		icon = GFX_goal_generic_air_fighter
+		x = 20
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_ma_the_national_mobilisation_plan }
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			capital_scope = {
+				add_building_construction = { type = air_base level = 2 instant_build = yes }
+			}
+			air_experience = 15
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_loyal_member } } }
+		}
+	}
+	focus = {
+		id = krcw_ma_root_out_the_commune_networks
+		icon = GFX_focus_generic_secret_service_agency
+		x = 14
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_ma_organise_civil_defence focus = krcw_ma_stockpile_war_materiel }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = { global.krcw_ma_crisis = -3 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_ma_crisis_tt
+			add_stability = -0.02
+			add_political_power = 25
+			# reward_fill.py
+			add_ideas = krcw_fill_ma_gendarmerie_political_section
+		}
+	}
+	focus = {
+		id = krcw_ma_join_the_first_echelon
+		icon = GFX_goal_generic_military_sphere
+		x = 18
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_ma_stockpile_war_materiel focus = krcw_ma_open_the_airfields }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 20
+			add_tech_bonus = { name = krcw_ma_first_echelon bonus = 0.5 uses = 1 category = land_doctrine }
+			add_war_support = 0.03
+		}
+	}
+	focus = {
+		id = krcw_ma_first_degree_readiness
+		icon = GFX_goal_generic_defence
+		x = 16
+		y = 8
+		cost = 8
+		prerequisite = { focus = krcw_ma_root_out_the_commune_networks }
+		prerequisite = { focus = krcw_ma_join_the_first_echelon }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_ma_mobilisation_plan } remove_ideas = krcw_ma_mobilisation_plan }
+			add_ideas = krcw_ma_war_readiness
+			set_country_flag = krcw_ma_war_ready
+			add_stability = -0.02
+		}
+	}
+}

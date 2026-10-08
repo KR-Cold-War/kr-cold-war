@@ -1,0 +1,1261 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = MEO_1950s
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = MEO
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	focus = {
+		id = MEO_fortifying_the_border
+		icon = GFX_Generic_National_Focus_Military_2
+		x = 0
+		y = 3
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_reports_from_china  }
+		completion_reward = {
+			add_to_variable = {
+				currentMoney = -0.200
+			}
+			set_temp_variable = {
+				x = -200
+				tooltip = adjust_money_mil_tt
+			}
+			capital_scope = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_receive_aids_from_pla
+		icon = GFX_MEO_receive_aids_from_pla
+		x = 9
+		y = 8
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_red_star_above_china  }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 1000
+				producer = PRC
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = 250
+				producer = PRC
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 100
+				producer = PRC
+			}
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_communist = yes
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_prepare_operations_against_the_sip_song_tai
+		icon = GFX_prepare_operations_against_the_sip_song_tai
+		x = 7
+		y = 9
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = MEO_incorporate_pla_exiles
+			focus = MEO_receive_aids_from_pla
+		}
+		prerequisite = { focus = MEO_capturingkmtsweaponcaches }
+		completion_reward = {
+			country_event = MEO.11
+			adD_timed_idea = {
+				idea = TUR_mobilization_of_the_masses
+				days = 1460
+			}
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_communist = yes
+				set_temp_variable = { ic_award = -8 }
+				indochina_struggle_grant_pro_ethnic = yes
+				set_temp_variable = { indochina_phase_amount = 25 }
+				indochina_struggle_escalate = yes
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_approvethehoangfamilystakeover
+		icon = GFX_Generic_National_Focus_Politics_15
+		x = 5
+		y = 12
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		prerequisite = { focus = MEO_begin_of_the_duong_tutsi_and_tho_phi_revolt  }
+		mutually_exclusive = {
+			focus = MEO_stay_the_course
+			focus = MEO_struggle_for_meo_independence
+		}
+		ai_will_do = {
+            base = 1
+            modifier = {
+                factor = 0
+                is_historical_focus_on = yes
+            }
+        }
+		completion_reward = {
+			country_event = MEO.13
+			set_politics = {
+                ruling_party = monarchism
+            }
+			add_country_leader_role = {
+                character = MEO_hoang_a_tuong
+                promote_leader = yes
+                country_leader = {
+                    ideology = monarchist
+                }
+            }
+		}
+	}
+
+	focus = {
+		id = MEO_stay_the_course
+		icon = GFX_usa80_stick_to_guerrilla_approach
+		x = 7
+		y = 12
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		prerequisite = { focus = MEO_begin_of_the_duong_tutsi_and_tho_phi_revolt  }
+		mutually_exclusive = {
+		    focus = MEO_approvethehoangfamilystakeover
+			focus = MEO_struggle_for_meo_independence
+		}
+		ai_will_do = {
+            base = 1
+            modifier = {
+                factor = 10
+                is_historical_focus_on = yes
+            }
+        }
+		completion_reward = {
+			set_country_flag = MEO_stayed_the_course
+			add_stability = 0.05
+			add_political_power = 100
+			add_war_support = 0.03
+			add_opinion_modifier = {
+			    target = VIN
+			    modifier = medium_increase
+			}
+			VIN = {
+				reverse_add_opinion_modifier = {
+					target = MEO
+					modifier = medium_increase
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_question_of_national_autonomy
+		icon = GFX_usa_80_negotiate_with_other_iraqi_minorities
+		x = 7
+		y = 13
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		prerequisite = {
+			focus = MEO_approvethehoangfamilystakeover
+			focus = MEO_stay_the_course
+			focus = MEO_struggle_for_meo_independence
+		}
+		available = {
+			MEO_highland_settlement_trigger = yes
+			country_exists = VIN
+			NOT = { has_war_with = VIN }
+		}
+		completion_reward = {
+			VIN = { country_event = MEO.27 }
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_pro_ethnic = yes
+			}
+		}
+	}
+	focus = {
+		id = MEO_accept_the_unification_with_vietnam
+		icon = GFX_Generic_National_Focus_Politics_17
+		x = 6
+		y = 14
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		prerequisite = { focus = MEO_question_of_national_autonomy}
+		mutually_exclusive = { focus = MEO_creation_of_the_autonomous_zone_of_thaimeo }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MEO_national_autonomy_TT
+				has_country_flag = MEO_hanoi_chose_integration
+			}
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+			VIN = { annex_country = { target = MEO transfer_troops = yes }	 }
+			VIN = { vin_integrate_tai_meo_directly = yes }
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				indochina_struggle_vin_focus_standard = yes
+				set_temp_variable = { indochina_phase_amount = 50 }
+				indochina_struggle_deescalate = yes
+			}
+		}
+	}
+	focus = {
+		id = MEO_creation_of_the_autonomous_zone_of_thaimeo
+		icon = GFX_promise_wide_autonomy
+		x = 8
+		y = 14
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		prerequisite = { focus = MEO_question_of_national_autonomy }
+		mutually_exclusive = { focus = MEO_accept_the_unification_with_vietnam }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MEO_national_autonomy_TT
+				has_country_flag = MEO_hanoi_chose_autonomy
+			}
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+			meo_copy_vin_politics_for_autonomous_zone = yes
+			country_event = MEO.14
+			add_ideas = { VIN_highland_autonomy_resources }
+			if = {
+				limit = { 671 = { is_owned_by = VIN } }
+				transfer_state = 671
+				671 = { add_core_of = MEO }
+				set_capital = { state = 671 }
+				if = {
+					limit = { 1767 = { is_owned_by = MEO } }
+					if = {
+						limit = { country_exists = THO }
+						THO = { transfer_state = 1767 }
+					}
+					else = {
+						VIN = { transfer_state = 1767 }
+					}
+				}
+			}
+			set_cosmetic_tag = MEO_VIN_Autonomy_Zone
+			VIN = {
+				country_event = MEO.14
+				vin_grant_tai_meo_autonomy_bonus = yes
+			}
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 50 }
+				indochina_struggle_grant_pro_ethnic = yes
+				set_temp_variable = { indochina_phase_amount = 50 }
+				indochina_struggle_deescalate = yes
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_struggle_for_meo_independence
+		icon = GFX_Generic_Diplomacy_1
+		x = 9
+		y = 12
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		prerequisite = { focus = MEO_begin_of_the_duong_tutsi_and_tho_phi_revolt  }
+		mutually_exclusive = {
+		    focus = MEO_approvethehoangfamilystakeover
+			focus = MEO_stay_the_course
+		}
+		ai_will_do = {
+            base = 1
+            modifier = {
+                factor = 0
+                is_historical_focus_on = yes
+            }
+        }
+		completion_reward = {
+			leave_faction = yes
+			country_event = MEO.15
+			set_politics = {
+                ruling_party = nationalist
+            }
+            remove_from_array = { FRA.StruggleInvolvedNationsIndochinaCommunist = ROOT.id }
+			add_to_array = { FRA.StruggleInvolvedNationsIndochinaProEthnic = MEO.id }
+			MEO_hoang_a_tuong = {
+			    add_country_leader_role = {
+                    promote_leader = yes
+                    country_leader = {
+                        ideology = ethnic_nationalism
+                    }
+                }
+                promote_character = yes
+			}
+			VIN = {
+				country_event = MEO.16
+				set_autonomy = {
+                    target = MEO
+                    autonomous_state = autonomy_free
+                    end_wars = no
+                    end_civil_wars = no
+                }
+			}
+			FRA = {
+				country_event = MEO.17
+			}
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 50 }
+				indochina_struggle_grant_pro_ethnic = yes
+				set_temp_variable = { indochina_phase_amount = 50 }
+				indochina_struggle_escalate = yes
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_the_duong_trung_nhan_revolt
+		icon = GFX_usa_80_the_iraqi_uprising
+		x = 7
+		y = 15
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		prerequisite = {
+			focus = MEO_accept_the_unification_with_vietnam
+			focus = MEO_creation_of_the_autonomous_zone_of_thaimeo
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MEO_1959_revolt_TT
+				OR = {
+					has_country_flag = MEO_1959_uprising_suppressed
+					has_country_flag = MEO_1959_uprising_joined
+				}
+			}
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+		}
+	}
+
+	focus = {
+		id = MEO_combat_the_duong_trung_nhan_revolt
+		icon = GFX_Generic_National_Focus_Politics_50
+		x = 5
+		y = 16
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		mutually_exclusive = { focus = MEO_proclaim_duong_trung_nhan_as_king_of_the_meo }
+		prerequisite = {
+		    focus = MEO_the_duong_trung_nhan_revolt
+		}
+		ai_will_do = {
+            base = 1
+            modifier = {
+                factor = 10
+                is_historical_focus_on = yes
+            }
+        }
+		completion_reward = {
+			VIN = {
+				country_event = MEO.19
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_solidify_ho_chi_minh_thought
+		icon = GFX_VIN_The_Face_of_the_Party
+		x = 4
+		y = 17
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		prerequisite = { focus = MEO_combat_the_duong_trung_nhan_revolt  }
+		completion_reward = {
+			country_event = MEO.20
+			add_popularity = {
+				ideology = communism
+				popularity = 0.10
+			}
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				indochina_struggle_vin_focus_standard = yes
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_permitpavnsreinforcements
+		icon = GFX_MEO_adapt_pavns_reforms
+		x = 6
+		y = 17
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		prerequisite = { focus = MEO_combat_the_duong_trung_nhan_revolt  }
+		completion_reward = {
+			add_manpower = 10000
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				indochina_struggle_vin_focus_standard = yes
+				set_temp_variable = { indochina_phase_amount = 50 }
+				indochina_struggle_escalate = yes
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_proclaim_duong_trung_nhan_as_king_of_the_meo
+		icon = GFX_Generic_National_Focus_Politics_49
+		x = 9
+		y = 16
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		mutually_exclusive = { focus = MEO_combat_the_duong_trung_nhan_revolt  }
+		prerequisite = {
+		    focus = MEO_the_duong_trung_nhan_revolt
+		}
+		ai_will_do = {
+            base = 1
+            modifier = {
+                factor = 0
+                is_historical_focus_on = yes
+            }
+        }
+		completion_reward = {
+			country_event = MEO.22
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.25
+			}
+			set_politics = {
+                ruling_party = nationalist
+            }
+			leave_faction = yes
+			remove_from_array = { FRA.StruggleInvolvedNationsIndochinaCommunist = ROOT.id }
+			add_to_array = { FRA.StruggleInvolvedNationsIndochinaKuomintang = MEO.id }
+			MEO_duong_trung_nhan = {
+			    add_country_leader_role = {
+                    promote_leader = yes
+                    country_leader = {
+                        ideology = Three_principles_of_people_chiangist
+                    }
+                }
+                promote_character = yes
+			}
+			drop_cosmetic_tag = yes
+			hidden_effect = { keep_current_politics = yes }
+			VIN = {
+				country_event = MEO.23
+				set_autonomy = {
+                    target = MEO
+                    autonomous_state = autonomy_free
+                    end_wars = no
+                    end_civil_wars = no
+                }
+			}
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 50 }
+				indochina_struggle_grant_pro_ethnic = yes
+				set_temp_variable = { indochina_phase_amount = 50 }
+				indochina_struggle_escalate = yes
+			}
+		}
+	}
+	focus = {
+		id = MEO_revolt_against_the_vietnamese_communists
+		icon = GFX_usa_80_undermine_pkk_influence
+		x = 8
+		y = 17
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		prerequisite = { focus = MEO_proclaim_duong_trung_nhan_as_king_of_the_meo  }
+		completion_reward = {
+			add_ideas = Expert_Guerilla_Fighters
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 25 }
+				indochina_struggle_grant_pro_ethnic = yes
+				set_temp_variable = { ic_award = -15 }
+				indochina_struggle_grant_communist = yes
+				set_temp_variable = { indochina_phase_amount = 50 }
+				indochina_struggle_escalate = yes
+			}
+		}
+
+	}
+
+	focus = {
+		id = MEO_incorporate_the_kmt_thophi
+		icon = GFX_MEO_accept_donations_from_chinese_warloads
+		x = 10
+		y = 17
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		prerequisite = { focus = MEO_proclaim_duong_trung_nhan_as_king_of_the_meo  }
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_country_flag = MEO_Templates_Loaded } }
+				set_country_flag = MEO_Templates_Loaded
+				load_oob = "MEO_templates"
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Kuomintang Bandits\" division_template = \"Dan-quan Meo\" start_experience_factor = 1 start_manpower_factor = 1 start_equipment_factor = 1"
+					owner = MEO
+				}
+				create_unit = {
+					division = "name = \"Kuomintang Bandits\" division_template = \"Dan-quan Meo\" start_experience_factor = 1 start_manpower_factor = 1 start_equipment_factor = 1"
+					owner = MEO
+				}
+				create_unit = {
+					division = "name = \"Kuomintang Bandits\" division_template = \"Dan-quan Meo\" start_experience_factor = 1 start_manpower_factor = 1 start_equipment_factor = 1"
+					owner = MEO
+				}
+				create_unit = {
+					division = "name = \"Kuomintang Bandits\" division_template = \"Dan-quan Meo\" start_experience_factor = 1 start_manpower_factor = 1 start_equipment_factor = 1"
+					owner = MEO
+				}
+			}
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 25 }
+				indochina_struggle_grant_kuomintang = yes
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_assassinate_vuong_chi_sinh
+		icon = GFX_Generic_National_Focus_Military_43
+		x = 9
+		y = 18
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		prerequisite = { focus = MEO_revolt_against_the_vietnamese_communists  } prerequisite = { focus = MEO_incorporate_the_kmt_thophi  }
+		completion_reward = {
+			country_event = MEO.24
+			VIN = {
+				country_event = MEO.25
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_tantrungbaoquocbatthunole
+		icon = GFX_VIN_The_Commissar
+		x = 7
+		y = 0
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		completion_reward = {
+			country_event = MEO.2
+			add_stability = 0.05
+			add_political_power = 150
+			add_opinion_modifier = {
+			    target = VIN
+			    modifier = small_increase
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_enforcekhoidaidoankettoandan
+		icon = GFX_Generic_National_Focus_Politics_42
+		x = 7
+		y = 1
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_tantrungbaoquocbatthunole  }
+		completion_reward = {
+			country_event = MEO.1
+			add_popularity = {
+			    ideology = trotskyism
+			    popularity = 0.05
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_reports_from_china
+		icon = GFX_MEO_reports_from_china
+		x = 1
+		y = 2
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_enforcekhoidaidoankettoandan  }
+		completion_reward = {
+			country_event = MEO.3
+			add_opinion_modifier = {
+			    target = CHI
+			    modifier = small_increase
+			}
+
+
+			add_opinion_modifier = {
+			    target = PRC
+			    modifier = small_increase
+			}
+
+
+		}
+	}
+
+	focus = {
+		id = MEO_expand_dan_quan_bien_phong_forces
+		icon = GFX_expand_dan_quan_bien_phong_forces
+		x = 2
+		y = 3
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_reports_from_china  }
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_country_flag = MEO_Templates_Loaded } }
+				set_country_flag = MEO_Templates_Loaded
+				load_oob = "MEO_templates"
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Dan-quan Meo\" division_template = \"Dan-quan Meo\" start_experience_factor = 0.3 start_manpower_factor = 0.6 start_equipment_factor = 0.2"
+					owner = MEO
+				}
+				create_unit = {
+					division = "name = \"Dan-quan Meo\" division_template = \"Dan-quan Meo\" start_experience_factor = 0.3 start_manpower_factor = 0.6 start_equipment_factor = 0.2"
+					owner = MEO
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_accept_chinese_war_refugees
+		icon = GFX_MEO_accept_chinese_war_refugees
+		x = 1
+		y = 4
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_fortifying_the_border  } prerequisite = { focus = MEO_expand_dan_quan_bien_phong_forces  }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 1000
+				producer = CHI
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = 100
+				producer = CHI
+			}
+			add_manpower = 5000
+		}
+	}
+
+	focus = {
+		id = MEO_resolve_ethnic_tensions
+		icon = GFX_MEO_resolve_ethnic_tensions
+		x = 3
+		y = 2
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_enforcekhoidaidoankettoandan  }
+		completion_reward = {
+			add_stability = 0.05
+			add_offsite_building = { type = industrial_complex level = 1 }
+			add_manpower = 5000
+		}
+	}
+
+	focus = {
+		id = MEO_continue_the_opium_trade
+		icon = GFX_MEO_continue_the_opium_trade
+		x = 5
+		y = 2
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_enforcekhoidaidoankettoandan  }
+		mutually_exclusive = { focus = MEO_implimentbocanhnongssuggestions }
+		completion_reward = {
+			add_to_variable = {
+				currentMoney = -0.200
+			}
+			set_temp_variable = {
+				x = -200
+				tooltip = adjust_money_mil_tt
+			}
+			capital_scope = {
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 3
+					instant_build = yes
+				}
+			}
+			country_event = MEO.6
+		}
+	}
+
+	focus = {
+		id = MEO_pardon_the_duong_family
+		icon = GFX_pardon_the_duong_family
+		x = 4
+		y = 3
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_continue_the_opium_trade  }
+		completion_reward = {
+            set_temp_variable = { money_to_gain = 2 }
+            add_money_with_tooltip_effect = yes
+			country_event = MEO.7
+		}
+	}
+
+	focus = {
+		id = MEO_contactkuomintangswarlords
+		icon = GFX_Victory_in_Yunnan
+		x = 6
+		y = 3
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_continue_the_opium_trade  }
+		completion_reward = {
+            set_temp_variable = { money_to_gain = 3 }
+            add_money_with_tooltip_effect = yes
+			country_event = MEO.8
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_kuomintang = yes
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_accept_donations_from_chinese_warlords
+		icon = GFX_Contact_Kuomintangs_Warloads
+		x = 5
+		y = 5
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_pardon_the_duong_family  } prerequisite = { focus = MEO_contactkuomintangswarlords  } prerequisite = { focus = MEO_accept_chinese_war_refugees  }
+		completion_reward = {
+			set_temp_variable = { percent_change = 20 }
+			set_temp_variable = { tag_index = CHI.id }
+			set_temp_variable = { influence_target = MEO.id }
+			change_influence_percentage = yes
+
+            set_temp_variable = { money_to_gain = 10 }
+            add_money_with_tooltip_effect = yes
+			add_opinion_modifier = {
+			    target = VIN
+			    modifier = medium_decrease
+			}
+			VIN = {
+				add_opinion_modifier = {
+					target = MEO
+					modifier = medium_decrease
+				}
+			}
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_kuomintang = yes
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_import_modern_machines
+		icon = GFX_MEO_import_modern_machines
+		x = 7
+		y = 4
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_enforcekhoidaidoankettoandan  }
+		completion_reward = {
+			add_tech_bonus = {
+				category = industry
+				bonus = 0.15
+				uses = 2
+			}
+			add_equipment_to_stockpile = {
+				type = train_equipment_2
+				amount = 1
+				producer = FRA
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_begin_the_construction_of_hanh_phuc_route
+		icon = GFX_Generic_National_Focus_Construction_6
+		x = 7
+		y = 5
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_import_modern_machines  }
+		completion_reward = {
+			country_event = MEO.9
+		}
+	}
+
+	focus = {
+		id = MEO_implimentbocanhnongssuggestions
+		icon = GFX_impliment_bo_canh_nongs_suggestions
+		x = 9
+		y = 2
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_enforcekhoidaidoankettoandan  }
+		mutually_exclusive = { focus = MEO_continue_the_opium_trade  }
+		completion_reward = {
+			capital_scope = {
+                add_extra_state_shared_building_slots = 3
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 3
+                    instant_build = yes
+                }
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_confiscatetheduongfamilyandvietgiansassets
+		icon = GFX_confiscate_the_duong_family_and_viet_gian_sassets
+		x = 8
+		y = 3
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_implimentbocanhnongssuggestions  }
+		completion_reward = {
+            set_temp_variable = { money_to_gain = 10 }
+            add_money_with_tooltip_effect = yes
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+	}
+
+	focus = {
+		id = MEO_expand_the_cattel_and_farms
+		icon = GFX_Generic_National_Focus_Agriculture_4
+		x = 10
+		y = 3
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_implimentbocanhnongssuggestions  }
+		completion_reward = {
+			capital_scope = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = agri_industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_begin_bureacratization_of_ha_giangdong_van
+		icon = GFX_begin_bureacratization_of_ha_giangdong_van
+		x = 11
+		y = 2
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_enforcekhoidaidoankettoandan  }
+		completion_reward = {
+			add_political_power = 75
+			capital_scope = {
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_dig_out_gun_caches
+		icon = GFX_MEO_dig_out_gun_caches
+		x = 14
+		y = 2
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_enforcekhoidaidoankettoandan  }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 2000
+				producer = FRA
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 500
+				producer = JAP
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_1
+				amount = 50
+				producer = FRA
+			}
+
+		}
+	}
+
+	focus = {
+		id = MEO_expand_weapon_foundries
+		icon = GFX_Expand_Weapon_Foundaries
+		x = 12
+		y = 3
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_dig_out_gun_caches  }
+		completion_reward = {
+			add_offsite_building = { type = arms_factory level = 3 }
+		}
+	}
+
+	focus = {
+		id = MEO_adaptpavnsreforms
+		icon = GFX_MEO_adapt_pavns_reforms
+		x = 14
+		y = 3
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_dig_out_gun_caches  }
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+
+	focus = {
+		id = MEO_modernize_guerilla_tactics
+		icon = GFX_Jungle_wolf
+		x = 16
+		y = 3
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_dig_out_gun_caches  }
+		completion_reward = {
+			add_timed_idea = {
+				idea = Expert_Guerilla_Fighters
+				days = 1825
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_expand_trung_doan_dong_van
+		icon = GFX_expand_trung_doan_dong_van
+		x = 14
+		y = 4
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_expand_weapon_foundries  } prerequisite = { focus = MEO_adaptpavnsreforms  } prerequisite = { focus = MEO_modernize_guerilla_tactics  }
+		completion_reward = {
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Trung-doan Dong Van-Xu Meo\" division_template = \"Trung-doan Dong Van-Xu Meo\" start_experience_factor = 0.3 start_manpower_factor = 0.6 start_equipment_factor = 0.2"
+					owner = MEO
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_begin_early_stages_of_industrialization
+		icon = GFX_Generic_National_Focus_Construction_2
+		x = 9
+		y = 5
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_confiscatetheduongfamilyandvietgiansassets  } prerequisite = { focus = MEO_expand_the_cattel_and_farms  } prerequisite = { focus = MEO_expand_trung_doan_dong_van  }
+		completion_reward = {
+			add_tech_bonus = {
+				category = industry
+				bonus = 0.15
+				uses = 3
+			}
+			capital_scope = {
+				add_extra_state_shared_building_slots = 3
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_beginthethiduatotlaodongtotmovement
+		icon = GFX_MEO_tan_trung_bao_quoc2
+		x = 7
+		y = 6
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_begin_the_construction_of_hanh_phuc_route   }
+		prerequisite = {
+			focus = MEO_accept_donations_from_chinese_warlords
+			focus = MEO_begin_early_stages_of_industrialization
+		}
+		completion_reward = {
+			country_event = MEO.10
+			add_stability = 0.05
+			add_political_power = 150
+		}
+	}
+
+	focus = {
+		id = MEO_white_sun_above_china
+		icon = GFX_MEO_white_sun_above_china
+		x = 6
+		y = 7
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_beginthethiduatotlaodongtotmovement  }
+		mutually_exclusive = { focus = MEO_red_star_above_china }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = VIE_Chinese_ROC_Victory_tt
+				has_global_flag = ROC_Victory
+			}
+		}
+		ai_will_do = {
+            base = 1
+            modifier = {
+                factor = 0
+                OR = {
+                    is_historical_focus_on = yes
+                    NOT = { has_global_flag = ROC_Victory }
+                }
+            }
+        }
+		completion_reward = {
+			country_event = MEO.4
+		}
+	}
+
+	focus = {
+		id = MEO_red_star_above_china
+		icon = GFX_MEO_red_star_above_china
+		x = 8
+		y = 7
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_beginthethiduatotlaodongtotmovement  }
+		mutually_exclusive = { focus = MEO_white_sun_above_china  }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = VIE_Chinese_PRC_Victory_tt
+				has_global_flag = PRC_Victory
+			}
+		}
+		ai_will_do = {
+            base = 1
+            modifier = {
+                factor = 10
+                is_historical_focus_on = yes
+            }
+        }
+		completion_reward = {
+			country_event = MEO.5
+		}
+	}
+
+	focus = {
+		id = MEO_incorporate_pla_exiles
+		icon = GFX_MEO_incorporate_pla_exiles
+		x = 5
+		y = 8
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = { focus = MEO_white_sun_above_china  }
+		completion_reward = {
+			capital_scope = {
+				create_unit = {
+					division = "name = \"PLA Exiles\" division_template = \"Trung-doan Dong Van-Xu Meo\" start_experience_factor = 1 start_manpower_factor = 1 start_equipment_factor = 1"
+					owner = MEO
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_capturingkmtsweaponcaches
+		icon = GFX_MEO_capturing_kmts_weapon_caches
+		x = 7
+		y = 8
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		prerequisite = {
+			focus = MEO_white_sun_above_china
+			focus = MEO_red_star_above_china
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 5000
+				producer = CHI
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = 500
+				producer = CHI
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 100
+				producer = CHI
+			}
+		}
+	}
+
+	focus = {
+		id = MEO_begin_of_the_duong_tutsi_and_tho_phi_revolt
+		icon = GFX_usa_80_covert_cartel_raids
+		x = 7
+		y = 11
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = Duong_Tutsi_and_Tho_Phi_Revolt
+				has_global_flag = Duong_Tutsi_and_Tho_Phi_Revolt
+			}
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+			country_event = MEO.26
+		}
+	}
+
+	focus = {
+		id = MEO_begin_the_resistance_against_kmt_bandits
+		icon = GFX_Generic_National_Focus_Military_24
+		x = 5
+		y = 18
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		prerequisite = { focus = MEO_solidify_ho_chi_minh_thought  } prerequisite = { focus = MEO_permitpavnsreinforcements  }
+		completion_reward = {
+			add_manpower = 5000
+			add_war_support = 0.05
+			country_event = MEO.21
+			if = {
+				limit = { NOT = { has_global_flag = Indochina_War_Over } }
+				set_temp_variable = { ic_award = 15 }
+				indochina_struggle_grant_communist = yes
+				set_temp_variable = { ic_award = -8 }
+				indochina_struggle_grant_kuomintang = yes
+				set_temp_variable = { indochina_phase_amount = 25 }
+				indochina_struggle_escalate = yes
+			}
+		}
+	}
+
+}

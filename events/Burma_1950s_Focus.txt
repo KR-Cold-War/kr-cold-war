@@ -1,0 +1,633 @@
+# KRCW (build/patch_residue.py): 32 OTL events dropped while KRCW_active
+add_namespace = Pyidawtha
+add_namespace = AFPFL
+add_namespace = Burmese_Buddhism
+add_namespace = Rohingya
+add_namespace = Burma_Union
+add_namespace = NUF_1958
+add_namespace = Burma_Elect
+add_namespace = BURMA_KMT_UN
+add_namespace = Operation_Bayinnaung
+add_namespace = Burma_KW
+add_namespace = Burma_FP
+add_namespace = Burma_Agreement
+
+#Burma 1950s Events
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Pyidawtha.1
+    immediate = { }	
+	title = Pyidawtha.1.t2
+	desc = Pyidawtha.1.d
+	picture = GFX_Pyidawtha_1
+
+	is_triggered_only = yes
+
+	option = {  
+        name = Pyidawtha.1.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Pyidawtha.2
+    immediate = { }	
+	title = Pyidawtha.2.t2
+	desc = Pyidawtha.2.d
+	picture = GFX_Pyidawtha_2
+
+	is_triggered_only = yes
+
+	option = {  
+        name = Pyidawtha.2.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFPFL.1
+    immediate = { }	
+	title = AFPFL.1.t2
+	desc = AFPFL.1.d
+	picture = GFX_AFPFL_1
+
+	is_triggered_only = yes
+
+	option = {  
+        name = AFPFL.1.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFPFL.2
+    immediate = { }	
+	title = AFPFL.2.t2
+	desc = AFPFL.2.d
+	picture = GFX_AFPFL_2
+
+	is_triggered_only = yes
+
+	option = { 
+        name = AFPFL.2.a2
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Ba Swe"
+			picture = "Ba_Swe_50s"
+			ideology = socialism
+		}
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFPFL.3
+    immediate = { }	
+	title = AFPFL.3.t2
+	desc = AFPFL.3.d
+	picture = GFX_AFPFL_3
+
+	is_triggered_only = yes
+
+	option = {  
+        name = AFPFL.3.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFPFL.4
+    immediate = { }	
+	title = AFPFL.4.t2
+	desc = AFPFL.4.d
+	picture = GFX_AFPFL_4
+
+	is_triggered_only = yes
+
+	option = {  
+        name = AFPFL.4.a2
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "U Nu"
+			picture = "U_Nu_50s.dds"
+			ideology = socialism
+		}
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFPFL.6
+    immediate = { }	
+	title = AFPFL.6.t2
+	desc = AFPFL.6.d
+	picture = GFX_AFPFL_6
+
+	is_triggered_only = yes
+
+	option = {  
+        name = AFPFL.6.a2
+		set_party_name = { 
+			ideology = socialist 
+			long_name = "Clean Anti-Fascist People's Freedom League" 
+			name = "CAFPFL" 
+		}
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Burmese_Buddhism.0
+    immediate = { }	
+	title = Burmese_Buddhism.0.t2
+	desc = Burmese_Buddhism.0.d
+	picture = GFX_Burmese_Buddhism_0
+
+	is_triggered_only = yes
+
+	option = {  
+        name = Burmese_Buddhism.0.a2
+        add_political_power = 75
+        add_stability = 0.02
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Burmese_Buddhism.1
+    immediate = { }	
+	title = Burmese_Buddhism.1.t2
+	desc = Burmese_Buddhism.1.d
+	picture = GFX_Burmese_Buddhism_1
+
+	is_triggered_only = yes
+
+	option = {  
+        name = Burmese_Buddhism.1.a2
+        add_political_power = 100
+        add_stability = 0.03
+    }
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rohingya.1
+    immediate = { }	
+	title = Rohingya.1.t2
+	desc = Rohingya.1.d
+	picture = GFX_Rohingya_1
+
+	is_triggered_only = yes
+
+	option = {  
+        name = Rohingya.1.a2
+        BRM = {
+            country_event = Rohingya.2
+            set_country_flag = PAK_Cut_Rohingya_Funding
+        }
+    }
+	option = {  
+        name = Rohingya.1.b2
+        BRM = {
+            country_event = Rohingya.3
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rohingya.2
+    immediate = { }	
+	title = Rohingya.2.t2
+	desc = Rohingya.2.d
+	picture = GFX_Rohingya_2
+
+	is_triggered_only = yes
+
+	option = {  
+        name = Rohingya.2.a2
+        PAK = {
+            add_opinion_modifier = {
+                target = BRM
+                modifier = large_increase
+            }
+        }	
+        BRM = {
+            add_opinion_modifier = {
+                target = PAK
+                modifier = large_increase
+            }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Rohingya.3
+    immediate = { }	
+	title = Rohingya.3.t2
+	desc = Rohingya.3.d
+	picture = GFX_Rohingya_3
+
+	is_triggered_only = yes
+
+	option = {  
+        name = Rohingya.3.a2
+        PAK = {
+            add_opinion_modifier = {
+                target = BRM
+                modifier = large_decrease
+            }
+        }	
+        BRM = {
+            add_opinion_modifier = {
+                target = PAK
+                modifier = large_decrease
+            }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Burma_Union.1
+    immediate = { }	
+	title = Burma_Union.1.t2
+	desc = Burma_Union.1.d
+	picture = GFX_Burma_Union_1
+
+	is_triggered_only = yes
+
+	option = {  
+        name = Burma_Union.1.a2
+        create_intelligence_agency = {
+            name = "Bureau of Special Investigation"
+            icon = ""				#"GFX_intelligence_agency_logo_leea"
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUF_1958.0
+    immediate = { }	
+	title = NUF_1958.0.t2
+	desc = NUF_1958.0.d
+	picture = GFX_NUF_1958_0
+
+	is_triggered_only = yes
+
+	option = {  
+        name = NUF_1958.0.a2
+        BRM = {
+            annex_country = {
+                target = BCP
+                transfer_troops = yes
+            }
+        }
+        trigger = {
+            is_ai = no
+        }
+    }
+    option = {
+        name = NUF_1958.0.b2
+        annex_country = {
+            target = BRM
+            transfer_troops = yes
+        }
+        complete_national_focus = BCP_50s_NUF_Victory
+        trigger = {
+            is_ai = yes
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Burma_Elect.1
+    immediate = { }	
+	title = Burma_Elect.1.t2
+	desc = Burma_Elect.1.d
+	picture = GFX_Burma_Elect_1
+
+	is_triggered_only = yes
+
+	option = {  
+        name = Burma_Elect.1.a2
+        add_political_power = 50
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Burma_Elect.2
+    immediate = { }	
+	title = Burma_Elect.2.t2
+	desc = Burma_Elect.2.d
+	picture = GFX_Burma_Elect_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {  
+        name = Burma_Elect.2.a2
+        complete_national_focus = MYR_The_Elections_of_1956
+		complete_national_focus = MYR_AFPFL_Victory
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = BRM_1956_elections
+					option = BRM_NUF_1956
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {  
+        name = Burma_Elect.2.b2
+        complete_national_focus = MYR_The_Elections_of_1956
+		complete_national_focus = MYR_National_United_Front_Victory
+		set_politics = {
+			ruling_party = trotskyism
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = BRM_1956_elections
+					option = BRM_AFPFL_1956
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = BURMA_KMT_UN.1
+    immediate = { }	
+	title = BURMA_KMT_UN.1.t2
+	desc = BURMA_KMT_UN.1.d
+	picture = GFX_BURMA_KMT_UN_1
+
+	is_triggered_only = yes
+
+	option = {  
+        name = BURMA_KMT_UN.1.a2
+        remove_ideas = BRM_Kuomintang_Tensions_3
+        add_ideas = BRM_Kuomintang_Tensions_2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Operation_Bayinnaung.1
+    immediate = { }	
+	title = Operation_Bayinnaung.1.t2
+	desc = Operation_Bayinnaung.1.d
+	picture = GFX_Operation_Bayinnaung_1
+
+	is_triggered_only = yes
+
+	option = {  
+        name = Operation_Bayinnaung.1.a2
+        remove_ideas = BRM_Kuomintang_Tensions_2
+        add_ideas = BRM_Kuomintang_Tensions_1
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Burma_KW.3
+    immediate = { }	
+	title = Burma_KW.3.t2
+	desc = Burma_KW.3.d
+	picture = GFX_Burma_KW_3
+
+	is_triggered_only = yes
+
+	option = {  
+        name = Burma_KW.3.a2
+        add_political_power = 50
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUF_1958.4
+    immediate = { }	
+	title = NUF_1958.4.t2
+	desc = NUF_1958.4.d
+	picture = GFX_NUF_1958_4
+
+	is_triggered_only = yes
+
+	option = {  
+        name = NUF_1958.4.a2
+        if = {
+            limit = {
+                tag = MNL
+            }
+            country_event = NUF_1958.7
+        }
+        else = {
+            BRM = {
+                country_event = NUF_1958.5
+            }
+        }
+    }
+	option = {  
+        name = NUF_1958.4.b2
+        if = {
+            limit = {
+                tag = MNL
+            }
+            country_event = NUF_1958.8
+        }
+        else = {
+            BRM = {
+                country_event = NUF_1958.6
+            }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUF_1958.5
+    immediate = { }	
+	title = NUF_1958.5.t2
+	desc = NUF_1958.5.d
+	picture = GFX_NUF_1958_5
+
+	is_triggered_only = yes
+
+	option = {  
+        name = NUF_1958.5.a2
+        set_autonomy = {
+            target = KAY
+            autonomy_state = autonomy_associated_state
+            end_wars = no
+            end_civil_wars = no
+        }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUF_1958.6
+    immediate = { }	
+	title = NUF_1958.6.t2
+	desc = NUF_1958.6.d
+	picture = GFX_NUF_1958_6
+
+	is_triggered_only = yes
+
+	option = {  
+        name = NUF_1958.6.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUF_1958.7
+    immediate = { }	
+	title = NUF_1958.7.t2
+	desc = NUF_1958.7.d
+	picture = GFX_NUF_1958_7
+
+	is_triggered_only = yes
+
+	option = {  
+        name = NUF_1958.7.a2
+        set_autonomy = {
+            target = MNL
+            autonomy_state = autonomy_associated_state
+            end_wars = no
+            end_civil_wars = no
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUF_1958.8
+    immediate = { }	
+	title = NUF_1958.8.t2
+	desc = NUF_1958.8.d
+	picture = GFX_NUF_1958_8
+
+	is_triggered_only = yes
+
+	option = {  
+        name = NUF_1958.8.a2
+    }
+}
+#News Event
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFPFL.5
+    immediate = { }
+	title = AFPFL.5.t2
+	desc = AFPFL.5.d
+	picture = GFX_AFPFL_5
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = AFPFL.5.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFPFL.7
+    immediate = { }
+	title = AFPFL.7.t2
+	desc = AFPFL.7.d
+	picture = GFX_AFPFL_7
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = AFPFL.7.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Burma_FP.1
+    immediate = { }
+	title = Burma_FP.1.t2
+	desc = Burma_FP.1.d
+	picture = GFX_Burma_FP_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Burma_FP.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Burma_Agreement.1
+    immediate = { }
+	title = Burma_Agreement.1.t2
+	desc = Burma_Agreement.1.d
+	picture = GFX_Burma_Agreement_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Burma_Agreement.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Burma_KW.1
+    immediate = { }
+	title = Burma_KW.1.t2
+	desc = Burma_KW.1.d
+	picture = GFX_Burma_KW_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Burma_KW.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Burma_KW.2
+    immediate = { }
+	title = Burma_KW.2.t2
+	desc = Burma_KW.2.d
+	picture = GFX_Burma_KW_2
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Burma_KW.2.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUF_1958.2
+    immediate = { }
+	title = NUF_1958.2.t2
+	desc = NUF_1958.2.d
+	picture = GFX_NUF_1958_2
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = NUF_1958.2.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUF_1958.3
+    immediate = { }
+	title = NUF_1958.3.t2
+	desc = NUF_1958.3.d
+	picture = GFX_NUF_1958_3
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = NUF_1958.3.a2
+	}
+}

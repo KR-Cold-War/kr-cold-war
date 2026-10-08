@@ -1,0 +1,506 @@
+# KRCW (build/patch_residue.py): 5 OTL events dropped while KRCW_active
+add_namespace = Canada_Elections
+
+country_event = {
+	id = Canada_Elections.1
+	immediate = { }
+	title = Canada_Elections.1.t2
+	desc = Canada_Elections.1.d2
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = CAN_Elections_of_1949
+	}
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = CAN
+		date > 1949.1.1
+		date < 1949.12.31
+	}
+
+	option = {
+		name = Canada_Elections.1.a2
+		complete_national_focus = CAN_CCF_Victory
+		set_politics = {
+			ruling_party = Social_Democratic
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 20
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1949_elections
+					option = CAN_LIBERAL_1949
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1949_elections
+					option = CAN_PROGCON_1949
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Canada_Elections.1.b2
+		complete_national_focus = CAN_Liberal_Victory
+
+		set_politics = {
+			ruling_party = Social_Liberalism
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 60
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1949_elections
+					option = CAN_CCF_1949
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1949_elections
+					option = CAN_PROGCON_1949
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Canada_Elections.1.c2
+		complete_national_focus = CAN_Progressive_Conservative_Victory
+
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 20
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1949_elections
+					option = CAN_CCF_1949
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1949_elections
+					option = CAN_LIBERAL_1949
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = Canada_Elections.2
+	immediate = { }
+	title = Canada_Elections.2.t2
+	desc = Canada_Elections.2.d2
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = CAN_Elections_1953
+	}
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = CAN
+		date > 1953.1.1
+		date < 1953.12.31
+	}
+
+	option = {
+		name = Canada_Elections.2.a2
+		complete_national_focus = CAN_CCF_Victory_53
+		set_politics = {
+			ruling_party = Social_Democratic
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 20
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1953_elections
+					option = CAN_LIBERAL_1953
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1953_elections
+					option = CAN_PROGCON_1953
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Canada_Elections.2.b2
+		complete_national_focus = CAN_Liberal_Victory_53
+
+		set_politics = {
+			ruling_party = Social_Liberalism
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 60
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1953_elections
+					option = CAN_CCF_1953
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1953_elections
+					option = CAN_PROGCON_1953
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Canada_Elections.2.c2
+		complete_national_focus = CAN_Progressive_Conservative_Victory_53
+
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 20
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1953_elections
+					option = CAN_CCF_1953
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1953_elections
+					option = CAN_LIBERAL_1953
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+
+
+
+country_event = {
+	id = Canada_Elections.3 
+	immediate = { }
+	title = Canada_Elections.3.t2
+	desc = Canada_Elections.3.d2
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = CAN_Elections_of_1957
+		create_country_leader = {
+			name = "John Diefenbaker"
+			picture = "John_Diefenbaker_50s.dds"
+			ideology = liberal_conservatives
+		}
+	}
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = CAN
+		date > 1957.1.1
+		date < 1957.12.31
+	}
+
+	option = {
+		name = Canada_Elections.3.a2
+		complete_national_focus = CAN_CCF_Victory_57
+		set_politics = {
+			ruling_party = Social_Democratic
+
+			election_frequency = 12
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 20
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1957_elections
+					option = CAN_LIBERAL_1957
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1957_elections
+					option = CAN_PROGCON_1957
+				}
+				factor = 0
+			}
+			
+		}
+	}
+	option = {
+		name = Canada_Elections.3.b2
+		complete_national_focus = CAN_Liberal_Victory_57
+
+		set_politics = {
+			ruling_party = Social_Liberalism
+
+			election_frequency = 12
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 20
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1957_elections
+					option = CAN_CCF_1957
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1957_elections
+					option = CAN_PROGCON_1957
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Canada_Elections.3.c2
+		complete_national_focus = CAN_Progressive_Conservative_Victory_57
+
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+
+			election_frequency = 12
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 60
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1957_elections
+					option = CAN_CCF_1957
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1957_elections
+					option = CAN_LIBERAL_1957
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = Canada_Elections.4
+	immediate = { }
+	title = Canada_Elections.4.t2
+	desc = Canada_Elections.4.d2
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = CAN_Elections_of_1958
+	}
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = CAN
+		date > 1958.1.1
+		date < 1958.12.31
+	}
+
+	option = {
+		name = Canada_Elections.4.a2
+		complete_national_focus = CAN_CCF_Victory_58
+		set_politics = {
+			ruling_party = Social_Democratic
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 20
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1958_elections
+					option = CAN_LIBERAL_1958
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1958_elections
+					option = CAN_PROGCON_1958
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Canada_Elections.4.b2
+		complete_national_focus = CAN_Liberal_Victory_58
+
+		set_politics = {
+			ruling_party = Social_Liberalism
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 20
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1958_elections
+					option = CAN_CCF_1958
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1958_elections
+					option = CAN_PROGCON_1958
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Canada_Elections.4.c2
+		complete_national_focus = CAN_Progressive_Conservative_Victory_58
+
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 60
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1958_elections
+					option = CAN_CCF_1958
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CAN_1958_elections
+					option = CAN_LIBERAL_1958
+				}
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	id = Canada_Elections.5
+	immediate = { }
+	title = Canada_Elections.5.t
+	desc = Canada_Elections.5.d
+	picture = GFX_report_event_brazil_election_1955
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = CAN
+		date > 1980.1.1
+		date < 1980.12.31
+	}
+	option = {
+		name = Canada_Elections.5.a
+		set_politics = {
+			ruling_party = Social_Democratic
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+		name = Canada_Elections.5.b
+		set_politics = {
+			ruling_party = Social_Liberalism
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+		name = Canada_Elections.5.c
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 40
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+}

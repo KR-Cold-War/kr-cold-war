@@ -1,0 +1,638 @@
+add_namespace = krcw_psa2
+
+country_event = {
+	id = krcw_psa2.1
+	title = krcw_psa2_1_t
+	desc = krcw_psa2_1_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_psa2_1.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 has_country_flag = krcw_psa_civilian_road }
+			modifier = { factor = 2 krcw_route_free = yes }
+		}
+		set_country_flag = krcw_psa2_review_done
+		set_country_flag = krcw_psa2_report_published
+		add_stability = 0.02
+		add_popularity = { ideology = liberal popularity = 0.03 }
+		country_event = { id = krcw_psa2.2 days = 12 }
+	}
+	option = {
+		name = krcw_psa2_1.b
+		ai_chance = {
+			base = 60
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_psa2_review_done
+		set_country_flag = krcw_psa2_report_buried
+		add_political_power = 40
+		country_event = { id = krcw_psa2.3 days = 12 }
+	}
+}
+
+country_event = {
+	id = krcw_psa2.2
+	title = krcw_psa2_2_t
+	desc = krcw_psa2_2_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_psa2_2.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 2 has_country_flag = krcw_psa_civilian_road }
+		}
+		set_country_flag = krcw_psa2_recall_promised
+		add_stability = 0.04
+		add_political_power = -25
+		country_event = { id = krcw_psa2.4 days = 20 }
+	}
+	option = {
+		name = krcw_psa2_2.b
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_psa2_council_only
+		add_political_power = 25
+		country_event = { id = krcw_psa2.4 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_psa2.3
+	title = krcw_psa2_3_t
+	desc = krcw_psa2_3_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_psa2_3.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_psa_junta_succession }
+			modifier = { factor = 0.5 krcw_route_free = yes }
+		}
+		set_country_flag = krcw_psa2_crackdown
+		add_stability = -0.03
+		add_political_power = 25
+		add_war_support = 0.02
+		country_event = { id = krcw_psa2.5 days = 20 }
+	}
+	option = {
+		name = krcw_psa2_3.b
+		ai_chance = {
+			base = 50
+		}
+		set_country_flag = krcw_psa2_council_only
+		add_stability = 0.02
+		country_event = { id = krcw_psa2.4 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_psa2.4
+	title = krcw_psa2_4_t
+	desc = {
+		text = krcw_psa2_4_d0
+		trigger = {
+			has_country_flag = krcw_psa2_recall_promised
+		}
+	}
+	desc = {
+		text = krcw_psa2_4_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_naval_battle
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_psa2_4.a
+		ai_chance = {
+			base = 45
+			modifier = { factor = 2 has_country_flag = krcw_psa2_recall_promised }
+			modifier = { factor = 1.5 check_variable = { krcw_psa_lean_ti > krcw_psa_lean_ma } }
+		}
+		set_country_flag = krcw_psa2_bridges_deal
+		add_to_variable = { krcw_psa_lean_ti = 5 }
+		clamp_variable = { var = krcw_psa_lean_ti min = 0 max = 100 }
+		clamp_variable = { var = krcw_psa_lean_ma min = 0 max = 100 }
+		custom_effect_tooltip = krcw_psa_lean_ti_focus_tt
+		add_stability = 0.02
+		random_list = {
+			45 = {
+				modifier = { factor = 1.3 has_country_flag = krcw_psa2_recall_promised }
+				set_country_flag = krcw_psa2_delegates_warren
+			}
+			35 = {
+				modifier = { factor = 1.4 check_variable = { krcw_psa_lean_ti > 30 } }
+				set_country_flag = krcw_psa2_delegates_labour
+			}
+			20 = {
+				modifier = { factor = 1.5 has_country_flag = krcw_psa_junta_succession }
+				set_country_flag = krcw_psa2_delegates_army
+			}
+		}
+		country_event = { id = krcw_psa2.6 days = 25 }
+	}
+	option = {
+		name = krcw_psa2_4.b
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+			modifier = { factor = 1.5 check_variable = { krcw_psa_lean_ma > krcw_psa_lean_ti } }
+		}
+		set_country_flag = krcw_psa2_bridges_deported
+		add_to_variable = { krcw_psa_lean_ma = 5 }
+		clamp_variable = { var = krcw_psa_lean_ti min = 0 max = 100 }
+		clamp_variable = { var = krcw_psa_lean_ma min = 0 max = 100 }
+		custom_effect_tooltip = krcw_psa_lean_ma_focus_tt
+		add_stability = -0.03
+		add_political_power = 25
+		country_event = { id = krcw_psa2.5 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_psa2.5
+	title = krcw_psa2_5_t
+	desc = {
+		text = krcw_psa2_5_d0
+		trigger = {
+			has_country_flag = krcw_psa2_crackdown
+		}
+	}
+	desc = {
+		text = krcw_psa2_5_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_macarthur
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_psa2_5.a
+		ai_chance = {
+			base = 60
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_psa2_emergency
+		add_political_power = 50
+		add_war_support = 0.03
+		add_stability = -0.02
+	}
+	option = {
+		name = krcw_psa2_5.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 has_country_flag = krcw_psa2_report_published }
+		}
+		set_country_flag = krcw_psa2_emergency
+		add_political_power = 25
+		add_stability = 0.01
+	}
+}
+
+country_event = {
+	id = krcw_psa2.6
+	title = krcw_psa2_6_t
+	desc = {
+		text = krcw_psa2_6_d0
+		trigger = {
+			has_country_flag = krcw_psa2_delegates_labour
+		}
+	}
+	desc = {
+		text = krcw_psa2_6_d1
+		trigger = {
+			has_country_flag = krcw_psa2_delegates_army
+		}
+	}
+	desc = {
+		text = krcw_psa2_6_d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_psa2_6.a
+		ai_chance = {
+			base = 1
+		}
+		set_country_flag = krcw_psa2_convention
+		add_stability = 0.03
+		if = { limit = { has_country_flag = krcw_psa2_delegates_labour } add_to_variable = { krcw_psa_lean_ti = 5 } clamp_variable = { var = krcw_psa_lean_ti min = 0 max = 100 } clamp_variable = { var = krcw_psa_lean_ma min = 0 max = 100 } custom_effect_tooltip = krcw_psa_lean_ti_focus_tt }
+		if = { limit = { has_country_flag = krcw_psa2_delegates_army } add_war_support = 0.03 }
+		if = { limit = { has_country_flag = krcw_psa2_delegates_warren } add_popularity = { ideology = liberal popularity = 0.04 } }
+	}
+}
+
+country_event = {
+	id = krcw_psa2.7
+	title = krcw_psa2_7_t
+	desc = {
+		text = krcw_psa2_7_d0
+		trigger = {
+			has_completed_focus = krcw_psa2_bill_of_rights
+		}
+	}
+	desc = {
+		text = krcw_psa2_7_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_psa2_7.a
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { has_completed_focus = krcw_psa2_bill_of_rights } add_stability = 0.04 }
+		else = { add_political_power = 50 add_stability = -0.02 }
+	}
+}
+
+country_event = {
+	id = krcw_psa2.20
+	title = krcw_psa2_20_t
+	desc = krcw_psa2_20_d
+	picture = GFX_krcw_us_golden_gate
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_psa2_20.a
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 check_variable = { krcw_psa_lean_ti > krcw_psa_lean_ma } }
+			modifier = { factor = 1.5 has_country_flag = krcw_psa2_bridges_deal }
+		}
+		add_to_variable = { krcw_psa_lean_ti = 5 }
+		clamp_variable = { var = krcw_psa_lean_ti min = 0 max = 100 }
+		clamp_variable = { var = krcw_psa_lean_ma min = 0 max = 100 }
+		custom_effect_tooltip = krcw_psa_lean_ti_focus_tt
+		set_country_flag = krcw_psa2_heard_ny
+		if = { limit = { country_exists = WCA } WCA = { country_event = { id = krcw_psa2.21 days = 6 } } }
+		else = { set_country_flag = krcw_psa2_terms_soft country_event = { id = krcw_psa2.24 days = 10 } }
+	}
+	option = {
+		name = krcw_psa2_20.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 check_variable = { krcw_psa_lean_ma > krcw_psa_lean_ti } }
+			modifier = { factor = 1.5 has_country_flag = krcw_psa2_bridges_deported }
+		}
+		add_to_variable = { krcw_psa_lean_ma = 5 }
+		clamp_variable = { var = krcw_psa_lean_ti min = 0 max = 100 }
+		clamp_variable = { var = krcw_psa_lean_ma min = 0 max = 100 }
+		custom_effect_tooltip = krcw_psa_lean_ma_focus_tt
+		set_country_flag = krcw_psa2_heard_no
+		if = { limit = { country_exists = USA } USA = { country_event = { id = krcw_psa2.22 days = 6 } } }
+		else = { set_country_flag = krcw_psa2_terms_soft country_event = { id = krcw_psa2.24 days = 10 } }
+	}
+	option = {
+		name = krcw_psa2_20.c
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+			modifier = { factor = 1.5 has_country_flag = krcw_psa_naval_succession }
+		}
+		add_political_power = 25
+		country_event = { id = krcw_psa2.23 days = 10 }
+	}
+}
+
+country_event = {
+	id = krcw_psa2.21
+	title = krcw_psa2_21_t
+	desc = krcw_psa2_21_d
+	picture = GFX_krcw_us_golden_gate
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WCA
+	}
+	option = {
+		name = krcw_psa2_21.a
+		ai_chance = {
+			base = 60
+		}
+		PSA = { set_country_flag = krcw_psa2_terms_soft country_event = { id = krcw_psa2.24 days = 6 } }
+	}
+	option = {
+		name = krcw_psa2_21.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 has_war_support > 0.6 }
+		}
+		PSA = { set_country_flag = krcw_psa2_terms_hard country_event = { id = krcw_psa2.24 days = 6 } }
+	}
+}
+
+country_event = {
+	id = krcw_psa2.22
+	title = krcw_psa2_22_t
+	desc = krcw_psa2_22_d
+	picture = GFX_krcw_huey_long
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = USA
+	}
+	option = {
+		name = krcw_psa2_22.a
+		ai_chance = {
+			base = 55
+		}
+		PSA = { set_country_flag = krcw_psa2_terms_soft country_event = { id = krcw_psa2.24 days = 6 } }
+	}
+	option = {
+		name = krcw_psa2_22.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 has_war_support > 0.6 }
+		}
+		PSA = { set_country_flag = krcw_psa2_terms_hard country_event = { id = krcw_psa2.24 days = 6 } }
+	}
+}
+
+country_event = {
+	id = krcw_psa2.23
+	title = krcw_psa2_23_t
+	desc = {
+		text = krcw_psa2_23_d0
+		trigger = {
+			has_country_flag = krcw_psa2_hwi_warm
+		}
+	}
+	desc = {
+		text = krcw_psa2_23_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_ast_navy
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	immediate = {
+		random_list = {
+			55 = {
+				modifier = { factor = 1.5 has_completed_focus = krcw_psa_court_hawaii }
+				modifier = { factor = 0.5 NOT = { country_exists = HWI } }
+				set_country_flag = krcw_psa2_hwi_warm
+			}
+			45 = { set_country_flag = krcw_psa2_hwi_cool }
+		}
+	}
+	option = {
+		name = krcw_psa2_23.a
+		ai_chance = {
+			base = 60
+			modifier = { factor = 1.5 has_country_flag = krcw_psa2_hwi_warm }
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_psa2_third
+		add_war_support = 0.03
+		country_event = { id = krcw_psa2.25 days = 10 }
+	}
+	option = {
+		name = krcw_psa2_23.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0.3 has_country_flag = krcw_psa2_hwi_warm }
+		}
+		set_country_flag = krcw_psa2_terms_soft
+		country_event = { id = krcw_psa2.24 days = 10 }
+	}
+}
+
+country_event = {
+	id = krcw_psa2.24
+	title = krcw_psa2_24_t
+	desc = {
+		text = krcw_psa2_24_d0
+		trigger = {
+			has_country_flag = krcw_psa2_terms_hard
+		}
+	}
+	desc = {
+		text = krcw_psa2_24_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_psa2_24.a
+		trigger = {
+			NOT = { has_country_flag = krcw_psa2_heard_no }
+		}
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 check_variable = { krcw_psa_lean_ti > krcw_psa_lean_ma } }
+			modifier = { factor = 0.4 has_country_flag = krcw_psa2_terms_hard }
+			modifier = { factor = 0.5 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_psa2_lean_ny
+		add_to_variable = { krcw_psa_lean_ti = 15 }
+		clamp_variable = { var = krcw_psa_lean_ti min = 0 max = 100 }
+		clamp_variable = { var = krcw_psa_lean_ma min = 0 max = 100 }
+		custom_effect_tooltip = krcw_psa_lean_ti_focus_tt
+		add_political_power = 25
+		country_event = { id = krcw_psa2.26 days = 15 }
+	}
+	option = {
+		name = krcw_psa2_24.b
+		trigger = {
+			NOT = { has_country_flag = krcw_psa2_heard_ny }
+		}
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 check_variable = { krcw_psa_lean_ma > krcw_psa_lean_ti } }
+			modifier = { factor = 0.4 has_country_flag = krcw_psa2_terms_hard }
+			modifier = { factor = 0.5 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_psa2_lean_no
+		add_to_variable = { krcw_psa_lean_ma = 15 }
+		clamp_variable = { var = krcw_psa_lean_ti min = 0 max = 100 }
+		clamp_variable = { var = krcw_psa_lean_ma min = 0 max = 100 }
+		custom_effect_tooltip = krcw_psa_lean_ma_focus_tt
+		add_political_power = 25
+		country_event = { id = krcw_psa2.26 days = 15 }
+	}
+	option = {
+		name = krcw_psa2_24.c
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 has_country_flag = krcw_psa2_terms_hard }
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_psa2_third
+		add_stability = 0.02
+		country_event = { id = krcw_psa2.25 days = 10 }
+	}
+}
+
+country_event = {
+	id = krcw_psa2.25
+	title = krcw_psa2_25_t
+	desc = krcw_psa2_25_d
+	picture = GFX_report_event_ast_navy
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_psa2_25.a
+		ai_chance = {
+			base = 1
+		}
+		add_manpower = 15000
+		add_war_support = 0.03
+		navy_experience = 10
+	}
+}
+
+country_event = {
+	id = krcw_psa2.26
+	title = krcw_psa2_26_t
+	desc = {
+		text = krcw_psa2_26_d0
+		trigger = {
+			has_country_flag = krcw_psa2_officers_angry
+		}
+	}
+	desc = {
+		text = krcw_psa2_26_d1
+		trigger = {
+			has_country_flag = krcw_psa2_dockers_strike
+		}
+	}
+	desc = {
+		text = krcw_psa2_26_d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_naval_battle
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	immediate = {
+		random_list = {
+			50 = {
+				modifier = { factor = 0 NOT = { has_country_flag = krcw_psa2_lean_ny } }
+				modifier = { factor = 1.5 has_country_flag = krcw_psa2_emergency }
+				set_country_flag = krcw_psa2_officers_angry
+			}
+			50 = {
+				modifier = { factor = 0 NOT = { has_country_flag = krcw_psa2_lean_no } }
+				modifier = { factor = 1.5 has_country_flag = krcw_psa2_bridges_deal }
+				set_country_flag = krcw_psa2_dockers_strike
+			}
+			40 = { }
+		}
+	}
+	option = {
+		name = krcw_psa2_26.a
+		ai_chance = {
+			base = 50
+		}
+		add_political_power = -50
+		add_stability = 0.03
+	}
+	option = {
+		name = krcw_psa2_26.b
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_psa2_emergency }
+		}
+		add_political_power = 25
+		add_stability = -0.02
+		add_war_support = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_psa2.27
+	title = krcw_psa2_27_t
+	desc = {
+		text = krcw_psa2_27_d0
+		trigger = {
+			has_completed_focus = krcw_psa2_syndicate_yard_contracts
+		}
+	}
+	desc = {
+		text = krcw_psa2_27_d1
+		trigger = {
+			has_completed_focus = krcw_psa2_long_beach_tankers
+		}
+	}
+	desc = {
+		text = krcw_psa2_27_d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_us_golden_gate
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_psa2_27.a
+		ai_chance = {
+			base = 1
+		}
+		add_political_power = 25
+		add_stability = 0.02
+	}
+}

@@ -1,0 +1,1178 @@
+# KRCW (build/patch_residue.py): 44 OTL events dropped while KRCW_active
+###Suez Crisis events###
+
+add_namespace = suez
+
+add_namespace = news
+
+add_namespace = operationkadesh
+
+add_namespace = isr_eng
+
+add_namespace = fra_eng
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.0 #for EGY 
+ immediate = { }
+	title = suez.0.t
+	desc = suez.0.d
+	picture = GFX_politics
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.0.a
+		ENG = {country_event = suez.1 }
+		#complete_national_focus = EGY_The_Suez_Situation
+		#complete_national_focus = EGY_Abrogate_the_1936_Treaty -gotta figure out how focuses will be included, if at all
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.1 #for ENG 
+ immediate = { }
+	title = suez.1.t
+	desc = suez.1.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.1.a
+		add_political_power = -50
+	}
+}#Crisis Start and reactions
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.2 #for EGY 
+ immediate = { }
+	title = suez.2.t
+	desc = suez.2.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.2.a
+		add_political_power = 100
+		add_stability = 0.05
+		transfer_state = 743
+		transfer_state = 1279
+		ENG = {country_event = suez.3 }
+		FRA = {country_event = suez.4 }
+		ISR = {country_event = suez.5 }
+		news_event = news.1516
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.3 #for ENG 
+ immediate = { }
+	title = suez.3.t
+	desc = suez.3.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.3.a
+		add_stability = -0.03
+		country_event = { id = suez.6 days = 25 } #25
+		country_event = { id = suez.7 days = 31 } #31
+		FRA = { country_event = { id = suez.6 days = 25 } } #25
+		ISR = { country_event = { id = suez.6 days = 25 } }	 #25
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.4 #for FRA 
+ immediate = { }
+	title = suez.4.t
+	desc = suez.4.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.4.a
+		add_stability = -0.03
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.5 #for ISR 
+ immediate = { }
+	title = suez.5.t
+	desc = suez.5.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.5.a
+		add_stability = -0.03
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.6 #for all 3 
+ immediate = { }
+	title = suez.6.t
+	desc = suez.6.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.6.a
+		#news_event = suezcrisisnews.2
+		if = {
+			limit = {
+				original_tag = ENG	
+				NOT = {
+					USA = {
+						has_completed_focus = USA_50s_The_Legacy_of_the_Armistice_Agreements
+					}
+				}
+			}
+			USA = {	complete_national_focus = USA_50s_The_Legacy_of_the_Armistice_Agreements }
+		}
+	}
+}##Preparations
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.7 #for ENG 
+ immediate = { }
+	title = suez.7.t
+	desc = suez.7.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		ai_chance = {
+			factor = 100
+		}
+		name = suez.7.a
+		FRA = { country_event = suez.8 }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.8 #for FRA 
+ immediate = { }
+	title = suez.8.t
+	desc = suez.8.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		ai_chance = {
+			factor = 100
+		}
+		name = suez.8.a
+		ISR = { country_event = suez.9 }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.9 #for ISR 
+ immediate = { }
+	title = suez.9.t
+	desc = suez.9.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		ai_chance = {
+			factor = 100
+		}
+		name = suez.9.a
+		country_event = { id = suez.10 days = 60 } #60
+		FRA = { country_event = { id = suez.11 days = 60 } } #60
+		ENG = { country_event = { id = suez.12 days = 60 } } #60 
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.10 #for ISR 
+ immediate = { }
+	title = suez.10.t
+	desc = suez.10.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.10.a
+		country_event = { id = operationkadesh.1 days = 7 }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.11 #for FRA 
+ immediate = { }
+	title = suez.11.t
+	desc = suez.11.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.11.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.12 #for ENG 
+	immediate = { }
+	title = suez.12.t
+	desc = suez.12.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.12.a
+		country_event = { id = suez.17 days = 9 } 
+	}
+}###################
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.15 #for ENG 
+ immediate = { }
+	title = suez.15.t
+	desc = suez.15.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.15.a
+		declare_war_on = {
+			target = EGY
+			type = annex_everything
+		}
+		add_ideas = saf_dont_call_ally
+		load_oob = ENG_suez
+		country_event = suez.37 
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.16 #for FRA 
+ immediate = { }
+	title = suez.16.t
+	desc = suez.16.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.16.a
+		declare_war_on = {
+			target = EGY
+			type = annex_everything
+		}
+		add_ideas = saf_dont_call_ally
+		load_oob = FRA_suez
+	}
+}###################
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.37 #for ENG -------------suez.37-suez.40 follow the operation telescope events of suez.15/16 which are also chronologically misnumbered.
+	immediate = { }
+	title = suez.37.t
+	desc = suez.37.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.37.a
+		trigger = {
+			NOT = {
+				OR = {
+					746 = {
+						is_fully_controlled_by = EGY
+					}
+					1279 = {
+						is_fully_controlled_by = EGY
+					}
+				}
+			}
+		}
+		ENG = { country_event = suez.38 }
+	}
+		
+	option = {
+		name = suez.37.b
+		trigger = {
+			746 = {
+				is_fully_controlled_by = EGY
+			}
+			1279 = {
+				is_fully_controlled_by = EGY
+			}
+		}
+		ENG = { country_event = suez.39 }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.38
+ immediate = { }
+	title = suez.38.t
+	desc = suez.38.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.38.a
+		news_event = news.1517
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.39 #for ENG
+ immediate = { }
+	title = suez.39.t
+	desc = suez.39.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.39.a
+		ISR = { country_event = suez.40 }
+		EGY = {
+			white_peace = ENG
+			white_peace = FRA
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.40
+ immediate = { }
+	title = suez.40.t
+	desc = suez.40.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.40.a
+		ai_chance = {
+			factor = 40
+		}
+		set_country_flag = going_it_alone
+	}
+	option = {
+		name = suez.40.b
+		ai_chance = {
+			factor = 60
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+		news_event = news.1519
+		ENG = { country_event = suez.41 }
+		FRA = { country_event = suez.41 }
+		white_peace = EGY
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.41
+	immediate = { }
+	title = suez.41.t
+	desc = suez.41.d
+	picture = GFX_politics
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = suez.41.a
+	}
+}
+###################
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.17 #for ENG ------these next few events-suez.17-21- are out of historical order/ mixed up timeline. suez.20/21 leads into 13 and 14. 
+ immediate = { }
+	title = suez.17.t
+	desc = suez.17.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.17.a
+		EGY = { country_event = suez.18 }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.18 #for EGY 
+ immediate = { }
+	title = suez.18.t
+	desc = suez.18.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = suez.18.a
+		ENG = { country_event = suez.20 }
+		FRA = { country_event = suez.21 }
+		ai_chance = {
+			factor = 95
+		}
+	}
+	option = {
+		name = suez.18.b
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+		news_event = news.1520
+		clr_global_flag = Suez_Crisis
+		set_global_flag = Suez_Crisis_Over
+		white_peace = ISR
+		white_peace = ENG
+		white_peace = FRA
+		1279 = { set_demilitarized_zone = yes }
+		743 = { set_demilitarized_zone = yes }
+		453 = { set_demilitarized_zone = yes }
+		805 = { set_demilitarized_zone = yes }
+		801 = { set_demilitarized_zone = yes }
+		1296 = { set_demilitarized_zone = yes }
+		755 = { set_demilitarized_zone = yes }
+		ENG = {
+			transfer_state = 743
+			transfer_state = 1279
+		}
+		ISR = { country_event = suez.19 }
+		FRA = { country_event = suez.19 }
+		ENG = { country_event = suez.19 }
+		#ISR = { remove_mission = conquer_sinai } #mission never defined
+	}
+} 
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.19 #for all 3 
+ immediate = { }
+	title = suez.19.t
+	desc = suez.19.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.19.a
+		add_stability = 0.10
+		add_political_power = 100
+	}
+}##FRA & ENG Reaction to ceasefire refusal
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.20 #for ENG 
+ immediate = { }
+	title = suez.20.t
+	desc = suez.20.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.20.a
+		country_event = suez.15
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.21 #for FRA 
+ immediate = { }
+	title = suez.21.t
+	desc = suez.21.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = suez.21.a
+		country_event = suez.16
+	}
+}###USA Reaction
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.22 #for USA 
+ immediate = { }
+	title = suez.22.t
+	desc = suez.22.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		ai_chance = {
+			factor = 70
+		}
+		name = suez.22.a
+		ISR = { country_event = suez.26 }
+		ENG = { country_event = suez.27 }
+		complete_national_focus = USA_50s_Support_Egypt
+		complete_national_focus = USA_50s_Denounce_Tripartite_Aggression
+		complete_national_focus = USA_50s_Demand_Tripartite_Withdrawal
+	}
+	option = {
+		name = suez.22.b
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+		complete_national_focus = USA_50s_Abstain_in_the_UNSC
+		ISR = { country_event = suez.23 }
+		ENG = { country_event = suez.24 }
+	}
+	option = {
+		name = suez.22.c
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+		USA = { complete_national_focus = USA_50s_Support_the_Tripartite_Alliance }
+		ISR = { country_event = suez.42 }
+		ENG = { country_event = suez.43 }
+	}
+}##Support Tripartite
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.42 #for ISR 
+ immediate = { }
+	title = suez.42.t
+	desc = suez.42.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.42.a
+		add_equipment_to_stockpile = {
+			type = jet_multirole_equipment_2
+			amount = 50
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = jet_CAS_equipment_2
+			amount = 50
+			producer = USA
+		}
+		add_opinion_modifier = {
+			target = USA
+			modifier = large_increase
+		}
+		reverse_add_opinion_modifier = {
+			target = USA
+			modifier = large_increase
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.43 #for ENG 
+ immediate = { }
+	title = suez.43.t
+	desc = suez.43.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.43.a
+		add_equipment_to_stockpile = {
+			type = jet_multirole_equipment_2
+			amount = 50
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = jet_CAS_equipment_2
+			amount = 50
+			producer = USA
+		}
+		add_opinion_modifier = {
+			target = USA
+			modifier = large_increase
+		}
+		reverse_add_opinion_modifier = {
+			target = USA
+			modifier = large_increase
+		}
+		country_event = suez.25
+	}
+}###Abstain
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.23 #for ISR 
+ immediate = { }
+	title = suez.23.t
+	desc = suez.23.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.23.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.24 #for ENG 
+ immediate = { }
+	title = suez.24.t
+	desc = suez.24.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.24.a
+		country_event = suez.25
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.25 #for ENG 
+ immediate = { }
+	title = suez.25.t
+	desc = suez.25.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.25.a
+		EGY = {
+			white_peace = ISR
+			white_peace = ENG
+			white_peace = FRA
+		}
+		ISR = {
+			transfer_state = 801
+			transfer_state = 805
+			transfer_state = 453
+		}
+		transfer_state = 743
+		transfer_state = 1279
+		#1279 = { set_demilitarized_zone = yes }
+		#743 = { set_demilitarized_zone = yes }
+		#453 = { set_demilitarized_zone = yes }
+		#805 = { set_demilitarized_zone = yes }
+		#801 = { set_demilitarized_zone = yes }
+		#1296 = { set_demilitarized_zone = yes }
+		#755 = { set_demilitarized_zone = yes }
+		ENG = { remove_ideas = saf_dont_call_ally }
+		FRA = { remove_ideas = saf_dont_call_ally }
+	}
+}##Condemn
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.26 #for ISR 
+ immediate = { }
+	title = suez.26.t
+	desc = suez.26.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.26.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.27 #for ENG 
+ immediate = { }
+	title = suez.27.t
+	desc = suez.27.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.27.a
+		country_event = suez.28
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.28 #for ENG 
+ immediate = { }
+	title = suez.28.t
+	desc = suez.28.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.28.a
+		clr_global_flag = Suez_Crisis
+		set_global_flag = Suez_Crisis_Over
+		news_event = news.1518
+		EGY = {
+			white_peace = ISR
+			white_peace = ENG
+			1279 = { set_demilitarized_zone = yes }
+			743 = { set_demilitarized_zone = yes }
+			453 = { set_demilitarized_zone = yes }
+			805 = { set_demilitarized_zone = yes }
+			801 = { set_demilitarized_zone = yes }
+			1296 = { set_demilitarized_zone = yes }
+			755 = { set_demilitarized_zone = yes }
+		}
+		ISR = { country_event = { id = suez.29 days = 2 } }
+		ENG = { remove_ideas = saf_dont_call_ally }
+		FRA = { remove_ideas = saf_dont_call_ally }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.29 #for ISR 
+ immediate = { }
+	title = suez.29.t
+	desc = suez.29.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.29.a
+	}
+}
+#####Egypt winning part
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.30 #for ISR 
+ immediate = { }
+	title = suez.30.t
+	desc = suez.30.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			every_country = {
+				limit = {
+					OR = {
+						has_guaranteed = EGY
+						tag = EGY
+					}
+				}
+				white_peace = ISR
+				white_peace = ENG
+				white_peace = FRA
+			}
+		}
+	}
+
+	option = {
+		name = suez.30.a
+		news_event = news.1519
+		EGY = {
+			white_peace = FRA
+			white_peace = ENG
+			white_peace = ISR
+		}
+		clr_global_flag = Suez_Crisis
+		set_global_flag = Suez_Crisis_Over
+		ISR = { country_event = suez.32 }
+		EGY = { country_event = suez.33 }
+		EGY = { country_event = { id = suez.34 days = 10 } } 
+		FRA = { country_event = suez.35 }
+		EGY = { country_event = suez.36 }
+		#ISR = { remove_mission = conquer_sinai } #mission never defined
+		FRA = {
+			set_country_flag = suez_crisis_ended_bad
+		}
+		#453 = { set_demilitarized_zone = yes }
+		#805 = { set_demilitarized_zone = yes }
+		801 = { set_demilitarized_zone = yes }
+		1296 = { set_demilitarized_zone = yes }
+		755 = { set_demilitarized_zone = yes }
+		ENG = { remove_ideas = saf_dont_call_ally }
+		FRA = { remove_ideas = saf_dont_call_ally }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.31 #for ISR 
+ immediate = { }
+	title = suez.31.t
+	desc = suez.31.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			every_country = {
+				limit = {
+					OR = {
+						has_guaranteed = EGY
+						tag = EGY
+					}
+				}
+				white_peace = ISR
+				white_peace = ENG
+				white_peace = FRA
+			}
+		}
+	}
+
+	option = {
+		name = suez.31.a
+		news_event = news.1519
+		EGY = {
+			white_peace = FRA
+			white_peace = ENG
+			white_peace = ISR
+		}
+		clr_global_flag = Suez_Crisis
+		set_global_flag = Suez_Crisis_Over
+		ISR = { country_event = suez.32 }
+		EGY = { country_event = suez.33 }
+		EGY = { country_event = { id = suez.34 days = 10 } } 
+		FRA = { country_event = suez.35 }
+		EGY = { country_event = suez.36 }
+		#ISR = { remove_mission = conquer_sinai } #mission never defined
+		FRA = {
+			set_country_flag = suez_crisis_ended_bad
+		}
+		453 = { set_demilitarized_zone = yes }
+		805 = { set_demilitarized_zone = yes }
+		801 = { set_demilitarized_zone = yes }
+		1296 = { set_demilitarized_zone = yes }
+		755 = { set_demilitarized_zone = yes }
+		ENG = { remove_ideas = saf_dont_call_ally }
+		FRA = { remove_ideas = saf_dont_call_ally }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.32 #for ISR 
+ immediate = { }
+	title = suez.32.t
+	desc = suez.32.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.32.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.33 #for EGY 
+ immediate = { }
+	title = suez.33.t
+	desc = suez.33.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.33.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.34 #for EGY 
+ immediate = { }
+	title = suez.34.t
+	desc = suez.34.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.34.a
+		ISR = { 
+			set_variable = { THIS.idea_len_@token:egypt_reparations = 365 }
+			set_variable = { THIS.idea_date_@token:egypt_reparations = global.num_days }
+		}
+		add_timed_idea = {
+			idea = israel_reparations
+			days = 365
+		}
+		set_variable = { THIS.idea_len_@token:israel_reparations = 365 }
+		set_variable = { THIS.idea_date_@token:israel_reparations = global.num_days }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.35 #for FRA 
+ immediate = { }
+	title = suez.35.t
+	desc = suez.35.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.35.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = suez.36 #for ENG 
+ immediate = { }
+	title = suez.36.t
+	desc = suez.36.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = suez.36.a
+	}
+}
+#######Operation Kadesh
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = operationkadesh.1 #for ISR 
+ immediate = { }
+	title = operationkadesh.1.t
+	desc = operationkadesh.1.d
+	picture = GFX_politics
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	option = {
+		name = operationkadesh.1.a
+		news_event = news.1515
+		declare_war_on = {
+			target = EGY
+			type = annex_everything
+		}
+		set_global_flag = Suez_Crisis
+		#activate_mission = conquer_sinai #mission never defined
+		EGY = { activate_mission = defend_sinai }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = operationkadesh.5
+	immediate = { }
+	title = operationkadesh.5.t
+	desc = operationkadesh.5.d
+	picture = GFX_politics
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	immediate = {
+		hidden_effect = {
+			every_country = {
+				limit = {
+					OR = {
+						has_guaranteed = EGY
+						tag = EGY
+					}
+				}
+				white_peace = ISR
+				white_peace = ENG
+				white_peace = FRA
+			}
+		}
+	}
+
+	option = {
+		name = operationkadesh.5.a
+		USA = { 
+			country_event = { id = suez.22 days = 1 }
+			complete_national_focus = USA_50s_The_Suez_Crisis
+		}
+	}
+}
+######################
+#unused stuff for now#
+######################
+# country_event = {
+	# id = isr_eng.1 #for ENG 
+ # immediate = {log = "[GetDateText]: [Root.GetTag]: id = isr_eng.1 #for ENG"}
+	# title = "A Chance for Revenge"
+	# desc = isr_eng.1.d
+	# picture = GFX_politics
+	# is_triggered_only = yes
+	# fire_only_once = yes
+
+	# option = {
+		# name = "When do we begin?"
+		# country_event = { id = isr_eng.3 } 
+		# ENG = { country_event = isr_eng.4 }	 
+	# }
+	# option = {
+		# name = "This is too risky"
+		# ENG = { country_event = isr_eng.2 }
+	# }
+# }
+
+# country_event = {
+	# id = isr_eng.2 #for ENG 
+ # immediate = {log = "[GetDateText]: [Root.GetTag]: id = isr_eng.2 #for ENG"}
+	# title = "Disappointment on all sides"
+	# desc = isr_eng.2.d
+	# picture = GFX_politics
+	# is_triggered_only = yes
+	# fire_only_once = yes
+
+	# option = {
+		# name = "It looks like Nasser will get what he wants, then"
+	# }
+# }
+
+# country_event = {
+	# id = isr_eng.3 #for ISR 
+ # immediate = {log = "[GetDateText]: [Root.GetTag]: id = isr_eng.3 #for ISR"}
+	# title = "The Portsmouth Protocols"
+	# desc = isr_eng.3.d
+	# picture = GFX_politics
+	# is_triggered_only = yes
+	# fire_only_once = yes
+
+	# option = {
+		# name = "We want nothing less than all of Sinai!"
+	# }
+	# option = {
+		# name = "It is best that we just push for the Canal"
+	# }
+# }
+
+# country_event = {
+# id = isr_eng.4 #for ENG 
+ # immediate = {log = "[GetDateText]: [Root.GetTag]: id = isr_eng.4 #for ENG"}
+# title = "The Portsmouth Protocols- Plans"
+# desc = isr_eng.4.d
+# picture = GFX_politics
+
+# is_triggered_only = yes
+
+# fire_only_once = yes
+
+	# option = {
+		# name = "Bombing runs will suffice"
+		# country_event = isr_eng.5 
+	# }
+	# option = {
+		# name = "A small scale paradrop will work best"
+		# country_event = isr_eng.5
+	# }
+	# option = {
+		# name = "A large naval invasion will overwhelm them"
+		# country_event = isr_eng.5 
+	# }
+# }
+
+# country_event = {
+# id = isr_eng.5 #for ENG 
+ # immediate = {log = "[GetDateText]: [Root.GetTag]: id = isr_eng.5 #for ENG"}
+# title = "The Portsmouth Protocols- Aid"
+# desc = isr_eng.5.d
+# picture = GFX_politics
+
+# is_triggered_only = yes
+
+# fire_only_once = yes
+
+# option = {
+		# name = "We can't afford more than small arms"
+	# }
+# option = {
+		# name = "They'll need more tanks for the campaign"
+	# }
+# option = {
+		# name = "some fighters will go a long way"
+	# }
+# option = {
+		# name = "It's time they had some long range bombers"
+	# }
+# }
+
+# country_event = {
+	# id = fra_eng.1 #for ENG 
+ # immediate = {log = "[GetDateText]: [Root.GetTag]: id = fra_eng.1 #for ENG"}
+	# title = "A partial success"
+	# desc = fra_eng.1.d
+	# picture = GFX_politics
+	# is_triggered_only = yes
+	# fire_only_once = yes
+
+	# option = {
+		# name = "Our loyal ally stands beside us"
+		# country_event = fra_eng.2 
+		# FRA = { country_event = fra_eng.3 }
+	# }
+# }
+
+# country_event = {
+	# id = fra_eng.2 #for ENG 
+ # immediate = {log = "[GetDateText]: [Root.GetTag]: id = fra_eng.2 #for ENG"}
+	# title = "The Alsace Talks"
+	# desc = fra_eng.2.d
+	# picture = GFX_politics
+	# is_triggered_only = yes
+	# fire_only_once = yes
+
+	# option = {
+		# name = "We'll put together a convoy"
+		# country_event = { fra_eng.4 } -will be filled in when preliminary event chains are done
+	# }
+# }
+
+# country_event = {
+	# id = fra_eng.3 #for FRA 
+ # immediate = {log = "[GetDateText]: [Root.GetTag]: id = fra_eng.3 #for FRA"}
+	# title = "The Alsace Talks"
+	# desc = fra_eng.3.d
+	# picture = GFX_politics
+	# is_triggered_only = yes
+
+	# fire_only_once = yes
+
+	# option = {
+		# name = "We'll move the bombers into position"
+	# }
+# }
+
+# country_event = {
+	# id = fra_eng.4 #for ENG 
+ # immediate = {log = "[GetDateText]: [Root.GetTag]: id = fra_eng.4 #for ENG"}
+	# title = "Operation Regatta"
+	# desc = fra_eng.4.d
+	# picture = GFX_politics
+	# is_triggered_only = yes
+	# fire_only_once = yes
+
+	# option = {
+		# name = "And now the real fun begins..."
+		# FRA = { country_event = 	 } -will be filled in when preliminary event chains are done
+		# country_event = { fra_eng.6 } -will be filled in when preliminary event chains are done
+	# }
+# }

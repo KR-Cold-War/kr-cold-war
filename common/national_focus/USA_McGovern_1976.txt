@@ -1,0 +1,516 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = USA_McGovern_1976
+	country = {
+		factor = 0
+		modifier = {
+			add = 0
+			tag = USA
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	shared_focus = USA_70s_The_CIA
+	shared_focus = USA_70s_The_Paris_Peace_Accords
+	shared_focus = USA_70s_American_Armed_Forces
+	focus = {
+		id = USA_MCGOVERN76_The_McGovern_Administration
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_McGovernAdministration
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		x = 5
+		y = 0
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Regulate_Strip_Mining
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Mining_Pits
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_The_McGovern_Administration
+		}
+		x = 3
+		y = 1
+		completion_reward = {
+			add_to_variable = {
+				RGO_COST_PENALTY = 0.1
+			}
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Push_for_Clean_Power
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Regulate_Strip_Mining
+		}
+		x = 1
+		y = 2
+		completion_reward = {
+			add_tech_bonus = {
+				name = renewables_bonus
+				bonus = 1.75
+				uses = 2
+				category = renewables
+			}
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Community_Reinvestment_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Cash_and_Carry
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_The_McGovern_Administration
+		}
+		x = 7
+		y = 1
+		completion_reward = {
+			set_country_flag = Community_Reinvestment_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Community_Reinvestment_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Deregulate_Transporation
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_FocusBuildRoads
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Community_Reinvestment_Act
+		}
+		prerequisite = {
+			focus = USA_MCGOVERN76_Regulate_Strip_Mining
+		}
+		x = 5
+		y = 2
+		completion_reward = {
+			add_timed_idea = {
+				idea = infrastructure_privitization
+				days = 2250
+			}
+			set_variable = { THIS.idea_len_@token:infrastructure_privitization = 2250 }
+			set_variable = { THIS.idea_date_@token:infrastructure_privitization = global.num_days }
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Establish_the_Department_of_Energy
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Deregulate_Transporation
+		}
+		prerequisite = {
+			focus = USA_MCGOVERN76_Push_for_Clean_Power
+		}
+		x = 3
+		y = 3
+		completion_reward = {
+			country_event = Department_of_Energy.1
+			set_country_flag = US_Resource_Bonus
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Emergency_Natural_Gas_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_oil_derrick
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Establish_the_Department_of_Energy
+		}
+		x = 2
+		y = 4
+		completion_reward = {
+			set_country_flag = Emergency_Natural_Gas_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Emergency_Natural_Gas_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Humphrey_Hawkins_Full_Employment_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_industrial_subsidies
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Community_Reinvestment_Act
+		}
+		x = 9
+		y = 2
+		completion_reward = {
+			set_country_flag = Humphrey_Hawkins_Full_Employment_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = humphrey_hawkins_full_employment_act
+			}
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Ethics_in_Government_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_expand_legal_power
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Humphrey_Hawkins_Full_Employment_Act
+		}
+		prerequisite = {
+			focus = USA_MCGOVERN76_Deregulate_Transporation
+		}
+		x = 7
+		y = 3
+		completion_reward = {
+			set_country_flag = Ethics_in_Government_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_ethics_in_government
+			}
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Energy_Security_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_Further_Oil
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Ethics_in_Government_Act
+		}
+		prerequisite = {
+			focus = USA_MCGOVERN76_Establish_the_Department_of_Energy
+		}
+		x = 5
+		y = 4
+		completion_reward = {
+			set_country_flag = Energy_Security_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Energy_Security_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Job_Training_Partnership_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Generic_Arab_Infrastructure
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Ethics_in_Government_Act
+		}
+		x = 8
+		y = 4
+		completion_reward = {
+			set_country_flag = Job_Training_Partnership_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Job_Training_Partnership_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Nuclear_Waste_Policy_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Nuclear_Energy
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Energy_Security_Act
+		}
+		prerequisite = {
+			focus = USA_MCGOVERN76_Job_Training_Partnership_Act
+		}
+		x = 7
+		y = 5
+		completion_reward = {
+			set_country_flag = Nuclear_Waste_Policy_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Nuclear_Waste_Policy_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Regulatory_Flexibility_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Market_Liberalization
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Nuclear_Waste_Policy_Act
+		}
+		x = 9
+		y = 6
+		completion_reward = {
+			set_country_flag = Regulatory_Flexibility_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Regulatory_Flexibility_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Privitize_Amtrak
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Nuclear_Waste_Policy_Act
+		}
+		prerequisite = {
+			focus = USA_MCGOVERN76_Surface_Transportation_Assistance_Act
+		}
+		x = 5
+		y = 6
+		completion_reward = {
+			add_ideas = Privitized_Amtrak
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Staggs_Railroad_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_FocusBuildRailroads
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_CERCLA_Act
+		}
+		prerequisite = {
+			focus = USA_MCGOVERN76_Privitize_NASA
+		}
+		x = 6
+		y = 8
+		completion_reward = {
+			set_country_flag = Staggs_Railroad_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Staggs_Railroad_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Surface_Transportation_Assistance_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Generic_Arab_Industry
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Energy_Security_Act
+		}
+		prerequisite = {
+			focus = USA_MCGOVERN76_Emergency_Natural_Gas_Act
+		}
+		x = 3
+		y = 5
+		completion_reward = {
+			set_country_flag = Surface_Transportation_Assistance_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Surface_Transportation_Assistance_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Bayh_Dole_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Introduce_Political_Background_Checks
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Comprehensive_Crime_Control_Act
+		}
+		prerequisite = {
+			focus = USA_MCGOVERN76_Staggs_Railroad_Act
+		}
+		x = 5
+		y = 9
+		completion_reward = {
+			set_country_flag = Bayh_Dole_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Bayh_Dole_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Comprehensive_Crime_Control_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_focus_police
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_CERCLA_Act
+		}
+		prerequisite = {
+			focus = USA_MCGOVERN76_Privitize_NASA
+		}
+		x = 4
+		y = 8
+		completion_reward = {
+			set_country_flag = Comprehensive_Crime_Control_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Fight_Crime
+			}
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Raise_the_Minimum_Wage
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Surface_Transportation_Assistance_Act
+		}
+		x = 1
+		y = 6
+		completion_reward = {
+			add_timed_idea = {
+				idea = minimum_wages_2
+				days = 2250
+			}
+			set_variable = { THIS.idea_len_@token:minimum_wages_2 = 2250 }
+			set_variable = { THIS.idea_date_@token:minimum_wages_2 = global.num_days }
+		}
+	}
+	focus = {
+		id = USA_MCGOVERN76_Privitize_NASA
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Raise_the_Minimum_Wage
+		}
+		prerequisite = {
+			focus = USA_MCGOVERN76_Privitize_Amtrak
+		}
+		x = 3
+		y = 7
+	}
+	focus = {
+		id = USA_MCGOVERN76_CERCLA_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MCGOVERN76_Regulatory_Flexibility_Act
+		}
+		prerequisite = {
+			focus = USA_MCGOVERN76_Privitize_Amtrak
+		}
+		x = 7
+		y = 7
+		completion_reward = {
+			set_country_flag = CERCLA_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = CERCLA_Act_idea
+			}
+		}
+	}
+}

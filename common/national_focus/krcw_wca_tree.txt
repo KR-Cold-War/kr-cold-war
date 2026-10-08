@@ -1,0 +1,2125 @@
+# krcw: paced
+# krcw: x-coords doubled for icon clearance
+focus_tree = {
+	id = krcw_wca_tree
+	continuous_focus_position = { x = 50 y = 2140 }
+	country = {
+		factor = 0
+		modifier = { add = 5000 tag = WCA }
+	}
+	default = no
+	reset_on_civilwar = no
+	focus = {
+		id = krcw_wca_the_syndicates_endure
+		icon = GFX_focus_generic_workers
+		x = 30
+		y = 0
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.03
+			# reward_fill.py
+			random_owned_controlled_state = { limit = { is_core_of = ROOT NOT = { is_capital = yes } } add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			random_owned_controlled_state = { limit = { is_core_of = ROOT free_building_slots = { building = industrial_complex size > 0 include_locked = yes } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+		}
+	}
+	focus = {
+		id = krcw_wca_ninth_congress
+		icon = GFX_focus_generic_conference
+		x = 6
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_syndicates_endure }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			country_event = { id = krcw_wca.5 days = 3 }
+		}
+	}
+	focus = {
+		id = krcw_wca_charter_of_industrial_democracy
+		icon = GFX_focus_generic_self_management
+		x = 4
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_wca_ninth_congress }
+		mutually_exclusive = { focus = krcw_wca_liberation_committee }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_industrial_democracy
+			set_country_flag = krcw_wca_builders
+		}
+	}
+	focus = {
+		id = krcw_wca_liberation_committee
+		icon = GFX_focus_generic_red_flags
+		x = 8
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_wca_ninth_congress }
+		mutually_exclusive = { focus = krcw_wca_charter_of_industrial_democracy }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_war_support = 0.1
+			add_political_power = 50
+			set_country_flag = krcw_wca_liberators
+			krcw_ohio_up_medium = yes
+		}
+	}
+	focus = {
+		id = krcw_wca_federations_compact
+		icon = GFX_focus_generic_treaty
+		x = 6
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_wca_charter_of_industrial_democracy focus = krcw_wca_liberation_committee }
+		available = {
+			has_idea = krcw_wca_syndicate_factionalism
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			swap_ideas = { remove_idea = krcw_wca_syndicate_factionalism add_idea = krcw_wca_federal_syndicalism }
+			add_political_power = -50
+			country_event = { id = krcw_wca2.1 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_wca_randolph_and_the_brigades
+		icon = GFX_focus_generic_diverse_army
+		x = 4
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_wca_federations_compact }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_black_brigades
+			recruit_character = WCA_krcw_randolph
+		}
+	}
+	focus = {
+		id = krcw_wca_radio_free_america
+		icon = GFX_goal_generic_propaganda
+		x = 8
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_wca_federations_compact }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			set_country_flag = krcw_wca_radio
+			if = { limit = { country_exists = USA } USA = { add_stability = -0.02 } }
+			# reward_fill.py
+			add_ideas = krcw_fill_wca_memphis_transmitter
+		}
+	}
+	focus = {
+		id = krcw_wca_refugee_reception
+		icon = GFX_focus_generic_immigration
+		x = 4
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_wca_randolph_and_the_brigades }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_refugee_workshops
+			add_manpower = 25000
+		}
+	}
+	focus = {
+		id = krcw_wca_the_first_free_election
+		icon = GFX_focus_generic_election
+		x = 6
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_wca_radio_free_america focus = krcw_wca_refugee_reception }
+		available = {
+			date > 1950.12.15
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_popularity = { ideology = trotskyism popularity = 0.05 }
+			custom_effect_tooltip = krcw_wca_election_roll_tt
+			random_list = {
+				60 = {
+					modifier = { factor = 1.5 has_country_flag = krcw_wca_congress_builders }
+					modifier = { factor = 1.5 has_country_flag = krcw_wca_builders }
+					modifier = { factor = 1.4 has_country_flag = krcw_wca_election_landmark }
+					modifier = { factor = 1.2 has_country_flag = krcw_wca_suffrage_narrow }
+					modifier = { factor = 1.2 has_country_flag = krcw_wca_arbitration_imposed }
+					modifier = { factor = 1.2 has_country_flag = krcw_wca_appalachia_rebuilt }
+					modifier = { factor = 1.2 has_country_flag = krcw_wca_peace_letters }
+					modifier = { factor = 1.3 has_stability > 0.6 }
+					set_country_flag = krcw_wca_election_builders
+					country_event = { id = krcw_wca.10 days = 5 }
+				}
+				40 = {
+					modifier = { factor = 1.5 has_country_flag = krcw_wca_congress_liberators }
+					modifier = { factor = 1.5 has_country_flag = krcw_wca_liberators }
+					modifier = { factor = 1.4 has_country_flag = krcw_wca_election_disputed }
+					modifier = { factor = 1.2 has_country_flag = krcw_wca_suffrage_broad }
+					modifier = { factor = 1.2 has_country_flag = krcw_wca_federations_unsettled }
+					modifier = { factor = 1.2 has_country_flag = krcw_wca_detroit_first }
+					modifier = { factor = 1.2 has_country_flag = krcw_wca_political_education }
+					modifier = { factor = 1.3 check_variable = { global.krcw_ohio_tension > 69 } }
+					modifier = { factor = 1.3 has_stability < 0.4 }
+					set_country_flag = krcw_wca_election_liberators
+					country_event = { id = krcw_wca.14 days = 5 }
+				}
+			}
+		}
+	}
+	focus = {
+		id = krcw_wca_the_march_west
+		icon = GFX_focus_generic_crush_capitalism
+		x = 8
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_first_free_election }
+		available = {
+			has_country_flag = krcw_wca_liberators
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_liberation_army
+			krcw_ohio_up_medium = yes
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_wca_rebuild_appalachia
+		icon = GFX_focus_generic_economic_recovery
+		x = 24
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_syndicates_endure }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_stability = 0.02
+			1728 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1727 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1695 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_wca_miners_return
+		icon = GFX_focus_generic_coal_mining
+		x = 22
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_wca_rebuild_appalachia }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_wca_appalachian_front } remove_ideas = krcw_wca_appalachian_front }
+			1728 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_wca_heal_the_veterans
+		icon = GFX_focus_generic_field_hostpital
+		x = 26
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_wca_rebuild_appalachia }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_wca_civil_war_weariness } remove_ideas = krcw_wca_civil_war_weariness }
+			add_stability = 0.03
+			add_war_support = 0.03
+		}
+	}
+	focus = {
+		id = krcw_wca_join_clearing_union
+		icon = GFX_focus_generic_monetary_union
+		x = 20
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_wca_miners_return }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_clearing_union
+			FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_ti_comrades } }
+		}
+	}
+	focus = {
+		id = krcw_wca_detroit_councils
+		icon = GFX_focus_generic_tank_production
+		x = 24
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_wca_miners_return focus = krcw_wca_heal_the_veterans }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_wca_armor bonus = 0.5 uses = 2 category = armor }
+			1635 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_wca_tva_syndicate
+		icon = GFX_focus_generic_hydroelectric_energy
+		x = 28
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_wca_heal_the_veterans }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			368 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			1712 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_wca_transnational_federations
+		icon = GFX_goal_generic_scientific_exchange
+		x = 22
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_wca_join_clearing_union focus = krcw_wca_detroit_councils }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = krcw_wca_southern_mills
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 28
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_wca_detroit_councils focus = krcw_wca_tva_syndicate }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1723 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			365 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_wca_atlantic_yards_f
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 26
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_wca_transnational_federations focus = krcw_wca_southern_mills }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_atlantic_yards
+			1726 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_wca_cybernetic_planning
+		icon = GFX_goal_generic_computers
+		x = 22
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_wca_atlantic_yards_f }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_wca_computing bonus = 0.5 uses = 2 category = computing_tech }
+			add_tech_bonus = { name = krcw_wca_production bonus = 0.5 uses = 1 category = production }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_eastern_commonwealth
+		icon = GFX_focus_generic_industry_3
+		x = 28
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_wca_atlantic_yards_f }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			1634 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			1637 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			krcw_ohio_down_small = yes
+		}
+	}
+	focus = {
+		id = krcw_wca_carlsons_army
+		icon = GFX_goal_generic_allies_build_infantry
+		x = 42
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_syndicates_endure }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 25
+			add_tech_bonus = { name = krcw_wca_doctrine bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_wca_disband_private_militias
+		icon = GFX_focus_generic_soldier_salute
+		x = 40
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_wca_carlsons_army }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_manpower = 30000
+			add_political_power = -25
+			army_experience = 10
+			# reward_fill.py
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 3000 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 200 }
+		}
+	}
+	focus = {
+		id = krcw_wca_defense_in_depth
+		icon = GFX_goal_generic_defence
+		x = 40
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_wca_disband_private_militias }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_deep_defense
+			1706 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			} }
+			1709 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			} }
+			1747 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			} }
+			1729 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			} }
+			1733 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			} }
+			395 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			} }
+			370 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			} }
+			1748 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			} }
+			394 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			} }
+			country_event = { id = krcw_wca2.10 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_wca_river_scouts
+		icon = GFX_goal_generic_special_forces
+		x = 44
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_wca_carlsons_army }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 15
+			add_tech_bonus = { name = krcw_wca_specops bonus = 0.5 uses = 1 category = sf_forces }
+		}
+	}
+	focus = {
+		id = krcw_wca_mechanized_syndicates
+		icon = GFX_focus_generic_mechanized
+		x = 44
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_wca_river_scouts }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_wca_motor bonus = 0.5 uses = 2 category = motorized_equipment }
+			add_tech_bonus = { name = krcw_wca_mech bonus = 0.5 uses = 1 category = cat_mechanized_equipment }
+		}
+	}
+	focus = {
+		id = krcw_wca_people_air_force
+		icon = GFX_goal_generic_build_airforce
+		x = 48
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_wca_carlsons_army }
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			air_experience = 25
+			add_tech_bonus = { name = krcw_wca_air bonus = 0.5 uses = 2 category = fighter_multirole }
+			1637 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 2 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_wca_rickover_fleet
+		icon = GFX_focus_generic_cruiser_submarines
+		x = 48
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_wca_people_air_force }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			navy_experience = 25
+			add_tech_bonus = { name = krcw_wca_subs bonus = 0.5 uses = 2 category = submarine_tech }
+		}
+	}
+	focus = {
+		id = krcw_wca_volunteers_from_abroad
+		icon = GFX_focus_generic_military_mission
+		x = 42
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_wca_defense_in_depth focus = krcw_wca_mechanized_syndicates }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_manpower = 20000
+			army_experience = 20
+			FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_ti_comrades } }
+		}
+	}
+	focus = {
+		id = krcw_wca_liberation_plan
+		icon = GFX_focus_generic_attack_usa
+		x = 40
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_wca_volunteers_from_abroad }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			army_experience = 25
+			krcw_ohio_up_medium = yes
+			set_country_flag = krcw_wca_john_brown_plan
+		}
+	}
+	focus = {
+		id = krcw_wca_war_of_liberation
+		icon = GFX_goal_generic_occupy_start_war
+		x = 44
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_wca_general_mobilisation }
+		available = {
+			has_war = no
+			USA = { exists = yes }
+			OR = { check_variable = { global.krcw_ohio_tension > 69 } USA = { has_idea = krcw_usa_succession_chaos } }
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			country_event = { id = krcw_ohio.51 days = 1 }
+		}
+	}
+	focus = {
+		id = krcw_wca_shield_of_the_east
+		icon = GFX_focus_generic_home_defense
+		x = 44
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_wca_volunteers_from_abroad }
+		bypass = {
+			has_country_flag = krcw_wca_front_fortress
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			army_experience = 15
+			add_war_support = 0.05
+			add_tech_bonus = { name = krcw_wca_defense bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_internationale
+		icon = GFX_focus_generic_join_comintern
+		x = 64
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_syndicates_endure }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_ti_comrades } }
+		}
+	}
+	focus = {
+		id = krcw_wca_canadian_brothers
+		icon = GFX_focus_CAN_rifle_association
+		x = 62
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_internationale }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_canadian_arsenal
+			if = { limit = { country_exists = CAN } CAN = { add_opinion_modifier = { target = ROOT modifier = krcw_us_ti_comrades } add_political_power = 25 } }
+		}
+	}
+	focus = {
+		id = krcw_wca_naval_command_overtures
+		icon = GFX_focus_generic_western_pacific_agreement
+		x = 66
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_internationale }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			if = { limit = { country_exists = PSA } PSA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_old_comrades } } }
+		}
+	}
+	focus = {
+		id = krcw_wca_mexican_sympathies
+		icon = GFX_focus_mex_soldaderas
+		x = 64
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_wca_canadian_brothers focus = krcw_wca_naval_command_overtures }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			set_country_flag = krcw_wca_mexican_network
+			if = { limit = { country_exists = MEX } MEX = { add_popularity = { ideology = trotskyism popularity = 0.05 } } }
+		}
+	}
+	focus = {
+		id = krcw_wca_atlantic_bridge
+		icon = GFX_focus_generic_air_partners
+		x = 68
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_wca_naval_command_overtures }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_wca_paris bonus = 0.5 uses = 1 category = electronics }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_wca_atomic_cooperation
+		icon = GFX_focus_generic_nuclear_development
+		x = 66
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_wca_mexican_sympathies focus = krcw_wca_atlantic_bridge }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_wca_atomic bonus = 0.5 uses = 2 category = nuclear }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_three_currents
+		icon = GFX_focus_generic_conference
+		x = 12
+		y = 9
+		cost = 8
+		prerequisite = { focus = krcw_wca_the_first_free_election }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			country_event = { id = krcw_wcad.1 days = 7 }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_builders_road
+		icon = GFX_goal_generic_consumer_goods
+		x = 4
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_three_currents }
+		mutually_exclusive = { focus = krcw_wca_the_liberators_road focus = krcw_wca_one_big_union_road }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_the_builders
+			1634 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_stability = 0.06
+
+			set_global_flag = KRCW_wca_road_builders
+			if = { limit = { has_country_flag = krcw_wca_election_builders } add_political_power = 50 add_stability = 0.03 }
+			if = { limit = { has_country_flag = krcw_wca_election_liberators } add_stability = -0.05 }
+			if = { limit = { has_country_flag = krcw_wca_leaning_builders } add_political_power = 25 }
+			set_party_name = { ideology = trotskyism name = krcw_wca_party_builders long_name = krcw_wca_party_builders_long }
+			country_event = { id = krcw_wca2.20 days = 7 }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_liberators_road
+		icon = GFX_focus_generic_the_giant_wakes
+		x = 12
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_three_currents }
+		mutually_exclusive = { focus = krcw_wca_the_builders_road focus = krcw_wca_one_big_union_road }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_the_liberators
+			add_war_support = 0.06
+			army_experience = 20
+			krcw_tension_up_medium = yes
+			set_global_flag = KRCW_wca_road_liberators
+			if = { limit = { has_country_flag = krcw_wca_election_liberators } add_political_power = 50 add_war_support = 0.03 }
+			if = { limit = { has_country_flag = krcw_wca_election_builders } add_stability = -0.05 }
+			if = { limit = { has_country_flag = krcw_wca_leaning_liberators } add_political_power = 25 }
+			if = { limit = { NOT = { has_character = WCA_krcw_cannon } } recruit_character = WCA_krcw_cannon }
+			promote_character = WCA_krcw_cannon
+			set_party_name = { ideology = trotskyism name = krcw_wca_party_liberators long_name = krcw_wca_party_liberators_long }
+			country_event = { id = krcw_wca2.20 days = 7 }
+		}
+	}
+	focus = {
+		id = krcw_wca_one_big_union_road
+		icon = GFX_focus_generic_workers
+		x = 20
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_three_currents }
+		mutually_exclusive = { focus = krcw_wca_the_builders_road focus = krcw_wca_the_liberators_road }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 8
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_one_big_union
+			add_stability = 0.05
+			add_political_power = -25
+			add_manpower = 30000
+			set_global_flag = KRCW_wca_road_onebigunion
+			if = { limit = { has_country_flag = krcw_wca_leaning_onebigunion } add_political_power = 25 add_stability = 0.02 }
+			else = { add_stability = -0.03 }
+			if = { limit = { NOT = { has_character = WCA_krcw_flynn } } recruit_character = WCA_krcw_flynn }
+			promote_character = WCA_krcw_flynn
+			set_party_name = { ideology = trotskyism name = krcw_wca_party_obu long_name = krcw_wca_party_obu_long }
+			country_event = { id = krcw_wca2.20 days = 7 }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_congress_decides
+		icon = GFX_focus_generic_public_meetings
+		x = 12
+		y = 12
+		cost = 8
+		prerequisite = { focus = krcw_wca_the_model_city_programme focus = krcw_wca_the_river_brigades focus = krcw_wca_merge_the_federations }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.06
+			country_event = { id = krcw_wcad.3 days = 7 }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_losing_currents
+		icon = GFX_focus_generic_self_management
+		x = 4
+		y = 13
+		cost = 8
+		prerequisite = { focus = krcw_wca_the_congress_decides }
+		available = {
+			NOT = { has_country_flag = krcw_wca_currents_split }
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_country_flag = krcw_wca_opposition_curbed } add_stability = 0.01 add_war_support = 0.03 }
+			else = { add_stability = 0.06 }
+			add_political_power = 25
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = krcw_wca_industrial_democracy_proven
+		icon = GFX_focus_generic_industry_3
+		x = 20
+		y = 13
+		cost = 8
+		prerequisite = { focus = krcw_wca_the_congress_decides }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_the_second_workshop
+			1634 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_research_slot = 1
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_wca_two_thousand_kilometres
+		icon = GFX_goal_generic_position_armies
+		x = 34
+		y = 9
+		cost = 8
+		prerequisite = { focus = krcw_wca_defense_in_depth }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_the_long_frontier
+			1634 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = bunker level = 1 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			} }
+			country_event = { id = krcw_wcad.5 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_crossings_east
+		icon = GFX_focus_generic_manpower
+		x = 28
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_wca_two_thousand_kilometres }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_manpower = 60000
+			add_stability = 0.04
+			if = { limit = { has_country_flag = krcw_wca_published_both } add_stability = 0.02 add_political_power = 25 }
+			if = { limit = { country_exists = USA } USA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_river_provocation } } }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_crossings_west
+		icon = GFX_goal_generic_dangerous_deal
+		x = 40
+		y = 10
+		cost = 8
+		prerequisite = { focus = krcw_wca_two_thousand_kilometres }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			if = { limit = { has_country_flag = krcw_wca_asked_why } country_event = { id = krcw_wcad.7 days = 10 } }
+			else = { country_event = { id = krcw_wcad.8 days = 10 } }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_line_and_the_council
+		icon = GFX_focus_generic_industry_2
+		x = 62
+		y = 9
+		cost = 8
+		prerequisite = { focus = krcw_wca_cybernetic_planning }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			add_tech_bonus = { name = krcw_wca_line_methods bonus = 0.5 uses = 2 category = industry }
+			1634 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_wca_teach_it_to_the_bloc
+		icon = GFX_goal_generic_scientific_exchange
+		x = 56
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_line_and_the_council }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_the_second_workshop
+			add_political_power = 50
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = krcw_wca_the_automobile_question
+		icon = GFX_goal_generic_construct_civilian
+		x = 68
+		y = 10
+		cost = 8
+		prerequisite = { focus = krcw_wca_the_line_and_the_council }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			add_stability = 0.04
+			country_event = { id = krcw_wcad.9 days = 7 }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_american_question
+		icon = GFX_focus_generic_the_giant_wakes
+		x = 62
+		y = 11
+		cost = 8
+		prerequisite = { focus = krcw_wca_teach_it_to_the_bloc focus = krcw_wca_the_automobile_question }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_war_support = 0.03
+			country_event = { id = krcw_wcad.11 days = 7 }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_question_in_the_hall
+		icon = GFX_focus_generic_workers
+		x = 40
+		y = 12
+		cost = 8
+		prerequisite = { focus = krcw_wca_the_first_free_election }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_the_colour_line
+			add_political_power = 25
+			country_event = { id = krcw_wcad.13 days = 7 }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_uniform_clause
+		icon = GFX_focus_generic_universal_suffrage
+		x = 40
+		y = 13
+		cost = 8
+		prerequisite = { focus = krcw_wca_the_question_in_the_hall }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_one_card_one_trade
+			if = { limit = { has_country_flag = krcw_wca_clause_tabled } add_political_power = 50 }
+			if = { limit = { has_country_flag = krcw_wca_rolls_published } add_stability = 0.03 }
+			if = { limit = { NOT = { has_country_flag = krcw_wca_clause_tabled } NOT = { has_country_flag = krcw_wca_rolls_published } } add_stability = -0.03 }
+			if = { limit = { has_idea = krcw_wca_the_colour_line } remove_ideas = krcw_wca_the_colour_line }
+			add_stability = 0.05
+			add_manpower = 50000
+		}
+	}
+	focus = {
+		id = krcw_wca_the_southern_locals
+		icon = GFX_focus_generic_manpower
+		x = 40
+		y = 14
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_uniform_clause }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_manpower = 40000
+			add_stability = 0.04
+			add_war_support = 0.03
+			# reward_fill.py
+			add_ideas = krcw_fill_wca_southern_textile_locals
+		}
+	}
+	focus = {
+		id = krcw_wca_what_the_radio_can_say
+		icon = GFX_focus_generic_conference
+		x = 40
+		y = 15
+		cost = 8
+		prerequisite = { focus = krcw_wca_the_southern_locals }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.04
+			if = { limit = { country_exists = USA } USA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_river_provocation } } }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_model_city_programme
+		icon = GFX_goal_generic_construct_civilian
+		x = 4
+		y = 11
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_builders_road }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			1634 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_to_variable = { global.krcw_ma_crisis = 2 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_am_ma_crisis_up2_tt
+		}
+	}
+	focus = {
+		id = krcw_wca_the_river_brigades
+		icon = GFX_goal_generic_army_doctrines
+		x = 12
+		y = 11
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_liberators_road }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 25
+			add_manpower = 20000
+			add_war_support = 0.04
+			# reward_fill.py
+			add_ideas = krcw_fill_wca_river_brigades
+			add_equipment_to_stockpile = { type = support_equipment amount = 300 }
+		}
+	}
+	focus = {
+		id = krcw_wca_merge_the_federations
+		icon = GFX_focus_generic_workers
+		x = 20
+		y = 11
+		cost = 5
+		prerequisite = { focus = krcw_wca_one_big_union_road }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.04
+			add_political_power = -25
+			# reward_fill.py
+			add_ideas = krcw_fill_wca_regional_branches
+		}
+	}
+	focus = {
+		id = krcw_wca_eastern_reconstruction_board
+		icon = GFX_focus_generic_central_planning
+		x = 16
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_wca_rebuild_appalachia }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_reconstruction_board
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_wca_repair_the_pennsylvania_main_line
+		icon = GFX_focus_generic_railroad
+		x = 14
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_wca_eastern_reconstruction_board }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1643 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			360 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1691 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_wca_relight_the_pittsburgh_furnaces
+		icon = GFX_focus_generic_steel_mill
+		x = 18
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_wca_eastern_reconstruction_board }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1693 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			1698 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_wca_rebuild_the_coal_branch_lines
+		icon = GFX_focus_generic_coal_mining
+		x = 14
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_wca_repair_the_pennsylvania_main_line }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1695 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1727 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_wca_expand_the_gary_works
+		icon = GFX_focus_generic_industry_2
+		x = 18
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_wca_relight_the_pittsburgh_furnaces }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1740 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_wca_steel_works bonus = 0.5 uses = 1 category = industry }
+		}
+	}
+	focus = {
+		id = krcw_wca_dig_the_st_lawrence_seaway
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 16
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_wca_rebuild_the_coal_branch_lines }
+		prerequisite = { focus = krcw_wca_expand_the_gary_works }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_wca_reconstruction_board } remove_ideas = krcw_wca_reconstruction_board }
+			add_ideas = krcw_wca_reconstruction_board_2
+			1687 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1688 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			if = { limit = { country_exists = CAN } CAN = { add_opinion_modifier = { target = ROOT modifier = krcw_us_ti_comrades } add_political_power = 25 } }
+		}
+	}
+	focus = {
+		id = krcw_wca_hand_the_works_to_the_regions
+		icon = GFX_focus_generic_worker_administration
+		x = 16
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_wca_dig_the_st_lawrence_seaway }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_wca_reconstruction_board_2 } remove_ideas = krcw_wca_reconstruction_board_2 }
+			if = { limit = { has_idea = krcw_wca_reconstruction_board } remove_ideas = krcw_wca_reconstruction_board }
+			add_ideas = krcw_wca_rebuilt_east
+			1635 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = krcw_wca_build_fontana_dam
+		icon = GFX_focus_focus_generic_build_dam
+		x = 32
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_wca_tva_syndicate }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1722 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			1722 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_wca_build_kentucky_dam
+		icon = GFX_focus_generic_hydroelectric_energy
+		x = 36
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_wca_tva_syndicate }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1729 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1710 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1729 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = anti_air_building level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_wca_nitrates_for_fertiliser
+		icon = GFX_focus_generic_farmland
+		x = 32
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_wca_build_fontana_dam focus = krcw_wca_build_kentucky_dam }
+		mutually_exclusive = { focus = krcw_wca_nitrates_for_explosives }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_stability = 0.04
+			1712 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_manpower = 10000
+		}
+	}
+	focus = {
+		id = krcw_wca_nitrates_for_explosives
+		icon = GFX_goal_generic_army_artillery
+		x = 36
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_wca_build_fontana_dam focus = krcw_wca_build_kentucky_dam }
+		mutually_exclusive = { focus = krcw_wca_nitrates_for_fertiliser }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1712 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_wca_nitrates bonus = 0.5 uses = 1 category = artillery }
+			add_stability = -0.02
+		}
+	}
+	focus = {
+		id = krcw_wca_rural_electric_cooperatives
+		icon = GFX_focus_generic_electrification
+		x = 34
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_wca_nitrates_for_fertiliser focus = krcw_wca_nitrates_for_explosives }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1713 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1717 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1728 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_stability = 0.03
+		}
+	}
+	focus = {
+		id = krcw_wca_expand_oak_ridge
+		icon = GFX_focus_generic_nuclear_development
+		x = 34
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_wca_rural_electric_cooperatives }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_wca_oak_ridge bonus = 0.5 uses = 2 category = nuclear }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_wca_the_general_staff
+		icon = GFX_focus_generic_military_academy
+		x = 52
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_wca_carlsons_army }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_army_reorganisation
+			army_experience = 10
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_wca_four_military_districts
+		icon = GFX_goal_generic_army_doctrines
+		x = 50
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_general_staff }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_war_support = 0.03
+			add_stability = 0.02
+			army_experience = 5
+			# reward_fill.py
+			add_ideas = krcw_fill_wca_four_districts
+		}
+	}
+	focus = {
+		id = krcw_wca_reorganise_west_point
+		icon = GFX_focus_generic_university_2
+		x = 54
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_general_staff }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_wca_west_point bonus = 0.5 uses = 1 category = land_doctrine }
+			army_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_wca_one_rifle_pattern
+		icon = GFX_goal_generic_small_arms
+		x = 50
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_wca_four_military_districts }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			357 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_wca_springfield bonus = 0.5 uses = 1 category = infantry_weapons }
+		}
+	}
+	focus = {
+		id = krcw_wca_factory_reserve
+		icon = GFX_focus_generic_workers
+		x = 54
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_wca_reorganise_west_point }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_manpower = 20000
+			army_experience = 5
+			# reward_fill.py
+			add_ideas = krcw_fill_wca_factory_reserve
+		}
+	}
+	focus = {
+		id = krcw_wca_keep_elected_officers
+		icon = GFX_focus_generic_self_management
+		x = 50
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_wca_one_rifle_pattern }
+		prerequisite = { focus = krcw_wca_factory_reserve }
+		mutually_exclusive = { focus = krcw_wca_officers_appointed_by_staff }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			set_country_flag = krcw_wca_elected_officers
+			add_stability = 0.03
+			add_political_power = 25
+			# reward_fill.py
+			add_ideas = krcw_fill_wca_soldiers_committees
+		}
+	}
+	focus = {
+		id = krcw_wca_officers_appointed_by_staff
+		icon = GFX_focus_generic_soldier_salute
+		x = 54
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_wca_one_rifle_pattern }
+		prerequisite = { focus = krcw_wca_factory_reserve }
+		mutually_exclusive = { focus = krcw_wca_keep_elected_officers }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 20
+			add_stability = -0.02
+			add_political_power = -25
+			# reward_fill.py
+			add_tech_bonus = { name = krcw_wca_officers_appointed_by_staff bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_wca_complete_the_reorganisation
+		icon = GFX_goal_generic_allies_build_infantry
+		x = 52
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_wca_keep_elected_officers focus = krcw_wca_officers_appointed_by_staff }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_wca_army_reorganisation } remove_ideas = krcw_wca_army_reorganisation }
+			if = { limit = { has_country_flag = krcw_wca_elected_officers } add_ideas = krcw_wca_peoples_army_councils }
+			else = { add_ideas = krcw_wca_peoples_army_staff }
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_wca_embargo_the_west
+		icon = GFX_focus_generic_trade_interdiction
+		x = 4
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_first_free_election }
+		available = {
+			has_country_flag = krcw_wca_builders
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 25
+		}
+		completion_reward = {
+			add_to_variable = { global.krcw_ma_crisis = 2 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_am_ma_crisis_up2_tt
+			krcw_ohio_up_small = yes
+			add_political_power = -25
+			if = { limit = { country_exists = USA } USA = { add_stability = -0.03 } }
+		}
+	}
+	focus = {
+		id = krcw_wca_river_security_zone
+		icon = GFX_focus_generic_national_security
+		x = 34
+		y = 11
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_crossings_east focus = krcw_wca_the_crossings_west }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = { global.krcw_ti_crisis = -3 }
+			clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_am_ti_crisis_down3_tt
+			add_stability = 0.02
+			army_experience = 5
+			# reward_fill.py
+			add_ideas = krcw_fill_wca_river_border_zone
+		}
+	}
+	focus = {
+		id = krcw_wca_arms_via_mexico
+		icon = GFX_focus_generic_smugglers
+		x = 62
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_wca_mexican_sympathies }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 8
+		}
+		completion_reward = {
+			add_to_variable = { global.krcw_ma_crisis = 3 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_am_ma_crisis_up3_tt
+			krcw_ohio_up_small = yes
+			if = { limit = { country_exists = USA } USA = { add_stability = -0.02 } }
+		}
+	}
+	focus = {
+		id = krcw_wca_screen_the_atlantic_crossings
+		icon = GFX_focus_generic_secret_service_agency
+		x = 70
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_wca_atlantic_bridge }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = { global.krcw_ti_crisis = -3 }
+			clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_am_ti_crisis_down3_tt
+			add_stability = 0.02
+			add_political_power = -25
+			# reward_fill.py
+			add_ideas = krcw_fill_wca_new_york_screening_office
+		}
+	}
+	focus = {
+		id = krcw_wca_internationale_defence_protocol
+		icon = GFX_goal_generic_military_sphere
+		x = 66
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_wca_atomic_cooperation focus = krcw_wca_screen_the_atlantic_crossings }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 10
+			air_experience = 10
+			add_to_variable = { global.krcw_ti_crisis = -2 }
+			clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_am_ti_crisis_down2_tt
+			krcw_tension_up_small = yes
+			if = { limit = { country_exists = FRA } FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_ti_comrades } } }
+		}
+	}
+	focus = {
+		id = krcw_wca_river_flotilla
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		x = 40
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_wca_liberation_plan }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 8
+		}
+		completion_reward = {
+			add_ideas = krcw_wca_john_brown_prep
+			navy_experience = 15
+			army_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_wca_crossing_depots
+		icon = GFX_focus_generic_supply_line
+		x = 44
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_wca_liberation_plan }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 8
+		}
+		completion_reward = {
+			1706 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1747 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1729 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_wca_ohio_crossing_drill
+		icon = GFX_goal_generic_position_armies
+		x = 40
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_wca_river_flotilla }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 8
+		}
+		completion_reward = {
+			army_experience = 25
+			add_tech_bonus = { name = krcw_wca_crossing_drill bonus = 0.5 uses = 1 category = land_doctrine }
+			krcw_ohio_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_wca_west_bank_strike_committees
+		icon = GFX_focus_generic_workers_and_farmers_rise
+		x = 44
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_wca_crossing_depots }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 8
+		}
+		completion_reward = {
+			set_country_flag = krcw_wca_strike_network
+			add_to_variable = { global.krcw_ma_crisis = 3 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_am_ma_crisis_up3_tt
+			krcw_ohio_up_small = yes
+			if = { limit = { country_exists = USA } USA = { add_stability = -0.02 } }
+		}
+	}
+	focus = {
+		id = krcw_wca_ohio_airfields
+		icon = GFX_focus_generic_air_bases
+		x = 40
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_wca_ohio_crossing_drill }
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		ai_will_do = {
+			factor = 8
+		}
+		completion_reward = {
+			1729 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 2 instant_build = yes }
+			} }
+			1747 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 2 instant_build = yes }
+			} }
+			370 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 1 instant_build = yes }
+			} }
+			air_experience = 20
+		}
+	}
+	focus = {
+		id = krcw_wca_detroit_war_shifts
+		icon = GFX_focus_generic_tank_production
+		x = 44
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_wca_west_bank_strike_committees }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 8
+		}
+		completion_reward = {
+			1635 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+			1696 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 3000 }
+		}
+	}
+	focus = {
+		id = krcw_wca_general_mobilisation
+		icon = GFX_focus_generic_total_war
+		x = 44
+		y = 9
+		cost = 5
+		prerequisite = { focus = krcw_wca_ohio_airfields }
+		prerequisite = { focus = krcw_wca_detroit_war_shifts }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			swap_ideas = { remove_idea = krcw_wca_john_brown_prep add_idea = krcw_wca_john_brown_ready }
+			add_manpower = 50000
+			add_war_support = 0.05
+			krcw_ohio_up_medium = yes
+			set_country_flag = krcw_ww_america_ready
+		}
+	}
+	focus = {
+		id = krcw_wca_the_open_franchise
+		icon = GFX_focus_generic_universal_suffrage
+		x = 12
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_first_free_election }
+		mutually_exclusive = { focus = krcw_wca_the_card_franchise }
+		available = {
+			has_country_flag = krcw_wca_suffrage_broad
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_stability = 0.04
+			add_manpower = 20000
+			krcw_ohio_down_small = yes
+			if = { limit = { country_exists = USA } USA = { add_stability = -0.02 } }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_card_franchise
+		icon = GFX_focus_generic_workers
+		x = 16
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_first_free_election }
+		mutually_exclusive = { focus = krcw_wca_the_open_franchise }
+		available = {
+			has_country_flag = krcw_wca_suffrage_narrow
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_stability = -0.02
+			# reward_fill.py
+			add_ideas = krcw_fill_wca_card_registry
+		}
+	}
+	focus = {
+		id = krcw_wca_the_scrutineers
+		icon = GFX_focus_generic_public_meetings
+		x = 12
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_open_franchise focus = krcw_wca_the_card_franchise }
+		mutually_exclusive = { focus = krcw_wca_the_recount_commission }
+		available = {
+			has_country_flag = krcw_wca_election_landmark
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_stability = 0.04
+			add_political_power = 25
+			if = { limit = { has_idea = krcw_wca_syndicate_factionalism } remove_ideas = krcw_wca_syndicate_factionalism }
+			country_event = { id = krcw_wca2.7 days = 20 }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_recount_commission
+		icon = GFX_focus_generic_conference
+		x = 16
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_open_franchise focus = krcw_wca_the_card_franchise }
+		mutually_exclusive = { focus = krcw_wca_the_scrutineers }
+		available = {
+			has_country_flag = krcw_wca_election_disputed
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_political_power = -25
+			add_stability = 0.03
+			country_event = { id = krcw_wca2.7 days = 20 }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_appalachian_redoubt
+		icon = GFX_focus_generic_home_defense
+		x = 30
+		y = 12
+		cost = 5
+		prerequisite = { focus = krcw_wca_river_security_zone }
+		mutually_exclusive = { focus = krcw_wca_the_river_reserve }
+		available = {
+			has_country_flag = krcw_wca_front_fortress
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			1729 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			} }
+			1747 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			} }
+			army_experience = 10
+			add_war_support = 0.02
+		}
+	}
+	focus = {
+		id = krcw_wca_the_river_reserve
+		icon = GFX_goal_generic_army_motorized
+		x = 34
+		y = 12
+		cost = 5
+		prerequisite = { focus = krcw_wca_river_security_zone }
+		mutually_exclusive = { focus = krcw_wca_the_appalachian_redoubt }
+		available = {
+			has_country_flag = krcw_wca_front_mobile
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			army_experience = 15
+			add_tech_bonus = { name = krcw_wca_river_reserve bonus = 0.5 uses = 1 category = motorized_equipment }
+			1706 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			krcw_ohio_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_wca_the_appalachian_district
+		icon = GFX_goal_generic_position_armies
+		x = 32
+		y = 13
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_appalachian_redoubt focus = krcw_wca_the_river_reserve }
+		available = {
+			OR = { has_country_flag = krcw_wca_front_fortress has_country_flag = krcw_wca_front_mobile }
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			army_experience = 15
+			add_stability = 0.02
+			if = { limit = { has_country_flag = krcw_wca_front_fortress NOT = { has_idea = krcw_wca_deep_defense } } add_ideas = krcw_wca_deep_defense }
+			if = { limit = { has_country_flag = krcw_wca_front_mobile } add_war_support = 0.02 }
+			country_event = { id = krcw_wca2.16 days = 20 }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_joint_executive
+		icon = GFX_focus_generic_public_meetings
+		x = 8
+		y = 14
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_congress_decides }
+		mutually_exclusive = { focus = krcw_wca_the_disciplined_congress }
+		available = {
+			has_country_flag = krcw_wca_currents_united
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+			if = { limit = { has_idea = krcw_wca_syndicate_factionalism } remove_ideas = krcw_wca_syndicate_factionalism }
+		}
+	}
+	focus = {
+		id = krcw_wca_the_disciplined_congress
+		icon = GFX_goal_generic_political_pressure
+		x = 16
+		y = 14
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_congress_decides }
+		mutually_exclusive = { focus = krcw_wca_the_joint_executive }
+		available = {
+			has_country_flag = krcw_wca_currents_split
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_political_power = 100
+			add_war_support = 0.03
+			add_stability = -0.02
+			# reward_fill.py
+			add_ideas = krcw_fill_wca_bloc_voting
+		}
+	}
+	focus = {
+		id = krcw_wca_the_road_secured
+		icon = GFX_focus_generic_self_management
+		x = 12
+		y = 15
+		cost = 5
+		prerequisite = { focus = krcw_wca_the_joint_executive focus = krcw_wca_the_disciplined_congress }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.03
+			country_event = { id = krcw_wca2.26 days = 20 }
+		}
+	}
+}

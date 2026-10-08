@@ -1,0 +1,47 @@
+# KRCW (build/patch_residue.py): 2 OTL events dropped while KRCW_active
+##############
+# Ethiopia Events
+#
+#
+##############
+
+add_namespace = Merdaka
+add_namespace = MLA
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Merdaka.100 
+ immediate = { }
+	title = Merdaka.100.t
+	desc = Merdaka.100.d
+	picture = GFX_news_event_nuremberg
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = Merdaka.1000.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = MLA.100 
+ immediate = { }
+	title = MLA.100.t
+	desc = MLA.100.d
+	picture = GFX_news_event_nuremberg
+	is_triggered_only = yes
+
+	option = {
+		name = MLA.100.a
+		MLA = {
+			transfer_state = 336
+			transfer_state = 333
+
+		}
+		333 = { add_core_of = MLA }
+		336 = { add_core_of = MLA }
+	}
+	option = {
+		name = MLA.100.b
+	}
+}

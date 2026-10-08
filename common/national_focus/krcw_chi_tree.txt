@@ -1,0 +1,3227 @@
+# krcw: paced
+# krcw: x-coords doubled for icon clearance
+focus_tree = {
+	id = krcw_chi_tree
+	continuous_focus_position = { x = 50 y = 2270 }
+	country = {
+		factor = 0
+		modifier = { add = 5000 tag = CHI }
+	}
+	default = no
+	reset_on_civilwar = no
+	focus = {
+		id = krcw_chi_sixth_congress
+		icon = GFX_focus_chi_united_front
+		x = 46
+		y = 0
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.03
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_reconstruction_commission
+			capital_scope = { add_extra_state_shared_building_slots = 1 add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+		}
+	}
+	focus = {
+		id = krcw_chi_draft_land_law
+		icon = GFX_focus_PRC_land_revolution_expedited
+		x = 4
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_chi_sixth_congress }
+		available = {
+			date > 1950.4.1
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			country_event = { id = krcw_chi.10 days = 3 }
+			country_event = { id = krcw_chi.500 days = 1 }
+		}
+	}
+	focus = {
+		id = krcw_chi_county_land_committees
+		icon = GFX_focus_generic_land_redistribution
+		x = 4
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_chi_draft_land_law }
+		available = {
+			has_global_flag = KRCW_chi_land_law
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+			country_event = { id = krcw_chi2.1 days = 20 }
+		}
+	}
+	focus = {
+		id = krcw_chi_peasant_associations
+		icon = GFX_focus_generic_workers_and_farmers_rise
+		x = 2
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_chi_county_land_committees }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_peasant_associations_sp
+		}
+	}
+	focus = {
+		id = krcw_chi_rural_credit
+		icon = GFX_focus_generic_farmland
+		x = 0
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_peasant_associations }
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.03
+			606 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1572 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			607 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_chi_mass_literacy
+		icon = GFX_focus_generic_education
+		x = 4
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_peasant_associations }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_mass_literacy_sp
+		}
+	}
+	focus = {
+		id = krcw_chi_harness_the_huai
+		icon = GFX_focus_focus_generic_build_dam
+		x = 2
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_chi_rural_credit }
+		prerequisite = { focus = krcw_chi_mass_literacy }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			606 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1785 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1791 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_manpower = 20000
+		}
+	}
+	focus = {
+		id = krcw_chi_construction_commission
+		icon = GFX_focus_generic_central_planning
+		x = 16
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_chi_sixth_congress }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 25
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_tech_bonus = { name = krcw_chi_construction_commission bonus = 0.5 uses = 1 category = industry }
+		}
+	}
+	focus = {
+		id = krcw_chi_first_programme
+		icon = GFX_focus_generic_industry_1
+		x = 16
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_chi_construction_commission }
+		available = {
+			date > 1950.4.1
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_five_year_programme
+			country_event = { id = krcw_chi.20 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_chi_anshan_steel
+		icon = GFX_focus_generic_steel_mill
+		x = 12
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_chi_first_programme }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			328 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			} }
+			715 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_chi_trunk_railways
+		icon = GFX_focus_generic_railroad
+		x = 18
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_chi_first_programme }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			608 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			614 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			607 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1791 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			597 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_chi_wuhan_base
+		icon = GFX_focus_generic_industry_2
+		x = 12
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_anshan_steel }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1792 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			} }
+			1792 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_chi_yangtze_power
+		icon = GFX_focus_generic_electrification
+		x = 18
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_trunk_railways }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			601 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			613 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			620 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_chi_join_clearing_union
+		icon = GFX_focus_generic_monetary_union
+		x = 22
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_chi_construction_commission }
+		prerequisite = { focus = krcw_chi_paris_delegation }
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_INTERNATIONAL_TRADE }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_paris_clearing_union
+			FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_trade_partner } }
+			add_to_variable = { global.krcw_ti_crisis = -2 }
+			clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_chi_ti_crisis_down2_tt
+		}
+	}
+	focus = {
+		id = krcw_chi_transnational_federations
+		icon = GFX_focus_generic_industrial_experts
+		x = 22
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_join_clearing_union }
+		prerequisite = { focus = krcw_chi_anshan_steel }
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_transnational_federations_sp
+			add_tech_bonus = { name = krcw_chi_transnational_federations bonus = 0.5 uses = 2 category = production }
+		}
+	}
+	focus = {
+		id = krcw_chi_second_programme
+		icon = GFX_focus_generic_industry_3
+		x = 14
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_chi_wuhan_base }
+		prerequisite = { focus = krcw_chi_yangtze_power }
+		available = {
+			date > 1952.5.13
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			swap_ideas = { remove_idea = krcw_chi_five_year_programme add_idea = krcw_chi_second_programme_sp }
+			614 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			597 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_chi_technical_universities
+		icon = GFX_focus_generic_university_2
+		x = 18
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_chi_second_programme }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = krcw_chi_atomic_research
+		icon = GFX_focus_generic_nuclear_development
+		x = 22
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_chi_technical_universities }
+		prerequisite = { focus = krcw_chi_transnational_federations }
+		available = {
+			has_global_flag = KRCW_fra_nuke
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_chi_atomic_research bonus = 0.5 uses = 2 category = nuclear }
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_chi_line_struggle
+		icon = GFX_focus_generic_conference
+		x = 40
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_chi_sixth_congress }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 25
+		}
+		completion_reward = {
+			country_event = { id = krcw_chi.30 days = 2 }
+		}
+	}
+	focus = {
+		id = krcw_chi_revcom_line
+		icon = GFX_focus_prc_agrarian_socialism
+		x = 38
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_chi_line_struggle }
+		mutually_exclusive = { focus = krcw_chi_moderate_line }
+		available = {
+			has_country_flag = krcw_chi_line_decided
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			remove_ideas = krcw_chi_party_struggle
+			add_ideas = krcw_chi_revcom_ascendant
+			add_political_power = 50
+			if = { limit = { has_country_flag = krcw_chi_leans_revcom } add_political_power = 25 }
+			if = { limit = { has_country_flag = krcw_chi_leans_moderate } add_stability = -0.03 }
+		}
+	}
+	focus = {
+		id = krcw_chi_moderate_line
+		icon = GFX_focus_generic_social_democracy
+		x = 42
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_chi_line_struggle }
+		mutually_exclusive = { focus = krcw_chi_revcom_line }
+		available = {
+			has_country_flag = krcw_chi_line_decided
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			remove_ideas = krcw_chi_party_struggle
+			add_ideas = krcw_chi_moderate_coalition
+			add_stability = 0.05
+			if = { limit = { has_country_flag = krcw_chi_leans_moderate } add_stability = 0.02 }
+			if = { limit = { has_country_flag = krcw_chi_leans_revcom } add_political_power = -40 }
+		}
+	}
+	focus = {
+		id = krcw_chi_control_yuan
+		icon = GFX_focus_chi_examination_yuan
+		x = 40
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_chi_revcom_line focus = krcw_chi_moderate_line }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_clean_government
+		}
+	}
+	focus = {
+		id = krcw_chi_three_principles_coops
+		icon = GFX_focus_PRC_adopt_sun_yat_sens_principles
+		x = 38
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_control_yuan }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_three_principles_coops_sp
+		}
+	}
+	focus = {
+		id = krcw_chi_youth_league
+		icon = GFX_focus_generic_public_meetings
+		x = 42
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_control_yuan }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_war_support = 0.03
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_youth_league
+		}
+	}
+	focus = {
+		id = krcw_chi_county_councils
+		icon = GFX_focus_generic_vote
+		x = 38
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_chi_three_principles_coops }
+		mutually_exclusive = { focus = krcw_chi_emergency_powers }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_peoples_councils
+			add_stability = 0.03
+			country_event = { id = krcw_chi.32 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_chi_emergency_powers
+		icon = GFX_focus_generic_military_dictatorship
+		x = 42
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_chi_three_principles_coops }
+		mutually_exclusive = { focus = krcw_chi_county_councils }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_political_power = 150
+			add_stability = -0.05
+			add_war_support = 0.05
+			set_country_flag = krcw_chi_dark_path
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_chi_revolution_carries_on
+		icon = GFX_focus_PRC_the_chinese_century
+		x = 22
+		y = 8
+		cost = 8
+		prerequisite = { focus = krcw_chi_county_councils focus = krcw_chi_emergency_powers }
+		prerequisite = { focus = krcw_chi_harness_the_huai }
+		prerequisite = { focus = krcw_chi_second_programme }
+		prerequisite = { focus = krcw_chi_unified_command }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			remove_ideas = krcw_chi_revolution_unfinished
+			add_ideas = krcw_chi_republic_consolidated
+			add_stability = 0.05
+			add_to_variable = { global.krcw_ti_crisis = -3 }
+			clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_chi_ti_crisis_down3_tt
+		}
+	}
+	focus = {
+		id = krcw_chi_warlord_question
+		icon = GFX_focus_PRC_intimidate_warlords
+		x = 48
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_chi_sixth_congress }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 25
+		}
+		completion_reward = {
+			add_political_power = 50
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_central_tax_office
+		}
+	}
+	focus = {
+		id = krcw_chi_buy_out_strongmen
+		icon = GFX_focus_generic_money_for_equipment
+		x = 46
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_chi_warlord_question }
+		mutually_exclusive = { focus = krcw_chi_break_strongmen }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_warlord_buyout
+			unlock_decision_category_tooltip = krcw_chi_warlord_category
+			set_country_flag = krcw_chi_warlord_buyout_path
+		}
+	}
+	focus = {
+		id = krcw_chi_break_strongmen
+		icon = GFX_focus_generic_crush_the_military
+		x = 50
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_chi_warlord_question }
+		mutually_exclusive = { focus = krcw_chi_buy_out_strongmen }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_warlord_crackdown
+			unlock_decision_category_tooltip = krcw_chi_warlord_category
+			set_country_flag = krcw_chi_warlord_force_path
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = krcw_chi_reorganize_provincial_armies
+		icon = GFX_focus_PRC_reorganize_divisions
+		x = 48
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_chi_buy_out_strongmen focus = krcw_chi_break_strongmen }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_manpower = 30000
+			add_political_power = 50
+			army_experience = 15
+			# reward_fill.py
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 2000 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 200 }
+			add_tech_bonus = { name = krcw_chi_reorganize_provincial_armies bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_chi_unified_command
+		icon = GFX_focus_CHI_military_affairs_commission
+		x = 48
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_chi_reorganize_provincial_armies }
+		available = {
+			has_country_flag = krcw_chi_warlords_integrated
+		}
+		bypass = {
+			NOT = { has_idea = krcw_chi_warlord_remnants }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			remove_ideas = krcw_chi_warlord_remnants
+			if = { limit = { has_idea = krcw_chi_warlord_buyout } remove_ideas = krcw_chi_warlord_buyout }
+			if = { limit = { has_idea = krcw_chi_warlord_crackdown } remove_ideas = krcw_chi_warlord_crackdown }
+			add_ideas = krcw_chi_unified_command_sp
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = krcw_chi_army_reform
+		icon = GFX_focus_chi_army_reform
+		x = 54
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_chi_sixth_congress }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			army_experience = 25
+			add_tech_bonus = { name = krcw_chi_army_reform bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_chi_whampoa_reborn
+		icon = GFX_focus_chi_whampoa_military_academy
+		x = 52
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_chi_army_reform }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 20
+			add_political_power = 25
+			add_tech_bonus = { name = krcw_chi_whampoa bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_chi_commune_military_mission
+		icon = GFX_focus_chi_reach_out_to_france
+		x = 56
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_chi_army_reform }
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_french_advisors
+			FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_trade_partner } }
+		}
+	}
+	focus = {
+		id = krcw_chi_arsenals
+		icon = GFX_goal_generic_small_arms
+		x = 52
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_chi_whampoa_reborn }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_chi_arsenals bonus = 0.5 uses = 2 category = infantry_weapons }
+			add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 5000 producer = CHI }
+		}
+	}
+	focus = {
+		id = krcw_chi_mechanized_corps
+		icon = GFX_focus_generic_army_tanks2
+		x = 56
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_chi_commune_military_mission }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_chi_mechanized bonus = 0.5 uses = 2 category = armor }
+			add_tech_bonus = { name = krcw_chi_motorized bonus = 0.5 uses = 1 category = motorized_equipment }
+		}
+	}
+	focus = {
+		id = krcw_chi_republican_air_force
+		icon = GFX_focus_PRC_establish_pla_air_force
+		x = 58
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_mechanized_corps }
+		search_filters = { FOCUS_FILTER_AIR_XP FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_chi_air bonus = 0.5 uses = 2 category = fighter_multirole }
+			600 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 2 instant_build = yes }
+			} }
+			air_experience = 25
+		}
+	}
+	focus = {
+		id = krcw_chi_modern_nra
+		icon = GFX_focus_PRC_a_modern_army
+		x = 54
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_chi_arsenals }
+		prerequisite = { focus = krcw_chi_mechanized_corps }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			swap_ideas = { remove_idea = krcw_chi_nra_veterans add_idea = krcw_chi_modern_nra_sp }
+			army_experience = 25
+		}
+	}
+	focus = {
+		id = krcw_chi_republican_navy
+		icon = GFX_focus_CHI_Republic_of_china_navy
+		x = 62
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_chi_sixth_congress }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_republican_navy_sp
+			navy_experience = 25
+		}
+	}
+	focus = {
+		id = krcw_chi_jiangnan_yard
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 60
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_chi_republican_navy }
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			613 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = dockyard level = 2 instant_build = yes }
+			} }
+			595 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			} }
+			1571 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_chi_strait_patrols
+		icon = GFX_goal_generic_navy_submarine
+		x = 64
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_chi_republican_navy }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_strait_tension
+			add_tech_bonus = { name = krcw_chi_subs bonus = 0.5 uses = 1 category = naval_equipment }
+			krcw_tension_up_small = yes
+			set_country_flag = krcw_chi_strait_patrols
+		}
+	}
+	focus = {
+		id = krcw_chi_blue_water
+		icon = GFX_goal_generic_navy_cruiser
+		x = 60
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_chi_jiangnan_yard }
+		search_filters = { FOCUS_FILTER_NAVY_XP FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_chi_blue_water bonus = 0.5 uses = 2 category = naval_equipment }
+			navy_experience = 25
+		}
+	}
+	focus = {
+		id = krcw_chi_taiwan_self_determination
+		icon = GFX_focus_CHI_ally_taiwanese_peoples_party
+		x = 62
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_strait_patrols }
+		prerequisite = { focus = krcw_chi_blue_water }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			if = { limit = { NOT = { has_variable = krcw_chi_taiwan_support } } set_variable = { krcw_chi_taiwan_support = 0 } }
+			add_to_variable = { krcw_chi_taiwan_support = 15 }
+			clamp_variable = { var = krcw_chi_taiwan_support min = 0 max = 100 }
+			custom_effect_tooltip = krcw_chi_taiwan_support_15_tt
+			set_country_flag = krcw_chi_taiwan_underground
+			add_political_power = -25
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_chi_prepare_liberation
+		icon = GFX_focus_generic_invade_taiwan
+		x = 66
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_strait_patrols }
+		prerequisite = { focus = krcw_chi_blue_water }
+		search_filters = { FOCUS_FILTER_NAVY_XP FOCUS_FILTER_WAR_SUPPORT }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_chi_marines bonus = 0.5 uses = 2 category = marine_tech }
+			set_country_flag = krcw_chi_taiwan_war_prep
+			krcw_tension_up_medium = yes
+			if = { limit = { country_exists = JAP } JAP = { country_event = { id = krcw_chi.62 days = 3 } } }
+		}
+	}
+	focus = {
+		id = krcw_chi_operation_penghu
+		icon = GFX_goal_generic_amphibious_assault
+		x = 66
+		y = 9
+		cost = 5
+		prerequisite = { focus = krcw_chi_assemble_at_xiamen }
+		prerequisite = { focus = krcw_chi_strait_intelligence }
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			set_country_flag = krcw_ww_taiwan_ready
+			add_ideas = krcw_chi_penghu_plan
+			add_war_support = 0.05
+			krcw_tension_up_medium = yes
+			custom_effect_tooltip = krcw_chi_taiwan_ready_tt
+		}
+	}
+	focus = {
+		id = krcw_chi_paris_delegation
+		icon = GFX_focus_chi_reach_out_to_france
+		x = 70
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_chi_sixth_congress }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INTERNATIONAL_TRADE }
+		ai_will_do = {
+			factor = 25
+		}
+		completion_reward = {
+			country_event = { id = krcw_chi.50 days = 7 }
+		}
+	}
+	focus = {
+		id = krcw_chi_asian_bureau
+		icon = GFX_focus_JAP_a_red_dawn_over_asia
+		x = 70
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_chi_paris_delegation }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 75
+			set_country_flag = krcw_chi_asian_bureau
+			every_country = { limit = { is_subject_of = ROOT NOT = { tag = TIB } } add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+		}
+	}
+	focus = {
+		id = krcw_chi_scientific_exchange
+		icon = GFX_goal_generic_scientific_exchange
+		x = 72
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_chi_asian_bureau }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_chi_sci bonus = 0.5 uses = 2 category = electronics }
+			add_tech_bonus = { name = krcw_chi_sci2 bonus = 0.5 uses = 1 category = industry }
+		}
+	}
+	focus = {
+		id = krcw_chi_asian_detente
+		icon = GFX_focus_generic_secret_service_agency
+		x = 72
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_scientific_exchange }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_asian_intelligence
+			add_to_variable = { global.krcw_ti_crisis = -4 }
+			clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_chi_ti_crisis_down4_tt
+			every_country = { limit = { is_subject_of = ROOT NOT = { tag = TIB } } add_stability = 0.02 }
+		}
+	}
+	focus = {
+		id = krcw_chi_brother_republics
+		icon = GFX_goal_generic_major_alliance
+		x = 76
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_chi_sixth_congress }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_political_power = 50
+			country_event = { id = krcw_chi.70 days = 3 }
+		}
+	}
+	focus = {
+		id = krcw_chi_korean_alliance
+		icon = GFX_goal_KOR_deal
+		x = 74
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_chi_brother_republics }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			KOR = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } country_event = { id = krcw_chi.80 days = 2 } }
+			add_war_support = 0.03
+		}
+	}
+	focus = {
+		id = krcw_chi_equal_treaties
+		icon = GFX_goal_generic_improve_relations
+		x = 76
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_chi_korean_alliance }
+		mutually_exclusive = { focus = krcw_chi_guided_republics }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			every_country = { limit = { is_subject_of = ROOT NOT = { tag = TIB } } add_autonomy_ratio = { value = 0.15 localization = krcw_chi_equal_treaties } add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } add_stability = 0.03 }
+			set_country_flag = krcw_chi_equal_treaties_path
+		}
+	}
+	focus = {
+		id = krcw_chi_guided_republics
+		icon = GFX_goal_generic_military_sphere
+		x = 80
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_chi_korean_alliance }
+		mutually_exclusive = { focus = krcw_chi_equal_treaties }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			every_country = { limit = { is_subject_of = ROOT NOT = { tag = TIB } } add_autonomy_ratio = { value = -0.15 localization = krcw_chi_guided_republics } }
+			add_political_power = 100
+			set_country_flag = krcw_chi_guided_path
+			VIN = { country_event = { id = krcw_chi.90 days = 5 } }
+		}
+	}
+	focus = {
+		id = krcw_chi_asian_development_fund
+		icon = GFX_focus_generic_industry_investment
+		x = 78
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_equal_treaties focus = krcw_chi_guided_republics }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = -50
+			every_country = { limit = { is_subject_of = ROOT NOT = { tag = TIB } } random_owned_controlled_state = { limit = { is_core_of = PREV } add_building_construction = { type = infrastructure level = 1 instant_build = yes } } add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+		}
+	}
+	focus = {
+		id = krcw_chi_tibet_policy
+		icon = GFX_focus_PRC_reclaim_tibet
+		x = 84
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_chi_sixth_congress }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_political_power = 25
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_frontier_affairs_office
+		}
+	}
+	focus = {
+		id = krcw_chi_honor_lhasa
+		icon = GFX_focus_chi_one_china_policy
+		x = 82
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_chi_tibet_policy }
+		mutually_exclusive = { focus = krcw_chi_reform_tibet }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_lhasa_guarantee
+			TIB = { if = { limit = { NOT = { has_variable = krcw_revolt_progress } } set_variable = { krcw_revolt_progress = 0 } } subtract_from_variable = { krcw_revolt_progress = 10 } clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 } }
+			custom_effect_tooltip = krcw_chi_revolt_down_tt
+		}
+	}
+	focus = {
+		id = krcw_chi_reform_tibet
+		icon = GFX_focus_PRC_autonomous_regions
+		x = 86
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_chi_tibet_policy }
+		mutually_exclusive = { focus = krcw_chi_honor_lhasa }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_tibet_reform_drive
+			TIB = { if = { limit = { NOT = { has_variable = krcw_revolt_progress } } set_variable = { krcw_revolt_progress = 0 } } add_to_variable = { krcw_revolt_progress = 20 } clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 } }
+			custom_effect_tooltip = krcw_chi_revolt_up_tt
+		}
+	}
+	focus = {
+		id = krcw_chi_himalayan_defense
+		icon = GFX_focus_generic_mountain_fortification
+		x = 84
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_chi_honor_lhasa focus = krcw_chi_reform_tibet }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_himalayan_defense_sp
+			1927 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1994 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_chi_mountain bonus = 0.25 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_chi_tibet_settlement
+		icon = GFX_focus_generic_treaty
+		x = 84
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_chi_himalayan_defense }
+		available = {
+			OR = { has_global_flag = KRCW_tibet_revolt_over date > 1953.4.26 }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_chi_tibet_reform_drive } remove_ideas = krcw_chi_tibet_reform_drive }
+			add_stability = 0.05
+			add_political_power = 25
+			if = { limit = { TIB = { is_subject_of = ROOT } } TIB = { set_variable = { krcw_revolt_progress = 0 } } }
+		}
+	}
+	focus = {
+		id = krcw_chi_reach_the_county
+		icon = GFX_focus_generic_self_management
+		x = 4
+		y = 6
+		cost = 8
+		prerequisite = { focus = krcw_chi_mass_literacy }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_county_cadres
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = krcw_chi_the_cadre_schools
+		icon = GFX_focus_research
+		x = 0
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_chi_reach_the_county }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_tech_bonus = { name = krcw_chi_cadres bonus = 0.5 uses = 1 category = industry }
+		}
+	}
+	focus = {
+		id = krcw_chi_break_the_clans
+		icon = GFX_focus_generic_court
+		x = 4
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_chi_reach_the_county }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 25
+			add_war_support = -0.02
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_baojia_militia
+		}
+	}
+	focus = {
+		id = krcw_chi_the_land_registry
+		icon = GFX_focus_generic_agricultural_subsidies
+		x = 0
+		y = 8
+		cost = 8
+		prerequisite = { focus = krcw_chi_the_cadre_schools focus = krcw_chi_break_the_clans }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+			add_ideas = krcw_chi_the_iron_rice_bowl
+		}
+	}
+	focus = {
+		id = krcw_chi_the_frontier_statutes
+		icon = GFX_focus_generic_little_entente
+		x = 6
+		y = 9
+		cost = 8
+		prerequisite = { focus = krcw_chi_the_land_registry }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_frontier_autonomy
+			add_stability = 0.04
+			country_event = { id = krcw_chi.300 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_third_programme
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 14
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_chi_second_programme }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			595 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			600 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_chi_manchurian_heavy_industry
+		icon = GFX_focus_generic_steel
+		x = 10
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_third_programme }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			715 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			} }
+			328 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_chi_steel bonus = 0.5 uses = 1 category = industry }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_inland_railways
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 16
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_third_programme }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			601 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			606 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			620 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_consumer_turn
+		icon = GFX_focus_generic_agricultural_subsidies
+		x = 12
+		y = 9
+		cost = 5
+		prerequisite = { focus = krcw_chi_manchurian_heavy_industry focus = krcw_chi_the_inland_railways }
+		bypass = {
+			has_country_flag = krcw_chi_plan_consumer
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.06
+			add_war_support = -0.03
+			597 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_coordinated_plan
+		icon = GFX_goal_generic_scientific_exchange
+		x = 18
+		y = 10
+		cost = 8
+		prerequisite = { focus = krcw_chi_the_consumer_turn }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_tech_bonus = { name = krcw_chi_planning bonus = 0.5 uses = 2 category = industry }
+			country_event = { id = krcw_chi.302 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_question_of_after
+		icon = GFX_focus_generic_the_giant_wakes
+		x = 40
+		y = 6
+		cost = 8
+		prerequisite = { focus = krcw_chi_county_councils focus = krcw_chi_emergency_powers }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = { id = krcw_chi.304 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_party_school
+		icon = GFX_focus_generic_public_meetings
+		x = 38
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_question_of_after }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.03
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_party_school
+		}
+	}
+	focus = {
+		id = krcw_chi_separate_party_and_state
+		icon = GFX_focus_generic_universal_suffrage
+		x = 42
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_question_of_after }
+		mutually_exclusive = { focus = krcw_chi_the_committee_endures }
+		available = {
+			NOT = { has_country_flag = krcw_chi_succession_dauphin }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+			modifier = { factor = 0 krcw_route_historical = yes }
+			modifier = { factor = 3 has_country_flag = krcw_chi_succession_institutional }
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_the_nanjing_spring
+			add_political_power = -50
+			add_stability = 0.05
+			set_country_flag = krcw_chi_spring_road
+		}
+	}
+	focus = {
+		id = krcw_chi_the_committee_endures
+		icon = GFX_focus_generic_military_dictatorship
+		x = 46
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_question_of_after }
+		mutually_exclusive = { focus = krcw_chi_separate_party_and_state }
+		available = {
+			NOT = { has_country_flag = krcw_chi_succession_institutional }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 14
+			modifier = { factor = 3 has_country_flag = krcw_chi_succession_dauphin }
+		}
+		completion_reward = {
+			add_political_power = 100
+			add_war_support = 0.04
+			add_stability = -0.02
+			set_country_flag = krcw_chi_committee_road
+			# reward_fill.py
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 1500 }
+			add_tech_bonus = { name = krcw_chi_the_committee_endures bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_new_generation
+		icon = GFX_focus_generic_vote
+		x = 40
+		y = 9
+		cost = 8
+		prerequisite = { focus = krcw_chi_separate_party_and_state focus = krcw_chi_the_committee_endures }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.05
+			country_event = { id = krcw_chi.306 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_asian_bureau
+		icon = GFX_goal_generic_major_alliance
+		x = 74
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_chi_asian_development_fund }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.02
+			set_country_flag = krcw_chi_asian_bureau
+			# reward_fill.py
+			if = { limit = { country_exists = KOR } KOR = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			if = { limit = { country_exists = VIN } VIN = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			if = { limit = { country_exists = CAM } CAM = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } } if = { limit = { country_exists = LOS } LOS = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } } if = { limit = { country_exists = BRM } BRM = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			add_to_variable = { global.krcw_ti_crisis = -2 } clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_rice_and_rail_compact
+		icon = GFX_goal_generic_positive_trade_relations
+		x = 70
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_asian_bureau }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			613 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			614 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_chi_asian_trade bonus = 0.5 uses = 1 category = industry }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_bandung_road
+		icon = GFX_focus_generic_conference
+		x = 86
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_asian_bureau }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			country_event = { id = krcw_chi.308 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_asian_internationale
+		icon = GFX_focus_generic_red_flags
+		x = 74
+		y = 9
+		cost = 8
+		prerequisite = { focus = krcw_chi_the_rice_and_rail_compact focus = krcw_chi_the_bandung_road }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_stability = 0.03
+			country_event = { id = krcw_chi.310 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_education_question
+		icon = GFX_focus_research
+		x = 2
+		y = 10
+		cost = 8
+		prerequisite = { focus = krcw_chi_mass_literacy }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_the_unfinished_reform
+			add_political_power = 25
+			country_event = { id = krcw_chi.320 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_chi_a_school_in_every_township
+		icon = GFX_focus_generic_self_management
+		x = 0
+		y = 11
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_education_question }
+		mutually_exclusive = { focus = krcw_chi_the_key_universities }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 14
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_the_village_school
+			add_stability = 0.05
+			add_manpower = 40000
+			set_country_flag = krcw_chi_breadth_road
+		}
+	}
+	focus = {
+		id = krcw_chi_the_key_universities
+		icon = GFX_focus_research
+		x = 4
+		y = 11
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_education_question }
+		mutually_exclusive = { focus = krcw_chi_a_school_in_every_township }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_the_technical_generation
+			add_research_slot = 1
+			add_political_power = 25
+			set_country_flag = krcw_chi_depth_road
+		}
+	}
+	focus = {
+		id = krcw_chi_send_them_abroad
+		icon = GFX_goal_generic_scientific_exchange
+		x = 2
+		y = 12
+		cost = 5
+		prerequisite = { focus = krcw_chi_a_school_in_every_township focus = krcw_chi_the_key_universities }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_chi_abroad bonus = 0.5 uses = 2 category = industry }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_chi_the_new_script
+		icon = GFX_focus_generic_public_meetings
+		x = 2
+		y = 13
+		cost = 5
+		prerequisite = { focus = krcw_chi_send_them_abroad }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.04
+			add_political_power = -25
+			add_manpower = 20000
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_phonetic_committee
+		}
+	}
+	focus = {
+		id = krcw_chi_the_cooperative_question
+		icon = GFX_focus_generic_agricultural_subsidies
+		x = 10
+		y = 10
+		cost = 8
+		prerequisite = { focus = krcw_chi_rural_credit }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			country_event = { id = krcw_chi.322 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_chi_marketing_cooperatives
+		icon = GFX_goal_generic_positive_trade_relations
+		x = 8
+		y = 11
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_cooperative_question }
+		mutually_exclusive = { focus = krcw_chi_production_cooperatives }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 14
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_cooperative_countryside
+			add_stability = 0.06
+			set_country_flag = krcw_chi_soft_coop
+		}
+	}
+	focus = {
+		id = krcw_chi_production_cooperatives
+		icon = GFX_focus_generic_industry_1
+		x = 12
+		y = 11
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_cooperative_question }
+		mutually_exclusive = { focus = krcw_chi_marketing_cooperatives }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 8
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_cooperative_countryside
+			595 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_stability = -0.03
+			add_political_power = 25
+			set_country_flag = krcw_chi_hard_coop
+		}
+	}
+	focus = {
+		id = krcw_chi_the_irrigation_decade
+		icon = GFX_focus_generic_hydroelectric_energy
+		x = 10
+		y = 12
+		cost = 5
+		prerequisite = { focus = krcw_chi_marketing_cooperatives focus = krcw_chi_production_cooperatives }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			600 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			606 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_stability = 0.04
+			add_manpower = 30000
+		}
+	}
+	focus = {
+		id = krcw_chi_the_rural_industries
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 10
+		y = 13
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_irrigation_decade }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			601 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			613 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_stability = 0.03
+		}
+	}
+	focus = {
+		id = krcw_chi_the_constitutional_question
+		icon = GFX_focus_generic_universal_suffrage
+		x = 78
+		y = 7
+		cost = 8
+		prerequisite = { focus = krcw_chi_county_councils focus = krcw_chi_emergency_powers }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			country_event = { id = krcw_chi.324 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_chi_open_the_ballot
+		icon = GFX_focus_generic_vote
+		x = 74
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_constitutional_question }
+		mutually_exclusive = { focus = krcw_chi_the_guided_assembly }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_the_constitutional_republic
+			add_stability = 0.05
+			add_political_power = -50
+			set_country_flag = krcw_chi_open_road
+		}
+	}
+	focus = {
+		id = krcw_chi_the_guided_assembly
+		icon = GFX_focus_generic_public_meetings
+		x = 82
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_constitutional_question }
+		mutually_exclusive = { focus = krcw_chi_open_the_ballot }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 14
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_stability = 0.03
+			set_country_flag = krcw_chi_guided_road
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_candidate_review
+		}
+	}
+	focus = {
+		id = krcw_chi_the_rule_of_law
+		icon = GFX_focus_generic_court
+		x = 78
+		y = 9
+		cost = 8
+		prerequisite = { focus = krcw_chi_open_the_ballot focus = krcw_chi_the_guided_assembly }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_chi_the_unfinished_reform } remove_ideas = krcw_chi_the_unfinished_reform }
+			add_stability = 0.06
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_chi_the_nanjing_settlement
+		icon = GFX_focus_generic_treaty
+		x = 78
+		y = 10
+		cost = 8
+		prerequisite = { focus = krcw_chi_the_rule_of_law }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.06
+			add_political_power = 75
+			country_event = { id = krcw_chi.326 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_factions_in_the_cec
+		icon = GFX_focus_generic_public_meetings
+		x = 36
+		y = 11
+		cost = 5
+		prerequisite = { focus = krcw_chi_line_struggle }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { NOT = { has_variable = krcw_chi_f_revcom } } set_variable = { krcw_chi_f_revcom = 40 } }
+			if = { limit = { NOT = { has_variable = krcw_chi_f_moderate } } set_variable = { krcw_chi_f_moderate = 30 } }
+			if = { limit = { NOT = { has_variable = krcw_chi_f_left } } set_variable = { krcw_chi_f_left = 20 } }
+			if = { limit = { NOT = { has_variable = krcw_chi_f_whampoa } } set_variable = { krcw_chi_f_whampoa = 25 } }
+			if = { limit = { NOT = { has_variable = krcw_chi_f_csp } } set_variable = { krcw_chi_f_csp = 20 } }
+			if = { limit = { has_country_flag = krcw_chi_leans_revcom } add_to_variable = { krcw_chi_f_revcom = 5 } add_to_variable = { krcw_chi_f_moderate = -3 } }
+			if = { limit = { has_country_flag = krcw_chi_leans_moderate } add_to_variable = { krcw_chi_f_moderate = 5 } add_to_variable = { krcw_chi_f_revcom = -3 } }
+			if = { limit = { has_country_flag = krcw_chi_gu_in_cabinet } add_to_variable = { krcw_chi_f_moderate = 5 } }
+			if = { limit = { has_country_flag = krcw_chi_moderates_purged } add_to_variable = { krcw_chi_f_moderate = -15 } add_to_variable = { krcw_chi_f_revcom = 5 } }
+			if = { limit = { has_country_flag = krcw_chi_radical_land_law } add_to_variable = { krcw_chi_f_left = 5 } add_to_variable = { krcw_chi_f_revcom = 3 } }
+			if = { limit = { has_country_flag = krcw_chi_moderate_land_law } add_to_variable = { krcw_chi_f_moderate = 5 } }
+			if = { limit = { has_country_flag = krcw_chi_peasant_militia } add_to_variable = { krcw_chi_f_csp = 5 } add_to_variable = { krcw_chi_f_left = 3 } add_to_variable = { krcw_chi_f_whampoa = -3 } }
+			if = { limit = { has_country_flag = krcw_chi_land_slowed } add_to_variable = { krcw_chi_f_moderate = 3 } add_to_variable = { krcw_chi_f_left = -3 } }
+			add_ideas = krcw_chi_the_united_front
+			set_country_flag = krcw_chi_factions_open
+			custom_effect_tooltip = krcw_chi_factions_tt
+		}
+	}
+	focus = {
+		id = krcw_chi_consult_madame_sun
+		icon = GFX_focus_generic_treaty
+		x = 24
+		y = 12
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_factions_in_the_cec }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = { krcw_chi_f_left = 10 }
+			clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+			add_stability = 0.03
+			country_event = { id = krcw_chi.401 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_chi_keep_gu_mengyu
+		icon = GFX_goal_generic_positive_trade_relations
+		x = 36
+		y = 12
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_factions_in_the_cec }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = { krcw_chi_f_moderate = 10 }
+			clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+			add_to_variable = { krcw_chi_f_revcom = -5 }
+			clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+			add_stability = 0.04
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_shanghai_chambers
+		}
+	}
+	focus = {
+		id = krcw_chi_the_whampoa_question
+		icon = GFX_goal_generic_army_doctrines
+		x = 48
+		y = 12
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_factions_in_the_cec }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = { krcw_chi_f_whampoa = 5 }
+			clamp_variable = { var = krcw_chi_f_whampoa min = 0 max = 100 }
+			army_experience = 15
+			country_event = { id = krcw_chi.403 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_chi_renew_the_united_front
+		icon = GFX_focus_generic_self_management
+		x = 24
+		y = 13
+		cost = 5
+		prerequisite = { focus = krcw_chi_consult_madame_sun focus = krcw_chi_keep_gu_mengyu focus = krcw_chi_the_whampoa_question }
+		mutually_exclusive = { focus = krcw_chi_the_party_governs_alone focus = krcw_chi_open_the_government }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_to_variable = { krcw_chi_f_csp = 10 }
+			clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+			add_to_variable = { krcw_chi_f_left = 5 }
+			clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+			add_stability = 0.04
+			set_global_flag = KRCW_chi_front_renewed
+			set_party_name = { ideology = trotskyism name = krcw_chi_party_front long_name = krcw_chi_party_front_long }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_party_governs_alone
+		icon = GFX_goal_generic_political_pressure
+		x = 36
+		y = 13
+		cost = 5
+		prerequisite = { focus = krcw_chi_consult_madame_sun focus = krcw_chi_keep_gu_mengyu focus = krcw_chi_the_whampoa_question }
+		mutually_exclusive = { focus = krcw_chi_renew_the_united_front focus = krcw_chi_open_the_government }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 8
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_chi_the_united_front } remove_ideas = krcw_chi_the_united_front }
+			add_ideas = krcw_chi_the_party_alone
+			add_to_variable = { krcw_chi_f_revcom = 15 }
+			clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+			add_to_variable = { krcw_chi_f_csp = -15 }
+			clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+			country_event = { id = krcw_chi.405 days = 10 }
+			set_party_name = { ideology = trotskyism name = krcw_chi_party_revcom long_name = krcw_chi_party_revcom_long }
+		}
+	}
+	focus = {
+		id = krcw_chi_open_the_government
+		icon = GFX_focus_generic_universal_suffrage
+		x = 48
+		y = 13
+		cost = 5
+		prerequisite = { focus = krcw_chi_consult_madame_sun focus = krcw_chi_keep_gu_mengyu focus = krcw_chi_the_whampoa_question }
+		mutually_exclusive = { focus = krcw_chi_renew_the_united_front focus = krcw_chi_the_party_governs_alone }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_chi_the_united_front } remove_ideas = krcw_chi_the_united_front }
+			add_ideas = krcw_chi_coalition_government
+			add_to_variable = { krcw_chi_f_moderate = 10 }
+			clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+			add_to_variable = { krcw_chi_f_revcom = -10 }
+			clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+			add_stability = 0.05
+			set_global_flag = KRCW_chi_coalition
+			set_party_name = { ideology = Social_Democratic name = krcw_chi_party_coalition long_name = krcw_chi_party_coalition_long }
+			add_popularity = { ideology = Social_Democratic popularity = 0.25 }
+			set_politics = { ruling_party = Social_Democratic elections_allowed = no }
+			if = { limit = { NOT = { has_character = CHI_krcw_li_jishen } } recruit_character = CHI_krcw_li_jishen }
+			promote_character = CHI_krcw_li_jishen
+		}
+	}
+	focus = {
+		id = krcw_chi_the_seventh_congress
+		icon = GFX_focus_generic_conference
+		x = 36
+		y = 16
+		cost = 8
+		prerequisite = { focus = krcw_chi_factory_committees_law focus = krcw_chi_the_tutelage_extended focus = krcw_chi_open_the_national_assembly }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			custom_effect_tooltip = krcw_chi_factions_tt
+			country_event = { id = krcw_chi.407 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_chi_li_lisan_joins_the_cabinet
+		icon = GFX_focus_generic_workers
+		x = 24
+		y = 14
+		cost = 5
+		prerequisite = { focus = krcw_chi_renew_the_united_front }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = { krcw_chi_f_csp = 10 }
+			clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+			add_stability = 0.04
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_trade_union_law
+		}
+	}
+	focus = {
+		id = krcw_chi_factory_committees_law
+		icon = GFX_focus_generic_self_management
+		x = 24
+		y = 15
+		cost = 5
+		prerequisite = { focus = krcw_chi_li_lisan_joins_the_cabinet }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			598 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_chi_party_cells_in_the_unions
+		icon = GFX_goal_generic_political_pressure
+		x = 36
+		y = 14
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_party_governs_alone }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = { krcw_chi_f_revcom = 10 }
+			clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+			add_to_variable = { krcw_chi_f_csp = -10 }
+			clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+			add_political_power = 50
+			add_stability = -0.03
+			# reward_fill.py
+			random_owned_controlled_state = { limit = { is_core_of = ROOT free_building_slots = { building = arms_factory size > 0 include_locked = yes } } add_building_construction = { type = arms_factory level = 1 instant_build = yes } }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_tutelage_extended
+		icon = GFX_focus_generic_military_dictatorship
+		x = 36
+		y = 15
+		cost = 5
+		prerequisite = { focus = krcw_chi_party_cells_in_the_unions }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_war_support = 0.04
+			add_to_variable = { krcw_chi_f_moderate = -8 }
+			clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_tutelage_decree
+		}
+	}
+	focus = {
+		id = krcw_chi_league_ministers
+		icon = GFX_focus_generic_universal_suffrage
+		x = 48
+		y = 14
+		cost = 5
+		prerequisite = { focus = krcw_chi_open_the_government }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = { krcw_chi_f_moderate = 8 }
+			clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+			add_stability = 0.04
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_rural_reconstruction_ministry
+		}
+	}
+	focus = {
+		id = krcw_chi_open_the_national_assembly
+		icon = GFX_focus_generic_vote
+		x = 48
+		y = 15
+		cost = 5
+		prerequisite = { focus = krcw_chi_league_ministers }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.06
+			add_political_power = -25
+			add_to_variable = { krcw_chi_f_revcom = -5 }
+			clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_non_party_seats
+		}
+	}
+	focus = {
+		id = krcw_chi_restore_fushun_collieries
+		icon = GFX_focus_PRC_Coal
+		x = 8
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_anshan_steel }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			716 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			716 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_chi_expand_benxi_steel
+		icon = GFX_focus_generic_steel
+		x = 8
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_chi_restore_fushun_collieries }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			716 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+			if = { limit = { 716 = { is_owned_by = ROOT } } add_resource = { type = steel amount = 4 state = 716 } }
+		}
+	}
+	focus = {
+		id = krcw_chi_baotou_steel_base
+		icon = GFX_focus_BRA_national_steel_company
+		x = 8
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_chi_expand_benxi_steel }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			621 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			621 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			if = { limit = { 621 = { is_owned_by = ROOT } } add_resource = { type = steel amount = 6 state = 621 } }
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_chi_wuhan_iron_and_steel
+		icon = GFX_focus_IRQ_found_the_state_company_for_iron_and_steel
+		x = 12
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_chi_wuhan_base }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1792 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			if = { limit = { 620 = { is_owned_by = ROOT } } add_resource = { type = steel amount = 4 state = 620 } }
+		}
+	}
+	focus = {
+		id = krcw_chi_chengdu_chongqing_railway
+		icon = GFX_focus_generic_railroad
+		x = 26
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_trunk_railways }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1978 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			601 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_chi_baoji_chengdu_railway
+		icon = GFX_focus_SIA_steel_arteries
+		x = 26
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_chi_chengdu_chongqing_railway }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			622 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1786 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			622 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_chi_lanzhou_xinjiang_railway
+		icon = GFX_focus_NOR_build_the_northern_rail
+		x = 26
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_chi_baoji_chengdu_railway }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			283 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1865 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			617 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_chi_lanzhou_refinery
+		icon = GFX_goal_generic_oil_refinery
+		x = 26
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_chi_lanzhou_xinjiang_railway }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			283 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = synthetic_refinery level = 1 instant_build = yes }
+			} }
+			if = { limit = { 283 = { is_owned_by = ROOT } } add_resource = { type = oil amount = 4 state = 283 } }
+		}
+	}
+	focus = {
+		id = krcw_chi_repair_fengman_dam
+		icon = GFX_focus_generic_hydroelectric_energy
+		x = 20
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_chi_yangtze_power }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1325 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			328 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_chi_sanmenxia_dam
+		icon = GFX_focus_PRC_construct_the_banqiao_dam
+		x = 22
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_chi_repair_fengman_dam }
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.04
+			add_political_power = -50
+			607 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			615 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_chi_state_planning_commission
+		icon = GFX_focus_CHI_planned_economy
+		x = 30
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_chi_first_programme }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_plan_commission
+			add_to_variable = { krcw_chi_f_revcom = 3 }
+			clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+			country_event = { id = krcw_chi2.20 days = 20 }
+		}
+	}
+	focus = {
+		id = krcw_chi_commission_sets_quotas
+		icon = GFX_focus_generic_central_planning
+		x = 28
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_state_planning_commission }
+		mutually_exclusive = { focus = krcw_chi_negotiate_quotas }
+		available = {
+			NOT = { has_country_flag = krcw_chi_plan_paris_terms }
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 2 has_country_flag = krcw_chi_plan_squeezed }
+		}
+		completion_reward = {
+			swap_ideas = { remove_idea = krcw_chi_plan_commission add_idea = krcw_chi_plan_quotas }
+			add_to_variable = { krcw_chi_f_revcom = 5 }
+			clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+			add_to_variable = { krcw_chi_f_csp = -5 }
+			clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+			add_political_power = 25
+			set_country_flag = krcw_chi_plan_quotas_set
+			if = { limit = { has_country_flag = krcw_chi_plan_stage1 } country_event = { id = krcw_chi2.25 days = 30 } }
+		}
+	}
+	focus = {
+		id = krcw_chi_negotiate_quotas
+		icon = GFX_focus_generic_self_management
+		x = 32
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_chi_state_planning_commission }
+		mutually_exclusive = { focus = krcw_chi_commission_sets_quotas }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 20
+			modifier = { factor = 2 has_country_flag = krcw_chi_plan_lowered }
+			modifier = { factor = 3 has_country_flag = krcw_chi_plan_paris_terms }
+		}
+		completion_reward = {
+			swap_ideas = { remove_idea = krcw_chi_plan_commission add_idea = krcw_chi_plan_federations }
+			add_to_variable = { krcw_chi_f_csp = 5 }
+			clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+			add_to_variable = { krcw_chi_f_moderate = 3 }
+			clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+			set_country_flag = krcw_chi_plan_quotas_set
+			if = { limit = { has_country_flag = krcw_chi_plan_stage1 } country_event = { id = krcw_chi2.25 days = 30 } }
+		}
+	}
+	focus = {
+		id = krcw_chi_technical_schools
+		icon = GFX_focus_IRQ_baghdad_colleges_of_engineering_and_education
+		x = 30
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_chi_commission_sets_quotas focus = krcw_chi_negotiate_quotas }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_chi_tech_schools bonus = 0.5 uses = 1 category = industry }
+			add_tech_bonus = { name = krcw_chi_tech_schools_prod bonus = 0.5 uses = 1 category = production }
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_chi_engineers_to_france
+		icon = GFX_goal_generic_scientific_exchange
+		x = 30
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_chi_technical_schools }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_chi_engineers_france bonus = 0.5 uses = 2 category = industry }
+			FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_trade_partner } }
+		}
+	}
+	focus = {
+		id = krcw_chi_jilin_chemical_complex
+		icon = GFX_focus_SIA_chemical_imports
+		x = 16
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_chi_second_programme }
+		prerequisite = { focus = krcw_chi_repair_fengman_dam }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			328 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = synthetic_refinery level = 1 instant_build = yes }
+			} }
+			328 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_chi_amphibious_command
+		icon = GFX_focus_CHI_fund_marine_corp
+		x = 66
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_chi_prepare_liberation }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_amphibious_command_sp
+			navy_experience = 20
+			army_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_chi_strait_intelligence
+		icon = GFX_focus_generic_secret_agent_operative
+		x = 62
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_chi_taiwan_self_determination }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			if = { limit = { NOT = { has_variable = krcw_chi_taiwan_support } } set_variable = { krcw_chi_taiwan_support = 0 } }
+			add_to_variable = { krcw_chi_taiwan_support = 10 }
+			clamp_variable = { var = krcw_chi_taiwan_support min = 0 max = 100 }
+			custom_effect_tooltip = krcw_chi_taiwan_support_10_tt
+			set_country_flag = krcw_chi_strait_intel
+			if = { limit = { country_exists = JAP } JAP = { add_stability = -0.02 } }
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_chi_yingtan_xiamen_railway
+		icon = GFX_focus_generic_railroad
+		x = 70
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_chi_prepare_liberation }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			600 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1576 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			595 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_chi_landing_ships
+		icon = GFX_goal_generic_amphibious_assault
+		x = 62
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_chi_amphibious_command }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			595 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_chi_landing_craft bonus = 0.5 uses = 1 category = naval_equipment }
+			add_equipment_to_stockpile = { type = convoy_1 amount = 20 producer = CHI }
+			navy_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_chi_fujian_airfields
+		icon = GFX_focus_generic_air_bases
+		x = 66
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_chi_amphibious_command }
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			595 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 3 instant_build = yes }
+			} }
+			1574 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 2 instant_build = yes }
+			} }
+			air_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_chi_mobilise_the_junks
+		icon = GFX_focus_PHI_rally_the_fisherfolk
+		x = 70
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_chi_yingtan_xiamen_railway }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = { type = convoy_1 amount = 40 producer = CHI }
+			add_manpower = 10000
+			add_war_support = 0.03
+			add_stability = -0.02
+		}
+	}
+	focus = {
+		id = krcw_chi_naval_aviation
+		icon = GFX_goal_generic_air_naval_bomber
+		x = 66
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_chi_fujian_airfields }
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_chi_naval_air bonus = 0.5 uses = 2 category = naval_bomber }
+			air_experience = 15
+			navy_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_chi_assemble_at_xiamen
+		icon = GFX_goal_generic_position_armies
+		x = 66
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_chi_landing_ships }
+		prerequisite = { focus = krcw_chi_naval_aviation }
+		prerequisite = { focus = krcw_chi_mobilise_the_junks }
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			595 = { if = { limit = { is_owned_by = ROOT } add_building_construction = { type = naval_base level = 2 province = 4196 instant_build = yes } add_building_construction = { type = naval_base level = 2 province = 7071 instant_build = yes } } }
+			1006 = { if = { limit = { is_owned_by = ROOT } add_building_construction = { type = naval_base level = 2 province = 13251 instant_build = yes } } }
+			army_experience = 20
+			add_war_support = 0.05
+			krcw_tension_up_small = yes
+			if = { limit = { country_exists = JAP } JAP = { add_war_support = 0.03 } }
+		}
+	}
+	focus = {
+		id = krcw_chi_northeast_frontier_army
+		icon = GFX_focus_FIN_the_cold_front
+		x = 54
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_chi_modern_nra }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_chi_frontier_army
+			army_experience = 20
+			add_war_support = 0.02
+		}
+	}
+	focus = {
+		id = krcw_chi_amur_depots
+		icon = GFX_focus_generic_supply_line
+		x = 50
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_chi_northeast_frontier_army }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			714 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			715 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1570 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			714 = { if = { limit = { is_owned_by = ROOT } add_building_construction = { type = bunker level = 1 province = { all_provinces = yes limit_to_border = yes } instant_build = yes } } }
+		}
+	}
+	focus = {
+		id = krcw_chi_cold_weather_training
+		icon = GFX_focus_generic_winter_warfare
+		x = 54
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_chi_northeast_frontier_army }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			swap_ideas = { remove_idea = krcw_chi_frontier_army add_idea = krcw_chi_frontier_army_2 }
+			add_tech_bonus = { name = krcw_chi_winter_doctrine bonus = 0.5 uses = 1 category = land_doctrine }
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_chi_harbin_arsenal
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 58
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_chi_northeast_frontier_army }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			714 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+			715 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+			714 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = anti_air_building level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_chi_work_in_mongolia
+		icon = GFX_focus_generic_befriend_mongolia
+		x = 50
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_chi_amur_depots }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_to_variable = { global.krcw_ma_crisis = 3 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_chi_ma_crisis_up3_tt
+			set_country_flag = krcw_chi_mongolia_network
+			add_political_power = -25
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_chi_northern_air_bases
+		icon = GFX_goal_generic_AirBases
+		x = 54
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_chi_cold_weather_training }
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			714 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 2 instant_build = yes }
+			} }
+			1570 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 2 instant_build = yes }
+			} }
+			611 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 1 instant_build = yes }
+			} }
+			air_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_chi_second_mechanised_corps
+		icon = GFX_goal_generic_army_tanks
+		x = 58
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_chi_harbin_arsenal }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_chi_second_mech bonus = 0.5 uses = 1 category = armor }
+			add_equipment_to_stockpile = { type = motorized_equipment_1 amount = 300 producer = CHI }
+			army_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_chi_the_aigun_campaign
+		icon = GFX_goal_generic_propaganda
+		x = 50
+		y = 9
+		cost = 5
+		prerequisite = { focus = krcw_chi_work_in_mongolia }
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_war_support = 0.08
+			add_stability = -0.02
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_chi_northern_operations_plan
+		icon = GFX_focus_generic_attack_mongolia
+		x = 54
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_aigun_campaign }
+		prerequisite = { focus = krcw_chi_northern_air_bases }
+		prerequisite = { focus = krcw_chi_second_mechanised_corps }
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			set_country_flag = krcw_ww_north_ready
+			add_ideas = krcw_chi_northern_plan
+			army_experience = 15
+			krcw_tension_up_medium = yes
+			custom_effect_tooltip = krcw_chi_north_ready_tt
+		}
+	}
+	focus = {
+		id = krcw_chi_asian_freedom_radio
+		icon = GFX_focus_generic_radio_communication
+		x = 74
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_chi_asian_detente }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = { global.krcw_ma_crisis = 3 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_chi_ma_crisis_up3_tt
+			add_political_power = -25
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_chi_siberian_regionalists
+		icon = GFX_focus_generic_infiltration
+		x = 74
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_chi_asian_freedom_radio }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = { global.krcw_ma_crisis = 4 }
+			clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_chi_ma_crisis_up4_tt
+			add_political_power = -50
+			krcw_tension_up_small = yes
+			if = { limit = { country_exists = SOV } SOV = { add_stability = -0.02 } }
+		}
+	}
+	focus = {
+		id = krcw_chi_deepen_land_reform
+		icon = GFX_focus_generic_workers_and_farmers_rise
+		x = 4
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_chi_rural_credit }
+		mutually_exclusive = { focus = krcw_chi_salvage_land_reform }
+		available = {
+			has_country_flag = krcw_chi_land_delivered
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 14
+			modifier = { factor = 2 has_country_flag = krcw_chi_land_delivered }
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_manpower = 30000
+			add_to_variable = { krcw_chi_f_left = 5 }
+			clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+			add_political_power = -25
+			set_country_flag = krcw_chi_land_deepened
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_rural_credit_coops
+			random_owned_controlled_state = { limit = { is_core_of = ROOT } add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+		}
+	}
+	focus = {
+		id = krcw_chi_salvage_land_reform
+		icon = GFX_focus_generic_land_redistribution
+		x = 8
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_chi_rural_credit }
+		mutually_exclusive = { focus = krcw_chi_deepen_land_reform }
+		available = {
+			has_country_flag = krcw_chi_land_stalled
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_chi_land_stalled_idea } remove_ideas = krcw_chi_land_stalled_idea add_ideas = krcw_chi_land_delivered_idea }
+			add_stability = 0.04
+			add_political_power = -50
+			add_to_variable = { krcw_chi_f_left = 3 }
+			clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+			set_country_flag = krcw_chi_land_salvaged
+		}
+	}
+	focus = {
+		id = krcw_chi_the_land_tribunals
+		icon = GFX_focus_generic_court
+		x = 6
+		y = 11
+		cost = 5
+		prerequisite = { focus = krcw_chi_deepen_land_reform focus = krcw_chi_salvage_land_reform }
+		bypass = {
+			has_country_flag = krcw_chi_land_campaign
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 25
+			if = { limit = { has_idea = krcw_chi_the_unfinished_reform } add_political_power = 25 }
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_land_tribunals
+		}
+	}
+	focus = {
+		id = krcw_chi_the_village_work_corps
+		icon = GFX_focus_research
+		x = 4
+		y = 12
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_land_tribunals }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 2 has_country_flag = krcw_chi_land_delivered }
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_tech_bonus = { name = krcw_chi_work_corps bonus = 0.5 uses = 1 category = industry }
+			country_event = { id = krcw_chi2.11 days = 15 }
+		}
+	}
+	focus = {
+		id = krcw_chi_the_grain_procurement
+		icon = GFX_focus_generic_agricultural_subsidies
+		x = 6
+		y = 13
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_village_work_corps }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.03
+			606 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			add_political_power = 25
+			country_event = { id = krcw_chi2.12 days = 20 }
+		}
+	}
+	focus = {
+		id = krcw_chi_ministry_of_heavy_industry
+		icon = GFX_focus_generic_steel_mill
+		x = 26
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_chi_engineers_to_france }
+		mutually_exclusive = { focus = krcw_chi_the_federation_councils focus = krcw_chi_light_industry_bureau }
+		available = {
+			has_country_flag = krcw_chi_plan_centralist
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			328 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			715 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+			add_to_variable = { krcw_chi_f_revcom = 3 }
+			clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+			add_stability = -0.02
+		}
+	}
+	focus = {
+		id = krcw_chi_the_federation_councils
+		icon = GFX_focus_generic_self_management
+		x = 30
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_chi_engineers_to_france }
+		mutually_exclusive = { focus = krcw_chi_ministry_of_heavy_industry focus = krcw_chi_light_industry_bureau }
+		available = {
+			has_country_flag = krcw_chi_plan_devolved
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			1792 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_to_variable = { krcw_chi_f_csp = 5 }
+			clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+			add_stability = 0.03
+		}
+	}
+	focus = {
+		id = krcw_chi_light_industry_bureau
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 34
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_chi_engineers_to_france }
+		mutually_exclusive = { focus = krcw_chi_ministry_of_heavy_industry focus = krcw_chi_the_federation_councils }
+		available = {
+			has_country_flag = krcw_chi_plan_consumer
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			598 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_stability = 0.04
+			add_to_variable = { krcw_chi_f_moderate = 3 }
+			clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+		}
+	}
+	focus = {
+		id = krcw_chi_close_the_first_programme
+		icon = GFX_focus_CHI_planned_economy
+		x = 30
+		y = 9
+		cost = 5
+		prerequisite = { focus = krcw_chi_ministry_of_heavy_industry focus = krcw_chi_the_federation_councils focus = krcw_chi_light_industry_bureau }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			country_event = { id = krcw_chi2.29 days = 10 }
+		}
+	}
+	focus = {
+		id = krcw_chi_rotating_standing_committee
+		icon = GFX_focus_generic_public_meetings
+		x = 38
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_new_generation }
+		mutually_exclusive = { focus = krcw_chi_groom_the_successor focus = krcw_chi_prepare_the_congress_election }
+		available = {
+			has_country_flag = krcw_chi_succession_institutional
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = -25
+			add_to_variable = { krcw_chi_f_moderate = 3 }
+			clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+			add_to_variable = { krcw_chi_f_left = 3 }
+			clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_rotating_chair
+		}
+	}
+	focus = {
+		id = krcw_chi_groom_the_successor
+		icon = GFX_focus_chi_examination_yuan
+		x = 42
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_new_generation }
+		mutually_exclusive = { focus = krcw_chi_rotating_standing_committee focus = krcw_chi_prepare_the_congress_election }
+		available = {
+			has_country_flag = krcw_chi_succession_dauphin
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_stability = 0.02
+			army_experience = 10
+			# reward_fill.py
+			add_tech_bonus = { name = krcw_chi_groom_the_successor bonus = 0.5 uses = 1 category = industry }
+			add_tech_bonus = { name = krcw_chi_groom_the_successor bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_chi_prepare_the_congress_election
+		icon = GFX_focus_generic_vote
+		x = 46
+		y = 10
+		cost = 5
+		prerequisite = { focus = krcw_chi_the_new_generation }
+		mutually_exclusive = { focus = krcw_chi_rotating_standing_committee focus = krcw_chi_groom_the_successor }
+		available = {
+			has_country_flag = krcw_chi_succession_congress
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.03
+			custom_effect_tooltip = krcw_chi_factions_tt
+			# reward_fill.py
+			add_ideas = krcw_fill_chi_seventh_congress_office
+		}
+	}
+	focus = {
+		id = krcw_chi_the_succession_settled
+		icon = GFX_focus_generic_treaty
+		x = 42
+		y = 11
+		cost = 5
+		prerequisite = { focus = krcw_chi_rotating_standing_committee focus = krcw_chi_groom_the_successor focus = krcw_chi_prepare_the_congress_election }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			country_event = { id = krcw_chi2.49 days = 10 }
+		}
+	}
+}

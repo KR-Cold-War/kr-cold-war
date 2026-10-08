@@ -1,0 +1,569 @@
+# KRCW (build/patch_residue.py): 25 OTL events dropped while KRCW_active
+add_namespace = Samoan_Proposal
+add_namespace = KOR_Bad_End
+add_namespace = KOR_Bad_End_World
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Samoan_Proposal.1
+ immediate = { }	
+	title = Samoan_Proposal.1.t2
+	desc = Samoan_Proposal.1.d
+	picture = GFX_Samoan_Proposal_1
+
+	is_triggered_only = yes
+	option = {
+        name = Samoan_Proposal.1.a2
+        KOR = {
+            country_event = Samoan_Proposal.2
+        }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Samoan_Proposal.2
+ immediate = { }	
+	title = Samoan_Proposal.2.t2
+	desc = Samoan_Proposal.2.d
+	picture = GFX_Samoan_Proposal_2
+
+	is_triggered_only = yes
+	option = {
+        name = Samoan_Proposal.2.a2
+        transfer_state = 726
+        transfer_state = 1009
+        726 = {
+            add_core_of = KOR
+        }
+        1009 = {
+            add_core_of = KOR
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Samoan_Proposal.4
+ immediate = { }	
+	title = Samoan_Proposal.4.t2
+	desc = Samoan_Proposal.4.d
+	picture = GFX_Samoan_Proposal_4
+
+	is_triggered_only = yes
+    immediate = {
+        hidden_effect = {
+            country_event = {
+                id = Samoan_Proposal.9
+                days = 10
+            }
+            news_event = {
+                id = Samoan_Proposal.10
+                days = 15
+            }
+        }
+    }
+	option = {
+        name = Samoan_Proposal.4.a2
+        KOR = {
+            add_stability = 0.1
+        }
+        news_event = Samoan_Proposal.7
+		country_event = KOR_Bad_End.1
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Samoan_Proposal.9
+ immediate = { }	
+	title = Samoan_Proposal.9.t2
+	desc = Samoan_Proposal.9.d
+	picture = GFX_Samoan_Proposal_9
+
+	is_triggered_only = yes
+	option = {
+        name = Samoan_Proposal.9.a2
+		news_event = Samoan_Proposal.10
+        1009 = {
+			add_manpower = 250000
+            set_variable = {
+                culture^1 = culture^0
+            }
+            set_variable = {
+                culture^0 = 262
+            }
+			add_to_variable = {
+				ReligionBuddhismMahayana = 2500
+			}
+			add_to_variable = {
+				ReligionChristianityProtestant = 2500
+			}
+			add_to_variable = {
+				ReligionTraditionalEastern = 15000
+			}
+			add_to_variable = {
+				ReligionConfucian = 5000
+			}
+		}
+		726 = {
+			add_manpower = 250000
+            set_variable = {
+                culture^1 = culture^0
+            }
+            set_variable = {
+                culture^0 = 262
+            }
+			add_to_variable = {
+				ReligionBuddhismMahayana = 2500
+			}
+			add_to_variable = {
+				ReligionChristianityProtestant = 2500
+			}
+			add_to_variable = {
+				ReligionTraditionalEastern = 15000
+			}
+			add_to_variable = {
+				ReligionConfucian = 5000
+			}
+		}
+		religious_drift = yes
+    }
+}
+
+
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Samoan_Proposal.10
+ immediate = { }
+	title = Samoan_Proposal.10.t2
+	desc = Samoan_Proposal.10.d
+	picture = GFX_Samoan_Proposal_10
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Samoan_Proposal.10.a2
+	}
+}
+country_event = {
+	id = KOR_Bad_End.1
+	immediate = { }
+	title = KOR_Bad_End.1.t
+	desc = "KOR_Bad_End.1.d"
+	picture = GFX_KOR_Bad_End.1
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KOR
+	}
+	option = {
+		name = KOR_Bad_End.1.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Lee Ki-poong"
+			picture = "Lee_Ki-poong.dds"
+			ideology = national_conservatism
+			traits = {
+				No_More_Hope
+			}
+		}
+		set_politics = { ruling_party = conservative elections_allowed = no }
+		news_event = KOR_Bad_End_World.1
+		clr_country_flag = kor_otl
+		set_country_flag = kor_bad_end
+	}
+}
+country_event = {
+	id = KOR_Bad_End.2
+	immediate = { }
+	title = KOR_Bad_End.2.t
+	desc = "KOR_Bad_End.2.d"
+	picture = GFX_KOR_Bad_End.2
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KOR
+		has_country_flag = kor_bad_end
+		date > 1960.4.28
+	}
+	option = {
+		name = KOR_Bad_End.2.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Shin Sung-mo"
+			picture = "Shin_Sung-mo_Bad_End.dds"
+			ideology = national_conservatism
+			traits = {
+				No_More_Hope
+			}
+		}
+		set_politics = { ruling_party = conservative elections_allowed = no }
+		news_event = KOR_Bad_End_World.2
+	}
+}
+country_event = {
+	id = KOR_Bad_End.3
+	immediate = { }
+	title = KOR_Bad_End.3.t
+	desc = "KOR_Bad_End.3.d"
+	picture = GFX_KOR_Bad_End.3
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KOR
+		has_country_flag = kor_bad_end
+		date > 1960.5.29
+	}
+	option = {
+		name = KOR_Bad_End.3.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Syngman Rhee"
+			picture = "Syngman_Rhee_Bad_End.dds"
+			ideology = national_conservatism
+			traits = {
+				No_More_Hope
+			}
+		}
+		set_politics = { ruling_party = conservative elections_allowed = no }
+		news_event = KOR_Bad_End_World.3
+	}
+}
+country_event = {
+	id = KOR_Bad_End.4
+	immediate = { }
+	title = KOR_Bad_End.4.t
+	desc = "KOR_Bad_End.4.d"
+	picture = GFX_KOR_Bad_End.4
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KOR
+		has_country_flag = kor_bad_end
+		date > 1965.7.19
+	}
+	option = {
+		name = KOR_Bad_End.4.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Chang Myon"
+			picture = "Chang_Myon_Bad_End.dds"
+			ideology = national_conservatism
+			traits = {
+				No_More_Hope
+			}
+		}
+		set_politics = { ruling_party = conservative elections_allowed = no }
+		news_event = KOR_Bad_End_World.4
+	}
+}
+country_event = {
+	id = KOR_Bad_End.5
+	immediate = { }
+	title = KOR_Bad_End.5.t
+	desc = "KOR_Bad_End.5.d"
+	picture = GFX_KOR_Bad_End.5
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KOR
+		has_country_flag = kor_bad_end
+		date > 1966.6.4
+	}
+	option = {
+		name = KOR_Bad_End.5.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Pyon Yong-tae"
+			picture = "Pyon_Yong-tae.dds"
+			ideology = national_conservatism
+			traits = {
+				No_More_Hope
+			}
+		}
+		set_politics = { ruling_party = conservative elections_allowed = no }
+		news_event = KOR_Bad_End_World.5
+	}
+}
+country_event = {
+	id = KOR_Bad_End.6
+	immediate = { }
+	title = KOR_Bad_End.6.t
+	desc = "KOR_Bad_End.6.d"
+	picture = GFX_KOR_Bad_End.6
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KOR
+		has_country_flag = kor_bad_end
+		date > 1969.3.10
+	}
+	option = {
+		name = KOR_Bad_End.6.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Lee Beom-seok"
+			picture = "Lee_Beom-seok.dds"
+			ideology = national_conservatism
+			traits = {
+				No_More_Hope
+			}
+		}
+		set_politics = { ruling_party = conservative elections_allowed = no }
+		news_event = KOR_Bad_End_World.6
+	}
+}
+country_event = {
+	id = KOR_Bad_End.7
+	immediate = { }
+	title = KOR_Bad_End.7.t
+	desc = "KOR_Bad_End.7.d"
+	picture = GFX_KOR_Bad_End.7
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KOR
+		has_country_flag = kor_bad_end
+		date > 1972.5.11
+	}
+	option = {
+		name = KOR_Bad_End.7.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Hong Jin-ki"
+			picture = "Hong_Jin-ki.dds"
+			ideology = national_conservatism
+			traits = {
+				No_More_Hope
+			}
+		}
+		set_politics = { ruling_party = conservative elections_allowed = no }
+		news_event = KOR_Bad_End_World.7
+	}
+}
+country_event = {
+	id = KOR_Bad_End.8
+	immediate = { }
+	title = KOR_Bad_End.8.t
+	desc = "KOR_Bad_End.8.d"
+	picture = GFX_KOR_Bad_End.8
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KOR
+		has_country_flag = kor_bad_end
+		date > 1986.7.13
+	}
+	option = {
+		name = KOR_Bad_End.8.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Huh Chong"
+			picture = "Huh_Chong.dds"
+			ideology = national_conservatism
+			traits = {
+				No_More_Hope
+			}
+		}
+		set_politics = { ruling_party = conservative elections_allowed = no }
+		news_event = KOR_Bad_End_World.8
+	}
+}
+country_event = {
+	id = KOR_Bad_End.9
+	immediate = { }
+	title = KOR_Bad_End.9.t
+	desc = "KOR_Bad_End.9.d"
+	picture = GFX_KOR_Bad_End.9
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KOR
+		has_country_flag = kor_bad_end
+		date > 1988.9.18
+	}
+	option = {
+		name = KOR_Bad_End.9.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Kim Chung-yul"
+			picture = "Kim_Chung-yul.dds"
+			ideology = national_conservatism
+			traits = {
+				No_More_Hope
+			}
+		}
+		set_politics = { ruling_party = conservative elections_allowed = no }
+		news_event = KOR_Bad_End_World.9
+	}
+}
+country_event = {
+	id = KOR_Bad_End.10
+	immediate = { }
+	title = KOR_Bad_End.10.t
+	desc = "KOR_Bad_End.10.d"
+	picture = GFX_KOR_Bad_End.10
+	fire_only_once = yes
+	is_triggered_only = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KOR
+		has_country_flag = kor_bad_end
+		date > 1992.9.7
+	}
+	option = {
+		name = KOR_Bad_End.10.a
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Shin Hyun-hwak"
+			picture = "Shin_Hyun-hwak.dds"
+			ideology = national_conservatism
+			traits = {
+				No_More_Hope
+			}
+		}
+		set_politics = { ruling_party = conservative elections_allowed = no }
+		news_event = KOR_Bad_End_World.10
+	}
+}
+#이승만-이기붕-신성모-이승만 종신집권-장면-변영태-이범석-홍진기-허정-김정렬-신현확
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KOR_Bad_End_World.1
+	immediate = { }
+	title = KOR_Bad_End_World.1.t
+	desc = "KOR_Bad_End_World.1.d"
+	picture = GFX_KOR_Bad_End_World.1
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = KOR_Bad_End_World.1.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KOR_Bad_End_World.2
+	immediate = { }
+	title = KOR_Bad_End_World.2.t
+	desc = "KOR_Bad_End_World.2.d"
+	picture = GFX_KOR_Bad_End_World.2
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = KOR_Bad_End_World.2.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KOR_Bad_End_World.3
+	immediate = { }
+	title = KOR_Bad_End_World.3.t
+	desc = "KOR_Bad_End_World.3.d"
+	picture = GFX_KOR_Bad_End_World.3
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = KOR_Bad_End_World.3.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KOR_Bad_End_World.4
+	immediate = { }
+	title = KOR_Bad_End_World.4.t
+	desc = "KOR_Bad_End_World.4.d"
+	picture = GFX_KOR_Bad_End_World.4
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = KOR_Bad_End_World.4.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KOR_Bad_End_World.5
+	immediate = { }
+	title = KOR_Bad_End_World.5.t
+	desc = "KOR_Bad_End_World.5.d"
+	picture = GFX_KOR_Bad_End_World.5
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = KOR_Bad_End_World.5.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KOR_Bad_End_World.6
+	immediate = { }
+	title = KOR_Bad_End_World.6.t
+	desc = "KOR_Bad_End_World.6.d"
+	picture = GFX_KOR_Bad_End_World.6
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = KOR_Bad_End_World.6.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KOR_Bad_End_World.7
+	immediate = { }
+	title = KOR_Bad_End_World.7.t
+	desc = "KOR_Bad_End_World.7.d"
+	picture = GFX_KOR_Bad_End_World.7
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = KOR_Bad_End_World.7.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KOR_Bad_End_World.8
+	immediate = { }
+	title = KOR_Bad_End_World.8.t
+	desc = "KOR_Bad_End_World.8.d"
+	picture = GFX_KOR_Bad_End_World.8
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = KOR_Bad_End_World.8.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KOR_Bad_End_World.9
+	immediate = { }
+	title = KOR_Bad_End_World.9.t
+	desc = "KOR_Bad_End_World.9.d"
+	picture = GFX_KOR_Bad_End_World.9
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = KOR_Bad_End_World.9.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = KOR_Bad_End_World.10
+	immediate = { }
+	title = KOR_Bad_End_World.10.t
+	desc = "KOR_Bad_End_World.10.d"
+	picture = GFX_KOR_Bad_End_World.10
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = KOR_Bad_End_World.10.a
+	}
+}

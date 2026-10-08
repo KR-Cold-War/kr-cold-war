@@ -1,0 +1,76 @@
+# KRCW (build/patch_residue.py): 4 OTL decision categories hidden while KRCW_active
+YUG_investment_request = {
+	icon = gre_investment_decisions
+
+	allowed = {
+	    tag = YUG
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_completed_focus = YUG_free_trade_agreements_with_eec
+	}
+	priority = {
+		base = 5
+	}		
+
+}
+
+YUG_ethnicity_opinion = {
+	icon = SOV_propaganda
+
+	allowed = {
+	    tag = YUG
+	}
+
+	scripted_gui = yug_ethnic_opinion_decision_ui
+	
+	visible_when_empty = yes
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+	    is_debug = yes
+	}
+	priority = {
+		base = 15
+	}	
+}
+
+YUG_informbiro = {
+	icon = SOV_propaganda
+
+	allowed = {
+	    tag = YUG
+	    NOT = {
+	    	has_country_flag = YUG_informbiroover
+	    }
+	}
+
+	scripted_gui = yug_informbiro_ui
+	
+	visible_when_empty = yes
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+	    NOT = {
+	    	has_country_flag = YUG_informbiroover
+	    }
+	}
+	priority = {
+		base = 10
+	}		
+}
+
+YUG_petogodisnji_plan = {
+	icon = SOV_propaganda
+
+	allowed = {
+	    tag = YUG
+	}
+	
+	visible_when_empty = yes
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+	    is_debug = yes
+	}
+	priority = {
+		base = 9
+	}		
+}
+

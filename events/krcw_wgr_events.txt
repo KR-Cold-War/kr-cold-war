@@ -1,0 +1,1093 @@
+# krcw: paced
+add_namespace = krcw_wgr
+
+country_event = {
+	id = krcw_wgr.1
+	title = krcw_wgr_1_t
+	desc = krcw_wgr_1_d
+	picture = GFX_krcw_eu_d12_wgr_elbe
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+		date > 1949.12.7
+		date < 1951.8.17
+		has_government = trotskyism
+		NOT = { has_country_flag = krcw_wgr_elbe_question }
+	}
+	mean_time_to_happen = {
+		months = 8
+	}
+	immediate = {
+		set_country_flag = krcw_wgr_elbe_question
+	}
+	option = {
+		name = krcw_wgr_1.a
+		ai_chance = {
+			factor = 90
+		}
+		add_war_support = 0.03
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_wgr_1.b
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = 0.02
+		add_war_support = -0.02
+	}
+}
+
+country_event = {
+	id = krcw_wgr.2
+	title = krcw_wgr_2_t
+	desc = krcw_wgr_2_d
+	picture = GFX_krcw_eu_d12_wgr_berlin_c
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+		date > 1950.5.10
+		date < 1952.1.18
+		has_global_flag = KRCW_berlin_crisis_over
+		NOT = { has_country_flag = krcw_wgr_westberlin_question }
+	}
+	mean_time_to_happen = {
+		months = 5
+	}
+	immediate = {
+		set_country_flag = krcw_wgr_westberlin_question
+	}
+	option = {
+		name = krcw_wgr_2.a
+		ai_chance = {
+			factor = 90
+		}
+		add_political_power = 50
+		add_stability = 0.02
+	}
+	option = {
+		name = krcw_wgr_2.b
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = -0.02
+		add_political_power = -25
+	}
+}
+
+country_event = {
+	id = krcw_wgr.3
+	title = krcw_wgr_3_t
+	desc = krcw_wgr_3_d
+	picture = GFX_krcw_eu_d12_ita_meeting
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+		date > 1950.10.12
+		date < 1952.6.21
+		country_exists = AUS
+		NOT = { has_country_flag = krcw_wgr_austria_question }
+	}
+	mean_time_to_happen = {
+		months = 11
+	}
+	immediate = {
+		set_country_flag = krcw_wgr_austria_question
+	}
+	option = {
+		name = krcw_wgr_3.a
+		ai_chance = {
+			factor = 90
+		}
+		add_political_power = 25
+		add_stability = 0.01
+	}
+	option = {
+		name = krcw_wgr_3.b
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = -0.02
+		set_country_flag = krcw_wgr_pushed_union
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = WGR modifier = protectorate_dislikes_overlord } } }
+	}
+}
+
+country_event = {
+	id = krcw_wgr.10
+	title = krcw_wgr_10_t
+	desc = krcw_wgr_10_d
+	picture = GFX_krcw_eu_p16_reichstag
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_wgr_10.a
+		ai_chance = {
+			base = 40
+		}
+		set_country_flag = krcw_wgr_heir_councils
+		add_stability = 0.04
+		add_political_power = 25
+		add_popularity = { ideology = trotskyism popularity = 0.04 }
+		custom_effect_tooltip = krcw_wgr_congress_tt
+		country_event = { id = krcw_wgr.11 days = 164 random_days = 60 }
+	}
+	option = {
+		name = krcw_wgr_10.b
+		ai_chance = {
+			base = 35
+		}
+		set_country_flag = krcw_wgr_heir_army
+		add_war_support = 0.05
+		army_experience = 15
+		add_ideas = krcw_wgr_front_militarisation
+		custom_effect_tooltip = krcw_wgr_congress_tt
+		country_event = { id = krcw_wgr.11 days = 164 random_days = 60 }
+	}
+	option = {
+		name = krcw_wgr_10.c
+		ai_chance = {
+			base = 25
+		}
+		set_country_flag = krcw_wgr_heir_civil
+		add_political_power = 50
+		krcw_detente_up_small = yes
+		custom_effect_tooltip = krcw_wgr_congress_tt
+		country_event = { id = krcw_wgr.11 days = 164 random_days = 60 }
+	}
+}
+
+country_event = {
+	id = krcw_wgr.11
+	title = krcw_wgr_11_t
+	desc = {
+		text = krcw_wgr_11_d0
+		trigger = {
+			has_country_flag = krcw_wgr_leader_wollenberg
+		}
+	}
+	desc = {
+		text = krcw_wgr_11_d1
+		trigger = {
+			has_country_flag = krcw_wgr_leader_kahle
+		}
+	}
+	desc = {
+		text = krcw_wgr_11_d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_p16_vote_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		if = { limit = { NOT = { has_government = trotskyism } } set_politics = { ruling_party = trotskyism elections_allowed = no } }
+		random_list = {
+			20 = {
+				modifier = { factor = 3 has_country_flag = krcw_wgr_heir_councils }
+				modifier = { factor = 1.5 has_country_flag = krcw_leaning_shop_floor }
+				modifier = { factor = 1.3 has_stability > 0.6 }
+				set_country_flag = krcw_wgr_leader_wollenberg
+			}
+			20 = {
+				modifier = { factor = 3 has_country_flag = krcw_wgr_heir_army }
+				modifier = { factor = 1.5 has_country_flag = krcw_leaning_single_command }
+				modifier = { factor = 1.3 has_war_support > 0.6 }
+				set_country_flag = krcw_wgr_leader_kahle
+			}
+			20 = {
+				modifier = { factor = 3 has_country_flag = krcw_wgr_heir_civil }
+				modifier = { factor = 1.5 has_country_flag = krcw_leaning_unions }
+				modifier = { factor = 1.3 krcw_high_detente = yes }
+				set_country_flag = krcw_wgr_leader_renn
+			}
+		}
+	}
+	option = {
+		name = krcw_wgr_11.a
+		trigger = {
+			has_country_flag = krcw_wgr_leader_wollenberg
+		}
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { NOT = { has_character = WGR_krcw_wollenberg } } recruit_character = WGR_krcw_wollenberg }
+		promote_character = WGR_krcw_wollenberg
+		add_stability = 0.03
+		add_popularity = { ideology = trotskyism popularity = 0.03 }
+		if = { limit = { NOT = { has_country_flag = krcw_wgr_heir_councils } } add_political_power = -50 }
+	}
+	option = {
+		name = krcw_wgr_11.b
+		trigger = {
+			has_country_flag = krcw_wgr_leader_kahle
+		}
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { NOT = { has_character = WGR_krcw_kahle } } recruit_character = WGR_krcw_kahle }
+		promote_character = WGR_krcw_kahle
+		add_war_support = 0.04
+		army_experience = 10
+		if = { limit = { NOT = { has_country_flag = krcw_wgr_heir_army } } add_political_power = -50 }
+	}
+	option = {
+		name = krcw_wgr_11.c
+		trigger = {
+			has_country_flag = krcw_wgr_leader_renn
+		}
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { NOT = { has_character = WGR_krcw_renn } } recruit_character = WGR_krcw_renn }
+		promote_character = WGR_krcw_renn
+		add_political_power = 50
+		krcw_detente_up_small = yes
+		if = { limit = { NOT = { has_country_flag = krcw_wgr_heir_civil } } add_political_power = -50 }
+	}
+}
+
+country_event = {
+	id = krcw_wgr.14
+	title = krcw_wgr_14_t
+	desc = krcw_wgr_14_d
+	picture = GFX_krcw_eu_p16_vote_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_wgr_14.a
+		ai_chance = {
+			base = 45
+		}
+		add_ideas = krcw_wgr_council_democracy
+		add_stability = 0.05
+		add_war_support = -0.02
+	}
+	option = {
+		name = krcw_wgr_14.b
+		ai_chance = {
+			base = 35
+		}
+		add_war_support = 0.05
+		add_political_power = 50
+		add_stability = -0.02
+	}
+	option = {
+		name = krcw_wgr_14.c
+		ai_chance = {
+			base = 20
+		}
+		add_stability = 0.06
+		add_political_power = 25
+		set_country_flag = krcw_wgr_bicameral
+	}
+}
+
+country_event = {
+	id = krcw_wgr.18
+	title = krcw_wgr_18_t
+	desc = krcw_wgr_18_d
+	picture = GFX_krcw_eu_p16_krupp_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_wgr_18.a
+		ai_chance = {
+			base = 50
+		}
+		add_political_power = -50
+		add_stability = 0.03
+		if = { limit = { country_exists = FRA } FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_wgr_german_brothers } } }
+	}
+	option = {
+		name = krcw_wgr_18.b
+		ai_chance = {
+			base = 30
+		}
+		add_political_power = 25
+		add_stability = -0.02
+		set_country_flag = krcw_wgr_reparations_disputed
+		custom_effect_tooltip = krcw_wgr_commission_tt
+		country_event = { id = krcw_wgr.19 days = 54 random_days = 30 }
+	}
+	option = {
+		name = krcw_wgr_18.c
+		ai_chance = {
+			base = 20
+		}
+		add_tech_bonus = { name = krcw_wgr_reparation_tech bonus = 0.5 uses = 1 category = industry }
+		add_political_power = 25
+		add_stability = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_wgr.19
+	title = krcw_wgr_19_t
+	desc = {
+		text = krcw_wgr_19_d0
+		trigger = {
+			has_country_flag = krcw_wgr_bill_reduced
+		}
+	}
+	desc = {
+		text = krcw_wgr_19_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_p16_krupp_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		random_list = {
+			45 = {
+				modifier = { factor = 1.5 FRA = { has_opinion = { target = ROOT value > 40 } } }
+				modifier = { factor = 1.3 has_country_flag = krcw_wgr_leader_renn }
+				set_country_flag = krcw_wgr_bill_reduced
+			}
+			55 = { }
+		}
+	}
+	option = {
+		name = krcw_wgr_19.a
+		trigger = {
+			has_country_flag = krcw_wgr_bill_reduced
+		}
+		ai_chance = {
+			base = 1
+		}
+		add_stability = 0.04
+		add_political_power = 25
+		51 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+	}
+	option = {
+		name = krcw_wgr_19.b
+		trigger = {
+			NOT = { has_country_flag = krcw_wgr_bill_reduced }
+		}
+		ai_chance = {
+			base = 70
+		}
+		add_political_power = -50
+		add_stability = -0.02
+		if = { limit = { country_exists = FRA } FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_wgr_german_brothers } } }
+	}
+	option = {
+		name = krcw_wgr_19.c
+		trigger = {
+			NOT = { has_country_flag = krcw_wgr_bill_reduced }
+		}
+		ai_chance = {
+			base = 30
+		}
+		add_political_power = 50
+		add_stability = 0.02
+		add_war_support = -0.02
+		if = { limit = { country_exists = FRA } FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+	}
+}
+
+country_event = {
+	id = krcw_wgr.20
+	title = krcw_wgr_20_t
+	desc = krcw_wgr_20_d
+	picture = GFX_krcw_eu_p16_hofburg
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_wgr_20.a
+		ai_chance = {
+			base = 50
+		}
+		add_political_power = 25
+		add_stability = 0.03
+		krcw_detente_up_small = yes
+		set_country_flag = krcw_wgr_austria_govt
+	}
+	option = {
+		name = krcw_wgr_20.b
+		ai_chance = {
+			base = 30
+		}
+		add_political_power = 50
+		add_stability = -0.02
+	}
+	option = {
+		name = krcw_wgr_20.c
+		ai_chance = {
+			base = 20
+		}
+		add_stability = 0.02
+		add_political_power = -25
+		set_country_flag = krcw_wgr_austria_referendum
+		custom_effect_tooltip = krcw_wgr_referendum_tt
+		if = { limit = { country_exists = AUS } AUS = { country_event = { id = krcw_aus.10 days = 30 } } }
+	}
+}
+
+country_event = {
+	id = krcw_wgr.40
+	title = krcw_wgr_40_t
+	desc = krcw_wgr_40_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+	}
+	option = {
+		name = krcw_wgr_40.a
+		ai_chance = {
+			base = 45
+		}
+		air_experience = 15
+		add_political_power = -25
+		set_country_flag = krcw_berlin_contest_open
+		if = { limit = { country_exists = DDR } DDR = { set_country_flag = krcw_berlin_contest_open } }
+	}
+	option = {
+		name = krcw_wgr_40.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		krcw_detente_up_small = yes
+		set_country_flag = krcw_berlin_contest_open
+		if = { limit = { country_exists = DDR } DDR = { set_country_flag = krcw_berlin_contest_open } }
+		add_to_variable = { global.krcw_berlin_pressure = -6 }
+		clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+	}
+	option = {
+		name = krcw_wgr_40.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.05
+		krcw_tension_up_medium = yes
+		set_country_flag = krcw_berlin_contest_open
+		if = { limit = { country_exists = DDR } DDR = { set_country_flag = krcw_berlin_contest_open } }
+		add_to_variable = { global.krcw_berlin_pressure = 8 }
+		clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+	}
+}
+
+country_event = {
+	id = krcw_wgr.42
+	title = krcw_wgr_42_t
+	desc = krcw_wgr_42_d
+	picture = GFX_report_event_german_reichstag_gathering
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+	}
+	option = {
+		name = krcw_wgr_42.a
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 25
+		add_war_support = 0.03
+		set_country_flag = krcw_leaning_single_command
+	}
+	option = {
+		name = krcw_wgr_42.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.05
+		set_country_flag = krcw_leaning_shop_floor
+	}
+	option = {
+		name = krcw_wgr_42.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 15
+		add_stability = 0.02
+		set_country_flag = krcw_leaning_unions
+	}
+}
+
+country_event = {
+	id = krcw_wgr.46
+	title = krcw_wgr_46_t
+	desc = krcw_wgr_46_d
+	picture = GFX_report_event_german_reichstag_gathering
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+	}
+	option = {
+		name = krcw_wgr_46.a
+		ai_chance = {
+			base = 55
+		}
+		add_manpower = 15000
+		add_stability = 0.03
+		add_political_power = 25
+		if = { limit = { country_exists = DDR } DDR = { add_opinion_modifier = { target = ROOT modifier = krcw_wgr_elbe_provocation } } }
+	}
+	option = {
+		name = krcw_wgr_46.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		add_war_support = 0.05
+		krcw_tension_up_medium = yes
+		set_global_flag = KRCW_all_german_congress_standing
+		add_to_variable = { global.krcw_berlin_pressure = 8 }
+		clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+	}
+}
+
+news_event = {
+	id = krcw_wgr.48
+	title = krcw_wgr_48_t
+	desc = krcw_wgr_48_d
+	picture = GFX_report_event_generic_parliament_n
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_wgr_48.a
+		trigger = { tag = WGR }
+		ai_chance = {
+			base = 100
+		}
+		add_war_support = 0.05
+		add_stability = 0.03
+		krcw_tension_up_medium = yes
+	}
+	option = {
+		name = krcw_major_viewer.a
+		trigger = { NOT = { tag = WGR } }
+		ai_chance = { base = 1 }
+	}
+}
+
+country_event = {
+	id = krcw_wgr.50
+	title = krcw_wgr_50_t
+	desc = krcw_wgr_50_d
+	picture = GFX_report_event_generic_parliament
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+		check_variable = { global.krcw_berlin_pressure > 29 }
+		NOT = { has_global_flag = KRCW_berlin_band_1 }
+	}
+	mean_time_to_happen = {
+		days = 11
+	}
+	immediate = {
+		set_global_flag = KRCW_berlin_band_1
+	}
+	option = {
+		name = krcw_wgr_50.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = -15
+		add_to_variable = { global.krcw_berlin_pressure = -5 }
+		clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+		custom_effect_tooltip = krcw_berlin_pressure_tt
+	}
+	option = {
+		name = krcw_wgr_50.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 15
+		krcw_detente_up_small = yes
+		add_to_variable = { global.krcw_berlin_pressure = -3 }
+		clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+		custom_effect_tooltip = krcw_berlin_pressure_tt
+	}
+}
+
+country_event = {
+	id = krcw_wgr.52
+	title = krcw_wgr_52_t
+	desc = krcw_wgr_52_d
+	picture = GFX_report_event_ast_navy
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+		check_variable = { global.krcw_berlin_pressure > 54 }
+		NOT = { has_global_flag = KRCW_berlin_band_2 }
+	}
+	mean_time_to_happen = {
+		days = 10
+	}
+	immediate = {
+		set_global_flag = KRCW_berlin_band_2
+	}
+	option = {
+		name = krcw_wgr_52.a
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		air_experience = 20
+		add_war_support = 0.04
+		krcw_tension_up_medium = yes
+		add_to_variable = { global.krcw_berlin_pressure = 6 }
+		clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+		custom_effect_tooltip = krcw_berlin_pressure_tt
+	}
+	option = {
+		name = krcw_wgr_52.b
+		ai_chance = {
+			base = 45
+		}
+		air_experience = 15
+		add_political_power = -50
+		add_to_variable = { global.krcw_berlin_pressure = -12 }
+		clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+		custom_effect_tooltip = krcw_berlin_pressure_tt
+	}
+	option = {
+		name = krcw_wgr_52.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		krcw_tension_up_small = yes
+		every_country = { limit = { is_in_faction_with = ROOT NOT = { tag = ROOT } } add_opinion_modifier = { target = ROOT modifier = krcw_wgr_german_brothers } }
+		add_to_variable = { global.krcw_berlin_pressure = -8 }
+		clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+		custom_effect_tooltip = krcw_berlin_pressure_tt
+	}
+}
+
+country_event = {
+	id = krcw_wgr.54
+	title = krcw_wgr_54_t
+	desc = krcw_wgr_54_d
+	picture = GFX_report_event_generic_army
+	major = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+		check_variable = { global.krcw_berlin_pressure > 79 }
+		NOT = { has_global_flag = KRCW_berlin_band_3 }
+	}
+	mean_time_to_happen = {
+		days = 10
+	}
+	immediate = {
+		set_global_flag = KRCW_berlin_band_3
+	}
+	option = {
+		name = krcw_wgr_54.a
+		trigger = { tag = WGR }
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.08
+		krcw_tension_up_large = yes
+		army_experience = 15
+		set_global_flag = KRCW_berlin_column
+		if = { limit = { country_exists = DDR } DDR = { add_opinion_modifier = { target = ROOT modifier = krcw_wgr_elbe_provocation } } }
+		add_to_variable = { global.krcw_berlin_pressure = 15 }
+		clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+		custom_effect_tooltip = krcw_berlin_pressure_tt
+	}
+	option = {
+		name = krcw_wgr_54.b
+		trigger = { tag = WGR }
+		ai_chance = {
+			base = 50
+		}
+		air_experience = 25
+		add_political_power = -75
+		every_country = { limit = { is_in_faction_with = ROOT NOT = { tag = ROOT } } air_experience = 5 }
+		add_to_variable = { global.krcw_berlin_pressure = -25 }
+		clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+		add_stability = 0.03
+		custom_effect_tooltip = krcw_berlin_pressure_tt
+	}
+	option = {
+		name = krcw_wgr_54.c
+		trigger = { tag = WGR }
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		krcw_detente_up_medium = yes
+		add_to_variable = { global.krcw_berlin_pressure = -20 }
+		clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+		if = { limit = { country_exists = DDR } add_opinion_modifier = { target = DDR modifier = krcw_wgr_german_brothers } }
+		set_global_flag = KRCW_berlin_bargained
+		custom_effect_tooltip = krcw_berlin_pressure_tt
+	}
+	option = {
+		name = krcw_major_viewer.a
+		trigger = { NOT = { tag = WGR } }
+		ai_chance = { base = 1 }
+	}
+}
+
+country_event = {
+	id = krcw_wgr.60
+	title = krcw_wgr_60_t
+	desc = krcw_wgr_60_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+	}
+	option = {
+		name = krcw_wgr_60.a
+		ai_chance = {
+			base = 40
+		}
+		add_stability = 0.05
+		add_to_variable = { krcw_wgr_arrivals = -8 }
+		clamp_variable = { var = krcw_wgr_arrivals min = 0 max = 100 }
+		custom_effect_tooltip = krcw_wgr_arrivals_tt
+	}
+	option = {
+		name = krcw_wgr_60.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -50
+		add_stability = 0.03
+		51 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+	}
+	option = {
+		name = krcw_wgr_60.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_manpower = 30000
+		add_stability = -0.02
+		add_to_variable = { krcw_wgr_arrivals = 6 }
+		clamp_variable = { var = krcw_wgr_arrivals min = 0 max = 100 }
+		custom_effect_tooltip = krcw_wgr_arrivals_tt
+	}
+}
+
+country_event = {
+	id = krcw_wgr.62
+	title = krcw_wgr_62_t
+	desc = krcw_wgr_62_d
+	picture = GFX_report_event_german_reichstag_gathering
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+	}
+	option = {
+		name = krcw_wgr_62.a
+		ai_chance = {
+			base = 45
+		}
+		add_stability = 0.06
+		add_political_power = 25
+		set_country_flag = krcw_wgr_refusal_in_law
+	}
+	option = {
+		name = krcw_wgr_62.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 50
+		add_stability = 0.04
+		army_experience = -10
+		set_country_flag = krcw_wgr_congress_command
+	}
+	option = {
+		name = krcw_wgr_62.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.05
+		army_experience = 20
+		add_stability = -0.04
+	}
+}
+
+country_event = {
+	id = krcw_wgr.64
+	title = krcw_wgr_64_t
+	desc = krcw_wgr_64_d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+	}
+	option = {
+		name = krcw_wgr_64.a
+		ai_chance = {
+			base = 50
+		}
+		add_political_power = 25
+		add_stability = 0.04
+	}
+	option = {
+		name = krcw_wgr_64.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		51 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		add_war_support = 0.02
+		add_stability = 0.02
+	}
+	option = {
+		name = krcw_wgr_64.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.05
+		army_experience = 15
+		add_stability = -0.03
+	}
+}
+
+country_event = {
+	id = krcw_wgr.70
+	title = krcw_wgr_70_t
+	desc = krcw_wgr_70_d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+	}
+	option = {
+		name = krcw_wgr_70.a
+		ai_chance = {
+			base = 50
+		}
+		add_stability = 0.06
+		add_political_power = -25
+		add_manpower = 40000
+	}
+	option = {
+		name = krcw_wgr_70.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.04
+		add_political_power = 25
+		set_country_flag = krcw_wgr_councils_build_creches
+	}
+	option = {
+		name = krcw_wgr_70.c
+		ai_chance = {
+			base = 15
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = -0.04
+	}
+}
+
+country_event = {
+	id = krcw_wgr.72
+	title = krcw_wgr_72_t
+	desc = krcw_wgr_72_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+	}
+	option = {
+		name = krcw_wgr_72.a
+		ai_chance = {
+			base = 60
+		}
+		add_stability = 0.06
+		add_political_power = -25
+	}
+	option = {
+		name = krcw_wgr_72.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = -0.05
+		set_country_flag = krcw_wgr_state_rites_only
+	}
+}
+
+country_event = {
+	id = krcw_wgr.74
+	title = krcw_wgr_74_t
+	desc = krcw_wgr_74_d
+	picture = GFX_report_event_german_reichstag_gathering
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+	}
+	option = {
+		name = krcw_wgr_74.a
+		ai_chance = {
+			base = 55
+		}
+		add_stability = 0.06
+		add_political_power = 50
+	}
+	option = {
+		name = krcw_wgr_74.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		add_stability = 0.03
+		add_war_support = 0.03
+		set_country_flag = krcw_wgr_council_revival
+	}
+}
+
+country_event = {
+	id = krcw_wgr.76
+	title = krcw_wgr_76_t
+	desc = krcw_wgr_76_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+	}
+	option = {
+		name = krcw_wgr_76.a
+		ai_chance = {
+			base = 55
+		}
+		add_political_power = 25
+		add_war_support = 0.03
+		every_country = { limit = { is_in_faction_with = ROOT NOT = { tag = ROOT } } add_opinion_modifier = { target = ROOT modifier = krcw_wgr_german_brothers } }
+	}
+	option = {
+		name = krcw_wgr_76.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		army_experience = 20
+		add_political_power = 25
+		51 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+		} }
+	}
+}
+
+country_event = {
+	id = krcw_wgr.78
+	title = krcw_wgr_78_t
+	desc = krcw_wgr_78_d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+	}
+	option = {
+		name = krcw_wgr_78.a
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = 50
+		51 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		add_research_slot = 1
+	}
+	option = {
+		name = krcw_wgr_78.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		army_experience = 15
+		air_experience = 15
+		add_tech_bonus = { name = krcw_wgr_ballistics bonus = 0.5 uses = 1 category = electronics }
+	}
+	option = {
+		name = krcw_wgr_78.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_research_slot = 1
+		add_stability = 0.03
+		add_political_power = -25
+	}
+}
+
+country_event = {
+	id = krcw_wgr.80
+	title = krcw_wgr_80_t
+	desc = krcw_wgr_80_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+	}
+	option = {
+		name = krcw_wgr_80.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = 25
+		krcw_detente_up_medium = yes
+		add_stability = 0.03
+	}
+	option = {
+		name = krcw_wgr_80.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		51 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		add_stability = 0.04
+	}
+}

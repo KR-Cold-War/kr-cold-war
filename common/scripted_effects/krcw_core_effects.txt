@@ -1,0 +1,99 @@
+# KRCW core shared effects (build/core_effects.py). Global tension/detente 0-100.
+
+krcw_tension_up_small = {
+	if = { limit = { NOT = { has_variable = global.krcw_tension } } set_variable = { global.krcw_tension = 60 } }
+	add_to_variable = { global.krcw_tension = 3 }
+	clamp_variable = { var = global.krcw_tension min = 0 max = 100 }
+	add_named_threat = { threat = 3 name = krcw_threat_cold_war }
+	custom_effect_tooltip = krcw_tension_up_small_tt
+}
+
+krcw_tension_up_medium = {
+	if = { limit = { NOT = { has_variable = global.krcw_tension } } set_variable = { global.krcw_tension = 60 } }
+	add_to_variable = { global.krcw_tension = 6 }
+	clamp_variable = { var = global.krcw_tension min = 0 max = 100 }
+	add_named_threat = { threat = 6 name = krcw_threat_cold_war }
+	custom_effect_tooltip = krcw_tension_up_medium_tt
+}
+
+krcw_tension_up_large = {
+	if = { limit = { NOT = { has_variable = global.krcw_tension } } set_variable = { global.krcw_tension = 60 } }
+	add_to_variable = { global.krcw_tension = 12 }
+	clamp_variable = { var = global.krcw_tension min = 0 max = 100 }
+	add_named_threat = { threat = 12 name = krcw_threat_cold_war }
+	custom_effect_tooltip = krcw_tension_up_large_tt
+}
+
+krcw_tension_down_small = {
+	if = { limit = { NOT = { has_variable = global.krcw_tension } } set_variable = { global.krcw_tension = 60 } }
+	subtract_from_variable = { global.krcw_tension = 3 }
+	clamp_variable = { var = global.krcw_tension min = 0 max = 100 }
+	custom_effect_tooltip = krcw_tension_down_small_tt
+}
+
+krcw_tension_down_medium = {
+	if = { limit = { NOT = { has_variable = global.krcw_tension } } set_variable = { global.krcw_tension = 60 } }
+	subtract_from_variable = { global.krcw_tension = 6 }
+	clamp_variable = { var = global.krcw_tension min = 0 max = 100 }
+	custom_effect_tooltip = krcw_tension_down_medium_tt
+}
+
+krcw_tension_down_large = {
+	if = { limit = { NOT = { has_variable = global.krcw_tension } } set_variable = { global.krcw_tension = 60 } }
+	subtract_from_variable = { global.krcw_tension = 12 }
+	clamp_variable = { var = global.krcw_tension min = 0 max = 100 }
+	custom_effect_tooltip = krcw_tension_down_large_tt
+}
+
+krcw_detente_up_small = {
+	if = { limit = { NOT = { has_variable = global.krcw_detente } } set_variable = { global.krcw_detente = 5 } }
+	add_to_variable = { global.krcw_detente = 3 }
+	clamp_variable = { var = global.krcw_detente min = 0 max = 100 }
+	custom_effect_tooltip = krcw_detente_up_small_tt
+}
+
+krcw_detente_up_medium = {
+	if = { limit = { NOT = { has_variable = global.krcw_detente } } set_variable = { global.krcw_detente = 5 } }
+	add_to_variable = { global.krcw_detente = 6 }
+	clamp_variable = { var = global.krcw_detente min = 0 max = 100 }
+	custom_effect_tooltip = krcw_detente_up_medium_tt
+}
+
+krcw_detente_up_large = {
+	if = { limit = { NOT = { has_variable = global.krcw_detente } } set_variable = { global.krcw_detente = 5 } }
+	add_to_variable = { global.krcw_detente = 12 }
+	clamp_variable = { var = global.krcw_detente min = 0 max = 100 }
+	custom_effect_tooltip = krcw_detente_up_large_tt
+}
+
+krcw_detente_down_small = {
+	if = { limit = { NOT = { has_variable = global.krcw_detente } } set_variable = { global.krcw_detente = 5 } }
+	subtract_from_variable = { global.krcw_detente = 3 }
+	clamp_variable = { var = global.krcw_detente min = 0 max = 100 }
+	custom_effect_tooltip = krcw_detente_down_small_tt
+}
+
+krcw_detente_down_medium = {
+	if = { limit = { NOT = { has_variable = global.krcw_detente } } set_variable = { global.krcw_detente = 5 } }
+	subtract_from_variable = { global.krcw_detente = 6 }
+	clamp_variable = { var = global.krcw_detente min = 0 max = 100 }
+	custom_effect_tooltip = krcw_detente_down_medium_tt
+}
+
+krcw_detente_down_large = {
+	if = { limit = { NOT = { has_variable = global.krcw_detente } } set_variable = { global.krcw_detente = 5 } }
+	subtract_from_variable = { global.krcw_detente = 12 }
+	clamp_variable = { var = global.krcw_detente min = 0 max = 100 }
+	custom_effect_tooltip = krcw_detente_down_large_tt
+}
+
+# Initialise the global system (called from on_startup; safe to call again)
+krcw_init_global_vars = {
+	if = { limit = { NOT = { has_global_flag = KRCW_vars_init } }
+		set_global_flag = KRCW_vars_init
+		set_variable = { global.krcw_tension = 60 }
+		set_variable = { global.krcw_detente = 5 }
+		# baseline world tension: three frozen fronts held by armistice, not peace
+		add_named_threat = { threat = 25 name = krcw_threat_frozen_fronts }
+	}
+}

@@ -1,0 +1,324 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = VIE_50s_French_Hinh
+	country = {
+		factor = 0
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	focus = {
+		id = VIE_French_Hinh
+		icon = GFX_unknown
+		cost = 2
+		x = 5
+		y = 0
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = VIE_French_Yes_Man
+		icon = GFX_unknown
+		cost = 2
+		relative_position_id = VIE_French_Hinh
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = VIE_French_Hinh
+		}
+		completion_reward = {
+			add_political_power = 100
+			add_opinion_modifier = {
+				target = FRA
+				modifier = VIE_French_Yes_Man_modifier
+			}
+			reverse_add_opinion_modifier = {
+				target = FRA
+				modifier = VIE_French_Yes_Man_modifier
+			}
+		}
+	}
+	focus = {
+		id = VIE_French_Bureaucrats
+		icon = GFX_unknown
+		cost = 2
+		x = 5
+		y = 2
+		prerequisite = {
+			focus = VIE_French_Yes_Man
+		}
+		completion_reward = {
+			set_temp_variable = { favoritism_change = 5 }
+			VIE_Change_Main_Favoritism = yes
+			add_opinion_modifier = {
+				target = FRA
+				modifier = VIE_French_Bureaucrat_modifier
+			}
+			reverse_add_opinion_modifier = {
+				target = FRA
+				modifier = VIE_French_Bureaucrat_modifier
+			}
+		}
+	}
+	focus = {
+		id = VIE_French_Ideals
+		icon = GFX_unknown
+		cost = 7
+		x = 10
+		y = 2
+		prerequisite = {
+			focus = VIE_French_Yes_Man
+		}
+		completion_reward = {
+			set_temp_variable = { favoritism_change = 5 }
+			VIE_Change_Main_Favoritism = yes
+		}
+	}
+	focus = {
+		id = VIE_French_MilPurge
+		icon = GFX_unknown
+		cost = 2
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = VIE_French_Yes_Man
+		}
+		completion_reward = {
+			every_unit_leader = {
+				limit = {
+					has_trait = Pro_Vietminh
+				}
+				retire = yes
+			}
+			every_unit_leader = {
+				limit = {
+					has_trait = CuongDe_Comrade
+				}
+				retire = yes
+			}
+			add_ideas = VIE_Disjointed_Army
+		}
+	}
+	focus = {
+		id = VIE_French_Phap
+		icon = GFX_unknown
+		cost = 7
+		x = 9
+		y = 3
+		prerequisite = {
+			focus = VIE_French_Ideals
+		}
+		completion_reward = {
+			set_temp_variable = { favoritism_change = 5 }
+			VIE_Change_Main_Favoritism = yes
+		}
+	}
+	focus = {
+		id = VIE_French_Propaganda
+		icon = GFX_unknown
+		cost = 7
+		x = 11
+		y = 3
+		prerequisite = {
+			focus = VIE_French_Ideals
+		}
+		completion_reward = {
+			VIN = {
+				add_stability = -0.05
+			}
+			NLF = {
+				add_stability = -0.05
+			}
+		}
+	}
+	focus = {
+		id = VIE_French_Cultures
+		icon = GFX_unknown
+		cost = 7
+		x = 10
+		y = 4
+		prerequisite = {
+			focus = VIE_French_Propaganda
+		}
+		prerequisite = {
+			focus = VIE_French_Phap
+		}
+		completion_reward = {
+			add_ideas = VIE_Emphasized_NamKy
+			NLF = {
+				add_ideas = VIE_Emphasized_NamKy_NLF
+			}
+		}
+	}
+	focus = {
+		id = VIE_French_Investment
+		icon = GFX_unknown
+		cost = 7
+		x = 4
+		y = 3
+		prerequisite = {
+			focus = VIE_French_Bureaucrats
+		}
+		completion_reward = {
+			set_temp_variable = { favoritism_change = 5 }
+			VIE_Change_Main_Favoritism = yes
+			VIE = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = VIE_French_Investments_modifier
+				}
+				add_opinion_modifier = {
+					target = FRA
+					modifier = VIE_French_Investments_modifier
+				}
+				capital_scope = {
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_French_Repress
+		icon = GFX_unknown
+		cost = 7
+		x = 6
+		y = 3
+		prerequisite = {
+			focus = VIE_French_Bureaucrats
+		}
+		completion_reward = {
+			VIE = {
+				add_stability = 0.05
+			}
+			NLF = {
+				add_ideas = VIE_Repress
+			}
+		}
+	}
+	focus = {
+		id = VIE_French_Quan
+		icon = GFX_unknown
+		cost = 7
+		x = 5
+		y = 4
+		prerequisite = {
+			focus = VIE_French_Repress
+		}
+		prerequisite = {
+			focus = VIE_French_Investment
+		}
+		completion_reward = {
+			add_stability = 0.1
+		}
+	}
+	focus = {
+		id = VIE_French_Censor
+		icon = GFX_unknown
+		cost = 7
+		x = -1
+		y = 3
+		prerequisite = {
+			focus = VIE_French_MilPurge
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = VIE_Censor_French
+				days = 100
+			}
+		}
+	}
+	focus = {
+		id = VIE_French_Laws
+		icon = GFX_unknown
+		cost = 7
+		x = 1
+		y = 3
+		prerequisite = {
+			focus = VIE_French_MilPurge
+		}
+		completion_reward = {
+			add_ideas = VIE_AnNinh_QuocGia
+			add_stability = 0.03
+		}
+	}
+	focus = {
+		id = VIE_French_Purge
+		icon = GFX_unknown
+		cost = 7
+		x = 0
+		y = 4
+		prerequisite = {
+			focus = VIE_French_Laws
+		}
+		prerequisite = {
+			focus = VIE_French_Censor
+		}
+		completion_reward = {
+			remove_ideas = VIE_Disjointed_Army
+		}
+	}
+	focus = {
+		id = VIE_French_Government
+		icon = GFX_unknown
+		cost = 2
+		x = 5
+		y = 6
+		prerequisite = {
+			focus = VIE_French_Purge
+		}
+		prerequisite = {
+			focus = VIE_French_Quan
+		}
+		prerequisite = {
+			focus = VIE_French_Cultures
+		}
+		completion_reward = {
+			country_event = {
+				id = French_Hinh.1
+				days = 1
+			}
+		}
+	}
+	focus = {
+		id = VIE_French_Self-Governance
+		icon = GFX_unknown
+		cost = 7
+		x = 6
+		y = 7
+		mutually_exclusive = {
+			focus = VIE_French_Continue
+		}
+		prerequisite = {
+			focus = VIE_French_Government
+		}
+		completion_reward = {
+			country_event = French_Hinh.2
+		}
+	}
+	focus = {
+		id = VIE_French_Continue
+		icon = GFX_unknown
+		cost = 7
+		x = 4
+		y = 7
+		mutually_exclusive = {
+			focus = VIE_French_Self-Governance
+		}
+		prerequisite = {
+			focus = VIE_French_Government
+		}
+		completion_reward = {
+			country_event = French_Hinh.3
+		}
+	}
+}

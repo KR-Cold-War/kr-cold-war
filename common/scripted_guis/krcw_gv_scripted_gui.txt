@@ -1,0 +1,205 @@
+scripted_gui = {
+	krcw_gv_topbar_button = {
+		context_type = player_context
+		window_name = "krcw_gv_topbar_button"
+		parent_window_name = "after_intel_agency_button"
+		visible = { has_global_flag = KRCW_active }
+		effects = {
+			krcw_gv_open_click = {
+				ROOT = {
+					set_temp_variable = { krcw_tx = 1 }
+					subtract_from_temp_variable = { krcw_tx = krcw_show_gv }
+					close_all_windows = yes
+					set_variable = { krcw_show_dev = 0 }
+					set_variable = { krcw_show_gv = krcw_tx }
+				}
+			}
+		}
+	}
+	krcw_gv_window = {
+		context_type = player_context
+		window_name = "krcw_gv_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_gv = 1 } }
+		effects = {
+			krcw_gv_close_click = { set_variable = { krcw_show_gv = 0 } }
+			krcw_gv_tab_0_click = { set_variable = { krcw_gv_page = 0 } set_variable = { krcw_gv_pool = 0 } }
+			krcw_gv_tab_1_click = { set_variable = { krcw_gv_page = 1 } set_variable = { krcw_gv_pool = 0 } }
+			krcw_gv_tab_2_click = { set_variable = { krcw_gv_page = 2 } set_variable = { krcw_gv_pool = 0 } }
+			krcw_gv_tab_3_click = { set_variable = { krcw_gv_page = 3 } set_variable = { krcw_gv_pool = 0 } }
+			krcw_gv_tab_4_click = { set_variable = { krcw_gv_page = 4 } set_variable = { krcw_gv_pool = 0 } }
+			krcw_gv_tab_5_click = { set_variable = { krcw_gv_page = 5 } set_variable = { krcw_gv_pool = 0 } }
+		}
+		triggers = {
+			krcw_gv_tab_0_click_enabled = { NOT = { check_variable = { krcw_gv_page = 0 } } }
+			krcw_gv_tab_1_click_enabled = { NOT = { check_variable = { krcw_gv_page = 1 } } }
+			krcw_gv_tab_2_click_enabled = { NOT = { check_variable = { krcw_gv_page = 2 } } }
+			krcw_gv_tab_3_click_enabled = { NOT = { check_variable = { krcw_gv_page = 3 } } }
+			krcw_gv_tab_4_click_enabled = { NOT = { check_variable = { krcw_gv_page = 4 } } }
+			krcw_gv_tab_5_click_enabled = { NOT = { check_variable = { krcw_gv_page = 5 } } }
+		}
+	}
+	krcw_gv_page_ov = {
+		context_type = player_context
+		window_name = "krcw_gv_page_ov"
+		parent_scripted_gui = "krcw_gv_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_gv = 1 } check_variable = { krcw_gv_page = 0 } }
+		effects = {
+			krcw_gv_mediate_click = { krcw_gv_mediate = yes }
+			krcw_gv_investigate_click = { krcw_gv_investigate = yes }
+		}
+		triggers = {
+			krcw_gv_mediate_click_enabled = { krcw_gv_can_mediate = yes }
+			krcw_gv_investigate_click_enabled = { krcw_gv_can_investigate = yes }
+		}
+	}
+	krcw_gv_page_elbe = {
+		context_type = player_context
+		window_name = "krcw_gv_page_elbe"
+		parent_scripted_gui = "krcw_gv_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_gv = 1 } check_variable = { krcw_gv_page = 1 } }
+		effects = {
+			krcw_gv_elbe_evid_click = { krcw_gv_elbe_submit = yes }
+			krcw_gv_elbe_session_click = { krcw_gv_elbe_session = yes }
+			krcw_gv_elbe_walk_click = { krcw_gv_elbe_walk = yes }
+			krcw_gv_elbe_return_click = { krcw_gv_elbe_return = yes }
+			krcw_gv_elbe_cbm_pow_click = { krcw_gv_elbe_cbm_pow_propose = yes }
+			krcw_gv_elbe_cbm_mail_click = { krcw_gv_elbe_cbm_mail_propose = yes }
+			krcw_gv_elbe_cbm_graves_click = { krcw_gv_elbe_cbm_graves_propose = yes }
+			krcw_gv_elbe_cbm_flood_click = { krcw_gv_elbe_cbm_flood_propose = yes }
+		}
+		triggers = {
+			krcw_gv_elbe_evid_click_enabled = { krcw_gv_elbe_can_evid = yes }
+			krcw_gv_elbe_session_click_enabled = { krcw_gv_elbe_can_session = yes }
+			krcw_gv_elbe_walk_click_enabled = { krcw_gv_elbe_can_walk = yes }
+			krcw_gv_elbe_return_click_enabled = { krcw_gv_elbe_can_return = yes }
+			krcw_gv_elbe_cbm_pow_click_enabled = { krcw_gv_elbe_can_cbm_pow = yes }
+			krcw_gv_elbe_cbm_mail_click_enabled = { krcw_gv_elbe_can_cbm_mail = yes }
+			krcw_gv_elbe_cbm_graves_click_enabled = { krcw_gv_elbe_can_cbm_graves = yes }
+			krcw_gv_elbe_cbm_flood_click_enabled = { krcw_gv_elbe_can_cbm_flood = yes }
+		}
+	}
+	krcw_gv_page_ohio = {
+		context_type = player_context
+		window_name = "krcw_gv_page_ohio"
+		parent_scripted_gui = "krcw_gv_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_gv = 1 } check_variable = { krcw_gv_page = 2 } }
+		effects = {
+			krcw_gv_ohio_evid_click = { krcw_gv_ohio_submit = yes }
+			krcw_gv_ohio_session_click = { krcw_gv_ohio_session = yes }
+			krcw_gv_ohio_walk_click = { krcw_gv_ohio_walk = yes }
+			krcw_gv_ohio_return_click = { krcw_gv_ohio_return = yes }
+			krcw_gv_ohio_cbm_pow_click = { krcw_gv_ohio_cbm_pow_propose = yes }
+			krcw_gv_ohio_cbm_mail_click = { krcw_gv_ohio_cbm_mail_propose = yes }
+			krcw_gv_ohio_cbm_graves_click = { krcw_gv_ohio_cbm_graves_propose = yes }
+			krcw_gv_ohio_cbm_flood_click = { krcw_gv_ohio_cbm_flood_propose = yes }
+		}
+		triggers = {
+			krcw_gv_ohio_evid_click_enabled = { krcw_gv_ohio_can_evid = yes }
+			krcw_gv_ohio_session_click_enabled = { krcw_gv_ohio_can_session = yes }
+			krcw_gv_ohio_walk_click_enabled = { krcw_gv_ohio_can_walk = yes }
+			krcw_gv_ohio_return_click_enabled = { krcw_gv_ohio_can_return = yes }
+			krcw_gv_ohio_cbm_pow_click_enabled = { krcw_gv_ohio_can_cbm_pow = yes }
+			krcw_gv_ohio_cbm_mail_click_enabled = { krcw_gv_ohio_can_cbm_mail = yes }
+			krcw_gv_ohio_cbm_graves_click_enabled = { krcw_gv_ohio_can_cbm_graves = yes }
+			krcw_gv_ohio_cbm_flood_click_enabled = { krcw_gv_ohio_can_cbm_flood = yes }
+		}
+	}
+	krcw_gv_page_qd = {
+		context_type = player_context
+		window_name = "krcw_gv_page_qd"
+		parent_scripted_gui = "krcw_gv_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_gv = 1 } check_variable = { krcw_gv_page = 3 } }
+		effects = {
+			krcw_gv_qd_evid_click = { krcw_gv_qd_submit = yes }
+			krcw_gv_qd_session_click = { krcw_gv_qd_session = yes }
+			krcw_gv_qd_walk_click = { krcw_gv_qd_walk = yes }
+			krcw_gv_qd_return_click = { krcw_gv_qd_return = yes }
+			krcw_gv_qd_cbm_pow_click = { krcw_gv_qd_cbm_pow_propose = yes }
+			krcw_gv_qd_cbm_mail_click = { krcw_gv_qd_cbm_mail_propose = yes }
+			krcw_gv_qd_cbm_graves_click = { krcw_gv_qd_cbm_graves_propose = yes }
+			krcw_gv_qd_cbm_civ_click = { krcw_gv_qd_cbm_civ_propose = yes }
+		}
+		triggers = {
+			krcw_gv_qd_evid_click_enabled = { krcw_gv_qd_can_evid = yes }
+			krcw_gv_qd_session_click_enabled = { krcw_gv_qd_can_session = yes }
+			krcw_gv_qd_walk_click_enabled = { krcw_gv_qd_can_walk = yes }
+			krcw_gv_qd_return_click_enabled = { krcw_gv_qd_can_return = yes }
+			krcw_gv_qd_cbm_pow_click_enabled = { krcw_gv_qd_can_cbm_pow = yes }
+			krcw_gv_qd_cbm_mail_click_enabled = { krcw_gv_qd_can_cbm_mail = yes }
+			krcw_gv_qd_cbm_graves_click_enabled = { krcw_gv_qd_can_cbm_graves = yes }
+			krcw_gv_qd_cbm_civ_click_enabled = { krcw_gv_qd_can_cbm_civ = yes }
+		}
+	}
+	krcw_gv_page_conf = {
+		context_type = player_context
+		window_name = "krcw_gv_page_conf"
+		parent_scripted_gui = "krcw_gv_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_gv = 1 } check_variable = { krcw_gv_page = 4 } NOT = { check_variable = { krcw_gv_pool = 1 } } }
+		effects = {
+			krcw_gv_vote_1_click = { krcw_gv_vote_1 = yes }
+			krcw_gv_vote_2_click = { krcw_gv_vote_2 = yes }
+			krcw_gv_vote_3_click = { krcw_gv_vote_3 = yes }
+			krcw_gv_vote_9_click = { krcw_gv_vote_9 = yes }
+			krcw_gv_pool_open_click = { set_variable = { krcw_gv_pool = 1 } }
+		}
+		triggers = {
+			krcw_gv_vote_1_click_enabled = { krcw_gv_can_vote = yes check_variable = { global.krcw_gv_slot1 > 0 } }
+			krcw_gv_vote_2_click_enabled = { krcw_gv_can_vote = yes check_variable = { global.krcw_gv_slot2 > 0 } }
+			krcw_gv_vote_3_click_enabled = { krcw_gv_can_vote = yes check_variable = { global.krcw_gv_slot3 > 0 } }
+			krcw_gv_vote_9_click_enabled = { krcw_gv_can_vote = yes }
+		}
+	}
+	krcw_gv_page_pool = {
+		context_type = player_context
+		window_name = "krcw_gv_page_pool"
+		parent_scripted_gui = "krcw_gv_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_gv = 1 } check_variable = { krcw_gv_page = 4 } check_variable = { krcw_gv_pool = 1 } }
+		effects = {
+			krcw_gv_pool_close_click = { set_variable = { krcw_gv_pool = 0 } }
+			krcw_gv_propose_pow_click = { krcw_gv_propose_pow = yes }
+			krcw_gv_propose_air_click = { krcw_gv_propose_air = yes }
+			krcw_gv_propose_river_click = { krcw_gv_propose_river = yes }
+			krcw_gv_propose_fish_click = { krcw_gv_propose_fish = yes }
+			krcw_gv_propose_refugee_click = { krcw_gv_propose_refugee = yes }
+			krcw_gv_propose_survey_click = { krcw_gv_propose_survey = yes }
+			krcw_gv_propose_test_click = { krcw_gv_propose_test = yes }
+			krcw_gv_propose_sea_click = { krcw_gv_propose_sea = yes }
+			krcw_gv_propose_radio_click = { krcw_gv_propose_radio = yes }
+		}
+		triggers = {
+			krcw_gv_propose_pow_click_enabled = { krcw_gv_can_propose_pow = yes }
+			krcw_gv_propose_air_click_enabled = { krcw_gv_can_propose_air = yes }
+			krcw_gv_propose_river_click_enabled = { krcw_gv_can_propose_river = yes }
+			krcw_gv_propose_fish_click_enabled = { krcw_gv_can_propose_fish = yes }
+			krcw_gv_propose_refugee_click_enabled = { krcw_gv_can_propose_refugee = yes }
+			krcw_gv_propose_survey_click_enabled = { krcw_gv_can_propose_survey = yes }
+			krcw_gv_propose_test_click_enabled = { krcw_gv_can_propose_test = yes }
+			krcw_gv_propose_sea_click_enabled = { krcw_gv_can_propose_sea = yes }
+			krcw_gv_propose_radio_click_enabled = { krcw_gv_can_propose_radio = yes }
+		}
+	}
+	krcw_gv_page_help = {
+		context_type = player_context
+		window_name = "krcw_gv_page_help"
+		parent_scripted_gui = "krcw_gv_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_gv = 1 } check_variable = { krcw_gv_page = 5 } }
+		effects = {
+			krcw_gv_help_next_click = { if = { limit = { check_variable = { krcw_gv_help_page < 3 } } add_to_variable = { krcw_gv_help_page = 1 } } else = { set_variable = { krcw_gv_help_page = 0 } } }
+			krcw_gv_help_prev_click = { if = { limit = { check_variable = { krcw_gv_help_page > 0 } } subtract_from_variable = { krcw_gv_help_page = 1 } } else = { set_variable = { krcw_gv_help_page = 3 } } }
+		}
+		triggers = {
+			krcw_gv_help_t0_visible = { check_variable = { krcw_gv_help_page = 0 } }
+			krcw_gv_help_b0_visible = { check_variable = { krcw_gv_help_page = 0 } }
+			krcw_gv_help_n0_visible = { check_variable = { krcw_gv_help_page = 0 } }
+			krcw_gv_help_t1_visible = { check_variable = { krcw_gv_help_page = 1 } }
+			krcw_gv_help_b1_visible = { check_variable = { krcw_gv_help_page = 1 } }
+			krcw_gv_help_n1_visible = { check_variable = { krcw_gv_help_page = 1 } }
+			krcw_gv_help_t2_visible = { check_variable = { krcw_gv_help_page = 2 } }
+			krcw_gv_help_b2_visible = { check_variable = { krcw_gv_help_page = 2 } }
+			krcw_gv_help_n2_visible = { check_variable = { krcw_gv_help_page = 2 } }
+			krcw_gv_help_t3_visible = { check_variable = { krcw_gv_help_page = 3 } }
+			krcw_gv_help_b3_visible = { check_variable = { krcw_gv_help_page = 3 } }
+			krcw_gv_help_n3_visible = { check_variable = { krcw_gv_help_page = 3 } }
+		}
+	}
+}

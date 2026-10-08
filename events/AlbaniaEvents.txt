@@ -1,0 +1,800 @@
+# KRCW (build/patch_residue.py): 28 OTL events dropped while KRCW_active
+add_namespace = ALB
+add_namespace = alb_end_of_communism
+add_namespace = albania
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = albania.1 
+ immediate = { }
+	title = albania.1.t2
+	picture = GFX_Albania_One
+	is_triggered_only = yes
+	desc = Albania_1_desc
+
+	option = {
+		name = albania.1.a2
+		trigger = {
+			OR = {
+				has_government = maoism
+				has_government = communism
+				tag = ALB
+			}
+		}
+	}
+	option = {
+		name = albania.1.b2
+		trigger = {
+			OR = {
+				has_government = maoism
+				has_government = communism
+				tag = ALB
+			}
+		}
+	}
+	option = {
+		name = albania.1.c2
+		trigger = {
+			NOT = { has_government = maoism }
+			NOT = { has_government = communism }
+			NOT = { tag = ALB }
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = albania.2 
+ immediate = { }
+	title = albania.2.t2
+	major = yes
+	picture = GFX_Albania_Two
+	is_triggered_only = yes
+	desc = Albania_2_desc
+
+	option = {
+		name = albania.2.a2
+		trigger = {
+			OR = {
+				has_government = maoism
+				has_government = communism
+				tag = ALB
+			}
+		}
+	}
+	option = {
+		name = albania.2.b2
+		trigger = {
+			NOT = { has_government = maoism }
+			NOT = { has_government = communism }
+			NOT = { tag = ALB }
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = albania.3 
+ immediate = { }
+	title = albania.3.t2
+	major = yes
+	picture = GFX_Albania_Ten
+	is_triggered_only = yes
+	desc = Albania_3_desc
+
+	option = {
+		name = albania.3.a2
+
+	}
+
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = albania.5 
+ immediate = { }
+	title = albania.5.t2
+	desc = Albania_5_desc
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = albania.5.a2
+		country_event = albania.6
+		ai_chance = {
+			factor = 100
+		}
+		USA = {
+			complete_national_focus = USA_50s_Failure_of_the_Pixies
+		}
+		trigger = {
+			check_variable = {
+				USA.Albanian_Subversion_Chance < 0.31
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			check_variable = {
+				USA.Albanian_Subversion_Chance > 0.30
+			}
+		}
+		country_event = albania.7
+		Albanian_Counter_Revolution = yes
+		ai_chance = {
+			factor = 10
+		}
+		name = albania.5.b2
+
+	}
+	option = {
+		trigger = {
+			is_ai = no
+		}
+		country_event = albania.7
+		
+		KOA = {
+			transfer_state = 1480
+			transfer_state = 1481
+			add_state_core = 1480
+			add_state_core = 1481
+			add_state_core = 44
+			add_state_core = 1012
+			set_capital = {state = 1480 }
+			complete_national_focus = ALB_The_Albanian_Counterrevolution
+			add_popularity = {
+				ideology = monarchism
+				popularity = 0.25
+			}
+			add_popularity = {
+				ideology = Social_Democratic
+				popularity = 0.25
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.25
+			}
+			1480 = {
+				create_unit = {
+					division = "name = \"Infantry Division\"division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = PREV allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\"division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = PREV allow_spawning_on_enemy_provs = no
+				}
+				create_unit = {
+					division = "name = \"Infantry Division\"division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = PREV allow_spawning_on_enemy_provs = no
+				}
+			}
+			add_to_array = {
+				country_politics_list = 52	#Idea Grid
+			}
+			add_to_array = {
+				country_politics_list = 1	#Social Policies
+			}
+		}
+		
+		SOV = {
+			set_autonomy = {
+				target = ALB
+				autonomy_state = autonomy_free
+			}
+			remove_from_faction = ALB
+		}
+		USA = {
+			complete_national_focus = USA_50s_Albania_Subverted
+		}
+		44 = {
+			create_unit = {
+				division = "name = \"Infantry Division\"division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = PREV allow_spawning_on_enemy_provs = no
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\"division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = PREV allow_spawning_on_enemy_provs = no
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\"division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = PREV allow_spawning_on_enemy_provs = no
+			}
+		}
+		declare_war_on = {
+			target = KOA
+			type = annex_everything
+		}
+		KOA = {
+			change_tag_from = ROOT
+		}
+		ai_chance = {
+			factor = 10
+		}
+		name = albania.5.c
+	}
+}
+add_namespace = AlbanianCounterrevolution
+add_namespace = AlbanianElections
+add_namespace = AGT_axis
+add_namespace = Albanian_Republic
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AlbanianCounterrevolution.1
+	immediate = { }
+	title = AlbanianCounterrevolution.1.t
+	desc = AlbanianCounterrevolution.1.d
+
+	is_triggered_only = yes
+
+	option = {#Accept
+		name = AlbanianCounterrevolution.1.a
+		KOA = {
+			country_event = AlbanianCounterrevolution.2
+		}
+	}
+	option = {#Refuse
+		name = AlbanianCounterrevolution.1.b
+		KOA = {
+			country_event = AlbanianCounterrevolution.3
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AlbanianCounterrevolution.2
+	immediate = { }
+	title = AlbanianCounterrevolution.2.t
+	desc = AlbanianCounterrevolution.2.d
+
+	is_triggered_only = yes
+
+	option = {#Accept
+		name = AlbanianCounterrevolution.2.a
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1000
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 500
+			producer = USA
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AlbanianCounterrevolution.3
+	immediate = { }
+	title = AlbanianCounterrevolution.3.t
+	desc = AlbanianCounterrevolution.3.d
+
+	is_triggered_only = yes
+
+	option = {#Accept
+		name = AlbanianCounterrevolution.3.a
+		ENG = {
+			country_event = AlbanianCounterrevolution.4
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AlbanianCounterrevolution.4
+	immediate = { }
+	title = AlbanianCounterrevolution.4.t
+	desc = AlbanianCounterrevolution.4.d
+
+	is_triggered_only = yes
+
+	option = {#Accept
+		name = AlbanianCounterrevolution.4.a
+		KOA = {
+			country_event = AlbanianCounterrevolution.5
+		}
+	}
+	option = {#Refuse
+		name = AlbanianCounterrevolution.4.b
+		KOA = {
+			country_event = AlbanianCounterrevolution.6
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AlbanianCounterrevolution.5
+	immediate = { }
+	title = AlbanianCounterrevolution.5.t
+	desc = AlbanianCounterrevolution.5.d
+
+	is_triggered_only = yes
+
+	option = {#Accept
+		name = AlbanianCounterrevolution.5.a
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1000
+			producer = ENG
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 500
+			producer = ENG
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AlbanianCounterrevolution.6
+	immediate = { }
+	title = AlbanianCounterrevolution.6.t
+	desc = AlbanianCounterrevolution.6.d
+
+	is_triggered_only = yes
+
+	option = {#Accept
+		name = AlbanianCounterrevolution.6.a
+		add_stability = -0.05
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AlbanianCounterrevolution.7
+	immediate = { }
+	title = AlbanianCounterrevolution.7.t
+	major = yes
+	picture = GFX_Albania_Eight
+	is_triggered_only = yes
+	desc = Albania_8_desc
+
+	option = {
+		name = AlbanianCounterrevolution.7.a
+		trigger = {
+			OR = {
+				has_government = maoism
+				has_government = communism
+				tag = ALB
+			}
+		}
+	}
+	option = {
+		name = AlbanianCounterrevolution.7.b
+		trigger = {
+			NOT = { has_government = maoism }
+			NOT = { has_government = communism }
+			NOT = { tag = ALB }
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AlbanianCounterrevolution.8
+	immediate = { }
+	title = AlbanianCounterrevolution.8.t
+	desc = AlbanianCounterrevolution.8.d
+
+	is_triggered_only = yes
+
+	option = {#Accept
+		name = AlbanianCounterrevolution.8.a
+		KOA = {
+			change_tag_from = ROOT
+		}
+	}
+	option = {#Refuse
+		name = AlbanianCounterrevolution.8.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AlbanianElections.1
+	immediate = { }
+	title = AlbanianElections.1.t
+	desc = AlbanianElections.1.d
+
+	is_triggered_only = yes
+
+	option = { # Monarchists
+		name = AlbanianElections.1.a
+		complete_national_focus = ALB_legaliteti_victory
+		set_politics = {
+			ruling_party = monarchism
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Abaz Kupi"
+			picture = "Abaz_Kupi_50s.dds"
+			ideology = regency
+		}
+	}
+	
+	option = { # Republicans
+		name = AlbanianElections.1.a
+		complete_national_focus = ALB_balli_kombtar_victory
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Ali Këlcyra"
+			picture = "Ali_Kelcyra_50s.dds"
+			ideology = social_democrat
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AlbanianElections.2
+	immediate = { }
+	title = AlbanianCounterrevolution.2.t
+	major = yes
+	picture = GFX_Albania_Eight
+	is_triggered_only = yes
+	desc = Albania_8_desc
+
+	option = {
+		name = AlbanianCounterrevolution.2.a
+		trigger = {
+			OR = {
+				has_government = maoism
+				has_government = communism
+				tag = ALB
+			}
+		}
+	}
+	option = {
+		name = AlbanianCounterrevolution.2.b
+		trigger = {
+			NOT = { has_government = maoism }
+			NOT = { has_government = communism }
+			NOT = { tag = ALB }
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AlbanianElections.3
+	immediate = { }
+	title = AlbanianElections.3.t
+	desc = AlbanianElections.3.d
+
+	is_triggered_only = yes
+
+	option = { # Monarchists
+		name = AlbanianElections.3.a
+		set_country_flag = Monarchist_Victory
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 100
+				has_completed_focus = ALB_legaliteti_victory
+			}
+		}
+	}
+	
+	option = { # Republicans
+		name = AlbanianElections.3.a
+		set_country_flag = Republican_Victory
+		trigger = { has_completed_focus = ALB_balli_kombtar_victory }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0
+				has_completed_focus = ALB_legaliteti_victory
+			}
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AGT_axis.1
+	immediate = { }
+	title = AGT_axis.1.t
+	major = yes
+	picture = GFX_Albania_Eight
+	is_triggered_only = yes
+	desc = Albania_8_desc
+
+	option = {
+		name = AGT_axis.1.a
+		trigger = {
+			OR = {
+				has_government = maoism
+				has_government = communism
+				tag = ALB
+			}
+		}
+	}
+	option = {
+		name = AGT_axis.1.b
+		trigger = {
+			NOT = { has_government = maoism }
+			NOT = { has_government = communism }
+			NOT = { tag = ALB }
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Albanian_Republic.1
+	immediate = { }
+	title = Albanian_Republic.1.t
+	major = yes
+	picture = GFX_Albania_Eight
+	is_triggered_only = yes
+	desc = Albania_8_desc
+
+	option = {
+		name = Albanian_Republic.1.a
+		trigger = {
+			OR = {
+				has_government = maoism
+				has_government = communism
+				tag = ALB
+			}
+		}
+	}
+	option = {
+		name = Albanian_Republic.1.b
+		trigger = {
+			NOT = { has_government = maoism }
+			NOT = { has_government = communism }
+			NOT = { tag = ALB }
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = albania.6 
+ immediate = { }
+	title = albania.6.t2
+	desc = Albania_6_desc
+
+	is_triggered_only = yes
+
+	option = {
+		name = albania.6.a2
+		complete_national_focus = ALB_The_Albanian_Subversion
+		news_event = albania.8
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = albania.7 
+ immediate = { }
+	title = albania.7.t2
+	desc = Albania_6_desc
+
+	is_triggered_only = yes
+
+	option = {
+		name = albania.7.a2
+		news_event = albania.9
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = albania.8 
+ immediate = { }
+	title = albania.8.t2
+	major = yes
+	picture = GFX_Albania_Eight
+	is_triggered_only = yes
+	desc = Albania_8_desc
+
+	option = {
+		name = albania.8.a2
+		trigger = {
+			OR = {
+				has_government = maoism
+				has_government = communism
+				tag = ALB
+			}
+		}
+	}
+	option = {
+		name = albania.8.b2
+		trigger = {
+			NOT = { has_government = maoism }
+			NOT = { has_government = communism }
+			NOT = { tag = ALB }
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = albania.9 
+ immediate = { }
+	title = albania.9.t2
+	major = yes
+	picture = GFX_Albania_Nine
+	is_triggered_only = yes
+	desc = Albania_9_desc
+
+	option = {
+		name = albania.9.a2
+		trigger = {
+			OR = {
+				has_government = maoism
+				has_government = communism
+			}
+		}
+	}
+	option = {
+		name = albania.9.b2
+		trigger = {
+			NOT = { has_government = maoism }
+			NOT = { has_government = communism }
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = albania.10 
+ immediate = { }
+	title = albania.10.t
+	major = yes
+	picture = GFX_Albania_Three
+	is_triggered_only = yes
+	desc = Albania_3_desc
+
+	option = {
+		name = albania.10.a
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ALB.100 
+ immediate = { }
+	title = ALB.100.t2
+	desc = ALB.100.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = ALB.100.a2
+		ALB = { transfer_state = 1065 }
+		ai_chance = {
+			factor = 80
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 20
+		}
+		name = ALB.100.b2
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ALB.200 
+ immediate = { }
+	title = ALB.200.t2
+	desc = ALB.200.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = ALB.200.a2
+		GRE = { transfer_state = 1012 }
+		ai_chance = {
+			factor = 80
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 20
+		}
+		name = ALB.200.b2
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = alb_end_of_communism.1 
+ immediate = { }
+	title = alb_end_of_communism.1.t
+	desc = alb_end_of_communism.1.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = alb_end_of_communism.1.a
+		create_country_leader = {
+			name = "Ramiz Alia"
+			picture = "Ramiz_Alia_80s.dds"
+			ideology = hoxhaism
+		}		
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = alb_end_of_communism.2 
+ immediate = { }
+	title = alb_end_of_communism.2.t
+	desc = alb_end_of_communism.2.d
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = alb_end_of_communism.2.a
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			last_election = "1992.1.1"
+			election_frequency = 48
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Sali Berisha"
+			picture = "Sali_Berisha_90s.dds"
+			ideology = liberal_conservatives
+		}
+		hidden_effect = {
+			set_popularities = {
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 0
+				Social_Democratic = 27
+				
+				democratic = 0
+				Social_Liberalism = 2
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 57
+				Christian_Democratic = 0
+				conservative = 2
+				
+				neutrality = 0
+				nationalist = 0
+				monarchism = 12
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = alb_end_of_communism.3 
+ immediate = { }
+	title = alb_end_of_communism.3.t
+	desc = alb_end_of_communism.3.d
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = alb_end_of_communism.3.a
+		add_dynamic_modifier = {
+			modifier = albanian_anarchy
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = alb_end_of_communism.4
+ immediate = { }
+	title = alb_end_of_communism.4.t
+	desc = alb_end_of_communism.4.d
+	picture = GFX_albanian_anarchy
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+
+	option = {
+		name = alb_end_of_communism.4.a
+	}
+}

@@ -1,0 +1,285 @@
+add_namespace = krcw_mad
+
+country_event = {
+	id = krcw_mad.10
+	title = krcw_mad_10_t
+	desc = krcw_mad_10_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		has_idea = krcw_ma_belated_land_reform
+	}
+	option = {
+		name = krcw_mad_10.a
+		ai_chance = {
+			base = 50
+		}
+		add_stability = 0.05
+		add_political_power = -50
+		army_experience = -10
+	}
+	option = {
+		name = krcw_mad_10.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.02
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_mad_10.c
+		ai_chance = {
+			base = 15
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 50
+		add_stability = -0.05
+		set_country_flag = krcw_ma_land_delayed
+	}
+}
+
+country_event = {
+	id = krcw_mad.12
+	title = krcw_mad_12_t
+	desc = krcw_mad_12_d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		has_idea = krcw_ma_the_frontier_economy
+	}
+	option = {
+		name = krcw_mad_12.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+		add_stability = 0.03
+		custom_effect_tooltip = krcw_ma_reprice_tt
+		random_list = {
+			35 = {
+				modifier = { factor = 1.5 has_global_flag = KRCW_savinkov_dead }
+				add_political_power = 50
+				add_stability = 0.02
+			}
+			65 = {
+				add_stability = -0.02
+			}
+		}
+	}
+	option = {
+		name = krcw_mad_12.b
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = 25
+		if = { limit = { country_exists = SOV } add_opinion_modifier = { target = SOV modifier = krcw_ma_loyal_member } }
+	}
+	option = {
+		name = krcw_mad_12.c
+		ai_chance = {
+			base = 15
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_to_variable = { global.krcw_ma_crisis = 2 }
+		clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+		set_country_flag = krcw_ma_quiet_western_trade
+	}
+}
+
+country_event = {
+	id = krcw_mad.20
+	title = krcw_mad_20_t
+	desc = krcw_mad_20_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = GRE
+	}
+	option = {
+		name = krcw_mad_20.a
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.05
+		krcw_tension_up_medium = yes
+		if = { limit = { country_exists = ITA } ITA = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+		set_country_flag = krcw_gre_border_sealed
+	}
+	option = {
+		name = krcw_mad_20.b
+		ai_chance = {
+			base = 50
+		}
+		army_experience = 25
+		add_stability = 0.03
+		add_war_support = 0.02
+	}
+	option = {
+		name = krcw_mad_20.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.06
+		add_political_power = -25
+		set_country_flag = krcw_gre_amnesty
+	}
+}
+
+country_event = {
+	id = krcw_mad.22
+	title = krcw_mad_22_t
+	desc = krcw_mad_22_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		OR = { original_tag = YUG original_tag = BUL original_tag = GRE }
+	}
+	option = {
+		name = krcw_mad_22.a
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.05
+		add_political_power = -25
+		set_global_flag = KRCW_macedonia_recognised
+	}
+	option = {
+		name = krcw_mad_22.b
+		ai_chance = {
+			base = 50
+		}
+		add_stability = 0.03
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_mad_22.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 50
+		add_stability = -0.04
+	}
+}
+
+country_event = {
+	id = krcw_mad.24
+	title = krcw_mad_24_t
+	desc = krcw_mad_24_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = TUR
+	}
+	option = {
+		name = krcw_mad_24.a
+		ai_chance = {
+			base = 55
+		}
+		add_war_support = 0.05
+		add_stability = 0.03
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+		set_country_flag = krcw_tur_straits_held
+	}
+	option = {
+		name = krcw_mad_24.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		if = { limit = { country_exists = SOV } add_opinion_modifier = { target = SOV modifier = krcw_ma_loyal_member } }
+	}
+	option = {
+		name = krcw_mad_24.c
+		ai_chance = {
+			base = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		add_stability = -0.04
+		random_owned_controlled_state = {
+			limit = { is_core_of = ROOT  }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		}
+		set_country_flag = krcw_tur_straits_conceded
+	}
+}
+
+country_event = {
+	id = krcw_mad.26
+	title = krcw_mad_26_t
+	desc = krcw_mad_26_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		OR = { original_tag = ROM original_tag = HUN }
+	}
+	option = {
+		name = krcw_mad_26.a
+		ai_chance = {
+			base = 55
+		}
+		add_political_power = 25
+		add_stability = 0.02
+		if = { limit = { country_exists = SOV } add_opinion_modifier = { target = SOV modifier = krcw_ma_loyal_member } }
+	}
+	option = {
+		name = krcw_mad_26.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.04
+		add_stability = -0.03
+		set_country_flag = krcw_transylvania_pressed
+	}
+}
+
+country_event = {
+	id = krcw_mad.28
+	title = krcw_mad_28_t
+	desc = krcw_mad_28_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = POL
+	}
+	option = {
+		name = krcw_mad_28.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = 25
+		add_stability = 0.02
+	}
+	option = {
+		name = krcw_mad_28.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		random_owned_controlled_state = {
+			limit = { is_core_of = ROOT  }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+		}
+		army_experience = 15
+		add_political_power = -25
+	}
+}

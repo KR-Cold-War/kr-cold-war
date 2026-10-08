@@ -1,0 +1,303 @@
+# KRCW (build/patch_residue.py): 10 OTL events dropped while KRCW_active
+
+add_namespace = MZB
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = MZB.1 
+ immediate = { }
+	title = MZB.1.t2
+	desc = MZB.1.d2
+	fire_only_once = yes
+
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			news_event = MZB.2
+			MZB = {
+				transfer_state = 1137
+				transfer_state = 1139
+				load_oob = "MZB_1949"
+				1139 = {
+					create_unit = {
+						division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.75 start_equipment_factor = 0.5"
+						owner = MZB
+					}
+					create_unit = {
+						division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.75 start_equipment_factor = 0.5"
+						owner = MZB
+					}
+					create_unit = {
+						division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.75 start_equipment_factor = 0.5"
+						owner = MZB
+					}
+					create_unit = {
+						division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.75 start_equipment_factor = 0.5"
+						owner = MZB
+					}
+					create_unit = {
+						division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.75 start_equipment_factor = 0.5"
+						owner = MZB
+					}
+					create_unit = {
+						division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.75 start_equipment_factor = 0.5"
+						owner = MZB
+					}
+				}
+
+			}
+			set_autonomy = {
+				target = MZB
+				autonomy_state = autonomy_free
+			}
+			declare_war_on = { target = MZB type = annex_everything }
+			set_global_flag = Mozambiquan_War			
+		}
+
+	}
+	option = {
+		name = MZB.1.a2
+		ai_chance = {
+		  factor = 100
+		}
+	}
+	option = {
+		name = MZB.1.b2
+		MZB = { change_tag_from = POR }
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = MZB.2 
+ immediate = { }
+	title = MZB.2.t2
+	desc = MZB.2.d
+	picture = GFX_news_event_mozambique_civil_war
+
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = MZB.2.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = MZB.100 
+ immediate = { }
+	title = MZB.100.t2
+	desc = MZB.100.d
+
+	is_triggered_only = yes
+
+	# Get Annexed
+	option = {
+		name = MZB.100.a2
+		ai_chance = {
+		  factor = 50
+		}
+	}
+	option = {
+		name = MZB.100.b2
+		white_peace = MZB
+		MZB = {
+			transfer_state = 544
+			transfer_state = 1143
+			transfer_state = 1140
+			transfer_state = 1139
+			transfer_state = 1137
+			transfer_state = 1135
+		}
+		ai_chance = {
+		  factor = 50
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = MZB.101 
+ immediate = { }
+	title = MZB.101.t2
+	desc = MZB.101.d
+
+	is_triggered_only = yes
+
+	# Get Annexed
+	option = {
+		name = MZB.101.a2
+		white_peace = MZB
+		MZB = {
+			transfer_state = 544
+			transfer_state = 1143
+			transfer_state = 1140
+			transfer_state = 1139
+			transfer_state = 1137
+			transfer_state = 1135
+		}
+	}
+}
+#19 October 1986
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = MZB.3
+ 	immediate = { }
+	#title = "Samora Machel Dies In Plane Crash"
+	#desc = MZB.3.d
+	hidden = yes
+	immediate = {
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Political Bureau of the Central Committee of FRELIMO"
+			picture = "Political_Bureau_of_the_Central_Committee_of_FRELIMO.dds"
+			ideology = marxism_leninism
+		}
+		create_country_leader = {
+			name = "Political Bureau of the Central Committee of FRELIMO"
+			picture = "Political_Bureau_of_the_Central_Committee_of_FRELIMO.dds"
+			ideology = african_socialism
+		}
+		news_event = news.1739
+	}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = MZB.3.a
+	}
+}
+#6 November 1986
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = MZB.4
+ 	immediate = { }
+	#title = "Joaquim Chissano Becomes President of Mozambique"
+	#desc = MZB.4.d
+	hidden = yes
+	immediate = {
+		create_country_leader = {
+			name = "Joaquim Chissano"
+			picture = "Joaquim_Chissano_90s.dds"
+			ideology = marxism_leninism
+		}
+		create_country_leader = {
+			name = "Joaquim Chissano"
+			picture = "Joaquim_Chissano_90s.dds"
+			ideology = democratic_socialist
+		}
+		news_event = news.1740
+	}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = MZB.4.a
+	}
+}
+#1990
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = MZB.5
+ 	immediate = { }
+	#title = "Mozambique Ends One-Party State"
+	#desc = MZB.5.d
+	hidden = yes
+	immediate = {
+		set_popularities = {
+			socialist = 70
+			conservative = 30
+		}
+		
+		set_politics = {
+			ruling_party = socialist
+			last_election = "1990.12.1"
+			election_frequency = 48
+			elections_allowed = no
+		}
+		news_event = news.1741
+	}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = MZB.5.a
+	}
+}
+#2 February 2005
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = MZB.6
+ 	immediate = { }
+	#title = "Armando Guebuza Elected President"
+	#desc = MZB.6.d
+	hidden = yes
+	immediate = {
+		create_country_leader = {
+			name = "Armando Guebuza"
+			picture = "Armando_Guebuza_00s.dds"
+			ideology = marxism_leninism
+		}
+		
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Armando Guebuza"
+			picture = "Armando_Guebuza_00s.dds"
+			ideology = democratic_socialist
+		}
+		news_event = news.1742
+	}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = MZB.6.a
+	}
+}
+
+#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = MZB.7
+ 	immediate = { }
+	#title = "It is time to adopt the a proper flag of Mozambique"
+	#desc = MZB.7.d
+	hidden = yes
+	immediate = {
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = MZB_1975
+	}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = MZB.7.a
+	}
+}
+
+#
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = MZB.8
+ 	immediate = { }
+	#title = "#"
+	#desc = MZB.8.d
+	hidden = yes
+
+	immediate = {
+		drop_cosmetic_tag = yes
+	}
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = MZB.8.a
+	}
+}

@@ -1,0 +1,1058 @@
+# KRCW (build/patch_residue.py): 42 OTL events dropped while KRCW_active
+add_namespace = Baluchistan_Uprising
+
+#PAK_Baluchistan_Uprising
+#Quetta 444
+#Kalat 1567
+#Chargai 1568
+#Gwadar 1169
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.100
+ immediate = { }	
+	title = Baluchistan_Uprising.100.t
+	desc = Baluchistan_Uprising.100.d
+	picture = GFX_Baluchistan_Uprising_100
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.100.a
+        every_owned_state = {
+            limit = {
+                is_core_of = BAL
+            }
+            add_dynamic_modifier = {
+                modifier = autonomous_state
+            }
+        }
+    }
+    option = {
+        name = Baluchistan_Uprising.100.b
+        country_event = {
+            id = Baluchistan_Uprising.0
+            days = 60
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.0
+ immediate = { }	
+	title = Baluchistan_Uprising.0.t
+	desc = Baluchistan_Uprising.0.d
+	picture = GFX_Baluchistan_Uprising_0
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.0.a
+        complete_national_focus = PAK_70s_Baluchistan_Uprising
+        country_event = {
+            id = Baluchistan_Uprising.1
+            days = 25
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.1
+ immediate = { }	
+	title = Baluchistan_Uprising.1.t
+	desc = Baluchistan_Uprising.1.d
+	picture = GFX_Baluchistan_Uprising_1
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.1.a
+        set_global_flag = Balochi_Uprising
+        BAL = {
+            transfer_state = 1568
+            load_oob = BAL_1970s
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.2
+ immediate = { }	
+	title = Baluchistan_Uprising.2.t
+	desc = Baluchistan_Uprising.2.d
+	picture = GFX_Baluchistan_Uprising_2
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.2.a
+        PAK = {
+            add_equipment_to_stockpile = {
+                type = infantry_equipment_2
+                amount = 2000
+                producer = CAP
+            }
+            add_timed_idea = {
+                idea = Iranian_Subsidies
+                days = 1825
+            }
+            set_variable = { THIS.idea_len_@token:Iranian_Subsidies = 1825 }
+            set_variable = { THIS.idea_date_@token:Iranian_Subsidies = global.num_days }
+        }
+    }
+	option = {
+        name = Baluchistan_Uprising.2.b
+        PAK = {
+            add_timed_idea = {
+                idea = Iranian_Subsidies
+                days = 1825
+            }
+            set_variable = { THIS.idea_len_@token:Iranian_Subsidies = 1825 }
+            set_variable = { THIS.idea_date_@token:Iranian_Subsidies = global.num_days }
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.3
+ immediate = { }	
+	title = Baluchistan_Uprising.3.t
+	desc = Baluchistan_Uprising.3.d
+	picture = GFX_Baluchistan_Uprising_3
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.3.a
+        add_timed_idea = {
+            idea = Trade_Restrictions
+            days = 1025
+        }
+        set_variable = { THIS.idea_len_@token:Trade_Restrictions = 1025 }
+        set_variable = { THIS.idea_date_@token:Trade_Restrictions = global.num_days }
+        PAK = {
+            add_timed_idea = {
+                idea = Baluch_Radio_Broadcasts
+                days = 1025
+            }
+            set_variable = { THIS.idea_len_@token:Baluch_Radio_Broadcasts = 1025 }
+            set_variable = { THIS.idea_date_@token:Baluch_Radio_Broadcasts = global.num_days }            
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.4
+ immediate = { }	
+	title = Baluchistan_Uprising.4.t
+	desc = Baluchistan_Uprising.4.d
+	picture = GFX_Baluchistan_Uprising_3
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.4.a
+        set_country_flag = Baluchistan_Blockade
+        RAJ = {
+            add_opinion_modifier = {
+                target = PAK
+                modifier = medium_decrease
+            }
+        }
+        PAK = {
+            add_opinion_modifier = {
+                target = RAJ
+                modifier = medium_decrease
+            }
+        }
+    }
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.5
+ immediate = { }
+	title = Baluchistan_Uprising.5.t
+	desc = Baluchistan_Uprising.5.d
+	picture = GFX_Baluchistan_Uprising_5
+
+	is_triggered_only = yes
+	major = yes
+
+    option = {
+        name = Baluchistan_Uprising.5.a
+        if = {
+            limit = {
+                tag = IRQ
+            }
+            set_country_flag = Halt_Baluchistan_Aid
+            IRQ = {
+                add_opinion_modifier = {
+                    target = PAK
+                    modifier = medium_decrease
+                }
+            }
+            PAK = {
+                add_opinion_modifier = {
+                    target = IRQ
+                    modifier = medium_decrease
+                }
+            }
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.8
+ immediate = { }	
+	title = Baluchistan_Uprising.8.t
+	desc = Baluchistan_Uprising.8.d
+	picture = GFX_Baluchistan_Uprising_8
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.8.a
+        random_list = {
+            75 = {
+                country_event = Baluchistan_Uprising.9
+            }
+            25 = {
+                country_event = Baluchistan_Uprising.10
+            }
+        }
+    }
+	option = {
+        name = Baluchistan_Uprising.8.b
+        add_timed_idea = {
+            idea = Senior_Officers_Agitated #which should hurt military capabilities
+            days = 1025 
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.9
+ immediate = { }	
+	title = Baluchistan_Uprising.9.t
+	desc = Baluchistan_Uprising.9.d
+	picture = GFX_Baluchistan_Uprising_9
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.9.a
+        add_timed_idea = {
+            idea = Heavy_Weapon_Support_vs_BAL
+            days = 1825
+        }
+        set_variable = { THIS.idea_len_@token:Heavy_Weapon_Support_vs_BAL = 1825 }
+        set_variable = { THIS.idea_date_@token:Heavy_Weapon_Support_vs_BAL = global.num_days }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.10
+ immediate = { }	
+	title = Baluchistan_Uprising.10.t
+	desc = Baluchistan_Uprising.10.d
+	picture = GFX_Baluchistan_Uprising_10
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.10.a
+        BAL = {
+            add_war_support = 0.15
+            add_stability = 0.03
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.11
+ immediate = { }	
+	title = Baluchistan_Uprising.11.t
+	desc = Baluchistan_Uprising.11.d
+	picture = GFX_Baluchistan_Uprising_11
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.11.a
+        random_list = {
+            50 = {
+                country_event = Baluchistan_Uprising.12
+            }
+            50 = {
+                country_event = Baluchistan_Uprising.13
+            }
+        }
+    }
+	option = {
+        name = Baluchistan_Uprising.11.b
+        add_timed_idea = {
+            idea = Human_Rights_Accusations
+            days = 2000
+        }
+        set_variable = { THIS.idea_len_@token:Human_Rights_Accusations = 2000 }
+        set_variable = { THIS.idea_date_@token:Human_Rights_Accusations = global.num_days }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.12
+ immediate = { }	
+	title = Baluchistan_Uprising.12.t
+	desc = Baluchistan_Uprising.12.d
+	picture = GFX_Baluchistan_Uprising_12
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.12.a
+        add_war_support = 0.05
+        add_stability = 0.05
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.13
+ immediate = { }	
+	title = Baluchistan_Uprising.13.t
+	desc = Baluchistan_Uprising.13.d
+	picture = GFX_Baluchistan_Uprising_13
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.13.a
+        BAL = {
+            add_war_support = 0.05
+        }
+        add_war_support = -0.05
+        add_stability = -0.05
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.14
+ immediate = { }	
+	title = Baluchistan_Uprising.14.t
+	desc = Baluchistan_Uprising.14.d
+	picture = GFX_Baluchistan_Uprising_14
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.14.a
+        add_timed_idea = {
+            idea = Pathan_Refugees
+            days = 1825
+        }
+        set_variable = { THIS.idea_len_@token:Pathan_Refugees = 1825 }
+        set_variable = { THIS.idea_date_@token:Pathan_Refugees = global.num_days }
+        add_ideas = Unrest_in_Sindh
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.15
+ immediate = { }	
+	title = Baluchistan_Uprising.15.t
+	desc = Baluchistan_Uprising.15.d
+	picture = GFX_Baluchistan_Uprising_15
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.15.a
+        BAL = {
+            country_event = Baluchistan_Uprising.16
+        }
+    }
+	option = {
+        name = Baluchistan_Uprising.15.b
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.16
+ immediate = { }	
+	title = Baluchistan_Uprising.16.t
+	desc = Baluchistan_Uprising.16.d
+	picture = GFX_Baluchistan_Uprising_16
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.16.a
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 443
+				num_provinces = 3
+				on_win = Baluchistan_Uprising.17
+				on_lose = Baluchistan_Uprising.21
+				on_cancel = Indochina_War.4
+			}
+
+			defender = {
+				state = 444
+				num_provinces = 3
+				on_win = Baluchistan_Uprising.20
+				on_lose = Baluchistan_Uprising.18
+				on_cancel = Indochina_War.4
+			}
+		}        
+    }
+	option = {
+        name = Baluchistan_Uprising.16.b
+        PAK = {
+            transfer_state = 444
+        }
+        add_timed_idea = {
+            idea = Gave_in_to_Ultimatum
+            days = 1825
+        }
+        set_variable = { THIS.idea_len_@token:Gave_in_to_Ultimatum = 1825 }
+        set_variable = { THIS.idea_date_@token:Gave_in_to_Ultimatum = global.num_days }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.17
+ immediate = { }	
+	title = Baluchistan_Uprising.17.t
+	desc = Baluchistan_Uprising.17.d
+	picture = GFX_Baluchistan_Uprising_17
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.17.a
+        remove_ideas = Unrest_in_Sindh
+        remove_ideas = Pathan_Refugees
+        transfer_state = 444
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.18
+ immediate = { }	
+	title = Baluchistan_Uprising.18.t
+	desc = Baluchistan_Uprising.18.d
+	picture = GFX_Baluchistan_Uprising_18
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.18.a
+        add_timed_idea = {
+            idea = Quetta_Lost
+            days = 1825
+        }
+        set_variable = { THIS.idea_len_@token:Quetta_Lost = 1825 }
+        set_variable = { THIS.idea_date_@token:Quetta_Lost = global.num_days }
+        RAJ = {
+            country_event = Baluchistan_Uprising.19
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.19
+ immediate = { }	
+	title = Baluchistan_Uprising.19.t
+	desc = Baluchistan_Uprising.19.d
+	picture = GFX_Baluchistan_Uprising_19
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.19.a
+        give_guarantee = BAL
+    }
+	option = {
+        name = Baluchistan_Uprising.19.b
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.20
+ immediate = { }	
+	title = Baluchistan_Uprising.20.t
+	desc = Baluchistan_Uprising.20.d
+	picture = GFX_Baluchistan_Uprising_20
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.20.a
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_2	
+			amount = 1000
+			producer = CAP
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_2
+			amount = 200
+			producer = CAP
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment_3
+			amount = 50
+			producer = CAP
+		}				
+		add_equipment_to_stockpile = {
+			type = mbt_equipment_2
+			amount = 25
+			producer = CAP
+		}	      
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.21
+ immediate = { }	
+	title = Baluchistan_Uprising.21.t
+	desc = Baluchistan_Uprising.21.d
+	picture = GFX_Baluchistan_Uprising_21
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.21.a
+		swap_ideas = {
+			remove_idea = Pathan_Refugees
+			add_idea = Pathan_Refugees2
+		}
+		swap_ideas = {
+			remove_idea = Unrest_in_Sindh
+			add_idea = Unrest_in_Sindh2
+		}
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.22
+ immediate = { }	
+	title = Baluchistan_Uprising.22.t
+	desc = Baluchistan_Uprising.22.d
+	picture = GFX_Baluchistan_Uprising_22
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.22.a
+        if = {
+            limit = {
+                tag = BAL
+            }
+            start_border_war = {
+                change_state_after_war = no
+                attacker = {
+                    state = 1568
+                    num_provinces = 3
+                    on_win = Baluchistan_Uprising.23
+                    on_lose = Baluchistan_Uprising.24
+                    on_cancel = Indochina_War.4
+                }
+                defender = {
+                    state = 1169
+                    num_provinces = 3
+                    on_win = Baluchistan_Uprising.24
+                    on_lose = Baluchistan_Uprising.23
+                    on_cancel = Indochina_War.4
+                }
+            }
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.23
+ immediate = { }	
+	title = Baluchistan_Uprising.23.t
+	desc = Baluchistan_Uprising.23.d
+	picture = GFX_Baluchistan_Uprising_23
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.23.a
+        trigger = {
+            tag = BAL
+        }
+        transfer_state = 1169
+    }
+	option = {
+        name = Baluchistan_Uprising.23.b
+        trigger = {
+            tag = PAK
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.24
+ immediate = { }	
+	title = Baluchistan_Uprising.24.t
+	desc = Baluchistan_Uprising.24.d
+	picture = GFX_Baluchistan_Uprising_24
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.24.a
+        trigger = {
+            tag = BAL
+        }
+    }
+	option = {
+        name = Baluchistan_Uprising.24.b
+        trigger = {
+            tag = PAK
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.25
+ immediate = { }	
+	title = Baluchistan_Uprising.25.t
+	desc = Baluchistan_Uprising.25.d
+	picture = GFX_Baluchistan_Uprising_25
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.25.a
+        if = {
+            limit = {
+                tag = PAK
+            }
+            start_border_war = {
+                change_state_after_war = no
+                attacker = {
+                    state = 1568
+                    num_provinces = 3
+                    on_win = Baluchistan_Uprising.26
+                    on_lose = Baluchistan_Uprising.27
+                    on_cancel = Indochina_War.4
+                }
+                defender = {
+                    state = 1169
+                    num_provinces = 3
+                    on_win = Baluchistan_Uprising.27
+                    on_lose = Baluchistan_Uprising.26
+                    on_cancel = Indochina_War.4
+                }
+            }
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.26
+ immediate = { }	
+	title = Baluchistan_Uprising.26.t
+	desc = Baluchistan_Uprising.26.d
+	picture = GFX_Baluchistan_Uprising_26
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.26.a
+        trigger = {
+            tag = PAK
+        }
+        transfer_state = 1169
+    }
+	option = {
+        name = Baluchistan_Uprising.26.b
+        trigger = {
+            tag = BAL
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.27
+ immediate = { }	
+	title = Baluchistan_Uprising.27.t
+	desc = Baluchistan_Uprising.27.d
+	picture = GFX_Baluchistan_Uprising_27
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.27.a
+        trigger = {
+            tag = PAK
+        }
+    }
+	option = {
+        name = Baluchistan_Uprising.27.b
+        trigger = {
+            tag = BAL
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.28
+ immediate = { }	
+	title = Baluchistan_Uprising.28.t
+	desc = Baluchistan_Uprising.28.d
+	picture = GFX_Baluchistan_Uprising_28
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.28.a
+        if = {
+            limit = {
+                tag = BAL
+            }
+            start_border_war = {
+                change_state_after_war = no
+                attacker = {
+                    state = 1568
+                    num_provinces = 3
+                    on_win = Baluchistan_Uprising.29
+                    on_lose = Baluchistan_Uprising.30
+                    on_cancel = Indochina_War.4
+                }
+                defender = {
+                    state = 1567
+                    num_provinces = 3
+                    on_win = Baluchistan_Uprising.30
+                    on_lose = Baluchistan_Uprising.29
+                    on_cancel = Indochina_War.4
+                }
+            }
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.29
+ immediate = { }	
+	title = Baluchistan_Uprising.29.t
+	desc = Baluchistan_Uprising.29.d
+	picture = GFX_Baluchistan_Uprising_29
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.29.a
+        trigger = {
+            tag = BAL
+        }
+        transfer_state = 1567
+    }
+	option = {
+        name = Baluchistan_Uprising.29.b
+        trigger = {
+            tag = PAK
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.30
+ immediate = { }	
+	title = Baluchistan_Uprising.30.t
+	desc = Baluchistan_Uprising.30.d
+	picture = GFX_Baluchistan_Uprising_30
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.30.a
+        trigger = {
+            tag = BAL
+        }
+    }
+	option = {
+        name = Baluchistan_Uprising.30.b
+        trigger = {
+            tag = PAK
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.31
+ immediate = { }	
+	title = Baluchistan_Uprising.31.t
+	desc = Baluchistan_Uprising.31.d
+	picture = GFX_Baluchistan_Uprising_31
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.31.a
+        if = {
+            limit = {
+                tag = PAK
+            }
+            start_border_war = {
+                change_state_after_war = no
+                attacker = {
+                    state = 444
+                    num_provinces = 3
+                    on_win = Baluchistan_Uprising.32
+                    on_lose = Baluchistan_Uprising.33
+                    on_cancel = Indochina_War.4
+                }
+                defender = {
+                    state = 1567
+                    num_provinces = 3
+                    on_win = Baluchistan_Uprising.33
+                    on_lose = Baluchistan_Uprising.32
+                    on_cancel = Indochina_War.4
+                }
+            }
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.32
+ immediate = { }	
+	title = Baluchistan_Uprising.32.t
+	desc = Baluchistan_Uprising.32.d
+	picture = GFX_Baluchistan_Uprising_32
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.32.a
+        trigger = {
+            tag = PAK
+        }
+        transfer_state = 1567
+    }
+	option = {
+        name = Baluchistan_Uprising.32.b
+        trigger = {
+            tag = BAL
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.33
+ immediate = { }	
+	title = Baluchistan_Uprising.33.t
+	desc = Baluchistan_Uprising.33.d
+	picture = GFX_Baluchistan_Uprising_33
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.33.a
+        trigger = {
+            tag = PAK
+        }
+    }
+	option = {
+        name = Baluchistan_Uprising.33.b
+        trigger = {
+            tag = BAL
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.34
+ immediate = { }	
+	title = Baluchistan_Uprising.34.t
+	desc = Baluchistan_Uprising.34.d
+	picture = GFX_Baluchistan_Uprising_34
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.34.a
+        if = {
+            limit = {
+                tag = BAL
+            }
+            start_border_war = {
+                change_state_after_war = no
+                attacker = {
+                    state = 1567
+                    num_provinces = 3
+                    on_win = Baluchistan_Uprising.36
+                    on_lose = Baluchistan_Uprising.35
+                    on_cancel = Indochina_War.4
+                }
+                defender = {
+                    state = 444
+                    num_provinces = 3
+                    on_win = Baluchistan_Uprising.35
+                    on_lose = Baluchistan_Uprising.36
+                    on_cancel = Indochina_War.4
+                }
+            }
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.36
+ immediate = { }	
+	title = Baluchistan_Uprising.36.t
+	desc = Baluchistan_Uprising.36.d
+	picture = GFX_Baluchistan_Uprising_36
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.36.a
+        trigger = {
+            tag = BAL
+        }
+        transfer_state = 444
+        news_event = Baluchistan_Uprising.37
+        set_global_flag = Baluchistan_Conflict_End
+    }
+	option = {
+        name = Baluchistan_Uprising.36.b
+        trigger = {
+            tag = PAK
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.35
+ immediate = { }	
+	title = Baluchistan_Uprising.35.t
+	desc = Baluchistan_Uprising.35.d
+	picture = GFX_Baluchistan_Uprising_35
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.35.a
+        trigger = {
+            tag = BAL
+        }
+    }
+	option = {
+        name = Baluchistan_Uprising.35.b
+        trigger = {
+            tag = PAK
+        }
+    }
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.37
+ immediate = { }
+	title = Baluchistan_Uprising.37.t
+	desc = Baluchistan_Uprising.37.d
+	picture = GFX_Baluchistan_Uprising_37
+
+	is_triggered_only = yes
+	major = yes
+
+    option = {
+        name = Baluchistan_Uprising.37.a
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.38
+ immediate = { }	
+	title = Baluchistan_Uprising.38.t
+	desc = Baluchistan_Uprising.38.d
+	picture = GFX_Baluchistan_Uprising_38
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.38.a
+        if = {
+            limit = {
+                tag = PAK
+            }
+            start_border_war = {
+                change_state_after_war = no
+                attacker = {
+                    state = 444
+                    num_provinces = 3
+                    on_win = Baluchistan_Uprising.39
+                    on_lose = Baluchistan_Uprising.40
+                    on_cancel = Indochina_War.4
+                }
+                defender = {
+                    state = 1567
+                    num_provinces = 3
+                    on_win = Baluchistan_Uprising.40
+                    on_lose = Baluchistan_Uprising.39
+                    on_cancel = Indochina_War.4
+                }
+            }
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.39
+ immediate = { }	
+	title = Baluchistan_Uprising.39.t
+	desc = Baluchistan_Uprising.39.d
+	picture = GFX_Baluchistan_Uprising_39
+
+	is_triggered_only = yes
+    immediate = {
+        hidden_effect = {
+            set_variable = {
+                PAK.pakistan_baluch_conflict_tracker_final = PAK.pakistan_baluch_conflict_tracker
+            }
+            subtract_from_variable = {
+                PAK.pakistan_baluch_conflict_tracker_final = BAL.pakistan_baluch_conflict_tracker
+            }
+        }
+    }
+
+	option = {
+        name = Baluchistan_Uprising.39.a
+        trigger = {
+            tag = PAK
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    PAK.pakistan_baluch_conflict_tracker_final > 2
+                }    
+            }
+            transfer_state = 1567
+            news_event = Baluchistan_Uprising.41
+        }
+    }
+	option = {
+        name = Baluchistan_Uprising.39.b
+        trigger = {
+            tag = BAL
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.40
+ immediate = { }	
+	title = Baluchistan_Uprising.40.t
+	desc = Baluchistan_Uprising.40.d
+	picture = GFX_Baluchistan_Uprising_40
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.40.a
+        trigger = {
+            tag = PAK
+        }
+    }
+	option = {
+        name = Baluchistan_Uprising.40.b
+        trigger = {
+            tag = BAL
+        }
+    }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.41
+ immediate = { }
+	title = Baluchistan_Uprising.41.t
+	desc = Baluchistan_Uprising.41.d
+	picture = GFX_Baluchistan_Uprising_41
+
+	is_triggered_only = yes
+	major = yes
+
+    option = {
+        name = Baluchistan_Uprising.41.a
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Baluchistan_Uprising.101
+ immediate = { }	
+	title = Baluchistan_Uprising.101.t
+	desc = Baluchistan_Uprising.101.d
+	picture = GFX_Baluchistan_Uprising_101
+
+	is_triggered_only = yes
+
+	option = {
+        name = Baluchistan_Uprising.101.a
+    }
+}

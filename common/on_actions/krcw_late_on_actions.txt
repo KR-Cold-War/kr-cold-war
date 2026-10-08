@@ -1,0 +1,51 @@
+# krcw: paced
+on_actions = {
+	on_startup = {
+		effect = {
+			# Act 3 schedules (1966-78)
+			FRA = { country_event = { id = krcw_late.1 days = 1669 random_days = 1 } }
+			CHI = { country_event = { id = krcw_late.10 days = 1840 random_days = 1 } }
+			# Dark branches
+			SOV = { country_event = { id = krcw_late.24 days = 1776 random_days = 3 } }
+			WCA = { country_event = { id = krcw_late.33 days = 1861 random_days = 1 } }
+			USA = { country_event = { id = krcw_late.33 days = 1861 random_days = 1 } }
+			JAP = { country_event = { id = krcw_late.40 days = 1856 random_days = 3 } }
+			# Act 4 schedules (1979-2000)
+			RAJ = { country_event = { id = krcw_late.50 days = 2069 random_days = 3 } }
+			# Dark branches Act 4
+			FRA = { country_event = { id = krcw_late.80 days = 2069 random_days = 3 } }
+		}
+	}
+	# Second Commune response chain
+	on_monthly_FRA = {
+		effect = {
+			if = {
+				limit = {
+					has_country_flag = KRCW_fra_68_happened
+					has_country_flag = KRCW_fra_68_reform
+					NOT = { has_global_flag = KRCW_fra_68_charter }
+					date > 1954.2.4
+				}
+				country_event = { id = krcw_late.2 days = 60 }
+			}
+			if = {
+				limit = {
+					has_country_flag = KRCW_fra_68_happened
+					has_country_flag = KRCW_fra_68_repression
+					NOT = { has_global_flag = KRCW_fra_68_technocracy }
+					date > 1954.2.4
+				}
+				country_event = { id = krcw_late.3 days = 60 }
+			}
+			if = {
+				limit = {
+					has_country_flag = KRCW_fra_68_happened
+					has_country_flag = KRCW_fra_68_radicalisation
+					NOT = { has_global_flag = KRCW_fra_68_split }
+					date > 1954.2.11
+				}
+				country_event = { id = krcw_late.4 days = 90 }
+			}
+		}
+	}
+}

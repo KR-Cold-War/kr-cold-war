@@ -1,0 +1,1625 @@
+# KRCW (build/patch_residue.py): 24 OTL decisions hidden while KRCW_active
+economic_investments = {
+	##### CATEGORY UPGRADES #####
+	category_upgrade_25 = {
+		icon = togglemoney
+		cost = 0
+		allowed = {
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = category_upgrades.100
+				has_country_flag = category_upgrades.250
+				has_country_flag = category_upgrades.500
+			}
+		}
+		complete_effect = {
+			clr_country_flag = category_upgrades.25
+			set_country_flag = category_upgrades.100
+		}
+	}
+
+	category_upgrade_100 = {
+		icon = togglemoney
+		cost = 0
+		allowed = {
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = category_upgrades.100
+		}
+		complete_effect = {
+			clr_country_flag = category_upgrades.100
+			set_country_flag = category_upgrades.250
+		}
+	}
+
+	category_upgrade_250 = {
+		icon = togglemoney
+		cost = 0
+		allowed = {
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = category_upgrades.250
+		}
+		complete_effect = {
+			clr_country_flag = category_upgrades.250
+			set_country_flag = category_upgrades.500
+		}
+	}
+
+	category_upgrade_500 = {
+		icon = togglemoney
+		cost = 0
+		allowed = {
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = category_upgrades.500
+		}
+		complete_effect = {
+			clr_country_flag = category_upgrades.500
+			set_country_flag = category_upgrades.25
+		}
+	}
+	
+	category_upgrade_25_industrialize = {
+		icon = loans
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = category_upgrades.100
+				has_country_flag = category_upgrades.250
+				has_country_flag = category_upgrades.500
+			}
+			has_tech = ww_production
+			has_tech = ww_oil
+			has_tech = ww_construction
+			has_tech = ww_infra
+			check_variable = { num_of_preindustrial_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 25 }
+			add_to_variable = { industrialization_budget = 25 }
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15
+							has_state_category = pop20
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop15 }
+				}
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5
+							has_state_category = pop7
+							has_state_category = pop10
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop5 }
+				}
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2
+							has_state_category = pop3
+							has_state_category = pop4
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop2 }
+				}
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop1
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop1 }
+				}
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_100_industrialize = {
+		icon = category_generic_industry
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = category_upgrades.100
+			has_tech = ww_production
+			has_tech = ww_oil
+			has_tech = ww_construction
+			has_tech = ww_infra
+			check_variable = { num_of_preindustrial_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 100 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 100 }
+			add_to_variable = { industrialization_budget = 100 }
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15
+							has_state_category = pop20
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop15 }
+				}
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5
+							has_state_category = pop7
+							has_state_category = pop10
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop5 }
+				}
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2
+							has_state_category = pop3
+							has_state_category = pop4
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop2 }
+				}
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = { has_state_category = pop1 }
+					check_variable = { industrialization_budget > global.UPC_pop1 }
+				}
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_250_industrialize = {
+		icon = category_generic_industry
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = category_upgrades.250
+			has_tech = ww_production
+			has_tech = ww_oil
+			has_tech = ww_construction
+			has_tech = ww_infra
+			check_variable = { num_of_preindustrial_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 250 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 250 }
+			add_to_variable = { industrialization_budget = 250 }
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15
+							has_state_category = pop20
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop15 }
+				}
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5
+							has_state_category = pop7
+							has_state_category = pop10
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop5 }
+				}
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2
+							has_state_category = pop3
+							has_state_category = pop4
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop2 }
+				}
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop1
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop1 }
+				}
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_500_industrialize = {
+		icon = category_generic_industry
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = category_upgrades.500
+			has_tech = ww_production
+			has_tech = ww_oil
+			has_tech = ww_construction
+			has_tech = ww_infra
+			check_variable = { num_of_preindustrial_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 500 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 500 }
+			add_to_variable = { industrialization_budget = 500 }
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15
+							has_state_category = pop20
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop15 }
+				}
+				#log = "category_upgrade_500_industrialize pop15/20"
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5
+							has_state_category = pop7
+							has_state_category = pop10
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop5 }
+				}
+				#log = "category_upgrade_500_industrialize pop5/7/10"
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2
+							has_state_category = pop3
+							has_state_category = pop4
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop2 }
+				}
+				#log = "category_upgrade_500_industrialize pop2/3/4"
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop1
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop1 }
+				}
+				#log = "category_upgrade_500_industrialize pop1"
+				FBU_category_0 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_25_develop = {
+		icon = category_generic_industry
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = category_upgrades.100
+				has_country_flag = category_upgrades.250
+				has_country_flag = category_upgrades.500
+			}
+			has_tech = logistics_I
+			has_tech = production_efficiency_I
+			has_tech = management_I
+			has_tech = materials_I
+			has_tech = chemistry_I
+			has_tech = grid_I
+			has_tech = inframanagement_I
+			has_tech = consumer_electronics_I
+			check_variable = { num_of_industrial_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 25 }
+			add_to_variable = { development_budget = 25 }
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15dev1
+							has_state_category = pop20dev1
+						}
+					}
+					check_variable = { development_budget > global.UPC_pop15dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5dev1
+							has_state_category = pop7dev1
+							has_state_category = pop10dev1
+						}
+					}
+					check_variable = { development_budget > global.UPC_pop5dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2dev1
+							has_state_category = pop3dev1
+							has_state_category = pop4dev1
+						}
+					}
+					check_variable = { development_budget > global.UPC_pop2dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop1dev1
+						}
+					}
+					check_variable = { development_budget > global.UPC_pop1dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_100_develop = {
+		icon = togglemoney_develop
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = category_upgrades.100
+			has_tech = logistics_I
+			has_tech = production_efficiency_I
+			has_tech = management_I
+			has_tech = materials_I
+			has_tech = chemistry_I
+			has_tech = grid_I
+			has_tech = inframanagement_I
+			has_tech = consumer_electronics_I
+			check_variable = { num_of_industrial_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 100 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 100 }
+			add_to_variable = { development_budget = 100 }
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15dev1
+							has_state_category = pop20dev1
+						}
+					}
+					check_variable = { development_budget > global.UPC_pop15dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5dev1
+							has_state_category = pop7dev1
+							has_state_category = pop10dev1
+						}
+					}
+					check_variable = { development_budget > global.UPC_pop5dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2dev1
+							has_state_category = pop3dev1
+							has_state_category = pop4dev1
+						}
+					}
+					check_variable = { development_budget > global.UPC_pop2dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = { has_state_category = pop1dev1 }
+					check_variable = { development_budget > global.UPC_pop1dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_250_develop = {
+		icon = togglemoney_develop
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = category_upgrades.250
+			has_tech = logistics_I
+			has_tech = production_efficiency_I
+			has_tech = management_I
+			has_tech = materials_I
+			has_tech = chemistry_I
+			has_tech = grid_I
+			has_tech = inframanagement_I
+			has_tech = consumer_electronics_I
+			check_variable = { num_of_industrial_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 250 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 250 }
+			add_to_variable = { development_budget = 250 }
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15dev1
+							has_state_category = pop20dev1
+						}
+					}
+					check_variable = { development_budget > global.UPC_pop15dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5dev1
+							has_state_category = pop7dev1
+							has_state_category = pop10dev1
+						}
+					}
+					check_variable = { development_budget > global.UPC_pop5dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2dev1
+							has_state_category = pop3dev1
+							has_state_category = pop4dev1
+						}
+					}
+					check_variable = { development_budget > global.UPC_pop2dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = { has_state_category = pop1dev1 }
+					check_variable = { development_budget > global.UPC_pop1dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_500_develop = {
+		icon = togglemoney_develop
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = category_upgrades.500
+			has_tech = logistics_I
+			has_tech = production_efficiency_I
+			has_tech = management_I
+			has_tech = materials_I
+			has_tech = chemistry_I
+			has_tech = grid_I
+			has_tech = inframanagement_I
+			has_tech = consumer_electronics_I
+			check_variable = { num_of_industrial_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 500 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 500 }
+			add_to_variable = { development_budget = 500 }
+			# log = "category_upgrade_500_develop: budget = [?development_budget]"
+			# log = "global.UPC_pop1dev1 = [?global.UPC_pop1dev1]"   #  48
+			# log = "global.UPC_pop2dev1 = [?global.UPC_pop2dev1]"   #  96
+			# log = "global.UPC_pop3dev1 = [?global.UPC_pop3dev1]"   # 144
+			# log = "global.UPC_pop4dev1 = [?global.UPC_pop4dev1]"   # 192
+			# log = "global.UPC_pop5dev1 = [?global.UPC_pop5dev1]"   # 240
+			# log = "global.UPC_pop7dev1 = [?global.UPC_pop7dev1]"   # 336
+			# log = "global.UPC_pop10dev1 = [?global.UPC_pop10dev1]" # 490
+			# log = "global.UPC_pop15dev1 = [?global.UPC_pop15dev1]" # 648
+			# log = "global.UPC_pop20dev1 = [?global.UPC_pop20dev1]" # 720
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15dev1
+							has_state_category = pop20dev1
+						}
+					}
+					check_variable = { development_budget > global.UPC_pop15dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5dev1
+							has_state_category = pop7dev1
+							has_state_category = pop10dev1
+						}
+					}
+					check_variable = { development_budget > global.UPC_pop5dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2dev1
+							has_state_category = pop3dev1
+							has_state_category = pop4dev1
+						}
+					}
+					check_variable = { development_budget > global.UPC_pop2dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = { has_state_category = pop1dev1 }
+					check_variable = { development_budget > global.UPC_pop1dev1 }
+				}
+				FBU_category_1 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_25_modernize = {
+		icon = togglemoney_modernize
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = category_upgrades.100
+				has_country_flag = category_upgrades.250
+				has_country_flag = category_upgrades.500
+			}
+			has_tech = logistics_VI
+			has_tech = production_efficiency_I
+			has_tech = industrial_robots_I
+			OR = {
+				has_tech = management_V_A
+				has_tech = management_V_B
+			}
+			has_tech = materials_III
+			has_tech = chemistry_III
+			has_tech = plastics_II
+			has_tech = water_III
+			has_tech = grid_III
+			has_tech = inframanagement_III
+			has_tech = consumer_electronics_III
+			check_variable = { num_of_developed_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 25 }
+			add_to_variable = { modernization_budget = 25 }
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15dev2
+							has_state_category = pop20dev2
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop15dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5dev2
+							has_state_category = pop7dev2
+							has_state_category = pop10dev2
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop5dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2dev2
+							has_state_category = pop3dev2
+							has_state_category = pop4dev2
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop2dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop1dev2
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop1dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_100_modernize = {
+		icon = togglemoney_modernize
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = category_upgrades.100
+			has_tech = logistics_VI
+			has_tech = production_efficiency_I
+			has_tech = industrial_robots_I
+			OR = {
+				has_tech = management_V_A
+				has_tech = management_V_B
+			}
+			has_tech = materials_III
+			has_tech = chemistry_III
+			has_tech = plastics_II
+			has_tech = water_III
+			has_tech = grid_III
+			has_tech = inframanagement_III
+			has_tech = consumer_electronics_III
+			check_variable = { num_of_developed_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 100 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 100 }
+			add_to_variable = { modernization_budget = 100 }
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15dev2
+							has_state_category = pop20dev2
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop15dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5dev2
+							has_state_category = pop7dev2
+							has_state_category = pop10dev2
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop5dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2dev2
+							has_state_category = pop3dev2
+							has_state_category = pop4dev2
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop2dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = { has_state_category = pop1dev2 }
+					check_variable = { industrialization_budget > global.UPC_pop1dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_250_modernize = {
+		icon = togglemoney_modernize
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = category_upgrades.250
+			has_tech = logistics_VI
+			has_tech = production_efficiency_I
+			has_tech = industrial_robots_I
+			OR = {
+				has_tech = management_V_A
+				has_tech = management_V_B
+			}
+			has_tech = materials_III
+			has_tech = chemistry_III
+			has_tech = plastics_II
+			has_tech = water_III
+			has_tech = grid_III
+			has_tech = inframanagement_III
+			has_tech = consumer_electronics_III
+			check_variable = { num_of_developed_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 250 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 250 }
+			add_to_variable = { modernization_budget = 250 }
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15dev2
+							has_state_category = pop20dev2
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop15dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5dev2
+							has_state_category = pop7dev2
+							has_state_category = pop10dev2
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop5dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2dev2
+							has_state_category = pop3dev2
+							has_state_category = pop4dev2
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop2dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop1dev2
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop1dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_500_modernize = {
+		icon = togglemoney_modernize
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = category_upgrades.500
+			has_tech = logistics_VI
+			has_tech = production_efficiency_I
+			has_tech = industrial_robots_I
+			OR = {
+				has_tech = management_V_A
+				has_tech = management_V_B
+			}
+			has_tech = materials_III
+			has_tech = chemistry_III
+			has_tech = plastics_II
+			has_tech = water_III
+			has_tech = grid_III
+			has_tech = inframanagement_III
+			has_tech = consumer_electronics_III
+			check_variable = { num_of_developed_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 500 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 500 }
+			add_to_variable = { modernization_budget = 500 }
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15dev2
+							has_state_category = pop20dev2
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop15dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5dev2
+							has_state_category = pop7dev2
+							has_state_category = pop10dev2
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop5dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2dev2
+							has_state_category = pop3dev2
+							has_state_category = pop4dev2
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop2dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = { has_state_category = pop1dev2 }
+					check_variable = { industrialization_budget > global.UPC_pop1dev2 }
+				}
+				FBU_category_2 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_25_automate = {
+		icon = togglemoney_automate
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = category_upgrades.100
+				has_country_flag = category_upgrades.250
+				has_country_flag = category_upgrades.500
+			}
+			has_tech = logistics_X
+			has_tech = production_efficiency_X
+			has_tech = industrial_robots_V
+			has_tech = management_VIII
+			has_tech = materials_V
+			has_tech = chemistry_V
+			has_tech = plastics_IV
+			has_tech = water_V
+			has_tech = grid_V
+			has_tech = inframanagement_V
+			has_tech = consumer_electronics_V
+			check_variable = { num_of_modern_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 25 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 25 }
+			add_to_variable = { automation_budget = 25 }
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15dev3
+							has_state_category = pop20dev3
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop15dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5dev3
+							has_state_category = pop7dev3
+							has_state_category = pop10dev3
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop5dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2dev3
+							has_state_category = pop3dev3
+							has_state_category = pop4dev3
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop2dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = { has_state_category = pop1dev3 }
+					check_variable = { industrialization_budget > global.UPC_pop1dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_100_automate = {
+		icon = togglemoney_automate
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = category_upgrades.100
+			has_tech = logistics_X
+			has_tech = production_efficiency_X
+			has_tech = industrial_robots_V
+			has_tech = management_VIII
+			has_tech = materials_V
+			has_tech = chemistry_V
+			has_tech = plastics_IV
+			has_tech = water_V
+			has_tech = grid_V
+			has_tech = inframanagement_V
+			has_tech = consumer_electronics_V
+			check_variable = { num_of_modern_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 100 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 100 }
+			add_to_variable = { automation_budget = 100 }
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15dev3
+							has_state_category = pop20dev3
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop15dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5dev3
+							has_state_category = pop7dev3
+							has_state_category = pop10dev3
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop5dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2dev3
+							has_state_category = pop3dev3
+							has_state_category = pop4dev3
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop2dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = { has_state_category = pop1dev3 }
+					check_variable = { industrialization_budget > global.UPC_pop1dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_250_automate = {
+		icon = togglemoney_automate
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = category_upgrades.250
+			has_tech = logistics_X
+			has_tech = production_efficiency_X
+			has_tech = industrial_robots_V
+			has_tech = management_VIII
+			has_tech = materials_V
+			has_tech = chemistry_V
+			has_tech = plastics_IV
+			has_tech = water_V
+			has_tech = grid_V
+			has_tech = inframanagement_V
+			has_tech = consumer_electronics_V
+			check_variable = { num_of_modern_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 250 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 250 }
+			add_to_variable = { automation_budget = 250 }
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15dev3
+							has_state_category = pop20dev3
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop15dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5dev3
+							has_state_category = pop7dev3
+							has_state_category = pop10dev3
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop5dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2dev3
+							has_state_category = pop3dev3
+							has_state_category = pop4dev3
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop2dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = { has_state_category = pop1dev3 }
+					check_variable = { industrialization_budget > global.UPC_pop1dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_500_automate = {
+		icon = togglemoney_automate
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = category_upgrades.500
+			has_tech = logistics_X
+			has_tech = production_efficiency_X
+			has_tech = industrial_robots_V
+			has_tech = management_VIII
+			has_tech = materials_V
+			has_tech = chemistry_V
+			has_tech = plastics_IV
+			has_tech = water_V
+			has_tech = grid_V
+			has_tech = inframanagement_V
+			has_tech = consumer_electronics_V
+			check_variable = { num_of_modern_states > 0 }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = cannot_afford
+				check_variable = { var = currentMoney value = 500 compare = greater_than_or_equals }
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 500 }
+			add_to_variable = { automation_budget = 500 }
+			if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop15dev3
+							has_state_category = pop20dev3
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop15dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop5dev3
+							has_state_category = pop7dev3
+							has_state_category = pop10dev3
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop5dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = {
+						OR = {
+							has_state_category = pop2dev3
+							has_state_category = pop3dev3
+							has_state_category = pop4dev3
+						}
+					}
+					check_variable = { industrialization_budget > global.UPC_pop2dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+			else_if = {
+				limit = {
+					any_owned_state = { has_state_category = pop1dev3 }
+					check_variable = { industrialization_budget > global.UPC_pop1dev3 }
+				}
+				FBU_category_3 = yes
+				full_upgrade_estimate_regen = yes
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 50
+				check_variable = { currentMoney > 500 }
+			}
+		}
+	}
+
+	category_upgrade_industrialization_locked = {
+		icon = contractno
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { 
+				AND = {
+					has_tech = ww_production
+					has_tech = ww_oil
+					has_tech = ww_construction
+					has_tech = ww_infra
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_tech = ww_production
+			has_tech = ww_oil
+			has_tech = ww_construction
+			has_tech = ww_infra
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 1 }
+		}
+	}
+
+	category_upgrade_development_locked = {
+		icon = contractno
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				has_tech = ww_production
+				has_tech = ww_oil
+				has_tech = ww_construction
+				has_tech = ww_infra
+			}
+			NOT = {
+				AND = {
+					has_tech = logistics_I
+					has_tech = production_efficiency_I
+					has_tech = management_I
+					has_tech = materials_I
+					has_tech = chemistry_I
+					has_tech = grid_I
+					has_tech = inframanagement_I
+					has_tech = consumer_electronics_I
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_tech = logistics_I
+			has_tech = production_efficiency_I
+			has_tech = management_I
+			has_tech = materials_I
+			has_tech = chemistry_I
+			has_tech = grid_I
+			has_tech = inframanagement_I
+			has_tech = consumer_electronics_I
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 1 }
+		}
+	}
+
+	category_upgrade_modernization_locked = {
+		icon = contractno
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				has_tech = logistics_I
+				has_tech = production_efficiency_I
+				has_tech = management_I
+				has_tech = materials_I
+				has_tech = chemistry_I
+				has_tech = grid_I
+				has_tech = inframanagement_I
+				has_tech = consumer_electronics_I
+			}
+			NOT = {
+				AND = {
+					has_tech = logistics_VI
+					has_tech = production_efficiency_I
+					has_tech = industrial_robots_I
+					OR = {
+						has_tech = management_V_A
+						has_tech = management_V_B
+					}
+					has_tech = materials_III
+					has_tech = chemistry_III
+					has_tech = plastics_II
+					has_tech = water_III
+					has_tech = grid_III
+					has_tech = inframanagement_III
+					has_tech = consumer_electronics_III
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_tech = logistics_VI
+			has_tech = production_efficiency_I
+			has_tech = industrial_robots_I
+			OR = {
+				has_tech = management_V_A
+				has_tech = management_V_B
+			}
+			has_tech = materials_III
+			has_tech = chemistry_III
+			has_tech = plastics_II
+			has_tech = water_III
+			has_tech = grid_III
+			has_tech = inframanagement_III
+			has_tech = consumer_electronics_III
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 1 }
+		}
+	}
+
+	category_upgrade_automation_locked = {
+		icon = contractno
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			AND = {
+				has_tech = logistics_VI
+				has_tech = production_efficiency_I
+				has_tech = industrial_robots_I
+				OR = {
+					has_tech = management_V_A
+					has_tech = management_V_B
+				}
+				has_tech = materials_III
+				has_tech = chemistry_III
+				has_tech = plastics_II
+				has_tech = water_III
+				has_tech = grid_III
+				has_tech = inframanagement_III
+				has_tech = consumer_electronics_III
+			}
+			NOT = {
+				AND = {
+					has_tech = logistics_X
+					has_tech = production_efficiency_X
+					has_tech = industrial_robots_V
+					has_tech = management_VIII
+					has_tech = materials_V
+					has_tech = chemistry_V
+					has_tech = plastics_IV
+					has_tech = water_V
+					has_tech = grid_V
+					has_tech = inframanagement_V
+					has_tech = consumer_electronics_V
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_tech = logistics_X
+			has_tech = production_efficiency_X
+			has_tech = industrial_robots_V
+			has_tech = management_VIII
+			has_tech = materials_V
+			has_tech = chemistry_V
+			has_tech = plastics_IV
+			has_tech = water_V
+			has_tech = grid_V
+			has_tech = inframanagement_V
+			has_tech = consumer_electronics_V
+		}
+		complete_effect = {
+			subtract_from_variable = { currentMoney = 1 }
+		}
+	}
+}

@@ -1,0 +1,429 @@
+# krcw: paced
+krcw_raj_himalayan_game_cat = {
+	krcw_raj_fund_nobility = {
+		icon = GFX_decision_money_with_hand
+		cost = 50
+		available = {
+			TIB = { is_subject_of = CHI }
+		}
+		days_re_enable = 60
+		complete_effect = {
+			TIB = {
+				add_to_variable = { krcw_revolt_progress = 8 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_up_8_tt
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			base = 5
+			modifier = { factor = 2 date > 1951.3.15 }
+		}
+	}
+	krcw_raj_send_advisors = {
+		icon = GFX_decision_generic_army_support
+		cost = 35
+		available = {
+			has_country_flag = krcw_raj_kalimpong
+			has_army_experience > 10
+		}
+		days_re_enable = 90
+		complete_effect = {
+			army_experience = -10
+			TIB = {
+				add_to_variable = { krcw_revolt_progress = 10 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_up_10_tt
+		}
+		ai_will_do = {
+			base = 4
+		}
+	}
+	krcw_raj_smuggle_rifles = {
+		icon = GFX_decision_generic_prepare_civil_war
+		cost = 25
+		available = {
+			has_country_flag = krcw_raj_protectors
+			has_equipment = { infantry_equipment > 999 }
+		}
+		days_re_enable = 45
+		complete_effect = {
+			send_equipment = { type = infantry_equipment amount = 1000 target = TIB }
+			TIB = {
+				add_to_variable = { krcw_revolt_progress = 6 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_up_6_tt
+			add_ideas = krcw_raj_arming_tibet
+		}
+		ai_will_do = {
+			base = 4
+		}
+	}
+	krcw_raj_ignite_revolt = {
+		icon = GFX_decision_generic_ignite_civil_war
+		cost = 75
+		available = {
+			TIB = { is_subject_of = CHI check_variable = { krcw_revolt_progress > 69 } }
+			date > 1951.3.15
+		}
+		fire_only_once = yes
+		complete_effect = {
+			TIB = { country_event = { id = krcw_tibrev.1 days = 3 } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			base = 10
+			modifier = { factor = 0 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } date < 1952.3.22 }
+		}
+	}
+}
+
+krcw_sov_tibet_cat = {
+	krcw_sov_fund_delhi_game = {
+		icon = GFX_decision_money_with_hand
+		cost = 50
+		available = {
+			NOT = { has_global_flag = KRCW_tibet_revolt_started }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			TIB = {
+				add_to_variable = { krcw_revolt_progress = 6 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_up_6_tt
+			RAJ = { add_political_power = 25 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			base = 2
+		}
+	}
+}
+
+krcw_chi_tibet_policy_cat = {
+	krcw_chi_reaffirm_lhasa = {
+		icon = GFX_decision_generic_speech
+		cost = 50
+		days_re_enable = 180
+		complete_effect = {
+			TIB = {
+				subtract_from_variable = { krcw_revolt_progress = 10 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_down_10_tt
+			add_political_power = -10
+		}
+		ai_will_do = {
+			base = 3
+			modifier = { factor = 3 TIB = { check_variable = { krcw_revolt_progress > 40 } } }
+		}
+	}
+	krcw_chi_dec_frontier_garrisons = {
+		icon = GFX_decision_border_war
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			add_ideas = krcw_chi_frontier_garrisons
+			TIB = {
+				subtract_from_variable = { krcw_revolt_progress = 8 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_down_8_tt
+			TIB = { add_stability = -0.03 }
+		}
+		ai_will_do = {
+			base = 2
+			modifier = { factor = 4 TIB = { check_variable = { krcw_revolt_progress > 50 } } }
+		}
+	}
+	krcw_chi_honour_nobles = {
+		icon = GFX_decision_money_with_hand
+		cost = 35
+		days_re_enable = 120
+		complete_effect = {
+			TIB = {
+				subtract_from_variable = { krcw_revolt_progress = 6 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_down_6_tt
+		}
+		ai_will_do = {
+			base = 2
+		}
+	}
+	krcw_chi_arrest_pro_indian = {
+		icon = GFX_decision_generic_arrest
+		cost = 25
+		days_re_enable = 365
+		complete_effect = {
+			TIB = {
+				subtract_from_variable = { krcw_revolt_progress = 15 }
+				clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_tibrev_progress_down_15_tt
+			TIB = { add_stability = -0.1 }
+			krcw_tension_up_small = yes
+			random = { chance = 30 TIB = { country_event = { id = krcw_tibrev.1 days = 10 } } }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = { add = 1 has_game_rule = { rule = krcw_route option = KRCW_ROUTE_FREE } }
+		}
+	}
+}
+
+krcw_tibet_war_cat = {
+	krcw_raj_airdrop_supplies = {
+		icon = GFX_decision_generic_air
+		cost = 25
+		visible = {
+			tag = RAJ
+		}
+		available = {
+			TIB = { has_war_with = CHI }
+			has_equipment = { infantry_equipment > 1999 }
+		}
+		days_re_enable = 45
+		complete_effect = {
+			send_equipment = { type = infantry_equipment amount = 2000 target = TIB }
+			TIB = { add_war_support = 0.03 }
+		}
+		ai_will_do = {
+			base = 5
+		}
+	}
+	krcw_raj_protector_columns = {
+		icon = GFX_decision_generic_army_support
+		cost = 50
+		visible = {
+			tag = RAJ
+		}
+		available = {
+			TIB = { has_war_with = CHI }
+			has_manpower > 20000
+		}
+		days_re_enable = 90
+		complete_effect = {
+			add_manpower = -15000
+			TIB = { TIB = { capital_scope = {
+			create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+			create_unit = { division = "name = \"Protector Column\" division_template = \"Rakang Gyajong Dmag-Sgar\" start_experience_factor = 0.3 start_equipment_factor = 0.7" owner = TIB }
+			} } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			base = 4
+		}
+	}
+	krcw_raj_open_intervention = {
+		icon = GFX_decision_generic_break_treaty
+		cost = 150
+		visible = {
+			tag = RAJ
+		}
+		available = {
+			TIB = { has_war_with = CHI }
+			has_global_flag = KRCW_vars_init
+			OR = { check_variable = { global.krcw_tension > 69 } has_country_flag = krcw_ww_himalaya_ready }
+			OR = { is_ai = no NOT = { has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } } }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = { flag = krcw_limited_war value = 1 days = 2 }
+			declare_war_on = { target = CHI type = take_state_focus generator = { 1338 } }
+			krcw_tension_up_large = yes
+			krcw_detente_down_medium = yes
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+	krcw_sov_arms_via_delhi = {
+		icon = GFX_decision_generic_prepare_civil_war
+		cost = 50
+		visible = {
+			tag = SOV
+		}
+		available = {
+			TIB = { has_war_with = CHI }
+		}
+		days_re_enable = 90
+		complete_effect = {
+			send_equipment = { type = infantry_equipment amount = 1500 target = TIB }
+			send_equipment = { type = support_equipment amount = 200 target = TIB }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			base = 3
+		}
+	}
+	krcw_fra_engineer_brigade = {
+		icon = GFX_decision_generic_industry
+		cost = 50
+		visible = {
+			tag = FRA
+		}
+		available = {
+			CHI = { has_war_with = TIB }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			CHI = { army_experience = 15 1930 = { add_building_construction = { type = infrastructure level = 2 instant_build = yes } } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			base = 5
+		}
+	}
+	krcw_chi_amnesty = {
+		icon = GFX_decision_generic_speech
+		cost = 50
+		visible = {
+			tag = CHI
+		}
+		available = {
+			has_war_with = TIB
+		}
+		days_re_enable = 180
+		complete_effect = {
+			TIB = { add_war_support = -0.1 add_stability = -0.05 }
+		}
+		ai_will_do = {
+			base = 5
+		}
+	}
+	krcw_chi_mountain_roads = {
+		icon = GFX_decision_generic_industry
+		cost = 35
+		visible = {
+			tag = CHI
+		}
+		available = {
+			has_war_with = TIB
+		}
+		fire_only_once = yes
+		complete_effect = {
+			1930 = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			1994 = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			add_manpower = -5000
+		}
+		ai_will_do = {
+			base = 5
+		}
+	}
+	krcw_chi_punish_sikkim = {
+		icon = GFX_decision_generic_break_treaty
+		cost = 150
+		visible = {
+			tag = CHI
+		}
+		available = {
+			has_war_with = TIB
+			RAJ = { has_country_flag = krcw_raj_protectors }
+			OR = { is_ai = no NOT = { has_game_rule = { rule = krcw_route option = KRCW_ROUTE_HISTORICAL } } }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = { flag = krcw_limited_war value = 1 days = 2 }
+			declare_war_on = { target = RAJ type = take_state_focus generator = { 868 } }
+			krcw_tension_up_large = yes
+			krcw_detente_down_medium = yes
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+	krcw_tib_appeal_world = {
+		icon = GFX_decision_generic_speech
+		cost = 50
+		visible = {
+			tag = TIB
+		}
+		available = {
+			has_war_with = CHI
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_war_support = 0.05
+			add_political_power = 50
+		}
+		ai_will_do = {
+			base = 5
+		}
+	}
+}
+
+krcw_raj_princely_crisis_cat = {
+	krcw_raj_negotiate_nizam = {
+		icon = GFX_decision_generic_political_discourse
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			RAJ = { subtract_from_variable = { krcw_raj_unrest = 10 } clamp_variable = { var = krcw_raj_unrest min = 0 max = 100 } }
+			custom_effect_tooltip = krcw_raj_unrest_down_10_tt
+			add_stability = 0.02
+		}
+		ai_will_do = {
+			base = 5
+		}
+	}
+	krcw_raj_rent_remission = {
+		icon = GFX_decision_generic_civil_support
+		cost = 75
+		days_re_enable = 120
+		complete_effect = {
+			RAJ = { subtract_from_variable = { krcw_raj_unrest = 8 } clamp_variable = { var = krcw_raj_unrest min = 0 max = 100 } }
+			custom_effect_tooltip = krcw_raj_unrest_down_8_tt
+			RAJ = {
+				add_to_variable = { krcw_raj_reform = 5 }
+				clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_raj_reform_up_5_tt
+			add_political_power = 0
+		}
+		ai_will_do = {
+			base = 4
+		}
+	}
+	krcw_raj_deploy_federal_army = {
+		icon = GFX_decision_generic_police_action
+		cost = 25
+		available = {
+			has_army_experience > 9
+		}
+		days_re_enable = 90
+		complete_effect = {
+			army_experience = -10
+			add_war_support = -0.02
+			RAJ = { subtract_from_variable = { krcw_raj_unrest = 12 } clamp_variable = { var = krcw_raj_unrest min = 0 max = 100 } }
+			custom_effect_tooltip = krcw_raj_unrest_down_12_tt
+		}
+		ai_will_do = {
+			base = 3
+		}
+	}
+	krcw_raj_draft_charter = {
+		icon = GFX_decision_generic_speech
+		cost = 50
+		available = {
+			NOT = { has_country_flag = krcw_raj_charter }
+			NOT = { has_country_flag = krcw_raj_iron_durbar }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			RAJ = {
+				add_to_variable = { krcw_raj_reform = 10 }
+				clamp_variable = { var = krcw_raj_reform min = 0 max = 100 }
+			}
+			custom_effect_tooltip = krcw_raj_reform_up_10_tt
+			RAJ = { subtract_from_variable = { krcw_raj_unrest = 5 } clamp_variable = { var = krcw_raj_unrest min = 0 max = 100 } }
+			custom_effect_tooltip = krcw_raj_unrest_down_5_tt
+		}
+		ai_will_do = {
+			base = 6
+		}
+	}
+}

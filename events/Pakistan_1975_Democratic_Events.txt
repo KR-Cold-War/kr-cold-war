@@ -1,0 +1,614 @@
+# KRCW (build/patch_residue.py): 18 OTL events dropped while KRCW_active
+
+#PAK_Democratic_1975_Elections
+
+add_namespace = PAK_1975_Election
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_1975_Election.1    #right before election campaign begins for 75 election
+    immediate = { }	
+	title = PAK_1975_Election.1.t2
+	desc = PAK_1975_Election.1.d
+	picture = GFX_PAK_1975_Election_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_1975_Election.1.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_1975_Election.2 
+    immediate = { }	
+	title = PAK_1975_Election.2.t2
+	desc = PAK_1975_Election.2.d
+	picture = GFX_PAK_1975_Election_2
+
+	is_triggered_only = yes
+
+	option = {
+        trigger = {
+            count_triggers = {
+                amount = 20
+                10 = {
+                    check_variable = { 472.Awami_League_Support > 472.Independent_Support }
+                    check_variable = { 472.Awami_League_Support > 472.PML_Support }
+                    check_variable = { 472.Awami_League_Support > 472.PNA_Support }
+                    check_variable = { 472.Awami_League_Support > 472.PPP_Support }
+                    check_variable = { 472.Awami_League_Support > 472.Tehreek_e_Istiqlal_Support }
+                }
+                10 = {
+                    check_variable = { 440.Awami_League_Support > 440.Independent_Support }
+                    check_variable = { 440.Awami_League_Support > 440.PML_Support }
+                    check_variable = { 440.Awami_League_Support > 440.PNA_Support }
+                    check_variable = { 440.Awami_League_Support > 440.PPP_Support }
+                    check_variable = { 440.Awami_League_Support > 440.Tehreek_e_Istiqlal_Support }
+                }
+                10 = {
+                    check_variable = { 443.Awami_League_Support > 443.Independent_Support }
+                    check_variable = { 443.Awami_League_Support > 443.PML_Support }
+                    check_variable = { 443.Awami_League_Support > 443.PNA_Support }
+                    check_variable = { 443.Awami_League_Support > 443.PPP_Support }
+                    check_variable = { 443.Awami_League_Support > 443.Tehreek_e_Istiqlal_Support }
+                }
+                10 = {
+                    check_variable = { 444.Awami_League_Support > 444.Independent_Support }
+                    check_variable = { 444.Awami_League_Support > 444.PML_Support }
+                    check_variable = { 444.Awami_League_Support > 444.PNA_Support }
+                    check_variable = { 444.Awami_League_Support > 444.PPP_Support }
+                    check_variable = { 444.Awami_League_Support > 444.Tehreek_e_Istiqlal_Support }
+                }
+                20 = {
+                    check_variable = { 430.Awami_League_Support > 430.Independent_Support }
+                    check_variable = { 430.Awami_League_Support > 430.PML_Support }
+                    check_variable = { 430.Awami_League_Support > 430.PNA_Support }
+                    check_variable = { 430.Awami_League_Support > 430.PPP_Support }
+                    check_variable = { 430.Awami_League_Support > 430.Tehreek_e_Istiqlal_Support }
+                }
+            }
+        }
+		name = PAK_1975_Election.2.a2
+        load_focus_tree = PAK_70s_70s_Democratic_1975_Elections
+        complete_national_focus = PAK_70s_Democratic_1975_Elections
+        complete_national_focus = PAK_70s_Mujibur_Rahman_Wins
+        set_politics = {
+            ruling_party = socialist
+            elections_allowed = no
+        }
+		create_country_leader = {
+            name = "Mujibur Rahman"
+            picture = "Mujibur_Rahman_70s.dds"
+            ideology = democratic_socialist
+        }
+        clr_country_flag = Enable_PPP_Campaign_Decision
+        clr_country_flag = Enable_PNA_Campaign_Decision
+        clr_country_flag = Enable_AL_Campaign_Decision
+        clr_country_flag = PAK_1977_Campaign
+        clr_country_flag = PAK_1975_Campaign
+        clr_country_flag = PAK_1970_Campaign
+    }
+	option = {
+		trigger = {
+			count_triggers = {
+				amount = 20
+				10 = {
+					check_variable = { 472.PPP_Support > 472.Independent_Support }
+					check_variable = { 472.PPP_Support > 472.PML_Support }
+					check_variable = { 472.PPP_Support > 472.PNA_Support }
+					check_variable = { 472.PPP_Support > 472.Awami_League_Support }
+					check_variable = { 472.PPP_Support > 472.Tehreek_e_Istiqlal_Support }
+				}
+				10 = {
+					check_variable = { 440.PPP_Support > 440.Independent_Support }
+					check_variable = { 440.PPP_Support > 440.PML_Support }
+					check_variable = { 440.PPP_Support > 440.PNA_Support }
+					check_variable = { 440.PPP_Support > 440.Awami_League_Support }
+					check_variable = { 440.PPP_Support > 440.Tehreek_e_Istiqlal_Support }
+				}
+				10 = {
+					check_variable = { 443.PPP_Support > 443.Independent_Support }
+					check_variable = { 443.PPP_Support > 443.PML_Support }
+					check_variable = { 443.PPP_Support > 443.PNA_Support }
+					check_variable = { 443.PPP_Support > 443.Awami_League_Support }
+					check_variable = { 443.PPP_Support > 443.Tehreek_e_Istiqlal_Support }
+				}
+				10 = {
+					check_variable = { 444.PPP_Support > 444.Independent_Support }
+					check_variable = { 444.PPP_Support > 444.PML_Support }
+					check_variable = { 444.PPP_Support > 444.PNA_Support }
+					check_variable = { 444.PPP_Support > 444.Awami_League_Support }
+					check_variable = { 444.PPP_Support > 444.Tehreek_e_Istiqlal_Support }
+				}
+				20 = {
+					check_variable = { 430.PPP_Support > 430.Independent_Support }
+					check_variable = { 430.PPP_Support > 430.PML_Support }
+					check_variable = { 430.PPP_Support > 430.PNA_Support }
+					check_variable = { 430.PPP_Support > 430.Awami_League_Support }
+					check_variable = { 430.PPP_Support > 430.Tehreek_e_Istiqlal_Support }
+				}
+			}			
+		}
+		name = PAK_1975_Election.2.b2
+        load_focus_tree = PAK_70s_70s_Democratic_1975_Elections
+        complete_national_focus = PAK_70s_Democratic_1975_Elections
+        complete_national_focus = PAK_70s_Bhutto_Returns_To_Power
+        set_politics = {
+            ruling_party = Social_Democratic
+            elections_allowed = no
+        }
+		create_country_leader = {
+            name = "Zulfikar Ali Bhutto"
+            picture = "Zulfikar_Ali_Bhutto_70s.dds"
+            ideology = social_democrat
+        }
+        clr_country_flag = Enable_PPP_Campaign_Decision
+        clr_country_flag = Enable_PNA_Campaign_Decision
+        clr_country_flag = Enable_AL_Campaign_Decision
+        clr_country_flag = PAK_1977_Campaign
+        clr_country_flag = PAK_1975_Campaign
+        clr_country_flag = PAK_1970_Campaign
+    }
+	option = {
+		name = PAK_1975_Election.2.c2
+		trigger = {
+			count_triggers = {
+				amount = 20
+				10 = {
+					check_variable = { 472.PNA_Support > 472.Independent_Support }
+					check_variable = { 472.PNA_Support > 472.PML_Support }
+					check_variable = { 472.PNA_Support > 472.PPP_Support }
+					check_variable = { 472.PNA_Support > 472.Awami_League_Support }
+					check_variable = { 472.PNA_Support > 472.Tehreek_e_Istiqlal_Support }
+				}
+				10 = {
+					check_variable = { 440.PNA_Support > 440.Independent_Support }
+					check_variable = { 440.PNA_Support > 440.PML_Support }
+					check_variable = { 440.PNA_Support > 440.PPP_Support }
+					check_variable = { 440.PNA_Support > 440.Awami_League_Support }
+					check_variable = { 440.PNA_Support > 440.Tehreek_e_Istiqlal_Support }
+				}
+				10 = {
+					check_variable = { 443.PNA_Support > 443.Independent_Support }
+					check_variable = { 443.PNA_Support > 443.PML_Support }
+					check_variable = { 443.PNA_Support > 443.PPP_Support }
+					check_variable = { 443.PNA_Support > 443.Awami_League_Support }
+					check_variable = { 443.PNA_Support > 443.Tehreek_e_Istiqlal_Support }
+				}
+				10 = {
+					check_variable = { 444.PNA_Support > 444.Independent_Support }
+					check_variable = { 444.PNA_Support > 444.PML_Support }
+					check_variable = { 444.PNA_Support > 444.PPP_Support }
+					check_variable = { 444.PNA_Support > 444.Awami_League_Support }
+					check_variable = { 444.PNA_Support > 444.Tehreek_e_Istiqlal_Support }
+				}
+				20 = {
+					check_variable = { 430.PNA_Support > 430.Independent_Support }
+					check_variable = { 430.PNA_Support > 430.PML_Support }
+					check_variable = { 430.PNA_Support > 430.PPP_Support }
+					check_variable = { 430.PNA_Support > 430.Awami_League_Support }
+					check_variable = { 430.PNA_Support > 430.Tehreek_e_Istiqlal_Support }
+				}
+			}			
+		}
+        load_focus_tree = PAK_70s_70s_Democratic_1975_Elections
+        complete_national_focus = PAK_70s_Democratic_1975_Elections
+        complete_national_focus = PAK_70s_Chaudhry_Zahoor_Elahi_Wins
+        set_politics = {
+            ruling_party = islamism
+            elections_allowed = no
+        }
+        create_country_leader = {
+            name = "Chaudhry Zahoor Elahi"
+            picture = "Chaudhry_Zahoor_Elahi_70s.dds"
+            ideology = sunni_islamism
+        }
+        clr_country_flag = Enable_PPP_Campaign_Decision
+        clr_country_flag = Enable_PNA_Campaign_Decision
+        clr_country_flag = Enable_AL_Campaign_Decision
+        clr_country_flag = PAK_1977_Campaign
+        clr_country_flag = PAK_1975_Campaign
+        clr_country_flag = PAK_1970_Campaign
+    }
+}
+
+
+add_namespace = Awami_League_Unrest
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Awami_League_Unrest.1    
+    immediate = { }	
+	title = Awami_League_Unrest.1.t2
+	desc = Awami_League_Unrest.1.d
+	picture = GFX_Awami_League_Unrest_1
+
+	is_triggered_only = yes
+	option = {
+        name = Awami_League_Unrest.1.a2
+        country_event = {
+            id = Awami_League_Unrest.4
+            days = 2
+        }
+    }
+	option = {
+        name = Awami_League_Unrest.1.b2
+        country_event = {
+            id = Awami_League_Unrest.2
+            days = 2
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Awami_League_Unrest.2
+    immediate = { }	
+	title = Awami_League_Unrest.2.t2
+	desc = Awami_League_Unrest.2.d
+	picture = GFX_Awami_League_Unrest_2
+
+	is_triggered_only = yes
+	option = {
+        name = Awami_League_Unrest.2.a2
+        country_event = {
+            id = Awami_League_Unrest.4
+            days = 10
+        }
+    }
+    option = {
+        name = Awami_League_Unrest.2.b2
+        random_list = {
+            65 = {
+                country_event = {
+                    id = Awami_League_Unrest.3
+                    days = 10
+                }
+            }
+            35 = {
+                country_event = {
+                    id = Awami_League_Unrest.7
+                    days = 10
+                }
+            }
+        }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Awami_League_Unrest.3
+    immediate = { }	
+	title = Awami_League_Unrest.3.t2
+	desc = Awami_League_Unrest.3.d
+	picture = GFX_Awami_League_Unrest_3
+
+	is_triggered_only = yes
+	option = {
+        name = Awami_League_Unrest.3.a2
+        country_event = {
+            id = Awami_League_Unrest.4
+            days = 10
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Awami_League_Unrest.4
+    immediate = { }	
+	title = Awami_League_Unrest.4.t2
+	desc = PAK_Awami_League_Unrest.4.d
+	picture = GFX_Awami_League_Unrest_4
+
+	is_triggered_only = yes
+	option = {
+        name = Awami_League_Unrest.4.a2
+        remove_ideas = Weak_Coalition
+        remove_ideas = East_Pakistan_Agitation
+        news_event = {
+            id = Awami_League_Unrest.5
+            days = 30
+        }
+    }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Awami_League_Unrest.5
+ immediate = { }
+	title = Awami_League_Unrest.5.t2
+	desc = Awami_League_Unrest.5.d
+	picture = GFX_Awami_League_Unrest_5
+
+	is_triggered_only = yes
+	major = yes
+
+    immediate = {
+        if = {
+            limit = {
+                tag = PAK
+            }
+            hidden_effect = {
+                release = BAN
+            }
+        }
+    }
+    option = {
+        name = Awami_League_Unrest.5.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Awami_League_Unrest.6
+    immediate = { }	
+	title = Awami_League_Unrest.6.t2
+	desc = Awami_League_Unrest.6.d
+	picture = GFX_Awami_League_Unrest_6
+
+	is_triggered_only = yes
+	option = {
+        name = Awami_League_Unrest.6.a2
+        country_event = {
+            id = Awami_League_Unrest.7
+            days = 3
+        }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Awami_League_Unrest.7    
+    immediate = { }	
+	title = Awami_League_Unrest.7.t2
+	desc = Awami_League_Unrest.7.d
+	picture = GFX_Awami_League_Unrest_7
+
+	is_triggered_only = yes
+	option = {
+        name = Awami_League_Unrest.7.a2
+        remove_ideas = East_Pakistan_Agitation
+    }
+}
+add_namespace = PAK_AL75
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_AL75.1    
+    immediate = { }	
+	title = PAK_AL75.1.t2
+	desc = PAK_AL75.1.d
+	picture = GFX_PAK_AL75_1
+
+	is_triggered_only = yes
+	option = {
+		name = PAK_AL75.1.a2
+        PAK = {
+            add_opinion_modifier = {
+                target = RAJ
+                modifier = large_increase
+            }
+            country_event = PAK_AL75.2
+        }
+        RAJ = {
+            add_opinion_modifier = {
+                target = PAK
+                modifier = large_increase
+            }
+            country_event = PAK_AL75.2
+        }
+    }
+	option = {
+		name = PAK_AL75.1.b2
+        PAK = {
+            add_opinion_modifier = {
+                target = RAJ
+                modifier = large_decrease
+            }
+        }
+        RAJ = {
+            add_opinion_modifier = {
+                target = PAK
+                modifier = large_decrease
+            }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_AL75.2
+    immediate = { }	
+	title = PAK_AL75.2.t2
+	desc = PAK_AL75.2.d
+	picture = GFX_PAK_AL75_2
+
+	is_triggered_only = yes
+	option = {
+		name = PAK_AL75.2.a2
+        PAK = {
+            add_opinion_modifier = {
+                target = RAJ
+                modifier = medium_increase
+            }
+        }
+        RAJ = {
+            add_opinion_modifier = {
+                target = PAK
+                modifier = medium_increase
+            }
+        }
+    }
+}
+
+add_namespace = Elahi
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Elahi.1    
+    immediate = { }	
+	title = Elahi.1.t2
+	desc = Elahi.1.d
+	picture = GFX_Elahi_1
+
+	is_triggered_only = yes
+	option = {
+        name = Elahi.1.a2
+        country_event = {
+            id = Elahi.2
+            days = 14
+        }
+    }
+	option = {
+        name = Elahi.1.b2
+        PAK = {
+            add_opinion_modifier = {
+                target = SAU
+                modifier = medium_decrease
+            }
+        }
+        SAU = {
+            add_opinion_modifier = {
+                target = PAK
+                modifier = medium_decrease
+            }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Elahi.2
+    immediate = { }	
+	title = Elahi.2.t2
+	desc = Elahi.2.d
+	picture = GFX_Elahi_2
+
+	is_triggered_only = yes
+	option = {
+        name = Elahi.2.a2
+        PAK = {
+            country_event = Elahi.3
+        }
+        country_event = {
+            id = Elahi.4
+            days = 2
+        }
+    }
+	option = {
+        name = Elahi.2.b2
+        PAK = {
+            add_opinion_modifier = {
+                target = SAU
+                modifier = medium_increase
+            }
+        }
+        SAU = {
+            add_opinion_modifier = {
+                target = PAK
+                modifier = medium_increase
+            }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Elahi.3
+    immediate = { }	
+	title = Elahi.3.t2
+	desc = Elahi.3.d
+	picture = GFX_Elahi_3
+
+	is_triggered_only = yes
+	option = {
+        name = Elahi.3.a2
+        add_timed_idea = {
+            idea = Rising_Sectarianism
+            days = 3650
+        }
+        set_variable = { THIS.idea_len_@token:Rising_Sectarianism = 3650 }
+        set_variable = { THIS.idea_date_@token:Rising_Sectarianism = global.num_days }
+        add_timed_idea = {
+            idea = Saudi_Economic_Subsidies
+            days = 3650
+        }
+        set_variable = { THIS.idea_len_@token:Saudi_Economic_Subsidies = 3650 }
+        set_variable = { THIS.idea_date_@token:Saudi_Economic_Subsidies = global.num_days }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Elahi.4
+    immediate = { }	
+	title = Elahi.4.t2
+	desc = Elahi.4.d
+	picture = GFX_Elahi_4
+
+	is_triggered_only = yes
+	option = {
+        name = Elahi.4.a2
+        add_timed_idea = {
+            idea = Pakistani_Advisors
+            days = 3650
+        }
+        set_variable = { THIS.idea_len_@token:Pakistani_Advisors = 3650 }
+        set_variable = { THIS.idea_date_@token:Pakistani_Advisors = global.num_days }
+        give_military_access = PAK
+        PAK = {
+            give_guarantee = SAU
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Elahi.5
+    immediate = { }	
+	title = Elahi.5.t2
+	desc = Elahi.5.d
+	picture = GFX_Elahi_5
+
+	is_triggered_only = yes
+	option = {
+        name = Elahi.5.a2
+        country_event = {
+            id = Awami_League_Unrest.4
+            days = 5
+        }
+    }
+	option = {
+        name = Elahi.5.b2
+        country_event = {
+            id = Awami_League_Unrest.2
+            days = 5
+        }
+    }
+}
+
+
+add_namespace = PAK_Econ70s
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Econ70s.1
+    immediate = { }	
+	title = PAK_Econ70s.1.t2
+	desc = PAK_Econ70s.1.d
+	picture = GFX_PAK_Econ70s_1
+
+	is_triggered_only = yes
+	option = {
+        name = PAK_Econ70s.1.a2
+        add_ideas = South_Asian_Guest_Workers
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Econ70s.2
+    immediate = { }	
+	title = PAK_Econ70s.2.t2
+	desc = PAK_Econ70s.2.d
+	picture = GFX_PAK_Econ70s_2
+
+	is_triggered_only = yes
+	option = {
+        name = PAK_Econ70s.2.a2
+        add_ideas = South_Asian_Guest_Workers
+    }
+}
+

@@ -1,0 +1,713 @@
+# KRCW (build/patch_residue.py): 33 OTL events dropped while KRCW_active
+add_namespace = iran_political
+add_namespace = iran_assasinations
+add_namespace = tudeh
+add_namespace = AJAX
+add_namespace = iran_oil
+add_namespace = iran_elections
+add_namespace = persia_coup
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_political.10
+	immediate = { }
+	title = iran_political.10.t
+	desc = iran_political.10.d
+	picture = GFX_NEWS_REPORT
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = iran_political.10.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_assasinations.1
+	immediate = { }
+	title = iran_assasinations.1.t
+	desc = iran_assasinations.1.d
+	picture = GFX_Abdolhossein_assasination
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = iran_assasinations.1.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_assasinations.2
+	immediate = { }
+	title = iran_assasinations.2.t
+	desc = iran_assasinations.2.d
+	picture = GFX_HAJ_ALI_ASSASSINATION
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = iran_assasinations.2.o
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_assasinations.3
+	immediate = { }
+	title = iran_assasinations.3.t
+	desc = iran_assasinations.3.d
+	picture = GFX_HAJ_ALI_ASSASSINATION
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = iran_assasinations.3.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_political.500
+	immediate = { }
+	title = iran_political.500.t
+	desc = iran_political.500.d
+	picture = GFX_NEWS_REPORT
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = iran_political.500.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_political.100
+	immediate = { }
+	title = iran_political.100.t
+	desc = iran_political.100.d
+	picture = GFX_safavi_execution
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = iran_political.100.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_political.1100
+	immediate = { }
+	title = iran_political.1100.t
+	desc = iran_political.1100.d
+	picture = GFX_royal_iran_divorce
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = iran_political.1100.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_political.1400
+	immediate = { }
+	title = iran_political.1400.t
+	desc = iran_political.1400.d
+	picture = GFX_NEWS_REPORT
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = iran_political.1400.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_political.1301
+	immediate = { }
+	title = iran_political.1301.t
+	desc = iran_political.1301.d
+	picture = GFX_tudeh_tehran
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = iran_political.1301.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_political.1299
+	immediate = { }
+	title = iran_political.1299.t
+	desc = iran_political.1299.d
+	is_triggered_only = yes
+
+	immediate = {
+		news_event = iran_political.1298
+	}
+
+	option = {
+		name = iran_political.1299.a
+		news_event = { id = iran_political.1300 days = 5 }
+	}
+	option = {
+		name = iran_political.1299.b
+		news_event = { id = tudeh.1 days = 5 }
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = persia_coup.100
+	immediate = { }
+	title = persia_coup.100.t
+	desc = persia_coup.100.d
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			news_event = iran_political.1298
+		}
+	}
+
+	option = {
+		name = persia_coup.100.a
+		complete_national_focus = PER_Imprison_Gharani
+		ai_chance = {
+			base = 70
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = PER_gharani_coup
+					option = GHARANI_COUP_SUCCEED
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = persia_coup.100.b
+		complete_national_focus = PER_Gharani_Coup
+		ai_chance = {
+			base = 30
+			modifier = {
+				has_game_rule = {
+					rule = PER_gharani_coup
+					option = HISTORICAL
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_political.1298
+	immediate = { }
+	title = iran_political.1298.t
+	desc = iran_political.1299.d
+	picture = GFX_iranian_trials
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = iran_political.1298.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_political.1300
+	immediate = { }
+	title = iran_political.1300.t
+	desc = iran_political.1300.d
+	picture = GFX_iranian_pahalvi_execution
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = iran_political.1300.a
+		trigger = {
+			NOT = { tag = PER }
+		}
+	}
+	option = {
+		name = iran_political.1300.b
+		trigger = {
+			tag = PER
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = tudeh.1
+	immediate = { }
+	title = tudeh.1.t
+	desc = tudeh.1.d
+	picture = GFX_exiled_pahalvi
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = tudeh.1.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_political.700
+	immediate = { }
+	title = iran_political.700.t
+	desc = iran_political.700.d
+	picture = GFX_early_islamic_revolution
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = iran_political.700.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AJAX.101
+	immediate = { }
+	title = AJAX.101.t
+	desc = AJAX.101.d
+	picture = GFX_operation_ajax_fail
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = AJAX.101.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AJAX.301
+	immediate = { }
+	title = AJAX.301.t
+	desc = AJAX.301.d
+	picture = GFX_NEWS_REPORT
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = AJAX.301.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AJAX.105
+	immediate = { }
+	title = AJAX.105.t
+	desc = AJAX.105.d
+	picture = GFX_mossadegh_victory
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = AJAX.105.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AJAX.20
+	immediate = { }
+	title = AJAX.20.t
+	desc = AJAX.20.d
+	picture = GFX_AJAX_20
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			complete_national_focus = PER_Operation_Ajax
+			USA = {
+				complete_national_focus = USA_50s_A_Successful_Coup
+			}
+		}
+	}
+
+	option = {
+		name = AJAX.20.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_oil.1
+	immediate = { }
+	title = iran_oil.1.t
+	desc = iran_oil.1.d
+	picture = GFX_iranian_oil
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = iran_oil.1.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_elections.1952
+	immediate = { }
+	title = iran_elections.1952.t
+	desc = iran_elections.1952.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		complete_national_focus = PER_Elections_of_1952
+	}
+	option = {
+		name = iran_elections.1952.a
+		complete_national_focus = PER_National_Front_Victory
+		ai_chance = {
+			base = 70
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+		name = iran_elections.1952.b
+		complete_national_focus = PER_PM_Hassan_Emami
+		ai_chance = {
+			base = 30
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_elections.1954
+	immediate = { }
+	title = iran_elections.1954.t
+	desc = iran_elections.1954.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		complete_national_focus = PER_1954_Elections
+	}
+	option = {
+		name = iran_elections.1954.a
+		complete_national_focus = PER_Mosaddegh_Victory
+		ai_chance = {
+			base = 10
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = PER_1954_elections
+						option = TOILERS_PARTY_1954
+					}
+					has_game_rule = {
+						rule = PER_1954_elections
+						option = MOJAHEDS_1954
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = iran_elections.1954.b
+		complete_national_focus = PER_Toilers_Party_Victory
+		ai_chance = {
+			base = 10
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = PER_1954_elections
+						option = MOSADDEGH_1954
+					}
+					has_game_rule = {
+						rule = PER_1954_elections
+						option = MOJAHEDS_1954
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = iran_elections.1954.c
+		complete_national_focus = PER_Society_of_Muslim_Mojaheds_Victory
+		ai_chance = {
+			base = 10
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = PER_1954_elections
+						option = MOSADDEGH_1954
+					}
+					has_game_rule = {
+						rule = PER_1954_elections
+						option = TOILERS_PARTY_1954
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iran_elections.1958
+	immediate = { }
+	title = iran_elections.1958.t
+	desc = iran_elections.1958.d
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = PER_1958_Elections
+	}
+	option = {
+		name = iran_elections.1958.a
+		complete_national_focus = PER_Mosaddegh_Victory_1958
+		ai_chance = {
+			base = 10
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = PER_1958_elections
+						option = MOJAHEDS_1958
+					}
+					has_game_rule = {
+						rule = PER_1958_elections
+						option = TOILERS_PARTY_1958
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = iran_elections.1958.b
+		complete_national_focus = PER_Toilers_Party_Victory_1958
+		ai_chance = {
+			base = 10
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = PER_1958_elections
+						option = MOJAHEDS_1958
+					}
+					has_game_rule = {
+						rule = PER_1958_elections
+						option = MOSADDEGH_1958
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = iran_elections.1958.c
+		complete_national_focus = PER_Society_of_Muslim_Mojaheds_Victory_1958
+		ai_chance = {
+			base = 10
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = PER_1958_elections
+						option = TOILERS_PARTY_1958
+					}
+					has_game_rule = {
+						rule = PER_1958_elections
+						option = MOSADDEGH_1958
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AJAX.1
+	immediate = { }
+	title = AJAX.1.t
+	desc = AJAX.1.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			complete_national_focus = PER_Operation_Ajax
+			USA = {
+				complete_national_focus = USA_50s_Operation_Ajax
+			}
+		}
+	}
+	option = {
+		name = AJAX.1.a
+		complete_national_focus = PER_Shah_Consents_to_Coup
+		ai_chance = {
+			base = 70
+			modifier = {
+				has_game_rule = {
+					rule = PER_AJAX
+					option = REFUSE
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = AJAX.1.b
+		complete_national_focus = PER_Shah_Refuses
+		ai_chance = {
+			base = 30
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AJAX.10
+	immediate = { }
+	title = AJAX.10.t
+	desc = AJAX.10.d
+	picture = GFX_AJAX_10
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = AJAX.10.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AJAX.11
+	immediate = { }
+	title = AJAX.11.t
+	desc = AJAX.11.d
+	picture = GFX_AJAX_11
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = AJAX.11.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AJAX.12
+	immediate = { }
+	title = AJAX.12.t
+	desc = AJAX.12.d
+	picture = GFX_AJAX_12
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = AJAX.12.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AJAX.13
+	immediate = { }
+	title = AJAX.13.t
+	desc = AJAX.13.d
+	picture = GFX_AJAX_13
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = AJAX.13.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AJAX.100
+	immediate = { }
+	title = AJAX.100.t
+	desc = AJAX.100.d
+	picture = GFX_NEWS_REPORT
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			complete_national_focus = PER_Operation_Ajax
+			USA = {
+				complete_national_focus = USA_50s_Ajax_Fails
+			}
+		}
+	}
+
+	option = {
+		name = AJAX.100.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AJAX.300
+	immediate = { }
+	title = AJAX.300.t
+	desc = AJAX.300.d
+	picture = GFX_NEWS_REPORT
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = AJAX.300.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AJAX.900
+	immediate = { }
+	title = AJAX.900.t
+	desc = AJAX.900.d
+	picture = GFX_NEWS_REPORT
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = AJAX.900.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AJAX.910
+	immediate = { }
+	title = AJAX.910.t
+	desc = AJAX.910.d
+	picture = GFX_NEWS_REPORT
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = AJAX.910.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AJAX.911
+	immediate = { }
+	title = AJAX.911.t
+	desc = AJAX.911.d
+	picture = GFX_NEWS_REPORT
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = AJAX.911.a
+	}
+}

@@ -1,0 +1,256 @@
+# KRCW (build/patch_residue.py): 19 CWIC AI strategies gated while KRCW_active
+# ---------- FOOD / AGRICULTURE ----------
+food_surplus = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		check_variable = { resource@rubber > 90 }
+	}
+	abort = {
+		check_variable = { resource@rubber < 60 }
+	}
+
+	ai_strategy = { type = build_building id = water_infrastructure     value = -250 }
+	ai_strategy = { type = build_building id = agri_industrial_complex  value = -25 }
+	ai_strategy = { type = build_building id = industrial_complex       value = 2 }
+}
+
+food_deficit_better = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		check_variable = { resource@rubber < 60 }
+	}
+	abort = {
+		check_variable = { resource@rubber > 30 }
+	}
+
+	ai_strategy = { type = build_building id = water_infrastructure     value = 250 }
+	ai_strategy = { type = build_building id = agri_industrial_complex  value = 40 }
+	ai_strategy = { type = build_building id = industrial_complex       value = 1 }
+}
+
+food_deficit = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		check_variable = { resource@rubber < 1 }
+	}
+	abort = {
+		check_variable = { resource@rubber > 30 }
+	}
+
+	ai_strategy = { type = build_building id = water_infrastructure     value = 40 }
+	ai_strategy = { type = build_building id = agri_industrial_complex  value = 250 }
+	ai_strategy = { type = build_building id = industrial_complex       value = 0 }
+}
+
+# ---------- ENERGY ----------
+energy_surplus = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		check_variable = { resource@coal > 120 }
+	}
+	abort = {
+		check_variable = { resource@coal < 80 }
+	}
+
+	ai_strategy = { type = build_building id = fossil_fuel_powerplant   value = -25 }
+	ai_strategy = { type = build_building id = renewable_powerplant     value = -15 }
+	ai_strategy = { type = build_building id = nuclear_powerplant       value = -10 }
+}
+
+energy_deficit = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		check_variable = { resource@coal < 30 }
+	}
+	abort = {
+		check_variable = { resource@coal > 70 }
+	}
+
+	ai_strategy = { type = build_building id = fossil_fuel_powerplant   value = 25 }
+	ai_strategy = { type = build_building id = renewable_powerplant     value = 15 }
+	ai_strategy = { type = build_building id = nuclear_powerplant       value = 10 }
+}
+
+# ---------- MONEY BALANCE ----------
+money_deficit_severe = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		check_variable = { IncomeCheck < -10 }
+	}
+	abort = {
+		check_variable = { IncomeCheck > -2 }
+	}
+
+	ai_strategy = { type = build_building id = office_park             value = 200 }
+	ai_strategy = { type = build_building id = industrial_complex      value = 50 }
+	ai_strategy = { type = build_building id = arms_factory            value = 10 }
+
+	ai_strategy = { type = build_building id = state_infrastructure     value = -15 }
+	ai_strategy = { type = build_building id = infrastructure           value = -10 }
+}
+
+money_deficit_mild = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		check_variable = { IncomeCheck < 0 }
+		check_variable = { IncomeCheck > -11 }
+	}
+	abort = {
+		check_variable = { IncomeCheck > 5 }
+	}
+
+	ai_strategy = { type = build_building id = office_park             value = 80 }
+	ai_strategy = { type = build_building id = industrial_complex      value = 20 }
+	ai_strategy = { type = build_building id = arms_factory            value = 5 }
+}
+
+money_surplus = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		check_variable = { IncomeCheck > 25 }
+	}
+	abort = {
+		check_variable = { IncomeCheck < 10 }
+	}
+
+	ai_strategy = { type = build_building id = office_park             value = -10 }
+	ai_strategy = { type = build_building id = state_infrastructure     value = 10 }
+	ai_strategy = { type = build_building id = infrastructure           value = 10 }
+	ai_strategy = { type = build_building id = industrial_complex       value = 10 }
+}
+
+# ---------- RESOURCE DEFICITS----------
+steel_deficit = {
+	enable = { NOT = { has_global_flag = KRCW_active }  check_variable = { resource@steel < 10 } }
+	abort  = { check_variable = { resource@steel > 25 } }
+	ai_strategy = { type = build_building id = steel_factory            value = 75 }
+}
+tungsten_deficit = {
+	enable = { NOT = { has_global_flag = KRCW_active }  check_variable = { resource@tungsten < 5 } }
+	abort  = { check_variable = { resource@tungsten > 15 } }
+	ai_strategy = { type = build_building id = tungsten_factory         value = 75 }
+}
+
+# ---------- GLOBAL BASELINE FOR MODDED ECONOMY BUILDINGS ----------
+cwic_building_targets_baseline = {
+	enable = { NOT = { has_global_flag = KRCW_active }  always = yes }
+	abort = { always = no }
+
+	ai_strategy = { type = build_building id = office_park              value = 2 }
+	ai_strategy = { type = build_building id = industrial_complex       value = 2 }
+	ai_strategy = { type = build_building id = arms_factory             value = 0 }
+	ai_strategy = { type = build_building id = agri_industrial_complex  value = 1 }
+	ai_strategy = { type = build_building id = water_infrastructure     value = 0 }
+	ai_strategy = { type = build_building id = state_infrastructure     value = 0 }
+	ai_strategy = { type = build_building id = infrastructure           value = 0 }
+
+	ai_strategy = { type = build_building id = fossil_fuel_powerplant   value = 1 }
+	ai_strategy = { type = build_building id = renewable_powerplant     value = 0 }
+	ai_strategy = { type = build_building id = nuclear_powerplant       value = 0 }
+}
+
+# ---------- RENEWABLE TRANSITION BY YEAR ----------
+cwic_energy_pre_1970 = {
+	enable = { NOT = { has_global_flag = KRCW_active }  date < 1970.1.1 }
+	abort_when_not_enabled = yes
+	ai_strategy = { type = build_building id = fossil_fuel_powerplant   value = 10 }
+	ai_strategy = { type = build_building id = renewable_powerplant     value = -5 }
+	ai_strategy = { type = build_building id = nuclear_powerplant       value = 2 }
+}
+cwic_energy_1970s_80s = {
+	enable = { NOT = { has_global_flag = KRCW_active }  date > 1970.1.1 date < 1990.1.1 }
+	abort_when_not_enabled = yes
+	ai_strategy = { type = build_building id = fossil_fuel_powerplant   value = 6 }
+	ai_strategy = { type = build_building id = renewable_powerplant     value = 3 }
+	ai_strategy = { type = build_building id = nuclear_powerplant       value = 4 }
+}
+cwic_energy_1990s_00s = {
+	enable = { NOT = { has_global_flag = KRCW_active }  date > 1990.1.1 date < 2008.1.1 }
+	abort_when_not_enabled = yes
+	ai_strategy = { type = build_building id = fossil_fuel_powerplant   value = 3 }
+	ai_strategy = { type = build_building id = renewable_powerplant     value = 8 }
+	ai_strategy = { type = build_building id = nuclear_powerplant       value = 5 }
+}
+cwic_energy_2010_plus = {
+	enable = { NOT = { has_global_flag = KRCW_active }  date > 2008.1.1 }
+	abort_when_not_enabled = yes
+	ai_strategy = { type = build_building id = fossil_fuel_powerplant   value = 1 }
+	ai_strategy = { type = build_building id = renewable_powerplant     value = 15 }
+	ai_strategy = { type = build_building id = nuclear_powerplant       value = 6 }
+}
+
+# ---------- SOVIET 1950s "FOCUS REQUIREMENT" HELPERS ----------
+# Targets mirror the bypass conditions of the 4th/5th Five Year Plan mission
+# focuses in SOV_50s_Industry.txt so the AI actually completes the tree:
+#  - SOV_Rebuild_Soviet_Agriculture:      agri_industrial_complex > 149
+#  - SOV_Electrification_of_the_Economy:  fossil_fuel_powerplant > 114, nuclear_powerplant > 0
+#  - SOV_Early_Atomic_ReD_...:            nuclear_reactor > 1
+#  - SOV_Boost_Petroleum_Refining:        synthetic_refinery > 7
+# (relevant techs start 1955, so the window runs to 1958)
+SOV_1950s_focus_build_helper = {
+	allowed = { original_tag = SOV }
+	enable = { NOT = { has_global_flag = KRCW_active }  date < 1958.1.1 }
+	abort_when_not_enabled = yes
+	ai_strategy = { type = building_target id = agri_industrial_complex  value = 150 }
+	ai_strategy = { type = building_target id = fossil_fuel_powerplant   value = 115 }
+	ai_strategy = { type = building_target id = nuclear_powerplant       value = 1 }
+	ai_strategy = { type = building_target id = nuclear_reactor          value = 2 }
+	ai_strategy = { type = building_target id = synthetic_refinery       value = 8 }
+}
+
+# SOV_Complete_Ukrainian_Reconstruction: per-state building requirements.
+SOV_1950s_ukraine_reconstruction = {
+	allowed = { original_tag = SOV }
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		date < 1958.1.1
+		NOT = { has_completed_focus = SOV_Complete_Ukrainian_Reconstruction }
+	}
+	abort_when_not_enabled = yes
+	#200: steel > 1, industry > 0
+	ai_strategy = { type = build_building id = steel_factory       target = 200 value = 60 }
+	ai_strategy = { type = build_building id = industrial_complex  target = 200 value = 40 }
+	#226: steel > 2, industry > 1, arms > 1, office > 1
+	ai_strategy = { type = build_building id = steel_factory       target = 226 value = 60 }
+	ai_strategy = { type = build_building id = industrial_complex  target = 226 value = 40 }
+	ai_strategy = { type = build_building id = arms_factory        target = 226 value = 40 }
+	ai_strategy = { type = build_building id = office_park         target = 226 value = 40 }
+	#227: steel > 3, industry > 1, arms > 2
+	ai_strategy = { type = build_building id = steel_factory       target = 227 value = 80 }
+	ai_strategy = { type = build_building id = industrial_complex  target = 227 value = 40 }
+	ai_strategy = { type = build_building id = arms_factory        target = 227 value = 60 }
+	#228: steel > 1, industry > 1, arms > 1
+	ai_strategy = { type = build_building id = steel_factory       target = 228 value = 40 }
+	ai_strategy = { type = build_building id = industrial_complex  target = 228 value = 40 }
+	ai_strategy = { type = build_building id = arms_factory        target = 228 value = 40 }
+	#221: arms > 2, office > 2
+	ai_strategy = { type = build_building id = arms_factory        target = 221 value = 60 }
+	ai_strategy = { type = build_building id = office_park         target = 221 value = 60 }
+	#259: agri > 1, industry > 0
+	ai_strategy = { type = build_building id = agri_industrial_complex target = 259 value = 60 }
+	ai_strategy = { type = build_building id = industrial_complex  target = 259 value = 40 }
+}
+
+SOV_1950s_don_volga_missing_water = {
+	allowed = { original_tag = SOV }
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		date < 1958.1.1
+		OR = {
+			227 = { water_infrastructure < 1 }
+			228 = { water_infrastructure < 1 }
+			218 = { water_infrastructure < 1 }
+			217 = { water_infrastructure < 1 }
+			236 = { water_infrastructure < 1 }
+			237 = { water_infrastructure < 1 }
+		}
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = { type = build_building id = water_infrastructure target = 237 value = 100 }
+	ai_strategy = { type = build_building id = water_infrastructure target = 236 value = 100 }
+	ai_strategy = { type = build_building id = water_infrastructure target = 217 value = 100 }
+	ai_strategy = { type = build_building id = water_infrastructure target = 218 value = 100 }
+	ai_strategy = { type = build_building id = water_infrastructure target = 228 value = 100 }
+	ai_strategy = { type = build_building id = water_infrastructure target = 227 value = 100 }
+}
+
+SOV_1950s_transport_infra_missing = {
+	allowed = { original_tag = SOV }
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		date < 1958.1.1
+		OR = { state_infrastructure < 175 infrastructure < 150 }
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = { type = building_target id = state_infrastructure value = 175 }
+	ai_strategy = { type = building_target id = infrastructure       value = 150 }
+}

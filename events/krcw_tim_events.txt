@@ -1,0 +1,244 @@
+add_namespace = krcw_tim
+
+country_event = {
+	id = krcw_tim.1
+	title = krcw_tim_1_t
+	desc = krcw_tim_1_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tim_1.a
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = 25
+		set_country_flag = krcw_ti_lean_pillar
+	}
+	option = {
+		name = krcw_tim_1.b
+		ai_chance = {
+			base = 30
+		}
+		add_political_power = 25
+		add_stability = 0.02
+		set_country_flag = krcw_ti_lean_national
+	}
+	option = {
+		name = krcw_tim_1.c
+		ai_chance = {
+			base = 25
+		}
+		add_stability = 0.04
+		add_political_power = -25
+		set_country_flag = krcw_ti_lean_commune
+	}
+}
+
+country_event = {
+	id = krcw_tim.3
+	title = krcw_tim_3_t
+	desc = krcw_tim_3_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tim_3.a
+		ai_chance = {
+			base = 55
+		}
+		add_political_power = 50
+		add_stability = 0.03
+		set_country_flag = krcw_ti_veto_pressed
+		if = { limit = { country_exists = FRA } add_opinion_modifier = { target = FRA modifier = krcw_ti_fraternal_dispute } }
+	}
+	option = {
+		name = krcw_tim_3.b
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = 25
+		if = { limit = { country_exists = FRA } FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_ti_secretariat_favour } } }
+	}
+}
+
+country_event = {
+	id = krcw_tim.5
+	title = krcw_tim_5_t
+	desc = krcw_tim_5_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tim_5.a
+		ai_chance = {
+			base = 55
+		}
+		army_experience = 15
+		add_war_support = 0.03
+		set_country_flag = krcw_ti_army_professional
+	}
+	option = {
+		name = krcw_tim_5.b
+		ai_chance = {
+			base = 45
+		}
+		add_manpower = 15000
+		add_stability = 0.04
+		set_country_flag = krcw_ti_army_militia
+	}
+}
+
+country_event = {
+	id = krcw_tim.7
+	title = krcw_tim_7_t
+	desc = krcw_tim_7_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tim_7.a
+		ai_chance = {
+			base = 60
+		}
+		add_stability = 0.05
+		add_political_power = -25
+		if = { limit = { country_exists = ENG } remove_opinion_modifier = { target = ENG modifier = krcw_ti_border_grievance } }
+	}
+	option = {
+		name = krcw_tim_7.b
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 50
+		add_stability = -0.04
+		add_war_support = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_tim.9
+	title = krcw_tim_9_t
+	desc = krcw_tim_9_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tim_9.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = 25
+		krcw_detente_up_small = yes
+		if = { limit = { country_exists = ENG } remove_opinion_modifier = { target = ENG modifier = krcw_ti_border_grievance } }
+	}
+	option = {
+		name = krcw_tim_9.b
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 50
+		add_war_support = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_tim.11
+	title = krcw_tim_11_t
+	desc = krcw_tim_11_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tim_11.a
+		ai_chance = {
+			base = 55
+		}
+		add_stability = 0.06
+		add_political_power = -50
+		add_ideas = krcw_ti_commune_democracy
+		set_country_flag = krcw_ti_68_reform
+	}
+	option = {
+		name = krcw_tim_11.b
+		ai_chance = {
+			base = 30
+		}
+		add_stability = 0.02
+		add_political_power = 25
+		set_country_flag = krcw_ti_68_compromise
+	}
+	option = {
+		name = krcw_tim_11.c
+		ai_chance = {
+			base = 15
+		}
+		add_political_power = 50
+		add_stability = -0.08
+		add_popularity = { ideology = trotskyism popularity = 0.05 }
+		set_country_flag = krcw_ti_68_repressed
+	}
+}
+
+country_event = {
+	id = krcw_tim.13
+	title = krcw_tim_13_t
+	desc = krcw_tim_13_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tim_13.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = 25
+		random_owned_controlled_state = {
+			limit = { is_core_of = ROOT  }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		}
+	}
+	option = {
+		name = krcw_tim_13.b
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = -25
+		random_owned_controlled_state = {
+			limit = { is_core_of = ROOT  }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+		}
+		add_stability = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_tim.15
+	title = krcw_tim_15_t
+	desc = krcw_tim_15_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_tim_15.a
+		ai_chance = {
+			base = 50
+		}
+		add_political_power = 25
+		add_war_support = 0.03
+		if = { limit = { country_exists = FRA } add_opinion_modifier = { target = FRA modifier = krcw_ti_fraternal_dispute } }
+	}
+	option = {
+		name = krcw_tim_15.b
+		ai_chance = {
+			base = 50
+		}
+		army_experience = 20
+		capital_scope = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+		}
+	}
+}

@@ -1,0 +1,1110 @@
+# KRCW (build/patch_residue.py): 28 OTL events dropped while KRCW_active
+add_namespace = saf
+add_namespace = saf_news
+add_namespace = saf_skeleton
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_news.100 
+ immediate = { }
+	title = saf_news.100.t2
+	desc = saf_news.1.d
+	picture = GFX_news_event_saf_massacre
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = { #kk
+		name = saf_news.100.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_news.200 
+ immediate = { }
+	title = saf_news.200.t2
+	desc = saf_news.200.d
+	picture = GFX_news_event_saf_verwoed_dead
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = { #kk
+		name = saf_news.200.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf.500 
+ immediate = { }
+	title = saf.500.t2
+	desc = saf.500.d2
+	picture = GFX
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { #kk
+		name = saf.500.a2
+		SAF = {
+			annex_country = {
+				target = LES
+				transfer_troops = yes
+			}
+			annex_country = {
+				target = SWA
+				transfer_troops = yes
+			}
+		}
+	}
+	option = { #kk
+		name = saf.500.b2
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf.100 
+ immediate = { }
+	title = saf.100.t2
+	desc = saf.100.d2
+	picture = GFX
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { #kk
+		name = saf.100.a2
+		set_autonomy = { target = SAF autonomy_state = autonomy_free }
+	}
+	option = { #kk
+		name = saf.100.b2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf.101 
+ immediate = { }
+	title = saf.101.t2
+	desc = saf.101.d
+	picture = GFX
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = { #kk
+		name = saf.101.a2
+	}
+}
+
+add_namespace = saf_flavor
+add_namespace = south_africa_news
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+id = saf_flavor.1 #the namibian question 
+ immediate = { }
+title = saf_flavor.1.t
+desc = saf_flavor.1.d
+picture = WIP
+
+is_triggered_only = yes
+fire_only_once = yes
+
+option = { #annexation of namibia
+name = saf_flavor.1.a2
+add_stability = 0.1
+}
+
+option = {
+	name = saf_flavor.1.b2
+    release = NMB
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+id = saf_flavor.2 #stay at home strikes 
+ immediate = { }
+title = saf_flavor.2.t
+desc = saf_flavor.2.d
+picture = WIP
+
+is_triggered_only = yes
+fire_only_once = yes
+
+option = {
+    name = saf_flavor.2.a2
+   add_stability = -0.05
+   add_political_power = -50
+    }
+
+
+option = {
+	name = saf_flavor.2.b2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+id = saf_flavor.3 #ANC terrorism 
+ immediate = { }
+title = saf_flavor.3.t
+desc = saf_flavor.3.d
+picture = WIP
+
+is_triggered_only = yes
+fire_only_once = yes
+
+option = {
+	name = saf_flavor.3.a2
+   add_stability = -0.03
+   add_political_power = -30
+	}
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+id = saf_flavor.4 #allowing black voting 
+ immediate = { }
+title = saf_flavor.4.t
+desc = saf_flavor.4.d
+picture = WIP
+
+is_triggered_only = yes
+fire_only_once = yes
+
+option = {
+	name = saf_flavor.4.a2
+	custom_effect_tooltip = black_voting_saf_tooltip
+    add_stability = 0.1
+    add_political_power = 100
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+id = saf_flavor.5 #retirement of DF malan 
+ immediate = { }
+title = saf_flavor.5.t
+desc = saf_flavor.5.d
+picture = WIP
+
+is_triggered_only = yes
+fire_only_once = yes
+
+option = {
+   name = saf_flavor.5.a2
+   }
+}
+
+add_namespace = saf_elections
+
+country_event = {
+	id = saf_elections.1 
+ immediate = { }
+	title = saf_elections.1.t2
+	desc = saf_elections.1.d2
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = SAF
+		date > 1961.1.1
+		date < 1961.12.31
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		#complete_national_focus = SAF_60s_Election_of_1961
+	}
+
+	option = {
+		name = saf_elections.1.a2
+		#complete_national_focus = SAF_60s_United_Party
+
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = yes
+		}
+		
+		set_popularities = {
+			maoism = 0
+			communism = 1
+			trotskyism = 0
+			socialist = 1
+			Social_Democratic = 0
+			
+			democratic = 13
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 22
+			Christian_Democratic = 6
+			conservative = 17
+			
+			neutrality = 0
+			nationalist = 34
+			monarchism = 0
+			fascism = 6
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		
+		hidden_effect = {
+			set_party_name = {
+				ideology = democratic
+				long_name = "United Party - Progressive"
+				name = "UP - Progressive"
+			}
+		}
+	}
+	
+	option = {
+		name = saf_elections.1.b2
+		#complete_national_focus = SAF_60s_nasionale_party
+		
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = yes
+		}
+		
+		set_popularities = {
+			maoism = 0
+			communism = 0
+			trotskyism = 0
+			socialist = 1
+			Social_Democratic = 0
+			
+			democratic = 9
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 20
+			Christian_Democratic = 7
+			conservative = 18
+			
+			neutrality = 7
+			nationalist = 40
+			monarchism = 0
+			fascism = 0
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		
+		hidden_effect = {
+			set_party_name = {
+				ideology = democratic
+				long_name = "Progressive Party"
+				name = "Progressive Party"
+			}
+		}
+	}
+	
+	#option = {
+	#	name = "Progressive Party"
+	#	#complete_national_focus = SAF_60s_Progressive_Victory
+	#		
+	#	set_politics = {
+	#		ruling_party = democratic
+	#		elections_allowed = yes
+	#	}
+	#}
+}
+
+country_event = {
+	id = saf_elections.2 
+ immediate = { }
+	title = saf_elections.2.t2
+	desc = saf_elections.2.d2
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = SAF
+		date > 1967.1.1
+		date < 1967.12.31
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		#complete_national_focus = SAF_60s_1966_Elections
+	}
+	
+	option = {
+		name = saf_elections.2.a2
+		#complete_national_focus = SAF_60s_United_Party_66
+
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = yes
+		}
+		
+		promote_character = SAF_B_J_Vorster
+		
+		set_popularities = {
+			maoism = 0
+			communism = 1
+			trotskyism = 0
+			socialist = 3
+			Social_Democratic = 0
+			
+			democratic = 4
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 15
+			Christian_Democratic = 0
+			conservative = 31
+			
+			neutrality = 7
+			nationalist = 39
+			monarchism = 0
+			fascism = 0
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		
+		promote_character = SAF_De_Villiers_Graaff_Con
+		promote_character = SAF_Koos_Strauss
+		
+		retire_character = SAF_Albert_Luthuli
+		promote_character = SAF_Oliver_Tambo
+		
+		hidden_effect = {
+			set_party_name = {
+				ideology = fascism
+				long_name = "Herstigte Nasionale Party"
+				name = "HNP"
+			}
+			
+			retire_character = SAF_Johannes_Van_Rensburg
+			promote_character = SAF_Albert_Hertzog
+			
+			set_party_name = {
+				ideology = democratic
+				long_name = "Progressive Party"
+				name = "Progressive Party"
+			}
+		}
+	}
+
+	option = {
+		name = saf_elections.2.b2
+		#complete_national_focus = SAF_60s_nasionale_party_66
+		
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = yes
+		}
+		
+		promote_character = SAF_B_J_Vorster
+		
+		set_popularities = {
+			maoism = 0
+			communism = 0
+			trotskyism = 0
+			socialist = 1
+			Social_Democratic = 0
+			
+			democratic = 3
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 20
+			Christian_Democratic = 0
+			conservative = 17
+			
+			neutrality = 0
+			nationalist = 59
+			monarchism = 0
+			fascism = 0
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		
+		retire_character = SAF_Albert_Luthuli
+		promote_character = SAF_Oliver_Tambo
+		
+		hidden_effect = {
+			set_party_name = {
+				ideology = fascism
+				long_name = "Herstigte Nasionale Party"
+				name = "HNP"
+			}
+			
+			retire_character = SAF_Johannes_Van_Rensburg
+			promote_character = SAF_Albert_Hertzog
+			
+			set_party_name = {
+				ideology = democratic
+				long_name = "Progressive Party"
+				name = "Progressive Party"
+			}
+		}
+	}
+}
+
+country_event = {
+	id = saf_elections.3 
+	immediate = { }
+	title = saf_elections.3.t2
+	desc = saf_elections.3.d2
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = SAF
+		date > 1970.1.1
+		date < 1970.12.31
+	}
+
+	is_triggered_only = yes
+
+	immediate = {
+		#complete_national_focus = SAF_60s_1970_Election
+	}
+	
+	option = {
+		name = saf_elections.3.a2
+		#complete_national_focus = SAF_60s_United_Victory_70
+
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = yes
+		}
+		
+		set_popularities = {
+			maoism = 0
+			communism = 0
+			trotskyism = 0
+			socialist = 1
+			Social_Democratic = 0
+			
+			democratic = 4
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 00
+			Christian_Democratic = 0
+			conservative = 42
+			
+			neutrality = 0
+			nationalist = 35
+			monarchism = 0
+			fascism = 18
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		
+		retire_character = SAF_Koos_Strauss
+		
+		retire_character = SAF_Jan_Steytler
+		promote_character = SAF_Colin_Eglin
+	}
+
+	option = {
+		name = saf_elections.3.b2
+		#complete_national_focus = SAF_60s_nasionale_party_70
+		
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = yes
+		}
+		
+		set_popularities = {
+			maoism = 0
+			communism = 0
+			trotskyism = 0
+			socialist = 1
+			Social_Democratic = 0
+			
+			democratic = 4
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 20
+			Christian_Democratic = 0
+			conservative = 17
+			
+			neutrality = 0
+			nationalist = 54
+			monarchism = 0
+			fascism = 4
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		
+		retire_character = SAF_Koos_Strauss
+		promote_character = SAF_De_Villiers_Graaff_Lib
+		
+		promote_character = SAF_Vause_Raw
+		retire_character = SAF_De_Villiers_Graaff_Con
+		
+		retire_character = SAF_Jan_Steytler
+		promote_character = SAF_Colin_Eglin
+	}
+	
+	option = {
+		name = saf_elections.3.c2
+		#complete_national_focus = SAF_60s_HNP_70
+		
+		set_politics = {
+			ruling_party = fascism
+			elections_allowed = yes
+		}
+		
+		set_popularities = {
+			maoism = 0
+			communism = 2
+			trotskyism = 0
+			socialist = 10
+			Social_Democratic = 0
+			
+			democratic = 10
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 20
+			Christian_Democratic = 0
+			conservative = 0
+			
+			neutrality = 0
+			nationalist = 15
+			monarchism = 0
+			fascism = 43
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		
+		retire_character = SAF_Koos_Strauss
+		promote_character = SAF_De_Villiers_Graaff_Lib
+		
+		promote_character = SAF_Vause_Raw
+		retire_character = SAF_De_Villiers_Graaff_Con
+		
+		retire_character = SAF_Jan_Steytler
+		promote_character = SAF_Colin_Eglin
+	}
+}
+
+#South Africa 1973-2008 Skeleton Content
+
+#1978.10.9
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_skeleton.1
+ 	immediate = { }
+    title = saf_skeleton.1.t
+	desc = saf_skeleton.1.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		hidden_effect = {
+			set_politics = {
+				ruling_party = nationalist
+				last_election = "1978.10.9"
+				elections_allowed = no
+			}
+			
+			set_popularities = {
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 4
+				Social_Democratic = 0
+				
+				democratic = 16
+				Social_Liberalism = 0
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 0
+				Christian_Democratic = 0
+				conservative = 12
+				
+				neutrality = 0
+				nationalist = 65
+				monarchism = 0
+				fascism = 3
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+			
+			retire_character = SAF_B_J_Vorster
+			promote_character = SAF_P_W_Botha
+			
+			create_country_leader = {
+				name = "Nelson Mandela"
+				picture = "Nelson_Mandela_90s.dds"
+				desc = POLITICS_NELSON_MANDELA_DESC
+				ideology = african_socialism
+			}
+			
+			set_party_name = {
+				ideology = democratic
+				long_name = "Progressive Federal Party"
+				name = "PFP"
+			}
+			
+			set_party_name = {
+				ideology = conservative
+				long_name = "New Republic Party"
+				name = "NRP"
+			}
+			
+			retire_character = SAF_Vause_Raw
+			retire_character = SAF_De_Villiers_Graaff_Con
+			promote_character = SAF_Radclyffe_Cadman
+		}
+		news_event = news.1697
+	}
+
+	option= {
+		name = saf_skeleton.1.a
+ 	}
+}
+
+#1989.8.14
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_skeleton.2
+ 	immediate = { }
+    title = saf_skeleton.2.t
+	desc = saf_skeleton.2.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		retire_country_leader = yes
+		promote_character = SAF_F_W_de_Klerk
+		news_event = news.1698
+		
+		hidden_effect = {
+			set_party_name = {
+				ideology = fascism
+				long_name = "Weerstandsbeweging"
+				name = "AWB"
+			}
+			
+			retire_character = SAF_Jaap_Marais
+			promote_character = SAF_Eugene_Terre_Blanche
+		}
+	}
+
+	option= {
+		name = saf_skeleton.2.a
+ 	}
+}
+
+#1990.9.1
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_skeleton.3
+ 	immediate = { }
+    title = saf_skeleton.3.t
+	desc = saf_skeleton.3.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		retire_country_leader = yes
+		set_popularities = {
+			communism = 0
+			socialist = 40
+			democratic = 15
+			liberal = 15
+			centrist = 10
+			conservative = 20
+		}
+		
+		set_politics = {
+			ruling_party = conservative
+		}
+		
+		set_party_name = {
+			ideology = conservative
+			long_name = "National Party of South Africa"
+			name = "NPA"
+		}
+		
+		create_country_leader = {
+			name = "F. W. de Klerk"
+			picture = "F_W_de_Klerk_90s.dds"
+			desc = POLITICS_F_W_DE_KLERK_DESC
+			ideology = conservative_democracy
+		}
+		news_event = news.1699
+	}
+
+	option= {
+		name = saf_skeleton.3.a
+ 	}
+}
+#1991.7.17
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_skeleton.4
+ 	immediate = { }
+    title = saf_skeleton.4.t
+	desc = saf_skeleton.4.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		remove_ideas = saf_apartheid_1
+		news_event = news.1700
+	}
+
+	option= {
+		name = saf_skeleton.4.a
+ 	}
+}
+#1994.9.1
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_skeleton.5
+ 	immediate = { }
+    title = saf_skeleton.5.t
+	desc = saf_skeleton.5.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Nelson Mandela"
+			picture = "Nelson_Mandela_90s.dds"
+			desc = POLITICS_NELSON_MANDELA_DESC
+			ideology = social_democrat
+		}
+		
+		set_party_name = {
+			ideology = socialist
+			long_name = "African National Congress - left"
+			name = "ANC - Left"
+		}
+		
+		set_party_name = {
+			ideology = Social_Democratic
+			long_name = "African National Congress - Center"
+			name = "ANC - Center"
+		}
+		
+		set_party_name = {
+			ideology = Social_Liberalism
+			long_name = "African National Congress - Right"
+			name = "ANC - Right"
+		}
+		
+		set_popularities = {
+			communism = 15
+			socialist = 15
+			democratic = 10
+			liberal = 10
+			centrist = 5
+			conservative = 5
+			Social_Democratic = 40
+		}
+		
+		set_politics = {
+			ruling_party = Social_Democratic
+		}
+		
+		set_cosmetic_tag = SAF_MOD
+		NMB = {
+			transfer_state = 951
+		}
+		news_event = news.1701
+	}
+
+	option= {
+		name = saf_skeleton.5.a
+ 	}
+}
+#1999.6.14
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_skeleton.6
+ 	immediate = { }
+    title = saf_skeleton.6.t
+	desc = saf_skeleton.6.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Thabo Mbeki"
+			picture = "Thabo_Mbeki_00s.dds"
+			ideology = social_liberal
+		}
+		
+		set_popularities = {
+			communism = 15
+			socialist = 15
+			democratic = 10
+			liberal = 5
+			centrist = 5
+			conservative = 5
+			Social_Democratic = 15
+			Social_Liberalism = 30
+		}
+		
+		set_politics = {
+			ruling_party = Social_Liberalism
+		}
+		
+		news_event = news.1702
+	}
+
+	option= {
+		name = saf_skeleton.6.a
+ 	}
+}
+#1950.6.17
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_skeleton.7
+ 	immediate = { }
+    title = saf_skeleton.7.t
+	desc = saf_skeleton.7.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		news_event = news.1703
+	}
+
+	option= {
+		name = saf_skeleton.7.a
+ 	}
+}
+
+#Bantustans
+
+#1963.5.30
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_skeleton.8
+ 	immediate = { }
+    title = saf_skeleton.8.t
+	desc = saf_skeleton.8.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		1452 = {
+			add_core_of = TRN
+		}
+		release_puppet = TRN
+		news_event = news.1704
+	}
+
+	option= {
+		name = saf_skeleton.8.a
+ 	}
+}
+#1976.10.26
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_skeleton.9
+ 	immediate = { }
+    title = saf_skeleton.9.t
+	desc = saf_skeleton.9.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		set_autonomy = {
+			target = TRN
+			autonomy_state = autonomy_free
+		}		
+		news_event = news.1705
+	}
+
+	option= {
+		name = saf_skeleton.9.a
+ 	}
+}
+
+#1976.5.30
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_skeleton.10
+ 	immediate = { }
+    title = saf_skeleton.10.t
+	desc = saf_skeleton.10.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		1455 = {
+			add_core_of = BOP
+		}
+		1454 = {
+			add_core_of = BOP
+		}
+		release_puppet = BOP
+		news_event = news.1706
+	}
+
+	option= {
+		name = saf_skeleton.10.a
+ 	}
+}
+#1977.12.6
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_skeleton.11
+ 	immediate = { }
+    title = saf_skeleton.11.t
+	desc = saf_skeleton.11.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		set_autonomy = {
+			target = BOP
+			autonomy_state = autonomy_free
+		}		
+		news_event = news.1707
+	}
+
+	option= {
+		name = saf_skeleton.11.a
+ 	}
+}
+
+#1973.1.26
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_skeleton.12
+ 	immediate = { }
+    title = saf_skeleton.12.t
+	desc = saf_skeleton.12.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		1453 = {
+			add_core_of = VND
+		}
+		release_puppet = CSK
+		news_event = news.1708
+	}
+
+	option= {
+		name = saf_skeleton.12.a
+ 	}
+}
+#1979.9.13
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_skeleton.13
+ 	immediate = { }
+    title = saf_skeleton.13.t
+	desc = saf_skeleton.13.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		set_autonomy = {
+			target = VND
+			autonomy_state = autonomy_free
+		}		
+		news_event = news.1709
+	}
+
+	option= {
+		name = saf_skeleton.13.a
+ 	}
+}
+
+#1972.7.26
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_skeleton.14
+ 	immediate = { }
+    title = saf_skeleton.14.t
+	desc = saf_skeleton.14.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		1451 = {
+			add_core_of = CSK
+		}
+		release_puppet = CSK
+		news_event = news.1710
+	}
+
+	option= {
+		name = saf_skeleton.14.a
+ 	}
+}
+#1981.12.4
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saf_skeleton.15
+ 	immediate = { }
+    title = saf_skeleton.15.t
+	desc = saf_skeleton.15.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		set_autonomy = {
+			target = CSK
+			autonomy_state = autonomy_free
+		}		
+		news_event = news.1711
+	}
+
+	option= {
+		name = saf_skeleton.15.a
+ 	}
+}
+

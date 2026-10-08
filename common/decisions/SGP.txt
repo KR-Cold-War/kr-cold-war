@@ -1,0 +1,21 @@
+# KRCW (build/patch_residue.py): 1 OTL decisions hidden while KRCW_active
+SGP_Modernize_Port_cat = {
+	SGP_Modernize_Port_dec = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	available = { NOT = { has_global_flag = KRCW_active } }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SGP_Modernize_Port_flag
+		}
+		days_mission_timeout = 725
+		is_good = yes
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			swap_ideas = {
+				remove_idea = SGP_Modernizing_Port
+				add_idea = SGP_Modernized_Port
+			}
+			clr_country_flag = SGP_Modernize_Port_flag
+		 }
+}
+	}
+}

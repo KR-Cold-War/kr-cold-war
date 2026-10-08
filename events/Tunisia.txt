@@ -1,0 +1,56 @@
+# KRCW (build/patch_residue.py): 2 OTL events dropped while KRCW_active
+add_namespace = tun
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = tun.1
+ 	immediate = { }
+	#title = "Habib Bourguiba Declares a Republic"
+	#desc = "You are AI"
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		set_popularities = { 
+			communism = 25
+			nationalist = 40
+			Social_Democratic = 10
+			conservative = 25
+		}
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = no
+		}
+		news_event = news.1616
+	}
+
+	option = {
+		name = tun.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = tun.2
+ 	immediate = { }
+	#title = "Zine El Abidine Ben Ali's Medical Coup"
+	#desc = "You are AI"
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Zine El Abidine Ben Ali"
+			picture = "Zine_El_Abidine_Ben_Ali_80s.dds"
+			ideology = Bourguibism
+		}
+		news_event = news.1617
+	}
+
+	option = {
+		name = tun.2.a
+	}
+}

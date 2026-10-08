@@ -1,0 +1,877 @@
+# KRCW (build/patch_residue.py): 29 OTL events dropped while KRCW_active
+###########################
+# Cuban Missile Crisis Events
+###########################
+
+add_namespace = cubamc
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Turkey Missiles
+	id = cubamc.1 
+ immediate = { }
+	title = cubamc.1.t2
+	desc = cubamc.1.d
+	picture = GFX_cubamc_1
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = cubamc.1.a2
+		trigger = {
+			NOT = {
+				original_tag = SOV
+			}
+		}
+	}
+	option = {
+		name = cubamc.1.b2
+		trigger = {
+			original_tag = SOV
+		}
+		country_event = {
+			id = cubamc.2
+			days = 1100
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Send Biryuzov
+	id = cubamc.2 
+ immediate = { }
+	title = cubamc.2.t2
+	desc = cubamc.2.d
+	picture = GFX_cubamc_2
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.2.a2
+		country_event = { id = cubamc.3 days = 3 } 
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Castro counteroffer
+	id = cubamc.3 
+ immediate = { }
+	title = cubamc.3.t2
+	desc = cubamc.3.d
+	picture = GFX_cubamc_3
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.3.a2
+		CUB = { country_event = { id = cubamc.27 days = 1 } } 
+		ai_chance = {
+			factor = 75
+			modifier = {
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = DEFAULT }
+				factor = 100
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_HISTORICAL }
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_ESCALATION }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_NO_MISSILES }
+			}
+		}
+	}
+	option = {
+		name = cubamc.3.b2
+		news_event = { id = cubamc.6 days = 5 } 
+		ai_chance = {
+			factor = 26
+			modifier = {
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = DEFAULT }
+				factor = 0
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_NO_MISSILES }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_HISTORICAL }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_ESCALATION }
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.27 
+ immediate = { }
+	title = cubamc.27.t2
+	desc = cubamc.27.d
+	picture = GFX_cubamc_4
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.27.a2
+		SOV = { country_event = { id = cubamc.4 days = 1 } } 
+		ai_chance = {
+			factor = 100
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+		}
+	}
+	option = {
+		name = cubamc.27.b2
+		SOV = { country_event = { id = cubamc.5 days = 5 } } 
+		ai_chance = {
+			factor = 0
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.4 
+ immediate = { }
+	title = cubamc.4.t2
+	desc = cubamc.4.d
+	picture = GFX_cubamc_5
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.4.a2
+		CUB = { give_military_access = SOV }
+		SOV = { country_event = { id = cubamc.7 days = 31 } } 
+		SOV = { set_country_flag = Cuban_Missiles }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.5 
+ immediate = { }
+	title = cubamc.5.t2
+	desc = cubamc.5.d
+	picture = GFX_cubamc_51
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.5.a
+	}
+	option = {
+		name = cubamc.5.b
+		news_event = { id = cubamc.6 days = 5 } 
+		ai_chance = {
+			factor = 75
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.6 
+ immediate = { }
+	title = cubamc.6.t2
+	desc = cubamc.6.d
+	picture = GFX_cubamc_6
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = cubamc.6.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Soviet in cuba
+	id = cubamc.7 
+ immediate = { }
+	title = cubamc.7.t2
+	desc = cubamc.7.d
+	picture = GFX_cubamc_7
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.7.a2
+		CUB = {
+			diplomatic_relation = {
+				country = SOV
+				relation = military_access
+			}
+		}
+		315 = {
+			create_unit = {
+				division = "name = \"Motostrelkovaya Diviziya\" division_template = \"Motostrelkovaya Diviziya\" start_experience_factor = 0.75 start_equipment_factor = 1"
+				owner = SOV
+			}
+			create_unit = {
+				division = "name = \"Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.75 start_equipment_factor = 1"
+				owner = SOV
+			}
+		}
+		USA = { country_event = cubamc.8 }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.8 
+ immediate = { }
+	title = cubamc.8.t2
+	desc = cubamc.8.d
+	picture = GFX_cubamc_8
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.8.a2
+		USA = { country_event = cubamc.9 }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.9 
+ immediate = { }
+	title = cubamc.9.t2
+	desc = cubamc.9.d
+	picture = GFX_cubamc_9
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.9.a2
+		ai_chance = {
+			factor = 75
+			modifier = {
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = DEFAULT }
+				factor = 100
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_HISTORICAL }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_ESCALATION }
+			}
+		}
+		SOV = { country_event = cubamc.14 }
+		country_event = { id = cubamc.12 days = 15 } 
+		SOV = { country_event = { id = cubamc.15 days = 15 } } 
+		news_event = cubamc.13
+		
+	}
+	option = {
+		name = cubamc.9.b2
+		ai_chance = {
+			factor = 15
+			modifier = {
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = DEFAULT }
+				factor = 0
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_ESCALATION }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_HISTORICAL }
+			}
+		}
+		declare_war_on = {
+			target = CUB
+			type = annex_everything
+		}
+		#Form NATO
+		country_event = NATO.21
+		SOV = { country_event = cubamc.10 }
+		news_event = cubamc.28
+		hidden_effect = {
+			news_event = cubamc.11
+			SOV = { country_event = cubamc.29 }
+			DDR = {
+				transfer_state = 742
+			}
+		}
+	}
+	option = {
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = DEFAULT }
+				factor = 0
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_HISTORICAL }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_ESCALATION }
+			}
+		}
+		name = cubamc.9.c2
+		
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.10 
+ immediate = { }
+	title = cubamc.10.t2
+	desc = cubamc.10.d
+	picture = GFX_cubamc_10
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.10.a2
+		ai_chance = {
+			factor = 100
+		}
+		trigger = {
+			PRC = {
+				controls_state = 1564 
+			}
+		}
+		USA = {
+			country_event = CMC_Sino_India_War.3
+		}
+		
+	}
+	option = {
+		name = cubamc.10.b2
+		clr_country_flag = Cuban_Missiles
+		ai_chance = {
+			factor = 0
+			modifier = {
+				is_historical_focus_on = no
+				OR = {
+					USA = { is_ai = no }
+					SOV = { is_ai = no }
+				}
+				add = 25
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_ESCALATION }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_HISTORICAL }
+			}
+		}
+	}
+	option = {
+		name = cubamc.10.c2
+		clr_country_flag = Cuban_Missiles
+		ai_chance = {
+			factor = 50
+			modifier = {
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = DEFAULT }
+				factor = 100
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_HISTORICAL }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_ESCALATION }
+			}
+		}
+	}
+	option = {
+		# Cuba Missile Crisis - SOV Strike on USA
+		name = cubamc.10.d2
+		ai_chance = {
+			factor = 0
+			modifier = {
+				is_historical_focus_on = no
+				OR = {
+					USA = { is_ai = no }
+					SOV = { is_ai = no }
+				}
+				add = 25
+			}
+		}
+		add_to_faction = CUB
+		# select nuclear strike and execute
+		ROOT = { add_named_threat = { threat = 20 name = "Nuclear Attack on Florida" } }
+		launch_nuke = {
+			province = 1843
+			use_nuke = yes
+		}
+		USA = { country_event = { id = cubamc.25 days = 1 } } # USA retaliation on SOV attack
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.11 
+ immediate = { }
+	title = cubamc.11.t2
+	desc = cubamc.11.d
+	picture = GFX_cubamc_11
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = cubamc.11.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.29 
+ immediate = { }
+	title = cubamc.29.t2
+	desc = cubamc.29.d
+	picture = GFX_cubamc_29
+
+	is_triggered_only = yes
+
+	option = {
+		name = cubamc.29.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.12 
+ immediate = { }
+	title = cubamc.12.t2
+	desc = cubamc.12.d
+	picture = GFX_cubamc_12
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.12.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.13 
+ immediate = { }
+	title = cubamc.13.t2
+	desc = cubamc.13.d
+	picture = GFX_cubamc_13
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = cubamc.13.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.14 
+ immediate = { }
+	title = cubamc.14.t2
+	desc = cubamc.14.d
+	picture = GFX_cubamc_14
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.14.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.15 
+ immediate = { }
+	title = cubamc.15.t2
+	desc = cubamc.15.d
+	picture = GFX_cubamc_15
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.15.a2
+		USA = { country_event = cubamc.16 }
+		ai_chance = {
+			factor = 75
+			modifier = {
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = DEFAULT }
+				factor = 100
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_HISTORICAL }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_ESCALATION }
+			}
+		}
+	}
+	option = {
+		name = cubamc.15.b2
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_HISTORICAL }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_ESCALATION }
+			}
+		}
+		trigger = {
+			PRC = {
+				controls_state = 1564 #cubamc.18
+			}
+		}
+		USA = {
+			country_event = CMC_Sino_India_War.1
+		}
+	}
+	option = {
+		name = cubamc.15.c2
+		USA = { country_event = cubamc.21 }
+		ai_chance = {
+			factor = 25
+			modifier = {
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = DEFAULT }
+				factor = 0
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_ESCALATION }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_HISTORICAL }
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.16 
+ immediate = { }
+	title = cubamc.16.t2
+	desc = cubamc.16.d
+	picture = GFX_cubamc_16
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.16.a2
+		SOV = { country_event = cubamc.17 }
+		news_event = cubamc.18
+		clr_country_flag = Jupiter_Missiles_Turkey
+		clr_country_flag = Cuban_Missiles
+		ai_chance = {
+			factor = 75
+			modifier = {
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = DEFAULT }
+				factor = 100
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_HISTORICAL }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_ESCALATION }
+			}
+		}
+	}
+	option = {
+		name = cubamc.16.b2
+		SOV = { country_event = cubamc.19 }
+		ai_chance = {
+			factor = 25
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_ESCALATION }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_HISTORICAL }
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.17 
+ immediate = { }
+	title = cubamc.17.t2
+	desc = cubamc.17.d
+	picture = GFX_cubamc_17
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.17.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.18 
+ immediate = { }
+	title = cubamc.18.t2
+	desc = cubamc.18.d
+	picture = GFX_cubamc_18
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = cubamc.18.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.19 
+ immediate = { }
+	title = cubamc.19.t2
+	desc = cubamc.19.d
+	picture = GFX_cubamc_19
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.19.a2
+		ai_chance = {
+			factor = 75
+			modifier = {
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = DEFAULT }
+				factor = 100
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_HISTORICAL }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_ESCALATION }
+			}
+		}
+		news_event = cubamc.20
+		set_country_flag = SOV_Cuba_Fail
+	}
+	option = {
+		name = cubamc.19.b2
+		ai_chance = {
+			factor = 25
+			modifier = {
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = DEFAULT }
+				factor = 0
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_ESCALATION }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_cuban_missile_crisis option = SOV_CMC_HISTORICAL }
+			}
+		}
+		USA = { country_event = cubamc.21 }
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.20 
+ immediate = { }
+	title = cubamc.20.t2
+	desc = cubamc.20.d
+	picture = GFX_cubamc_20
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = cubamc.20.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.21 
+ immediate = { }
+	title = cubamc.21.t2
+	desc = cubamc.21.d
+	picture = GFX_cubamc_21
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.21.a2
+		ai_chance = {
+			factor = 100
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+		}		
+		news_event = cubamc.22
+		set_country_flag = USA_Cuba_Fail
+	}
+	option = {
+		name = cubamc.21.b2
+		ai_chance = {
+			factor = 0
+		}
+		SOV = { country_event = cubamc.23 }
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.22 
+ immediate = { }
+	title = cubamc.22.t2
+	desc = cubamc.22.d
+	picture = GFX_cubamc_22
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = cubamc.22.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.23 
+ immediate = { }
+	title = cubamc.23.t2
+	desc = cubamc.23.d
+	picture = GFX_cubamc_23
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.23.a2
+		news_event = cubamc.24
+		USA = { country_event = cubamc.25 }
+		country_event = cubamc.26
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.24 
+ immediate = { }
+	title = cubamc.24.t2
+	desc = cubamc.24.d
+	picture = GFX_cubamc_24
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = cubamc.24.a2
+	}
+}
+
+# Cuba Missile Crisis - retaliation USA Strike on SOV
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.25 
+ immediate = { }
+	title = cubamc.25.t2
+	desc = cubamc.25.d
+	picture = GFX_cubamc_25
+
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			create_faction = NATO
+			every_country = {
+				limit = {
+					not = { tag = USA }
+					OR = { 
+						has_idea = SEATO_member
+						has_idea = CENTO_member
+						has_idea = nato_member
+					}
+				}
+				USA = { add_to_faction = PREV }
+			}
+			# select nuclear strike and execute
+			set_variable = { strike_level_usa_cubamc_selected = 1 }
+			wmd_distance_calculator = yes
+			wmd_nuke_launch = yes
+			wmd_deselect_all_enemies = yes
+		}
+	}
+	option = {
+		name = cubamc.25.a2
+		SOV = { country_event = { id = cubamc.26 days = 1 } } # SOV retaliation on USA strike
+	}
+}
+
+# Cuba Missile Crisis - SOV Strike on USA
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.26 
+ immediate = { }
+	title = cubamc.26.t2
+	desc = cubamc.26.d
+	picture = GFX_cubamc_26
+
+	is_triggered_only = yes
+	
+	option = {
+		name = cubamc.26.a2
+		add_to_faction = CUB
+		# select nuclear strike and execute
+		set_variable = { strike_level_sov_cubamc_selected = 1 }
+		wmd_distance_calculator = yes
+		wmd_nuke_launch = yes
+		wmd_deselect_all_enemies = yes
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cubamc.28 
+ immediate = { }
+	title = cubamc.28.t2
+	desc = cubamc.28.d
+	picture = GFX_cubamc_28
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = cubamc.28.a2
+	}
+}

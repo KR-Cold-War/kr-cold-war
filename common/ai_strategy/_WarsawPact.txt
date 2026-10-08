@@ -1,0 +1,61 @@
+# KRCW (build/patch_residue.py): 2 CWIC AI strategies gated while KRCW_active
+seek_USSR_alliance = {
+	allowed = { OR = {
+		tag = MON 
+		tag = ROM
+		tag = HUN
+		tag = DDR
+		tag = CZE
+		tag = POL
+		}
+	}
+	enable = { NOT = { has_global_flag = KRCW_active } 		
+		ROOT = { is_in_faction_with = SOV }
+	}
+	
+	abort = { 
+		OR = {
+		has_government = conservative
+		has_government = fascism
+		has_government = nationalist
+		has_government = monarchism
+		has_government = centrist
+		has_government = islamism
+		has_government = socialist
+		has_government = neutrality
+		has_government = radical_shiaism
+		has_government = democratic
+		has_government = liberal
+		}
+	}
+	
+	ai_strategy = {
+		type = befriend
+		id = "SOV"			
+		value = 200
+	}
+	ai_strategy = {
+		type = alliance
+		id = "SOV"			
+		value = 400
+	}
+}
+SOV_Support_ALG = {
+    allowed = {
+       OR = {
+		    original_tag = SOV
+			is_ally_with = SOV
+	   }
+    }
+    enable = { NOT = { has_global_flag = KRCW_active } 
+        ALG = {
+			has_war_with = ALE
+		}
+    }
+    abort_when_not_enabled = yes
+    ai_strategy = {
+        type = support
+        id = ALG
+        value = 1500
+    }
+}

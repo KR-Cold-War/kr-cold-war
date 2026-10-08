@@ -1,0 +1,5458 @@
+# KRCW (build/patch_residue.py): 127 OTL decisions hidden while KRCW_active
+PRC_50s_Vietnam_Issue_categories = {  
+	PRC_50s_Negotiate_with_North_and_South_Vietnamese_mission = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+        }
+		available = { NOT = { has_global_flag = KRCW_active } 
+            always = no
+        }
+		priority = 10
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			always = no
+         } }
+}
+		fire_only_once = yes
+		is_good = yes
+		selectable_mission = no
+		days_mission_timeout = 120
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            clr_country_flag = PRC_50s_Support_Ngo_Dinh_Diem_decision_flag
+			clr_country_flag = PRC_50s_Denounce_Ngo_Dinh_Diem_decision_flag
+		 }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			clr_country_flag = PRC_50s_Support_Ngo_Dinh_Diem_decision_flag
+			clr_country_flag = PRC_50s_Denounce_Ngo_Dinh_Diem_decision_flag
+		 }
+}
+	}  
+	PRC_50s_Talk_with_Ho_Chi_Minh_decision = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		allowed = { 
+			original_tag = PRC
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+            has_active_mission = PRC_50s_Negotiate_with_North_and_South_Vietnamese_mission
+		}
+		cost = 10
+        priority = 9
+		days_remove = 10
+        fire_only_once = yes
+		remove_effect = {
+
+		}
+	}
+	PRC_50s_Support_Ngo_Dinh_Diem_decision = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		allowed = { 
+			original_tag = PRC
+		}
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = PRC_50s_Denounce_Ngo_Dinh_Diem_decision_flag
+			}
+			has_active_mission = PRC_50s_Negotiate_with_North_and_South_Vietnamese_mission
+		}
+		cost = 10
+        priority = 8
+		days_remove = 6
+        fire_only_once = yes
+        complete_effect = {
+			set_country_flag = PRC_50s_Support_Ngo_Dinh_Diem_decision_flag
+		}
+		remove_effect = {
+
+		}
+	}
+	PRC_50s_Denounce_Ngo_Dinh_Diem_decision = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		allowed = { 
+			original_tag = PRC
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = PRC_50s_Support_Ngo_Dinh_Diem_decision_flag
+			}
+            has_active_mission = PRC_50s_Negotiate_with_North_and_South_Vietnamese_mission
+		}
+		cost = 10
+        priority = 8
+		days_remove = 6
+        fire_only_once = yes
+        complete_effect = {
+			set_country_flag = PRC_50s_Denounce_Ngo_Dinh_Diem_decision_flag
+		}
+		remove_effect = {
+
+		}
+	}
+}
+
+PRC_50s_civilwar_categories = {    
+	PRC_50s_civilwar_Sending_Liu_Shaoqi_to_Moscow = {#刘少奇访问莫斯科
+        allowed = {
+			original_tag = PRC
+		}
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_global_flag = CCW_Over
+			}
+        }
+        cost = 10
+        fire_only_once = yes
+        available = { NOT = { has_global_flag = KRCW_active } 
+            
+        }
+        complete_effect = {
+			country_event = {
+				id = PRC_50s_Rework_event.64
+				days = 1
+			}
+        }
+        days_remove = 53
+        remove_effect = {
+            country_event = PRC_50s_Rework_event.64
+        }
+		ai_will_do = { 
+			factor = 100 
+			modifier = {
+				factor = 0
+				date < 1949.06.21
+			}
+		}
+	}
+	PRC_Contact_the_three_district_government = {#中共联络三区政府
+	    allowed = {
+			original_tag = PRC
+		}
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			date < 1960.01.01
+			has_completed_focus = PRC_50s_Promote_The_Peaceful_Liberation_of_Sinkiang
+			NOT = {
+				SIK = { has_cosmetic_tag = SIK_PRC_liberation }	
+			}
+			country_exists = SIK
+        }
+        cost = 25
+        fire_only_once = yes
+        available = { NOT = { has_global_flag = KRCW_active } 
+            
+        }
+        complete_effect = {
+        }
+        days_remove = 7
+        remove_effect = {
+            SIK = {
+                add_popularity = {
+                    ideology = maoism
+                    popularity = 0.1
+                }
+            }
+            set_country_flag = PRC_Contact_the_three_district_government
+        }
+		ai_will_do = { 
+			factor = 100 
+			modifier = {
+				factor = 0
+				date < 1949.08.10
+			}
+		}
+    }
+    PRC_Arrest_KMT_Spies = {#杀国民党间谍
+        visible = { NOT = { has_global_flag = KRCW_active } 
+            check_variable = { CHI.cww_infiltrate > 0 }
+            tag = PRC
+        }
+        cost = 50
+        available = { NOT = { has_global_flag = KRCW_active } 
+            tag = PRC
+            check_variable = { CHI.cww_infiltrate > 0 }
+        }
+        complete_effect = {
+               
+        }
+        days_remove = 10
+        remove_effect = {
+            CHI = {
+                add_manpower = -20
+            }
+               
+            add_to_variable = { CHI.cww_infiltrate = -10 }
+        }
+    }
+    PRC_50s_Battle_of_Jiangshan_Island = { 
+		allowed = { 
+			original_tag = PRC
+		}
+
+		cost = 5
+
+        available = { NOT = { has_global_flag = KRCW_active } 
+			has_global_flag = ROC_taiwan
+			if = {
+				limit = {
+                    NOT = {
+						is_ai =yes
+					}
+					custom_trigger_tooltip = {
+						tooltip = PRC_50s_Battle_of_Jiangshan_Island_trigger
+						check_variable = { num_equipment_in_armies@artillery_equipment > 250 }
+						#check_variable = { num_deployed_planes_with_type@tactical_bomber > 100 }
+					}
+					divisions_in_state = {
+						state = 596
+						size > 2
+					}
+				}
+			}
+			has_equipment = {
+				convoy_1 > 20
+			}
+        }
+
+		days_remove = 10
+        fire_only_once = yes
+		
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Strengthen_The_Defence_of_The_Southeast_Coast
+		}
+
+		fire_only_once = yes
+
+		remove_effect = { #todo
+			country_event = {
+                id = PRC_50s_Rework_event.160
+                days = 10
+            }
+		}
+		ai_will_do = {
+			factor = 100
+			modifier = {
+				factor = 0
+				date < 1955.01.17
+			}
+		}
+	}
+	
+
+	Battle_of_Hainan = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_prepare_civil_war
+
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+			591 = { is_controlled_by = PRC  }
+			#has_global_flag = PRC_Liberating_Hainan
+			
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cost = 0
+
+		fire_only_once = yes
+		selectable_mission = yes
+
+		days_mission_timeout = 60
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			white_peace = CHI
+			transfer_state = 591
+			news_event = KMT_Hainan.2
+			clr_global_flag = PRC_Liberating_Hainan
+			hidden_effect = {
+			1547 = {
+				remove_dynamic_modifier = { modifier = Hainan_Invasion }
+			}
+			524 = {
+				remove_dynamic_modifier = { modifier = Hainan_Invasion }
+			}
+			593 = {
+				remove_dynamic_modifier = { modifier = Hainan_Invasion }
+			}
+			1648 = {
+				remove_dynamic_modifier = { modifier = Hainan_Invasion }
+			}
+			2032 = {
+				remove_dynamic_modifier = { modifier = Hainan_Invasion }
+			}
+			1666 = {
+				remove_dynamic_modifier = { modifier = Hainan_Invasion }
+			}
+			1006 = {
+				remove_dynamic_modifier = { modifier = Hainan_Invasion }
+			}
+			}
+			CHI = {
+				complete_national_focus = CHI_The_Fate_of_Hainan
+				complete_national_focus = CHI_Fall_of_Hainan
+			}
+			
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			if = {
+				limit = {
+					591 = { is_controlled_by = PRC  } 
+				}
+				transfer_state = 591
+				news_event = KMT_Hainan.2
+				clr_global_flag = PRC_Liberating_Hainan
+				
+				hidden_effect = {
+					591 = {
+						add_dynamic_modifier = { modifier = PRC_Bandit_1 days = -1 }  # Fixed: add_dynamic_modifier requires { modifier = name days = number }
+						remove_dynamic_modifier = { modifier = hainan_resistance_modifier }  # Fixed: remove_dynamic_modifier requires { modifier = name }
+					}
+				
+				1547 = {
+				remove_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				524 = {
+					remove_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				593 = {
+					remove_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				1648 = {
+					remove_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				2032 = {
+					remove_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				1666 = {
+					remove_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				1006 = {
+					remove_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				}
+				CHI = {
+					complete_national_focus = CHI_The_Fate_of_Hainan
+					complete_national_focus = CHI_Fall_of_Hainan
+				}
+			}
+			else = {
+				
+				news_event = KMT_Hainan.3
+				clr_global_flag = PRC_Liberating_Hainan
+				hidden_effect = {
+				1547 = {
+				remove_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				524 = {
+					remove_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				593 = {
+					remove_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				1648 = {
+					remove_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				2032 = {
+					remove_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				1666 = {
+					remove_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				1006 = {
+					remove_dynamic_modifier = { modifier = Hainan_Invasion }
+				}
+				}
+				CHI = {
+				complete_national_focus = CHI_The_Fate_of_Hainan
+				complete_national_focus = CHI_Victory_in_Hainan
+				}
+			}
+			white_peace = CHI
+		 }
+}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+
+
+}
+
+PRC_50s_The_Road_to_Socialism_categories = {
+	PRC_50s_The_Road_to_Socialism_Repairing_war_damaged_facilities = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Heal_The_Wounds_of_War
+	   	}
+		modifier = {
+			political_power_gain = -0.05
+			industry_free_repair_factor = 0.25
+        }
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		priority = 100
+	   	remove_effect = {
+			random_owned_state = {
+				limit = {
+					infrastructure < 5
+				}
+				add_building_construction = {
+                    type = infrastructure
+                    level = 1
+                    instant_build = yes
+                }
+			}
+			random_owned_state = {
+				limit = {
+					infrastructure < 5
+				}
+				add_building_construction = {
+                    type = infrastructure
+                    level = 1
+                    instant_build = yes
+                }
+			}
+		}
+	   	cost = 25
+	   	days_remove = 50
+		fire_only_once = yes
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+
+
+	#剿匪
+	PRC_50s_Complete_the_bandits_suppression_in_Northeast_China = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Campaign_to_Suppress_Counterrevolutionaries_begun
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 1 }
+				is_ai = yes
+			}
+	   	}
+		cost = 0
+		days_remove = 0
+		priority = 20
+	    fire_only_once = yes
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = PRC_50s_Complete_the_bandits_suppression_in_Northeast_China_trigger
+				716 = { check_variable = { Suppress_Counterrevolutionaries_Bandit = 0 } }
+			}
+		}
+		complete_effect = {
+			add_stability = 0.01
+			every_state = {
+				limit = {
+					PRC_50s_state_belong_to_Northeast_China = yes
+				}
+				remove_dynamic_modifier = {
+					modifier = PRC_Bandit_3
+				}
+				set_state_flag = PRC_has_completed_the_bandits_suppression
+			}
+		}
+		ai_will_do = { 
+			factor = 1000
+		}
+	}
+	PRC_50s_Complete_the_bandits_suppression_in_Northwest_China = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Campaign_to_Suppress_Counterrevolutionaries_begun
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 1 }
+				is_ai = yes
+			}
+	   	}
+		cost = 0
+		days_remove = 0
+		priority = 20
+	    fire_only_once = yes
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = PRC_50s_Complete_the_bandits_suppression_in_Northwest_China_trigger
+				283 = { check_variable = { Suppress_Counterrevolutionaries_Bandit = 0 } }
+			}
+		}
+		complete_effect = {
+			add_stability = 0.02
+			every_state = {
+				limit = {
+					PRC_50s_state_belong_to_Northwest_China = yes
+				}
+				remove_dynamic_modifier = {
+					modifier = PRC_Bandit_3
+				}
+				set_state_flag = PRC_has_completed_the_bandits_suppression
+			}
+		}
+		ai_will_do = { 
+			factor = 1000
+		}
+	}
+	PRC_50s_Complete_the_bandits_suppression_in_North_China = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Campaign_to_Suppress_Counterrevolutionaries_begun
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 1 }
+				is_ai = yes
+			}
+	   	}
+		cost = 0
+		days_remove = 0
+		priority = 20
+	    fire_only_once = yes
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = PRC_50s_Complete_the_bandits_suppression_in_North_China_trigger
+				609 = { check_variable = { Suppress_Counterrevolutionaries_Bandit = 0 } }
+			}
+		}
+		complete_effect = {
+			add_stability = 0.015
+			every_state = {
+				limit = {
+					PRC_50s_state_belong_to_North_China = yes
+				}
+				remove_dynamic_modifier = {
+					modifier = PRC_Bandit_3
+				}
+				set_state_flag = PRC_has_completed_the_bandits_suppression
+			}
+		}
+		ai_will_do = { 
+			factor = 1000
+		}
+	}
+	PRC_50s_Complete_the_bandits_suppression_in_Central_South_China = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Campaign_to_Suppress_Counterrevolutionaries_begun
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 1 }
+				is_ai = yes
+			}
+	   	}
+		cost = 0
+		days_remove = 0
+		priority = 20
+	    fire_only_once = yes
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = PRC_50s_Complete_the_bandits_suppression_in_Central_South_China_trigger
+				1569 = { check_variable = { Suppress_Counterrevolutionaries_Bandit = 0 } }
+			}
+		}
+		complete_effect = {
+			add_stability = 0.025
+			every_state = {
+				limit = {
+					PRC_50s_state_belong_to_Central_South_China = yes
+				}
+				remove_dynamic_modifier = {
+					modifier = PRC_Bandit_3
+				}
+				set_state_flag = PRC_has_completed_the_bandits_suppression
+			}
+		}
+		ai_will_do = { 
+			factor = 1000
+		}
+	}
+	PRC_50s_Complete_the_bandits_suppression_in_Southwest_China = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Campaign_to_Suppress_Counterrevolutionaries_begun
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 1 }
+				is_ai = yes
+			}
+	   	}
+		cost = 0
+		days_remove = 0
+		priority = 20
+	    fire_only_once = yes
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = PRC_50s_Complete_the_bandits_suppression_in_Southwest_China_trigger
+				605 = { check_variable = { Suppress_Counterrevolutionaries_Bandit = 0 } }
+			}
+		}
+		complete_effect = {
+			add_stability = 0.025
+			every_state = {
+				limit = {
+					PRC_50s_state_belong_to_Southwest_China = yes
+				}
+				remove_dynamic_modifier = {
+					modifier = PRC_Bandit_3
+				}
+				set_state_flag = PRC_has_completed_the_bandits_suppression
+			}
+		}
+		ai_will_do = { 
+			factor = 1000
+		}
+	}
+	PRC_50s_Complete_the_bandits_suppression_in_Southeast_China = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Campaign_to_Suppress_Counterrevolutionaries_begun
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 1 }
+				is_ai = yes
+			}
+	   	}
+		cost = 0
+		days_remove = 0
+		priority = 20
+	    fire_only_once = yes
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = PRC_50s_Complete_the_bandits_suppression_in_Southeast_China_trigger
+				598 = { check_variable = { Suppress_Counterrevolutionaries_Bandit = 0 } }
+			}
+		}
+		complete_effect = {
+			add_stability = 0.025
+			every_state = {
+				limit = {
+					PRC_50s_state_belong_to_Southeast_China = yes
+				}
+				remove_dynamic_modifier = {
+					modifier = PRC_Bandit_3
+				}
+				set_state_flag = PRC_has_completed_the_bandits_suppression
+			}
+		}
+		ai_will_do = { 
+			factor = 1000
+		}
+	}
+	PRC_50s_Complete_the_Elimination_of_the_Remnants_of_the_Kuomintang = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Campaign_to_Suppress_Counterrevolutionaries_begun
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 1 }
+				is_ai = yes
+			}
+	   	}
+		cost = 0
+		days_remove = 0
+		priority = 15
+	    fire_only_once = yes
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = PRC_50s_Complete_the_Elimination_of_the_Remnants_of_the_Kuomintang_trigger
+				716 = { check_variable = { Suppress_Counterrevolutionaries_Kuomintang = 0 } }
+				609 = { check_variable = { Suppress_Counterrevolutionaries_Kuomintang = 0 } }
+				283 = { check_variable = { Suppress_Counterrevolutionaries_Kuomintang = 0 } }
+				605 = { check_variable = { Suppress_Counterrevolutionaries_Kuomintang = 0 } }
+				1569 = { check_variable = { Suppress_Counterrevolutionaries_Kuomintang = 0 } }
+				598 = { check_variable = { Suppress_Counterrevolutionaries_Kuomintang = 0 } }
+			}
+		}
+		complete_effect = {
+			add_popularity = { ideology = neutrality popularity = -0.1 }
+			add_popularity = { ideology = maoism popularity = 0.025 }
+			add_popularity = { ideology = socialist popularity = 0.01 }
+			add_popularity = { ideology = trotskyism popularity = 0.01 } 
+			PRC_50s_administration_integration_in = yes
+			PRC_50s_Imperialist_forces_swap = yes
+			set_country_flag = PRC_has_completed_the_elimination_of_the_remnants_of_the_kuomintang
+		}
+		ai_will_do = { 
+			factor = 1000
+		}
+	}
+	PRC_50s_Complete_the_Elimination_of_Huidaomen = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Campaign_to_Suppress_Counterrevolutionaries_begun
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 1 }
+				is_ai = yes
+			}
+	   	}
+		cost = 0
+		days_remove = 0
+		priority = 10
+	    fire_only_once = yes
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = PRC_50s_Complete_the_Elimination_of_Huidaomen_trigger
+				716 = { check_variable = { Suppress_Counterrevolutionaries_Huidaomen = 0 } }
+				609 = { check_variable = { Suppress_Counterrevolutionaries_Huidaomen = 0 } }
+				283 = { check_variable = { Suppress_Counterrevolutionaries_Huidaomen = 0 } }
+				605 = { check_variable = { Suppress_Counterrevolutionaries_Huidaomen = 0 } }
+				1569 = { check_variable = { Suppress_Counterrevolutionaries_Huidaomen = 0 } }
+				598 = { check_variable = { Suppress_Counterrevolutionaries_Huidaomen = 0 } }
+			}
+		}
+		complete_effect = {
+			add_popularity = { ideology = nationalist popularity = -0.1 }
+			add_popularity = { ideology = conservative popularity = -0.05 }
+			PRC_50s_administration_integration_in = yes
+			PRC_50s_Imperialist_forces_swap = yes
+			set_country_flag = PRC_has_completed_the_elimination_of_huidaomen
+		}
+		ai_will_do = { 
+			factor = 1000
+		}
+	}
+	PRC_50s_End_Campaign_to_Suppress_Counterrevolutionaries = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Campaign_to_Suppress_Counterrevolutionaries_begun
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 1 }
+				is_ai = yes
+			}
+			716 = { has_state_flag = PRC_has_completed_the_bandits_suppression }
+			609 = { has_state_flag = PRC_has_completed_the_bandits_suppression }
+			283 = { has_state_flag = PRC_has_completed_the_bandits_suppression }
+			605 = { has_state_flag = PRC_has_completed_the_bandits_suppression }
+			1569 = { has_state_flag = PRC_has_completed_the_bandits_suppression }
+			598 = { has_state_flag = PRC_has_completed_the_bandits_suppression }
+			has_country_flag = PRC_has_completed_the_elimination_of_the_remnants_of_the_kuomintang
+			has_country_flag = PRC_has_completed_the_elimination_of_huidaomen
+	   	}
+		cost = 0
+		days_remove = 0
+		priority = 5
+	    fire_only_once = yes
+		available = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+		complete_effect = {
+			remove_from_array = {
+				array = PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_array
+				value = 1
+			}
+			set_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 0 }
+			clr_country_flag = PRC_Campaign_to_Suppress_Counterrevolutionaries_begun
+		}
+		ai_will_do = { 
+			factor = 1000
+		}
+	}
+	PRC_50s_Suppress_Counterrevolutionaries_ai_test = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Campaign_to_Suppress_Counterrevolutionaries_begun
+			is_ai = yes
+	   	}
+		cost = 0
+		days_remove = 0
+		days_re_enable = 30
+
+		priority = 15
+	    fire_only_once = no
+		available = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+		complete_effect = {
+			for_loop_effect = {
+				start = 0
+				end = 6
+				value = i
+	
+				if = {
+					limit = { check_variable = { i = 0 } }
+					set_temp_variable = { temp_target_state = 716 }
+				}
+				if = {
+					limit = { check_variable = { i = 1 } }
+					set_temp_variable = { temp_target_state = 609 }
+				}
+				if = {
+					limit = { check_variable = { i = 2 } }
+					set_temp_variable = { temp_target_state = 283 }
+				}
+				if = {
+					limit = { check_variable = { i = 3 } }
+					set_temp_variable = { temp_target_state = 605 }
+				}
+				if = {
+					limit = { check_variable = { i = 4 } }
+					set_temp_variable = { temp_target_state = 1569 }
+				}
+				if = {
+					limit = { check_variable = { i = 5 } }
+					set_temp_variable = { temp_target_state = 598 }
+				}
+				
+				if = { 
+					limit = { 
+						#has_political_power > var:PRC_Suppress_Counterrevolutionaries_button_cost_1 
+						var:temp_target_state = { check_variable = { Suppress_Counterrevolutionaries_Bandit > 0 } }
+					} 
+					var:temp_target_state = { add_to_variable = { Suppress_Counterrevolutionaries_Bandit = PRC.PRC_Suppress_Bandits_button_effect } }
+					add_political_power = var:PRC_Suppress_Counterrevolutionaries_button_cost_2
+					PRC_Suppress_Counterrevolutionaries_update = yes
+					PRC_Suppres_Counterrevolutionaries_bandits_modifiers_swap = yes
+				}
+				if = { 
+					limit = { 
+						#has_political_power > var:PRC_Suppress_Counterrevolutionaries_button_cost_1 
+						var:temp_target_state = { check_variable = { Suppress_Counterrevolutionaries_Huidaomen > 0 } }
+					} 
+					var:temp_target_state = { add_to_variable = { Suppress_Counterrevolutionaries_Huidaomen = PRC.PRC_Suppress_Huidaomen_button_effect } }
+					add_political_power = var:PRC_Suppress_Counterrevolutionaries_button_cost_2
+					PRC_Suppress_Counterrevolutionaries_update = yes
+				}
+				if = { 
+					limit = { 
+						#has_political_power > var:PRC_Suppress_Counterrevolutionaries_button_cost_1 
+						var:temp_target_state = { check_variable = { Suppress_Counterrevolutionaries_Kuomintang > 0 } }
+					} 
+					var:temp_target_state = { add_to_variable = { Suppress_Counterrevolutionaries_Kuomintang = PRC.PRC_Suppress_Kuomintang_button_effect } }
+					add_political_power = var:PRC_Suppress_Counterrevolutionaries_button_cost_2
+					PRC_Suppress_Counterrevolutionaries_update = yes
+				}	
+			}
+		}
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	#土改
+	PRC_50s_Land_Reform_Water_conservancy_construction = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			ROOT = {
+				has_completed_focus = PRC_50s_Promote_Water_Conservancy_Construction
+				OR = {
+					check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 2 }
+					is_ai = yes
+				}
+			}
+			
+			FROM = {
+				free_building_slots = {
+					building = industrial_complex
+					size < 15
+				}
+			}
+	   	}
+		priority = 50
+		on_map_mode = map_only
+		available = { NOT = { has_global_flag = KRCW_active } 
+			num_of_civilian_factories_available_for_projects > 1
+        }
+        modifier = {
+            civilian_factory_use = 1
+        }
+	   	remove_effect = {
+			FROM = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+		state_target = yes
+		target_array = ROOT.owned_states
+	   	cost = 100
+	   	days_remove = 180
+		fire_only_once = yes
+
+		ai_will_do = { 
+			factor = 0
+		}
+	}
+	PRC_50s_Land_Reform_Learn_from_the_Soviet_experience_of_land_reform = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Land_Reform_begun
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 2 }
+				is_ai = yes
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+	   	remove_effect = {
+			add_to_variable = { Land_Reform_cost = -1.5 tooltip = PRC_decrease_land_reform_cost_tt }
+
+			set_temp_variable = { temp_x = 1 }
+            set_temp_variable = { temp_y = 0.5 }
+            PRC_faction_struggle_system_faction_influence_change = yes
+			set_temp_variable = { temp_x = 2 }
+            set_temp_variable = { temp_y = 0.5 }
+            PRC_faction_struggle_system_faction_influence_change = yes
+		}
+		priority = 45
+	   	cost = 35
+	   	days_remove = 50
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 10
+		}
+	} 
+	PRC_50s_Land_Reform_Organize_peasant_union_activities = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Land_Reform_begun
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 2 }
+				is_ai = yes
+			}
+	   	}
+		modifier = {
+			political_power_gain = -0.05
+        }
+	   	remove_effect = {
+			add_political_power = 120
+			add_popularity = { ideology = trotskyism popularity = 0.01 } 
+			add_popularity = { ideology = maoism popularity = 0.025 }
+
+			set_temp_variable = { temp_x = 2 }
+            set_temp_variable = { temp_y = 0.5 }
+            PRC_faction_struggle_system_faction_influence_change = yes
+			custom_effect_tooltip = PRC_50s_socialist_transformation_effect_in
+			#set_country_flag = PRC_50s_socialist_transformation_Organize_peasant_union_activities
+		}
+		priority = 40
+	   	cost = 35
+	   	days_remove = 45
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_50s_Land_Reform_Classification_of_regional_land_reform_classes = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Land_Reform_begun
+			NOT = { has_country_flag = PRC_50s_socialist_transformation_Redistribution_of_land_throughout_the_country }
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 2 }
+				is_ai = yes
+			}
+	   	}
+		complete_effect = {
+			set_country_flag = PRC_50s_socialist_transformation_Classification_of_regional_land_reform_classes
+		}
+	   	remove_effect = {
+			add_to_variable = { Land_Reform_decison_days_remove = -8 tooltip = PRC_decrease_land_reform_days_tt }
+			add_to_variable = { Land_Reform_cost = -1.3 tooltip = PRC_decrease_land_reform_cost_tt }
+			
+
+			set_temp_variable = { temp_x = 1 }
+            set_temp_variable = { temp_y = 1.5 }
+            PRC_faction_struggle_system_faction_influence_change = yes
+			add_to_variable = {
+				PRC_50s_socialist_transformation_re_time1 = -30
+				tooltip = PRC_50s_socialist_transformation_re_time_de
+			}
+			add_to_variable = {
+				PRC_50s_socialist_transformation_re_time2 = -60
+			}
+			set_temp_variable = { temp_x = -1 }
+			PRC_socialist_transformation_update = yes
+		}
+		priority = 35
+	   	cost = 50
+	   	days_remove = 30
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_50s_Land_Reform_Redistribution_of_land_throughout_the_country = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Land_Reform_begun
+			NOT = { has_country_flag = PRC_50s_socialist_transformation_Classification_of_regional_land_reform_classes }
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 2 }
+				is_ai = yes
+			}
+	   	}
+		complete_effect = {
+			set_country_flag = PRC_50s_socialist_transformation_Redistribution_of_land_throughout_the_country
+		}
+	   	remove_effect = {
+			add_to_variable = { Land_Reform_decison_days_remove = 12 tooltip = PRC_decrease_land_reform_days_tt }
+			add_to_variable = { Land_Reform_decison_effect_factor = 0.12 tooltip = PRC_strength_land_reform_effect_tt }
+         
+			set_temp_variable = { temp_x = 2 }
+            set_temp_variable = { temp_y = 0.5 }
+            PRC_faction_struggle_system_faction_influence_change = yes
+			custom_effect_tooltip = PRC_50s_socialist_transformation_effect_in
+			set_temp_variable = { temp_x = 1 }
+			PRC_socialist_transformation_update = yes
+		}
+		priority = 35
+	   	cost = 50
+	   	days_remove = 30
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 10
+		}
+	}  
+	PRC_50s_Land_Reform_Relying_on_the_middle_peasants = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Land_Reform_begun
+			NOT = { has_country_flag = PRC_50s_socialist_transformation_Promoting_mutual_aid_groups_in_agriculture }
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 2 }
+				is_ai = yes
+			}
+	   	}
+		complete_effect = {
+			set_country_flag = PRC_50s_socialist_transformation_Relying_on_the_middle_peasants
+		}
+	   	remove_effect = {
+			add_to_variable = { Land_Reform_cost = -0.5 tooltip = PRC_decrease_land_reform_cost_tt }
+
+			set_temp_variable = { temp_x = 1 }
+            set_temp_variable = { temp_y = 1.5 }
+            PRC_faction_struggle_system_faction_influence_change = yes
+			add_to_variable = {
+				PRC_50s_socialist_transformation_re_time1 = -30
+				tooltip = PRC_50s_socialist_transformation_re_time_de
+			}
+			add_to_variable = {
+				PRC_50s_socialist_transformation_re_time2 = -60
+			}
+			set_temp_variable = { temp_x = -1 }
+			PRC_socialist_transformation_update = yes
+		}
+		priority = 30
+	   	cost = 50
+	   	days_remove = 30
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 10
+		}
+	} 
+	PRC_50s_Land_Reform_Promoting_mutual_aid_groups_in_agriculture = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Land_Reform_begun
+			NOT = { has_country_flag = PRC_50s_socialist_transformation_Relying_on_the_middle_peasants }
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 2 }
+				is_ai = yes
+			}
+	   	}
+		modifier = {
+        }
+		complete_effect = {
+			set_country_flag = PRC_50s_socialist_transformation_Promoting_mutual_aid_groups_in_agriculture
+		}
+	   	remove_effect = {
+			add_to_variable = { Land_Reform_cost = -1 tooltip = PRC_decrease_land_reform_cost_tt }
+			add_to_variable = { Land_Reform_decison_effect_factor = 0.05 tooltip = PRC_strength_land_reform_effect_tt }
+
+			set_temp_variable = { temp_x = 2 }
+            set_temp_variable = { temp_y = 0.5 }
+            PRC_faction_struggle_system_faction_influence_change = yes
+			custom_effect_tooltip = PRC_50s_socialist_transformation_effect_in
+			set_temp_variable = { temp_x = 1 }
+			PRC_socialist_transformation_update = yes
+		}
+		priority = 30
+	   	cost = 50
+	   	days_remove = 30
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 10
+		}
+	}   
+	PRC_50s_Land_Reform_Set_up_a_target_for_the_rich = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Land_Reform_begun
+			NOT = { has_country_flag = PRC_50s_socialist_transformation_Dig_deeper_into_the_rich_elements }
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 2 }
+				is_ai = yes
+			}
+	   	}
+		complete_effect = {
+			set_country_flag = PRC_50s_socialist_transformation_Set_up_a_target_for_the_rich
+		}
+	   	remove_effect = {
+			add_to_variable = { Land_Reform_cost = -1 tooltip = PRC_decrease_land_reform_cost_tt }
+			add_to_variable = { Land_Reform_decison_effect_factor = 0.03 tooltip = PRC_strength_land_reform_effect_tt }
+
+			set_temp_variable = { temp_x = 1 }
+            set_temp_variable = { temp_y = 2 }
+            PRC_faction_struggle_system_faction_influence_change = yes
+			set_temp_variable = { temp_x = -2 }
+			PRC_socialist_transformation_update = yes
+		}
+		priority = 25
+	   	cost = 50
+	   	days_remove = 60
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 10
+		}
+	}  
+	PRC_50s_Land_Reform_Dig_deeper_into_the_rich_elements = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Land_Reform_begun
+			NOT = { has_country_flag = PRC_50s_socialist_transformation_Set_up_a_target_for_the_rich }
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 2 }
+				is_ai = yes
+			}
+	   	}
+		complete_effect = {
+			set_country_flag = PRC_50s_socialist_transformation_Dig_deeper_into_the_rich_elements
+		}
+	   	remove_effect = {
+			add_to_variable = { Land_Reform_decison_days_remove = 8 tooltip = PRC_decrease_land_reform_days_tt }
+			add_to_variable = { Land_Reform_decison_effect_factor = 0.07 tooltip = PRC_strength_land_reform_effect_tt }
+
+			set_temp_variable = { temp_x = 2 }
+            set_temp_variable = { temp_y = 2 }
+            PRC_faction_struggle_system_faction_influence_change = yes
+			set_temp_variable = { temp_x = 2 }
+			PRC_socialist_transformation_update = yes
+		}
+		priority = 25
+	   	cost = 50
+	   	days_remove = 60
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_50s_Consolidation_of_Land_Reform_in_the_Old_Liberated_Areas = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Land_Reform_begun
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 2 }
+				is_ai = yes
+			}
+			has_variable = PRC_50s_Consolidation_of_Land_Reform_in_the_Old_Liberated_Areas
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+        }
+
+		priority = 20
+
+		
+        fire_only_once = no
+          
+		#days_re_enable = PRC_50s_socialist_transformation_re_time1?270
+		days_re_enable = 40
+		days_remove = 120
+		
+		cost = 60
+
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			if = {
+				limit = {
+					check_variable = { PRC_50s_Consolidation_of_Land_Reform_in_the_Old_Liberated_Areas = 0 }
+				}
+				597 = {
+					add_building_construction = {
+						type = agri_industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				614 = {
+					add_building_construction = {
+						type = agri_industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				328 = {
+					add_building_construction = {
+						type = agri_industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { PRC_50s_Consolidation_of_Land_Reform_in_the_Old_Liberated_Areas = 1 }
+				}
+				random_owned_state = {
+					limit = {
+                        OR = {
+							state = 1580
+							state = 1788
+						}
+					}      
+					add_resource = {
+						type = rubber
+						amount = 1
+					}
+				}
+				1790 = {    
+					add_resource = {
+						type = rubber
+						amount = 1
+					}
+				}
+				615 = {     
+					add_resource = {
+						type = rubber
+						amount = 1
+					}
+				}
+				622 = {   
+					add_resource = {
+						type = rubber
+						amount = 1
+					}
+				}
+				random_owned_state = {
+					limit = {
+                        OR = {
+							state = 1556
+							state = 1789
+						}
+					}      
+					add_resource = {
+						type = rubber
+						amount = 1
+					}
+				}
+				random_owned_state = {
+					limit = {
+                        OR = {
+							state = 611
+							state = 715
+							state = 1570
+						}
+					}      
+					add_resource = {
+						type = rubber
+						amount = 1
+					}
+				}
+				random_owned_state = {
+					limit = {
+                        OR = {
+							state = 716
+							state = 1325
+							state = 714
+						}
+					}      
+					add_resource = {
+						type = rubber
+						amount = 1
+					}
+				}
+				random_owned_state = {
+					limit = {
+                        OR = {
+							state = 1572
+							state = 1573
+						}
+					}      
+					add_resource = {
+						type = rubber
+						amount = 1
+					}
+				}
+			}
+			
+			
+			
+			add_to_variable = { PRC_50s_Consolidation_of_Land_Reform_in_the_Old_Liberated_Areas = 1 }
+			if = {
+				limit = {
+					check_variable = { PRC_50s_Consolidation_of_Land_Reform_in_the_Old_Liberated_Areas = 2 }
+				}
+				clear_variable = PRC_50s_Consolidation_of_Land_Reform_in_the_Old_Liberated_Areas
+			}
+		}
+
+		fixed_random_seed = no
+
+		ai_will_do = { 
+			factor = 10
+		}
+	}
+	PRC_50s_Land_Reform_decison = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			ROOT = {
+				has_country_flag = PRC_Land_Reform_begun
+				OR = {
+					check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 2 }
+					is_ai = yes
+				}
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+        }
+		target_trigger = {
+			FROM = {
+				OR = {
+					state = 616
+					state = 1787
+					state = 1786
+					state = 607
+					state = 620
+					state = 606
+	
+					state = 1785
+					state = 598
+					state = 1557
+					state = 605
+					state = 325
+					state = 603
+					state = 602
+					state = 600
+					state = 596
+					state = 595
+					state = 1569
+					state = 594
+					state = 617
+					state = 604
+				}
+				if = {
+					limit = {
+						state = 617
+					}
+					is_owned_by = ROOT
+				}
+			}
+		}
+
+		priority = 15
+
+		state_target = yes
+		target_array = ROOT.owned_states
+		on_map_mode = decision_view_only
+		
+        fire_only_once = no
+          
+		#days_re_enable = PRC_50s_socialist_transformation_re_time1?270
+		days_re_enable =  30
+		days_remove = var:Land_Reform_decison_days_remove
+		
+		cost = var:Land_Reform_cost
+
+		complete_effect = {
+			#set_temp_variable = { temp_x = 0.1 }
+			#PRC_50s_spend_money_tt = yes
+			random_list = {
+				50 = {
+					add_to_variable = { FROM.Land_Reform_progrss_gain = ROOT.Land_Reform_progrss_gain_val tooltip = PRC_promote_local_land_reform_tt1 }
+				}
+				50 = {
+					add_to_variable = { FROM.Land_Reform_progrss = ROOT.Land_Reform_progrss_val tooltip = PRC_promote_local_land_reform_tt2 }
+				}
+			}
+		}
+	   	remove_effect = {
+			if = {
+				limit = { FROM = { state = 616 } }
+                random_list = {
+					10 = {
+						616 = { add_resource = { type = rubber amount = 1 } }
+					}
+					5 = {
+						612 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 1787 } }
+                random_list = {
+					10 = {
+						1787 = { add_resource = { type = rubber amount = 1 } }
+					}
+					5 = {
+						283 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 1786 } }
+                random_list = {
+					15 = {
+						1786 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 607 } }
+                random_list = {
+					8 = {
+						607 = { add_resource = { type = rubber amount = 1 } }
+					}
+					7 = {
+						1791 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 620 } }
+                random_list = {
+					6 = {
+						620 = { add_resource = { type = rubber amount = 1 } }
+					}
+					6 = {
+						1792 = { add_resource = { type = rubber amount = 1 } }
+					}
+					3 = {
+						1793 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 606 } }
+                random_list = {
+					8 = {
+						606 = { add_resource = { type = rubber amount = 1 } }
+					}
+					7 = {
+						1785 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 606 } }
+                random_list = {
+					10 = {
+						606 = { add_resource = { type = rubber amount = 1 } }
+					}
+					90 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 1785 } }
+                random_list = {
+					10 = {
+						1785 = { add_resource = { type = rubber amount = 1 } }
+					}
+					90 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 598 } }
+                random_list = {
+					10 = {
+						598 = { add_resource = { type = rubber amount = 1 } }
+					}
+					5 = {
+						613 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 1557 } }
+                random_list = {
+					8 = {
+						1557 = { add_resource = { type = rubber amount = 1 } }
+					}
+					92 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 605 } }
+                random_list = {
+					8 = {
+						605 = { add_resource = { type = rubber amount = 1 } }
+					}
+					7 = {
+						601 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 325 } }
+                random_list = {
+					9 = {
+						325 = { add_resource = { type = rubber amount = 1 } }
+					}
+					6 = {
+						1326 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 325 } }
+                random_list = {
+					9 = {
+						325 = { add_resource = { type = rubber amount = 1 } }
+					}
+					6 = {
+						1326 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 603 } }
+                random_list = {
+					15 = {
+						603 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 602 } }
+                random_list = {
+					11 = {
+						602 = { add_resource = { type = rubber amount = 1 } }
+					}
+					4 = {
+						1575 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 600 } }
+                random_list = {
+					8 = {
+						600 = { add_resource = { type = rubber amount = 1 } }
+					}
+					7 = {
+						1578 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 596 } }
+                random_list = {
+					9 = {
+						596 = { add_resource = { type = rubber amount = 1 } }
+					}
+					6 = {
+						1574 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 595 } }
+                random_list = {
+					10 = {
+						595 = { add_resource = { type = rubber amount = 1 } }
+					}
+					5 = {
+						1576 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 1569 } }
+                random_list = {
+					2 = {
+						1569 = { add_resource = { type = rubber amount = 1 } }
+					}
+					6 = {
+						592 = { add_resource = { type = rubber amount = 1 } }
+					}
+					3 = {
+						1557 = { add_resource = { type = rubber amount = 1 } }
+					}
+					2 = {
+						1558 = { add_resource = { type = rubber amount = 1 } }
+					}
+					4 = {
+						591 = { add_resource = { type = rubber amount = 1 } }
+					}
+					83 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 594 } }
+                random_list = {
+					15 = {
+						594 = { add_resource = { type = rubber amount = 1 } }
+					}
+					85 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 617 } }
+                random_list = {
+					1 = {
+						617 = { add_resource = { type = rubber amount = 1 } }
+					}
+					1 = {
+						618 = { add_resource = { type = rubber amount = 1 } }
+					}
+					1 = {
+						619 = { add_resource = { type = rubber amount = 1 } }
+					}
+					1 = {
+						287 = { add_resource = { type = rubber amount = 1 } }
+					}
+					1 = {
+						1864 = { add_resource = { type = rubber amount = 1 } }
+					}
+					1 = {
+						1865 = { add_resource = { type = rubber amount = 1 } }
+					}
+					1 = {
+						1866 = { add_resource = { type = rubber amount = 1 } }
+					}
+					1 = {
+						1867 = { add_resource = { type = rubber amount = 1 } }
+					}
+					1 = {
+						1868 = { add_resource = { type = rubber amount = 1 } }
+					}
+					1 = {
+						1869 = { add_resource = { type = rubber amount = 1 } }
+					}
+					1 = {
+						1870 = { add_resource = { type = rubber amount = 1 } }
+					}
+					1 = {
+						1871 = { add_resource = { type = rubber amount = 1 } }
+					}
+					88 = {
+						
+					}
+				}
+			}
+			else_if = {
+				limit = { FROM = { state = 604 } }
+                random_list = {
+					6 = {
+						604 = { add_resource = { type = rubber amount = 1 } }
+					}
+					4 = {
+						1359 = { add_resource = { type = rubber amount = 1 } }
+					}
+					90 = {
+						
+					}
+				}
+			}
+		}
+
+		fixed_random_seed = no
+
+		ai_will_do = { 
+			factor = 100
+			modifier = {
+				factor = 0.01 
+				check_variable = { Land_Reform_cost > 18 }
+			}
+			modifier = {
+				factor = 0.1
+				check_variable = { Land_Reform_cost > 16 }
+			}
+		}
+	}
+	PRC_50s_Land_Reform_Triumph_of_Stages = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Land_Reform_begun
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 2 }
+				is_ai = yes
+			}
+			has_variable = PRC_Land_Reform_stage
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+            if = {
+                limit = {
+					check_variable = { PRC_Land_Reform_stage = 0 }
+				}
+				custom_trigger_tooltip = {
+					tooltip = PRC_Land_Reform_stage_1_trigger
+					check_variable = { Land_Reform_average_progress > PRC_Land_Reform_stage_1_trigger }
+				}
+			}
+			if = {
+                limit = {
+					check_variable = { PRC_Land_Reform_stage = 1 }
+				}
+				custom_trigger_tooltip = {
+					tooltip = PRC_Land_Reform_stage_2_trigger
+					check_variable = { Land_Reform_average_progress > PRC_Land_Reform_stage_2_trigger }
+				}
+			}
+			if = {
+                limit = {
+					check_variable = { PRC_Land_Reform_stage = 2 }
+				}
+				custom_trigger_tooltip = {
+					tooltip = PRC_Land_Reform_stage_3_trigger
+					check_variable = { Land_Reform_average_progress > PRC_Land_Reform_stage_3_trigger }
+				}
+			}
+			if = {
+                limit = {
+					check_variable = { PRC_Land_Reform_stage = 3 }
+				}
+				custom_trigger_tooltip = {
+					tooltip = PRC_Land_Reform_stage_4_trigger
+					check_variable = { Land_Reform_average_progress > PRC_Land_Reform_stage_4_trigger }
+				}
+			}
+			if = {
+                limit = {
+					check_variable = { PRC_Land_Reform_stage = 4 }
+				}
+				custom_trigger_tooltip = {
+					tooltip = PRC_Land_Reform_stage_5_trigger
+					check_variable = { Land_Reform_average_progress > PRC_Land_Reform_stage_5_trigger }
+				}
+			}
+        }
+
+		priority = 10
+
+		
+        fire_only_once = no
+          
+		days_remove = 0
+		
+		cost = 0
+
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			PRC_50s_Land_Reform_ideas_swap = yes
+			add_to_variable = { PRC_Land_Reform_stage = 1 }
+
+        set_temp_variable = { temp_class = 4 }
+        set_temp_variable = { temp_weight = -6 }
+        set_temp_variable = { temp_opinion = -5 }
+        PRC_class_status_change = yes
+
+			if = {
+				limit = {
+					check_variable = { PRC_Land_Reform_stage = 5 }
+				}
+				set_country_flag = PRC_has_completed_Land_Reform_flag
+				remove_from_array = { 
+					array = PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_array
+					value = 2
+				}
+				clr_country_flag = PRC_Land_Reform_begun
+				set_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 0 }
+			}
+		}
+
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+
+
+    #农业合作化
+	PRC_50s_socialist_transformation_Rural_rectification_work = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			ROOT = {
+				has_completed_focus = PRC_50s_Co-operative_Transformation_of_Agriculture
+				OR = {
+					check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+					is_ai = yes
+				}
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+        }
+        modifier = {
+            political_power_gain = -0.02
+        }
+	   	remove_effect = {
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress = 3 }
+            custom_effect_tooltip = PRC_little_Transformation_agriculture_progress_tt
+			PRC_Socialist_Transformation_update = yes
+			ROOT = {
+				set_temp_variable = { temp_x = 0.2 }
+			}
+		}
+	   	cost = 5
+	   	days_remove = 180
+		days_re_enable = PRC_50s_socialist_transformation_re_time1?270
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	PRC_50s_socialist_transformation_Rural_grain_sales_will_be_increased = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			ROOT = {
+				has_completed_focus = PRC_50s_Co-operative_Transformation_of_Agriculture
+				OR = {
+					check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+					is_ai = yes
+				}
+			}
+			FROM = {
+				rubber > 1
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+        }
+        modifier = {
+            industrial_factory_donations = 1
+			temporary_state_resource_rubber = -2
+        }
+	   	remove_effect = {
+            custom_effect_tooltip = PRC_little_Transformation_agriculture_progress_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress = 5 }
+			PRC_Socialist_Transformation_update = yes
+		}
+	   	cost = 5
+	   	days_remove = 120
+		fire_only_once = yes
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	PRC_50s_socialist_transformation_Educate_farmers_on_the_advantages_of_cooperation = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			ROOT = {
+				has_completed_focus = PRC_50s_Co-operative_Transformation_of_Agriculture
+				OR = {
+					check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+					is_ai = yes
+				}
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+        }
+        modifier = {
+            
+        }
+		complete_effect = {
+			set_temp_variable = { temp_x = 0.1 }
+			PRC_50s_spend_money_tt = yes
+		}
+	   	remove_effect = {
+            custom_effect_tooltip = PRC_little_Transformation_agriculture_progress_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress = 3 }
+			PRC_Socialist_Transformation_update = yes
+			ROOT = {
+				set_temp_variable = { temp_x = 0.2 }
+			}
+		}
+	   	cost = 5
+	   	days_remove = 180
+		days_re_enable = PRC_50s_socialist_transformation_re_time1?270
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	PRC_50s_socialist_transformation_Double_the_index = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+            check_variable = {
+                var = PRC_Socialist_Transformation_agriculture_progress_expectation
+                value = 220
+                compare = less_than_or_equals
+            }
+			OR = {
+				has_completed_focus = PRC_50s_Control_The_Process_of_Co-operation
+				has_completed_focus = PRC_50s_Accelerate_The_Process_of_Co-operation
+			}
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+				is_ai = yes
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+        }
+        modifier = {
+			political_power_gain = -0.2
+        }
+		complete_effect = {
+		}
+	   	remove_effect = {
+            custom_effect_tooltip = PRC_Improving_agricultural_cooperation_indicators_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress_expectation = 30 }
+			custom_effect_tooltip = PRC_great_Transformation_agriculture_progress_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress = 20 }
+			PRC_Socialist_Transformation_update = yes
+            clamp_variable = {
+                var = PRC_Socialist_Transformation_agriculture_progress_expectation
+                min = 130
+                max = 220
+            }
+		}
+	   	cost = PRC_50s_socialist_transformation_mao_cost
+	   	days_remove = 210
+		days_re_enable = PRC_50s_socialist_transformation_re_time2?365
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	PRC_50s_socialist_transformation_Find_out_the_local_Deng_Zihui = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = PRC_50s_Control_The_Process_of_Co-operation
+				has_completed_focus = PRC_50s_Accelerate_The_Process_of_Co-operation
+			}
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+				is_ai = yes
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+        }
+        modifier = {
+			political_power_gain = -0.25
+			stability_weekly = -0.001
+        }
+		complete_effect = {
+		}
+	   	remove_effect = {
+            custom_effect_tooltip = PRC_mide_Transformation_agriculture_progress_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress = 10 }
+			PRC_Socialist_Transformation_update = yes
+		}
+	   	cost = PRC_50s_socialist_transformation_mao_cost
+	   	days_remove = 210
+		fire_only_once = yes
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	PRC_50s_socialist_transformation_Advance_the_scheduling = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			ROOT = {
+				OR = {
+					has_completed_focus = PRC_50s_Control_The_Process_of_Co-operation
+					has_completed_focus = PRC_50s_Accelerate_The_Process_of_Co-operation
+				}
+			}
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+				is_ai = yes
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+        }
+        modifier = {
+			production_speed_buildings_factor = 0.2
+			political_power_gain = -0.5
+        }
+		complete_effect = {
+		}
+	   	remove_effect = {
+            custom_effect_tooltip = PRC_mide_Transformation_agriculture_progress_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress = 10 }
+			PRC_Socialist_Transformation_update = yes
+		}
+	   	cost = PRC_50s_socialist_transformation_mao_cost
+	   	days_remove = 210
+		days_re_enable = PRC_50s_socialist_transformation_re_time2?365
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	PRC_50s_socialist_transformation_Advanced_cooperatives = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			ROOT = {
+				OR = {
+					has_completed_focus = PRC_50s_Control_The_Process_of_Co-operation
+					has_completed_focus = PRC_50s_Accelerate_The_Process_of_Co-operation
+				}
+			}
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+				is_ai = yes
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+        }
+        modifier = {
+			political_power_gain = -0.4
+			local_resources_factor = -0.2
+        }
+		complete_effect = {
+		}
+	   	remove_effect = {
+            custom_effect_tooltip = PRC_great_Transformation_agriculture_progress_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress = 15 }
+			PRC_Socialist_Transformation_update = yes
+		}
+	   	cost = PRC_50s_socialist_transformation_mao_cost
+	   	days_remove = 210
+		days_re_enable = PRC_50s_socialist_transformation_re_time2?365
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	PRC_50s_socialist_transformation_Upgrade_the_indicators_of_cooperation = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+            check_variable = {
+                var = PRC_Socialist_Transformation_agriculture_progress_expectation
+                value = 220
+                compare = less_than_or_equals
+            }
+			ROOT = {
+				OR = {
+					has_completed_focus = PRC_50s_Control_The_Process_of_Co-operation
+					has_completed_focus = PRC_50s_Accelerate_The_Process_of_Co-operation
+				}
+			}
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+				is_ai = yes
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+        }
+        modifier = {
+			stability_factor = -0.15
+			political_power_factor = 0.05
+        }
+		complete_effect = {
+		}
+	   	remove_effect = {
+            custom_effect_tooltip = PRC_Improving_agricultural_cooperation_indicators_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress_expectation = 10 }
+			custom_effect_tooltip = PRC_little_Transformation_agriculture_progress_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress = 5 }
+			PRC_Socialist_Transformation_update = yes
+            clamp_variable = {
+                var = PRC_Socialist_Transformation_agriculture_progress_expectation
+                min = 130
+                max = 220
+            }
+		}
+	   	cost = PRC_50s_socialist_transformation_mao_cost
+	   	days_remove = 210
+		days_re_enable = PRC_50s_socialist_transformation_re_time2?365
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	PRC_50s_socialist_transformation_Amalgamation_of_small_and_medium_sized_cooperatives = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			ROOT = {
+				OR = {
+					has_completed_focus = PRC_50s_Control_The_Process_of_Co-operation
+					has_completed_focus = PRC_50s_Accelerate_The_Process_of_Co-operation
+				}
+			}
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+				is_ai = yes
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+        }
+        modifier = {
+        }
+		complete_effect = {
+			set_temp_variable = { temp_x = 1.5 }
+			PRC_50s_spend_money_tt = yes
+		}
+	   	remove_effect = {
+            custom_effect_tooltip = PRC_little_Transformation_agriculture_progress_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress = 5 }
+			PRC_Socialist_Transformation_update = yes
+		}
+	   	cost = PRC_50s_socialist_transformation_mao_cost
+	   	days_remove = 210
+		days_re_enable = PRC_50s_socialist_transformation_re_time2?365
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+
+
+	PRC_50s_socialist_transformation_Lower_the_target_of_cooperation = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+            check_variable = {
+                var = PRC_Socialist_Transformation_agriculture_progress_expectation
+                value = 130
+                compare = greater_than_or_equals
+            }
+			ROOT = {
+				OR = {
+					has_completed_focus = PRC_50s_Control_The_Process_of_Co-operation
+					has_completed_focus = PRC_50s_Accelerate_The_Process_of_Co-operation
+				}
+			}
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+				is_ai = yes
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+        }
+        modifier = {
+			political_power_gain = 0.35
+        }
+		complete_effect = {
+		}
+	   	remove_effect = {
+            custom_effect_tooltip = PRC_Lowering_agricultural_cooperative_targets_tt  # Fixed: removed spaces from tooltip name
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress_expectation = -20 }
+                clamp_variable = {
+                var = PRC_Socialist_Transformation_agriculture_progress_expectation
+                min = 130
+                max = 220
+            }
+			PRC_Socialist_Transformation_update = yes
+		}
+	   	cost = PRC_50s_socialist_transformation_liu_cost
+	   	days_remove = 210
+		days_re_enable = PRC_50s_socialist_transformation_re_time2?365
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	PRC_50s_socialist_transformation_Advocate_conservative_cooperation = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			ROOT = {
+				OR = {
+					has_completed_focus = PRC_50s_Control_The_Process_of_Co-operation
+					has_completed_focus = PRC_50s_Accelerate_The_Process_of_Co-operation
+				}
+			}
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+				is_ai = yes
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+        }
+        modifier = {
+			stability_weekly = 0.001
+			political_power_gain = 0.2
+        }
+		complete_effect = {
+		}
+	   	remove_effect = {
+            custom_effect_tooltip = PRC_little_Transformation_agriculture_progress_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress = 4 }
+			PRC_Socialist_Transformation_update = yes
+		}
+	   	cost = PRC_50s_socialist_transformation_liu_cost
+	   	days_remove = 210
+		fire_only_once = yes
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	PRC_50s_socialist_transformation_Cooperative_flexible_schedule = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			ROOT = {
+				OR = {
+					has_completed_focus = PRC_50s_Control_The_Process_of_Co-operation
+					has_completed_focus = PRC_50s_Accelerate_The_Process_of_Co-operation
+				}
+			}
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+				is_ai = yes
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+        }
+        modifier = {
+			industrial_capacity_factory = 0.2
+        }
+		complete_effect = {
+		}
+	   	remove_effect = {
+            custom_effect_tooltip = PRC_little_Transformation_agriculture_progress_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress = 4 }
+			PRC_Socialist_Transformation_update = yes
+		}
+	   	cost = PRC_50s_socialist_transformation_liu_cost
+	   	days_remove = 210
+		days_re_enable = PRC_50s_socialist_transformation_re_time2?365
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	PRC_50s_socialist_transformation_A_good_society_is_better_than_a_large_one = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			ROOT = {
+				OR = {
+					has_completed_focus = PRC_50s_Control_The_Process_of_Co-operation
+					has_completed_focus = PRC_50s_Accelerate_The_Process_of_Co-operation
+				}
+			}
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+				is_ai = yes
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+        }
+        modifier = {
+			local_resources_factor = 0.1
+			political_power_gain = -0.15
+        }
+		complete_effect = {
+		}
+	   	remove_effect = {
+            custom_effect_tooltip = PRC_little_Transformation_agriculture_progress_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress = 3 }
+			PRC_Socialist_Transformation_update = yes
+		}
+	   	cost = PRC_50s_socialist_transformation_liu_cost
+	   	days_remove = 210
+		days_re_enable = PRC_50s_socialist_transformation_re_time2?365
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	PRC_50s_socialist_transformation_Slow_down_the_pace_of_cooperation = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			ROOT = {
+				OR = {
+					has_completed_focus = PRC_50s_Control_The_Process_of_Co-operation
+					has_completed_focus = PRC_50s_Accelerate_The_Process_of_Co-operation
+				}
+			}
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+				is_ai = yes
+			}
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+        }
+        modifier = {
+			stability_factor = 0.15
+			political_power_gain = 0.15
+        }
+		complete_effect = {
+		}
+	   	remove_effect = {
+            custom_effect_tooltip = PRC_little_Transformation_agriculture_progress_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress = 3 }
+			PRC_Socialist_Transformation_update = yes
+		}
+	   	cost = PRC_50s_socialist_transformation_liu_cost
+	   	days_remove = 210
+		days_re_enable = 365
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	PRC_50s_socialist_transformation_Reject_excessive_expansion_of_cooperatives = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			ROOT = {
+				OR = {
+					has_completed_focus = PRC_50s_Control_The_Process_of_Co-operation
+					has_completed_focus = PRC_50s_Accelerate_The_Process_of_Co-operation
+				}
+			}
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+				is_ai = yes
+			}
+	   	}
+		modifier = {
+			political_power_gain = 0.2
+			master_ideology_drift = -0.05
+        }
+		complete_effect = {
+		}
+	   	remove_effect = {
+            custom_effect_tooltip = PRC_little_Transformation_agriculture_progress_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress = 3 }
+			PRC_Socialist_Transformation_update = yes
+		}
+	   	cost = PRC_50s_socialist_transformation_liu_cost
+	   	days_remove = 210
+		days_re_enable = PRC_50s_socialist_transformation_re_time2?365
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	PRC_50s_socialist_transformation_Ease_the_Three_and_Five_opposition_movements = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_50s_socialist_transformation_Ease_the_Three_and_Five_opposition_movements
+			OR = {
+				check_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 3 }
+				is_ai = yes
+			}
+	   	}
+		modifier = {
+			political_power_gain = -0.05
+        }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_idea = PRC_50s_three_anti_movement
+			has_idea = PRC_50s_five_anti_movement
+		}
+	   	remove_effect = {
+            custom_effect_tooltip = PRC_little_Transformation_agriculture_progress_tt
+            add_to_variable = { PRC_Socialist_Transformation_agriculture_progress = 3 }
+			PRC_Socialist_Transformation_update = yes
+		}
+	   	cost = 20
+	   	days_remove = 60
+		fire_only_once = yes
+
+		ai_will_do = { 
+			factor = 100
+		}
+	}
+	PRC_50s_Complete_Socialist_Transformation = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_Socialist_Transformation_begun
+			is_ai = yes
+	   	}
+		available = { NOT = { has_global_flag = KRCW_active } 
+            check_variable = {
+                var = PRC_Socialist_Transformation_agriculture_progress
+                value = PRC_Socialist_Transformation_agriculture_progress_expectation
+                compare = greater_than_or_equals
+            }
+            check_variable = {
+                var = PRC_Socialist_Transformation_industry_progress
+                value = PRC_Socialist_Transformation_industry_progress_expectation
+                compare = greater_than_or_equals
+            }
+            check_variable = {
+                var = PRC_Socialist_Transformation_commerce_progress
+                value = PRC_Socialist_Transformation_commerce_progress_expectation
+                compare = greater_than_or_equals
+            }
+        }
+
+		priority = 10
+
+		
+        fire_only_once = yes
+          
+		days_remove = 0
+		
+		cost = 0
+
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			set_variable = { PRC_Consolidation_of_the_Regime_and_Social_Transformation_gui_var = 0 }
+			complete_national_focus = PRC_50s_Complete_Rural_Co-operation
+			complete_national_focus = PRC_50s_Public-Private_Partnership_by_Whole_Trades
+		}
+
+
+		ai_will_do = { 
+			factor = 1000
+		}
+	}
+
+}
+
+PRC_50s_The_First_Five-year_Plan_categories = {
+	PRC_50s_The_First_Five-year_Plan_mission = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+        }
+		available = { NOT = { has_global_flag = KRCW_active } 
+            always = no
+        }
+		priority = 10
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			always = no
+         } }
+}
+		fire_only_once = yes
+		is_good = yes
+		selectable_mission = no
+		days_mission_timeout = 1700
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            add_political_power = 25
+			complete_national_focus = PRC_50s_Exceed_Target
+		 }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			add_political_power = -25
+			complete_national_focus = PRC_50s_Achieve_Expected_Target
+		 }
+} 
+	}
+    PRC_1_FYP_Expand_Coal_Mining_in_Hegang = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = PRC_50s_The_First_Five-year_Plan_mission			
+			
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			714 = {
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Fuxin_Coal_Mining = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = PRC_50s_The_First_Five-year_Plan_mission			
+			
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			1789 = {
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Building_the_Fushun_Resource_Complex = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = PRC_50s_The_First_Five-year_Plan_mission			
+			
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			716 = {
+				add_resource = {
+					type = oil
+					amount = 10
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = aluminium
+					amount = 24
+				}
+			}
+			
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Develop_the_Jiaozuo_Coal_Industry = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = PRC_50s_The_First_Five-year_Plan_mission			
+			
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			1790 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Dig_the_Deep_Coal_Seam_of_Datong = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = PRC_50s_The_First_Five-year_Plan_mission			
+			
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			615 = {
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 2
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Construct_the_Lanzhou_Refinery = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = PRC_50s_The_First_Five-year_Plan_mission			
+			
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			1787 = {
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 3
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Construct_the_Fengman_Hydroelectric_Power_Station = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = PRC_50s_The_First_Five-year_Plan_mission			
+			
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			328 = {
+				add_building_construction = {
+					type = renewable_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Construct_Thermal_Power_Stations_Throughout_the_Country = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = PRC_50s_The_First_Five-year_Plan_mission			
+			
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			615 = {
+				add_building_construction = {
+					type = renewable_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			if = {
+				limit = { owns_state = 610 }
+				610 = {
+					add_building_construction = {
+						type = renewable_powerplant
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			1786 = {
+				add_building_construction = {
+					type = renewable_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			607 = {
+				add_building_construction = {
+					type = renewable_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			614 = {
+				add_building_construction = {
+					type = renewable_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			608 = {
+				add_building_construction = {
+					type = renewable_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			1787 = {
+				add_building_construction = {
+					type = renewable_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			605 = {
+				add_building_construction = {
+					type = renewable_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_country_flag = PRC_50s_Construct_Thermal_Power_Stations_Throughout_the_Country
+			unlock_decision_tooltip = PRC_1_FYP_Expand_the_Construction_of_Thermal_Power_Stations
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Expand_the_Construction_of_Thermal_Power_Stations = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = PRC_50s_Construct_Thermal_Power_Stations_Throughout_the_Country		
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			1579 = {
+				add_building_construction = {
+					type = renewable_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			325 = {
+				add_building_construction = {
+					type = renewable_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			617 = {
+				add_building_construction = {
+					type = renewable_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			714 = {
+				add_building_construction = {
+					type = renewable_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Sanmenxia_Water_Conservancy_Hub_I = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			607 = {
+				add_building_construction = {
+					type = renewable_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Establish_Anshan_Iron_and_Steel_Corporation = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			716 = {
+				add_building_construction = {
+					type = steel_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	   	remove_effect = {
+			
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Establish_Benxi_Iron_and_Steel_Corporation = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			716 = {
+				add_building_construction = {
+					type = steel_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Construct_Furalki_Steel_Complex = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			714 = {
+				add_building_construction = {
+					type = steel_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Develop_Jilin_Ferroalloy_Company = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			328 = {
+				add_building_construction = {
+					type = steel_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = tungsten_factory
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = tungsten
+					amount = 18
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = water_infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Construct_Baotou_Steel_Complex = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			621 = {
+				add_building_construction = {
+					type = steel_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Establish_Harbin_Aluminium_Processing_Plant = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			714 = {
+				add_resource = {
+					type = aluminium
+					amount = 33
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Construct_Zhuzhou_Cemented_Carbide_Factory = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			602 = {
+				add_building_construction = {
+					type = tungsten_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Expand_Rare_Metal_Mining = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			600 = {
+				add_resource = {
+					type = tungsten
+					amount = 13
+				}
+			}
+			325 = {
+				add_resource = {
+					type = tungsten
+					amount = 9
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Establish_Baiyin_Non_Ferrous_Metals_Company = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			600 = {
+				add_building_construction = {
+					type = tungsten_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = steel_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Construct_Taiyuan_Chemical_Plant = {
+	available = { NOT = { has_global_flag = KRCW_active } }#建设太原化工厂(2民工,1农田水利设施)
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 75
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			615 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = water_infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			civilian_factory_use = 1
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	} 
+	PRC_1_FYP_Construct_the_Lanzhou_Synthetic_Rubber_Plant = {
+	available = { NOT = { has_global_flag = KRCW_active } }#发展兰州合成橡胶厂
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 50
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {#1民工
+			283 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 50
+		modifier = {
+			#production_speed_fossil_fuel_powerplant_factor = 0.05
+			civilian_factory_use = 1
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Develop_the_Northeast_Heavy_Industry = {
+	available = { NOT = { has_global_flag = KRCW_active } }#发展东北重工业(哈尔滨5厂,长春4厂,沈阳2厂,加工业科技三个25%研究速度,点击后减少电厂建造时间)
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			hidden_effect = {
+				add_ideas = PRC_1_FYP_Develop_the_Northeast_Heavy_Industry_effect
+			}
+			add_tech_bonus = {
+				name = PRC_1_FYP_Develop_the_Northeast_Heavy_Industry
+				#ahead_reduction = 2
+				bonus = 0.25
+				uses = 3
+				category = industry
+			}
+		}
+	   	remove_effect = {
+			716 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			328 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 4
+					instant_build = yes
+				}
+			}
+			714 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			production_speed_fossil_fuel_powerplant_factor = 0.05
+			civilian_factory_use = 5
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Promote_the_Industrialisation_of_the_Northwest_China = {
+	available = { NOT = { has_global_flag = KRCW_active } }#西北地区工业化(西安4厂,兰州2厂,加工业科技一个25%研究速度,点击后减少电厂建造时间)
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			hidden_effect = {
+				add_ideas = PRC_1_FYP_Promote_the_Industrialisation_of_the_Northwest_China_effect
+			}
+			add_tech_bonus = {
+				name = PRC_1_FYP_Promote_the_Industrialisation_of_the_Northwest_China
+				#ahead_reduction = 2
+				bonus = 0.25
+				uses = 1
+				category = industry
+			}
+		}
+	   	remove_effect = {
+			283 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			1786 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 4
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			production_speed_fossil_fuel_powerplant_factor = 0.05
+			civilian_factory_use = 5
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Expand_the_Industry_in_the_Central_China = {
+	available = { NOT = { has_global_flag = KRCW_active } }#扩展中部地区工业(武汉3厂,洛阳2厂)
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			607 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			1792 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			civilian_factory_use = 2
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Investment_in_Pharmaceutical_Companies = {
+	available = { NOT = { has_global_flag = KRCW_active } }#建设制药厂(削减传染病国策效果,加1民工)
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 75
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {#石家庄	#传染病？
+			614 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			civilian_factory_use = 1
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Commissioning_of_Jiamusi_Paper_Mill = {
+	available = { NOT = { has_global_flag = KRCW_active } }#投产佳木斯造纸厂(加1民工,增加10%政治点数)
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 25
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			hidden_effect = {
+				add_timed_idea = { idea = PRC_1_FYP_Commissioning_of_Jiamusi_Paper_Mill_effect days = 720 } 
+			}
+			
+			714 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	   	remove_effect = {
+			
+	   	}
+	   	days_remove = 365
+		modifier = {
+			#show_ideas_tooltip = PRC_1_FYP_Commissioning_of_Jiamusi_Paper_Mill_effect #？
+			civilian_factory_use = 1
+			#political_power_factor = 0.10
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Investment_in_Harbin_Aviation_Industry = {
+	available = { NOT = { has_global_flag = KRCW_active } }#投资哈尔滨航空工业(加4军工,空军研发-25%两个)
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			714 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = arms_factory
+					level = 4
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = PRC_1_FYP_Investment_in_Harbin_Aviation_Industry
+				#ahead_reduction = 2
+				bonus = 0.25
+				uses = 2
+				category = air_equipment
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			civilian_factory_use = 2
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Construct_Shenyang_Liming_Machinery_Factory = {
+	available = { NOT = { has_global_flag = KRCW_active } }#建设沈阳黎明机械厂(加1军工,减空军研发-50%一个)
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 50
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			716 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = PRC_1_FYP_Investment_in_Harbin_Aviation_Industry
+				#ahead_reduction = 2
+				bonus = 0.5
+				uses = 1
+				category = air_equipment
+			}
+	   	}
+	   	days_remove = 75
+		modifier = {
+			civilian_factory_use = 1
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Expand_Shenyang_Aircraft_Industry = {
+	available = { NOT = { has_global_flag = KRCW_active } }#扩张沈阳飞机制造业(加2军工,减少轻型和重型飞机制造费用,加全部空军研究速度10%(加到空军修正))
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 125
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			hidden_effect = {
+				add_ideas = PRC_1_FYP_Expand_Shenyang_Aircraft_Industry_effect
+			}
+			716 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			civilian_factory_use = 2
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Establish_Jiangxi_Aircraft_Repair_Station = {
+	available = { NOT = { has_global_flag = KRCW_active } }#建立江西飞机修理厂(加1军工,加空军和导弹研发速度两张-25%)
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 75
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			600 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = PRC_1_FYP_Establish_Jiangxi_Aircraft_Repair_Station
+				#ahead_reduction = 2
+				bonus = 0.25
+				uses = 2
+				category = rocketry
+			}
+			add_tech_bonus = {
+				name = PRC_1_FYP_Establish_Jiangxi_Aircraft_Repair_Station
+				#ahead_reduction = 2
+				bonus = 0.25
+				uses = 2
+				category = air_equipment
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			civilian_factory_use = 1
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Zhuzhou_Engine_Manufacturer = {
+	available = { NOT = { has_global_flag = KRCW_active } }#设立株洲发动机制造商(加1军工,减少轻型飞机制造费用(加到空军修正))
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 75
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			hidden_effect = {
+				add_ideas = PRC_1_FYP_Zhuzhou_Engine_Manufacturer_effect
+			}
+			1575 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = PRC_1_FYP_Zhuzhou_Engine_Manufacturer
+				#ahead_reduction = 2
+				bonus = 0.25
+				uses = 1
+				category = air_single_engine
+			}
+			add_tech_bonus = {
+				name = PRC_1_FYP_Zhuzhou_Engine_Manufacturer
+				#ahead_reduction = 2
+				bonus = 0.25
+				uses = 1
+				category = air_twin_engine
+			}
+			add_tech_bonus = {
+				name = PRC_1_FYP_Zhuzhou_Engine_Manufacturer
+				#ahead_reduction = 2
+				bonus = 0.25
+				uses = 1
+				category = air_quad_engine
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			civilian_factory_use = 2
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Construct_Supporting_Units_for_the_Aircraft_Industry_in_Shaanxi = {
+	available = { NOT = { has_global_flag = KRCW_active } }#在陕西建设航空工业配套单位((西安,兴平,宝鸡)加1军工,加1民工,减少轻型和重型飞机制造费用))
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 75
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			hidden_effect = {
+				add_ideas = PRC_1_FYP_Construct_Supporting_Units_for_the_Aircraft_Industry_in_Shaanxi_effect
+			}
+			622 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			civilian_factory_use = 2
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Expand_Supporting_Units_for_the_Military_Industry_in_Shaanxi = {
+	available = { NOT = { has_global_flag = KRCW_active } }#扩建陕西军工配套设施(加两个民工,减少步兵装备,支援装备和火炮造价)
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			
+	  	}
+	    cost = 50
+	    fire_only_once = yes
+		priority = 20
+		complete_effect = {
+		
+		}
+	    remove_effect = {
+			hidden_effect = {
+				add_ideas = PRC_1_FYP_Expand_Supporting_Units_for_the_Military_Industry_in_Shaanxi_effect
+			}
+			622 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+	    }
+	    days_remove = 135
+		modifier = {
+			civilian_factory_use = 2
+	    }
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Expand_the_Electronics_Industry = {
+	available = { NOT = { has_global_flag = KRCW_active } }#扩展电子工业(北京,陕西,四川,加2民工,减少电子科技研发50%三张)
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 100
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			608 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			622 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			605 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = PRC_1_FYP_Expand_the_Electronics_Industry
+				#ahead_reduction = 2
+				bonus = 0.5
+				uses = 3
+				category = electronics
+			}
+	   	}
+	   	days_remove = 270
+		modifier = {
+			civilian_factory_use = 2
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Develop_the_Shanxi_Military_Industry = {
+	available = { NOT = { has_global_flag = KRCW_active } }#建设山西军工业(加2个军工,加两个民工,减少大部分陆军装备的造价)
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 75
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			615 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			civilian_factory_use = 2
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Inner_Mongolia_Tank_Production_Base = {
+	available = { NOT = { has_global_flag = KRCW_active } }#内蒙古坦克生产基地(加4个军工,减少坦克造价)　　
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 75
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			hidden_effect = {
+				add_ideas = PRC_1_FYP_Inner_Mongolia_Tank_Production_Base_effect
+			}
+			611 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			621 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			civilian_factory_use = 3
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Liaoning_Shipbuilding_Complex = {
+	available = { NOT = { has_global_flag = KRCW_active } }#辽宁造船综合体(加两个船坞,一个民工,减少所有舰船造价)
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 75
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			hidden_effect = {
+				add_ideas = PRC_1_FYP_Liaoning_Shipbuilding_Complex_effect
+			}
+			716 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			civilian_factory_use = 2
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Develop_the_Aerospace_Industry = {
+	available = { NOT = { has_global_flag = KRCW_active } }#发展航天工业(北京,沈阳)(两张导弹研发50%卡,加空军经验,加导弹研究速度5%)
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 50
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			hidden_effect = {
+				add_ideas = PRC_1_FYP_Develop_the_Aerospace_Industry_effect
+			}
+			716 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			608 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = PRC_1_FYP_Develop_the_Aerospace_Industry
+				ahead_reduction = 1
+				bonus = 0.5
+				uses = 2
+				category = rocketry
+			}
+	   	}
+	   	days_remove = 365
+		modifier = {
+			
+			civilian_factory_use = 2
+			command_power_gain = -0.05
+			experience_gain_air = 0.5
+   		}
+		
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	PRC_1_FYP_Marine_Engine_Manufacturers = {
+	available = { NOT = { has_global_flag = KRCW_active } }#发展船舶发动机制造商(山西,河南)(加2民工)(减少所有船舶和运输船造价)
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+				
+	   	}
+	   	cost = 75
+	   	fire_only_once = yes
+		priority = 20
+		complete_effect = {
+			
+		}
+	   	remove_effect = {
+			hidden_effect = {
+				add_ideas = PRC_1_FYP_Marine_Engine_Manufacturers_effect
+			}
+			607 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			615 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = PRC_1_FYP_Marine_Engine_Manufacturers
+				#ahead_reduction = 1
+				bonus = 0.5
+				uses = 2
+				category = naval_modules_general
+			}
+	   	}
+	   	days_remove = 135
+		modifier = {
+			civilian_factory_use = 4
+   		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+
+	#PRC_1_FYP_infrastructure = {
+	#	icon = GFX_PRC_politic_decision_2
+	#	visible = {
+	#		has_active_mission = PRC_50s_The_First_Five-year_Plan_mission			
+	#		has_completed_focus = PRC_50s_Expand_Mainland_Infrastructure
+	#   	}
+	#   	cost = 100
+	#   	fire_only_once = no
+	#	priority = 50
+	#	complete_effect = {
+	#		add_to_variable = {
+	#			currentDebt = 10
+	#			tooltip = internal_debt_r_tt
+	#		}
+	#	}
+	#   	remove_effect = {
+	#		random_owned_controlled_state = {
+	#			add_building_construction = {
+	#				type = infrastructure
+	#				level = 2
+	#				instant_build = yes
+	#			}
+	#		} 
+	#   	}
+	#   	days_remove = 135
+	#	modifier = {
+	#		production_factory_max_efficiency_factor = -0.02
+   	#	}
+	#   	days_re_enable = 5
+	#}
+	#PRC_1_FYP_civilian_industry = {
+	#	icon = GFX_PRC_politic_decision_2
+	#	visible = {
+	#		has_active_mission = PRC_50s_The_First_Five-year_Plan_mission			
+	#		has_completed_focus = PRC_50s_Invest_in_Heavy_Industry
+	#  	}
+	#   	cost = 100
+	#   	available = {
+	#		always = yes
+	#   	}
+	#   	fire_only_once = no
+	#	priority = 50
+	#	complete_effect = {
+	#		add_to_variable = {
+	#			currentDebt = 2
+	#			tooltip = internal_debt_r_tt
+	#		}
+	#	}
+	#   	remove_effect = {
+	#		random_owned_controlled_state = {
+	#			add_extra_state_shared_building_slots = 1
+	#			add_building_construction = {
+	#				type = industrial_complex
+	#				level = 1
+	#				instant_build = yes
+	#			}
+	#		} 
+	#   	}
+	#	modifier = {
+	#		production_factory_max_efficiency_factor = -0.02
+	#		production_speed_buildings_factor = -0.05
+	#	}
+	#   	days_remove = 135
+	#   	days_re_enable = 5
+	#}
+	#PRC_1_FYP_Rebuilding_Japanese_Industry_in_Manchuria = {
+	#	icon = GFX_PRC_politic_decision_2
+	#	visible = {
+	#		has_active_mission = PRC_50s_The_First_Five-year_Plan_mission		
+	#  	}
+	#   	cost = 50
+	#   	available = {
+	#		always = yes
+	#   	}
+	#   	fire_only_once = no
+	#	priority = 50
+	#	complete_effect = {
+	#		add_to_variable = {
+	#			currentDebt = 2
+	#			tooltip = internal_debt_r_tt
+	#		}
+	#	}
+	#   	remove_effect = {
+	#		random_owned_controlled_state = {
+	#			limit = {
+	#				state = 328
+	#				state = 714
+	#				state = 716
+	#			}
+	#			add_extra_state_shared_building_slots = 1
+	#			add_building_construction = {
+	#				type = industrial_complex
+	#				level = 1
+	#				instant_build = yes
+	#			}
+	#		} 
+	#   	}
+	#	modifier = {
+	#		production_factory_max_efficiency_factor = -0.02
+	#		production_speed_buildings_factor = -0.05
+	#	}
+	#   	days_remove = 130
+	#   	days_re_enable = 30
+	#}
+	PRC_1_FYP_develop_wasteland = {
+		icon = GFX_PRC_politic_decision_2
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = PRC_50s_The_First_Five-year_Plan_mission
+			has_completed_focus = PRC_50s_Increase_Food_Production
+	  	}
+	   	cost = 50
+	   	available = { NOT = { has_global_flag = KRCW_active } 
+			always = yes
+	   	}
+	   	fire_only_once = no
+		priority = 50
+		complete_effect = {
+			add_to_variable = {
+				currentDebt = 10
+				tooltip = internal_debt_r_tt
+			}
+		}
+	   	remove_effect = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+	   	}
+		modifier = {
+			production_factory_max_efficiency_factor = -0.02
+			production_speed_buildings_factor = -0.05
+		}
+	   	days_remove = 135
+	   	days_re_enable = 30
+	}
+	#PRC_1_FYP_military_industry = {
+	#	icon = GFX_PRC_politic_decision_2
+	#	visible = {
+	#		has_active_mission = PRC_50s_The_First_Five-year_Plan_mission			
+	#		has_completed_focus = PRC_50s_Invest_in_Heavy_Industry
+	#   	}
+	#   	cost = 100
+	#   	available = {
+	#		always = yes
+	#   	}
+	#   	fire_only_once = no
+	#	priority = 50
+	#	complete_effect = {
+	#		add_to_variable = {
+	#			currentDebt = 10
+	#			tooltip = internal_debt_r_tt
+	#		}
+	#	}
+	#   	remove_effect = {
+	#		random_owned_controlled_state = {
+	#			add_extra_state_shared_building_slots = 1
+	#			add_building_construction = {
+	#				type = arms_factory
+	#				level = 1
+	#				instant_build = yes
+	#			}
+	#		}
+	#		random_owned_controlled_state = {
+	#			add_extra_state_shared_building_slots = 1
+	#			add_building_construction = {
+	#				type = arms_factory
+	#				level = 1
+	#				instant_build = yes
+	#			}
+	#		}
+	#   	}
+	#	modifier = {
+	#		production_factory_max_efficiency_factor = -0.02
+	#		production_speed_buildings_factor = -0.05
+	#	}
+	#   	days_remove = 135
+	#   	days_re_enable = 15
+	#}
+	#PRC_1_FYP_construction_of_thermal_power_plant = {
+	#	icon = GFX_PRC_politic_decision_2
+	#	visible = {
+	#		has_active_mission = PRC_50s_The_First_Five-year_Plan_mission			
+	#		has_completed_focus = PRC_50s_Construct_Thermal_Power_Plants
+	#   	}
+	#   	cost = 100
+	#   	available = {
+	#		always = yes
+	#   	}
+	#   	fire_only_once = no
+	#	priority = 50
+	#	complete_effect = {
+	#		add_to_variable = {
+	#			currentDebt = 10
+	#			tooltip = internal_debt_r_tt
+	#		}
+	#	}
+	#   	remove_effect = {
+	#		random_owned_controlled_state = {
+	#			add_extra_state_shared_building_slots = 1
+	#			add_building_construction = {
+	#				type = fossil_fuel_powerplant  
+	#				level = 1
+	#				instant_build = yes
+	#			}
+	#		}
+	#		random_owned_controlled_state = {
+	#			add_extra_state_shared_building_slots = 1
+	#			add_building_construction = {
+	#				type = fossil_fuel_powerplant  
+	#				level = 1
+	#				instant_build = yes
+	#			}
+	#		}
+	#   	}
+	#	modifier = {
+	#		production_factory_max_efficiency_factor = -0.02
+	#		production_speed_buildings_factor = -0.05
+	#	}
+	#   	days_remove = 135
+	#   	days_re_enable = 10
+	#}
+	#PRC_1_FYP_Steel_Plant_Construction = {
+	#	icon = GFX_PRC_politic_decision_2
+	#	visible = {
+	#		has_active_mission = PRC_50s_The_First_Five-year_Plan_mission				
+	#		has_completed_focus = PRC_50s_Construct_Iron_And_Steel_Joint_Enterprises
+	#   	}
+	#   	cost = 100
+	#   	available = {
+	#		always = yes
+	#   	}
+	#   	fire_only_once = no
+	#	priority = 50
+	#	complete_effect = {
+	#		add_to_variable = {
+	#			currentDebt = 10
+	#			tooltip = internal_debt_r_tt
+	#		}
+	#	}
+	#   	remove_effect = {
+	#		random_owned_controlled_state = {
+	#			add_extra_state_shared_building_slots = 1
+	#			add_building_construction = {
+	#				type = steel_factory
+	#				level = 1
+	#				instant_build = yes
+	#			}
+	#			random_neighbor_state = {
+	#				add_extra_state_shared_building_slots = 1
+	#				add_building_construction = {
+	#					type = steel_factory
+	#					level = 1
+	#					instant_build = yes
+	#				}
+	#			}
+	#		}
+	#   	}
+	#	modifier = {
+	#		production_factory_max_efficiency_factor = -0.02
+	#		production_speed_buildings_factor = -0.05
+	#	}
+	#   	days_remove = 135
+	#   	days_re_enable = 5
+	#}
+	#PRC_1_FYP_non_ferrous_metal_processing_plants_construction = {
+	#	icon = GFX_PRC_politic_decision_2
+	#	visible = {
+	#		has_active_mission = PRC_50s_The_First_Five-year_Plan_mission		
+	#		has_completed_focus = PRC_50s_Non-ferrous_Metal_Smelting
+	#   	}
+	#   	cost = 100
+	#   	available = {
+	#		always = yes
+	#   	}
+	#   	fire_only_once = no
+	#	priority = 50
+	#	complete_effect = {
+	#		add_to_variable = {
+	#			currentDebt = 15
+	#			tooltip = internal_debt_r_tt
+	#		}
+	#	}
+	#   	remove_effect = {
+	#		random_owned_controlled_state = {
+	#			add_extra_state_shared_building_slots = 1
+	#			add_building_construction = {
+	#				type = tungsten_factory
+	#				level = 1
+	#				instant_build = yes
+	#			}
+	#			random_neighbor_state = {
+	#				add_extra_state_shared_building_slots = 1
+	#				add_building_construction = {
+	#					type = tungsten_factory
+	#					level = 1
+	#					instant_build = yes
+	#				}
+	#			}
+	#		}
+	#   	}
+	#	modifier = {
+	#		production_factory_max_efficiency_factor = -0.02
+	#		production_speed_buildings_factor = -0.05
+	#	}
+	#   	days_remove = 35
+	#   	days_re_enable = 5
+	#}
+	#PRC_1_FYP_Refinery_Construction = {
+	#	icon = GFX_PRC_politic_decision_2
+	#	visible = {
+	#		has_active_mission = PRC_50s_The_First_Five-year_Plan_mission				
+	#		has_completed_focus = PRC_50s_Construct_Oil_Refineries
+	#   	}
+	#   	cost = 150
+	#   	available = {
+	#		always = yes
+	#   	}
+	#   	fire_only_once = no
+	#	priority = 50
+	#	complete_effect = {
+	#		add_to_variable = {
+	#			currentDebt = 10
+	#			tooltip = internal_debt_r_tt
+	#		}
+	#	}
+	#   	remove_effect = {
+	#		random_owned_controlled_state = {
+	#			add_extra_state_shared_building_slots = 1
+	#			add_building_construction = {
+	#				type = synthetic_refinery  
+	#				level = 1
+	#				instant_build = yes
+	#			}
+	#			add_resource = {
+	#				type = oil
+	#				amount = 1
+	#			}
+	#			random_neighbor_state = {
+	#				add_extra_state_shared_building_slots = 1
+	#				add_building_construction = {
+	#					type = synthetic_refinery  
+	#					level = 1
+	#					instant_build = yes
+	#				}
+	#				add_resource = {
+	#					type = oil
+	#					amount = 1
+	#				}
+	#			}
+	#		}
+	#   	}
+	#	modifier = {
+	#		production_factory_max_efficiency_factor = -0.02
+	#		production_speed_buildings_factor = -0.05
+	#		fuel_cost = 3000
+	#	}
+	#   	days_remove = 135
+	#   	days_re_enable = 5
+	#}
+}
+
+PRC_50s_The_Two_Hundred_Policy_categories = {
+	PRC_50s_The_Two_Hundred_Policy_Rewarding_innovative_inventions = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    modifier = {
+	        research_speed_factor = 0.05
+	    }
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 5 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 0.5 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Strengthen_the_knowledge_of_party_members = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    modifier = {
+	        political_power_factor = 0.1
+	    }
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 10 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 1 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Formalize_civil_servants = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    modifier = {
+	        political_power_gain = 0.5
+	    }
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 10 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 1 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Stopping_Bureaucracy = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 10 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        political_power_gain = 0.5
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 1 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Achievement_is_not_always_the_main_thing = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 15 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        consumer_goods_factor = -0.025
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 1.5 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Tear_down_the_wall_of_party_cadres = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 15 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        master_ideology_drift = 0.02
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 1.5 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Abolish_the_secrecy_system = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 15 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        industrial_capacity_factory = 0.05
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 1.5 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Loosen_publication_control = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 15 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        stability_factor = 0.05
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 1.5 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Release_news_reports = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 15 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        stability_weekly = 0.002
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 1.5 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Practicing_the_Nine_Days_and_Nine_Lands_Theory = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 20 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        local_resources_factor = -0.05
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 2 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Studying_the_Soviet_Union_is_not_necessarily_good_studying_the_United_States_is_not_necessarily_bad = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 20 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        research_speed_factor = 0.05
+	        master_ideology_drift = -0.02
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 2 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Professors_Rule_Schools = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+			has_country_flag = PRC_50s_The_Two_Hundred_Policy_Professors_Rule_Schools
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 20 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        research_speed_factor = 0.1
+	        political_power_gain = -0.2
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 2 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Outsiders_cannot_lead_insiders = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 20 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        production_factory_max_efficiency_factor = 0.1
+	        political_power_gain = -0.2
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 2 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Withdrawal_of_public_representatives = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 20 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        production_factory_efficiency_gain_factor = 0.3
+	        political_power_gain = -0.2
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 2 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Guaranteed_20_year_fixed_interest_rate = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 20 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        consumer_goods_factor = -0.05
+	        political_power_gain = -0.2
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 2 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Political_Design_Institute = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 50 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        stability_factor = -0.15
+	        political_power_gain = 1
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 2 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Change_the_election_system = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 50 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        war_support_weekly = 0.5
+	        master_ideology_drift = -0.5
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 2 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Unite_intellectual_parties = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 50 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        research_speed_factor = 0.25
+	        master_ideology_drift = -1
+	        political_power_gain = -0.5
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 2 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Establishment_of_a_vindication_committee = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 50 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	        stability_weekly = 0.005
+	        political_power_gain = -1
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 2 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_China_s_Secret_Report = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 100 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 20 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Opposing_the_Party_World = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Let_The_National_People_s_Congress_Go
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = 100 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = 20 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		fire_only_once = yes
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Praise_for_the_Communist_Party = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Establish_The_Two_Hundred_Policy
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = -5 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = -1 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 10
+		days_remove = 30
+		days_re_enable = 180
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Silence_on_key_issues = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Establish_The_Two_Hundred_Policy
+	        NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+		}
+	    complete_effect = {
+	        set_temp_variable = { temp_x = -10 }
+	        PRC_50s_The_Two_Hundred_Policy_open_var_change = yes
+	    }
+	    modifier = {
+	    }
+		remove_effect = {
+			set_temp_variable = { temp_x = 4 }
+	        set_temp_variable = { temp_y = -2 }
+	        PRC_faction_struggle_system_faction_influence_change = yes
+		}
+	    available = { NOT = { has_global_flag = KRCW_active } 
+	        hidden_trigger = {
+	            NOT = { has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries }
+	        }
+	    }
+	    cancel_trigger = {
+	        hidden_trigger = {
+	            has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	        }
+	    }
+		cost = 20
+		days_remove = 60
+		days_re_enable = 180
+	}
+
+	PRC_50s_The_Two_Hundred_Policy_Launching_a_struggle_against_intellectuals = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+	    visible = { NOT = { has_global_flag = KRCW_active } 
+	        has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	    }
+	    complete_effect = {
+	    }
+	    modifier = {
+	    }
+	    remove_effect = {
+	        add_to_variable = {
+	            PRC_50s_The_Two_Hundred_Policy_Preparation = 5
+	            tooltip = PRC_50s_The_Two_Hundred_Policy_Preparation_change
+	        }
+	    }
+	    cost = 10
+	    days_remove = 30
+	    fire_only_once = yes
+	}
+	PRC_50s_The_Two_Hundred_Policy_Encourage_mutual_reporting = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+	    visible = { NOT = { has_global_flag = KRCW_active } 
+	        has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	    }
+	    complete_effect = {
+	    }
+	    modifier = {
+	    }
+	    remove_effect = {
+	        add_to_variable = {
+	            PRC_50s_The_Two_Hundred_Policy_Preparation = 5
+	            tooltip = PRC_50s_The_Two_Hundred_Policy_Preparation_change
+	        }
+	    }
+	    cost = 10
+	    days_remove = 30
+	    fire_only_once = yes
+	}
+	PRC_50s_The_Two_Hundred_Policy_Establishment_of_Fortnightly_Symposium = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+	    visible = { NOT = { has_global_flag = KRCW_active } 
+	        has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	    }
+	    complete_effect = {
+	    }
+	    modifier = {
+	    }
+	    remove_effect = {
+	        add_to_variable = {
+	            PRC_50s_The_Two_Hundred_Policy_Preparation = 5
+	            tooltip = PRC_50s_The_Two_Hundred_Policy_Preparation_change
+	        }
+	    }
+	    cost = 10
+	    days_remove = 30
+	    fire_only_once = yes
+	}
+	PRC_50s_The_Two_Hundred_Policy_Make_them_spit_out_their_toxins_in_the_press = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+	    visible = { NOT = { has_global_flag = KRCW_active } 
+	        has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	    }
+	    complete_effect = {
+	    }
+	    modifier = {
+	    }
+	    remove_effect = {
+	        add_to_variable = {
+	            PRC_50s_The_Two_Hundred_Policy_Preparation = 10
+	            tooltip = PRC_50s_The_Two_Hundred_Policy_Preparation_change
+	        }
+	    }
+	    cost = 10
+	    days_remove = 30
+	    fire_only_once = yes
+	}
+	PRC_50s_The_Two_Hundred_Policy_Collect_revisionist_remarks = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+	    visible = { NOT = { has_global_flag = KRCW_active } 
+	        has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	    }
+	    complete_effect = {
+	    }
+	    modifier = {
+	    }
+	    remove_effect = {
+	        add_to_variable = {
+	            PRC_50s_The_Two_Hundred_Policy_Preparation = 10
+	            tooltip = PRC_50s_The_Two_Hundred_Policy_Preparation_change
+	        }
+	    }
+	    cost = 10
+	    days_remove = 30
+	    fire_only_once = yes
+	}
+	PRC_50s_The_Two_Hundred_Policy_Catch_the_big_rightist_fish = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+	    visible = { NOT = { has_global_flag = KRCW_active } 
+	        has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	    }
+	    complete_effect = {
+	    }
+	    modifier = {
+	    }
+	    remove_effect = {
+	        add_to_variable = {
+	            PRC_50s_The_Two_Hundred_Policy_Preparation = 10
+	            tooltip = PRC_50s_The_Two_Hundred_Policy_Preparation_change
+	        }
+	    }
+	    cost = 10
+	    days_remove = 30
+	    fire_only_once = yes
+	}
+	PRC_50s_The_Two_Hundred_Policy_Prepare_expert_symposiums = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+	    visible = { NOT = { has_global_flag = KRCW_active } 
+	        has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	    }
+	    complete_effect = {
+	    }
+	    modifier = {
+	    }
+	    remove_effect = {
+	        add_to_variable = {
+	            PRC_50s_The_Two_Hundred_Policy_Preparation = 10
+	            tooltip = PRC_50s_The_Two_Hundred_Policy_Preparation_change
+	        }
+	    }
+	    cost = 10
+	    days_remove = 30
+	    fire_only_once = yes
+	}
+	PRC_50s_The_Two_Hundred_Policy_Down_with_the_Zhang_Luo_League = {
+	    visible = { NOT = { has_global_flag = KRCW_active } 
+	        has_completed_focus = PRC_50s_Prepare_to_Counter-offense_Against_The_Counter-revolutionaries
+	    }
+	    complete_effect = {
+	    }
+	    available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+                tooltip = PRC_50s_The_Two_Hundred_Policy_Down_with_the_Zhang_Luo_League_TT
+				NOT = { check_variable = { PRC_50s_The_Two_Hundred_Policy_Preparation < 100 } }
+            }
+	    }
+	    remove_effect = {
+			country_event = {
+				id = PRC_50s_Rework_event.31
+			}
+	    }
+	    cost = 10
+	    days_remove = 1
+	    fire_only_once = yes
+	}
+
+}
+
+PRC_50s_Chinese_People_s_Liberation_Army_categories = {
+	PRC_50s_Chinese_People_s_Liberation_Army_Upgrade_aviation_industry = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Establish_PLA_Air_Force
+		}
+	    modifier = {
+	        consumer_goods_factor = 0.05
+	    }
+		remove_effect = {
+			random_owned_state = {
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+                    type = arms_factory
+                    level = 2
+                    instant_build = yes
+                }
+            }
+			add_to_variable = { 
+                PRC_50s_People_s_Liberation_Army_18 = -0.1
+                tooltip = PRC_50s_People_s_Liberation_Army_air_change
+            }
+            add_to_variable = { 
+                PRC_50s_People_s_Liberation_Army_21 = 0.05
+            }
+		}
+		cost = 20
+		days_remove = 180
+		fire_only_once = yes
+	}
+	PRC_50s_Chinese_People_s_Liberation_Army_Dongfeng_104 = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Establish_PLA_Air_Force
+		}
+	    modifier = {
+	        research_speed_factor = -0.01
+	    }
+		remove_effect = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = fighter_light
+			}
+		}
+		cost = 20
+		days_remove = 365
+		fire_only_once = yes
+	}
+	PRC_50s_Chinese_People_s_Liberation_Army_Dongfeng_107 = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Establish_PLA_Air_Force
+		}
+	    modifier = {
+	        research_speed_factor = -0.01
+	    }
+		remove_effect = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = fighter_multirole
+			}
+		}
+		cost = 20
+		days_remove = 365
+		fire_only_once = yes
+	}
+	PRC_50s_Chinese_People_s_Liberation_Army_Dongfeng_113 = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Establish_PLA_Air_Force
+		}
+	    modifier = {
+	        research_speed_factor = -0.01
+	    }
+		remove_effect = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = fighter_vtol
+			}
+		}
+		cost = 20
+		days_remove = 365
+		fire_only_once = yes
+	}
+	PRC_50s_Chinese_People_s_Liberation_Army_Construction_of_6601_Chengdu_class_frigates = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Upgrade_Conventional_Fleet
+		}
+	    modifier = {
+	        industrial_capacity_dockyard = -0.2
+			consumer_goods_factor = 0.05
+	    }
+		remove_effect = {
+			add_to_variable = {
+                PRC_50s_People_s_Liberation_Army_29 = -0.15
+                tooltip = PRC_50s_People_s_Liberation_Army_naval_change
+            }
+            add_to_variable = {
+                PRC_50s_People_s_Liberation_Army_30 = 0.1
+            }
+			add_to_variable = {
+                PRC_50s_People_s_Liberation_Army_28 = 0.5
+            }
+			set_technology = {
+				screen_hull_heavy_0 = 1
+			}
+			create_equipment_variant = {
+				name = "6601-Class"
+				type = screen_hull_heavy_0
+				parent_version = 0
+				modules = {
+					fixed_ship_surface_radar_slot = maritime_ta_fcs_0
+					fixed_sonar_slot = sonar_ww
+					fixed_ship_engine_slot = screen_engine_ww
+					fixed_ship_asw_slot = torpedo_ww
+					front_1_custom_slot = ship_armament_medium_ww
+					front_2_custom_slot = ship_AA_gun_1
+					mid_1_custom_slot = torpedo_ww
+					rear_1_custom_slot = ship_subkiller_0
+				}
+			}
+			create_ship = {
+    			type = screen_hull_heavy_0
+    			equipment_variant = "6601-Class"
+    			name = "Chengdu class"
+  			}
+			create_ship = {
+    			type = screen_hull_heavy_0
+    			equipment_variant = "6601-Class"
+				name = "Chengdu class"
+  			}
+		}
+		cost = 20
+		days_remove = 365
+		fire_only_once = yes
+	}
+	PRC_50s_Chinese_People_s_Liberation_Army_Construction_of_Type_6603_conventional_submarine = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = PRC_50s_Upgrade_Conventional_Fleet
+		}
+	    modifier = {
+	        industrial_capacity_dockyard = -0.2
+			consumer_goods_factor = 0.05
+	    }
+		remove_effect = {
+			add_to_variable = {
+                PRC_50s_People_s_Liberation_Army_29 = -0.15
+                tooltip = PRC_50s_People_s_Liberation_Army_naval_change
+            }
+            add_to_variable = {
+                PRC_50s_People_s_Liberation_Army_30 = 0.1
+            }
+			add_to_variable = {
+                PRC_50s_People_s_Liberation_Army_28 = 0.5
+            }
+			set_technology = {
+				ww_submarines = 1
+			}
+			create_equipment_variant = {
+				name = "6603-Class"
+				type = sub_hull_ww
+				parent_version = 0
+				modules = {
+					fixed_ship_surface_radar_slot = maritime_ta_fcs_0
+					fixed_sonar_slot = sonar_ww
+					fixed_ship_engine_slot = sub_engine_ww
+					front_1_custom_slot = sub_torpedo_ww
+					mid_1_custom_slot = sub_torpedo_ww
+				}
+			}
+			create_ship = {
+    			type = sub_hull_ww
+    			equipment_variant = "6603-Class"
+				name = "6603 Class"
+  			}
+			create_ship = {
+    			type = sub_hull_ww
+    			equipment_variant = "6603-Class"
+				name = "6603 Class"
+  			}
+		}
+		cost = 20
+		days_remove = 365
+		fire_only_once = yes
+	}
+}
+

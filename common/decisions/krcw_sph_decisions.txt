@@ -1,0 +1,4408 @@
+krcw_sph_CHI_cat = {
+	krcw_sph_CHI_invest = {
+		icon = GFX_decision_money_with_hand
+		cost = 40
+		allowed = { original_tag = CHI }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SIA MAL INO PHI NEP BHU BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_CHI = 8 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_JAP > 0 } } add_to_variable = { krcw_inf_JAP = -3 } clamp_variable = { var = krcw_inf_JAP min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_PSA > 0 } } add_to_variable = { krcw_inf_PSA = -3 } clamp_variable = { var = krcw_inf_PSA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_RAJ > 0 } } add_to_variable = { krcw_inf_RAJ = -3 } clamp_variable = { var = krcw_inf_RAJ min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p8
+			custom_effect_tooltip = krcw_sph_tt_r3
+			FROM = {
+				krcw_econ_up_small = yes
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_CHI > 29 } } }
+		}
+	}
+	krcw_sph_CHI_fund = {
+		icon = GFX_decision_generic_political_rally
+		cost = 35
+		allowed = { original_tag = CHI }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SIA MAL INO PHI NEP BHU BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_CHI > 9 } }
+		}
+		days_re_enable = 150
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_CHI = 6 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				add_popularity = { ideology = trotskyism popularity = 0.04 }
+				add_stability = -0.02
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_CHI > 39 } } }
+		}
+	}
+	krcw_sph_CHI_counter = {
+		icon = GFX_decision_generic_arrest
+		cost = 50
+		allowed = { original_tag = CHI }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SIA MAL INO PHI NEP BHU BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { check_variable = { krcw_inf_JAP > 14 } check_variable = { krcw_inf_PSA > 14 } check_variable = { krcw_inf_RAJ > 14 } } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_CHI = 4 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_JAP > 0 } } add_to_variable = { krcw_inf_JAP = -6 } clamp_variable = { var = krcw_inf_JAP min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_PSA > 0 } } add_to_variable = { krcw_inf_PSA = -6 } clamp_variable = { var = krcw_inf_PSA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_RAJ > 0 } } add_to_variable = { krcw_inf_RAJ = -6 } clamp_variable = { var = krcw_inf_RAJ min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p4
+			custom_effect_tooltip = krcw_sph_tt_r6
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 0 has_political_power > 150 has_war = no }
+			modifier = { add = 3 has_political_power > 150 FROM = { OR = { check_variable = { krcw_inf_JAP > 34 } check_variable = { krcw_inf_PSA > 34 } check_variable = { krcw_inf_RAJ > 34 } } } }
+		}
+	}
+	krcw_sph_CHI_arms = {
+		icon = GFX_decision_supporteq
+		cost = 25
+		allowed = { original_tag = CHI }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SIA MAL INO PHI NEP BHU BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_CHI > 9 } }
+		}
+		available = {
+			has_equipment = { infantry_equipment > 1999 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = FROM type = infantry_equipment amount = 1000 }
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_CHI = 6 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				if = { limit = { NOT = { has_idea = krcw_sph_instructors } } add_timed_idea = { idea = krcw_sph_instructors days = 365 } }
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_war = no has_equipment = { infantry_equipment > 9999 } }
+		}
+	}
+	krcw_sph_CHI_treaty = {
+		icon = GFX_decision_generic_civil_support
+		cost = 25
+		allowed = { original_tag = CHI }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SIA MAL INO PHI NEP BHU BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_CHI > 24 } NOT = { has_country_flag = krcw_sph_treaty_CHI } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_CHI > 34 }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_treaty_no_CHI }
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 12 value = 1 }
+				country_event = { id = krcw_sph.101 days = 3 }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 4 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_CHI_align = {
+		icon = GFX_decision_category_generic_foreign_policy
+		cost = 50
+		allowed = { original_tag = CHI }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SIA MAL INO PHI NEP BHU BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = {
+				check_variable = { krcw_inf_CHI > 44 }
+				NOT = { has_country_flag = krcw_sph_aligned_CHI }
+				NOT = { is_in_faction_with = ROOT }
+				is_faction_leader = no
+			}
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			FROM = {
+				check_variable = { krcw_inf_CHI > 59 }
+				NOT = { OR = { check_variable = { krcw_inf_JAP > 40 } check_variable = { krcw_inf_PSA > 40 } check_variable = { krcw_inf_RAJ > 40 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_align_no_CHI }
+				has_war = no
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.301 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = SIA check_variable = { krcw_inf_RAJ > 19 } } country_exists = RAJ NOT = { has_war_with = RAJ } } RAJ = { country_event = { id = krcw_sph.1037 } } }
+				if = { limit = { FROM = { tag = SIA check_variable = { krcw_inf_JAP > 19 } } country_exists = JAP NOT = { has_war_with = JAP } } JAP = { country_event = { id = krcw_sph.1038 } } }
+				if = { limit = { FROM = { tag = MAL check_variable = { krcw_inf_JAP > 19 } } country_exists = JAP NOT = { has_war_with = JAP } } JAP = { country_event = { id = krcw_sph.1021 } } }
+				if = { limit = { FROM = { tag = INO check_variable = { krcw_inf_JAP > 19 } } country_exists = JAP NOT = { has_war_with = JAP } } JAP = { country_event = { id = krcw_sph.1017 } } }
+				if = { limit = { FROM = { tag = PHI check_variable = { krcw_inf_JAP > 19 } } country_exists = JAP NOT = { has_war_with = JAP } } JAP = { country_event = { id = krcw_sph.1031 } } }
+				if = { limit = { FROM = { tag = PHI check_variable = { krcw_inf_PSA > 19 } } country_exists = PSA NOT = { has_war_with = PSA } } PSA = { country_event = { id = krcw_sph.1032 } } }
+				if = { limit = { FROM = { tag = NEP check_variable = { krcw_inf_RAJ > 19 } } country_exists = RAJ NOT = { has_war_with = RAJ } } RAJ = { country_event = { id = krcw_sph.1023 } } }
+				if = { limit = { FROM = { tag = BHU check_variable = { krcw_inf_RAJ > 19 } } country_exists = RAJ NOT = { has_war_with = RAJ } } RAJ = { country_event = { id = krcw_sph.1005 } } }
+				if = { limit = { FROM = { tag = BRU check_variable = { krcw_inf_JAP > 19 } } country_exists = JAP NOT = { has_war_with = JAP } } JAP = { country_event = { id = krcw_sph.1007 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_CHI_protect = {
+		icon = GFX_decision_generic_army_support
+		cost = 75
+		allowed = { original_tag = CHI }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SIA MAL INO PHI NEP BHU BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_CHI > 69 } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_CHI > 79 }
+				OR = {
+					has_country_flag = krcw_sph_treaty_CHI
+					has_country_flag = krcw_sph_aligned_CHI
+					is_in_faction_with = ROOT
+				}
+				NOT = { OR = { check_variable = { krcw_inf_JAP > 30 } check_variable = { krcw_inf_PSA > 30 } check_variable = { krcw_inf_RAJ > 30 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_protect_no_CHI }
+				is_faction_leader = no
+				has_war = no
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.401 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = SIA check_variable = { krcw_inf_RAJ > 19 } } country_exists = RAJ NOT = { has_war_with = RAJ } } RAJ = { country_event = { id = krcw_sph.1037 } } }
+				if = { limit = { FROM = { tag = SIA check_variable = { krcw_inf_JAP > 19 } } country_exists = JAP NOT = { has_war_with = JAP } } JAP = { country_event = { id = krcw_sph.1038 } } }
+				if = { limit = { FROM = { tag = MAL check_variable = { krcw_inf_JAP > 19 } } country_exists = JAP NOT = { has_war_with = JAP } } JAP = { country_event = { id = krcw_sph.1021 } } }
+				if = { limit = { FROM = { tag = INO check_variable = { krcw_inf_JAP > 19 } } country_exists = JAP NOT = { has_war_with = JAP } } JAP = { country_event = { id = krcw_sph.1017 } } }
+				if = { limit = { FROM = { tag = PHI check_variable = { krcw_inf_JAP > 19 } } country_exists = JAP NOT = { has_war_with = JAP } } JAP = { country_event = { id = krcw_sph.1031 } } }
+				if = { limit = { FROM = { tag = PHI check_variable = { krcw_inf_PSA > 19 } } country_exists = PSA NOT = { has_war_with = PSA } } PSA = { country_event = { id = krcw_sph.1032 } } }
+				if = { limit = { FROM = { tag = NEP check_variable = { krcw_inf_RAJ > 19 } } country_exists = RAJ NOT = { has_war_with = RAJ } } RAJ = { country_event = { id = krcw_sph.1023 } } }
+				if = { limit = { FROM = { tag = BHU check_variable = { krcw_inf_RAJ > 19 } } country_exists = RAJ NOT = { has_war_with = RAJ } } RAJ = { country_event = { id = krcw_sph.1005 } } }
+				if = { limit = { FROM = { tag = BRU check_variable = { krcw_inf_JAP > 19 } } country_exists = JAP NOT = { has_war_with = JAP } } JAP = { country_event = { id = krcw_sph.1007 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 100 has_war = no }
+			modifier = { factor = 0 FROM = { OR = { tag = ALB tag = SEN tag = TUN } } }
+		}
+	}
+	krcw_sph_CHI_ultimatum = {
+		icon = GFX_decision_generic_break_treaty
+		cost = 25
+		allowed = { original_tag = CHI }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SIA MAL INO PHI NEP BHU BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { has_country_flag = krcw_sph_refused_CHI has_country_flag = krcw_sph_aligned_JAP has_country_flag = krcw_sph_aligned_PSA has_country_flag = krcw_sph_aligned_RAJ } }
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			NOT = { has_global_flag = krcw_sph_ult_lock }
+			has_war = no
+			strength_ratio = { tag = FROM ratio > 2 }
+			FROM = {
+				check_variable = { krcw_inf_CHI > 29 }
+				is_in_faction = no
+				has_war = no
+				NOT = { has_country_flag = krcw_sph_pending }
+			}
+		}
+		days_re_enable = 365
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.501 days = 3 }
+			}
+			set_global_flag = { flag = krcw_sph_ult_lock days = 365 value = 1 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_war = no has_political_power > 50 strength_ratio = { tag = FROM ratio > 3 } }
+			modifier = { factor = 0 NOT = { FROM = { any_neighbor_country = { OR = { tag = ROOT is_subject_of = ROOT } } } } }
+		}
+	}
+	krcw_sph_CHI_int1 = {
+		icon = GFX_decision_generic_factory
+		cost = 50
+		allowed = { original_tag = CHI }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SIA MAL INO PHI NEP BHU BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { NOT = { has_country_flag = krcw_sph_int1 } }
+		}
+		available = {
+			has_war = no
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_customs_union
+				add_autonomy_ratio = { value = -0.15 }
+				set_country_flag = krcw_sph_int1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_CHI_int2 = {
+		icon = GFX_decision_generic_military
+		cost = 75
+		allowed = { original_tag = CHI }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SIA MAL INO PHI NEP BHU BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int1 NOT = { has_country_flag = krcw_sph_int2 } }
+		}
+		available = {
+			FROM = { has_country_flag = { flag = krcw_sph_int1 days > 270 } }
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_joint_command
+				add_autonomy_ratio = { value = -0.20 }
+				set_country_flag = krcw_sph_int2
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_CHI_int3 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 100
+		allowed = { original_tag = CHI }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SIA MAL INO PHI NEP BHU BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int2 }
+		}
+		available = {
+			has_war = no
+			FROM = { has_country_flag = { flag = krcw_sph_int2 days > 270 } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = { country_event = { id = krcw_sph.30 days = 3 } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_chi_nep_road = {
+		icon = GFX_decision_money_with_hand
+		cost = 100
+		allowed = { original_tag = CHI }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = NEP OR = { NOT = { country_exists = TIB } TIB = { is_subject_of = ROOT } } }
+		available = {
+			NEP = { check_variable = { krcw_inf_CHI > 29 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = NEP } hidden_effect = { NEP = { add_to_variable = { krcw_inf_CHI = 15 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_NEP_CHI_p15 }
+			if = { limit = { country_exists = NEP } hidden_effect = { NEP = { add_to_variable = { krcw_inf_RAJ = -10 } clamp_variable = { var = krcw_inf_RAJ min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_NEP_RAJ_m10 }
+			NEP = { capital_scope = { add_building_construction = { type = infrastructure level = 1 instant_build = yes } } }
+			if = { limit = { country_exists = RAJ } RAJ = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_rivalry } } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+	krcw_sph_chi_bhu_schools = {
+		icon = GFX_decision_money_with_hand
+		cost = 50
+		allowed = { original_tag = CHI }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = BHU }
+		available = {
+			BHU = { check_variable = { krcw_inf_CHI > 24 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = BHU } hidden_effect = { BHU = { add_to_variable = { krcw_inf_CHI = 12 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_BHU_CHI_p12 }
+			if = { limit = { country_exists = BHU } hidden_effect = { BHU = { add_to_variable = { krcw_inf_RAJ = -8 } clamp_variable = { var = krcw_inf_RAJ min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_BHU_RAJ_m8 }
+			if = { limit = { country_exists = BHU } BHU = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid } } }
+			BHU = { add_stability = 0.03 }
+			if = { limit = { country_exists = RAJ } RAJ = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_rivalry } } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+	krcw_sph_chi_sia_rice = {
+		icon = GFX_decision_money_with_hand
+		cost = 75
+		allowed = { original_tag = CHI }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = SIA }
+		available = {
+			SIA = { check_variable = { krcw_inf_CHI > 24 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = SIA } hidden_effect = { SIA = { add_to_variable = { krcw_inf_CHI = 15 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_SIA_CHI_p15 }
+			if = { limit = { country_exists = SIA } hidden_effect = { SIA = { add_to_variable = { krcw_inf_JAP = -8 } clamp_variable = { var = krcw_inf_JAP min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_SIA_JAP_m8 }
+			if = { limit = { country_exists = SIA } hidden_effect = { SIA = { add_to_variable = { krcw_inf_RAJ = -5 } clamp_variable = { var = krcw_inf_RAJ min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_SIA_RAJ_m5 }
+			SIA = { krcw_econ_up_small = yes }
+			if = { limit = { country_exists = SIA } SIA = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid } } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+	krcw_sph_chi_malacca = {
+		icon = GFX_decision_money_with_hand
+		cost = 75
+		allowed = { original_tag = CHI }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = MAL country_exists = INO }
+		available = {
+			MAL = { check_variable = { krcw_inf_CHI > 24 } OR = { is_subject = no is_subject_of = ROOT } }
+			INO = { check_variable = { krcw_inf_CHI > 19 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = MAL } hidden_effect = { MAL = { add_to_variable = { krcw_inf_CHI = 10 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_MAL_CHI_p10 }
+			if = { limit = { country_exists = INO } hidden_effect = { INO = { add_to_variable = { krcw_inf_CHI = 10 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_INO_CHI_p10 }
+			if = { limit = { country_exists = MAL } hidden_effect = { MAL = { add_to_variable = { krcw_inf_JAP = -8 } clamp_variable = { var = krcw_inf_JAP min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_MAL_JAP_m8 }
+			if = { limit = { country_exists = INO } hidden_effect = { INO = { add_to_variable = { krcw_inf_JAP = -8 } clamp_variable = { var = krcw_inf_JAP min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_INO_JAP_m8 }
+			if = { limit = { country_exists = JAP } JAP = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_rivalry } } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+}
+krcw_sph_RAJ_cat = {
+	krcw_sph_RAJ_invest = {
+		icon = GFX_decision_money_with_hand
+		cost = 40
+		allowed = { original_tag = RAJ }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { NEP BHU SRL OMA MLD SIA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_RAJ = 8 } clamp_variable = { var = krcw_inf_RAJ min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_CHI > 0 } } add_to_variable = { krcw_inf_CHI = -3 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_ENG > 0 } } add_to_variable = { krcw_inf_ENG = -3 } clamp_variable = { var = krcw_inf_ENG min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_JAP > 0 } } add_to_variable = { krcw_inf_JAP = -3 } clamp_variable = { var = krcw_inf_JAP min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p8
+			custom_effect_tooltip = krcw_sph_tt_r3
+			FROM = {
+				krcw_econ_up_small = yes
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_RAJ > 29 } } }
+		}
+	}
+	krcw_sph_RAJ_fund = {
+		icon = GFX_decision_generic_political_rally
+		cost = 35
+		allowed = { original_tag = RAJ }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { NEP BHU SRL OMA MLD SIA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_RAJ > 9 } }
+		}
+		days_re_enable = 150
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_RAJ = 6 } clamp_variable = { var = krcw_inf_RAJ min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				add_popularity = { ideology = monarchism popularity = 0.04 }
+				add_stability = -0.02
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_RAJ > 39 } } }
+		}
+	}
+	krcw_sph_RAJ_counter = {
+		icon = GFX_decision_generic_arrest
+		cost = 50
+		allowed = { original_tag = RAJ }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { NEP BHU SRL OMA MLD SIA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { check_variable = { krcw_inf_CHI > 14 } check_variable = { krcw_inf_ENG > 14 } check_variable = { krcw_inf_JAP > 14 } } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_RAJ = 4 } clamp_variable = { var = krcw_inf_RAJ min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_CHI > 0 } } add_to_variable = { krcw_inf_CHI = -6 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_ENG > 0 } } add_to_variable = { krcw_inf_ENG = -6 } clamp_variable = { var = krcw_inf_ENG min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_JAP > 0 } } add_to_variable = { krcw_inf_JAP = -6 } clamp_variable = { var = krcw_inf_JAP min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p4
+			custom_effect_tooltip = krcw_sph_tt_r6
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 0 has_political_power > 150 has_war = no }
+			modifier = { add = 3 has_political_power > 150 FROM = { OR = { check_variable = { krcw_inf_CHI > 34 } check_variable = { krcw_inf_ENG > 34 } check_variable = { krcw_inf_JAP > 34 } } } }
+		}
+	}
+	krcw_sph_RAJ_arms = {
+		icon = GFX_decision_supporteq
+		cost = 25
+		allowed = { original_tag = RAJ }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { NEP BHU SRL OMA MLD SIA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_RAJ > 9 } }
+		}
+		available = {
+			has_equipment = { infantry_equipment > 1999 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = FROM type = infantry_equipment amount = 1000 }
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_RAJ = 6 } clamp_variable = { var = krcw_inf_RAJ min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				if = { limit = { NOT = { has_idea = krcw_sph_instructors } } add_timed_idea = { idea = krcw_sph_instructors days = 365 } }
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_war = no has_equipment = { infantry_equipment > 9999 } }
+		}
+	}
+	krcw_sph_RAJ_treaty = {
+		icon = GFX_decision_generic_civil_support
+		cost = 25
+		allowed = { original_tag = RAJ }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { NEP BHU SRL OMA MLD SIA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_RAJ > 24 } NOT = { has_country_flag = krcw_sph_treaty_RAJ } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_RAJ > 34 }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_treaty_no_RAJ }
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 12 value = 1 }
+				country_event = { id = krcw_sph.102 days = 3 }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 4 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_RAJ_align = {
+		icon = GFX_decision_category_generic_foreign_policy
+		cost = 50
+		allowed = { original_tag = RAJ }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { NEP BHU SRL OMA MLD SIA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = {
+				check_variable = { krcw_inf_RAJ > 44 }
+				NOT = { has_country_flag = krcw_sph_aligned_RAJ }
+				NOT = { is_in_faction_with = ROOT }
+				is_faction_leader = no
+			}
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			FROM = {
+				check_variable = { krcw_inf_RAJ > 59 }
+				NOT = { OR = { check_variable = { krcw_inf_CHI > 40 } check_variable = { krcw_inf_ENG > 40 } check_variable = { krcw_inf_JAP > 40 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_align_no_RAJ }
+				has_war = no
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.302 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = NEP check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1024 } } }
+				if = { limit = { FROM = { tag = BHU check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1006 } } }
+				if = { limit = { FROM = { tag = SRL check_variable = { krcw_inf_ENG > 19 } } country_exists = ENG NOT = { has_war_with = ENG } } ENG = { country_event = { id = krcw_sph.1043 } } }
+				if = { limit = { FROM = { tag = OMA check_variable = { krcw_inf_ENG > 19 } } country_exists = ENG NOT = { has_war_with = ENG } } ENG = { country_event = { id = krcw_sph.1027 } } }
+				if = { limit = { FROM = { tag = SIA check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1039 } } }
+				if = { limit = { FROM = { tag = SIA check_variable = { krcw_inf_JAP > 19 } } country_exists = JAP NOT = { has_war_with = JAP } } JAP = { country_event = { id = krcw_sph.1040 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_RAJ_protect = {
+		icon = GFX_decision_generic_army_support
+		cost = 75
+		allowed = { original_tag = RAJ }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { NEP BHU SRL OMA MLD SIA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_RAJ > 69 } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_RAJ > 79 }
+				OR = {
+					has_country_flag = krcw_sph_treaty_RAJ
+					has_country_flag = krcw_sph_aligned_RAJ
+					is_in_faction_with = ROOT
+				}
+				NOT = { OR = { check_variable = { krcw_inf_CHI > 30 } check_variable = { krcw_inf_ENG > 30 } check_variable = { krcw_inf_JAP > 30 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_protect_no_RAJ }
+				is_faction_leader = no
+				has_war = no
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.402 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = NEP check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1024 } } }
+				if = { limit = { FROM = { tag = BHU check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1006 } } }
+				if = { limit = { FROM = { tag = SRL check_variable = { krcw_inf_ENG > 19 } } country_exists = ENG NOT = { has_war_with = ENG } } ENG = { country_event = { id = krcw_sph.1043 } } }
+				if = { limit = { FROM = { tag = OMA check_variable = { krcw_inf_ENG > 19 } } country_exists = ENG NOT = { has_war_with = ENG } } ENG = { country_event = { id = krcw_sph.1027 } } }
+				if = { limit = { FROM = { tag = SIA check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1039 } } }
+				if = { limit = { FROM = { tag = SIA check_variable = { krcw_inf_JAP > 19 } } country_exists = JAP NOT = { has_war_with = JAP } } JAP = { country_event = { id = krcw_sph.1040 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 100 has_war = no }
+			modifier = { factor = 0 FROM = { OR = { tag = ALB tag = SEN tag = TUN } } }
+		}
+	}
+	krcw_sph_RAJ_ultimatum = {
+		icon = GFX_decision_generic_break_treaty
+		cost = 25
+		allowed = { original_tag = RAJ }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { NEP BHU SRL OMA MLD SIA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { has_country_flag = krcw_sph_refused_RAJ has_country_flag = krcw_sph_aligned_CHI has_country_flag = krcw_sph_aligned_ENG has_country_flag = krcw_sph_aligned_JAP } }
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			NOT = { has_global_flag = krcw_sph_ult_lock }
+			has_war = no
+			strength_ratio = { tag = FROM ratio > 2 }
+			FROM = {
+				check_variable = { krcw_inf_RAJ > 29 }
+				is_in_faction = no
+				has_war = no
+				NOT = { has_country_flag = krcw_sph_pending }
+			}
+		}
+		days_re_enable = 365
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.502 days = 3 }
+			}
+			set_global_flag = { flag = krcw_sph_ult_lock days = 365 value = 1 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_war = no has_political_power > 50 strength_ratio = { tag = FROM ratio > 3 } }
+			modifier = { factor = 0 NOT = { FROM = { any_neighbor_country = { OR = { tag = ROOT is_subject_of = ROOT } } } } }
+		}
+	}
+	krcw_sph_RAJ_int1 = {
+		icon = GFX_decision_generic_factory
+		cost = 50
+		allowed = { original_tag = RAJ }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { NEP BHU SRL OMA MLD SIA }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { NOT = { has_country_flag = krcw_sph_int1 } }
+		}
+		available = {
+			has_war = no
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_customs_union
+				add_autonomy_ratio = { value = -0.15 }
+				set_country_flag = krcw_sph_int1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_RAJ_int2 = {
+		icon = GFX_decision_generic_military
+		cost = 75
+		allowed = { original_tag = RAJ }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { NEP BHU SRL OMA MLD SIA }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int1 NOT = { has_country_flag = krcw_sph_int2 } }
+		}
+		available = {
+			FROM = { has_country_flag = { flag = krcw_sph_int1 days > 270 } }
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_joint_command
+				add_autonomy_ratio = { value = -0.20 }
+				set_country_flag = krcw_sph_int2
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_RAJ_int3 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 100
+		allowed = { original_tag = RAJ }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { NEP BHU SRL OMA MLD SIA }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int2 }
+		}
+		available = {
+			has_war = no
+			FROM = { has_country_flag = { flag = krcw_sph_int2 days > 270 } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = { country_event = { id = krcw_sph.30 days = 3 } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_raj_nep_gurkha = {
+		icon = GFX_decision_money_with_hand
+		cost = 50
+		allowed = { original_tag = RAJ }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = NEP }
+		available = {
+			NEP = { check_variable = { krcw_inf_RAJ > 29 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = NEP } hidden_effect = { NEP = { add_to_variable = { krcw_inf_RAJ = 15 } clamp_variable = { var = krcw_inf_RAJ min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_NEP_RAJ_p15 }
+			if = { limit = { country_exists = NEP } hidden_effect = { NEP = { add_to_variable = { krcw_inf_CHI = -10 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_NEP_CHI_m10 }
+			if = { limit = { country_exists = NEP } NEP = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid } } }
+			add_manpower = 10000
+			if = { limit = { country_exists = CHI } CHI = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_rivalry } } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+	krcw_sph_raj_bhu_punakha = {
+		icon = GFX_decision_money_with_hand
+		cost = 50
+		allowed = { original_tag = RAJ }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = BHU }
+		available = {
+			BHU = { check_variable = { krcw_inf_RAJ > 29 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = BHU } hidden_effect = { BHU = { add_to_variable = { krcw_inf_RAJ = 15 } clamp_variable = { var = krcw_inf_RAJ min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_BHU_RAJ_p15 }
+			if = { limit = { country_exists = BHU } hidden_effect = { BHU = { add_to_variable = { krcw_inf_CHI = -12 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_BHU_CHI_m12 }
+			if = { limit = { country_exists = BHU } BHU = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid } } }
+			BHU = { add_political_power = 50 }
+			if = { limit = { country_exists = CHI } CHI = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_rivalry } } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+}
+krcw_sph_SOV_cat = {
+	krcw_sph_SOV_invest = {
+		icon = GFX_decision_money_with_hand
+		cost = 40
+		allowed = { original_tag = SOV }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB IRQ SYR SWE YEM SAU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_SOV = 8 } clamp_variable = { var = krcw_inf_SOV min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_ITA > 0 } } add_to_variable = { krcw_inf_ITA = -3 } clamp_variable = { var = krcw_inf_ITA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_WGR > 0 } } add_to_variable = { krcw_inf_WGR = -3 } clamp_variable = { var = krcw_inf_WGR min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p8
+			custom_effect_tooltip = krcw_sph_tt_r3
+			FROM = {
+				krcw_econ_up_small = yes
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_SOV > 29 } } }
+		}
+	}
+	krcw_sph_SOV_fund = {
+		icon = GFX_decision_generic_political_rally
+		cost = 35
+		allowed = { original_tag = SOV }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB IRQ SYR SWE YEM SAU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_SOV > 9 } }
+		}
+		days_re_enable = 150
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_SOV = 6 } clamp_variable = { var = krcw_inf_SOV min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				add_popularity = { ideology = nationalist popularity = 0.04 }
+				add_stability = -0.02
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_SOV > 39 } } }
+		}
+	}
+	krcw_sph_SOV_counter = {
+		icon = GFX_decision_generic_arrest
+		cost = 50
+		allowed = { original_tag = SOV }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB IRQ SYR SWE YEM SAU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { check_variable = { krcw_inf_ITA > 14 } check_variable = { krcw_inf_WGR > 14 } } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_SOV = 4 } clamp_variable = { var = krcw_inf_SOV min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_ITA > 0 } } add_to_variable = { krcw_inf_ITA = -6 } clamp_variable = { var = krcw_inf_ITA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_WGR > 0 } } add_to_variable = { krcw_inf_WGR = -6 } clamp_variable = { var = krcw_inf_WGR min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p4
+			custom_effect_tooltip = krcw_sph_tt_r6
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 0 has_political_power > 150 has_war = no }
+			modifier = { add = 3 has_political_power > 150 FROM = { OR = { check_variable = { krcw_inf_ITA > 34 } check_variable = { krcw_inf_WGR > 34 } } } }
+		}
+	}
+	krcw_sph_SOV_arms = {
+		icon = GFX_decision_supporteq
+		cost = 25
+		allowed = { original_tag = SOV }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB IRQ SYR SWE YEM SAU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_SOV > 9 } }
+		}
+		available = {
+			has_equipment = { infantry_equipment > 1999 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = FROM type = infantry_equipment amount = 1000 }
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_SOV = 6 } clamp_variable = { var = krcw_inf_SOV min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				if = { limit = { NOT = { has_idea = krcw_sph_instructors } } add_timed_idea = { idea = krcw_sph_instructors days = 365 } }
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_war = no has_equipment = { infantry_equipment > 9999 } }
+		}
+	}
+	krcw_sph_SOV_treaty = {
+		icon = GFX_decision_generic_civil_support
+		cost = 25
+		allowed = { original_tag = SOV }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB IRQ SYR SWE YEM SAU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_SOV > 24 } NOT = { has_country_flag = krcw_sph_treaty_SOV } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_SOV > 34 }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_treaty_no_SOV }
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 12 value = 1 }
+				country_event = { id = krcw_sph.103 days = 3 }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 4 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_SOV_align = {
+		icon = GFX_decision_category_generic_foreign_policy
+		cost = 50
+		allowed = { original_tag = SOV }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB IRQ SYR SWE YEM SAU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = {
+				check_variable = { krcw_inf_SOV > 44 }
+				NOT = { has_country_flag = krcw_sph_aligned_SOV }
+				NOT = { is_in_faction_with = ROOT }
+				is_faction_leader = no
+			}
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			FROM = {
+				check_variable = { krcw_inf_SOV > 59 }
+				NOT = { OR = { check_variable = { krcw_inf_ITA > 40 } check_variable = { krcw_inf_WGR > 40 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_align_no_SOV }
+				has_war = no
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.303 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = ALB check_variable = { krcw_inf_ITA > 19 } } country_exists = ITA NOT = { has_war_with = ITA } } ITA = { country_event = { id = krcw_sph.1001 } } }
+				if = { limit = { FROM = { tag = SWE check_variable = { krcw_inf_WGR > 19 } } country_exists = WGR NOT = { has_war_with = WGR } } WGR = { country_event = { id = krcw_sph.1045 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_SOV_protect = {
+		icon = GFX_decision_generic_army_support
+		cost = 75
+		allowed = { original_tag = SOV }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB IRQ SYR SWE YEM SAU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_SOV > 69 } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_SOV > 79 }
+				OR = {
+					has_country_flag = krcw_sph_treaty_SOV
+					has_country_flag = krcw_sph_aligned_SOV
+					is_in_faction_with = ROOT
+				}
+				NOT = { OR = { check_variable = { krcw_inf_ITA > 30 } check_variable = { krcw_inf_WGR > 30 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_protect_no_SOV }
+				is_faction_leader = no
+				has_war = no
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.403 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = ALB check_variable = { krcw_inf_ITA > 19 } } country_exists = ITA NOT = { has_war_with = ITA } } ITA = { country_event = { id = krcw_sph.1001 } } }
+				if = { limit = { FROM = { tag = SWE check_variable = { krcw_inf_WGR > 19 } } country_exists = WGR NOT = { has_war_with = WGR } } WGR = { country_event = { id = krcw_sph.1045 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 100 has_war = no }
+			modifier = { factor = 0 FROM = { OR = { tag = ALB tag = SEN tag = TUN } } }
+		}
+	}
+	krcw_sph_SOV_ultimatum = {
+		icon = GFX_decision_generic_break_treaty
+		cost = 25
+		allowed = { original_tag = SOV }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB IRQ SYR SWE YEM SAU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { has_country_flag = krcw_sph_refused_SOV has_country_flag = krcw_sph_aligned_ITA has_country_flag = krcw_sph_aligned_WGR } }
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			NOT = { has_global_flag = krcw_sph_ult_lock }
+			has_war = no
+			strength_ratio = { tag = FROM ratio > 2 }
+			FROM = {
+				check_variable = { krcw_inf_SOV > 29 }
+				is_in_faction = no
+				has_war = no
+				NOT = { has_country_flag = krcw_sph_pending }
+			}
+		}
+		days_re_enable = 365
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.503 days = 3 }
+			}
+			set_global_flag = { flag = krcw_sph_ult_lock days = 365 value = 1 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_war = no has_political_power > 50 strength_ratio = { tag = FROM ratio > 3 } }
+			modifier = { factor = 0 NOT = { FROM = { any_neighbor_country = { OR = { tag = ROOT is_subject_of = ROOT } } } } }
+		}
+	}
+	krcw_sph_SOV_int1 = {
+		icon = GFX_decision_generic_factory
+		cost = 50
+		allowed = { original_tag = SOV }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB IRQ SYR SWE YEM SAU }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { NOT = { has_country_flag = krcw_sph_int1 } }
+		}
+		available = {
+			has_war = no
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_customs_union
+				add_autonomy_ratio = { value = -0.15 }
+				set_country_flag = krcw_sph_int1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_SOV_int2 = {
+		icon = GFX_decision_generic_military
+		cost = 75
+		allowed = { original_tag = SOV }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB IRQ SYR SWE YEM SAU }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int1 NOT = { has_country_flag = krcw_sph_int2 } }
+		}
+		available = {
+			FROM = { has_country_flag = { flag = krcw_sph_int1 days > 270 } }
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_joint_command
+				add_autonomy_ratio = { value = -0.20 }
+				set_country_flag = krcw_sph_int2
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_SOV_int3 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 100
+		allowed = { original_tag = SOV }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB IRQ SYR SWE YEM SAU }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int2 }
+		}
+		available = {
+			has_war = no
+			FROM = { has_country_flag = { flag = krcw_sph_int2 days > 270 } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = { country_event = { id = krcw_sph.30 days = 3 } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_sov_irq_kirkuk = {
+		icon = GFX_decision_money_with_hand
+		cost = 75
+		allowed = { original_tag = SOV }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = IRQ }
+		available = {
+			IRQ = { check_variable = { krcw_inf_SOV > 29 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = IRQ } hidden_effect = { IRQ = { add_to_variable = { krcw_inf_SOV = 15 } clamp_variable = { var = krcw_inf_SOV min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_IRQ_SOV_p15 }
+			IRQ = { krcw_econ_up_small = yes }
+			krcw_econ_up_small = yes
+			if = { limit = { country_exists = IRQ } IRQ = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid } } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+	krcw_sph_sov_alb_sazan = {
+		icon = GFX_decision_money_with_hand
+		cost = 75
+		allowed = { original_tag = SOV }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = ALB }
+		available = {
+			ALB = { check_variable = { krcw_inf_SOV > 49 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = ALB } hidden_effect = { ALB = { add_to_variable = { krcw_inf_SOV = 15 } clamp_variable = { var = krcw_inf_SOV min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_ALB_SOV_p15 }
+			if = { limit = { country_exists = ALB } hidden_effect = { ALB = { add_to_variable = { krcw_inf_ITA = -10 } clamp_variable = { var = krcw_inf_ITA min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_ALB_ITA_m10 }
+			ALB = { add_political_power = 50 }
+			if = { limit = { country_exists = ALB } ALB = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid } } }
+			if = { limit = { country_exists = ITA } ITA = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_rivalry } } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+}
+krcw_sph_FRA_cat = {
+	krcw_sph_FRA_invest = {
+		icon = GFX_decision_money_with_hand
+		cost = 40
+		allowed = { original_tag = FRA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { MOR TUN LBA SEN RCG CMR SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_FRA = 8 } clamp_variable = { var = krcw_inf_FRA min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_ITA > 0 } } add_to_variable = { krcw_inf_ITA = -3 } clamp_variable = { var = krcw_inf_ITA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_WGR > 0 } } add_to_variable = { krcw_inf_WGR = -3 } clamp_variable = { var = krcw_inf_WGR min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p8
+			custom_effect_tooltip = krcw_sph_tt_r3
+			FROM = {
+				krcw_econ_up_small = yes
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_FRA > 29 } } }
+		}
+	}
+	krcw_sph_FRA_fund = {
+		icon = GFX_decision_generic_political_rally
+		cost = 35
+		allowed = { original_tag = FRA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { MOR TUN LBA SEN RCG CMR SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_FRA > 9 } }
+		}
+		days_re_enable = 150
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_FRA = 6 } clamp_variable = { var = krcw_inf_FRA min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				add_popularity = { ideology = trotskyism popularity = 0.04 }
+				add_stability = -0.02
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_FRA > 39 } } }
+		}
+	}
+	krcw_sph_FRA_counter = {
+		icon = GFX_decision_generic_arrest
+		cost = 50
+		allowed = { original_tag = FRA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { MOR TUN LBA SEN RCG CMR SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { check_variable = { krcw_inf_ITA > 14 } check_variable = { krcw_inf_WGR > 14 } } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_FRA = 4 } clamp_variable = { var = krcw_inf_FRA min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_ITA > 0 } } add_to_variable = { krcw_inf_ITA = -6 } clamp_variable = { var = krcw_inf_ITA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_WGR > 0 } } add_to_variable = { krcw_inf_WGR = -6 } clamp_variable = { var = krcw_inf_WGR min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p4
+			custom_effect_tooltip = krcw_sph_tt_r6
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 0 has_political_power > 150 has_war = no }
+			modifier = { add = 3 has_political_power > 150 FROM = { OR = { check_variable = { krcw_inf_ITA > 34 } check_variable = { krcw_inf_WGR > 34 } } } }
+		}
+	}
+	krcw_sph_FRA_arms = {
+		icon = GFX_decision_supporteq
+		cost = 25
+		allowed = { original_tag = FRA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { MOR TUN LBA SEN RCG CMR SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_FRA > 9 } }
+		}
+		available = {
+			has_equipment = { infantry_equipment > 1999 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = FROM type = infantry_equipment amount = 1000 }
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_FRA = 6 } clamp_variable = { var = krcw_inf_FRA min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				if = { limit = { NOT = { has_idea = krcw_sph_instructors } } add_timed_idea = { idea = krcw_sph_instructors days = 365 } }
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_war = no has_equipment = { infantry_equipment > 9999 } }
+		}
+	}
+	krcw_sph_FRA_treaty = {
+		icon = GFX_decision_generic_civil_support
+		cost = 25
+		allowed = { original_tag = FRA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { MOR TUN LBA SEN RCG CMR SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_FRA > 24 } NOT = { has_country_flag = krcw_sph_treaty_FRA } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_FRA > 34 }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_treaty_no_FRA }
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 12 value = 1 }
+				country_event = { id = krcw_sph.104 days = 3 }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 4 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_FRA_align = {
+		icon = GFX_decision_category_generic_foreign_policy
+		cost = 50
+		allowed = { original_tag = FRA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { MOR TUN LBA SEN RCG CMR SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = {
+				check_variable = { krcw_inf_FRA > 44 }
+				NOT = { has_country_flag = krcw_sph_aligned_FRA }
+				NOT = { is_in_faction_with = ROOT }
+				is_faction_leader = no
+			}
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			FROM = {
+				check_variable = { krcw_inf_FRA > 59 }
+				NOT = { OR = { check_variable = { krcw_inf_ITA > 40 } check_variable = { krcw_inf_WGR > 40 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_align_no_FRA }
+				has_war = no
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.304 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = LBA check_variable = { krcw_inf_ITA > 19 } } country_exists = ITA NOT = { has_war_with = ITA } } ITA = { country_event = { id = krcw_sph.1019 } } }
+				if = { limit = { FROM = { tag = SWI check_variable = { krcw_inf_ITA > 19 } } country_exists = ITA NOT = { has_war_with = ITA } } ITA = { country_event = { id = krcw_sph.1047 } } }
+				if = { limit = { FROM = { tag = SWI check_variable = { krcw_inf_WGR > 19 } } country_exists = WGR NOT = { has_war_with = WGR } } WGR = { country_event = { id = krcw_sph.1048 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_FRA_protect = {
+		icon = GFX_decision_generic_army_support
+		cost = 75
+		allowed = { original_tag = FRA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { MOR TUN LBA SEN RCG CMR SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_FRA > 69 } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_FRA > 79 }
+				OR = {
+					has_country_flag = krcw_sph_treaty_FRA
+					has_country_flag = krcw_sph_aligned_FRA
+					is_in_faction_with = ROOT
+				}
+				NOT = { OR = { check_variable = { krcw_inf_ITA > 30 } check_variable = { krcw_inf_WGR > 30 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_protect_no_FRA }
+				is_faction_leader = no
+				has_war = no
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.404 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = LBA check_variable = { krcw_inf_ITA > 19 } } country_exists = ITA NOT = { has_war_with = ITA } } ITA = { country_event = { id = krcw_sph.1019 } } }
+				if = { limit = { FROM = { tag = SWI check_variable = { krcw_inf_ITA > 19 } } country_exists = ITA NOT = { has_war_with = ITA } } ITA = { country_event = { id = krcw_sph.1047 } } }
+				if = { limit = { FROM = { tag = SWI check_variable = { krcw_inf_WGR > 19 } } country_exists = WGR NOT = { has_war_with = WGR } } WGR = { country_event = { id = krcw_sph.1048 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 100 has_war = no }
+			modifier = { factor = 0 FROM = { OR = { tag = ALB tag = SEN tag = TUN } } }
+		}
+	}
+	krcw_sph_FRA_ultimatum = {
+		icon = GFX_decision_generic_break_treaty
+		cost = 25
+		allowed = { original_tag = FRA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { MOR TUN LBA SEN RCG CMR SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { has_country_flag = krcw_sph_refused_FRA has_country_flag = krcw_sph_aligned_ITA has_country_flag = krcw_sph_aligned_WGR } }
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			NOT = { has_global_flag = krcw_sph_ult_lock }
+			has_war = no
+			strength_ratio = { tag = FROM ratio > 2 }
+			FROM = {
+				check_variable = { krcw_inf_FRA > 29 }
+				is_in_faction = no
+				has_war = no
+				NOT = { has_country_flag = krcw_sph_pending }
+			}
+		}
+		days_re_enable = 365
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.504 days = 3 }
+			}
+			set_global_flag = { flag = krcw_sph_ult_lock days = 365 value = 1 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_war = no has_political_power > 50 strength_ratio = { tag = FROM ratio > 3 } }
+			modifier = { factor = 0 NOT = { FROM = { any_neighbor_country = { OR = { tag = ROOT is_subject_of = ROOT } } } } }
+		}
+	}
+	krcw_sph_FRA_int1 = {
+		icon = GFX_decision_generic_factory
+		cost = 50
+		allowed = { original_tag = FRA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { MOR TUN LBA SEN RCG CMR SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { NOT = { has_country_flag = krcw_sph_int1 } }
+		}
+		available = {
+			has_war = no
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_customs_union
+				add_autonomy_ratio = { value = -0.15 }
+				set_country_flag = krcw_sph_int1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_FRA_int2 = {
+		icon = GFX_decision_generic_military
+		cost = 75
+		allowed = { original_tag = FRA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { MOR TUN LBA SEN RCG CMR SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int1 NOT = { has_country_flag = krcw_sph_int2 } }
+		}
+		available = {
+			FROM = { has_country_flag = { flag = krcw_sph_int1 days > 270 } }
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_joint_command
+				add_autonomy_ratio = { value = -0.20 }
+				set_country_flag = krcw_sph_int2
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_FRA_int3 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 100
+		allowed = { original_tag = FRA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { MOR TUN LBA SEN RCG CMR SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int2 }
+		}
+		available = {
+			has_war = no
+			FROM = { has_country_flag = { flag = krcw_sph_int2 days > 270 } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = { country_event = { id = krcw_sph.30 days = 3 } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_fra_maghreb = {
+		icon = GFX_decision_money_with_hand
+		cost = 75
+		allowed = { original_tag = FRA }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = MOR country_exists = TUN }
+		available = {
+			MOR = { check_variable = { krcw_inf_FRA > 29 } OR = { is_subject = no is_subject_of = ROOT } }
+			TUN = { check_variable = { krcw_inf_FRA > 29 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = MOR } hidden_effect = { MOR = { add_to_variable = { krcw_inf_FRA = 10 } clamp_variable = { var = krcw_inf_FRA min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_MOR_FRA_p10 }
+			if = { limit = { country_exists = TUN } hidden_effect = { TUN = { add_to_variable = { krcw_inf_FRA = 12 } clamp_variable = { var = krcw_inf_FRA min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_TUN_FRA_p12 }
+			TUN = { add_popularity = { ideology = trotskyism popularity = 0.05 } }
+			MOR = { add_popularity = { ideology = trotskyism popularity = 0.03 } add_stability = -0.02 }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+}
+krcw_sph_ENG_cat = {
+	krcw_sph_ENG_invest = {
+		icon = GFX_decision_money_with_hand
+		cost = 40
+		allowed = { original_tag = ENG }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { EGY KEN NGA GHA SRL BAD ICE OMA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_ENG = 8 } clamp_variable = { var = krcw_inf_ENG min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_RAJ > 0 } } add_to_variable = { krcw_inf_RAJ = -3 } clamp_variable = { var = krcw_inf_RAJ min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_WCA > 0 } } add_to_variable = { krcw_inf_WCA = -3 } clamp_variable = { var = krcw_inf_WCA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_WGR > 0 } } add_to_variable = { krcw_inf_WGR = -3 } clamp_variable = { var = krcw_inf_WGR min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p8
+			custom_effect_tooltip = krcw_sph_tt_r3
+			FROM = {
+				krcw_econ_up_small = yes
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_ENG > 29 } } }
+		}
+	}
+	krcw_sph_ENG_fund = {
+		icon = GFX_decision_generic_political_rally
+		cost = 35
+		allowed = { original_tag = ENG }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { EGY KEN NGA GHA SRL BAD ICE OMA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_ENG > 9 } }
+		}
+		days_re_enable = 150
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_ENG = 6 } clamp_variable = { var = krcw_inf_ENG min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				add_popularity = { ideology = trotskyism popularity = 0.04 }
+				add_stability = -0.02
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_ENG > 39 } } }
+		}
+	}
+	krcw_sph_ENG_counter = {
+		icon = GFX_decision_generic_arrest
+		cost = 50
+		allowed = { original_tag = ENG }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { EGY KEN NGA GHA SRL BAD ICE OMA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { check_variable = { krcw_inf_RAJ > 14 } check_variable = { krcw_inf_WCA > 14 } check_variable = { krcw_inf_WGR > 14 } } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_ENG = 4 } clamp_variable = { var = krcw_inf_ENG min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_RAJ > 0 } } add_to_variable = { krcw_inf_RAJ = -6 } clamp_variable = { var = krcw_inf_RAJ min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_WCA > 0 } } add_to_variable = { krcw_inf_WCA = -6 } clamp_variable = { var = krcw_inf_WCA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_WGR > 0 } } add_to_variable = { krcw_inf_WGR = -6 } clamp_variable = { var = krcw_inf_WGR min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p4
+			custom_effect_tooltip = krcw_sph_tt_r6
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 0 has_political_power > 150 has_war = no }
+			modifier = { add = 3 has_political_power > 150 FROM = { OR = { check_variable = { krcw_inf_RAJ > 34 } check_variable = { krcw_inf_WCA > 34 } check_variable = { krcw_inf_WGR > 34 } } } }
+		}
+	}
+	krcw_sph_ENG_arms = {
+		icon = GFX_decision_supporteq
+		cost = 25
+		allowed = { original_tag = ENG }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { EGY KEN NGA GHA SRL BAD ICE OMA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_ENG > 9 } }
+		}
+		available = {
+			has_equipment = { infantry_equipment > 1999 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = FROM type = infantry_equipment amount = 1000 }
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_ENG = 6 } clamp_variable = { var = krcw_inf_ENG min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				if = { limit = { NOT = { has_idea = krcw_sph_instructors } } add_timed_idea = { idea = krcw_sph_instructors days = 365 } }
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_war = no has_equipment = { infantry_equipment > 9999 } }
+		}
+	}
+	krcw_sph_ENG_treaty = {
+		icon = GFX_decision_generic_civil_support
+		cost = 25
+		allowed = { original_tag = ENG }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { EGY KEN NGA GHA SRL BAD ICE OMA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_ENG > 24 } NOT = { has_country_flag = krcw_sph_treaty_ENG } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_ENG > 34 }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_treaty_no_ENG }
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 12 value = 1 }
+				country_event = { id = krcw_sph.105 days = 3 }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 4 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_ENG_align = {
+		icon = GFX_decision_category_generic_foreign_policy
+		cost = 50
+		allowed = { original_tag = ENG }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { EGY KEN NGA GHA SRL BAD ICE OMA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = {
+				check_variable = { krcw_inf_ENG > 44 }
+				NOT = { has_country_flag = krcw_sph_aligned_ENG }
+				NOT = { is_in_faction_with = ROOT }
+				is_faction_leader = no
+			}
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			FROM = {
+				check_variable = { krcw_inf_ENG > 59 }
+				NOT = { OR = { check_variable = { krcw_inf_RAJ > 40 } check_variable = { krcw_inf_WCA > 40 } check_variable = { krcw_inf_WGR > 40 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_align_no_ENG }
+				has_war = no
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.305 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = SRL check_variable = { krcw_inf_RAJ > 19 } } country_exists = RAJ NOT = { has_war_with = RAJ } } RAJ = { country_event = { id = krcw_sph.1044 } } }
+				if = { limit = { FROM = { tag = BAD check_variable = { krcw_inf_WCA > 19 } } country_exists = WCA NOT = { has_war_with = WCA } } WCA = { country_event = { id = krcw_sph.1003 } } }
+				if = { limit = { FROM = { tag = ICE check_variable = { krcw_inf_WGR > 19 } } country_exists = WGR NOT = { has_war_with = WGR } } WGR = { country_event = { id = krcw_sph.1015 } } }
+				if = { limit = { FROM = { tag = OMA check_variable = { krcw_inf_RAJ > 19 } } country_exists = RAJ NOT = { has_war_with = RAJ } } RAJ = { country_event = { id = krcw_sph.1028 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_ENG_protect = {
+		icon = GFX_decision_generic_army_support
+		cost = 75
+		allowed = { original_tag = ENG }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { EGY KEN NGA GHA SRL BAD ICE OMA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_ENG > 69 } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_ENG > 79 }
+				OR = {
+					has_country_flag = krcw_sph_treaty_ENG
+					has_country_flag = krcw_sph_aligned_ENG
+					is_in_faction_with = ROOT
+				}
+				NOT = { OR = { check_variable = { krcw_inf_RAJ > 30 } check_variable = { krcw_inf_WCA > 30 } check_variable = { krcw_inf_WGR > 30 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_protect_no_ENG }
+				is_faction_leader = no
+				has_war = no
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.405 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = SRL check_variable = { krcw_inf_RAJ > 19 } } country_exists = RAJ NOT = { has_war_with = RAJ } } RAJ = { country_event = { id = krcw_sph.1044 } } }
+				if = { limit = { FROM = { tag = BAD check_variable = { krcw_inf_WCA > 19 } } country_exists = WCA NOT = { has_war_with = WCA } } WCA = { country_event = { id = krcw_sph.1003 } } }
+				if = { limit = { FROM = { tag = ICE check_variable = { krcw_inf_WGR > 19 } } country_exists = WGR NOT = { has_war_with = WGR } } WGR = { country_event = { id = krcw_sph.1015 } } }
+				if = { limit = { FROM = { tag = OMA check_variable = { krcw_inf_RAJ > 19 } } country_exists = RAJ NOT = { has_war_with = RAJ } } RAJ = { country_event = { id = krcw_sph.1028 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 100 has_war = no }
+			modifier = { factor = 0 FROM = { OR = { tag = ALB tag = SEN tag = TUN } } }
+		}
+	}
+	krcw_sph_ENG_ultimatum = {
+		icon = GFX_decision_generic_break_treaty
+		cost = 25
+		allowed = { original_tag = ENG }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { EGY KEN NGA GHA SRL BAD ICE OMA }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { has_country_flag = krcw_sph_refused_ENG has_country_flag = krcw_sph_aligned_RAJ has_country_flag = krcw_sph_aligned_WCA has_country_flag = krcw_sph_aligned_WGR } }
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			NOT = { has_global_flag = krcw_sph_ult_lock }
+			has_war = no
+			strength_ratio = { tag = FROM ratio > 2 }
+			FROM = {
+				check_variable = { krcw_inf_ENG > 29 }
+				is_in_faction = no
+				has_war = no
+				NOT = { has_country_flag = krcw_sph_pending }
+			}
+		}
+		days_re_enable = 365
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.505 days = 3 }
+			}
+			set_global_flag = { flag = krcw_sph_ult_lock days = 365 value = 1 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_war = no has_political_power > 50 strength_ratio = { tag = FROM ratio > 3 } }
+			modifier = { factor = 0 NOT = { FROM = { any_neighbor_country = { OR = { tag = ROOT is_subject_of = ROOT } } } } }
+		}
+	}
+	krcw_sph_ENG_int1 = {
+		icon = GFX_decision_generic_factory
+		cost = 50
+		allowed = { original_tag = ENG }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { EGY KEN NGA GHA SRL BAD ICE OMA }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { NOT = { has_country_flag = krcw_sph_int1 } }
+		}
+		available = {
+			has_war = no
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_customs_union
+				add_autonomy_ratio = { value = -0.15 }
+				set_country_flag = krcw_sph_int1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_ENG_int2 = {
+		icon = GFX_decision_generic_military
+		cost = 75
+		allowed = { original_tag = ENG }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { EGY KEN NGA GHA SRL BAD ICE OMA }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int1 NOT = { has_country_flag = krcw_sph_int2 } }
+		}
+		available = {
+			FROM = { has_country_flag = { flag = krcw_sph_int1 days > 270 } }
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_joint_command
+				add_autonomy_ratio = { value = -0.20 }
+				set_country_flag = krcw_sph_int2
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_ENG_int3 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 100
+		allowed = { original_tag = ENG }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { EGY KEN NGA GHA SRL BAD ICE OMA }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int2 }
+		}
+		available = {
+			has_war = no
+			FROM = { has_country_flag = { flag = krcw_sph_int2 days > 270 } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = { country_event = { id = krcw_sph.30 days = 3 } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_eng_gha_cocoa = {
+		icon = GFX_decision_money_with_hand
+		cost = 50
+		allowed = { original_tag = ENG }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = GHA }
+		available = {
+			GHA = { check_variable = { krcw_inf_ENG > 24 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = GHA } hidden_effect = { GHA = { add_to_variable = { krcw_inf_ENG = 15 } clamp_variable = { var = krcw_inf_ENG min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_GHA_ENG_p15 }
+			GHA = { krcw_econ_up_small = yes add_popularity = { ideology = trotskyism popularity = 0.03 } }
+			if = { limit = { country_exists = GHA } GHA = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid } } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+}
+krcw_sph_USA_cat = {
+	krcw_sph_USA_invest = {
+		icon = GFX_decision_money_with_hand
+		cost = 40
+		allowed = { original_tag = USA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB PAN GUA HON ELS NIC COS DOM HAI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_USA = 8 } clamp_variable = { var = krcw_inf_USA min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_PSA > 0 } } add_to_variable = { krcw_inf_PSA = -3 } clamp_variable = { var = krcw_inf_PSA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_WCA > 0 } } add_to_variable = { krcw_inf_WCA = -3 } clamp_variable = { var = krcw_inf_WCA min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p8
+			custom_effect_tooltip = krcw_sph_tt_r3
+			FROM = {
+				krcw_econ_up_small = yes
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_USA > 29 } } }
+		}
+	}
+	krcw_sph_USA_fund = {
+		icon = GFX_decision_generic_political_rally
+		cost = 35
+		allowed = { original_tag = USA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB PAN GUA HON ELS NIC COS DOM HAI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_USA > 9 } }
+		}
+		days_re_enable = 150
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_USA = 6 } clamp_variable = { var = krcw_inf_USA min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				add_popularity = { ideology = nationalist popularity = 0.04 }
+				add_stability = -0.02
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_USA > 39 } } }
+		}
+	}
+	krcw_sph_USA_counter = {
+		icon = GFX_decision_generic_arrest
+		cost = 50
+		allowed = { original_tag = USA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB PAN GUA HON ELS NIC COS DOM HAI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { check_variable = { krcw_inf_PSA > 14 } check_variable = { krcw_inf_WCA > 14 } } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_USA = 4 } clamp_variable = { var = krcw_inf_USA min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_PSA > 0 } } add_to_variable = { krcw_inf_PSA = -6 } clamp_variable = { var = krcw_inf_PSA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_WCA > 0 } } add_to_variable = { krcw_inf_WCA = -6 } clamp_variable = { var = krcw_inf_WCA min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p4
+			custom_effect_tooltip = krcw_sph_tt_r6
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 0 has_political_power > 150 has_war = no }
+			modifier = { add = 3 has_political_power > 150 FROM = { OR = { check_variable = { krcw_inf_PSA > 34 } check_variable = { krcw_inf_WCA > 34 } } } }
+		}
+	}
+	krcw_sph_USA_arms = {
+		icon = GFX_decision_supporteq
+		cost = 25
+		allowed = { original_tag = USA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB PAN GUA HON ELS NIC COS DOM HAI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_USA > 9 } }
+		}
+		available = {
+			has_equipment = { infantry_equipment > 1999 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = FROM type = infantry_equipment amount = 1000 }
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_USA = 6 } clamp_variable = { var = krcw_inf_USA min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				if = { limit = { NOT = { has_idea = krcw_sph_instructors } } add_timed_idea = { idea = krcw_sph_instructors days = 365 } }
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_war = no has_equipment = { infantry_equipment > 9999 } }
+		}
+	}
+	krcw_sph_USA_treaty = {
+		icon = GFX_decision_generic_civil_support
+		cost = 25
+		allowed = { original_tag = USA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB PAN GUA HON ELS NIC COS DOM HAI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_USA > 24 } NOT = { has_country_flag = krcw_sph_treaty_USA } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_USA > 34 }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_treaty_no_USA }
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 12 value = 1 }
+				country_event = { id = krcw_sph.106 days = 3 }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 4 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_USA_align = {
+		icon = GFX_decision_category_generic_foreign_policy
+		cost = 50
+		allowed = { original_tag = USA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB PAN GUA HON ELS NIC COS DOM HAI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = {
+				check_variable = { krcw_inf_USA > 44 }
+				NOT = { has_country_flag = krcw_sph_aligned_USA }
+				NOT = { is_in_faction_with = ROOT }
+				is_faction_leader = no
+			}
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			FROM = {
+				check_variable = { krcw_inf_USA > 59 }
+				NOT = { OR = { check_variable = { krcw_inf_PSA > 40 } check_variable = { krcw_inf_WCA > 40 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_align_no_USA }
+				has_war = no
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.306 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = CUB check_variable = { krcw_inf_WCA > 19 } } country_exists = WCA NOT = { has_war_with = WCA } } WCA = { country_event = { id = krcw_sph.1009 } } }
+				if = { limit = { FROM = { tag = PAN check_variable = { krcw_inf_PSA > 19 } } country_exists = PSA NOT = { has_war_with = PSA } } PSA = { country_event = { id = krcw_sph.1029 } } }
+				if = { limit = { FROM = { tag = NIC check_variable = { krcw_inf_WCA > 19 } } country_exists = WCA NOT = { has_war_with = WCA } } WCA = { country_event = { id = krcw_sph.1025 } } }
+				if = { limit = { FROM = { tag = DOM check_variable = { krcw_inf_WCA > 19 } } country_exists = WCA NOT = { has_war_with = WCA } } WCA = { country_event = { id = krcw_sph.1011 } } }
+				if = { limit = { FROM = { tag = HAI check_variable = { krcw_inf_WCA > 19 } } country_exists = WCA NOT = { has_war_with = WCA } } WCA = { country_event = { id = krcw_sph.1013 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_USA_protect = {
+		icon = GFX_decision_generic_army_support
+		cost = 75
+		allowed = { original_tag = USA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB PAN GUA HON ELS NIC COS DOM HAI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_USA > 69 } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_USA > 79 }
+				OR = {
+					has_country_flag = krcw_sph_treaty_USA
+					has_country_flag = krcw_sph_aligned_USA
+					is_in_faction_with = ROOT
+				}
+				NOT = { OR = { check_variable = { krcw_inf_PSA > 30 } check_variable = { krcw_inf_WCA > 30 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_protect_no_USA }
+				is_faction_leader = no
+				has_war = no
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.406 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = CUB check_variable = { krcw_inf_WCA > 19 } } country_exists = WCA NOT = { has_war_with = WCA } } WCA = { country_event = { id = krcw_sph.1009 } } }
+				if = { limit = { FROM = { tag = PAN check_variable = { krcw_inf_PSA > 19 } } country_exists = PSA NOT = { has_war_with = PSA } } PSA = { country_event = { id = krcw_sph.1029 } } }
+				if = { limit = { FROM = { tag = NIC check_variable = { krcw_inf_WCA > 19 } } country_exists = WCA NOT = { has_war_with = WCA } } WCA = { country_event = { id = krcw_sph.1025 } } }
+				if = { limit = { FROM = { tag = DOM check_variable = { krcw_inf_WCA > 19 } } country_exists = WCA NOT = { has_war_with = WCA } } WCA = { country_event = { id = krcw_sph.1011 } } }
+				if = { limit = { FROM = { tag = HAI check_variable = { krcw_inf_WCA > 19 } } country_exists = WCA NOT = { has_war_with = WCA } } WCA = { country_event = { id = krcw_sph.1013 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 100 has_war = no }
+			modifier = { factor = 0 FROM = { OR = { tag = ALB tag = SEN tag = TUN } } }
+		}
+	}
+	krcw_sph_USA_ultimatum = {
+		icon = GFX_decision_generic_break_treaty
+		cost = 25
+		allowed = { original_tag = USA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB PAN GUA HON ELS NIC COS DOM HAI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { has_country_flag = krcw_sph_refused_USA has_country_flag = krcw_sph_aligned_PSA has_country_flag = krcw_sph_aligned_WCA } }
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			NOT = { has_global_flag = krcw_sph_ult_lock }
+			has_war = no
+			strength_ratio = { tag = FROM ratio > 2 }
+			FROM = {
+				check_variable = { krcw_inf_USA > 29 }
+				is_in_faction = no
+				has_war = no
+				NOT = { has_country_flag = krcw_sph_pending }
+			}
+		}
+		days_re_enable = 365
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.506 days = 3 }
+			}
+			set_global_flag = { flag = krcw_sph_ult_lock days = 365 value = 1 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_war = no has_political_power > 50 strength_ratio = { tag = FROM ratio > 3 } }
+			modifier = { factor = 0 NOT = { FROM = { any_neighbor_country = { OR = { tag = ROOT is_subject_of = ROOT } } } } }
+		}
+	}
+	krcw_sph_USA_int1 = {
+		icon = GFX_decision_generic_factory
+		cost = 50
+		allowed = { original_tag = USA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB PAN GUA HON ELS NIC COS DOM HAI }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { NOT = { has_country_flag = krcw_sph_int1 } }
+		}
+		available = {
+			has_war = no
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_customs_union
+				add_autonomy_ratio = { value = -0.15 }
+				set_country_flag = krcw_sph_int1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_USA_int2 = {
+		icon = GFX_decision_generic_military
+		cost = 75
+		allowed = { original_tag = USA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB PAN GUA HON ELS NIC COS DOM HAI }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int1 NOT = { has_country_flag = krcw_sph_int2 } }
+		}
+		available = {
+			FROM = { has_country_flag = { flag = krcw_sph_int1 days > 270 } }
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_joint_command
+				add_autonomy_ratio = { value = -0.20 }
+				set_country_flag = krcw_sph_int2
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_USA_int3 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 100
+		allowed = { original_tag = USA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB PAN GUA HON ELS NIC COS DOM HAI }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int2 }
+		}
+		available = {
+			has_war = no
+			FROM = { has_country_flag = { flag = krcw_sph_int2 days > 270 } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = { country_event = { id = krcw_sph.30 days = 3 } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_usa_cub_sugar = {
+		icon = GFX_decision_money_with_hand
+		cost = 50
+		allowed = { original_tag = USA }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = CUB }
+		available = {
+			CUB = { check_variable = { krcw_inf_USA > 24 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = CUB } hidden_effect = { CUB = { add_to_variable = { krcw_inf_USA = 15 } clamp_variable = { var = krcw_inf_USA min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_CUB_USA_p15 }
+			if = { limit = { country_exists = CUB } hidden_effect = { CUB = { add_to_variable = { krcw_inf_WCA = -10 } clamp_variable = { var = krcw_inf_WCA min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_CUB_WCA_m10 }
+			CUB = { krcw_econ_up_small = yes }
+			if = { limit = { country_exists = CUB } CUB = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid } } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+}
+krcw_sph_JAP_cat = {
+	krcw_sph_JAP_invest = {
+		icon = GFX_decision_money_with_hand
+		cost = 40
+		allowed = { original_tag = JAP }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { PHI INO MAL SIA BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_JAP = 8 } clamp_variable = { var = krcw_inf_JAP min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_CHI > 0 } } add_to_variable = { krcw_inf_CHI = -3 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_PSA > 0 } } add_to_variable = { krcw_inf_PSA = -3 } clamp_variable = { var = krcw_inf_PSA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_RAJ > 0 } } add_to_variable = { krcw_inf_RAJ = -3 } clamp_variable = { var = krcw_inf_RAJ min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p8
+			custom_effect_tooltip = krcw_sph_tt_r3
+			FROM = {
+				krcw_econ_up_small = yes
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_JAP > 29 } } }
+		}
+	}
+	krcw_sph_JAP_fund = {
+		icon = GFX_decision_generic_political_rally
+		cost = 35
+		allowed = { original_tag = JAP }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { PHI INO MAL SIA BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_JAP > 9 } }
+		}
+		days_re_enable = 150
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_JAP = 6 } clamp_variable = { var = krcw_inf_JAP min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				add_popularity = { ideology = nationalist popularity = 0.04 }
+				add_stability = -0.02
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_JAP > 39 } } }
+		}
+	}
+	krcw_sph_JAP_counter = {
+		icon = GFX_decision_generic_arrest
+		cost = 50
+		allowed = { original_tag = JAP }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { PHI INO MAL SIA BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { check_variable = { krcw_inf_CHI > 14 } check_variable = { krcw_inf_PSA > 14 } check_variable = { krcw_inf_RAJ > 14 } } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_JAP = 4 } clamp_variable = { var = krcw_inf_JAP min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_CHI > 0 } } add_to_variable = { krcw_inf_CHI = -6 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_PSA > 0 } } add_to_variable = { krcw_inf_PSA = -6 } clamp_variable = { var = krcw_inf_PSA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_RAJ > 0 } } add_to_variable = { krcw_inf_RAJ = -6 } clamp_variable = { var = krcw_inf_RAJ min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p4
+			custom_effect_tooltip = krcw_sph_tt_r6
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 0 has_political_power > 150 has_war = no }
+			modifier = { add = 3 has_political_power > 150 FROM = { OR = { check_variable = { krcw_inf_CHI > 34 } check_variable = { krcw_inf_PSA > 34 } check_variable = { krcw_inf_RAJ > 34 } } } }
+		}
+	}
+	krcw_sph_JAP_arms = {
+		icon = GFX_decision_supporteq
+		cost = 25
+		allowed = { original_tag = JAP }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { PHI INO MAL SIA BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_JAP > 9 } }
+		}
+		available = {
+			has_equipment = { infantry_equipment > 1999 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = FROM type = infantry_equipment amount = 1000 }
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_JAP = 6 } clamp_variable = { var = krcw_inf_JAP min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				if = { limit = { NOT = { has_idea = krcw_sph_instructors } } add_timed_idea = { idea = krcw_sph_instructors days = 365 } }
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_war = no has_equipment = { infantry_equipment > 9999 } }
+		}
+	}
+	krcw_sph_JAP_treaty = {
+		icon = GFX_decision_generic_civil_support
+		cost = 25
+		allowed = { original_tag = JAP }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { PHI INO MAL SIA BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_JAP > 24 } NOT = { has_country_flag = krcw_sph_treaty_JAP } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_JAP > 34 }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_treaty_no_JAP }
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 12 value = 1 }
+				country_event = { id = krcw_sph.107 days = 3 }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 4 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_JAP_align = {
+		icon = GFX_decision_category_generic_foreign_policy
+		cost = 50
+		allowed = { original_tag = JAP }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { PHI INO MAL SIA BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = {
+				check_variable = { krcw_inf_JAP > 44 }
+				NOT = { has_country_flag = krcw_sph_aligned_JAP }
+				NOT = { is_in_faction_with = ROOT }
+				is_faction_leader = no
+			}
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			FROM = {
+				check_variable = { krcw_inf_JAP > 59 }
+				NOT = { OR = { check_variable = { krcw_inf_CHI > 40 } check_variable = { krcw_inf_PSA > 40 } check_variable = { krcw_inf_RAJ > 40 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_align_no_JAP }
+				has_war = no
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.307 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = PHI check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1033 } } }
+				if = { limit = { FROM = { tag = PHI check_variable = { krcw_inf_PSA > 19 } } country_exists = PSA NOT = { has_war_with = PSA } } PSA = { country_event = { id = krcw_sph.1034 } } }
+				if = { limit = { FROM = { tag = INO check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1018 } } }
+				if = { limit = { FROM = { tag = MAL check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1022 } } }
+				if = { limit = { FROM = { tag = SIA check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1041 } } }
+				if = { limit = { FROM = { tag = SIA check_variable = { krcw_inf_RAJ > 19 } } country_exists = RAJ NOT = { has_war_with = RAJ } } RAJ = { country_event = { id = krcw_sph.1042 } } }
+				if = { limit = { FROM = { tag = BRU check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1008 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_JAP_protect = {
+		icon = GFX_decision_generic_army_support
+		cost = 75
+		allowed = { original_tag = JAP }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { PHI INO MAL SIA BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_JAP > 69 } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_JAP > 79 }
+				OR = {
+					has_country_flag = krcw_sph_treaty_JAP
+					has_country_flag = krcw_sph_aligned_JAP
+					is_in_faction_with = ROOT
+				}
+				NOT = { OR = { check_variable = { krcw_inf_CHI > 30 } check_variable = { krcw_inf_PSA > 30 } check_variable = { krcw_inf_RAJ > 30 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_protect_no_JAP }
+				is_faction_leader = no
+				has_war = no
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.407 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = PHI check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1033 } } }
+				if = { limit = { FROM = { tag = PHI check_variable = { krcw_inf_PSA > 19 } } country_exists = PSA NOT = { has_war_with = PSA } } PSA = { country_event = { id = krcw_sph.1034 } } }
+				if = { limit = { FROM = { tag = INO check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1018 } } }
+				if = { limit = { FROM = { tag = MAL check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1022 } } }
+				if = { limit = { FROM = { tag = SIA check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1041 } } }
+				if = { limit = { FROM = { tag = SIA check_variable = { krcw_inf_RAJ > 19 } } country_exists = RAJ NOT = { has_war_with = RAJ } } RAJ = { country_event = { id = krcw_sph.1042 } } }
+				if = { limit = { FROM = { tag = BRU check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1008 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 100 has_war = no }
+			modifier = { factor = 0 FROM = { OR = { tag = ALB tag = SEN tag = TUN } } }
+		}
+	}
+	krcw_sph_JAP_ultimatum = {
+		icon = GFX_decision_generic_break_treaty
+		cost = 25
+		allowed = { original_tag = JAP }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { PHI INO MAL SIA BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { has_country_flag = krcw_sph_refused_JAP has_country_flag = krcw_sph_aligned_CHI has_country_flag = krcw_sph_aligned_PSA has_country_flag = krcw_sph_aligned_RAJ } }
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			NOT = { has_global_flag = krcw_sph_ult_lock }
+			has_war = no
+			strength_ratio = { tag = FROM ratio > 2 }
+			FROM = {
+				check_variable = { krcw_inf_JAP > 29 }
+				is_in_faction = no
+				has_war = no
+				NOT = { has_country_flag = krcw_sph_pending }
+			}
+		}
+		days_re_enable = 365
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.507 days = 3 }
+			}
+			set_global_flag = { flag = krcw_sph_ult_lock days = 365 value = 1 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_war = no has_political_power > 50 strength_ratio = { tag = FROM ratio > 3 } }
+			modifier = { factor = 0 NOT = { FROM = { any_neighbor_country = { OR = { tag = ROOT is_subject_of = ROOT } } } } }
+		}
+	}
+	krcw_sph_JAP_int1 = {
+		icon = GFX_decision_generic_factory
+		cost = 50
+		allowed = { original_tag = JAP }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { PHI INO MAL SIA BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { NOT = { has_country_flag = krcw_sph_int1 } }
+		}
+		available = {
+			has_war = no
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_customs_union
+				add_autonomy_ratio = { value = -0.15 }
+				set_country_flag = krcw_sph_int1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_JAP_int2 = {
+		icon = GFX_decision_generic_military
+		cost = 75
+		allowed = { original_tag = JAP }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { PHI INO MAL SIA BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int1 NOT = { has_country_flag = krcw_sph_int2 } }
+		}
+		available = {
+			FROM = { has_country_flag = { flag = krcw_sph_int1 days > 270 } }
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_joint_command
+				add_autonomy_ratio = { value = -0.20 }
+				set_country_flag = krcw_sph_int2
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_JAP_int3 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 100
+		allowed = { original_tag = JAP }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { PHI INO MAL SIA BRU }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int2 }
+		}
+		available = {
+			has_war = no
+			FROM = { has_country_flag = { flag = krcw_sph_int2 days > 270 } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = { country_event = { id = krcw_sph.30 days = 3 } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_jap_phi_davao = {
+		icon = GFX_decision_money_with_hand
+		cost = 50
+		allowed = { original_tag = JAP }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = PHI }
+		available = {
+			PHI = { check_variable = { krcw_inf_JAP > 24 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = PHI } hidden_effect = { PHI = { add_to_variable = { krcw_inf_JAP = 15 } clamp_variable = { var = krcw_inf_JAP min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_PHI_JAP_p15 }
+			if = { limit = { country_exists = PHI } hidden_effect = { PHI = { add_to_variable = { krcw_inf_CHI = -5 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_PHI_CHI_m5 }
+			if = { limit = { country_exists = PHI } hidden_effect = { PHI = { add_to_variable = { krcw_inf_PSA = -5 } clamp_variable = { var = krcw_inf_PSA min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_PHI_PSA_m5 }
+			PHI = { add_stability = -0.02 }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+}
+krcw_sph_PSA_cat = {
+	krcw_sph_PSA_invest = {
+		icon = GFX_decision_money_with_hand
+		cost = 40
+		allowed = { original_tag = PSA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { HWI PHI PAN }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_PSA = 8 } clamp_variable = { var = krcw_inf_PSA min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_CHI > 0 } } add_to_variable = { krcw_inf_CHI = -3 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_JAP > 0 } } add_to_variable = { krcw_inf_JAP = -3 } clamp_variable = { var = krcw_inf_JAP min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_USA > 0 } } add_to_variable = { krcw_inf_USA = -3 } clamp_variable = { var = krcw_inf_USA min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p8
+			custom_effect_tooltip = krcw_sph_tt_r3
+			FROM = {
+				krcw_econ_up_small = yes
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_PSA > 29 } } }
+		}
+	}
+	krcw_sph_PSA_fund = {
+		icon = GFX_decision_generic_political_rally
+		cost = 35
+		allowed = { original_tag = PSA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { HWI PHI PAN }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_PSA > 9 } }
+		}
+		days_re_enable = 150
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_PSA = 6 } clamp_variable = { var = krcw_inf_PSA min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				add_popularity = { ideology = conservative popularity = 0.04 }
+				add_stability = -0.02
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_PSA > 39 } } }
+		}
+	}
+	krcw_sph_PSA_counter = {
+		icon = GFX_decision_generic_arrest
+		cost = 50
+		allowed = { original_tag = PSA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { HWI PHI PAN }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { check_variable = { krcw_inf_CHI > 14 } check_variable = { krcw_inf_JAP > 14 } check_variable = { krcw_inf_USA > 14 } } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_PSA = 4 } clamp_variable = { var = krcw_inf_PSA min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_CHI > 0 } } add_to_variable = { krcw_inf_CHI = -6 } clamp_variable = { var = krcw_inf_CHI min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_JAP > 0 } } add_to_variable = { krcw_inf_JAP = -6 } clamp_variable = { var = krcw_inf_JAP min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_USA > 0 } } add_to_variable = { krcw_inf_USA = -6 } clamp_variable = { var = krcw_inf_USA min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p4
+			custom_effect_tooltip = krcw_sph_tt_r6
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 0 has_political_power > 150 has_war = no }
+			modifier = { add = 3 has_political_power > 150 FROM = { OR = { check_variable = { krcw_inf_CHI > 34 } check_variable = { krcw_inf_JAP > 34 } check_variable = { krcw_inf_USA > 34 } } } }
+		}
+	}
+	krcw_sph_PSA_arms = {
+		icon = GFX_decision_supporteq
+		cost = 25
+		allowed = { original_tag = PSA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { HWI PHI PAN }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_PSA > 9 } }
+		}
+		available = {
+			has_equipment = { infantry_equipment > 1999 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = FROM type = infantry_equipment amount = 1000 }
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_PSA = 6 } clamp_variable = { var = krcw_inf_PSA min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				if = { limit = { NOT = { has_idea = krcw_sph_instructors } } add_timed_idea = { idea = krcw_sph_instructors days = 365 } }
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_war = no has_equipment = { infantry_equipment > 9999 } }
+		}
+	}
+	krcw_sph_PSA_treaty = {
+		icon = GFX_decision_generic_civil_support
+		cost = 25
+		allowed = { original_tag = PSA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { HWI PHI PAN }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_PSA > 24 } NOT = { has_country_flag = krcw_sph_treaty_PSA } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_PSA > 34 }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_treaty_no_PSA }
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 12 value = 1 }
+				country_event = { id = krcw_sph.108 days = 3 }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 4 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_PSA_align = {
+		icon = GFX_decision_category_generic_foreign_policy
+		cost = 50
+		allowed = { original_tag = PSA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { HWI PHI PAN }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = {
+				check_variable = { krcw_inf_PSA > 44 }
+				NOT = { has_country_flag = krcw_sph_aligned_PSA }
+				NOT = { is_in_faction_with = ROOT }
+				is_faction_leader = no
+			}
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			FROM = {
+				check_variable = { krcw_inf_PSA > 59 }
+				NOT = { OR = { check_variable = { krcw_inf_CHI > 40 } check_variable = { krcw_inf_JAP > 40 } check_variable = { krcw_inf_USA > 40 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_align_no_PSA }
+				has_war = no
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.308 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = PHI check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1035 } } }
+				if = { limit = { FROM = { tag = PHI check_variable = { krcw_inf_JAP > 19 } } country_exists = JAP NOT = { has_war_with = JAP } } JAP = { country_event = { id = krcw_sph.1036 } } }
+				if = { limit = { FROM = { tag = PAN check_variable = { krcw_inf_USA > 19 } } country_exists = USA NOT = { has_war_with = USA } } USA = { country_event = { id = krcw_sph.1030 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_PSA_protect = {
+		icon = GFX_decision_generic_army_support
+		cost = 75
+		allowed = { original_tag = PSA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { HWI PHI PAN }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_PSA > 69 } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_PSA > 79 }
+				OR = {
+					has_country_flag = krcw_sph_treaty_PSA
+					has_country_flag = krcw_sph_aligned_PSA
+					is_in_faction_with = ROOT
+				}
+				NOT = { OR = { check_variable = { krcw_inf_CHI > 30 } check_variable = { krcw_inf_JAP > 30 } check_variable = { krcw_inf_USA > 30 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_protect_no_PSA }
+				is_faction_leader = no
+				has_war = no
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.408 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = PHI check_variable = { krcw_inf_CHI > 19 } } country_exists = CHI NOT = { has_war_with = CHI } } CHI = { country_event = { id = krcw_sph.1035 } } }
+				if = { limit = { FROM = { tag = PHI check_variable = { krcw_inf_JAP > 19 } } country_exists = JAP NOT = { has_war_with = JAP } } JAP = { country_event = { id = krcw_sph.1036 } } }
+				if = { limit = { FROM = { tag = PAN check_variable = { krcw_inf_USA > 19 } } country_exists = USA NOT = { has_war_with = USA } } USA = { country_event = { id = krcw_sph.1030 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 100 has_war = no }
+			modifier = { factor = 0 FROM = { OR = { tag = ALB tag = SEN tag = TUN } } }
+		}
+	}
+	krcw_sph_PSA_ultimatum = {
+		icon = GFX_decision_generic_break_treaty
+		cost = 25
+		allowed = { original_tag = PSA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { HWI PHI PAN }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { has_country_flag = krcw_sph_refused_PSA has_country_flag = krcw_sph_aligned_CHI has_country_flag = krcw_sph_aligned_JAP has_country_flag = krcw_sph_aligned_USA } }
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			NOT = { has_global_flag = krcw_sph_ult_lock }
+			has_war = no
+			strength_ratio = { tag = FROM ratio > 2 }
+			FROM = {
+				check_variable = { krcw_inf_PSA > 29 }
+				is_in_faction = no
+				has_war = no
+				NOT = { has_country_flag = krcw_sph_pending }
+			}
+		}
+		days_re_enable = 365
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.508 days = 3 }
+			}
+			set_global_flag = { flag = krcw_sph_ult_lock days = 365 value = 1 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_war = no has_political_power > 50 strength_ratio = { tag = FROM ratio > 3 } }
+			modifier = { factor = 0 NOT = { FROM = { any_neighbor_country = { OR = { tag = ROOT is_subject_of = ROOT } } } } }
+		}
+	}
+	krcw_sph_PSA_int1 = {
+		icon = GFX_decision_generic_factory
+		cost = 50
+		allowed = { original_tag = PSA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { HWI PHI PAN }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { NOT = { has_country_flag = krcw_sph_int1 } }
+		}
+		available = {
+			has_war = no
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_customs_union
+				add_autonomy_ratio = { value = -0.15 }
+				set_country_flag = krcw_sph_int1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_PSA_int2 = {
+		icon = GFX_decision_generic_military
+		cost = 75
+		allowed = { original_tag = PSA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { HWI PHI PAN }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int1 NOT = { has_country_flag = krcw_sph_int2 } }
+		}
+		available = {
+			FROM = { has_country_flag = { flag = krcw_sph_int1 days > 270 } }
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_joint_command
+				add_autonomy_ratio = { value = -0.20 }
+				set_country_flag = krcw_sph_int2
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_PSA_int3 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 100
+		allowed = { original_tag = PSA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { HWI PHI PAN }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int2 }
+		}
+		available = {
+			has_war = no
+			FROM = { has_country_flag = { flag = krcw_sph_int2 days > 270 } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = { country_event = { id = krcw_sph.30 days = 3 } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_psa_hwi_pearl = {
+		icon = GFX_decision_money_with_hand
+		cost = 75
+		allowed = { original_tag = PSA }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = HWI }
+		available = {
+			HWI = { check_variable = { krcw_inf_PSA > 34 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = HWI } hidden_effect = { HWI = { add_to_variable = { krcw_inf_PSA = 20 } clamp_variable = { var = krcw_inf_PSA min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_HWI_PSA_p20 }
+			HWI = { add_political_power = 50 }
+			if = { limit = { country_exists = HWI } HWI = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid } } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+}
+krcw_sph_ITA_cat = {
+	krcw_sph_ITA_invest = {
+		icon = GFX_decision_money_with_hand
+		cost = 40
+		allowed = { original_tag = ITA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB LBA ETH SOM MLT SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_ITA = 8 } clamp_variable = { var = krcw_inf_ITA min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_FRA > 0 } } add_to_variable = { krcw_inf_FRA = -3 } clamp_variable = { var = krcw_inf_FRA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_SOV > 0 } } add_to_variable = { krcw_inf_SOV = -3 } clamp_variable = { var = krcw_inf_SOV min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_WGR > 0 } } add_to_variable = { krcw_inf_WGR = -3 } clamp_variable = { var = krcw_inf_WGR min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p8
+			custom_effect_tooltip = krcw_sph_tt_r3
+			FROM = {
+				krcw_econ_up_small = yes
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_ITA > 29 } } }
+		}
+	}
+	krcw_sph_ITA_fund = {
+		icon = GFX_decision_generic_political_rally
+		cost = 35
+		allowed = { original_tag = ITA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB LBA ETH SOM MLT SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_ITA > 9 } }
+		}
+		days_re_enable = 150
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_ITA = 6 } clamp_variable = { var = krcw_inf_ITA min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				add_popularity = { ideology = trotskyism popularity = 0.04 }
+				add_stability = -0.02
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_ITA > 39 } } }
+		}
+	}
+	krcw_sph_ITA_counter = {
+		icon = GFX_decision_generic_arrest
+		cost = 50
+		allowed = { original_tag = ITA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB LBA ETH SOM MLT SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { check_variable = { krcw_inf_FRA > 14 } check_variable = { krcw_inf_SOV > 14 } check_variable = { krcw_inf_WGR > 14 } } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_ITA = 4 } clamp_variable = { var = krcw_inf_ITA min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_FRA > 0 } } add_to_variable = { krcw_inf_FRA = -6 } clamp_variable = { var = krcw_inf_FRA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_SOV > 0 } } add_to_variable = { krcw_inf_SOV = -6 } clamp_variable = { var = krcw_inf_SOV min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_WGR > 0 } } add_to_variable = { krcw_inf_WGR = -6 } clamp_variable = { var = krcw_inf_WGR min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p4
+			custom_effect_tooltip = krcw_sph_tt_r6
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 0 has_political_power > 150 has_war = no }
+			modifier = { add = 3 has_political_power > 150 FROM = { OR = { check_variable = { krcw_inf_FRA > 34 } check_variable = { krcw_inf_SOV > 34 } check_variable = { krcw_inf_WGR > 34 } } } }
+		}
+	}
+	krcw_sph_ITA_arms = {
+		icon = GFX_decision_supporteq
+		cost = 25
+		allowed = { original_tag = ITA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB LBA ETH SOM MLT SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_ITA > 9 } }
+		}
+		available = {
+			has_equipment = { infantry_equipment > 1999 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = FROM type = infantry_equipment amount = 1000 }
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_ITA = 6 } clamp_variable = { var = krcw_inf_ITA min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				if = { limit = { NOT = { has_idea = krcw_sph_instructors } } add_timed_idea = { idea = krcw_sph_instructors days = 365 } }
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_war = no has_equipment = { infantry_equipment > 9999 } }
+		}
+	}
+	krcw_sph_ITA_treaty = {
+		icon = GFX_decision_generic_civil_support
+		cost = 25
+		allowed = { original_tag = ITA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB LBA ETH SOM MLT SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_ITA > 24 } NOT = { has_country_flag = krcw_sph_treaty_ITA } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_ITA > 34 }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_treaty_no_ITA }
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 12 value = 1 }
+				country_event = { id = krcw_sph.109 days = 3 }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 4 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_ITA_align = {
+		icon = GFX_decision_category_generic_foreign_policy
+		cost = 50
+		allowed = { original_tag = ITA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB LBA ETH SOM MLT SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = {
+				check_variable = { krcw_inf_ITA > 44 }
+				NOT = { has_country_flag = krcw_sph_aligned_ITA }
+				NOT = { is_in_faction_with = ROOT }
+				is_faction_leader = no
+			}
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			FROM = {
+				check_variable = { krcw_inf_ITA > 59 }
+				NOT = { OR = { check_variable = { krcw_inf_FRA > 40 } check_variable = { krcw_inf_SOV > 40 } check_variable = { krcw_inf_WGR > 40 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_align_no_ITA }
+				has_war = no
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.309 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = ALB check_variable = { krcw_inf_SOV > 19 } } country_exists = SOV NOT = { has_war_with = SOV } } SOV = { country_event = { id = krcw_sph.1002 } } }
+				if = { limit = { FROM = { tag = LBA check_variable = { krcw_inf_FRA > 19 } } country_exists = FRA NOT = { has_war_with = FRA } } FRA = { country_event = { id = krcw_sph.1020 } } }
+				if = { limit = { FROM = { tag = SWI check_variable = { krcw_inf_FRA > 19 } } country_exists = FRA NOT = { has_war_with = FRA } } FRA = { country_event = { id = krcw_sph.1049 } } }
+				if = { limit = { FROM = { tag = SWI check_variable = { krcw_inf_WGR > 19 } } country_exists = WGR NOT = { has_war_with = WGR } } WGR = { country_event = { id = krcw_sph.1050 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_ITA_protect = {
+		icon = GFX_decision_generic_army_support
+		cost = 75
+		allowed = { original_tag = ITA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB LBA ETH SOM MLT SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_ITA > 69 } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_ITA > 79 }
+				OR = {
+					has_country_flag = krcw_sph_treaty_ITA
+					has_country_flag = krcw_sph_aligned_ITA
+					is_in_faction_with = ROOT
+				}
+				NOT = { OR = { check_variable = { krcw_inf_FRA > 30 } check_variable = { krcw_inf_SOV > 30 } check_variable = { krcw_inf_WGR > 30 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_protect_no_ITA }
+				is_faction_leader = no
+				has_war = no
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.409 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = ALB check_variable = { krcw_inf_SOV > 19 } } country_exists = SOV NOT = { has_war_with = SOV } } SOV = { country_event = { id = krcw_sph.1002 } } }
+				if = { limit = { FROM = { tag = LBA check_variable = { krcw_inf_FRA > 19 } } country_exists = FRA NOT = { has_war_with = FRA } } FRA = { country_event = { id = krcw_sph.1020 } } }
+				if = { limit = { FROM = { tag = SWI check_variable = { krcw_inf_FRA > 19 } } country_exists = FRA NOT = { has_war_with = FRA } } FRA = { country_event = { id = krcw_sph.1049 } } }
+				if = { limit = { FROM = { tag = SWI check_variable = { krcw_inf_WGR > 19 } } country_exists = WGR NOT = { has_war_with = WGR } } WGR = { country_event = { id = krcw_sph.1050 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 100 has_war = no }
+			modifier = { factor = 0 FROM = { OR = { tag = ALB tag = SEN tag = TUN } } }
+		}
+	}
+	krcw_sph_ITA_ultimatum = {
+		icon = GFX_decision_generic_break_treaty
+		cost = 25
+		allowed = { original_tag = ITA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB LBA ETH SOM MLT SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { has_country_flag = krcw_sph_refused_ITA has_country_flag = krcw_sph_aligned_FRA has_country_flag = krcw_sph_aligned_SOV has_country_flag = krcw_sph_aligned_WGR } }
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			NOT = { has_global_flag = krcw_sph_ult_lock }
+			has_war = no
+			strength_ratio = { tag = FROM ratio > 2 }
+			FROM = {
+				check_variable = { krcw_inf_ITA > 29 }
+				is_in_faction = no
+				has_war = no
+				NOT = { has_country_flag = krcw_sph_pending }
+			}
+		}
+		days_re_enable = 365
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.509 days = 3 }
+			}
+			set_global_flag = { flag = krcw_sph_ult_lock days = 365 value = 1 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_war = no has_political_power > 50 strength_ratio = { tag = FROM ratio > 3 } }
+			modifier = { factor = 0 NOT = { FROM = { any_neighbor_country = { OR = { tag = ROOT is_subject_of = ROOT } } } } }
+		}
+	}
+	krcw_sph_ITA_int1 = {
+		icon = GFX_decision_generic_factory
+		cost = 50
+		allowed = { original_tag = ITA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB LBA ETH SOM MLT SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { NOT = { has_country_flag = krcw_sph_int1 } }
+		}
+		available = {
+			has_war = no
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_customs_union
+				add_autonomy_ratio = { value = -0.15 }
+				set_country_flag = krcw_sph_int1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_ITA_int2 = {
+		icon = GFX_decision_generic_military
+		cost = 75
+		allowed = { original_tag = ITA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB LBA ETH SOM MLT SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int1 NOT = { has_country_flag = krcw_sph_int2 } }
+		}
+		available = {
+			FROM = { has_country_flag = { flag = krcw_sph_int1 days > 270 } }
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_joint_command
+				add_autonomy_ratio = { value = -0.20 }
+				set_country_flag = krcw_sph_int2
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_ITA_int3 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 100
+		allowed = { original_tag = ITA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { ALB LBA ETH SOM MLT SWI }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int2 }
+		}
+		available = {
+			has_war = no
+			FROM = { has_country_flag = { flag = krcw_sph_int2 days > 270 } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = { country_event = { id = krcw_sph.30 days = 3 } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_ita_alb_noli = {
+		icon = GFX_decision_money_with_hand
+		cost = 50
+		allowed = { original_tag = ITA }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = ALB }
+		available = {
+			ALB = { check_variable = { krcw_inf_ITA > 4 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = ALB } hidden_effect = { ALB = { add_to_variable = { krcw_inf_ITA = 12 } clamp_variable = { var = krcw_inf_ITA min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_ALB_ITA_p12 }
+			if = { limit = { country_exists = ALB } hidden_effect = { ALB = { add_to_variable = { krcw_inf_SOV = -8 } clamp_variable = { var = krcw_inf_SOV min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_ALB_SOV_m8 }
+			ALB = { add_stability = -0.03 add_popularity = { ideology = trotskyism popularity = 0.03 } }
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_rivalry } } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+}
+krcw_sph_WGR_cat = {
+	krcw_sph_WGR_invest = {
+		icon = GFX_decision_money_with_hand
+		cost = 40
+		allowed = { original_tag = WGR }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SWI SWE ICE }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_WGR = 8 } clamp_variable = { var = krcw_inf_WGR min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_ENG > 0 } } add_to_variable = { krcw_inf_ENG = -3 } clamp_variable = { var = krcw_inf_ENG min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_FRA > 0 } } add_to_variable = { krcw_inf_FRA = -3 } clamp_variable = { var = krcw_inf_FRA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_ITA > 0 } } add_to_variable = { krcw_inf_ITA = -3 } clamp_variable = { var = krcw_inf_ITA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_SOV > 0 } } add_to_variable = { krcw_inf_SOV = -3 } clamp_variable = { var = krcw_inf_SOV min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p8
+			custom_effect_tooltip = krcw_sph_tt_r3
+			FROM = {
+				krcw_econ_up_small = yes
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_WGR > 29 } } }
+		}
+	}
+	krcw_sph_WGR_fund = {
+		icon = GFX_decision_generic_political_rally
+		cost = 35
+		allowed = { original_tag = WGR }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SWI SWE ICE }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_WGR > 9 } }
+		}
+		days_re_enable = 150
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_WGR = 6 } clamp_variable = { var = krcw_inf_WGR min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				add_popularity = { ideology = trotskyism popularity = 0.04 }
+				add_stability = -0.02
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_WGR > 39 } } }
+		}
+	}
+	krcw_sph_WGR_counter = {
+		icon = GFX_decision_generic_arrest
+		cost = 50
+		allowed = { original_tag = WGR }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SWI SWE ICE }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { check_variable = { krcw_inf_ENG > 14 } check_variable = { krcw_inf_FRA > 14 } check_variable = { krcw_inf_ITA > 14 } check_variable = { krcw_inf_SOV > 14 } } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_WGR = 4 } clamp_variable = { var = krcw_inf_WGR min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_ENG > 0 } } add_to_variable = { krcw_inf_ENG = -6 } clamp_variable = { var = krcw_inf_ENG min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_FRA > 0 } } add_to_variable = { krcw_inf_FRA = -6 } clamp_variable = { var = krcw_inf_FRA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_ITA > 0 } } add_to_variable = { krcw_inf_ITA = -6 } clamp_variable = { var = krcw_inf_ITA min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_SOV > 0 } } add_to_variable = { krcw_inf_SOV = -6 } clamp_variable = { var = krcw_inf_SOV min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p4
+			custom_effect_tooltip = krcw_sph_tt_r6
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 0 has_political_power > 150 has_war = no }
+			modifier = { add = 3 has_political_power > 150 FROM = { OR = { check_variable = { krcw_inf_ENG > 34 } check_variable = { krcw_inf_FRA > 34 } check_variable = { krcw_inf_ITA > 34 } check_variable = { krcw_inf_SOV > 34 } } } }
+		}
+	}
+	krcw_sph_WGR_arms = {
+		icon = GFX_decision_supporteq
+		cost = 25
+		allowed = { original_tag = WGR }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SWI SWE ICE }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_WGR > 9 } }
+		}
+		available = {
+			has_equipment = { infantry_equipment > 1999 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = FROM type = infantry_equipment amount = 1000 }
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_WGR = 6 } clamp_variable = { var = krcw_inf_WGR min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				if = { limit = { NOT = { has_idea = krcw_sph_instructors } } add_timed_idea = { idea = krcw_sph_instructors days = 365 } }
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_war = no has_equipment = { infantry_equipment > 9999 } }
+		}
+	}
+	krcw_sph_WGR_treaty = {
+		icon = GFX_decision_generic_civil_support
+		cost = 25
+		allowed = { original_tag = WGR }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SWI SWE ICE }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_WGR > 24 } NOT = { has_country_flag = krcw_sph_treaty_WGR } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_WGR > 34 }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_treaty_no_WGR }
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 12 value = 1 }
+				country_event = { id = krcw_sph.110 days = 3 }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 4 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_WGR_align = {
+		icon = GFX_decision_category_generic_foreign_policy
+		cost = 50
+		allowed = { original_tag = WGR }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SWI SWE ICE }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = {
+				check_variable = { krcw_inf_WGR > 44 }
+				NOT = { has_country_flag = krcw_sph_aligned_WGR }
+				NOT = { is_in_faction_with = ROOT }
+				is_faction_leader = no
+			}
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			FROM = {
+				check_variable = { krcw_inf_WGR > 59 }
+				NOT = { OR = { check_variable = { krcw_inf_ENG > 40 } check_variable = { krcw_inf_FRA > 40 } check_variable = { krcw_inf_ITA > 40 } check_variable = { krcw_inf_SOV > 40 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_align_no_WGR }
+				has_war = no
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.310 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = SWI check_variable = { krcw_inf_FRA > 19 } } country_exists = FRA NOT = { has_war_with = FRA } } FRA = { country_event = { id = krcw_sph.1051 } } }
+				if = { limit = { FROM = { tag = SWI check_variable = { krcw_inf_ITA > 19 } } country_exists = ITA NOT = { has_war_with = ITA } } ITA = { country_event = { id = krcw_sph.1052 } } }
+				if = { limit = { FROM = { tag = SWE check_variable = { krcw_inf_SOV > 19 } } country_exists = SOV NOT = { has_war_with = SOV } } SOV = { country_event = { id = krcw_sph.1046 } } }
+				if = { limit = { FROM = { tag = ICE check_variable = { krcw_inf_ENG > 19 } } country_exists = ENG NOT = { has_war_with = ENG } } ENG = { country_event = { id = krcw_sph.1016 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_WGR_protect = {
+		icon = GFX_decision_generic_army_support
+		cost = 75
+		allowed = { original_tag = WGR }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SWI SWE ICE }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_WGR > 69 } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_WGR > 79 }
+				OR = {
+					has_country_flag = krcw_sph_treaty_WGR
+					has_country_flag = krcw_sph_aligned_WGR
+					is_in_faction_with = ROOT
+				}
+				NOT = { OR = { check_variable = { krcw_inf_ENG > 30 } check_variable = { krcw_inf_FRA > 30 } check_variable = { krcw_inf_ITA > 30 } check_variable = { krcw_inf_SOV > 30 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_protect_no_WGR }
+				is_faction_leader = no
+				has_war = no
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.410 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = SWI check_variable = { krcw_inf_FRA > 19 } } country_exists = FRA NOT = { has_war_with = FRA } } FRA = { country_event = { id = krcw_sph.1051 } } }
+				if = { limit = { FROM = { tag = SWI check_variable = { krcw_inf_ITA > 19 } } country_exists = ITA NOT = { has_war_with = ITA } } ITA = { country_event = { id = krcw_sph.1052 } } }
+				if = { limit = { FROM = { tag = SWE check_variable = { krcw_inf_SOV > 19 } } country_exists = SOV NOT = { has_war_with = SOV } } SOV = { country_event = { id = krcw_sph.1046 } } }
+				if = { limit = { FROM = { tag = ICE check_variable = { krcw_inf_ENG > 19 } } country_exists = ENG NOT = { has_war_with = ENG } } ENG = { country_event = { id = krcw_sph.1016 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 100 has_war = no }
+			modifier = { factor = 0 FROM = { OR = { tag = ALB tag = SEN tag = TUN } } }
+		}
+	}
+	krcw_sph_WGR_ultimatum = {
+		icon = GFX_decision_generic_break_treaty
+		cost = 25
+		allowed = { original_tag = WGR }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SWI SWE ICE }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { has_country_flag = krcw_sph_refused_WGR has_country_flag = krcw_sph_aligned_ENG has_country_flag = krcw_sph_aligned_FRA has_country_flag = krcw_sph_aligned_ITA has_country_flag = krcw_sph_aligned_SOV } }
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			NOT = { has_global_flag = krcw_sph_ult_lock }
+			has_war = no
+			strength_ratio = { tag = FROM ratio > 2 }
+			FROM = {
+				check_variable = { krcw_inf_WGR > 29 }
+				is_in_faction = no
+				has_war = no
+				NOT = { has_country_flag = krcw_sph_pending }
+			}
+		}
+		days_re_enable = 365
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.510 days = 3 }
+			}
+			set_global_flag = { flag = krcw_sph_ult_lock days = 365 value = 1 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_war = no has_political_power > 50 strength_ratio = { tag = FROM ratio > 3 } }
+			modifier = { factor = 0 NOT = { FROM = { any_neighbor_country = { OR = { tag = ROOT is_subject_of = ROOT } } } } }
+		}
+	}
+	krcw_sph_WGR_int1 = {
+		icon = GFX_decision_generic_factory
+		cost = 50
+		allowed = { original_tag = WGR }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SWI SWE ICE }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { NOT = { has_country_flag = krcw_sph_int1 } }
+		}
+		available = {
+			has_war = no
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_customs_union
+				add_autonomy_ratio = { value = -0.15 }
+				set_country_flag = krcw_sph_int1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_WGR_int2 = {
+		icon = GFX_decision_generic_military
+		cost = 75
+		allowed = { original_tag = WGR }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SWI SWE ICE }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int1 NOT = { has_country_flag = krcw_sph_int2 } }
+		}
+		available = {
+			FROM = { has_country_flag = { flag = krcw_sph_int1 days > 270 } }
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_joint_command
+				add_autonomy_ratio = { value = -0.20 }
+				set_country_flag = krcw_sph_int2
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_WGR_int3 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 100
+		allowed = { original_tag = WGR }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { SWI SWE ICE }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int2 }
+		}
+		available = {
+			has_war = no
+			FROM = { has_country_flag = { flag = krcw_sph_int2 days > 270 } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = { country_event = { id = krcw_sph.30 days = 3 } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_wgr_swe_ore = {
+		icon = GFX_decision_money_with_hand
+		cost = 50
+		allowed = { original_tag = WGR }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = SWE }
+		available = {
+			SWE = { check_variable = { krcw_inf_WGR > 24 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = SWE } hidden_effect = { SWE = { add_to_variable = { krcw_inf_WGR = 15 } clamp_variable = { var = krcw_inf_WGR min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_SWE_WGR_p15 }
+			SWE = { krcw_econ_up_small = yes }
+			krcw_econ_up_small = yes
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+}
+krcw_sph_WCA_cat = {
+	krcw_sph_WCA_invest = {
+		icon = GFX_decision_money_with_hand
+		cost = 40
+		allowed = { original_tag = WCA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB BAD VEN COL NIC HAI DOM }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_WCA = 8 } clamp_variable = { var = krcw_inf_WCA min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_ENG > 0 } } add_to_variable = { krcw_inf_ENG = -3 } clamp_variable = { var = krcw_inf_ENG min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_USA > 0 } } add_to_variable = { krcw_inf_USA = -3 } clamp_variable = { var = krcw_inf_USA min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p8
+			custom_effect_tooltip = krcw_sph_tt_r3
+			FROM = {
+				krcw_econ_up_small = yes
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_WCA > 29 } } }
+		}
+	}
+	krcw_sph_WCA_fund = {
+		icon = GFX_decision_generic_political_rally
+		cost = 35
+		allowed = { original_tag = WCA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB BAD VEN COL NIC HAI DOM }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_WCA > 9 } }
+		}
+		days_re_enable = 150
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_WCA = 6 } clamp_variable = { var = krcw_inf_WCA min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				add_popularity = { ideology = trotskyism popularity = 0.04 }
+				add_stability = -0.02
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_political_power > 150 has_war = no }
+			modifier = { add = 2 has_political_power > 150 FROM = { check_variable = { krcw_inf_WCA > 39 } } }
+		}
+	}
+	krcw_sph_WCA_counter = {
+		icon = GFX_decision_generic_arrest
+		cost = 50
+		allowed = { original_tag = WCA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB BAD VEN COL NIC HAI DOM }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { check_variable = { krcw_inf_ENG > 14 } check_variable = { krcw_inf_USA > 14 } } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_WCA = 4 } clamp_variable = { var = krcw_inf_WCA min = 0 max = 100 }
+					if = { limit = { check_variable = { krcw_inf_ENG > 0 } } add_to_variable = { krcw_inf_ENG = -6 } clamp_variable = { var = krcw_inf_ENG min = 0 max = 100 } }
+					if = { limit = { check_variable = { krcw_inf_USA > 0 } } add_to_variable = { krcw_inf_USA = -6 } clamp_variable = { var = krcw_inf_USA min = 0 max = 100 } }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p4
+			custom_effect_tooltip = krcw_sph_tt_r6
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 0 has_political_power > 150 has_war = no }
+			modifier = { add = 3 has_political_power > 150 FROM = { OR = { check_variable = { krcw_inf_ENG > 34 } check_variable = { krcw_inf_USA > 34 } } } }
+		}
+	}
+	krcw_sph_WCA_arms = {
+		icon = GFX_decision_supporteq
+		cost = 25
+		allowed = { original_tag = WCA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB BAD VEN COL NIC HAI DOM }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_WCA > 9 } }
+		}
+		available = {
+			has_equipment = { infantry_equipment > 1999 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = FROM type = infantry_equipment amount = 1000 }
+			FROM = {
+				hidden_effect = {
+					add_to_variable = { krcw_inf_WCA = 6 } clamp_variable = { var = krcw_inf_WCA min = 0 max = 100 }
+				}
+			}
+			custom_effect_tooltip = krcw_sph_tt_p6
+			FROM = {
+				if = { limit = { NOT = { has_idea = krcw_sph_instructors } } add_timed_idea = { idea = krcw_sph_instructors days = 365 } }
+				add_opinion_modifier = { target = ROOT modifier = krcw_sph_aid }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 has_war = no has_equipment = { infantry_equipment > 9999 } }
+		}
+	}
+	krcw_sph_WCA_treaty = {
+		icon = GFX_decision_generic_civil_support
+		cost = 25
+		allowed = { original_tag = WCA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB BAD VEN COL NIC HAI DOM }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_WCA > 24 } NOT = { has_country_flag = krcw_sph_treaty_WCA } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_WCA > 34 }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_treaty_no_WCA }
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 12 value = 1 }
+				country_event = { id = krcw_sph.111 days = 3 }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 4 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_WCA_align = {
+		icon = GFX_decision_category_generic_foreign_policy
+		cost = 50
+		allowed = { original_tag = WCA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB BAD VEN COL NIC HAI DOM }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = {
+				check_variable = { krcw_inf_WCA > 44 }
+				NOT = { has_country_flag = krcw_sph_aligned_WCA }
+				NOT = { is_in_faction_with = ROOT }
+				is_faction_leader = no
+			}
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			FROM = {
+				check_variable = { krcw_inf_WCA > 59 }
+				NOT = { OR = { check_variable = { krcw_inf_ENG > 40 } check_variable = { krcw_inf_USA > 40 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_align_no_WCA }
+				has_war = no
+			}
+		}
+		days_re_enable = 30
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.311 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = CUB check_variable = { krcw_inf_USA > 19 } } country_exists = USA NOT = { has_war_with = USA } } USA = { country_event = { id = krcw_sph.1010 } } }
+				if = { limit = { FROM = { tag = BAD check_variable = { krcw_inf_ENG > 19 } } country_exists = ENG NOT = { has_war_with = ENG } } ENG = { country_event = { id = krcw_sph.1004 } } }
+				if = { limit = { FROM = { tag = NIC check_variable = { krcw_inf_USA > 19 } } country_exists = USA NOT = { has_war_with = USA } } USA = { country_event = { id = krcw_sph.1026 } } }
+				if = { limit = { FROM = { tag = HAI check_variable = { krcw_inf_USA > 19 } } country_exists = USA NOT = { has_war_with = USA } } USA = { country_event = { id = krcw_sph.1014 } } }
+				if = { limit = { FROM = { tag = DOM check_variable = { krcw_inf_USA > 19 } } country_exists = USA NOT = { has_war_with = USA } } USA = { country_event = { id = krcw_sph.1012 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 50 has_war = no }
+		}
+	}
+	krcw_sph_WCA_protect = {
+		icon = GFX_decision_generic_army_support
+		cost = 75
+		allowed = { original_tag = WCA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB BAD VEN COL NIC HAI DOM }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { check_variable = { krcw_inf_WCA > 69 } }
+		}
+		available = {
+			FROM = {
+				check_variable = { krcw_inf_WCA > 79 }
+				OR = {
+					has_country_flag = krcw_sph_treaty_WCA
+					has_country_flag = krcw_sph_aligned_WCA
+					is_in_faction_with = ROOT
+				}
+				NOT = { OR = { check_variable = { krcw_inf_ENG > 30 } check_variable = { krcw_inf_USA > 30 } } }
+				NOT = { has_country_flag = krcw_sph_pending }
+				NOT = { has_country_flag = krcw_sph_protect_no_WCA }
+				is_faction_leader = no
+				has_war = no
+			}
+		}
+		days_re_enable = 60
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.411 days = 7 }
+			}
+			hidden_effect = {
+				if = { limit = { FROM = { tag = CUB check_variable = { krcw_inf_USA > 19 } } country_exists = USA NOT = { has_war_with = USA } } USA = { country_event = { id = krcw_sph.1010 } } }
+				if = { limit = { FROM = { tag = BAD check_variable = { krcw_inf_ENG > 19 } } country_exists = ENG NOT = { has_war_with = ENG } } ENG = { country_event = { id = krcw_sph.1004 } } }
+				if = { limit = { FROM = { tag = NIC check_variable = { krcw_inf_USA > 19 } } country_exists = USA NOT = { has_war_with = USA } } USA = { country_event = { id = krcw_sph.1026 } } }
+				if = { limit = { FROM = { tag = HAI check_variable = { krcw_inf_USA > 19 } } country_exists = USA NOT = { has_war_with = USA } } USA = { country_event = { id = krcw_sph.1014 } } }
+				if = { limit = { FROM = { tag = DOM check_variable = { krcw_inf_USA > 19 } } country_exists = USA NOT = { has_war_with = USA } } USA = { country_event = { id = krcw_sph.1012 } } }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 100 has_war = no }
+			modifier = { factor = 0 FROM = { OR = { tag = ALB tag = SEN tag = TUN } } }
+		}
+	}
+	krcw_sph_WCA_ultimatum = {
+		icon = GFX_decision_generic_break_treaty
+		cost = 25
+		allowed = { original_tag = WCA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB BAD VEN COL NIC HAI DOM }
+		target_trigger = {
+			FROM = { exists = yes is_subject = no NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { OR = { has_country_flag = krcw_sph_refused_WCA has_country_flag = krcw_sph_aligned_ENG has_country_flag = krcw_sph_aligned_USA } }
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_world_war }
+			NOT = { has_global_flag = krcw_sph_ult_lock }
+			has_war = no
+			strength_ratio = { tag = FROM ratio > 2 }
+			FROM = {
+				check_variable = { krcw_inf_WCA > 29 }
+				is_in_faction = no
+				has_war = no
+				NOT = { has_country_flag = krcw_sph_pending }
+			}
+		}
+		days_re_enable = 365
+		complete_effect = {
+			FROM = {
+				set_country_flag = { flag = krcw_sph_pending days = 15 value = 1 }
+				country_event = { id = krcw_sph.511 days = 3 }
+			}
+			set_global_flag = { flag = krcw_sph_ult_lock days = 365 value = 1 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_war = no has_political_power > 50 strength_ratio = { tag = FROM ratio > 3 } }
+			modifier = { factor = 0 NOT = { FROM = { any_neighbor_country = { OR = { tag = ROOT is_subject_of = ROOT } } } } }
+		}
+	}
+	krcw_sph_WCA_int1 = {
+		icon = GFX_decision_generic_factory
+		cost = 50
+		allowed = { original_tag = WCA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB BAD VEN COL NIC HAI DOM }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { NOT = { has_country_flag = krcw_sph_int1 } }
+		}
+		available = {
+			has_war = no
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_customs_union
+				add_autonomy_ratio = { value = -0.15 }
+				set_country_flag = krcw_sph_int1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_WCA_int2 = {
+		icon = GFX_decision_generic_military
+		cost = 75
+		allowed = { original_tag = WCA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB BAD VEN COL NIC HAI DOM }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int1 NOT = { has_country_flag = krcw_sph_int2 } }
+		}
+		available = {
+			FROM = { has_country_flag = { flag = krcw_sph_int1 days > 270 } }
+		}
+		complete_effect = {
+			FROM = {
+				add_ideas = krcw_sph_joint_command
+				add_autonomy_ratio = { value = -0.20 }
+				set_country_flag = krcw_sph_int2
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_WCA_int3 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 100
+		allowed = { original_tag = WCA }
+		target_root_trigger = { has_global_flag = KRCW_active }
+		targets = { CUB BAD VEN COL NIC HAI DOM }
+		target_trigger = {
+			FROM = { exists = yes is_subject_of = ROOT NOT = { has_war_with = ROOT } }
+		}
+		visible = {
+			FROM = { has_country_flag = krcw_sph_int2 }
+		}
+		available = {
+			has_war = no
+			FROM = { has_country_flag = { flag = krcw_sph_int2 days > 270 } }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			FROM = { country_event = { id = krcw_sph.30 days = 3 } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 2 has_political_power > 100 has_war = no }
+		}
+	}
+	krcw_sph_wca_dockers = {
+		icon = GFX_decision_money_with_hand
+		cost = 75
+		allowed = { original_tag = WCA }
+		fire_only_once = yes
+		visible = { has_global_flag = KRCW_active country_exists = CUB country_exists = HAI country_exists = DOM }
+		available = {
+			CUB = { check_variable = { krcw_inf_WCA > 19 } OR = { is_subject = no is_subject_of = ROOT } }
+			HAI = { check_variable = { krcw_inf_WCA > 9 } OR = { is_subject = no is_subject_of = ROOT } }
+			DOM = { check_variable = { krcw_inf_WCA > 9 } OR = { is_subject = no is_subject_of = ROOT } }
+		}
+		complete_effect = {
+			if = { limit = { country_exists = CUB } hidden_effect = { CUB = { add_to_variable = { krcw_inf_WCA = 10 } clamp_variable = { var = krcw_inf_WCA min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_CUB_WCA_p10 }
+			if = { limit = { country_exists = HAI } hidden_effect = { HAI = { add_to_variable = { krcw_inf_WCA = 10 } clamp_variable = { var = krcw_inf_WCA min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_HAI_WCA_p10 }
+			if = { limit = { country_exists = DOM } hidden_effect = { DOM = { add_to_variable = { krcw_inf_WCA = 10 } clamp_variable = { var = krcw_inf_WCA min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_DOM_WCA_p10 }
+			if = { limit = { country_exists = CUB } hidden_effect = { CUB = { add_to_variable = { krcw_inf_USA = -8 } clamp_variable = { var = krcw_inf_USA min = 0 max = 100 } } } custom_effect_tooltip = krcw_sph_inf_CUB_USA_m8 }
+			if = { limit = { country_exists = USA } USA = { add_opinion_modifier = { target = ROOT modifier = krcw_sph_rivalry } } }
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 3 has_political_power > 120 has_war = no }
+		}
+	}
+}

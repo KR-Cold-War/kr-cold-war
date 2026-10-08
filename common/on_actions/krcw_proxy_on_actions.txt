@@ -1,0 +1,383 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			set_variable = { global.krcw_proxy_active = 0 }
+		}
+	}
+	on_monthly_FRA = {
+		effect = {
+		if = {
+			limit = { has_global_flag = krcw_proxy_gre OR = { NOT = { country_exists = GRE } GRE = { has_war = no } } }
+			clr_global_flag = krcw_proxy_gre
+			add_to_variable = { global.krcw_proxy_active = -1 }
+			clamp_variable = { var = global.krcw_proxy_active min = 0 max = 5 }
+		}
+		if = {
+			limit = { has_global_flag = krcw_proxy_per OR = { NOT = { country_exists = PER } PER = { has_war = no } } }
+			clr_global_flag = krcw_proxy_per
+			add_to_variable = { global.krcw_proxy_active = -1 }
+			clamp_variable = { var = global.krcw_proxy_active min = 0 max = 5 }
+		}
+		if = {
+			limit = { has_global_flag = krcw_proxy_phi OR = { NOT = { country_exists = PHI } PHI = { has_war = no } } }
+			clr_global_flag = krcw_proxy_phi
+			add_to_variable = { global.krcw_proxy_active = -1 }
+			clamp_variable = { var = global.krcw_proxy_active min = 0 max = 5 }
+		}
+		if = {
+			limit = { has_global_flag = krcw_proxy_brm OR = { NOT = { country_exists = BRM } BRM = { has_war = no } } }
+			clr_global_flag = krcw_proxy_brm
+			add_to_variable = { global.krcw_proxy_active = -1 }
+			clamp_variable = { var = global.krcw_proxy_active min = 0 max = 5 }
+		}
+		if = {
+			limit = { has_global_flag = krcw_proxy_mex OR = { NOT = { country_exists = MEX } MEX = { has_war = no } } }
+			clr_global_flag = krcw_proxy_mex
+			add_to_variable = { global.krcw_proxy_active = -1 }
+			clamp_variable = { var = global.krcw_proxy_active min = 0 max = 5 }
+		}
+		}
+	}
+	on_weekly_BRM = {
+		effect = {
+			if = {
+				limit = { has_global_flag = krcw_proxy_brm has_event_target = krcw_proxy_brm_rebels NOT = { has_global_flag = krcw_proxy_brm_ending } }
+				if = {
+					limit = { NOT = { has_global_flag = krcw_proxy_brm_started } }
+					set_global_flag = krcw_proxy_brm_started
+					set_global_flag = { flag = krcw_proxy_brm_grace days = 60 value = 1 }
+					event_target:krcw_proxy_brm_rebels = { set_variable = { global.krcw_proxy_brm_reb0 = num_of_controlled_states } set_variable = { global.krcw_proxy_brm_rsp = surrender_progress } }
+					set_variable = { global.krcw_proxy_brm_gov0 = num_of_controlled_states }
+					log = "[GetDateText] KRCWPROXY BRM start rebel_states=[?global.krcw_proxy_brm_reb0|0] gov_states=[?global.krcw_proxy_brm_gov0|0] gov_sp=[?surrender_progress|2] rebel_sp=[?global.krcw_proxy_brm_rsp|2]"
+				}
+				else = {
+					# gain: states the rebels hold beyond the ones they rose with (negative once they lose ground)
+					event_target:krcw_proxy_brm_rebels = { set_variable = { global.krcw_proxy_brm_reb = num_of_controlled_states } }
+					set_variable = { global.krcw_proxy_brm_gain = global.krcw_proxy_brm_reb }
+					subtract_from_variable = { global.krcw_proxy_brm_gain = global.krcw_proxy_brm_reb0 }
+					set_variable = { global.krcw_proxy_brm_half = global.krcw_proxy_brm_reb }
+					multiply_variable = { global.krcw_proxy_brm_half = 2 }
+					# escalation: asked at 0.2 (was 0.3), and the allies get 90 days to arrive. In the 2026-10-08 test Greece fell
+					# at 0.67 eight weeks after the rising; between the request at 0.3 and the fall at 0.6 the allies had no time.
+					if = {
+						limit = { NOT = { has_global_flag = krcw_proxy_brm_escalated } OR = { surrender_progress > 0.2 check_variable = { global.krcw_proxy_brm_gain > 1 } } }
+						set_global_flag = krcw_proxy_brm_escalated
+						set_global_flag = { flag = krcw_proxy_brm_relief days = 90 value = 1 }
+						if = { limit = { country_exists = CHI } CHI = { country_event = { id = krcw_proxy.641 days = 3 } } }
+					}
+					if = {
+						limit = {
+							OR = {
+								# the engine already ended the war (the rebels capitulated and were annexed)
+								event_target:krcw_proxy_brm_rebels = { exists = no }
+								# crushed: past the grace period the rebels hold less than half the states they rose with
+								AND = {
+									NOT = { has_global_flag = krcw_proxy_brm_grace }
+									check_variable = { global.krcw_proxy_brm_half < global.krcw_proxy_brm_reb0 }
+								}
+								# two years on: the government wins unless the rebels have gained ground or it is losing
+								AND = {
+									NOT = { has_global_flag = krcw_proxy_brm_clock }
+									check_variable = { global.krcw_proxy_brm_gain < 2 }
+									NOT = { surrender_progress > 0.3 }
+								}
+							}
+						}
+						set_global_flag = krcw_proxy_brm_ending
+						log = "[GetDateText] KRCWPROXY BRM crushed rebel_states=[?global.krcw_proxy_brm_reb|0]/[?global.krcw_proxy_brm_reb0|0] gov_sp=[?surrender_progress|2]"
+						country_event = { id = krcw_proxy.741 }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								288 = { is_controlled_by = event_target:krcw_proxy_brm_rebels }
+								# while the allies are on their way only near-collapse ends it (the engine settles a civil war at 1.0)
+								surrender_progress > 0.8
+								AND = { surrender_progress > 0.6 NOT = { has_global_flag = krcw_proxy_brm_relief } }
+								NOT = { has_global_flag = krcw_proxy_brm_clock }
+							}
+						}
+						set_global_flag = krcw_proxy_brm_ending
+						log = "[GetDateText] KRCWPROXY BRM falls rebel_states=[?global.krcw_proxy_brm_reb|0]/[?global.krcw_proxy_brm_reb0|0] gov_sp=[?surrender_progress|2]"
+						country_event = { id = krcw_proxy.742 }
+					}
+				}
+			}
+		}
+	}
+	on_weekly_GRE = {
+		effect = {
+			if = {
+				limit = { has_global_flag = krcw_proxy_gre has_event_target = krcw_proxy_gre_rebels NOT = { has_global_flag = krcw_proxy_gre_ending } }
+				if = {
+					limit = { NOT = { has_global_flag = krcw_proxy_gre_started } }
+					set_global_flag = krcw_proxy_gre_started
+					set_global_flag = { flag = krcw_proxy_gre_grace days = 60 value = 1 }
+					event_target:krcw_proxy_gre_rebels = { set_variable = { global.krcw_proxy_gre_reb0 = num_of_controlled_states } set_variable = { global.krcw_proxy_gre_rsp = surrender_progress } }
+					set_variable = { global.krcw_proxy_gre_gov0 = num_of_controlled_states }
+					log = "[GetDateText] KRCWPROXY GRE start rebel_states=[?global.krcw_proxy_gre_reb0|0] gov_states=[?global.krcw_proxy_gre_gov0|0] gov_sp=[?surrender_progress|2] rebel_sp=[?global.krcw_proxy_gre_rsp|2]"
+				}
+				else = {
+					# gain: states the rebels hold beyond the ones they rose with (negative once they lose ground)
+					event_target:krcw_proxy_gre_rebels = { set_variable = { global.krcw_proxy_gre_reb = num_of_controlled_states } }
+					set_variable = { global.krcw_proxy_gre_gain = global.krcw_proxy_gre_reb }
+					subtract_from_variable = { global.krcw_proxy_gre_gain = global.krcw_proxy_gre_reb0 }
+					set_variable = { global.krcw_proxy_gre_half = global.krcw_proxy_gre_reb }
+					multiply_variable = { global.krcw_proxy_gre_half = 2 }
+					# escalation: asked at 0.2 (was 0.3), and the allies get 90 days to arrive. In the 2026-10-08 test Greece fell
+					# at 0.67 eight weeks after the rising; between the request at 0.3 and the fall at 0.6 the allies had no time.
+					if = {
+						limit = { NOT = { has_global_flag = krcw_proxy_gre_escalated } OR = { surrender_progress > 0.2 check_variable = { global.krcw_proxy_gre_gain > 1 } } }
+						set_global_flag = krcw_proxy_gre_escalated
+						set_global_flag = { flag = krcw_proxy_gre_relief days = 90 value = 1 }
+						if = { limit = { country_exists = SOV } SOV = { country_event = { id = krcw_proxy.611 days = 3 } } }
+						if = { limit = { country_exists = BUL } BUL = { country_event = { id = krcw_proxy.612 days = 5 } } }
+						if = { limit = { country_exists = TUR } TUR = { country_event = { id = krcw_proxy.613 days = 7 } } }
+						if = { limit = { country_exists = YUG } YUG = { country_event = { id = krcw_proxy.614 days = 9 } } }
+						if = { limit = { country_exists = ALB } ALB = { country_event = { id = krcw_proxy.615 days = 11 } } }
+					}
+					if = {
+						limit = {
+							OR = {
+								# the engine already ended the war (the rebels capitulated and were annexed)
+								event_target:krcw_proxy_gre_rebels = { exists = no }
+								# crushed: past the grace period the rebels hold less than half the states they rose with
+								AND = {
+									NOT = { has_global_flag = krcw_proxy_gre_grace }
+									check_variable = { global.krcw_proxy_gre_half < global.krcw_proxy_gre_reb0 }
+								}
+								# two years on: the government wins unless the rebels have gained ground or it is losing
+								AND = {
+									NOT = { has_global_flag = krcw_proxy_gre_clock }
+									check_variable = { global.krcw_proxy_gre_gain < 2 }
+									NOT = { surrender_progress > 0.3 }
+								}
+							}
+						}
+						set_global_flag = krcw_proxy_gre_ending
+						log = "[GetDateText] KRCWPROXY GRE crushed rebel_states=[?global.krcw_proxy_gre_reb|0]/[?global.krcw_proxy_gre_reb0|0] gov_sp=[?surrender_progress|2]"
+						country_event = { id = krcw_proxy.711 }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								47 = { is_controlled_by = event_target:krcw_proxy_gre_rebels }
+								# while the allies are on their way only near-collapse ends it (the engine settles a civil war at 1.0)
+								surrender_progress > 0.8
+								AND = { surrender_progress > 0.6 NOT = { has_global_flag = krcw_proxy_gre_relief } }
+								NOT = { has_global_flag = krcw_proxy_gre_clock }
+							}
+						}
+						set_global_flag = krcw_proxy_gre_ending
+						log = "[GetDateText] KRCWPROXY GRE falls rebel_states=[?global.krcw_proxy_gre_reb|0]/[?global.krcw_proxy_gre_reb0|0] gov_sp=[?surrender_progress|2]"
+						country_event = { id = krcw_proxy.712 }
+					}
+				}
+			}
+		}
+	}
+	on_weekly_MEX = {
+		effect = {
+			if = {
+				limit = { has_global_flag = krcw_proxy_mex has_event_target = krcw_proxy_mex_rebels NOT = { has_global_flag = krcw_proxy_mex_ending } }
+				if = {
+					limit = { NOT = { has_global_flag = krcw_proxy_mex_started } }
+					set_global_flag = krcw_proxy_mex_started
+					set_global_flag = { flag = krcw_proxy_mex_grace days = 60 value = 1 }
+					event_target:krcw_proxy_mex_rebels = { set_variable = { global.krcw_proxy_mex_reb0 = num_of_controlled_states } set_variable = { global.krcw_proxy_mex_rsp = surrender_progress } }
+					set_variable = { global.krcw_proxy_mex_gov0 = num_of_controlled_states }
+					log = "[GetDateText] KRCWPROXY MEX start rebel_states=[?global.krcw_proxy_mex_reb0|0] gov_states=[?global.krcw_proxy_mex_gov0|0] gov_sp=[?surrender_progress|2] rebel_sp=[?global.krcw_proxy_mex_rsp|2]"
+				}
+				else = {
+					# gain: states the rebels hold beyond the ones they rose with (negative once they lose ground)
+					event_target:krcw_proxy_mex_rebels = { set_variable = { global.krcw_proxy_mex_reb = num_of_controlled_states } }
+					set_variable = { global.krcw_proxy_mex_gain = global.krcw_proxy_mex_reb }
+					subtract_from_variable = { global.krcw_proxy_mex_gain = global.krcw_proxy_mex_reb0 }
+					set_variable = { global.krcw_proxy_mex_half = global.krcw_proxy_mex_reb }
+					multiply_variable = { global.krcw_proxy_mex_half = 2 }
+					# escalation: asked at 0.2 (was 0.3), and the allies get 90 days to arrive. In the 2026-10-08 test Greece fell
+					# at 0.67 eight weeks after the rising; between the request at 0.3 and the fall at 0.6 the allies had no time.
+					if = {
+						limit = { NOT = { has_global_flag = krcw_proxy_mex_escalated } OR = { surrender_progress > 0.2 check_variable = { global.krcw_proxy_mex_gain > 1 } } }
+						set_global_flag = krcw_proxy_mex_escalated
+						set_global_flag = { flag = krcw_proxy_mex_relief days = 90 value = 1 }
+						if = { limit = { country_exists = USA } USA = { country_event = { id = krcw_proxy.651 days = 3 } } }
+					}
+					if = {
+						limit = {
+							OR = {
+								# the engine already ended the war (the rebels capitulated and were annexed)
+								event_target:krcw_proxy_mex_rebels = { exists = no }
+								# crushed: past the grace period the rebels hold less than half the states they rose with
+								AND = {
+									NOT = { has_global_flag = krcw_proxy_mex_grace }
+									check_variable = { global.krcw_proxy_mex_half < global.krcw_proxy_mex_reb0 }
+								}
+								# two years on: the government wins unless the rebels have gained ground or it is losing
+								AND = {
+									NOT = { has_global_flag = krcw_proxy_mex_clock }
+									check_variable = { global.krcw_proxy_mex_gain < 2 }
+									NOT = { surrender_progress > 0.3 }
+								}
+							}
+						}
+						set_global_flag = krcw_proxy_mex_ending
+						log = "[GetDateText] KRCWPROXY MEX crushed rebel_states=[?global.krcw_proxy_mex_reb|0]/[?global.krcw_proxy_mex_reb0|0] gov_sp=[?surrender_progress|2]"
+						country_event = { id = krcw_proxy.751 }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								277 = { is_controlled_by = event_target:krcw_proxy_mex_rebels }
+								# while the allies are on their way only near-collapse ends it (the engine settles a civil war at 1.0)
+								surrender_progress > 0.8
+								AND = { surrender_progress > 0.6 NOT = { has_global_flag = krcw_proxy_mex_relief } }
+								NOT = { has_global_flag = krcw_proxy_mex_clock }
+							}
+						}
+						set_global_flag = krcw_proxy_mex_ending
+						log = "[GetDateText] KRCWPROXY MEX falls rebel_states=[?global.krcw_proxy_mex_reb|0]/[?global.krcw_proxy_mex_reb0|0] gov_sp=[?surrender_progress|2]"
+						country_event = { id = krcw_proxy.752 }
+					}
+				}
+			}
+		}
+	}
+	on_weekly_PER = {
+		effect = {
+			if = {
+				limit = { has_global_flag = krcw_proxy_per has_event_target = krcw_proxy_per_rebels NOT = { has_global_flag = krcw_proxy_per_ending } }
+				if = {
+					limit = { NOT = { has_global_flag = krcw_proxy_per_started } }
+					set_global_flag = krcw_proxy_per_started
+					set_global_flag = { flag = krcw_proxy_per_grace days = 60 value = 1 }
+					event_target:krcw_proxy_per_rebels = { set_variable = { global.krcw_proxy_per_reb0 = num_of_controlled_states } set_variable = { global.krcw_proxy_per_rsp = surrender_progress } }
+					set_variable = { global.krcw_proxy_per_gov0 = num_of_controlled_states }
+					log = "[GetDateText] KRCWPROXY PER start rebel_states=[?global.krcw_proxy_per_reb0|0] gov_states=[?global.krcw_proxy_per_gov0|0] gov_sp=[?surrender_progress|2] rebel_sp=[?global.krcw_proxy_per_rsp|2]"
+				}
+				else = {
+					# gain: states the rebels hold beyond the ones they rose with (negative once they lose ground)
+					event_target:krcw_proxy_per_rebels = { set_variable = { global.krcw_proxy_per_reb = num_of_controlled_states } }
+					set_variable = { global.krcw_proxy_per_gain = global.krcw_proxy_per_reb }
+					subtract_from_variable = { global.krcw_proxy_per_gain = global.krcw_proxy_per_reb0 }
+					set_variable = { global.krcw_proxy_per_half = global.krcw_proxy_per_reb }
+					multiply_variable = { global.krcw_proxy_per_half = 2 }
+					# escalation: asked at 0.2 (was 0.3), and the allies get 90 days to arrive. In the 2026-10-08 test Greece fell
+					# at 0.67 eight weeks after the rising; between the request at 0.3 and the fall at 0.6 the allies had no time.
+					if = {
+						limit = { NOT = { has_global_flag = krcw_proxy_per_escalated } OR = { surrender_progress > 0.2 check_variable = { global.krcw_proxy_per_gain > 1 } } }
+						set_global_flag = krcw_proxy_per_escalated
+						set_global_flag = { flag = krcw_proxy_per_relief days = 90 value = 1 }
+						if = { limit = { country_exists = SOV } SOV = { country_event = { id = krcw_proxy.621 days = 3 } } }
+						if = { limit = { country_exists = TUR } TUR = { country_event = { id = krcw_proxy.622 days = 5 } } }
+						if = { limit = { country_exists = AFG } AFG = { country_event = { id = krcw_proxy.623 days = 7 } } }
+						if = { limit = { country_exists = RAJ } RAJ = { country_event = { id = krcw_proxy.624 days = 9 } } }
+					}
+					if = {
+						limit = {
+							OR = {
+								# the engine already ended the war (the rebels capitulated and were annexed)
+								event_target:krcw_proxy_per_rebels = { exists = no }
+								# crushed: past the grace period the rebels hold less than half the states they rose with
+								AND = {
+									NOT = { has_global_flag = krcw_proxy_per_grace }
+									check_variable = { global.krcw_proxy_per_half < global.krcw_proxy_per_reb0 }
+								}
+								# two years on: the government wins unless the rebels have gained ground or it is losing
+								AND = {
+									NOT = { has_global_flag = krcw_proxy_per_clock }
+									check_variable = { global.krcw_proxy_per_gain < 2 }
+									NOT = { surrender_progress > 0.3 }
+								}
+							}
+						}
+						set_global_flag = krcw_proxy_per_ending
+						log = "[GetDateText] KRCWPROXY PER crushed rebel_states=[?global.krcw_proxy_per_reb|0]/[?global.krcw_proxy_per_reb0|0] gov_sp=[?surrender_progress|2]"
+						country_event = { id = krcw_proxy.721 }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								266 = { is_controlled_by = event_target:krcw_proxy_per_rebels }
+								# while the allies are on their way only near-collapse ends it (the engine settles a civil war at 1.0)
+								surrender_progress > 0.8
+								AND = { surrender_progress > 0.6 NOT = { has_global_flag = krcw_proxy_per_relief } }
+								NOT = { has_global_flag = krcw_proxy_per_clock }
+							}
+						}
+						set_global_flag = krcw_proxy_per_ending
+						log = "[GetDateText] KRCWPROXY PER falls rebel_states=[?global.krcw_proxy_per_reb|0]/[?global.krcw_proxy_per_reb0|0] gov_sp=[?surrender_progress|2]"
+						country_event = { id = krcw_proxy.722 }
+					}
+				}
+			}
+		}
+	}
+	on_weekly_PHI = {
+		effect = {
+			if = {
+				limit = { has_global_flag = krcw_proxy_phi has_event_target = krcw_proxy_phi_rebels NOT = { has_global_flag = krcw_proxy_phi_ending } }
+				if = {
+					limit = { NOT = { has_global_flag = krcw_proxy_phi_started } }
+					set_global_flag = krcw_proxy_phi_started
+					set_global_flag = { flag = krcw_proxy_phi_grace days = 60 value = 1 }
+					event_target:krcw_proxy_phi_rebels = { set_variable = { global.krcw_proxy_phi_reb0 = num_of_controlled_states } set_variable = { global.krcw_proxy_phi_rsp = surrender_progress } }
+					set_variable = { global.krcw_proxy_phi_gov0 = num_of_controlled_states }
+					log = "[GetDateText] KRCWPROXY PHI start rebel_states=[?global.krcw_proxy_phi_reb0|0] gov_states=[?global.krcw_proxy_phi_gov0|0] gov_sp=[?surrender_progress|2] rebel_sp=[?global.krcw_proxy_phi_rsp|2]"
+				}
+				else = {
+					# gain: states the rebels hold beyond the ones they rose with (negative once they lose ground)
+					event_target:krcw_proxy_phi_rebels = { set_variable = { global.krcw_proxy_phi_reb = num_of_controlled_states } }
+					set_variable = { global.krcw_proxy_phi_gain = global.krcw_proxy_phi_reb }
+					subtract_from_variable = { global.krcw_proxy_phi_gain = global.krcw_proxy_phi_reb0 }
+					set_variable = { global.krcw_proxy_phi_half = global.krcw_proxy_phi_reb }
+					multiply_variable = { global.krcw_proxy_phi_half = 2 }
+					# escalation: asked at 0.2 (was 0.3), and the allies get 90 days to arrive. In the 2026-10-08 test Greece fell
+					# at 0.67 eight weeks after the rising; between the request at 0.3 and the fall at 0.6 the allies had no time.
+					if = {
+						limit = { NOT = { has_global_flag = krcw_proxy_phi_escalated } OR = { surrender_progress > 0.2 check_variable = { global.krcw_proxy_phi_gain > 1 } } }
+						set_global_flag = krcw_proxy_phi_escalated
+						set_global_flag = { flag = krcw_proxy_phi_relief days = 90 value = 1 }
+						if = { limit = { country_exists = USA } USA = { country_event = { id = krcw_proxy.631 days = 3 } } }
+					}
+					if = {
+						limit = {
+							OR = {
+								# the engine already ended the war (the rebels capitulated and were annexed)
+								event_target:krcw_proxy_phi_rebels = { exists = no }
+								# crushed: past the grace period the rebels hold less than half the states they rose with
+								AND = {
+									NOT = { has_global_flag = krcw_proxy_phi_grace }
+									check_variable = { global.krcw_proxy_phi_half < global.krcw_proxy_phi_reb0 }
+								}
+								# two years on: the government wins unless the rebels have gained ground or it is losing
+								AND = {
+									NOT = { has_global_flag = krcw_proxy_phi_clock }
+									check_variable = { global.krcw_proxy_phi_gain < 2 }
+									NOT = { surrender_progress > 0.3 }
+								}
+							}
+						}
+						set_global_flag = krcw_proxy_phi_ending
+						log = "[GetDateText] KRCWPROXY PHI crushed rebel_states=[?global.krcw_proxy_phi_reb|0]/[?global.krcw_proxy_phi_reb0|0] gov_sp=[?surrender_progress|2]"
+						country_event = { id = krcw_proxy.731 }
+					}
+					else_if = {
+						limit = {
+							OR = {
+								327 = { is_controlled_by = event_target:krcw_proxy_phi_rebels }
+								# while the allies are on their way only near-collapse ends it (the engine settles a civil war at 1.0)
+								surrender_progress > 0.8
+								AND = { surrender_progress > 0.6 NOT = { has_global_flag = krcw_proxy_phi_relief } }
+								NOT = { has_global_flag = krcw_proxy_phi_clock }
+							}
+						}
+						set_global_flag = krcw_proxy_phi_ending
+						log = "[GetDateText] KRCWPROXY PHI falls rebel_states=[?global.krcw_proxy_phi_reb|0]/[?global.krcw_proxy_phi_reb0|0] gov_sp=[?surrender_progress|2]"
+						country_event = { id = krcw_proxy.732 }
+					}
+				}
+			}
+		}
+	}
+}

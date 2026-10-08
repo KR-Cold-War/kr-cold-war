@@ -1,0 +1,52 @@
+# KRCW (build/patch_residue.py): 2 OTL events dropped while KRCW_active
+add_namespace = swfs
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = swfs.13 
+ immediate = { }
+	title = swfs.13.t
+	desc = swfs.13.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = swfs.13.a
+		every_owned_state = { add_core_of = LBA }
+		LBA = { annex_country = { target = ROOT } }
+		ai_chance = {
+			factor = 30
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 70
+		}
+		name = swfs.13.b
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = swfs.14 
+ immediate = { }
+	title = swfs.14.t
+	desc = swfs.14.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = swfs.14.a
+		LBA = { add_to_faction = ROOT }
+		LBA = { create_faction_from_template = { template = faction_template_generic name = "The Mediterranean Alliance" } }
+		ai_chance = {
+			factor = 10
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 90
+		}
+		name = swfs.14.b
+
+	}
+}

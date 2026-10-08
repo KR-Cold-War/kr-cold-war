@@ -1,0 +1,1286 @@
+# KRCW (build/patch_residue.py): 26 OTL decisions hidden while KRCW_active
+FRE_CEFEO_Missions_category = {
+
+	FRE_Mission_Assess_RC4 = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_intelligence_agency
+
+		allowed = {
+			tag = FRE
+		}
+
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = FRE_Mission_Assess_RC4_Activated
+			NOT = { has_country_flag = FRE_Mission_Assess_RC4_Completed }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = FRE_RC4_Assessment_Complete
+			NOT = { has_country_flag = FRE_Mission_Assess_RC4_Completed }
+			NOT = { has_country_flag = FRE_Mission_Assess_RC4_Failed }
+			custom_trigger_tooltip = {
+				tooltip = FRE_Mission_Assess_RC4_Available_tt
+				always = yes
+			}
+		}
+
+		selectable_mission = yes
+		days_mission_timeout = 30
+
+		cost = 25	# staff and political groundwork stays on political power
+
+		fire_only_once = yes
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			fre_mission_calculate_rc4_success = yes
+
+			if = {
+				limit = { check_variable = { mission_success_chance > 59 } }
+					country_event = { id = FRE_Events.7 days = 1 }
+				}
+			else = {
+					country_event = { id = FRE_Events.8 days = 1 }
+			}
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			# Timeout = failure
+			country_event = { id = FRE_Events.8 days = 1 }
+		 }
+}
+
+		ai_will_do = {
+			factor = 200	# outranks every competing PP sink; see FRE_mission_pp_reserved_trigger
+		}
+	}
+
+	FRE_Mission_Address_Revers_Report = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_political_discourse
+
+		allowed = {
+			tag = FRE
+		}
+
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = FRE_Mission_Address_Revers_Report_Activated
+			NOT = { has_country_flag = FRE_Mission_Address_Revers_Report_Completed }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = FRE_Revers_Report_Addressed
+			NOT = { has_country_flag = FRE_Mission_Address_Revers_Report_Completed }
+			NOT = { has_country_flag = FRE_Mission_Address_Revers_Report_Failed }
+			custom_trigger_tooltip = {
+				tooltip = FRE_Mission_Address_Revers_Report_Available_tt
+				always = yes
+			}
+		}
+
+		selectable_mission = yes
+		days_mission_timeout = 45
+
+		cost = 40	# staff and political groundwork stays on political power
+
+		fire_only_once = yes
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			fre_mission_calculate_revers_report_success = yes
+
+			if = {
+				limit = { check_variable = { mission_success_chance > 59 } }
+					country_event = { id = FRE_Events.9 days = 1 }
+				}
+			else = {
+					country_event = { id = FRE_Events.10 days = 1 }
+			}
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			country_event = { id = FRE_Events.10 days = 1 }
+		 }
+}
+
+		ai_will_do = {
+			factor = 200	# outranks every competing PP sink; see FRE_mission_pp_reserved_trigger
+		}
+	}
+
+	FRE_Mission_De_Lattre_Arrival = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+
+		allowed = {
+			tag = FRE
+		}
+
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = FRE_Mission_De_Lattre_Arrival_Activated
+			NOT = { has_country_flag = FRE_Mission_De_Lattre_Arrival_Completed }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = FRE_De_Lattre_In_Command
+			NOT = { has_country_flag = FRE_Mission_De_Lattre_Arrival_Completed }
+			NOT = { has_country_flag = FRE_Mission_De_Lattre_Arrival_Failed }
+			custom_trigger_tooltip = {
+				tooltip = FRE_Mission_De_Lattre_Arrival_Available_tt
+				always = yes
+			}
+		}
+
+		selectable_mission = yes
+		days_mission_timeout = 60
+
+		cost = 50	# staff and political groundwork stays on political power
+
+		fire_only_once = yes
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			fre_mission_calculate_de_lattre_success = yes
+
+			if = {
+				limit = { check_variable = { mission_success_chance > 59 } }
+					country_event = { id = FRE_Events.11 days = 1 }
+				}
+			else = {
+					country_event = { id = FRE_Events.12 days = 1 }
+			}
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			country_event = { id = FRE_Events.12 days = 1 }
+		 }
+}
+
+		ai_will_do = {
+			factor = 200	# outranks every competing PP sink; see FRE_mission_pp_reserved_trigger
+		}
+	}
+
+	FRE_Mission_Operation_Castor = {
+		icon = generic_air_operations
+
+		allowed = {
+			tag = FRE
+		}
+
+		activation = { NOT = { has_global_flag = KRCW_active }  always = no }
+
+		visible = { NOT = { has_global_flag = KRCW_active }  has_country_flag = FRE_Castor_Airhead_Active }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = FRE_Mission_Operation_Castor_Available_tt
+				always = no
+			}
+		}
+
+		is_good = yes
+		selectable_mission = yes
+		days_mission_timeout = 30
+
+		cost = 0	# the operation is paid for in War Credits at the commitment prompt
+
+		fire_only_once = no
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = { NOT = { has_country_flag = FRE_Castor_Airhead_Active }  } }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			fre_castor_deadline_resolve = yes
+		 }
+}
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }  }
+}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	FRE_Mission_Operation_Pollux = {
+		icon = generic_air_operations
+
+		allowed = {
+			tag = FRE
+		}
+
+		activation = { NOT = { has_global_flag = KRCW_active }  always = no }
+
+		visible = { NOT = { has_global_flag = KRCW_active }  has_country_flag = FRE_Pollux_Evacuation_Active }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = FRE_Mission_Operation_Pollux_Available_tt
+				always = no
+			}
+		}
+
+		is_good = yes
+		selectable_mission = yes
+		days_mission_timeout = 21
+
+		cost = 0
+		fire_only_once = no
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = { NOT = { has_country_flag = FRE_Pollux_Evacuation_Active }  } }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			fre_pollux_deadline_resolve = yes
+		 }
+}
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }  }
+}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	FRE_Mission_Operation_Atlante = {
+		icon = generic_attack
+
+		allowed = {
+			tag = FRE
+		}
+
+		activation = { NOT = { has_global_flag = KRCW_active }  always = no }
+
+		visible = { NOT = { has_global_flag = KRCW_active }  has_country_flag = FRE_Atlante_Offensive_Active }
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = FRE_Mission_Operation_Atlante_Available_tt
+				always = no
+			}
+		}
+
+		is_good = yes
+		selectable_mission = yes
+		days_mission_timeout = 90
+
+		cost = 0
+		fire_only_once = no
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = { NOT = { has_country_flag = FRE_Atlante_Offensive_Active }  } }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			fre_atlante_deadline_resolve = yes
+		 }
+}
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }  }
+}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	FRE_Fortify_Delta_1 = {
+		icon = generic_construction
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_idea = FRE_Command_Carpentier }
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_equipment = { support_equipment > 500 }
+			controls_state = 1760
+		}
+
+		cost = 25
+
+		fire_only_once = yes
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = -500
+			}
+			1760 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+			set_country_flag = FRE_Fortified_Delta_1
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+		}
+	}
+
+	FRE_Fortify_Delta_2 = {
+		icon = generic_construction
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = FRE_Send_De_lattre_de_Tassigny
+			NOT = { has_idea = FRE_Command_Carpentier }
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = FRE_Fortified_Delta_1
+			has_equipment = { support_equipment > 500 }
+			controls_state = 786
+		}
+
+		cost = 25
+
+		fire_only_once = yes
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = -500
+			}
+			786 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+			set_country_flag = FRE_Fortified_Delta_2
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+		}
+	}
+
+	FRE_Fortify_Delta_3 = {
+		icon = generic_construction
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = FRE_Send_De_lattre_de_Tassigny
+			NOT = { has_idea = FRE_Command_Carpentier }
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = FRE_Fortified_Delta_2
+			has_equipment = { support_equipment > 750 }
+			controls_state = 1760
+		}
+
+		cost = 50
+
+		fire_only_once = yes
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = -750
+			}
+			1760 = {
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+			786 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border = yes
+					}
+				}
+			}
+			add_war_support = 0.05
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+		}
+	}
+}
+
+
+FRE_Metropole_Support_category = {
+
+	FRE_Request_Equipment_Convoy = {
+		icon = generic_industry
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_Metropole_Request_Pending }
+		}
+
+		cost = 25
+
+		fire_only_once = no
+		days_re_enable = 60
+
+		complete_effect = {
+			set_temp_variable = { fre_patience_delta = -3 }
+			fre_metropole_patience_change = yes
+			if = {
+				limit = { country_exists = FRA }
+			set_country_flag = { flag = FRE_Metropole_Request_Pending days = 30 value = 1 }
+				FRA = {
+					country_event = { id = FRE_Metropole.1 days = 3 }
+				}
+			}
+			else = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_1
+					amount = 6000
+					producer = FRA
+				}
+				add_equipment_to_stockpile = {
+					type = support_equipment
+					amount = 750
+					producer = FRA
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+			modifier = {
+				factor = 0
+				has_equipment = { infantry_equipment_1 > 15000 }
+			}
+		}
+	}
+
+	FRE_Request_Reinforcements = {
+		icon = generic_manpower
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_Metropole_Request_Pending }
+		}
+
+		cost = 40
+
+		fire_only_once = no
+		days_re_enable = 90
+
+		complete_effect = {
+			set_temp_variable = { fre_patience_delta = -4 }
+			fre_metropole_patience_change = yes
+			if = {
+				limit = { country_exists = FRA }
+			set_country_flag = { flag = FRE_Metropole_Request_Pending days = 30 value = 1 }
+				FRA = {
+					country_event = { id = FRE_Metropole.2 days = 3 }
+				}
+			}
+			else = {
+				add_manpower = 8000
+			}
+		}
+
+		ai_will_do = {
+			factor = 8
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+			modifier = {
+				factor = 0
+				has_manpower > 30000
+			}
+		}
+	}
+
+	FRE_Request_Air_Assets = {
+		icon = generic_air
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_Metropole_Request_Pending }
+		}
+
+		cost = 35
+
+		fire_only_once = no
+		days_re_enable = 120
+
+		complete_effect = {
+			set_temp_variable = { fre_patience_delta = -4 }
+			fre_metropole_patience_change = yes
+			if = {
+				limit = { country_exists = FRA }
+			set_country_flag = { flag = FRE_Metropole_Request_Pending days = 30 value = 1 }
+				FRA = {
+					country_event = { id = FRE_Metropole.3 days = 3 }
+				}
+			}
+			else = {
+				add_equipment_to_stockpile = {
+					type = transport_plane_equipment
+					amount = 12
+					producer = FRA
+				}
+				set_country_flag = FRE_Air_Assets_Delivered
+			}
+		}
+
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+			modifier = {
+				factor = 0
+				has_country_flag = FRE_Air_Assets_Delivered
+			}
+		}
+	}
+
+	FRE_Request_Naval_Assets = {
+		icon = generic_naval
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_Metropole_Request_Pending }
+			NOT = { has_country_flag = FRE_Dinassaut_Flotilla }
+		}
+
+		cost = 35
+
+		fire_only_once = no
+		days_re_enable = 120
+
+		complete_effect = {
+			set_temp_variable = { fre_patience_delta = -4 }
+			fre_metropole_patience_change = yes
+			if = {
+				limit = { country_exists = FRA }
+			set_country_flag = { flag = FRE_Metropole_Request_Pending days = 30 value = 1 }
+				FRA = {
+					country_event = { id = FRE_Metropole.4 days = 3 }
+				}
+			}
+			else = {
+				set_country_flag = FRE_Dinassaut_Flotilla
+				navy_experience = 25
+			}
+		}
+
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+			modifier = {
+				factor = 0
+				has_country_flag = FRE_Dinassaut_Flotilla
+			}
+		}
+	}
+
+	FRE_Request_Artillery_Park = {
+		icon = artillery_equipment
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_Metropole_Request_Pending }
+		}
+
+		cost = 35
+
+		fire_only_once = no
+		days_re_enable = 120
+
+		complete_effect = {
+			set_temp_variable = { fre_patience_delta = -4 }
+			fre_metropole_patience_change = yes
+			if = {
+				limit = { country_exists = FRA }
+				set_country_flag = { flag = FRE_Metropole_Request_Pending days = 30 value = 1 }
+				FRA = {
+					country_event = { id = FRE_Metropole.6 days = 3 }
+				}
+			}
+			else = {
+				add_equipment_to_stockpile = {
+					type = artillery_equipment_1
+					amount = 100
+					producer = FRA
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+			modifier = {
+				factor = 0
+				has_equipment = { artillery_equipment_1 > 800 }
+			}
+		}
+	}
+
+	FRE_Request_Antitank_Antiair = {
+		icon = generic_army_support
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_Metropole_Request_Pending }
+		}
+
+		cost = 30
+
+		fire_only_once = no
+		days_re_enable = 120
+
+		complete_effect = {
+			set_temp_variable = { fre_patience_delta = -4 }
+			fre_metropole_patience_change = yes
+			if = {
+				limit = { country_exists = FRA }
+				set_country_flag = { flag = FRE_Metropole_Request_Pending days = 30 value = 1 }
+				FRA = {
+					country_event = { id = FRE_Metropole.7 days = 3 }
+				}
+			}
+			else = {
+				add_equipment_to_stockpile = {
+					type = direct_fire_gun_equipment_1
+					amount = 60
+					producer = FRA
+				}
+				add_equipment_to_stockpile = {
+					type = auto_cannon_equipment_1
+					amount = 50
+					producer = FRA
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+			modifier = {
+				factor = 0
+				has_equipment = { direct_fire_gun_equipment_1 > 500 }
+			}
+		}
+	}
+
+	FRE_Request_Fuel_Allocation = {
+		icon = fuel_silo
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_Metropole_Request_Pending }
+		}
+
+		cost = 25
+
+		fire_only_once = no
+		days_re_enable = 90
+
+		complete_effect = {
+			set_temp_variable = { fre_patience_delta = -3 }
+			fre_metropole_patience_change = yes
+			if = {
+				limit = { country_exists = FRA }
+				set_country_flag = { flag = FRE_Metropole_Request_Pending days = 30 value = 1 }
+				FRA = {
+					country_event = { id = FRE_Metropole.8 days = 3 }
+				}
+			}
+			else = {
+				add_fuel = 4000
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+		}
+	}
+
+	FRE_Request_Treasury_Advance = {
+		icon = generic_industry
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_Metropole_Request_Pending }
+		}
+
+		cost = 20
+
+		fire_only_once = no
+		days_re_enable = 120
+
+		complete_effect = {
+			set_temp_variable = { fre_patience_delta = -5 }
+			fre_metropole_patience_change = yes
+			if = {
+				limit = { country_exists = FRA }
+				set_country_flag = { flag = FRE_Metropole_Request_Pending days = 30 value = 1 }
+				FRA = {
+					country_event = { id = FRE_Metropole.9 days = 3 }
+				}
+			}
+			else = {
+				custom_effect_tooltip = FRE_Treasury_Advance_Fallback_tt
+				add_to_variable = { currentMoney = 3 }
+			}
+		}
+
+		ai_will_do = {
+			factor = 4
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+			modifier = {
+				factor = 0
+				check_variable = { currentMoney > 120 }
+			}
+		}
+	}
+
+	FRE_Request_Administrative_Support = {
+		icon = generic_political_discourse
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_Metropole_Request_Pending }
+		}
+
+		cost = 0
+
+		fire_only_once = no
+		days_re_enable = 90
+
+		complete_effect = {
+			set_temp_variable = { fre_patience_delta = -3 }
+			fre_metropole_patience_change = yes
+			if = {
+				limit = { country_exists = FRA }
+			set_country_flag = { flag = FRE_Metropole_Request_Pending days = 30 value = 1 }
+				FRA = {
+					country_event = { id = FRE_Metropole.5 days = 3 }
+				}
+			}
+			else = {
+				add_political_power = 40
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 6
+				FRE_mission_pp_reserved_trigger = yes
+			}
+			modifier = {
+				factor = 0
+				check_variable = { political_power > 150 }
+			}
+		}
+	}
+
+	FRE_Appeal_To_Paris_Press = {
+		icon = generic_propaganda
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = FRA
+		}
+
+		cost = 15
+
+		fire_only_once = no
+		days_re_enable = 180
+
+		complete_effect = {
+			custom_effect_tooltip = FRE_Appeal_To_Paris_Press_tt
+			hidden_effect = {
+				random_list = {
+					60 = {
+						set_temp_variable = { fre_patience_delta = 10 }
+						fre_metropole_patience_change = yes
+						add_war_support = 0.03
+					}
+					40 = {
+						set_temp_variable = { fre_patience_delta = -8 }
+						fre_metropole_patience_change = yes
+						if = {
+							limit = { country_exists = FRA }
+							FRA = {
+								add_stability = -0.02
+							}
+						}
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+			modifier = {
+				factor = 0
+				check_variable = { FRE_Metropole_Patience > 40 }
+			}
+		}
+	}
+
+	FRE_Request_Extraordinary_Credits = {
+		icon = generic_prepare_civil_war
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+			NOT = { has_global_flag = Indochina_War_Over }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { FRE_Metropole_Patience > 10 }
+		}
+
+		cost = 30
+
+		fire_only_once = no
+		days_re_enable = 90
+
+		complete_effect = {
+			custom_effect_tooltip = FRE_Request_Extraordinary_Credits_tt
+			set_temp_variable = { fre_credit_amount = 80 }
+			fre_change_war_credits = yes
+			set_temp_variable = { fre_patience_delta = -6 }
+			fre_metropole_patience_change = yes
+			hidden_effect = {
+				if = {
+					limit = { country_exists = FRA }
+					FRA = { add_political_power = -25 }
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 3
+			modifier = {
+				factor = 8
+				FRE_operation_credits_short_trigger = yes
+			}
+			modifier = {
+				factor = 0
+				check_variable = { FRE_War_Credits > 150 }
+			}
+			modifier = {
+				factor = 0
+				check_variable = { FRE_Metropole_Patience < 25 }
+			}
+		}
+	}
+
+	FRE_Dissolve_The_CEFEO = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_civil_support
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+			NOT = { has_country_flag = FRE_Winddown_Started }
+			OR = {
+				has_global_flag = Indochina_War_Over
+				check_variable = { FRE_Metropole_Patience < 0.01 }
+			}
+		}
+
+		cost = 0
+
+		fire_only_once = yes
+
+		complete_effect = {
+			set_country_flag = FRE_Winddown_Started
+			country_event = { id = FRE_Winddown.2 days = 2 }
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+
+FRE_Indochina_Allies_category = {
+
+	FRE_Train_Vietnamese_National_Army = {
+		icon = generic_manpower
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = FRE_Jaunissement_Started
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = VIE
+			has_equipment = { infantry_equipment_1 > 5000 }
+			NOT = { has_country_flag = FRE_VNA_Training_Pending }
+		}
+
+		cost = 25
+
+		fire_only_once = no
+		days_re_enable = 90
+
+		complete_effect = {
+			set_country_flag = FRE_VNA_Training_Pending
+			VIE = {
+				country_event = { id = FRE_Allies.1 days = 3 }
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+			modifier = {
+				factor = 0
+				has_equipment = { infantry_equipment_1 < 12000 }
+			}
+		}
+	}
+
+	FRE_GCMA_Recruit_TAM = {
+		icon = generic_prepare_civil_war
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = FRE_GCMA_Unlocked
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = TAM
+			has_equipment = { support_equipment > 250 }
+		}
+
+		cost = 25
+
+		fire_only_once = yes
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = -250
+			}
+			fre_gcma_expand_network = yes
+			if = {
+				limit = { country_exists = TAM }
+				TAM = {
+					add_opinion_modifier = {
+						target = FRE
+						modifier = FRE_Military_Coordination
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+		}
+	}
+
+	FRE_GCMA_Recruit_TAI = {
+		icon = generic_prepare_civil_war
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = FRE_GCMA_Unlocked
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = TAI
+			has_equipment = { support_equipment > 250 }
+		}
+
+		cost = 25
+
+		fire_only_once = yes
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = -250
+			}
+			fre_gcma_expand_network = yes
+			if = {
+				limit = { country_exists = TAI }
+				TAI = {
+					add_opinion_modifier = {
+						target = FRE
+						modifier = FRE_Military_Coordination
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+		}
+	}
+
+	FRE_GCMA_Recruit_NUN = {
+		icon = generic_prepare_civil_war
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = FRE_GCMA_Unlocked
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = NUN
+			has_equipment = { support_equipment > 250 }
+		}
+
+		cost = 25
+
+		fire_only_once = yes
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = -250
+			}
+			fre_gcma_expand_network = yes
+			if = {
+				limit = { country_exists = NUN }
+				NUN = {
+					add_opinion_modifier = {
+						target = FRE
+						modifier = FRE_Military_Coordination
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+		}
+	}
+
+	FRE_GCMA_Recruit_THO = {
+		icon = generic_prepare_civil_war
+
+		allowed = {
+			tag = FRE
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = FRE_GCMA_Unlocked
+			NOT = { has_country_flag = FRE_CEFEO_Dissolved }
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = THO
+			THO = { NOT = { is_subject_of = VIN } }
+			has_equipment = { support_equipment > 250 }
+		}
+
+		cost = 25
+
+		fire_only_once = yes
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = -250
+			}
+			fre_gcma_expand_network = yes
+			if = {
+				limit = { country_exists = THO }
+				THO = {
+					add_opinion_modifier = {
+						target = FRE
+						modifier = FRE_Military_Coordination
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 0
+				FRE_mission_pp_reserved_trigger = yes
+			}
+		}
+	}
+}

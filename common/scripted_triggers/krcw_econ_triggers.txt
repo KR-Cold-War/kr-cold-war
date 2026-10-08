@@ -1,0 +1,18 @@
+# KRCW bloc economy triggers (build/econ_effects.py)
+krcw_econ_tracked = {
+	has_variable = krcw_econ_system
+	check_variable = { krcw_econ_system > 0 }
+}
+# members of the Paris Clearing Union: the TI spirit from krcw_world.2 plus the national membership spirits
+krcw_econ_pcu_member = {
+	has_global_flag = KRCW_paris_clearing_union
+	OR = {
+		original_tag = FRA
+		has_idea = krcw_paris_clearing_union
+		has_idea = krcw_fra_clearing_union
+		has_idea = krcw_eu_clearing_member
+		has_idea = krcw_wca_clearing_union
+		has_idea = krcw_chi_paris_clearing_union
+		has_idea = krcw_econ_pcu_account
+	}
+}

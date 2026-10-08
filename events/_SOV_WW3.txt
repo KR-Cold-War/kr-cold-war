@@ -1,0 +1,566 @@
+# KRCW (build/patch_residue.py): 22 OTL events dropped while KRCW_active
+add_namespace = SOVw_Third_World_War
+add_namespace = SOVw_Third_World_War_news
+add_namespace = SOVw_Peace_Negotiation
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Peace_Negotiation.1
+ immediate = { }
+	title = SOVw_Peace_Negotiation.1.t
+	desc = SOVw_Third_World_War.1.d
+	picture = GFX_WW3_1
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Peace_Negotiation.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.1
+ immediate = { }
+	title = SOVw_Third_World_War.1.t
+	desc = SOVw_Third_World_War.1.d
+	picture = GFX_WW3_3
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.1.a
+        hidden_effect = {
+			load_focus_tree = SOV_WW3_1950s
+			scoped_play_song = "Red Alert 3 - Soviet March"
+			add_named_threat = {
+				name = "The Great Liberation War"
+                threat = 85
+            }
+			USA = {
+				add_to_faction = WGR
+			}
+			WGR = {
+				add_ideas = NATO_Member
+				add_to_war = {
+                    targeted_alliance = USA
+                    enemy = SOV
+                    hostility_reason = asked_to_join
+                }
+			}
+			set_portraits = {
+                character = SOV_Leonid_Brezhnev
+                army = { small = "gfx/leaders/SOV/WAR_PORTRAITS/Leonid_Brezhnev.png" }
+                civilian = { large = "gfx/leaders/SOV/WAR_PORTRAITS/Leonid_Brezhnev.png" }
+            }
+			set_portraits = {
+                character = SOV_Joseph_Stalin
+                army = { small = "gfx/leaders/SOV/WAR_PORTRAITS/Joseph_Stalin.png" }
+                civilian = { large = "gfx/leaders/SOV/WAR_PORTRAITS/Joseph_Stalin.png" }
+            }
+			set_portraits = {
+                character = SOV_Georgy_Zhukov
+                civilian = { large = "gfx/leaders/SOV/WAR_PORTRAITS/Georgy_Zhukov.png" }
+            }
+			complete_national_focus = SOVw_The_Great_Liberation_War
+			Start_Total_War_Between_Factions = yes
+		}
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.2
+ immediate = { }
+	title = SOVw_Third_World_War.2.t
+	desc = SOVw_Third_World_War.2.d
+	picture = GFX_Zia_Era_3
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.2.a
+        modify_building_resources = {
+        building = synthetic_refinery
+        resource = oil
+        amount = 15
+        }
+		add_war_support = 0.05
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.3
+ immediate = { }
+	title = SOVw_Third_World_War.3.t
+	desc = SOVw_Third_World_War.3.d
+	picture = GFX_report_BCR_Berlin_crisis_gets_hotter
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.3.a
+        add_ideas = the_last_war
+		remove_ideas = great_liberation_war
+		last_war_super_event = yes
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.4
+ immediate = { }
+	title = SOVw_Third_World_War.4.t
+	desc = SOVw_Third_World_War.4.d
+	picture = GFX_politics
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.4.a
+		add_ideas = Union_of_Laborer
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.5
+ immediate = { }
+	title = SOVw_Third_World_War.5.t
+	desc = SOVw_Third_World_War.5.d
+	picture = GFX_Maoism_SU_1
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.5.t.a
+		PRC = {
+			country_event = SOVw_Third_World_War.7
+		}
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.6
+ immediate = { }
+	title = SOVw_Third_World_War.6.t
+	desc = SOVw_Third_World_War.6.d
+	picture = GFX_WW3_7
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.6.a
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.7
+ immediate = { }
+	title = SOVw_Third_World_War.7.t
+	desc = SOVw_Third_World_War.7.d
+	picture = GFX_report_BCR_Berlin_crisis_gets_hotter
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.7.a
+		PRC = {
+			set_country_flag = PRC_REFUSED
+		}
+		SOV = {
+			set_country_flag = PRC_REFUSED
+		}
+    }
+	option = {
+		name = SOVw_Third_World_War.7.b
+		ai_chance = {
+			base = 90
+			modifier = {
+				factor = 50
+				SOV = {
+					casualties_k > 10
+				}
+			}
+		}
+		SOV = {
+			set_country_flag = PRC_JOIN_WAR
+		}
+		PRC = {
+			set_country_flag = PRC_JOIN_WAR
+		}
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.8
+ immediate = { }
+	title = SOVw_Third_World_War.8.t
+	desc = SOVw_Third_World_War.8.d
+	picture = GFX_report_event_001
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.8.a
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.9
+ immediate = { }
+	title = SOVw_Third_World_War.9.t
+	desc = SOVw_Third_World_War.9.d
+	picture = GFX_WW3_4
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.9.a
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.10
+ immediate = { }
+	title = SOVw_Third_World_War.10.t
+	desc = SOVw_Third_World_War.10.d
+	picture = GFX_WW3_5
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.10.a
+		country_event = {
+			id = SOVw_Third_World_War.11
+			days = 3
+		}
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.11
+ immediate = { }
+	title = SOVw_Third_World_War.11.t
+	desc = SOVw_Third_World_War.11.d
+	picture = GFX_WW3_6
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.11.a
+		set_country_flag = Benelux_United
+		HOL = {
+			set_cosmetic_tag = BEN_COM
+			set_party_name = {
+				ideology = communism
+				name = "Verenigde Communistische Partij van het Benelux"
+				long_name = "Verenigde Communistische Partij van het Benelux"
+			}
+			annex_country = {
+				target = BEL
+				transfer_troops = no
+			}
+			annex_country = {
+				target = LUX
+				transfer_troops = no
+			}
+			annex_country = {
+				target = FLA
+				transfer_troops = no
+			}
+			annex_country = {
+				target = WAL
+				transfer_troops = no
+			}
+			add_opinion_modifier = {
+				target = SOV
+				modifier = SOV_Benelux
+			}
+		}
+		SOV = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = SOV_Benelux_2
+			}
+		}
+		set_temp_variable = { exhaustion_change = -0.10 }
+        WW3_1950_war_exhaustion_change = yes
+    }
+	option = {
+		name = SOVw_Third_World_War.11.b
+		BEL = {
+			set_cosmetic_tag = BEL_SOV_2
+			recruit_character = BEL_Ernest_Brunelle
+			BEL_Ernest_Brunelle = {
+				promote_character = yes
+			}
+			set_party_name = {
+				ideology = communism
+				name = "Kommunistische Partij van België/Parti Communiste de Belgique"
+				long_name = "Parti Communiste de Belgique/Kommunistische Partij van België"
+			}
+			annex_country = {
+				target = WAL
+				transfer_troops = no
+			}
+			annex_country = {
+				target = FLA
+				transfer_troops = no
+			}
+		}
+		set_temp_variable = { exhaustion_change = 0.15 }
+        WW3_1950_war_exhaustion_change = yes
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.12
+ immediate = { }
+	title = SOVw_Third_World_War.12.t
+	desc = SOVw_Third_World_War.12.d
+	picture = GFX_WW3_5
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.12.a
+		SOV = {
+			add_to_faction = YUG
+		}
+		YUG = {
+			add_ideas = Warsaw_Treaty_Organization_member
+			keep_current_politics = yes
+			declare_war_on = {
+				target = ITA
+				type = annex_everything
+			}
+		}
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.13
+ immediate = { }
+	title = SOVw_Third_World_War.13.t
+	desc = SOVw_Third_World_War.13.d
+	picture = GFX_WW3_5
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.13.a
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.14
+ immediate = { }
+	title = SOVw_Third_World_War.14.t
+	desc = SOVw_Third_World_War.14.d
+	picture = GFX_WW3_5
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.14.a
+		SOV = {
+			country_event = {
+				id = SOVw_Third_World_War.12
+				days = 3
+			}
+		}
+    }
+	option = {
+		name = SOVw_Third_World_War.14.b
+		SOV = {
+			country_event = {
+				id = SOVw_Third_World_War.13
+				days = 3
+			}
+		}
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.15
+ immediate = { }
+	title = SOVw_Third_World_War.15.t
+	desc = SOVw_Third_World_War.15.d
+	picture = GFX_WW3_5
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.15.a
+		SPR = {
+			set_country_flag = Ibarruri_gensec
+		}
+		country_event = {
+			id = SOVw_Third_World_War.16
+			days = 10
+		}
+    }
+	option = {
+		name = SOVw_Third_World_War.15.b
+		SPR = {
+			set_country_flag = Cunhal_gensec
+		}
+		country_event = {
+			id = SOVw_Third_World_War.16
+			days = 10
+		}
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.16
+ immediate = { }
+	title = SOVw_Third_World_War.16.t
+	desc = SOVw_Third_World_War.16.d
+	picture = GFX_WW3_5
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		trigger = {
+			SPR = {
+				has_country_flag = Ibarruri_gensec
+			}
+		}
+		name = SOVw_Third_World_War.16.a
+		iberia_formed = yes
+    }
+	option = {
+		trigger = {
+			SPR = {
+				has_country_flag = Cunhal_gensec
+			}
+		}
+		name = SOVw_Third_World_War.16.b
+		iberia_formed = yes
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.17
+ immediate = { }
+	title = SOVw_Third_World_War.17.t
+	desc = SOVw_Third_World_War.17.d
+	picture = GFX_WW3_5
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.17.a
+		custom_effect_tooltip = continue_war_tooltip
+		activate_mission = SOV_Operation_Red_Dusk
+		set_country_flag = SOV_Operation_Red_Dusk_Activated
+    }
+	option = {
+		name = SOVw_Third_World_War.17.b
+		custom_effect_tooltip = stop_war_tooltip
+		Super_Event_Partial_SOV_Victory_Play = yes
+		white_peace = USA
+		white_peace = ENG
+		white_peace = ALE
+		set_global_flag = European_is_Soviet
+		set_global_flag = WW3_Ended
+		clr_country_flag = WW3_Started
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War.18
+ immediate = { }
+	title = SOVw_Third_World_War.18.t
+	desc = SOVw_Third_World_War.18.d
+	picture = GFX_WW3_8
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War.18.a
+		army_experience = 10
+		add_command_power = -25
+		add_stability = 0.05
+		hidden_effect = {
+			andorra_killed = yes
+		}
+    }
+}
+####NEWS EVENT###
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War_news.1
+ immediate = { }
+	title = SOVw_Third_World_War_news.1.t
+	desc = SOVw_Third_World_War_news.1.d
+	picture = GFX_SOV_PRC
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War_news.1.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War_news.2
+ immediate = { }
+	title = SOVw_Third_World_War_news.2.t
+	desc = SOVw_Third_World_War_news.2.d
+	picture = GFX_SOV_ANR
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War_news.2.a
+		trigger = {
+			OR = {
+				tag = USA
+				is_in_faction_with = USA
+			}
+		}
+		name = SOVw_Third_World_War_news.2.b
+		trigger = {
+			OR = {
+				tag = SOV
+				is_in_faction_with = SOV
+			}
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SOVw_Third_World_War_news.3
+ immediate = { }
+	title = SOVw_Third_World_War_news.3.t
+	desc = SOVw_Third_World_War_news.3.d
+	picture = GFX_PRC_JAP
+
+    fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SOVw_Third_World_War_news.3.a
+	}
+}

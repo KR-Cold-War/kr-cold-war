@@ -1,0 +1,281 @@
+# KRCW: copy of CWIC _manpower.txt - armed_nation_nuke cut to +25% (build/patch_nuke_law.py)
+ideas = {
+	nuclear_mobilization_laws = {
+		law = yes
+		use_list_view = yes
+		disarmed_nation_nuke = {
+			cost = 50
+			removal_cost = -1
+			level = 2
+			available = {
+			}
+			modifier = {
+				nuclear_production_factor = -9999
+			}
+			default = yes
+			cancel_if_invalid = no
+			ai_will_do = {
+   				factor = 0
+			}
+			picture = disarmed_nation_nuke
+		}
+
+		armed_nation_nuke = {
+			cost = 50
+			removal_cost = -1
+			level = 1
+			available = {
+				threat > 0.9
+				has_tech = atomic_weapons_armament_0
+			}
+			modifier = {
+				nuclear_production_factor = 0.25
+			}
+			cancel_if_invalid = no
+			ai_will_do = {
+   				factor = 0
+				modifier = { add = 10 has_war = yes surrender_progress > 0.2 }
+			}
+			picture = armed_nation_nuke
+		}
+	}
+
+	mobilization_laws = { 
+		law = yes
+		use_list_view = yes
+		feudal_mobilization = {
+			allowed = {
+				always = no
+			}
+			removal_cost = -1
+		
+			modifier = {
+				army_org_factor = -0.25
+				army_morale_factor = -0.25
+				conscription = 0.01
+			}
+			allowed_to_remove = {
+				OR = {
+					has_war_support > 0.5
+					has_war = yes
+				}
+			}
+			cancel_if_invalid = no
+		}
+		disarmed_nation = {
+			cost = 100
+			removal_cost = -1
+			level = 7
+			modifier = {
+				conscription = 0
+			}
+			cancel_if_invalid = no
+			ai_will_do = {
+   				factor = 0
+			}
+			allowed_to_remove = {
+				NOT = { has_country_flag = JAP_Allied_Occupation_of_Japan }
+			}
+		}
+		
+		volunteer_only = {
+			cost = 150
+			removal_cost = -1
+			level = 6
+			modifier = {
+				conscription = 0.01
+			}
+			ai_will_do = {
+   				factor = 1
+   				modifier = {
+					add = 60
+					has_idea = disarmed_nation 
+				}
+				modifier = {
+					factor = 50
+					manpower_per_military_factory > 10000
+				}
+			}
+			default = yes
+			cancel_if_invalid = no
+			allowed_to_remove = {
+				NOT = { has_country_flag = JAP_Allied_Occupation_of_Japan }
+			}
+		}
+		
+		limited_conscription = {
+			cost = 200
+			removal_cost = -1
+			level = 5
+			modifier = {
+				conscription = 0.04
+			}
+			ai_will_do = {
+   				factor = 15
+			}
+			cancel_if_invalid = no
+			allowed_to_remove = {
+				NOT = {
+					OR = {
+						has_idea = JAP_Japanese_Pacifism_1_idea
+						has_idea = JAP_Japanese_Pacifism_2_idea
+						has_idea = JAP_Japanese_Pacifism_3_idea
+						has_idea = JAP_Japanese_Pacifism_4_idea
+						has_idea = JAP_Japanese_Pacifism_5_idea
+					}
+				}
+			}
+		}
+
+		extensive_conscription = {
+			ai_will_do = {
+   				factor = 1
+				modifier = {
+					factor = 20
+					manpower_per_military_factory <  800
+				}
+			}
+			cost = 300
+			removal_cost = -1
+			level = 4
+			modifier = {
+				conscription = 0.08
+				training_time_factor = 0.2
+			}
+			cancel_if_invalid = no
+			allowed_to_remove = {
+				NOT = {
+					OR = {
+						has_idea = JAP_Japanese_Pacifism_1_idea
+						has_idea = JAP_Japanese_Pacifism_2_idea
+						has_idea = JAP_Japanese_Pacifism_3_idea
+						has_idea = JAP_Japanese_Pacifism_4_idea
+						has_idea = JAP_Japanese_Pacifism_5_idea
+					}
+				}
+			}
+		}
+
+		service_by_requirement = {
+			ai_will_do = {
+   				factor = 1
+				modifier = {
+					factor = 20
+					manpower_per_military_factory <  700
+				}
+				modifier = {
+					factor = 0.5
+					manpower_per_military_factory >  1000
+				}
+				modifier = {
+					factor = 0
+					manpower_per_military_factory >  3000
+				}
+			}
+			cost = 400
+			removal_cost = -1
+			level = 3
+			modifier = {
+				conscription = 0.1
+				industrial_capacity_factory = -0.1
+				industrial_capacity_dockyard = -0.1
+				production_speed_buildings_factor = -0.1
+				training_time_factor = 0.2
+			}
+			cancel_if_invalid = no
+			allowed_to_remove = {
+				NOT = {
+					OR = {
+						has_idea = JAP_Japanese_Pacifism_1_idea
+						has_idea = JAP_Japanese_Pacifism_2_idea
+						has_idea = JAP_Japanese_Pacifism_3_idea
+						has_idea = JAP_Japanese_Pacifism_4_idea
+						has_idea = JAP_Japanese_Pacifism_5_idea
+					}
+				}
+			}
+		}
+		
+		all_adults_serve = {
+			ai_will_do = {
+   				factor = 1
+				modifier = {
+					factor = 20
+					manpower_per_military_factory <  600
+				}
+				modifier = {
+					factor = 0.5
+					manpower_per_military_factory >  1000
+				}
+				modifier = {
+					factor = 0
+					manpower_per_military_factory >  5000
+				}
+			}
+			cost = 500
+			removal_cost = -1
+			level = 2
+			modifier = {
+				conscription = 0.15
+				industrial_capacity_factory = -0.3
+				industrial_capacity_dockyard = -0.3
+				production_speed_buildings_factor = -0.3
+				#local_resources_factor = -0.3
+				training_time_factor = 0.3
+			}
+			cancel_if_invalid = no
+			allowed_to_remove = {
+				NOT = {
+					OR = {
+						has_idea = JAP_Japanese_Pacifism_1_idea
+						has_idea = JAP_Japanese_Pacifism_2_idea
+						has_idea = JAP_Japanese_Pacifism_3_idea
+						has_idea = JAP_Japanese_Pacifism_4_idea
+						has_idea = JAP_Japanese_Pacifism_5_idea
+					}
+				}
+			}
+		}
+		
+		scraping_the_barrel = {
+			ai_will_do = {
+   				factor = 1
+				modifier = {
+					factor = 20
+					manpower_per_military_factory <  500
+				}
+				modifier = {
+					factor = 0.5
+					manpower_per_military_factory >  1000
+				}
+				modifier = {
+					factor = 0
+					manpower_per_military_factory >  5000
+				}
+			}
+			cost = 600
+			removal_cost = -1
+			level = 1
+			modifier = {
+				conscription = 0.20
+				industrial_capacity_factory = -0.5
+				industrial_capacity_dockyard = -0.5
+				production_speed_buildings_factor = -0.5
+				#local_resources_factor = -0.5
+				training_time_factor = 0.5
+			}
+			cancel_if_invalid = no
+			allowed_to_remove = {
+				NOT = {
+					OR = {
+						has_idea = JAP_Japanese_Pacifism_1_idea
+						has_idea = JAP_Japanese_Pacifism_2_idea
+						has_idea = JAP_Japanese_Pacifism_3_idea
+						has_idea = JAP_Japanese_Pacifism_4_idea
+						has_idea = JAP_Japanese_Pacifism_5_idea
+					}
+				}
+			}
+		}
+	}
+}

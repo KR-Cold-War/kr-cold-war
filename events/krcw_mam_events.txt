@@ -1,0 +1,187 @@
+add_namespace = krcw_mam
+
+country_event = {
+	id = krcw_mam.1
+	title = krcw_mam_1_t
+	desc = krcw_mam_1_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		OR = {
+			original_tag = TUR
+			original_tag = GRE
+			original_tag = CZE
+			original_tag = YUG
+			original_tag = POL
+			original_tag = HUN
+			original_tag = ROM
+			original_tag = BUL
+			original_tag = PER
+			original_tag = AFG
+			original_tag = MON
+			original_tag = ALB
+			original_tag = ADR
+		}
+	}
+	option = {
+		name = krcw_mam_1.a
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 50
+		add_war_support = 0.04
+		add_stability = -0.02
+		army_experience = 15
+		set_country_flag = krcw_mam_regime_junta
+		if = { limit = { country_exists = SOV } add_opinion_modifier = { target = SOV modifier = krcw_ma_loyal_member } }
+	}
+	option = {
+		name = krcw_mam_1.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = 0.06
+		army_experience = -10
+		set_country_flag = krcw_mam_regime_civilian
+	}
+	option = {
+		name = krcw_mam_1.c
+		trigger = {
+			OR = { original_tag = ROM original_tag = BUL original_tag = AFG original_tag = MON original_tag = HUN }
+		}
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.05
+		add_political_power = 25
+		set_country_flag = krcw_mam_regime_crown
+	}
+	option = {
+		name = krcw_mam_1.d
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 50
+		add_stability = -0.04
+		set_country_flag = krcw_mam_regime_deferred
+	}
+}
+
+country_event = {
+	id = krcw_mam.10
+	title = krcw_mam_10_t
+	desc = krcw_mam_10_d
+	picture = GFX_report_event_generic_conference
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		OR = {
+			original_tag = TUR
+			original_tag = GRE
+			original_tag = CZE
+			original_tag = YUG
+			original_tag = POL
+			original_tag = HUN
+			original_tag = ROM
+			original_tag = BUL
+			original_tag = PER
+			original_tag = AFG
+			original_tag = MON
+			original_tag = ALB
+			original_tag = ADR
+		}
+	}
+	option = {
+		name = krcw_mam_10.a
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = 50
+		add_stability = 0.04
+		if = { limit = { country_exists = SOV } add_opinion_modifier = { target = SOV modifier = krcw_ma_loyal_member } }
+	}
+	option = {
+		name = krcw_mam_10.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_war_support = 0.04
+		add_manpower = 20000
+	}
+	option = {
+		name = krcw_mam_10.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.05
+		add_political_power = -25
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+		set_country_flag = krcw_mam_command_demanded
+	}
+}
+
+country_event = {
+	id = krcw_mam.20
+	title = krcw_mam_20_t
+	desc = krcw_mam_20_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		OR = {
+			original_tag = TUR
+			original_tag = GRE
+			original_tag = CZE
+			original_tag = YUG
+			original_tag = POL
+			original_tag = HUN
+			original_tag = ROM
+			original_tag = BUL
+			original_tag = PER
+			original_tag = AFG
+			original_tag = MON
+			original_tag = ALB
+			original_tag = ADR
+		}
+	}
+	option = {
+		name = krcw_mam_20.a
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 25
+		add_stability = -0.03
+		if = { limit = { country_exists = SOV } add_opinion_modifier = { target = SOV modifier = krcw_ma_loyal_member } }
+	}
+	option = {
+		name = krcw_mam_20.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = 0.03
+		set_country_flag = krcw_mam_neutral_thought
+	}
+	option = {
+		name = krcw_mam_20.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		add_stability = 0.04
+		add_to_variable = { global.krcw_ma_crisis = 2 }
+		clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+		set_country_flag = krcw_mam_neutral_costed
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+	}
+}

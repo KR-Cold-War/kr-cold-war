@@ -1,0 +1,513 @@
+# KRCW (build/patch_residue.py): 21 OTL events dropped while KRCW_active
+add_namespace = leader
+add_namespace = codwar
+add_namespace = ICE_elections
+add_namespace = ICE_liberals
+add_namespace = ICE_socialists
+add_namespace = ICE_codwar
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ICE_elections.1
+    immediate = { }
+	title = ICE_elections.1.t
+	desc = ICE_elections.1.d
+	picture = GFX_iceland_parliament_cathedral
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	immediate = {
+		hidden_effect = {
+			complete_national_focus = ICE_1949_Elections
+		}
+	}
+	
+	option = {
+		name = ICE_elections.1.a
+		set_country_flag = ICE_1949_liberal_majority
+		
+		ai_chance = {
+			base = 50
+		}
+	}
+
+	option = {
+		name = ICE_elections.1.b
+		set_country_flag = ICE_1949_leftist_majority
+		effect_tooltip = {
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.10
+			}
+			add_popularity = {
+				ideology = Social_Democratic
+				popularity = 0.05
+			}
+		}
+		hidden_effect = {
+			set_popularities = {
+				Social_Democratic = 21.53
+				Liberal_Conservatism = 29.53
+				socialist = 29.49
+				centrist = 19.45
+			}
+		}
+
+		ai_chance = {
+			base = 50
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ICE_elections.2
+    immediate = { }
+	title = ICE_elections.2.t
+	desc = ICE_elections.2.d
+	picture = GFX_ICE_bjorn_president
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = ICE_elections.2.a
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ICE_elections.3
+    immediate = { }
+	title = ICE_elections.3.t
+	desc = ICE_elections.3.d
+	picture = GFX_ICE_bjorn_death
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = ICE_elections.3.a
+		country_event = { id = ICE_elections.4 days = 150 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ICE_elections.4
+    immediate = { }
+	title = ICE_elections.4.t
+	desc = ICE_elections.4.d
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = ICE_elections.4.a
+		set_country_flag = ICE_president_asgeirsson
+		ai_chance = {
+			base = 50
+		}
+	}
+	option = {
+		name = ICE_elections.4.b
+		set_country_flag = ICE_president_jonsson
+		ai_chance = {
+			base = 50
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ICE_elections.5
+    immediate = { }
+	title = ICE_elections.5.t
+	desc = ICE_elections.5.d
+	picture = GFX_iceland_social_liberals_founded
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = ICE_elections.5.a
+		add_popularity = {
+			ideology = Social_Liberalism
+			popularity = 0.06
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ICE_liberals.0 #fires if player refuses to follow the branch
+    immediate = { }
+	title = ICE_liberals.0.t
+	desc = ICE_liberals.0.d
+	picture = GFX_iceland_checking_items
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ICE_liberals.0.a
+		add_stability = -0.25
+		unlock_national_focus = ICE_Build_New_Herring_Factories
+		unlock_national_focus = ICE_Economic_Restructuring
+		unlock_national_focus = ICE_Pursue_Free_Trade
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ICE_liberals.1
+    immediate = { }
+	title = ICE_liberals.1.t
+	desc = ICE_liberals.1.d
+	picture = GFX_iceland_checking_items
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = ICE_liberals.1.a
+		add_stability = -0.15
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ICE_liberals.2
+    immediate = { }
+	title = ICE_liberals.2.t
+	desc = ICE_liberals.2.d
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = ICE_liberals.2.a
+		set_country_flag = ICE_thors_no_confidence
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ICE_socialists.1
+    immediate = { }
+	title = ICE_socialists.1.t
+	desc = ICE_socialists.1.d
+	picture = GFX_ICE_nato_riot
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = ICE_socialists.1.a
+		add_ideas = ICE_anti_militarist_protests
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ICE_socialists.2
+    immediate = { }
+	title = ICE_socialists.2.t
+	desc = ICE_socialists.2.d
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = ICE_socialists.2.a
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ICE_codwar.1 
+	immediate = { }
+	title = ICE_codwar.1.t
+	desc = ICE_codwar.1.d
+	picture = GFX_news_event_overfishing_iceland
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = ICE_codwar.1.a
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = leader.1 
+    immediate = { }
+	title = leader.1.t
+	desc = leader.1.d
+	picture = GFX_news_event_overfishing_iceland
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = leader.1.a
+		retire_country_leader = yes
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Interim Government"
+			picture = "gfx/leaders/ICE/Iceland_Placeholder.dds"
+			ideology = liberal_conservatives
+		}
+		country_event = { id = leader.2 days = 189 } 
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = leader.2 
+    immediate = { }
+	title = leader.2.t
+	desc = leader.2.d
+	picture = GFX_news_event_overfishing_iceland
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = leader.2.a
+		retire_country_leader = yes
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Ásgeir Ásgeirsson"
+			picture = "Asgeir_Asgeirsson_60s.dds"
+			ideology = social_democrat
+		}
+		country_event = { id = leader.3 days = 5844 } 
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = leader.3 
+    immediate = { }
+	title = leader.3.t
+	desc = leader.3.d
+	picture = GFX_news_event_overfishing_iceland
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = leader.3.a
+		retire_country_leader = yes
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Kristján Eldjárn"
+			picture = "Kristjan_Eldjarn.dds"
+			ideology = centrism
+		}
+		country_event = { id = leader.4 days = 4383 } 
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = leader.4 
+    immediate = { }
+	title = leader.4.t
+	desc = leader.4.d
+	picture = GFX_news_event_overfishing_iceland
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = leader.4.a
+		retire_country_leader = yes
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Vigdís Finnbogadóttir"
+			picture = "Vigdis_Finnbogadottir_90s.dds"
+			ideology = liberal_conservatives
+		}
+		country_event = { id = leader.5 days = 5844 } 
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = leader.5 
+    immediate = { }
+	title = leader.5.t
+	desc = leader.5.d
+	picture = GFX_news_event_overfishing_iceland
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = leader.5.a
+		retire_country_leader = yes
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Ólafur Ragnar Grímsson"
+			picture = "Olafur_Ragnar_Grimsson_00s.dds"
+			ideology = liberal_conservatives
+		}
+		 
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = codwar.1 
+ immediate = { }
+
+	title = codwar.1.t
+	desc = codwar.1.d
+	picture = GFX_news_event_overfishing_iceland
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = codwar.1.a
+		country_event = { id = codwar.2 days = 1460 } 
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = codwar.2 
+ immediate = { }
+
+	is_triggered_only = yes
+
+	title = codwar.2.t
+	desc = codwar.2.d
+	picture = GFX_news_event_12_mile_zone
+	fire_only_once = yes
+
+	option = {
+		name = codwar.2.a
+		ai_chance = { factor = 85 }
+		ENG = {
+			add_opinion_modifier = {
+				target = ICE
+				modifier = medium_decrease
+			}
+			country_event = { id = codwar.3 days = 1 } 
+		}
+	}
+
+	option = {
+		name = codwar.2.b
+		ai_chance = { factor = 10 }
+		add_stability = -0.05
+		ENG = {
+			add_opinion_modifier = {
+				target = ICE
+				modifier = medium_increase
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = codwar.3 
+ immediate = { }
+	is_triggered_only = yes
+	fire_only_once = yes
+	title = codwar.3.t2
+	desc = codwar.3.d
+	picture = GFX_news_event_cod_wars
+	fire_only_once = yes
+
+	option = {
+		name = codwar.3.a2
+		ai_chance = { factor = 10 }
+		add_stability = -0.01
+		ICE = {
+			add_opinion_modifier = {
+				target = ENG
+				modifier = small_increase
+			}
+		}
+	}
+
+	option = {
+		name = codwar.3.b2
+		ai_chance = { factor = 80 }
+		ICE = {
+				add_opinion_modifier = {
+						target = ENG
+						modifier = medium_decrease
+					}
+				}
+		ICE = { country_event = codwar.4 }
+	}
+
+	option = {
+		name = codwar.3.c2
+		ai_chance = { factor = 10 }
+		add_stability = 0.02
+		ICE = {
+				add_opinion_modifier = {
+						target = ENG
+						modifier = large_decrease
+					}
+				}
+		ICE = { country_event = codwar.5 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = codwar.4 
+ immediate = { }
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	title = codwar.4.t
+	desc = codwar.4.d
+
+	option = {
+		name = codwar.4.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = codwar.5 
+ immediate = { }
+
+	is_triggered_only = yes
+
+	title = codwar.5.t
+	desc = codwar.5.d
+
+	option = {
+		name = codwar.5.a
+	}
+}

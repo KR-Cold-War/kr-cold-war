@@ -1,0 +1,215 @@
+# KRCW (build/patch_residue.py): 8 OTL events dropped while KRCW_active
+add_namespace = swfs
+add_namespace = Romania_Purge
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Romania_Purge.1 
+ immediate = { }
+	title = Romania_Purge.1.t2
+	desc = Romania_Purge.1.d
+	picture = GFX_Romania_One
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = Romania_Purge.1.a2
+		trigger = {
+			has_government = communism
+		}
+	 }
+	 option = {
+		name = Romania_Purge.1.b2
+		trigger = {
+			NOT = { has_government = communism }
+		}
+	 }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Romania_Purge.2 
+ immediate = { }
+	title = Romania_Purge.2.t2
+	desc = Romania_Purge.2.d
+	picture = GFX_Romania_Two
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Romania_Purge.2.a2
+	}
+
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Romania_Purge.3 
+ immediate = { }
+	title = Romania_Purge.3.t2
+	desc = Romania_Purge.3.d
+	picture = GFX_Romania_Three
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = Romania_Purge.3.a2
+	 }
+
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Romania_Purge.4 
+ immediate = { }
+	title = Romania_Purge.4.t2
+	desc = Romania_Purge.4.d
+	picture = GFX_Romania_Four
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Romania_Purge.4.a2
+		trigger = {
+			has_government = communism
+		}
+	 }
+	 option = {
+		name = Romania_Purge.4.b2
+		trigger = {
+			NOT = { has_government = communism }
+			NOT = { tag = ROM }
+		}
+	 }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Romania_Purge.5 
+ immediate = { }
+	title = Romania_Purge.5.t2
+	desc = Romania_Purge.5.d
+	picture = GFX_Romania_Five
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Romania_Purge.5.a2
+		trigger = {
+			has_government = communism
+		}
+	 }
+	 option = {
+		name = Romania_Purge.5.b2
+		trigger = {
+			NOT = { has_government = communism }
+		}
+	 }
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = swfs.3 
+ immediate = { }
+	title = swfs.3.t2
+	desc = swfs.3.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = swfs.3.a2
+		ai_chance = {
+			factor = 90
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+		ROM = { transfer_state = 78 }
+		ROM = { transfer_state = 911 }
+		ROM = { transfer_state = 1235 }
+		ROM = { transfer_state = 949 }
+		hidden_effect = {
+			78 = { add_core_of = ROM }
+			911 = { add_core_of = ROM }
+			1235 = { add_core_of = ROM }
+			949 = { add_core_of = ROM }
+		   	949 = { set_state_name = "Transnistriei" }
+		   	78 = { set_state_name = "Basarabia de Sud" }
+		   	911 = { set_state_name = "Basarabia de Nord" }
+		   	1235 = { set_state_name = "Gaugauzia" }
+		}
+	}
+	option = {
+		name = swfs.3.b2
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1000
+			}
+		}
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = swfs.4 
+ immediate = { }
+	title = swfs.4.t2
+	desc = swfs.4.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = swfs.4.a2
+		ROM = { transfer_state = 80 }
+			hidden_effect = {
+		80 = { add_core_of = ROM }
+		80 = { set_state_name = "Bucovina de Nord" }
+		set_province_name = { id = 577 name = "Cernauti" } 
+			}
+		ai_chance = {
+			factor = 80
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 20
+		}
+		name = swfs.4.b2
+
+	}
+}
+add_namespace = ROM
+country_event = {
+	id = ROM.1 
+ immediate = { }
+	title = ROM.1.t2
+	desc = ""
+	picture = GFX_report_event_usa_election_generic
+
+	is_triggered_only = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = ROM
+		date > 1965.4.2
+		date < 1965.4.22
+	}
+
+	option = {
+		name = ROM.1.a2
+		ai_chance = {
+			factor = 100
+		}
+		set_politics = { ruling_party = communism elections_allowed = no }
+		create_country_leader = {
+			name = "Nicolae Ceausescu"
+			picture = "Nicolae_Ceausescu_60s.dds"
+			expire = "1989.12.25"
+			ideology = stalinism
+		}
+	}
+}

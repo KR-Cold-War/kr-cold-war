@@ -1,0 +1,65 @@
+# KRCW (build/patch_residue.py): 2 OTL events dropped while KRCW_active
+#####################
+# West Indies Federation Events
+#####################
+
+add_namespace = wifnews
+add_namespace = wif
+
+	news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+		id = wifnews.1 
+ immediate = { }
+		title = wifnews.1.t
+		desc = wif.1.d
+		major = yes
+		fire_only_once = yes
+		is_triggered_only = yes
+
+
+		option = {
+			name = wifnews.1.a
+		}
+	}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = wif.2 
+ immediate = { }
+	title = wif.2.t
+	desc = wif.2.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		ENG = {
+			transfer_state = 1163
+			transfer_state = 693
+			transfer_state = 1226
+			set_autonomy = { target = BAD autonomy_state = autonomy_free }
+		}
+		1226 = {
+			remove_core_of = BAD
+		}
+		1163 = {
+			remove_core_of = BAD
+		}
+		693 = {
+			remove_core_of = BAD
+		}
+		release = JAM
+		release = BAS
+		release = DMN
+		release = STL
+		release = SVI
+		release = GND
+		release = TRI
+		drop_cosmetic_tag = yes
+		news_event = newsdecolonization.49
+		news_event = newsdecolonization.50
+	}
+
+	option = {
+		name = wif.2.a
+	}
+}

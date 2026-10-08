@@ -1,0 +1,81 @@
+# krcw: paced
+add_namespace = krcw_yug
+
+country_event = {
+	id = krcw_yug.1
+	title = krcw_yug_1_t
+	desc = krcw_yug_1_d
+	picture = GFX_krcw_eu_d12_yug_meeting_c
+	fire_only_once = yes
+	trigger = {
+		tag = YUG
+		date > 1949.12.7
+		date < 1952.1.18
+		has_government = neutrality
+		NOT = { has_country_flag = krcw_yug_legitimacy_question }
+	}
+	mean_time_to_happen = {
+		months = 8
+	}
+	immediate = {
+		set_country_flag = krcw_yug_legitimacy_question
+	}
+	option = {
+		name = krcw_yug_1.a
+		ai_chance = {
+			factor = 70
+		}
+		add_war_support = 0.02
+		add_stability = -0.02
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_yug_1.b
+		ai_chance = {
+			factor = 30
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		add_stability = 0.03
+		add_political_power = -25
+	}
+}
+
+country_event = {
+	id = krcw_yug.2
+	title = krcw_yug_2_t
+	desc = krcw_yug_2_d
+	picture = GFX_krcw_eu_d12_yug_rally_c
+	fire_only_once = yes
+	trigger = {
+		tag = YUG
+		date > 1950.5.10
+		date < 1952.6.21
+		is_in_faction_with = SOV
+		NOT = { has_country_flag = krcw_yug_macedonia_question }
+	}
+	mean_time_to_happen = {
+		months = 11
+	}
+	immediate = {
+		set_country_flag = krcw_yug_macedonia_question
+	}
+	option = {
+		name = krcw_yug_2.a
+		ai_chance = {
+			factor = 40
+		}
+		add_stability = 0.02
+		add_political_power = -25
+		if = { limit = { country_exists = BUL } BUL = { add_opinion_modifier = { target = YUG modifier = protectorate_dislikes_overlord } } }
+		if = { limit = { country_exists = GRE } GRE = { add_opinion_modifier = { target = YUG modifier = protectorate_dislikes_overlord } } }
+	}
+	option = {
+		name = krcw_yug_2.b
+		ai_chance = {
+			factor = 60
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = -0.01
+	}
+}

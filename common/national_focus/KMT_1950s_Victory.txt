@@ -1,0 +1,6019 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = KMT_1950s_Victory
+	country = {
+		factor = 0
+		modifier = {
+			add = 0
+			original_tag = CHI
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	initial_show_position = {
+	focus = KMT_Amend_the_Temporary_Provisions
+
+    }
+	default = no
+
+	
+	
+	
+	
+	focus = {
+		id = KMT_The_Direction_of_the_Kuomintang
+		completion_reward = {
+		}
+		icon = GFX_The_Direction_of_The_Kuomingtang
+		cost = 2
+		x = 11
+		y = 0
+		completion_reward = {
+			add_stability = 0.01
+			country_event =  {
+					id = CHI_KMT.1
+					days = 2
+			}
+			activate_mission = Party_Factionalism
+			activate_mission = Communist_Activities_Urban
+			activate_mission = Peasant_Rebellions_Rural
+			if = {
+			limit = {
+				CHI = {
+					has_country_flag = CHI_gxc_flees
+				}
+			}
+			custom_effect_tooltip = Guangxi_Decrease_5
+			add_to_variable = {
+				GUX_Warlord_Loyalty = -0.05
+			}
+		}
+		else_if = {
+			limit = {
+				CHI = {
+					NOT = {has_country_flag = CHI_gxc_flees}
+				}
+			}
+			custom_effect_tooltip = Guangxi_Bribe_5
+			add_to_variable = {
+				GUX_Warlord_Loyalty = 0.05
+			}
+		}
+			
+		}
+		
+		
+	}
+	focus = {
+		id = KMT_Commit_to_Reform
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_Disorganized_Kuomintang_1
+				add_idea = CHI_Disorganized_Kuomintang_2
+			}
+		}
+		icon = GFX_Commit_to_Reform
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_The_Direction_of_the_Kuomintang
+		}
+		
+		x = 9
+		y = 1
+		
+	}
+	
+	focus = {
+		id = KMT_Continue_Martial_Law
+		completion_reward = {
+		}
+		icon = GFX_Amend_The_Temporary_Provisions
+		cost = 5.2
+		prerequisite = {
+				
+			focus = KMT_The_Direction_of_the_Kuomintang
+		}
+		
+		x = 13
+		y = 1
+		completion_reward = {
+			add_political_power = 100
+			add_war_support = -0.05
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = increase_urban_crisis_penalty_small_TT
+				increase_urban_crisis_penalty_tiny = yes
+				custom_effect_tooltip = increase_rural_crisis_penalty_small_TT
+				increase_rural_crisis_penalty_tiny = yes
+				custom_effect_tooltip = increase_party_crisis_penalty_small_TT
+				increase_party_crisis_penalty_tiny = yes
+			}
+			add_ideas = volunteer_only
+			add_ideas = civilian_economy
+			news_event = CHI_MARTIAL_LAW.1
+		}
+	}
+	
+	focus = {
+		id = KMT_The_Central_Reform_Committee
+		completion_reward = {
+		}
+		icon = GFX_The_Central_Reform_Committee
+		cost = 5.2
+		prerequisite = {
+			
+			focus = KMT_Commit_to_Reform
+		}
+		prerequisite = {
+			focus = KMT_Continue_Martial_Law
+			
+		}
+		x = 11
+		y = 2
+		completion_reward = {
+			country_event =  {
+					id = KMT_REFORM.1
+					days = 2
+			}
+			
+		}
+	}
+	
+	focus = {
+		id = KMT_Amend_the_Temporary_Provisions
+		completion_reward = {
+		}
+		icon = GFX_Strengthen_Grip_Over_Cliques
+		cost = 5.2
+		x = 6
+		y = 3
+		prerequisite = {
+			focus = KMT_The_Central_Reform_Committee
+		}
+		completion_reward = {
+			add_stability = 0.02
+			add_political_power = 100
+			country_event =  {
+					id = CHI_KMT.0
+					days = 2
+			}
+		}
+	}
+	focus = {
+		id = KMT_The_Legacy_of_the_Faustian_Bargain
+		completion_reward = {
+		}
+		icon = GFX_usa80_denounce_cuban_wmd_usage 
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Amend_the_Temporary_Provisions
+		}
+		x = -3
+		y = 1
+		relative_position_id = KMT_Amend_the_Temporary_Provisions
+		completion_reward = {
+			country_event =  {
+					id = CHI_BANDIT.0
+					days = 2
+			}
+			
+			add_manpower = -50000
+			add_stability = 0.025
+		}
+	}
+	focus = {
+		id = KMT_Repress_the_Bandits
+		completion_reward = {
+		}
+		icon = GFX_Repress_The_Bandits
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_The_Legacy_of_the_Faustian_Bargain
+		}
+		prerequisite = {
+			focus = KMT_Suppress_Ethnic_Seccessionists
+		}
+		x = 5
+		y = 5
+		completion_reward = {
+			if = { limit = { has_idea = banditry2 }
+				swap_ideas = {
+					remove_idea = banditry2
+					add_idea = banditry
+				}
+			}
+			else_if = { limit = { has_idea = banditry }
+				remove_ideas = banditry
+			}
+			
+			KMT_50s_Mainland_Decrease_Warlord_Loyalty_Tiny = yes
+			add_manpower = -25000
+			
+			add_equipment_to_stockpile = {
+				  type = infantry_equipment
+				  amount = -20000
+				  producer = CHI
+			} 
+		}
+	}
+	focus = {
+		id = KMT_Restoring_Rural_Order
+		completion_reward = {
+		}
+		icon = GFX_Restoring_Rural_Order
+		cost = 5.2
+		
+		available = {
+			AND = {
+				OR = {
+					has_completed_focus = KMT_Take_Half_Measures
+					has_completed_focus = KMT_Commit_to_Land_Reform
+				}
+				custom_trigger_tooltip = {
+						tooltip = crisis_factor_rural_neg_more_than_minus_15_tt
+						check_variable = {
+							crisis_factor_rural_neg > -0.15
+						}
+				}
+			}	
+		}
+		
+		prerequisite = {
+			focus = KMT_allow_current_societal_norms
+			focus = KMT_enforce_change_in_social_norms
+		}
+		x = 5
+		y = 7
+		completion_reward = {
+			if = { limit = { has_idea = banditry2 }
+				swap_ideas = {
+					remove_idea = banditry2
+					add_idea = banditry
+				}
+			}
+			else_if = { limit = { has_idea = banditry }
+				remove_ideas = banditry
+			}
+			
+			KMT_50s_Mainland_Decrease_Warlord_Loyalty_Tiny = yes
+			
+			add_manpower = -50000
+		}
+	}
+	focus = {
+		id = KMT_Combat_Opium_Usage
+		completion_reward = {
+		}
+		icon = GFX_Combat_Opium_Usage
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Amend_the_Temporary_Provisions
+		}
+		x = 9
+		y = 4
+		completion_reward = {
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = decrease_urban_crisis_penalty_small_TT
+				decrease_urban_crisis_penalty_tiny = yes
+				custom_effect_tooltip = decrease_rural_crisis_penalty_small_TT
+				decrease_rural_crisis_penalty_tiny = yes
+
+			}
+			KMT_50s_Mainland_Decrease_Warlord_Loyalty_Tiny = yes
+		}
+	}
+	focus = {
+		id = KMT_allow_current_societal_norms
+		completion_reward = {
+		}
+		icon = GFX_Tolerate_Gambling_and_Prostitution
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Repress_the_Bandits
+		}
+		prerequisite = {
+			focus = KMT_Launch_Sinicization_Campaign
+		}
+		mutually_exclusive = {
+			focus = KMT_enforce_change_in_social_norms
+		}
+		x = 4
+		y = 6
+		completion_reward = {
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = increase_rural_crisis_penalty_small_TT
+				increase_rural_crisis_penalty_tiny = yes
+			}
+			KMT_50s_Mainland_Increase_Warlord_Loyalty_Tiny = yes
+
+		}
+	}
+	focus = {
+		id = KMT_enforce_change_in_social_norms
+		completion_reward = {
+		}
+		icon = GFX_Ban_Prostifution
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Repress_the_Bandits
+		}
+		prerequisite = {
+			focus = KMT_Launch_Sinicization_Campaign
+		}
+		mutually_exclusive = {
+			focus = KMT_allow_current_societal_norms
+		}
+		x = 8
+		y = 6
+		completion_reward = {
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+
+				custom_effect_tooltip = decrease_rural_crisis_penalty_small_TT
+				decrease_rural_crisis_penalty_tiny = yes
+
+			}
+			KMT_50s_Mainland_Decrease_Warlord_Loyalty_Tiny = yes
+			
+			hidden_effect = {
+				remove_ideas = policy_saga_temp_0
+				remove_ideas = policy_saga_temp_1
+				remove_ideas = policy_saga_temp_2
+				remove_ideas = policy_saga_temp_3
+				remove_ideas = policy_saga_temp_4
+				remove_ideas = policy_saga_temp_4a
+			}
+			add_ideas = policy_saga_temp_0
+			hidden_effect = {
+				remove_ideas = policy_women_temp_0
+				remove_ideas = policy_women_temp_1
+				remove_ideas = policy_women_temp_2
+				remove_ideas = policy_women_temp_3
+				remove_ideas = policy_women_temp_4
+			}
+			add_ideas = policy_women_temp_4
+		}
+	}
+	focus = {
+		id = KMT_Promote_Christian_Missionary_Activity
+		completion_reward = {
+		}
+		icon = GFX_Promote_Christiam_Missionary_Activity
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_enforce_change_in_social_norms
+			focus = KMT_allow_current_societal_norms
+		}
+		x = 7
+		y = 7
+		completion_reward = {
+			every_owned_state = {
+				add_to_variable = {
+					ReligionChristianityProtestantMission = 20
+				}
+				custom_effect_tooltip = setup_protestant_missions_TT
+			}
+		}
+	}
+	focus = {
+		id = KMT_Suppress_Ethnic_Seccessionists
+		completion_reward = {
+		}
+		icon = GFX_Suppress_Ethnic_Seccessionists
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Amend_the_Temporary_Provisions
+		}
+		x = 6
+		y = 4
+		completion_reward = {
+			add_stability = 0.03
+			add_political_power = -50
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = decrease_rural_crisis_penalty_small_TT
+				decrease_rural_crisis_penalty_tiny = yes
+			}
+		}
+	}
+	focus = {
+		id = KMT_Launch_Sinicization_Campaign
+		completion_reward = {
+		}
+		icon = GFX_Launch_Sinicization_Campiagn
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Suppress_Ethnic_Seccessionists
+		}
+		prerequisite = {
+			focus = KMT_Combat_Opium_Usage
+		}
+		x = 7
+		y = 5
+		completion_reward = {
+			news_event = KMT_Sinification.0
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.075
+			}
+			unlock_decision_tooltip = Enforce_Mandarin_Only_Education
+			
+		}
+	}
+	focus = {
+		id = KMT_reopen_sun_yat_sen_university
+		completion_reward = {
+			hidden_effect = {increase_education_rate = yes}
+			custom_effect_tooltip = Education_Plus
+			KMT_decrease_illiteracy_rate = yes
+			custom_effect_tooltip = KMT_Decrease_Mainland_Education_Debuffs
+			unlock_decision_tooltip = sanminzhuyi_course
+		}
+		icon = GFX_KMT_50s_Mainland_Sun_Yat_Sen_University
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Restoring_Rural_Order
+		}
+		prerequisite = {
+			focus = KMT_Promote_Christian_Missionary_Activity
+		}
+		x = 6
+		y = 8
+		
+	}
+	focus = {
+		id = KMT_Launch_Kuomintang_Reorganization
+		completion_reward = {
+			country_event =  {
+					id = KMT_50s_Mainland.12
+					days = 2
+			} 
+			unlock_decision_tooltip = Conduct_Ideological_Re_Registration
+		}
+		icon = GFX_KMT_50s_Mainland_Launch_KMT_Reorganization
+		cost = 3
+		prerequisite = {
+			focus = KMT_The_Central_Reform_Committee
+		}	
+		x = 16
+		y = 3
+		
+	}
+	focus = { 
+		id = KMT_Establish_A_Social_Base 
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Define_A_Social_Base
+		cost = 2
+		prerequisite = {
+			focus = KMT_Launch_Kuomintang_Reorganization
+		}	
+		x = 18
+		y = 4
+		completion_reward = {
+			add_manpower = 50000
+			add_popularity = {
+					ideology = nationalist
+					popularity = 0.02
+			}
+			add_popularity = {
+					ideology = Social_liberalism
+					popularity = 0.02
+			}
+			add_popularity = {
+					ideology = liberal_conservatism
+					popularity = 0.02
+			}
+			add_war_support = 0.02
+		}
+	}
+	focus = {
+		id = KMT_Encourage_Cadre_Training
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_Disorganized_Kuomintang_2
+				add_idea = CHI_Disorganized_Kuomintang_3
+			}
+			unlock_decision_tooltip = Expand_Yangmingshan_Institute
+		}
+		prerequisite = {
+			focus = KMT_Launch_Kuomintang_Reorganization
+		}
+		icon = GFX_KMT_avisory_groups
+		cost = 5
+		
+		x = 14
+		y = 4
+		
+	}
+	focus = {
+		id = KMT_Fortify_Tridemism_Mainland
+		completion_reward = {
+		}
+		icon = GFX_KMT_tridemism
+		cost = 5
+		prerequisite = {
+			focus = KMT_Encourage_Cadre_Training
+		}
+		prerequisite = {
+			focus = KMT_Establish_A_Social_Base
+		}
+		x = 16
+		y = 5
+		completion_reward = {
+			country_event = {
+				id = KMT_50s_Mainland.8
+				days = 2
+			}
+		}
+	}
+
+	focus = {
+		id = KMT_send_ching_kuo_to_shanghai
+		completion_reward = {
+		}
+		icon = GFX_Send_CCK_to_Shanghai
+		cost = 5
+		prerequisite = {
+			focus = KMT_Chen_Cheng_50s_Rent_cap
+		}
+		x = 16
+		y = 7
+		completion_reward = {
+			unlock_decision_category_tooltip = KMT_Shanghai_beating_tigers_category
+			set_variable = { Shanghai_Beating_Tigers_Reform_var = 0}
+
+		}
+	}
+
+	focus = {
+		id = KMT_restore_bai_as_minister_of_national_defense
+		completion_reward = {
+		}
+		icon = GFX_Bai_Chongxi_Ministry_of_Defense
+		cost = 5
+		prerequisite = {
+			focus = KMT_Strengthen_Grip_Over_Cliques focus = KMT_Empower_the_Cliques
+		}
+		prerequisite = {
+			focus = KMT_Play_the_Cliques_Against_Each_Other
+		}
+		x = 20
+		y = 8
+		completion_reward = {
+			country_event = {
+				id = KMT_50s_Mainland.19
+				days = 2
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_Sideline_Opposition_Factions
+		completion_reward = {
+		}
+		icon = GFX_Empower_the_Central_Club_Clique
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Fortify_Tridemism_Mainland
+		}
+		
+		x = 12
+		y = 6
+		completion_reward = {
+			add_political_power = 30
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = decrease_party_crisis_penalty_small_TT
+				decrease_party_crisis_penalty_tiny = yes
+			}
+			
+		}
+	}
+	
+	focus = {
+		id = KMT_Deradicalize_the_CC_Clique
+		completion_reward = {
+		}
+		icon = GFX_Prosecute_the_CC_clique
+		cost = 5.2
+		
+		prerequisite = {
+			focus = KMT_Sideline_Opposition_Factions
+		}
+		
+		x = 11
+		y = 7
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_Disorganized_Kuomintang_3
+				add_idea = CHI_Disorganized_Kuomintang_4
+			}
+			unlock_decision_tooltip = Reform_CC_Clique
+			
+		}
+	}
+	focus = {
+		id = KMT_Strengthen_the_Secret_Police
+		completion_reward = {
+		}
+		
+		prerequisite = {
+			focus = KMT_Sideline_Opposition_Factions
+		}
+		
+		icon = GFX_Strengthen_the_Secret_Police
+		cost = 5
+		
+		
+		x = 13
+		y = 7
+		completion_reward = {
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = decrease_urban_crisis_penalty_small_TT
+				decrease_urban_crisis_penalty_tiny = yes
+
+			}
+			
+		}
+	}
+	
+	focus = {
+		id = KMT_Crackdown_on_the_Intellectual_Elites
+		completion_reward = {
+		}
+		icon = GFX_Crackdown_on_the_Intellectual_Elites
+		cost = 5
+
+		prerequisite = {
+			focus = KMT_Strengthen_the_Secret_Police
+		}
+		
+		
+		x = 14
+		y = 8
+		completion_reward = {
+			add_popularity = {
+				ideology = maoism
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = -0.05
+			}
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = decrease_party_crisis_penalty_small_TT
+				decrease_party_crisis_penalty_tiny = yes
+			}
+			if = {
+					limit = {
+						has_dynamic_modifier = {modifier = National_Crisis_modifier}
+					}
+					custom_effect_tooltip = decrease_urban_crisis_penalty_small_TT
+					decrease_urban_crisis_penalty_tiny = yes
+			}
+			add_political_power = 100
+			
+		}
+	}
+	
+	focus = {
+		id = KMT_Integrate_Intelligensa
+		completion_reward = {
+		}
+		icon = GFX_usa_50_provide_edu_adi
+		cost = 5.2
+		
+		prerequisite = {
+			focus = KMT_Deradicalize_the_CC_Clique
+		}
+		
+		
+		x = 10
+		y = 8
+		completion_reward = {
+			add_research_slot = 1
+			add_political_power = -150
+			custom_effect_tooltip = PSC_integrated_TT
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = decrease_party_crisis_penalty_small_TT
+				decrease_party_crisis_penalty_tiny = yes
+			}
+		}
+	}
+
+	focus = {
+		id = KMT_collaborate_with_other_parties
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Taiwan_Allow_other_Parties
+		cost = 5.2
+		
+		prerequisite = {
+			focus = KMT_Deradicalize_the_CC_Clique
+		}
+		prerequisite = {
+			focus = KMT_Strengthen_the_Secret_Police
+		}
+		
+		x = 12
+		y = 8
+		completion_reward = {
+			add_political_power = 100
+			add_popularity = {
+					ideology = Social_Democratic
+					popularity = 0.05
+			}
+			add_popularity = {
+					ideology = fascism
+					popularity = 0.05
+			}
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = decrease_party_crisis_penalty_small_TT
+				decrease_party_crisis_penalty_tiny = yes
+			}
+			
+		}
+	}
+	focus = {
+		id = KMT_Outlaw_Labor_Strikes
+		completion_reward = {
+		}
+		icon = GFX_Outlaw_Labour_Strikes
+		cost = 5.2
+		
+		prerequisite = {
+			focus = KMT_send_ching_kuo_to_shanghai
+		}
+		
+		x = 16
+		y = 8
+		completion_reward = {
+			hidden_effect = {
+				remove_ideas = policy_union_temp_0
+				remove_ideas = policy_union_temp_1
+				remove_ideas = policy_union_temp_2
+				remove_ideas = policy_union_temp_3
+				remove_ideas = policy_union_temp_4
+			}
+			add_ideas = policy_union_temp_4
+		}
+	}
+	
+	focus = {
+		id = KMT_Chen_Cheng_50s_Rent_cap
+		completion_reward = {
+		}
+		
+		prerequisite = {
+			focus = KMT_Fortify_Tridemism_Mainland
+		}
+		
+		icon = GFX_375_Rent
+		cost = 5.2
+		
+		x = 16
+		y = 6
+		completion_reward = {
+			add_ideas = CHI_land_reform1
+			unlock_decision_tooltip = Enforce_375_Rent_Cap
+		}
+	}
+	
+	focus = {
+		id = KMT_Strengthen_Grip_Over_Cliques
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Strengthen_Grip_Over_Cliques
+		cost = 5.2
+		
+		mutually_exclusive = {
+			focus = KMT_Empower_the_Cliques
+		}
+		
+		prerequisite = {
+			focus = KMT_Launch_Investigations_into_Warlords
+		}
+		
+		x = 20
+		y = 7
+		completion_reward = {
+		
+			KMT_50s_Mainland_Decrease_Warlord_Loyalty_Tiny = yes
+			
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = decrease_rural_crisis_penalty_small_TT
+				decrease_rural_crisis_penalty_tiny = yes
+			}
+			every_owned_state = {
+				add_extra_state_shared_building_slots = -1
+			}
+			if = {
+                limit = {
+                 	NOT = {
+						has_country_flag = CHI_gxc_flees
+					}
+                }
+                CHI = {
+                    country_event = {
+						id = KMT_50s_Mainland.7
+						days = 2
+					}
+                }
+			}
+		}
+	}
+	focus = {
+		id = KMT_Empower_the_Cliques
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Empower_Cliques
+		cost = 5.2
+		
+		prerequisite = {
+			focus = KMT_Launch_Investigations_into_Warlords
+		}
+		
+		mutually_exclusive = {
+			focus = KMT_Strengthen_Grip_Over_Cliques
+		}
+		x = 22
+		y = 7
+		completion_reward = {
+			KMT_50s_Mainland_Increase_Warlord_Loyalty_Tiny = yes
+			
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 2
+			}
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+
+				custom_effect_tooltip = increase_rural_crisis_penalty_big_TT
+				increase_rural_crisis_penalty_bigger = yes
+
+			}
+			if = {
+                limit = {
+                 	NOT = {
+						has_country_flag = CHI_gxc_flees
+					}
+                }
+                CHI = {
+                    country_event = {
+						id = KMT_50s_Mainland.7
+						days = 2
+					}
+                }
+			}
+		}
+	}
+	
+	
+	
+	focus = {
+		id = KMT_Play_the_Cliques_Against_Each_Other
+		completion_reward = {
+		}
+		icon = GFX_Play_the_Cliques_Against_Each_Other
+		cost = 5
+		
+		prerequisite = {
+			focus = KMT_Launch_Investigations_into_Warlords
+		}
+		
+		x = 18
+		y = 7
+		completion_reward = {
+			KMT_50s_Mainland_Increase_Warlord_Loyalty_Tiny = yes
+		}
+	}
+	
+	
+	focus = {
+		id = KMT_Launch_Investigations_into_Warlords
+		completion_reward = {
+		}
+		icon = GFX_Launch_Investigations_into_Warlords
+		cost = 8
+		
+		prerequisite = {
+			focus = KMT_Fortify_Tridemism_Mainland
+		}
+		
+		x = 20
+		y = 6
+		completion_reward = {
+			country_event =  {
+				id = KMT_50s_Mainland.6
+				days = 2
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_Restrain_American_Influence
+		completion_reward = {
+		}
+		icon = GFX_Restrain_American_Influence
+		cost = 5.2
+		
+		prerequisite = {
+			focus = KMT_Crackdown_on_Party_Corruption
+		}
+		
+		x = 11
+		y = 11
+		completion_reward = {
+			set_temp_variable = { percent_change = 15 }
+			change_domestic_influence_percentage = yes
+			add_political_power = 100
+		}
+	}
+	
+	
+	
+	focus = {
+		id = KMT_The_White_Terror
+		completion_reward = {
+		}
+		icon = GFX_White_Terror
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_The_Central_Reform_Committee
+		}	
+		x = 26
+		y = 3
+		completion_reward = {
+			add_stability = 0.05
+			add_manpower = -50000
+			news_event = KMT_VICTORY_TERROR.0
+			unlock_decision_tooltip = Expand_The_Garrison_Command
+		}
+	}
+	focus = {
+		id = KMT_Utilize_Organized_Crime_Connetions
+		completion_reward = {
+		}
+		icon = GFX_Utilize_Organized_Crime_Connetions
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_The_White_Terror
+			
+		}
+		mutually_exclusive = {
+			focus = KMT_Crackdown_on_Organized_Crime
+		}
+		x = 24
+		y = 4
+		completion_reward = {
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = increase_urban_crisis_penalty_small_TT
+				increase_urban_crisis_penalty_tiny = yes
+
+			}
+			
+			add_political_power = 200
+		}
+	}
+	focus = {
+		id = KMT_Crackdown_on_Organized_Crime
+		completion_reward = {
+		}
+		icon = GFX_Crackdown_on_Organized_Crime
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_The_White_Terror
+			
+		}
+		mutually_exclusive = {
+			focus = KMT_Utilize_Organized_Crime_Connetions
+		}
+		x = 28
+		y = 4
+		
+		select_effect = {
+			set_temp_variable = { money_to_gain = -50 }
+			add_money_with_tooltip_effect = yes
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = decrease_urban_crisis_penalty_small_TT
+				decrease_urban_crisis_penalty_tiny = yes
+
+			}
+			if = {
+				limit = {
+					has_idea = organized_crime_problem
+				}
+				remove_ideas = organized_crime_problem
+			}
+		}
+		
+	}
+	focus = {
+		id = KMT_Legitimize_Rural_Secret_Cults
+		completion_reward = {
+		}
+		icon = GFX_Legitimize_Rural_Secret_Cults
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Utilize_Organized_Crime_Connetions
+			focus = KMT_Crackdown_on_Organized_Crime
+		}
+		mutually_exclusive = {
+			focus = KMT_Crush_Secret_Societies
+		}
+		x = 25
+		y = 5
+		completion_reward = {
+			news_event = KMT_CULTS.0
+			add_war_support = 0.05
+			add_political_power = 50
+			hidden_effect = {
+				every_owned_state = {
+					add_to_variable = {
+						ReligionChineseSalvationistMission = 36
+					}
+				}
+			}	
+			
+		}
+	}
+	focus = {
+		id = KMT_Crush_Secret_Societies
+		completion_reward = {
+		}
+		icon = GFX_Crush_Secret_Societies
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Utilize_Organized_Crime_Connetions
+			focus = KMT_Crackdown_on_Organized_Crime
+		}
+		mutually_exclusive = {
+			focus = KMT_Legitimize_Rural_Secret_Cults
+		}
+		x = 27
+		y = 5
+		completion_reward = {
+			news_event = KMT_CULTS.1
+			add_war_support = -0.05
+			add_manpower = -40000
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = decrease_urban_crisis_penalty_small_TT
+				decrease_urban_crisis_penalty_tiny = yes
+
+
+			}
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						check_variable = {
+							ReligionChineseSalvationist > 0
+						}
+					}
+					set_temp_variable = {
+						PersecutionSalvationist = ReligionChineseSalvationist
+					}
+					multiply_temp_variable = {
+						PersecutionSalvationist = 0.1
+					}
+					subtract_from_variable = {
+						ReligionChineseSalvationist = PersecutionSalvationist
+					}
+					normalize_religion = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+
+		id = KMT_send_hanjians_to_labour_camps
+		completion_reward = {
+		}
+		icon = GFX_Liquidate_Communist_Supporters
+		cost = 5.2
+		prerequisite = {
+			# FIX 2026-07-09: removed 'focus = KMT_Pardon_Japanese_Collaborators' — focus does not exist anywhere in the mod
+			focus = KMT_Commencen_the_Show_Trials
+		}
+		mutually_exclusive = {
+
+			focus = KMT_remove_these_traitors_entirely
+		}
+		x = 25
+		y = 7
+		completion_reward = {
+
+
+
+			every_owned_state = {
+				add_manpower = -10000
+			}
+			
+			add_ideas = {
+				KMT_gulags 
+			}
+			
+
+		}
+	}
+	focus = {
+
+		id = KMT_remove_these_traitors_entirely
+		completion_reward = {
+		}
+
+		icon = GFX_Intensify_Communist_Persecution
+		cost = 5.2
+		prerequisite = {
+			# FIX 2026-07-09: removed 'focus = KMT_Pardon_Japanese_Collaborators' — focus does not exist anywhere in the mod
+			focus = KMT_Commencen_the_Show_Trials
+		}
+		mutually_exclusive = {
+
+			focus = KMT_send_hanjians_to_labour_camps
+		}
+		x = 27
+		y = 7
+		completion_reward = {
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = decrease_urban_crisis_penalty_big_TT
+				decrease_urban_crisis_penalty_bigger = yes
+
+			}
+			every_owned_state = {
+				add_manpower = -25000
+			}
+			add_war_support = -0.10
+		}
+	}
+	focus = {
+		id = KMT_Commencen_the_Show_Trials
+		completion_reward = {
+		}
+		icon = GFX_Commencen_The_Show_Trials 
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Legitimize_Rural_Secret_Cults
+			focus = KMT_Crush_Secret_Societies
+		}
+		# FIX 2026-07-09: removed mutually_exclusive with KMT_Pardon_Japanese_Collaborators — focus does not exist anywhere in the mod
+ 
+		x = 26
+		y = 6
+		completion_reward = {
+			
+			news_event = KMT_SHOW_TRIALS.1
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = decrease_urban_crisis_penalty_small_TT
+				decrease_urban_crisis_penalty_tiny = yes
+
+
+			}
+			SOV = {
+					country_event = { id = KMT_punishments.1 days = 3}
+				}
+			custom_effect_tooltip = KMT_trial_tt
+			
+			hidden_effect = {
+				
+				country_event = { id = KMT_punishments.4 days = 1}
+				country_event = { id = KMT_punishments.7 days = 4}
+			
+				
+			}
+
+		}
+	}
+	
+	focus = {
+		id = KMT_harden_grip_over_the_media
+		completion_reward = {
+		}
+		
+		prerequisite = {
+
+
+			focus = KMT_send_hanjians_to_labour_camps
+			focus = KMT_remove_these_traitors_entirely
+		}
+		
+
+		icon = GFX_BanOppositionParties
+		cost = 5.2
+	
+		x = 26
+		y = 8
+		completion_reward = {
+			add_popularity = {
+				ideology = maoism
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = -0.05
+			}
+	
+			hidden_effect = {
+				remove_ideas = policy_media_temp_0
+				remove_ideas = policy_media_temp_1
+				remove_ideas = policy_media_temp_2
+				remove_ideas = policy_media_temp_3
+				remove_ideas = policy_media_temp_3a
+			}
+			add_ideas = policy_media_temp_0
+			
+		}
+	}
+	
+	focus = {
+		id = KMT_Crackdown_on_Party_Corruption
+		completion_reward = {
+		}
+		icon = GFX_Crackdown_on_Party_Corruption
+		cost = 5.2
+		
+		prerequisite = {
+			focus = KMT_reopen_sun_yat_sen_university
+		}
+		prerequisite = {
+			focus = KMT_harden_grip_over_the_media
+		}
+		
+		prerequisite = {
+			focus = KMT_Outlaw_Labor_Strikes
+		}
+		prerequisite = {
+			focus = KMT_restore_bai_as_minister_of_national_defense
+		}
+		
+		prerequisite = {
+			focus = KMT_Integrate_Intelligensa
+		}
+
+		prerequisite = {
+			focus = KMT_Crackdown_on_the_Intellectual_Elites
+		}
+
+		prerequisite = {
+			focus = KMT_collaborate_with_other_parties
+		}
+		
+		x = 11
+		y = 10
+		completion_reward = {
+			remove_ideas = CHI_Disorganized_Kuomintang_4
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_institute_ching_kuo_reforms_nationwide
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Implement_CCK_Reforms_Nationwide
+		cost = 5
+		
+		available = {
+			
+			custom_trigger_tooltip = {
+			    tooltip = institutite_cck_reforms_nationwide_req
+				OR = {
+			   		has_country_flag = Shanghai_success
+					has_country_flag = Shanghai_failure
+				}
+			} 
+		}
+
+		bypass = {
+			has_country_flag = Shanghai_failure
+		}
+		
+		prerequisite = {
+			focus = KMT_Crackdown_on_Party_Corruption
+		}	
+		x = 9
+		y = 11
+		completion_reward = {
+			add_timed_idea = {
+				idea = KMT_Shanghai_Reforms_Nationwide
+				days = 1250
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_Replace_Untrustworthy_Governors
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Replace_Untrustworthy_Governors_in_Southern_China
+		
+		
+		bypass = {
+			AND = {
+				has_country_flag = GUX_INTEGRATED
+				has_country_flag = HUN_INTEGRATED
+				has_country_flag = YUN_INTEGRATED
+				has_country_flag = XIK_INTEGRATED
+				has_country_flag = QMC_INTEGRATED
+				has_country_flag = SHX_INTEGRATED
+			}
+		}
+		
+		cost = 5
+		
+		prerequisite = {
+			focus = KMT_Crackdown_on_Party_Corruption
+		}	
+		x = 13
+		y = 11
+		completion_reward = {
+			unlock_decision_tooltip = HNN_replace_Ding_Delong_as_governor
+			unlock_decision_tooltip = GXC_replace_Li_Zongren_as_governor
+			unlock_decision_tooltip = YUN_replace_Sun_Du_as_governor
+			unlock_decision_tooltip = XIK_replace_Sun_Zhen_as_governor
+			unlock_decision_tooltip = XSM_replace_Ma_Bufang_as_governor
+			unlock_decision_tooltip = SHX_Retirement_of_Yan_Xishan_as_governor
+		}
+	}
+	
+	
+	
+	focus = {
+		id = KMT_Supremacy_of_CKS
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Taiwan_Chiang_Family
+		cost = 5
+		prerequisite = {
+			focus = KMT_institute_ching_kuo_reforms_nationwide
+		}
+		prerequisite = {
+			focus = KMT_Replace_Untrustworthy_Governors
+		}
+		prerequisite = {
+			focus = KMT_Restrain_American_Influence
+		}		
+		x = 11
+		y = 12
+		completion_reward = {
+			remove_country_leader_trait = fading_legacy_of_guofu
+			add_popularity = {
+					ideology = nationalist
+					popularity = 0.1
+			}
+			add_political_power = 100
+     		
+			country_event =  {
+				id = KMT_50s_Mainland.9
+				days = 2
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_The_Hyperinflation_Crisis
+		completion_reward = {
+		}
+		available = {
+			has_completed_focus = KMT_Continue_Martial_Law
+		}
+		icon = GFX_KMT_50s_Mainland_The_Hyperinflation
+		cost = 5.2
+		x = 60
+		y = 0
+		completion_reward = {
+			set_temp_variable = { money_to_gain = -50 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+
+	focus = {
+		id = KMT_support_the_western_allies
+		completion_reward = {
+			
+			USA = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = large_increase
+				}
+			}
+			FRA = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = large_increase
+				}
+			}
+			ENG = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = large_increase
+				}
+			}
+			set_temp_variable = { money_to_gain = 10 }
+			add_money_with_tooltip_effect = yes
+			unlock_decision_category_tooltip = International_Diplomacy_category
+			custom_effect_tooltip = ROC_50s_FP_Support_the_West
+			declare_war_on = {
+				target = CHK
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HOR
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = DER
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = LIN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = NAN
+				type = annex_everything
+			}
+			transfer_state = 1963
+			867 = {
+					remove_dynamic_modifier = { modifier = Kham_Warlords }  
+			}
+			2018 = {
+					remove_dynamic_modifier = { modifier = Kham_Warlords }  
+			}
+			2017 = {
+					remove_dynamic_modifier = { modifier = Kham_Warlords }  
+			}
+			2016 = {
+					remove_dynamic_modifier = { modifier = Kham_Warlords }  
+			}
+			1877 = {
+					remove_dynamic_modifier = { modifier = Kham_Warlords }  
+			}
+			
+		}
+		icon = GFX_KMT_50s_Mainland_Support_Western_Allies
+		cost = 2
+		x = 14
+		y = 13
+		mutually_exclusive = {
+			focus = KMT_anti_colonial_rhetoric
+		}
+		
+	}
+	focus = {
+		id = KMT_anti_colonial_rhetoric
+		completion_reward = {
+			FRA = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = small_decrease
+				}
+			}
+			ENG = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = small_decrease
+				}
+			}
+			add_war_support = 0.05
+			add_political_power = 10
+			unlock_decision_category_tooltip = International_Diplomacy_category
+			custom_effect_tooltip = ROC_50s_FP_Anti_Colonial_Policy
+			declare_war_on = {
+				target = CHK
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HOR
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = DER
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = LIN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = NAN
+				type = annex_everything
+			}
+			transfer_state = 1963
+			867 = {
+					remove_dynamic_modifier = { modifier = Kham_Warlords }  
+			}
+			2018 = {
+					remove_dynamic_modifier = { modifier = Kham_Warlords }  
+			}
+			2017 = {
+					remove_dynamic_modifier = { modifier = Kham_Warlords }  
+			}
+			2016 = {
+					remove_dynamic_modifier = { modifier = Kham_Warlords }  
+			}
+			1877 = {
+					remove_dynamic_modifier = { modifier = Kham_Warlords }  
+			}
+			
+			hidden_effect = {
+				CHI = {
+					country_event =  {
+						id = KMT_50s_Mainland.13
+						days = 2
+					}
+				}
+			}
+			
+		}
+		icon = GFX_KMT_50s_Mainland_Anti_Colonial_Policy
+		cost = 2
+		x = 22
+		y = 13
+		mutually_exclusive = {
+			focus = KMT_support_the_western_allies
+		}
+		
+	}
+	
+	focus = {
+		id = KMT_establish_embassies_in_indochina
+		
+		icon = GFX_KMT_50s_Mainland_Indochina_Diplomacy
+		cost = 2
+		x = 11
+		y = 14
+		available = {
+			OR = {
+				country_exists = CAM
+				country_exists = SIA
+				country_exists = LOS
+			}
+		}
+		
+		prerequisite = {
+			focus = KMT_support_the_western_allies
+			focus = KMT_anti_colonial_rhetoric
+			
+		}
+		available = {
+			has_completed_focus = KMT_indochina_situation
+		}
+		
+		completion_reward = {
+			add_ideas = CHI_Economic_Cooperation
+			If = {
+				limit = {
+					country_exists = SIA
+				}
+				SIA = {
+					country_event = KMT_50s_Mainland.1
+					add_ideas = CHI_Economic_Cooperation
+				}
+			}	
+			If = {
+				limit = {
+					country_exists = LOS
+				}
+				LOS = {
+					country_event = KMT_50s_Mainland.1
+					add_ideas = CHI_Economic_Cooperation
+				}
+			}
+			If = {
+				limit = {
+					country_exists = CAM
+				}
+				CAM = {
+					country_event = KMT_50s_Mainland.1
+					add_ideas = CHI_Economic_Cooperation
+				}
+			}
+			
+			
+		}
+		
+	}
+	
+	focus = {
+        id = KMT_reinforce_authority_in_jiangxinpo
+        completion_reward = {
+			add_war_support = 0.05
+			country_event =  {
+				id = KMT_mainlandburma.1
+				days = 2
+			}
+        }
+        icon = GFX_KMT_50s_Mainland_Jiangxinpo
+        cost = 2 
+        x = 11
+        y = 15
+        prerequisite = {
+            focus = KMT_establish_embassies_in_indochina
+
+
+        }
+
+    }
+	
+	focus = {
+		id = KMT_Grant_More_Privileges_to_Prince_De
+		completion_reward = {
+			country_event = {
+				id = KMT_50s_Mainland.29
+				days = 2
+			}
+			
+		}
+		
+		
+		icon = GFX_KMT_50s_Mainland_Empower_Prince_Dem
+		cost = 2
+		x = 38
+		y = 14
+		prerequisite = {
+			focus = KMT_support_the_western_allies
+			focus = KMT_anti_colonial_rhetoric
+			
+		}
+		
+	}
+	
+	focus = {
+		id = KMT_the_manchurian_issue
+		completion_reward = {
+			
+			PRC = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = medium_decrease
+				}
+			}
+			
+			CHI = {
+				add_opinion_modifier = {
+					target = PRC
+					modifier = medium_decrease
+				}
+			}
+			
+			add_threat = 1
+		}
+		
+		available = {
+			country_exists = PRC
+		}
+		
+		icon = GFX_KMT_50s_Mainland_The_Manchurian_Issue
+		cost = 2
+		x = 18
+		y = 14
+		prerequisite = {
+			focus = KMT_support_the_western_allies
+			focus = KMT_anti_colonial_rhetoric
+			
+		}
+		
+	}
+	
+	focus = {
+		id = KMT_expand_military_infrastructure_hebei_alsha
+		completion_reward = {
+			custom_effect_tooltip = moar_infrastructure_please_tt
+			custom_effect_tooltip = gansu_road_based_tt
+			custom_effect_tooltip = gansu_road_railways_tt
+			hidden_effect = {
+				614 = {
+					add_building_construction = {
+						type = 	infrastructure
+						level = 1
+						instant_build = yes
+						}
+				}	
+				615 = {
+					add_building_construction = {
+						type = 	infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+				283 = {
+					add_building_construction = {
+						type = 	infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+				614 = {
+					add_building_construction = {
+						type = 	infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}	
+				621 = {
+					add_building_construction = {
+						type = 	infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+				612 = {
+					add_building_construction = {
+						type = 	infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+				604 = {
+					add_building_construction = {
+						type = 	infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+				1359 = {
+					add_building_construction = {
+						type = 	infrastructure
+						level = 1
+						instant_build = yes
+					}
+				}
+				If = {
+					limit = {
+						CHI = {controls_state = 612}
+					}
+
+					612 = {
+					
+						add_building_construction = {
+							type = supply_node
+							level = 1
+							province = 12750
+							instant_build = yes
+						}
+							
+					}
+
+					build_railway = {
+						level = 1
+						build_only_on_allied = yes
+						path = { 6638 3742 8127 12750}
+						start_province = 6638
+						target_province = 12750
+					}			
+				}
+				If = {
+					limit = {
+						CHI = {controls_state = 283}
+					}
+
+					283 = {
+					
+						add_building_construction = {
+							type = supply_node
+							level = 1
+							province = 7971
+							instant_build = yes
+						}
+							
+					}
+
+					build_railway = {
+						level = 1
+						build_only_on_allied = yes
+						path = { 6638 1630 5057 12776 5100 2028 5076 7971}
+						start_province = 6638
+						target_province = 7971
+					}			
+				}
+				If = {
+					limit = {
+						CHI = {controls_state = 604}
+					}
+
+					build_railway = {
+						level = 1
+						build_only_on_allied = yes
+						path = { 1630 12732 10490 10750 12846 7940}
+						start_province = 1630
+						target_province = 7940
+					}	
+				}
+				If = {
+					limit = {
+						CHI = {controls_state = 1787}
+					}
+
+					build_railway = {
+						level = 1
+						build_only_on_allied = yes
+						path = { 4295 12882 556 6638}
+						start_province = 4295
+						target_province = 6638
+					}	
+				}
+				621 = {
+					add_building_construction = {
+						type = supply_node
+						level = 1
+						province = 7158
+						instant_build = yes
+					}
+				}
+			}
+		}
+		
+		icon = GFX_usa_50_progressive_colonialism
+		cost = 5
+		x = 15
+		y = 15
+		prerequisite = {
+			focus = KMT_the_manchurian_issue
+
+		}
+		
+	}
+	
+	focus = {
+		id = KMT_announce_the_one_china_policy
+		completion_reward = {
+			news_event = KMT_50s_Mainland.2
+			add_war_support = 0.01
+			add_to_variable = {
+				bonus_fpp_modifier = 0.05
+				tooltip = bonus_fpp_modifier_tt
+				
+			}
+		}
+		icon = GFX_KMT_50s_Mainland_One_China_Policy
+		cost = 5
+		x = 18
+		y = 15
+		prerequisite = {
+			focus = KMT_the_manchurian_issue
+			
+			
+		}
+		
+	}
+	
+	focus = {
+		id = KMT_the_kung_chao_doctrine
+		completion_reward = {
+			SOV = {country_event = KMT_50s_Mainland.3}
+			every_other_country = {
+				limit = {
+					is_subject_of = SOV
+				}
+				country_event = KMT_50s_Mainland.3
+			}
+		}
+		icon = GFX_KMT_50s_Mainland_George_Yeh
+		cost = 5
+		x = 16
+		y = 16
+		
+		prerequisite = {
+			focus = KMT_expand_military_infrastructure_hebei_alsha
+		}
+		prerequisite = {
+			focus = KMT_announce_the_one_china_policy
+		}
+		
+	}
+	
+	focus = {
+		id = KMT_intensify_border_controls
+		completion_reward = {
+			custom_effect_tooltip = fortify_the_border_with_commies_tt
+			army_experience = 40
+			hidden_effect = {
+				614 = {
+					add_building_construction = {
+						type = bunker
+						province = 4137
+						level = 2
+						instant_build = yes
+						}
+				}
+				614 = {
+					add_building_construction = {
+						type = bunker
+						province = 9969
+						level = 2
+						instant_build = yes
+					}
+				}
+				614 = {
+					add_building_construction = {
+						type = bunker
+						province = 1134
+						level = 2
+						instant_build = yes
+					}
+				}
+				614 = {
+					add_building_construction = {
+						type = bunker
+						province = 4140
+						level = 2
+						instant_build = yes
+					}
+				}
+				614 = {
+					add_building_construction = {
+						type = bunker
+						province = 6828
+						level = 2
+						instant_build = yes
+						}
+				}
+				614 = {
+					add_building_construction = {
+						type = bunker
+						province = 10480
+						level = 2
+						instant_build = yes
+					}
+				}
+				615 = {
+					add_building_construction = {
+						type = bunker
+						province = 1027
+						level = 2
+						instant_build = yes
+					}
+				}
+				615 = {
+					add_building_construction = {
+						type = bunker
+						province = 12432
+						level = 2
+						instant_build = yes
+					}
+				}
+				621 = {
+					add_building_construction = {
+						type = bunker
+						province = 7158
+						level = 2
+						instant_build = yes
+						}
+				}
+				621 = {
+					add_building_construction = {
+						type = bunker
+						province = 12403
+						level = 2
+						instant_build = yes
+					}
+				}
+				621 = {
+					add_building_construction = {
+						type = bunker
+						province = 16598
+						level = 2
+						instant_build = yes
+					}
+				}
+				621 = {
+					add_building_construction = {
+						type = bunker
+						province = 7048
+						level = 2
+						instant_build = yes
+					}
+				}
+				621 = {
+					add_building_construction = {
+						type = bunker
+						province = 12331
+						level = 2
+						instant_build = yes
+						}
+				}
+				621 = {
+					add_building_construction = {
+						type = bunker
+						province = 12609
+						level = 2
+						instant_build = yes
+						}
+				}
+				621 = {
+					add_building_construction = {
+						type = bunker
+						province = 10629
+						level = 2
+						instant_build = yes
+						}
+				}
+				621 = {
+					add_building_construction = {
+						type = bunker
+						province = 12608
+						level = 2
+						instant_build = yes
+					}
+				}
+				621 = {
+					add_building_construction = {
+						type = bunker
+						province = 10609
+						level = 2
+						instant_build = yes
+					}
+				}
+				621 = {
+					add_building_construction = {
+						type = bunker
+						province = 12880
+						level = 2
+						instant_build = yes
+					}
+				}
+				612 = {
+					add_building_construction = {
+						type = bunker
+						province = 7803
+						level = 2
+						instant_build = yes
+						}
+				}
+				612 = {
+					add_building_construction = {
+						type = bunker
+						province = 10899
+						level = 2
+						instant_build = yes
+					}
+				}
+				612 = {
+					add_building_construction = {
+						type = bunker
+						province = 4783
+						level = 2
+						instant_build = yes
+					}
+				}
+				612 = {
+					add_building_construction = {
+						type = bunker
+						province = 16594
+						level = 2
+						instant_build = yes
+					}
+				}
+				283 = {
+					add_building_construction = {
+						type = bunker
+						province = 16592
+						level = 2
+						instant_build = yes
+						}
+				}
+				283 = {
+					add_building_construction = {
+						type = bunker
+						province = 1778
+						level = 2
+						instant_build = yes
+					}
+				}
+				283 = {
+					add_building_construction = {
+						type = bunker
+						province = 12820
+						level = 2
+						instant_build = yes
+					}
+				}
+				283 = {
+					add_building_construction = {
+						type = bunker
+						province = 16591
+						level = 2
+						instant_build = yes
+					}
+				}
+				604 = {
+					add_building_construction = {
+						type = bunker
+						province = 12890
+						level = 2
+						instant_build = yes
+						}
+				}
+				604 = {
+					add_building_construction = {
+						type = bunker
+						province = 10865
+						level = 2
+						instant_build = yes
+					}
+				}
+				1359 = {
+					add_building_construction = {
+						type = bunker
+						province = 4914
+						level = 2
+						instant_build = yes
+					}
+				}
+				1359 = {
+					add_building_construction = {
+						type = bunker
+						province = 8037
+						level = 2
+						instant_build = yes
+					}
+				}
+				if = {
+					limit = {
+						controls_state = 1361
+					}
+					1361 = {
+						add_building_construction = {
+							type = bunker
+							province = 10802
+							level = 2
+							instant_build = yes
+						}
+					}
+					1361 = {
+						add_building_construction = {
+							type = bunker
+							province = 12801
+							level = 2
+							instant_build = yes
+						}
+					}
+				}
+			}
+		}
+		icon = GFX_usa_50_secure_beirut_internationl
+		cost = 2
+		x = 21
+		y = 15
+			
+		
+		prerequisite = {
+			focus = KMT_the_manchurian_issue
+		}
+		
+	}
+	
+	focus = {
+		id = KMT_send_spies_into_ccp_territory 
+		completion_reward = {
+			PRC = {
+				add_stability = -0.08
+				add_war_support = -0.05
+				add_political_power = -50
+			}
+			328 = {
+				damage_building = {
+					type = industrial_complex
+					damage = 5
+				}
+			}
+			714 = {
+				damage_building = {
+					type = industrial_complex
+					damage = 5
+				}
+			}
+		}
+		icon = GFX_Launch_Full_Investigation
+		cost = 2
+		x = 20
+		y = 16
+			
+		
+		prerequisite = {
+			focus = KMT_intensify_border_controls
+		}
+		prerequisite = {
+			focus = KMT_announce_the_one_china_policy	
+		}
+		
+	}
+
+	focus = {
+		id = KMT_collapse_the_iron_curtain_in_north_asia
+		completion_reward = {
+			country_event = KMT_50s_Mainland.21
+			custom_effect_tooltip = collapse_the_bamboo_curtain_tt
+		}
+		icon = GFX_Break_the_Iron_Curtain_in_Asia
+		cost = 2
+		x = 18
+		y = 17
+			
+		available = {
+			AND = {
+				date > 1959.12.01
+				MON = {
+					exists = yes
+				}
+				SIK = {
+					exists = yes
+				}
+				PRC = {
+					exists = yes
+				}
+			}	
+		}
+		prerequisite = {
+			focus = KMT_send_spies_into_ccp_territory
+		}
+		prerequisite = {
+			focus = KMT_the_kung_chao_doctrine
+		}
+		
+	}
+	
+	focus = {
+		id = KMT_seek_cooperation_with_Malaya
+		completion_reward = {
+			MAL = {
+				country_event = KMT_50s_Mainland.4
+				add_ideas = CHI_Economic_Cooperation
+			}
+			ROOT = {
+				add_opinion_modifier = {
+					target = MAL
+					modifier = medium_increase
+				}
+			}
+		}
+		
+		available = {
+			country_exists = MAL
+		}
+		
+		icon = GFX_KMT_50s_Mainland_Relations_with_Malaysia
+		cost = 2
+		x = 25
+		y = 14
+		prerequisite = {
+			focus = KMT_support_the_western_allies
+			focus = KMT_anti_colonial_rhetoric
+			
+		}
+		
+	}
+	
+	focus = {
+		id = KMT_give_malaya_guns
+		completion_reward = {
+			MAL = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_0
+					amount = 2000
+					producer = CHI
+				}
+				add_political_power = 50
+			}	
+		}
+		icon = GFX_usa_50_ramp_up_equipment_shipments
+		cost = 2
+		x = 25
+		y = 15
+		available = {
+			has_completed_focus = KMT_support_the_western_allies
+		}	
+		prerequisite = {
+			focus = KMT_seek_cooperation_with_Malaya
+
+		}
+		
+	}
+	
+	focus = {
+		id = KMT_seeking_allies_in_asia
+		completion_reward = {
+			add_political_power = 50
+			add_to_variable = {
+				bonus_fpp_modifier = 0.05
+				tooltip = bonus_fpp_modifier_tt
+				
+			}
+			custom_effect_tooltip = Unlocks_more_decisions_for_asian_diplomacy_TT
+		}
+		icon = GFX_Seeking_Long_term_allies_in_asia
+		cost = 2
+		x = 3
+		y = 14
+		prerequisite = {
+			focus = KMT_support_the_western_allies
+			focus = KMT_anti_colonial_rhetoric
+			
+		}
+		
+	}
+
+	focus = {
+		id = KMT_organize_the_indochina_military_mission
+		completion_reward = {
+		}
+		icon = GFX_CHI_Send_Advisors_to_Vietnam
+		cost = 2
+		x = 7
+		y = 17
+		prerequisite = {
+			focus = KMT_recognise_saigon_authority_in_vietnam
+			focus = KMT_Support_The_Viet_Quoc
+			
+		}
+		
+		
+		
+		completion_reward = {
+			country_event =  {
+					id = CHI_INDO.8
+					days = 2
+			}
+			VIE = {
+				add_ideas = chinese_advisors
+
+				army_experience = 30
+				add_offsite_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KMT_Reorganize_the_VNQDD_party
+		completion_reward = {
+		}
+		icon = GFX_Form_the_Oversea_National_Revolutionary_Training_Center
+		cost = 2
+		prerequisite = {
+			focus = KMT_Support_The_Viet_Quoc
+		}
+		
+		bypass = {
+			NOT = {
+				country_exists = VIN
+			}
+		}
+		
+		x = 9
+		y = 17
+		completion_reward = {
+			
+			custom_effect_tooltip = Viet_Quoc_made_better_TT
+			country_event =  {
+					id = CHI_INDO.9
+					days = 2
+			}
+			hidden_effect = {
+				VIN = {
+					country_event = CHI_INDO.9
+				}
+				VIE = {
+					country_event = CHI_INDO.9
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KMT_korean_war
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Taiwan_the_Korean_War
+		cost = 2
+		prerequisite = {
+			focus = KMT_seeking_allies_in_asia
+		}
+		x = -1
+		y = 15
+		
+		available = {
+			KOR = {
+				has_war_with = KPA
+			}
+		}
+		
+		bypass = {
+				OR = {
+					NOT = {country_exists = KOR}
+					NOT = {country_exists = KPA}
+				}
+		}
+		
+		completion_reward = {
+			country_event = CHI_KOR.7
+			set_variable = {
+				Volunteer_Allowance^SGP = 1
+			}
+		}
+	}
+
+	focus = {
+		id = KMT_support_rhee_government
+		completion_reward = {
+		}
+	 	icon = GFX_Support_Rhee
+		cost = 2
+		prerequisite = {
+			focus = KMT_korean_war
+		}
+		x = -1
+		y = 16
+		
+		available = {
+			KOR = {
+				has_war_with = KPA
+			}
+		}
+		
+		bypass = {
+				OR = {
+					NOT = {country_exists = KOR}
+					NOT = {country_exists = KPA}
+				}
+		}
+		
+		completion_reward = {
+			news_event = CHI_KOR.8
+		}
+	}
+
+	focus = {
+		id = KMT_supply_the_ROK_with_CCW_arms
+		completion_reward = {
+		}
+		icon = GFX_usa_50_reform_the_korean_army 
+		cost = 2
+		prerequisite = {
+			focus = KMT_support_rhee_government
+		}
+		x = 0
+		y = 17
+		
+		available = {
+			KOR = {
+				has_war_with = KPA
+			}
+		}
+		
+		bypass = {
+				OR = {
+					NOT = {country_exists = KOR}
+					NOT = {country_exists = KPA}
+				}
+		}
+		
+		completion_reward = {
+			KOR = {
+				country_event = CHI_KOR.9
+
+				add_equipment_to_stockpile = {
+				  type = infantry_equipment
+				  amount = 7000
+				  producer = CHI
+				}  
+				add_equipment_to_stockpile = {
+				  type = support_equipment
+				  amount = 500
+				  producer = CHI
+				}
+				add_equipment_to_stockpile = {
+				  type = artillery_equipment
+				  amount = 600
+				  producer = CHI
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KMT_military_advisors_for_korea
+		completion_reward = {
+		}
+		icon = GFX_usa_50_send_advisors
+		cost = 2
+		prerequisite = {
+			focus = KMT_support_rhee_government
+		}
+		x = -2
+		y = 17
+		
+		available = {
+			KOR = {
+				has_war_with = KPA
+			}
+		}
+		
+		bypass = {
+				OR = {
+					NOT = {country_exists = KOR}
+					NOT = {country_exists = KPA}
+				}
+		}
+		
+		completion_reward = {
+			KOR = {
+				country_event = CHI_KOR.10
+			}
+		}
+	}
+
+	focus = {
+		id = KMT_sino_korean_mutual_defense_treaty
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Sino_Korean_Treaty
+		cost = 2
+		prerequisite = {
+			focus = KMT_military_advisors_for_korea
+		}
+		prerequisite = {
+			focus = KMT_supply_the_ROK_with_CCW_arms
+		}
+		x = -1
+		y = 18
+		
+		available = {
+			KOR = { has_war = no }
+		}
+		
+		bypass = {
+			NOT = { country_exists = KOR }
+		}
+		
+		completion_reward = {
+			KOR = {
+				country_event = CHI_KOR.11
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_Support_The_Viet_Quoc
+		completion_reward = {
+			VIN = {
+				country_event = CHI_INDO.6
+				add_opinion_modifier = {
+					target = CHI
+					modifier = small_decrease
+				}
+			}
+			VIE = {
+				country_event = CHI_INDO.6
+				add_opinion_modifier = {
+					target = CHI
+					modifier = small_decrease
+				}
+			}
+			add_war_support = 0.02
+		}
+		icon = GFX_Support_The_Viet_Quoc
+		cost = 2
+		
+		prerequisite = {
+			focus = KMT_indochina_situation
+		}
+		mutually_exclusive = {
+			focus = KMT_recognise_saigon_authority_in_vietnam
+		}
+		x = 8
+		y = 16
+		
+		available = {
+			has_completed_focus = KMT_anti_colonial_rhetoric 
+			country_exists = VIE	
+		}
+	}
+	
+
+	focus = {
+		id = KMT_indochina_situation
+		completion_reward = {
+		}
+		icon = GFX_The_Indochina_Situation
+		cost = 2
+		prerequisite = {
+			focus = KMT_seeking_allies_in_asia
+		}
+		x = 7
+		y = 15
+		
+		available = {
+			country_exists = VIE		
+		}
+		
+		completion_reward = {
+			add_political_power = 50
+			CHI = {
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_increase
+				}
+			}
+			VIE = {
+				country_event = CHI_INDO.0
+				add_political_power = 10
+			}
+		}
+	}
+
+	
+
+	focus = {
+		id = KMT_recognise_saigon_authority_in_vietnam
+		completion_reward = {
+			VIN = {country_event = CHI_INDO.1}
+			VIE = {
+				set_temp_variable = { percent_change = 5 }
+				set_temp_variable = { tag_index = ROOT.id }
+				set_temp_variable = { influence_target = THIS.id }
+				change_influence_percentage = yes  
+				country_event = CHI_INDO.1
+			}
+			CHI = {
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_increase
+				}
+			}
+		}
+		icon = GFX_KMT_50s_Taiwan_establish_relations_with_south_vietnam
+		cost = 2
+		available = {
+			country_exists = VIE		
+		}
+		prerequisite = {
+			focus = KMT_indochina_situation
+		}
+		mutually_exclusive = {
+			focus = KMT_Support_The_Viet_Quoc
+		}
+		x = 6
+		y = 16
+		
+		available = {
+			has_completed_focus = KMT_support_the_western_allies
+		}
+		
+		
+	}
+	focus = {
+		id = KMT_Invest_in_the_Empire_of_Vietnam
+		completion_reward = {
+		}
+		icon = GFX_Invest_in_The_Empire_of_Vietnam
+		cost = 2
+		
+		available = {
+			country_exists = VIE
+			NOT = {
+				has_global_flag = CHI_change_support_for_vnqdd
+			}		
+		}
+		prerequisite = {
+			focus = KMT_non_aggression_pact_with_vietnam
+		}
+		x = 5
+		y = 18
+		completion_reward = {
+			add_offsite_building = {
+				type = office_park
+				level = 2
+			}
+			add_offsite_building = {
+				type = industrial_complex
+				level = 5
+			}
+			VIE = {country_event = CHI_INDO.5}
+		}
+	}
+
+	focus = {
+		id = KMT_non_aggression_pact_with_vietnam
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Taiwan_CHI_evacuate_Cho_Lon
+		cost = 2
+		bypass = {
+			NOT = {
+				country_exists = VIN
+			}
+		}
+		
+		prerequisite = {
+			focus = KMT_recognise_saigon_authority_in_vietnam
+		}
+		available = {
+			NOT = {
+				has_global_flag = CHI_change_support_for_vnqdd
+			}	
+		}
+		x = 5
+		y = 17
+		completion_reward = {
+		custom_effect_tooltip = Viet_Quoc_disbanded_TT
+		VIE = { country_event = CHI_INDO.7 }	
+		add_popularity = {
+			ideology = nationalist 
+			popularity = -0.05
+			}
+		}
+		
+	}
+	focus = {
+		id = KMT_training_for_VNQDD
+		completion_reward = {
+		}
+		icon = GFX_Form_the_Vietnamese_Restoration_Army
+		cost = 2
+		x = 9
+		y = 18
+
+		prerequisite = {
+			focus = KMT_Reorganize_the_VNQDD_party
+		}
+		completion_reward = {
+			custom_effect_tooltip = Viet_Quoc_made_better_TT
+			country_event =  {
+					id = CHI_INDO.10
+					days = 2
+			}
+			every_possible_country = {
+				limit = {
+					has_character = PQC_Vu_Hong_Khanh
+					NOT = { PQC_Vu_Hong_Khanh = { has_nationality = CHI } }
+				}
+				random_character = {
+					limit = { is_character = PQC_Vu_Hong_Khanh }
+					set_nationality = CHI
+				}
+			}
+			# Character recruited in PQC history file - adding country_leader role
+			if = {
+				limit = {
+					NOT = { has_character = PQC_Vu_Hong_Khanh }
+				}
+				PQC_Vu_Hong_Khanh = {
+					add_country_leader_role = {
+						promote_leader = yes
+						country_leader = {
+							ideology = Three_principles_of_people
+						}
+					}
+					add_corps_commander_role = {
+						skill = 2
+						attack_skill = 1
+						defense_skill = 2
+						planning_skill = 3
+						logistics_skill = 3
+						traits = { self_taught irregular_officer trickster guerilla_fighter Pro_QuocGia VIE_Pro_America VIE_Pro_France }
+					}
+				}
+			}
+			army_experience = 50
+			VIN = {
+				add_manpower = -10000
+			}
+			hidden_effect = {
+				VIN = {
+					country_event = CHI_INDO.10
+				}
+				VIE = {
+					country_event = CHI_INDO.10
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_The_Tibetan_Situation
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Tibet_Question
+		cost = 2
+		x = 32
+		y = 14
+		
+		available = {
+			country_exists = TIB
+		}
+		
+		completion_reward = {
+			country_event =  {
+					id = CHI_TIB.0
+					days = 2
+			}
+		}
+		prerequisite = {
+			focus = KMT_support_the_western_allies
+			focus = KMT_anti_colonial_rhetoric
+		}	
+	}
+	
+	focus = {
+		id = KMT_The_Tibetan_Reconcilation
+		completion_reward = {
+			add_threat = -1
+			TIB = {country_event = KMT_50s_Mainland.5}
+		}
+		icon = GFX_KMT_50s_Mainland_Reconcilation_With_Tibet
+		cost = 2
+		x = 30
+		y = 15
+		mutually_exclusive = {
+			focus = KMT_Demand_Tibetan_Submission
+		}
+		prerequisite = {
+			focus = KMT_The_Tibetan_Situation
+		}
+		available = {
+			has_completed_focus = KMT_anti_colonial_rhetoric
+		}
+		
+	}
+	focus = {
+		id = KMT_Demand_Tibetan_Submission
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Demand_Tibetan_Submission
+		cost = 2
+		mutually_exclusive = {
+			focus = KMT_The_Tibetan_Reconcilation
+		}
+		prerequisite = {
+			focus = KMT_The_Tibetan_Situation
+		}	
+		
+		
+		x = 34
+		y = 15
+		completion_reward = {
+			TIB = {
+				country_event = TIBET_KMT.4
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_Tibet_accepts_submission
+		completion_reward = {
+			#TIB = {
+			#	load_focus_tree = TIB_KMT_50s
+			#}
+		}
+		icon = GFX_KMT_50s_Mainland_Tibet_Accepts_Submission
+		cost = 2
+		available = {
+		 always = no
+		} 
+		
+		prerequisite = {
+			focus = KMT_Demand_Tibetan_Submission
+		}	
+		mutually_exclusive = {
+			focus = KMT_Tibet_refuses_submission
+		}
+		
+		x = 39
+		y = 16
+		
+	}
+	
+	focus = {
+		id = KMT_Tibet_refuses_submission
+		completion_reward = {
+			CHI = {
+				remove_state_core = 1889
+				remove_state_core = 1877
+				remove_state_core = 1857
+				remove_state_core = 867
+				remove_state_core = 322
+				remove_state_core = 1361
+				remove_state_core = 1548
+				remove_state_core = 1549
+				remove_state_core = 2028
+				remove_state_core = 2027
+				remove_state_core = 2026
+				remove_state_core = 2025
+				remove_state_core = 2024
+				remove_state_core = 2023
+				remove_state_core = 2022
+				remove_state_core = 2021
+				remove_state_core = 2020
+				remove_state_core = 2019
+				remove_state_core = 2018
+			}
+		}
+		icon = GFX_KMT_50s_Mainland_Tibet_Refuses
+		cost = 2
+		available = {
+		 always = no
+		} 
+		
+		prerequisite = {
+			focus = KMT_Demand_Tibetan_Submission
+		}	
+		
+		mutually_exclusive = {
+			focus = KMT_Tibet_accepts_submission
+		}
+		
+		x = 34
+		y = 16
+		
+	}
+	
+	focus = {
+		id = KMT_Outreach_to_the_Panchen_Lama
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Outreach_to_the_Panchen_Lama
+		cost = 2
+		
+			
+		
+		prerequisite = {
+			focus = KMT_Tibet_refuses_submission
+		}
+		x = 36
+		y = 17
+		completion_reward = {
+			TIB = {
+				country_event = TIBET_KMT.100
+			}
+		}
+	}
+	focus = {
+		id = KMT_Condemn_the_Dalai_Lama
+		completion_reward = {
+		}
+		icon = GFX_Demolish_Buddhist_buildings
+		cost = 2
+		
+		
+		prerequisite = {
+			focus = KMT_Tibet_refuses_submission
+		}
+		x = 32
+		y = 17
+		completion_reward = {
+			news_event = TIBET_KMT.3
+			TIB = {add_stability = -0.03}
+		}
+	}
+	focus = {
+		id = KMT_Back_Coup_by_Panchen_Lama
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Back_Coup_by_Panchen_Lama
+		cost = 2
+		prerequisite = {
+
+			focus = KMT_Condemn_the_Dalai_Lama
+		}
+		prerequisite = {
+			focus = KMT_Outreach_to_the_Panchen_Lama
+
+		}	
+		mutually_exclusive = {
+			focus = KMT_Invade_Tibet
+		}
+		available = {
+			NOT = {
+				TIB = {
+					is_subject_of = ROOT
+				}
+			}
+			CHI = {has_political_power > 400}
+		}
+		
+		
+		x = 32
+		y = 18
+		completion_reward = {
+			TIB = {
+				country_event = TIBET_KMT.20
+			}
+			add_political_power = -400
+		}
+	}
+	focus = {
+		id = KMT_Recognize_Tibetan_Independence
+		completion_reward = {
+		}
+		icon = GFX_usa_50_a_ceasefire
+		cost = 2
+		available = {
+			NOT = {
+				TIB = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		prerequisite = {
+			focus = KMT_The_Tibetan_Reconcilation
+		}
+		
+		x = 28
+		y = 16
+		completion_reward = {
+				remove_state_core = 1889
+				remove_state_core = 1877
+				remove_state_core = 1857
+				remove_state_core = 867
+				remove_state_core = 322
+				remove_state_core = 1361
+				remove_state_core = 1548
+				remove_state_core = 1549
+				remove_state_core = 2028
+				remove_state_core = 2027
+				remove_state_core = 2026
+				remove_state_core = 2025
+				remove_state_core = 2024
+				remove_state_core = 2023
+				remove_state_core = 2022
+				remove_state_core = 2021
+				remove_state_core = 2020
+				remove_state_core = 2019
+				remove_state_core = 2018
+			news_event = TIBET_KMT.10
+			add_threat = -1
+			CHI = {
+				add_opinion_modifier = {
+					target = RAJ
+					modifier = medium_increase
+				}
+			}
+			RAJ = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = medium_increase
+				}
+			}
+			CHI = {
+				add_opinion_modifier = {
+					target = TIB
+					modifier = large_increase
+				}
+			}
+			TIB = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = large_increase
+				}
+			}
+		}
+	}
+	
+	
+	focus = {
+		id = KMT_Settle_Border_Claims_with_India
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Settle_Border_Claims_with_India
+		cost = 2
+		prerequisite = {
+			focus = KMT_Recognize_Tibetan_Independence
+		}
+		x = 28
+		y = 17
+		completion_reward = {
+			news_event = TIBET_KMT.11
+			add_threat = -2
+			CHI = {
+				add_opinion_modifier = {
+					target = RAJ
+					modifier = large_increase
+				}
+			}
+			RAJ = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = large_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_Invade_Tibet
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Invade_Tibet
+		cost = 2
+		prerequisite = {
+
+			focus = KMT_Condemn_the_Dalai_Lama
+		}
+		prerequisite = {
+			focus = KMT_Outreach_to_the_Panchen_Lama
+
+		}
+		mutually_exclusive = {
+			focus = KMT_Back_Coup_by_Panchen_Lama
+		}
+		available = {
+			NOT = {
+				TIB = {
+					is_subject_of = ROOT
+				}
+			}
+		}
+		
+		
+		x = 36
+		y = 18
+		completion_reward = {
+			news_event = TIBET_KMT.15
+			declare_war_on = {
+				target = TIB
+				type = annex_everything
+			}
+			add_threat = 1
+		}
+	}
+	focus = {
+		id = KMT_Crush_the_Tibetan_Aristocracy
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Tolerate_Tibetan_Aristocracy
+		cost = 5.2
+		
+		available = {
+			OR = {
+				NOT = {country_exists = TIB}
+				TIB = {is_puppet_of = CHI}
+			}
+		}
+		
+		mutually_exclusive = {
+			focus = KMT_reforge_the_tip
+		}
+		
+		prerequisite = {
+			focus = KMT_Invade_Tibet
+			focus = KMT_Back_Coup_by_Panchen_Lama
+		}
+		
+		x = 35
+		y = 19
+		completion_reward = {
+			add_war_support = 0.02
+			add_popularity = {
+					ideology = monarchism
+					popularity = 0.02
+			}
+			add_political_power = -100	
+		}
+	}
+	focus = {
+		id = KMT_reforge_the_tip
+		completion_reward = {
+			
+			effect_tooltip = {
+				TIB = {
+					set_party_name = {
+						ideology = Social_Democratic
+						name = "TIP"
+						long_name = "Tibet Improvement Party"
+					}
+					add_country_leader_role = {
+				 	 character = TIB_Choekyi_Gyaltsen
+				 	 promote_leader = yes
+				  	country_leader = {
+						ideology = social_democrat
+						expire = "1973.1.1.1"
+						traits = {  }
+				  	}
+					}
+				}
+			}
+			
+		}
+		icon = GFX_KMT_50s_Mainland_TIP
+		cost = 5.2
+		
+		mutually_exclusive = {
+			focus = KMT_Crush_the_Tibetan_Aristocracy
+		}
+		
+		available = {
+			OR = {
+				NOT = {country_exists = TIB}
+				TIB = {is_puppet_of = CHI}
+			}
+		}
+		
+		
+		
+		prerequisite = {
+			focus = KMT_Invade_Tibet
+			focus = KMT_Back_Coup_by_Panchen_Lama
+		}
+		
+		x = 31
+		y = 19
+
+	}
+	focus = {
+		id = KMT_Establish_the_Tibetan_Autonomous_Region
+		completion_reward = {
+		}
+		icon = GFX_usa_50_diplomatic_objections
+		cost = 2
+		
+		prerequisite = {
+			focus = KMT_reforge_the_tip
+		}	
+		
+		x = 31
+		y = 20  
+		completion_reward = {
+
+			If = {
+				limit = {
+					NOT = {country_exists = TIB}
+				}	
+				release_puppet = TIB
+				
+			}
+
+			hidden_effect = {
+				TIB = {set_cosmetic_tag = TIB_ROC_Province}
+				TIB = {
+					set_politics = {
+						ruling_party = monarchism
+						elections_allowed = no
+					}
+					retire_character = TIB_Tenzin_Gyatso
+					add_country_leader_role = {
+						character = TIB_Choekyi_Gyaltsen
+						promote_leader = yes
+						country_leader = {
+						ideology = monarchist
+						expire = "1989.3.1.1"
+						}
+					}
+				set_party_name = {
+					ideology = Social_Democratic
+					name = "TIP"
+					long_name = "Tibet Improvement Party"
+				}
+				add_country_leader_role = {
+				  character = TIB_Choekyi_Gyaltsen
+				  promote_leader = yes
+				  country_leader = {
+					ideology = social_democrat
+					expire = "1973.1.1.1"
+					traits = {  }
+				  }
+				}
+				}
+			}
+			
+
+			TIB = {
+				set_politics = {
+				   ruling_party = Social_Democratic
+				   elections_allowed = no
+			    }
+				add_popularity = {
+					ideology = Social_Democratic
+					popularity = 0.30
+				}
+				transfer_state = 1889
+			}
+			
+			CHI = {
+				transfer_state = 1926
+				transfer_state = 1927
+				transfer_state = 1928
+				transfer_state = 1991
+				transfer_state = 1990
+				transfer_state = 1989
+				transfer_state = 1988
+				transfer_state = 1963
+				transfer_state = 1992
+				transfer_state = 1929
+				transfer_state = 1930
+				transfer_state = 1359
+				transfer_state = 604
+			}	
+			
+			news_event = TIBET_KMT.105
+			TIB = {
+				load_focus_tree = TIB_KMT_50s
+			}	
+		}
+	}
+	focus = {
+		id = KMT_Sinicization_of_Tibet
+		completion_reward = {
+			If = {
+				limit = {
+					country_exists = TIB
+				}
+				annex_country = {
+					target = TIB
+					transfer_troops = yes
+				}
+			}
+			CHI = {
+				transfer_state = 1889
+				add_state_core = 1889
+				add_state_core = 1877
+				add_state_core = 1857
+				add_state_core = 867
+				add_state_core = 322
+				add_state_core = 1361
+				add_state_core = 1548
+				add_state_core = 1549
+				add_state_core = 2028
+				add_state_core = 2027
+				add_state_core = 2026
+				add_state_core = 2025
+				add_state_core = 2024
+				add_state_core = 2023
+				add_state_core = 2022
+				add_state_core = 2021
+				add_state_core = 2020
+				add_state_core = 2019
+				add_state_core = 2018
+			}
+			add_political_power = -200
+		}
+		icon = GFX_KMT_50s_Mainland_Tibet_Sinicization
+		cost = 14
+		
+		prerequisite = {
+			focus = KMT_Crush_the_Tibetan_Aristocracy
+		}	
+		
+		x = 35
+		y = 20
+	
+	}
+	
+	
+	
+	
+	focus = {
+		id = KMT_Seek_Western_Financial_Aid
+		completion_reward = {
+		}
+		icon = GFX_EncourageIndustrialInvestment
+		cost = 5
+		prerequisite = {
+			focus = KMT_The_Hyperinflation_Crisis
+		}
+		x = 58
+		y = 1
+		completion_reward = {
+			add_political_power = 50
+			1790 = {
+				add_extra_state_shared_building_slots = -1
+				remove_building = {
+					type = industrial_complex 
+					level = 1 
+				}
+			}
+			615 = {
+				add_extra_state_shared_building_slots = -1
+				remove_building = {
+					type = industrial_complex 
+					level = 1 
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_Enact_Currency_Reform
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Currency_Reform
+		cost = 5
+		prerequisite = {
+			focus = KMT_The_Hyperinflation_Crisis
+		}
+		x = 62
+		y = 1
+		completion_reward = {
+			country_event =  {
+					id = KMT_50s_Mainland.10
+					days = 2
+			}
+		}
+		
+		
+	}
+	focus = {
+		id = KMT_Introduce_New_Standardized_Currency
+		completion_reward = {
+		}
+		icon = GFX_EstablishNewForeignExchangeRates
+		cost = 5
+		prerequisite = {
+			focus = KMT_Enact_Currency_Reform
+		}
+		prerequisite = {
+			focus = KMT_Seek_Western_Financial_Aid
+		}
+		x = 60
+		y = 2
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_Economic_aftermath_of_civil_war_1
+				add_idea = KMT_Economic_aftermath_of_civil_war_2
+			}
+			602 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_Apply_For_American_Reconstruction_Aid
+		completion_reward = {
+		}
+		icon = GFX_usa_50_expand_foreign_aid_recipients
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Introduce_New_Standardized_Currency
+		}
+		x = 59
+		y = 3
+		completion_reward = {
+			
+			USA = {country_event = KMT_50s_Mainland.11}
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 0.25
+				uses = 2
+				category = industry
+			}
+			set_temp_variable = { percent_change = -5 }
+			change_domestic_influence_percentage = yes
+			add_political_power = -70
+			
+		}
+	}
+	focus = {
+		id = KMT_Commence_Planning_of_the_Four_Year_Plan
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Launch_First_4_Year_Plan
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Introduce_New_Standardized_Currency
+		}
+		x = 61
+		y = 3
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_Economic_aftermath_of_civil_war_2
+				add_idea = KMT_Economic_aftermath_of_civil_war_3
+			}
+			add_war_support = 0.05
+			add_political_power = -50
+		}
+	}
+	focus = {
+		id = KMT_The_First_Four_Year_Plan
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Start_Planning
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Commence_Planning_of_the_Four_Year_Plan
+		}
+		prerequisite = {
+			focus = KMT_Apply_For_American_Reconstruction_Aid
+		}
+		x = 60
+		y = 4
+		completion_reward = {
+			add_timed_idea = {
+				idea = CHI_idea_first_four_year_plan
+				days = 1460
+			}
+		
+		}
+	}
+	focus = {
+		id = KMT_National_Corporations_Department
+		completion_reward = {
+		}
+		icon = GFX_SOV_extend_heavy_industry_around_the_union
+		cost = 2
+		prerequisite = {
+			focus = KMT_The_First_Four_Year_Plan
+		}
+		x = 55
+		y = 5
+		completion_reward = {
+			
+			add_political_power = 50
+			add_stability = 0.02
+			unlock_decision_tooltip = Subsidize_Urban_State_Enterprises
+		}
+	}
+	
+	focus = {
+		id = KMT_Nationalize_the_Arms_Industry
+		completion_reward = {
+		}
+		icon = GFX_usa_50_military_economic_assistance_to_taiwan 
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_National_Corporations_Department
+		}
+		x = 57
+		y = 6
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_Begin_Mechanizing_Agriculture
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Modernise_Agriculture
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_The_First_Four_Year_Plan
+		}
+		x = 60
+		y = 5
+		
+		available = {
+			has_completed_focus = KMT_Investigate_Land_Reform
+		}
+		
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = agriculture
+				bonus = 1.75
+				uses = 1
+				category = rgo
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_Commence_Reconstruction
+		completion_reward = {
+		}
+		icon = GFX_usa_50_send_reconstruction_funds
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_The_First_Four_Year_Plan
+		}
+		x = 65
+		y = 5
+		completion_reward = {
+			add_ideas = restore_the_economy
+			set_temp_variable = { money_to_gain = -20 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = KMT_Rebuild_Coastal_Infrastructure
+		completion_reward = {
+		}
+		icon = GFX_Generic_Building_2
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Commence_Reconstruction
+		}
+		x = 63
+		y = 6
+		completion_reward = {
+			592 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			591 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			595 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			596 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			
+			598 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			597 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			614 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			
+		}
+	}
+	focus = {
+		id = KMT_Rebuild_Southern_Railways
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Taiwan_interconnect_hainan
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Prioritize_Coastal_Relief
+		}
+		prerequisite = {
+			focus = KMT_Rebuild_Coastal_Infrastructure
+		}
+		x = 65
+		y = 7
+		completion_reward = {
+		
+			620 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			325 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			603 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			594 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			592 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			591 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			595 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			600 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			602 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			596 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			613 = {
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			remove_ideas = restore_the_economy
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	
+	focus = {
+		id = KMT_Prioritize_Coastal_Relief
+		completion_reward = {
+		}
+		icon = GFX_Mass_rural_investments
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Commence_Reconstruction
+		}
+		x = 67
+		y = 6
+		completion_reward = {
+			592 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+			}
+			591 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			595 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			596 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			613 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+			}
+			598 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			597 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			614 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		
+		}
+	}
+	
+	focus = {
+		id = KMT_Attract_Foriegn_Capital
+		completion_reward = {
+		}
+		icon = GFX_usa_50_introduce_corpo_investors
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Begin_Mechanizing_Agriculture
+		}
+		
+		x = 60
+		y = 7
+		completion_reward = {
+			
+			capital_scope = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = office_park
+					level = 2
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { money_to_gain = 10 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	
+	
+	
+	focus = {
+		id = KMT_Aim_for_Electric_Equipment_Self_Sufficiency
+		completion_reward = {
+		}
+		icon = GFX_usa_truman_electrification_funding
+		cost = 5.2
+		
+		prerequisite = {
+			focus = KMT_Expand_Heavy_Industry
+		}
+		x = 58
+		y = 12
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_Modernize_Steel_Production
+		completion_reward = {
+		}
+		icon = GFX_Return_of_rolling_Mills
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_National_Corporations_Department
+		}
+		x = 53
+		y = 6
+		completion_reward = {
+			add_tech_bonus = {
+				name = steel_bonus
+				bonus = 1.75
+				uses = 2
+				category = rgo
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = steel_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = steel_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_Economic_Planning_Council
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Ministry_of_Planning
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Modernize_Steel_Production
+		}
+		prerequisite = {
+			focus = KMT_Nationalize_the_Arms_Industry
+		}
+		x = 55
+		y = 7
+		completion_reward = {
+			
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 1.75
+				uses = 1
+				category = industry
+			}
+			swap_ideas = {
+				remove_idea = KMT_Economic_aftermath_of_civil_war_3
+				add_idea = KMT_Economic_aftermath_of_civil_war_4
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_Launch_the_Second_Four_Year_Plan
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Second_Four_Year_Plan
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Economic_Planning_Council
+		}
+		prerequisite = {
+			focus = KMT_Attract_Foriegn_Capital
+		}
+		prerequisite = {
+			focus = KMT_Rebuild_Southern_Railways
+		}
+		x = 60
+		y = 8
+		available = {
+			NOT = {
+				has_idea = CHI_idea_first_four_year_plan
+			}
+		}
+		completion_reward = {
+			add_timed_idea = {
+				idea = CHI_idea_second_four_year_plan
+				days = 1460
+			}
+			swap_ideas = {
+				remove_idea = KMT_Economic_aftermath_of_civil_war_4
+				add_idea = KMT_Economic_aftermath_of_civil_war_5
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_Begin_Mass_Literacy_Campaigns
+		completion_reward = {
+		}
+		icon = GFX_ExpandHigherEducation
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Refocus_Tsing_Hua_University
+		}
+		
+		x = 73
+		y = 4
+		completion_reward = {
+			
+			increase_education_rate = yes 
+			KMT_decrease_illiteracy_rate = yes
+			custom_effect_tooltip = KMT_Decrease_Mainland_Education_Debuffs
+		}
+	}
+	focus = {
+		id = KMT_Construct_New_Steel_Mills
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Taiwan_rebuild_minery_industry
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_The_Industrialization_of_China
+		}
+		x = 55
+		y = 10
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = steel_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = steel_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_Expand_Heavy_Industry
+		completion_reward = {
+		}
+		icon = GFX_Generic_Building
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Seek_Foriegn_Economic_Advisors
+		}
+		prerequisite = {
+			focus = KMT_Construct_New_Steel_Mills
+		}
+		x = 57
+		y = 11
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_Seek_Foriegn_Economic_Advisors
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Foreign_Advisors
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_The_Industrialization_of_China
+		}
+		prerequisite = {
+			focus = KMT_Conduct_a_Proper_Census
+		}
+		x = 58
+		y = 10
+		completion_reward = {
+			
+			add_timed_idea = {
+				idea = American_Technical_Advisors
+				days = 1060
+			}
+			set_temp_variable = { money_to_gain = 30 }
+			add_money_with_tooltip_effect = yes
+
+		}
+	}
+	focus = {
+		id = KMT_Electrification_Campaign
+		completion_reward = {
+		}
+		icon = GFX_1st_Electric_Program
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Expand_Heavy_Industry
+		}
+		x = 55
+		y = 12
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_Build_New_Dams
+		completion_reward = {
+		}
+		icon = GFX_Hydroelectric_Dams_New
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Economic_Modernization
+		}
+		prerequisite = {
+			focus = KMT_Conduct_a_Proper_Census
+		}
+		x = 62
+		y = 10
+		completion_reward = {
+			620 = {
+				add_resource = {
+					type = coal
+					amount = 40
+				}
+			}
+			1793 = {
+				add_resource = {
+					type = coal
+					amount = 40
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_Exploit_Rare_Earth_Deposits
+		completion_reward = {
+		}
+		icon = GFX_Rebuild_the_Coal_Sector
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Expand_Shanghai_Port_Capacity
+		}
+		
+		x = 62
+		y = 12
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					has_resources_amount = {
+						resource = tungsten
+						amount > 1
+					}
+				}
+				add_resource = {
+					type = tungsten
+					amount = 20
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_Encourage_Urbanization
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Urbanisation
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Expand_Shanghai_Port_Capacity
+		}
+		
+		x = 65
+		y = 12
+		completion_reward = {
+
+			add_timed_idea = {
+				idea = urban_planning
+				days = 1250
+			}
+			
+			add_timed_idea = {
+				idea = city_economies
+				days = 1250
+			}
+		
+		}
+	}
+	focus = {
+		id = KMT_Expand_Rural_Rail_Access
+		completion_reward = {
+		}
+		icon = GFX_Emergency_aid_to_the_rural_peasantry
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Economic_Modernization
+		}
+		x = 65
+		y = 10
+		completion_reward = {
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_Expand_Shanghai_Port_Capacity
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Taiwan_Haikou_Kaohsiung_naval_route
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Expand_Rural_Rail_Access
+		}
+		prerequisite = {
+			focus = KMT_Build_New_Dams
+		}
+		x = 63
+		y = 11
+		completion_reward = {
+			613 = {
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = office_park
+					level = 2
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { money_to_gain = 10 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = KMT_The_Industrialization_of_China
+		completion_reward = {
+		}
+		icon = GFX_Invest_in_modern_industry
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Launch_the_Second_Four_Year_Plan
+		}
+		x = 57
+		y = 9
+		completion_reward = {
+
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			swap_ideas = {
+				remove_idea = KMT_Economic_aftermath_of_civil_war_5
+				add_idea = KMT_Economic_aftermath_of_civil_war_6
+			}
+		}
+	}
+	focus = {
+		id = KMT_Economic_Modernization
+		completion_reward = {
+		}
+		icon = GFX_Modernize_Tooling
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Launch_the_Second_Four_Year_Plan
+		}
+		x = 63
+		y = 9
+		completion_reward = {
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 1.75
+				uses = 2
+				category = industry
+			}
+		}
+	}
+	focus = {
+		id = KMT_Conduct_a_Proper_Census
+		completion_reward = {
+		}
+		icon = GFX_usa_50_accept_hungarian_refugees
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Launch_the_Second_Four_Year_Plan
+		}
+		x = 60
+		y = 9
+		completion_reward = {
+			add_timed_idea = {
+				idea = modernized_census
+				days = 100
+			}
+
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = KMT_Rapid_Economic_Growt
+		completion_reward = {
+		}
+		icon = GFX_Balanced_Growth_GDR
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Exploit_Rare_Earth_Deposits
+		}
+		prerequisite = {
+			focus = KMT_Encourage_Urbanization
+		}
+		prerequisite = {
+			focus = KMT_Aim_for_Electric_Equipment_Self_Sufficiency
+		}
+		prerequisite = {
+			focus = KMT_Electrification_Campaign
+		}
+		x = 60
+		y = 13
+		completion_reward = {
+			add_timed_idea = {
+				idea = economic_growth
+				days = 1250
+			}
+
+
+			remove_ideas = KMT_Economic_aftermath_of_civil_war_6
+			custom_effect_tooltip = economic_crisis_over_tt
+		}
+	}
+	
+	focus = {
+		id = KMT_Republic_of_China_Armed_Forces
+		completion_reward = {
+		}
+		available = {
+			has_completed_focus = KMT_Continue_Martial_Law
+		}
+		icon = GFX_KMT_ROCArF
+		cost = 5.2
+		x = 41
+		y = 0
+		completion_reward = {
+			army_experience = 25
+			navy_experience = 25
+			air_experience = 25
+		}
+	}
+	focus = {
+		id = KMT_Republic_of_China_Air_Force
+		completion_reward = {
+		}
+		icon = GFX_ROCF_Emblem
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Republic_of_China_Armed_Forces
+		}
+		x = 33
+		y = 1
+		completion_reward = {
+			air_experience = 50
+		}
+	}
+	focus = {
+		id = KMT_Anti_Aircraft_Initiative
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Anti_Air
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Republic_of_China_Air_Force
+		}
+		x = 31
+		y = 2
+		completion_reward = {
+			every_owned_state = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { money_to_gain = -30 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	
+		
+	
+	
+	focus = {
+		id = KMT_Reform_the_Air_Force_Academy
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Taiwan_Air_Force_Academy
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Republic_of_China_Air_Force
+		}
+		x = 35
+		y = 2
+		
+		completion_reward = {
+			air_experience = 25
+			
+			set_temp_variable = { money_to_gain = -10 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = KMT_Import_American_Jets
+		completion_reward = {
+		}
+		icon = GFX_usa_50_begin_replacing_w_demons
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Reform_the_Air_Force_Academy
+		}
+		prerequisite = {
+			focus = KMT_Anti_Aircraft_Initiative
+		}
+		x = 33
+		y = 3
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = jet_multirole_equipment_3
+				amount = 150
+				producer = CAP
+			}
+		}
+	}
+	focus = {
+		id = KMT_A_Chinese_Jet_Fighter
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Chinese_Jet
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Import_American_Jets
+		}
+		x = 33
+		y = 4
+		completion_reward = {
+			add_tech_bonus = {
+				name = rocket_bonus
+				bonus = 1.75
+				uses = 2
+				category = fighter_light
+				category = fighter_multirole
+			}
+			
+		}
+	}
+	
+	focus = {
+		id = KMT_Republic_of_China_Army
+		completion_reward = {
+		}
+		icon = GFX_ROCA_Emblem
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Republic_of_China_Armed_Forces
+		}
+		x = 41
+		y = 1
+		completion_reward = {
+			army_experience = 50
+		}
+	}
+	focus = {
+
+		id = KMT_reform_the_ministry_of_national_defense
+		completion_reward = {
+		}
+
+		icon = GFX_Reform_Ministry_Defense
+		
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_chinese_armed_forces_structure focus = KMT_US_armed_forces_structure
+		}
+		available = {
+			has_completed_focus = KMT_restore_bai_as_minister_of_national_defense
+		}
+
+		x = 41
+		y = 3
+		completion_reward = {
+			unlock_decision_category_tooltip = KMT_Military_Reforms_category
+		}
+	}
+
+	focus = {
+
+		id = KMT_chinese_armed_forces_structure
+		completion_reward = {
+		}
+
+		icon = GFX_IndoctrinateArmy
+		
+		cost = 5.2
+		prerequisite = {
+
+			focus = KMT_Republic_of_China_Army
+		}
+
+
+		mutually_exclusive = {
+			focus = KMT_US_armed_forces_structure
+		}
+
+		x = 39
+		y = 2
+		completion_reward = {
+			add_ideas = CHI_independent_army_structure_1
+			remove_ideas = CHI_Legacy_of_the_inadequate_US_Army_Structure_1
+		}
+	}
+
+	focus = {
+
+		id = KMT_US_armed_forces_structure
+		completion_reward = {
+		}
+		icon = GFX_US_Styled_Army
+		
+		cost = 5.2
+		prerequisite = {
+
+			focus = KMT_Republic_of_China_Army
+		}
+		mutually_exclusive = {
+			focus = KMT_chinese_armed_forces_structure
+		}
+
+		x = 43
+		y = 2
+		completion_reward = {
+			add_ideas = CHI_usa_style_army
+
+		}
+	}
+
+	focus = {
+		id = KMT_recall_falkenhausen
+		completion_reward = {
+		}
+		icon = GFX_Call_Falkenhausen
+		
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_chinese_armed_forces_structure
+		}
+		x = 37
+		y = 3
+		completion_reward = {
+			WGR = {country_event = KMT_MIL.7}
+
+
+
+
+		}
+	}
+
+	focus = {
+		id = KMT_sixty_divisions_plan
+		completion_reward = {
+		}
+		icon = GFX_60_units_Plan
+		
+		cost = 5.2
+		prerequisite = {
+
+			focus = KMT_recall_falkenhausen
+		}
+		prerequisite = {
+
+			focus = KMT_Re_Establish_the_Whampoa_Military_Academy
+		}
+
+		available = {
+			has_completed_focus = KMT_reform_the_ministry_of_national_defense
+		}
+
+		x = 38
+		y = 5
+		completion_reward = {
+			unlock_decision_tooltip = KMT_training_brigades
+		}
+
+	}
+
+	focus = {
+		id = KMT_promote_sun_li_jen
+		completion_reward = {
+		}
+		icon = GFX_Promote_Sun_Li_Jen
+		
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_US_armed_forces_structure
+		}
+		x = 45
+		y = 3
+		completion_reward = {
+			country_event =  {
+					id = KMT_MIL.16
+					days = 2
+			}
+			CHI_sun_li_jen = {
+				promote_leader = yes
+			}
+			swap_ideas = {
+				remove_idea = CHI_usa_style_army
+				add_idea = CHI_usa_style_army2
+			}
+		}
+	}
+
+	focus = {
+		id = KMT_ninety_divisions_plan
+		completion_reward = {
+		}
+		icon = GFX_90_units_Plan
+		
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_promote_sun_li_jen
+		}
+		prerequisite = {
+			focus = KMT_clamp_down_on_army_nepotism
+		}
+		available = {
+			has_completed_focus = KMT_reform_the_ministry_of_national_defense
+		}
+		x = 44
+		y = 5
+		completion_reward = {
+			unlock_decision_tooltip = KMT_acquire_US_advisors
+		}
+	}
+
+	focus = {
+		id = KMT_clamp_down_on_army_nepotism
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Reform_Ministry_of_Justice
+		
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_US_armed_forces_structure
+			focus = KMT_chinese_armed_forces_structure
+		}
+		available = {
+			has_completed_focus = KMT_reform_the_ministry_of_national_defense
+		}
+		x = 42
+		y = 4
+		completion_reward = {
+			unlock_decision_tooltip = KMT_Reform_the_Justice_Investigation_Bureau
+		}
+	}
+	
+	focus = {
+		id = KMT_Re_Establish_the_Whampoa_Military_Academy
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Whampoa
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_chinese_armed_forces_structure
+			focus = KMT_US_armed_forces_structure
+		}
+
+
+		x = 40
+		y = 4
+		
+		
+		completion_reward = {
+			
+			country_event =  {
+					id = KMT_MIL.15
+					days = 2
+			}
+			set_temp_variable = { money_to_gain = -40 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = KMT_Restore_the_Hanyang_Arsenal
+		completion_reward = {
+		}
+		icon = GFX_usa_50_ramp_up_military_industrial_complex
+		cost = 5.2
+		prerequisite = {
+
+			focus = KMT_ninety_divisions_plan
+			focus = KMT_sixty_divisions_plan
+		}
+
+
+		prerequisite = {
+			focus = KMT_Reform_the_Kiangnan_Arsenal
+		}
+		x = 39
+		y = 6
+		available = {
+			has_completed_focus = KMT_Nationalize_the_Arms_Industry
+		}
+
+		completion_reward = {
+			620 = {
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = arms_factory
+					level = 5
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = akm_bonus
+				bonus = 2.5
+				uses = 2
+				category = infantry_weapons
+			}
+			set_temp_variable = { money_to_gain = -80 }
+			add_money_with_tooltip_effect = yes
+			
+		}
+	}
+	focus = {
+		id = KMT_Restore_the_Taiyuan_Arsenal
+		icon = GFX_usa_50_money_and_guns
+		cost = 5.2
+		prerequisite = {
+
+			focus = KMT_ninety_divisions_plan
+			focus = KMT_sixty_divisions_plan
+		}
+
+
+		prerequisite = {
+			focus = KMT_Reform_the_Kiangnan_Arsenal
+		}
+		x = 43
+		y = 6
+		
+		
+		completion_reward = {
+			615 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = modernization_bonus
+				bonus = 2.5
+				uses = 2
+				category = artillery
+			}
+			set_temp_variable = { money_to_gain = -50 }
+			add_money_with_tooltip_effect = yes
+			
+			if = {
+				limit = {
+					AND = {
+						custom_trigger_tooltip = {
+							NOT = {
+								check_variable = {
+									SHX_Warlord_Loyalty > 0.89
+								}
+							}
+						}
+						NOT = {has_country_flag = SHX_INTEGRATED}
+						NOT = {has_country_flag = SHX_REBELLION}
+					}
+				}
+				custom_effect_tooltip = Shanxi_Bribe_5
+				add_to_variable = { var_warlord_loyalty_check = 1 }
+				add_to_variable = {
+					SHX_Warlord_Loyalty = 0.05
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_Reform_the_Kiangnan_Arsenal
+		completion_reward = {
+		}
+		icon = GFX_usa_50_ramp_up_equipment_shipments
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Re_Establish_the_Whampoa_Military_Academy
+		}
+		prerequisite = {
+			focus = KMT_clamp_down_on_army_nepotism
+		}
+		
+		x = 41
+		y = 5
+		
+		completion_reward = {
+			set_temp_variable = { money_to_gain = -100 }
+			add_money_with_tooltip_effect = yes
+			613 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = arms_factory
+					level = 3
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = modernization_bonus
+				bonus = 2
+				uses = 2
+				category = vehicles
+			}
+		}
+	}
+	focus = {
+		id = KMT_Urban_Warfare_Training
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Urban_Assault
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Restore_the_Hanyang_Arsenal
+		}
+		prerequisite = {
+			focus = KMT_Restore_the_Taiyuan_Arsenal
+		}
+		
+		
+		available = {
+			AND = {
+				has_completed_focus = KMT_A_Chinese_Jet_Fighter
+				has_completed_focus = KMT_Expand_the_Marine_Corps
+				has_country_flag = KMT_nepotism_over
+			}
+		}
+		
+		x = 41
+		y = 7
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.75
+				uses = 2
+				category = land_doctrine
+			}
+			clr_country_flag = KMT_nepotism_over
+			custom_effect_tooltip = military_reorganisation_complete_TT
+		}
+	}
+	focus = {
+		id = KMT_Republic_of_China_Navy
+		completion_reward = {
+		}
+		icon = GFX_KMT_ROCN
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Republic_of_China_Armed_Forces
+		}
+		x = 49
+		y = 1
+		completion_reward = {
+			navy_experience = 50
+		}
+	}
+	focus = {
+		id = KMT_Expand_the_Kiangnan_Shipyard
+		completion_reward = {
+		}
+		icon = GFX_KitteryShipyardExpansion
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Republic_of_China_Navy
+		}
+		x = 47
+		y = 2
+		
+		
+		completion_reward = {
+			613 = {
+				add_extra_state_shared_building_slots = 5
+				add_building_construction = {
+					type = dockyard
+					level = 5
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = modernization_bonus
+				bonus = 2.5
+				uses = 2
+				category = naval_equipment
+			}
+			set_temp_variable = { money_to_gain = -30 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = KMT_Commissioning_Former_IJN_Destroyers
+		completion_reward = {
+		}
+		icon = GFX_Commison_old_idn_ships
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Republic_of_China_Navy
+		}
+		x = 51
+		y = 2
+		completion_reward = {
+		
+				custom_effect_tooltip = japanese_ships_received_tt
+				hidden_effect = {
+					if = {
+						limit = { has_dlc = "Man the Guns" }
+						load_oob = CHI_IJN_MTG
+						else = {
+							load_oob = CHI_IJN_Legacy
+						}
+					}
+				}
+				
+				
+		}
+	}
+	focus = {
+		id = KMT_Puchase_American_Vessels
+		completion_reward = {
+		}
+		icon = GFX_usa_50_charles_f_adams_class
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Commissioning_Former_IJN_Destroyers
+		}
+		prerequisite = {
+			focus = KMT_Expand_the_Kiangnan_Shipyard
+		}
+		x = 49
+		y = 3
+		completion_reward = {
+				custom_effect_tooltip = us_ships_received_tt
+				
+			hidden_effect = {	
+				if = {
+					limit = { has_dlc = "Man the Guns" }
+					load_oob = CHI_USA_MTG
+					else = {
+						load_oob = CHI_USA_Legacy
+					}
+				}
+			}	
+		}
+	}
+	focus = {
+		id = KMT_Expand_the_Marine_Corps
+		completion_reward = {
+		}
+		icon = GFX_KMT_Marine_Corps
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Puchase_American_Vessels
+		}
+		x = 49
+		y = 4
+		completion_reward = {
+			add_tech_bonus = {
+				name = special_forces_bonus
+				bonus = 1.5
+				uses = 1
+				category = sf_forces
+			}
+			
+		}
+	}
+	
+	focus = {
+		id = KMT_Investigate_Land_Reform
+		completion_reward = {
+		}
+		icon = GFX_Investigate_Land_Reform
+		cost = 2
+		
+		prerequisite = {
+			focus = KMT_The_Central_Reform_Committee
+		}
+		x = -3
+		y = 3
+		completion_reward = {
+			add_stability = 0.01
+			country_event =  {
+					id = KMT_LAND_REFORM.0
+					days = 2
+			}
+		}
+	}
+	focus = {
+		id = KMT_Commit_to_Land_Reform
+		completion_reward = {
+		}
+		icon = GFX_Commit_to_Land_Reform
+		cost = 2
+		
+		available = { 
+			has_completed_focus = KMT_Chen_Cheng_50s_Rent_cap
+		}
+		
+		prerequisite = {
+			focus = KMT_Investigate_Land_Reform
+		}
+		mutually_exclusive = {
+			focus = KMT_Take_Half_Measures
+		}
+		x = -6
+		y = 4
+		completion_reward = {
+		
+			KMT_50s_Mainland_Decrease_Warlord_Loyalty_Bigger = yes
+			
+			add_ideas = KMT_land_reform_backlash_1
+			news_event = KMT_LAND_REFORM.1
+			set_country_flag = { flag = landreform_conservative_opposition value = 1 days = 179 }
+		}
+	}
+	focus = {
+		id = KMT_Implement_Georgist_Tax_Reforms
+		completion_reward = {
+		}
+		icon = GFX_Emphazise_San_Min_Doctrine
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Commit_to_Land_Reform
+		}
+		available = {
+			custom_trigger_tooltip = {
+			    tooltip = landreform_conservative_opposition_tt
+				OR = {
+			   		NOT = { has_country_flag = landreform_conservative_opposition }
+					has_completed_focus = KMT_Liquidate_Uncooperative_Landlords
+				}
+			}
+		}
+		x = -8
+		y = 5
+		completion_reward = {
+			add_stability = 0.05
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_ideas = CHI_Georgist_Taxation
+			set_country_flag = { flag = landreform_conservative_opposition value = 1 days = 179 }
+		}
+	}
+	focus = {
+		id = KMT_Allow_Clique_Autonomy
+		completion_reward = {
+		}
+		icon = GFX_Allow_Clique_Autonomt
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Implement_Georgist_Tax_Reforms
+		}
+		available = {
+			custom_trigger_tooltip = {
+			    tooltip = landreform_conservative_opposition_tt
+				OR = {
+			   		NOT = { has_country_flag = landreform_conservative_opposition }
+					has_completed_focus = KMT_Liquidate_Uncooperative_Landlords
+				}
+			}
+		}
+		mutually_exclusive = {
+			focus = KMT_Enforce_Reforms_in_Clique_Territory
+		}
+		x = -9
+		y = 6
+		completion_reward = {
+			add_political_power = -50
+			
+			KMT_50s_Mainland_Increase_Warlord_Loyalty_Tiny = yes
+			
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 2
+			}
+			set_country_flag = { flag = landreform_conservative_opposition value = 1 days = 179 }
+		}
+	}
+	focus = {
+		id = KMT_Compensate_Landowners
+		completion_reward = {
+		}
+		icon = GFX_Compensate_Landowners
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Commit_to_Land_Reform
+		}
+		x = -4
+		y = 5
+		available = {
+			
+			custom_trigger_tooltip = {
+			    tooltip = landreform_conservative_opposition_tt
+			   	NOT = { has_country_flag = landreform_conservative_opposition }
+			}
+		}
+		
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_land_reform_issue_1
+				add_idea = CHI_land_reform_issue_2
+			}
+			set_temp_variable = { money_to_gain = -40 }
+			add_money_with_tooltip_effect = yes
+			
+			set_country_flag = { flag = landreform_conservative_opposition value = 1 days = 179 }
+		}
+	}
+	focus = {
+		id = KMT_Liquidate_Uncooperative_Landlords
+		completion_reward = {
+		}
+		icon = GFX_Liquidate_Uncooperative_Landlords
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Compensate_Landowners
+		}
+		available = {
+			custom_trigger_tooltip = {
+			    tooltip = landreform_conservative_opposition_tt
+				OR = {
+			   		NOT = { has_country_flag = landreform_conservative_opposition }
+					has_completed_focus = KMT_Liquidate_Uncooperative_Landlords
+				}
+			}
+		}
+		mutually_exclusive = {
+			focus = KMT_Attempt_to_Persuade_Reluctant_Landlords
+		}
+		x = -5
+		y = 6
+		completion_reward = {
+			
+			add_stability = -0.05
+			every_owned_state = {
+				add_manpower = -2000
+			}
+			remove_ideas = KMT_land_reform_backlash_1
+			custom_effect_tooltip = destroy_landlords_tt
+		}
+	}
+	focus = {
+		id = KMT_Take_Half_Measures
+		completion_reward = {
+		}
+		icon = GFX_Take_Half_Measures
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Investigate_Land_Reform
+		}
+		mutually_exclusive = {
+			focus = KMT_Commit_to_Land_Reform
+		}
+		
+		available = {
+			NOT = { has_country_flag = Peasants_appeased_flag}
+		}
+		
+		x = 0
+		y = 4
+		completion_reward = {
+			add_stability = 0.01
+			news_event = KMT_LAND_REFORM.2
+		}
+	}
+	focus = {
+		id = KMT_Seize_Collaborators_Land
+		completion_reward = {
+		}
+		icon = GFX_Seize_Collaborators_Land
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Take_Half_Measures
+		}
+		x = -1
+		y = 5
+		completion_reward = {
+			add_stability = 0.02
+			swap_ideas = {
+				remove_idea = CHI_land_reform_issue_1
+				add_idea = CHI_land_reform_issue_2
+			}
+		}
+	}
+	focus = {
+		id = KMT_Reward_Kuomitang_Loyalists
+		completion_reward = {
+		}
+		icon = GFX_Reward_Kuomitang_Loyalists
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Take_Half_Measures
+		}
+		x = 1
+		y = 5
+		completion_reward = {
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			custom_effect_tooltip = kmt_strength_increase_TT
+			hidden_effect = {
+				add_popularity = {
+					ideology = nationalist 
+					popularity = 0.05
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_Invest_in_Agricultural_Modernization
+		completion_reward = {
+		}
+		icon = GFX_Invest_in_Agricultural_Modernization
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Reward_Kuomitang_Loyalists
+		}
+		prerequisite = {
+			focus = KMT_Seize_Collaborators_Land
+		}
+		x = 0
+		y = 6
+		completion_reward = {
+			add_tech_bonus = {
+				name = agriculture
+				bonus = 1.75
+				uses = 2
+				category = rgo
+			}
+		}
+	}
+	focus = {
+		id = KMT_Complete_the_Reforms
+		completion_reward = {
+		}
+		icon = GFX_Complete_the_Reforms
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Liquidate_Uncooperative_Landlords
+			focus = KMT_Attempt_to_Persuade_Reluctant_Landlords
+			
+		}
+		prerequisite = {
+			
+			focus = KMT_Enforce_Reforms_in_Clique_Territory
+			focus = KMT_Allow_Clique_Autonomy
+		}
+		available = {
+			custom_trigger_tooltip = {
+			    tooltip = landreform_conservative_opposition_tt
+				OR = {
+			   		NOT = { has_country_flag = landreform_conservative_opposition }
+					has_completed_focus = KMT_Liquidate_Uncooperative_Landlords
+				}
+			}
+		}
+		x = -6
+		y = 7
+		completion_reward = {
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+
+				custom_effect_tooltip = decrease_rural_crisis_penalty_big_TT
+				decrease_rural_crisis_penalty_bigger = yes
+
+			}
+			remove_ideas = CHI_land_reform_issue_2
+			if = {
+				limit = {
+					has_idea = KMT_land_reform_backlash_2
+				}
+				remove_ideas = KMT_land_reform_backlash_2
+			}
+			if = {
+				limit = {
+					has_idea = KMT_land_reform_backlash_1
+				}
+				remove_ideas = KMT_land_reform_backlash_2
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_completed_focus = KMT_Commit_to_Land_Reform
+					}
+				}
+				remove_ideas = KMT_land_reform_backlash_2
+			}
+			
+		}
+	}
+	focus = {
+		id = KMT_Attempt_to_Persuade_Reluctant_Landlords
+		completion_reward = {
+		}
+		icon = GFX_Attempt_To_Persuade_Reluctant_Landlords
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Compensate_Landowners
+		}
+		mutually_exclusive = {
+			focus = KMT_Liquidate_Uncooperative_Landlords
+		}
+		x = -3
+		y = 6
+		available = {
+			
+			custom_trigger_tooltip = {
+			    tooltip = landreform_conservative_opposition_tt
+				OR = {
+			   		NOT = { has_country_flag = landreform_conservative_opposition }
+					has_completed_focus = KMT_Liquidate_Uncooperative_Landlords
+				}
+			}
+		}
+		
+		completion_reward = {
+			if = {
+				limit = {
+					has_dynamic_modifier = {modifier = National_Crisis_modifier}
+				}
+				custom_effect_tooltip = decrease_rural_crisis_penalty_big_TT
+				decrease_rural_crisis_penalty_bigger = yes
+
+			}
+			swap_ideas = {
+				remove_idea = KMT_land_reform_backlash_1
+				add_idea = KMT_land_reform_backlash_2
+			}
+			
+			set_temp_variable = { money_to_gain = -40 }
+			add_money_with_tooltip_effect = yes
+			
+			set_country_flag = { flag = landreform_conservative_opposition value = 1 days = 179 }
+		}
+	}
+	
+	focus = {
+		id = KMT_Enforce_Reforms_in_Clique_Territory
+		completion_reward = {
+		}
+		icon = GFX_Enforce_Reforms_in_Clique_Territory
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Implement_Georgist_Tax_Reforms
+		}
+		available = {
+			custom_trigger_tooltip = {
+			    tooltip = landreform_conservative_opposition_tt
+				OR = {
+			   		NOT = { has_country_flag = landreform_conservative_opposition }
+					has_completed_focus = KMT_Liquidate_Uncooperative_Landlords
+				}
+			}
+		}
+		mutually_exclusive = {
+			focus = KMT_Allow_Clique_Autonomy
+		}
+		x = -7
+		y = 6
+		completion_reward = {
+		
+			add_political_power = 150
+			
+			KMT_50s_Mainland_Decrease_Warlord_Loyalty_Tiny = yes
+			
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 2
+			}
+			set_country_flag = { flag = landreform_conservative_opposition value = 1 days = 179 }
+		}
+	}
+
+	focus = {
+		id = KMT_tackle_national_illiteracy_problem
+		completion_reward = {
+		}
+		available = {
+			has_completed_focus = KMT_Continue_Martial_Law
+		}
+		icon = GFX_usa_truman_national_science_foundation
+		cost = 5.2
+		
+		x = 73
+		y = 0
+		completion_reward = {
+			add_political_power = -100
+			unlock_decision_category_tooltip = education_reform_category
+		}
+	}
+	focus = {
+		id = KMT_Establish_the_Institute_of_Nuclear_Energy_Research
+		completion_reward = {
+		}
+		prerequisite = {
+			focus = KMT_tackle_national_illiteracy_problem
+		}
+		icon = GFX_KMT_50s_Mainland_Nuclear_Power_Institute
+		cost = 5.2
+		x = 73
+		y = 1
+		completion_reward = {
+			country_event =  {
+					id = KMT_NUCLEAR.1
+					days = 2
+			}
+			add_tech_bonus = {
+				name = nuclear_bonus
+				bonus = 1.75
+				uses = 2
+				category = nuclear
+			}
+		}	
+	}
+	focus = {
+		id = KMT_Refocus_Tsing_Hua_University
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Open_Cheng_Kung_University
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Establish_the_Institute_of_Nuclear_Energy_Research
+		}
+		x = 73
+		y = 2
+	
+		completion_reward = {
+			add_tech_bonus = {
+				name = nuclear_bonus
+				bonus = 1.75
+				uses = 2
+				category = nuclear
+			}
+		}
+	}
+	focus = {
+		id = KMT_Embrace_Atoms_for_Peace
+		completion_reward = {
+		}
+		icon = GFX_usa_50_bring_both_to_negotiating_table
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Establish_the_Institute_of_Nuclear_Energy_Research
+		}
+		x = 69
+		y = 2
+		completion_reward = {
+			news_event = KMT_Atoms.1
+			capital_scope = {
+				add_building_construction = {
+					type = nuclear_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_Develop_Chinese_Nuclear_Power
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_machine_tools_reproduction_movement
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Embrace_Atoms_for_Peace
+		}
+		x = 67
+		y = 3
+		completion_reward = {
+			add_tech_bonus = {
+				name = nuclear_power_bonus
+				bonus = 1.75
+				uses = 2
+				category = nuclear_reactor
+			}
+		}
+	}
+
+	focus = {
+		id = KMT_Exploit_Uranium_Deposits_in_Shandong
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Shandong_Uran
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Embrace_Atoms_for_Peace
+		}
+		x = 71
+		y = 3
+		completion_reward = {
+			597 = {
+				add_resource = {
+					type = chromium
+				amount = 50
+			}
+		}
+	}
+}
+	focus = {
+		id = KMT_chinese_nuclear_plants
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Chinese_Power_Plants
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Develop_Chinese_Nuclear_Power
+		}
+		prerequisite = {
+			focus = KMT_Exploit_Uranium_Deposits_in_Shandong
+		}
+		x = 69
+		y = 4
+	
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = nuclear_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_American_Cooperation
+		completion_reward = {
+		}
+		icon = GFX_usa_50_continue_diplo_meetings
+		cost = 3
+		prerequisite = {
+			focus = KMT_Establish_the_Institute_of_Nuclear_Energy_Research
+		}
+		x = 77
+		y = 2
+		completion_reward = {
+			CHI = {
+				add_opinion_modifier = {
+				target = USA
+				modifier = large_increase
+				}
+			}
+			USA = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = large_increase
+				}
+			}
+			unlock_decision_tooltip = reverse_the_brain_drain
+		}
+	}
+	focus = {
+		id = KMT_Joint_American_Chinese_Uranium_Extraction
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_US_Sino_Uran_Cooperation
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_American_Cooperation
+		}
+		x = 75
+		y = 3
+		completion_reward = {
+			country_event = {
+				id = KMT_50s_Mainland.11c
+				days = 3
+			}
+		}
+	}
+	focus = {
+		id = KMT_Siphon_American_Material
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Siphon_American_Material
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_American_Cooperation
+		}
+		x = 79
+		y = 3
+		completion_reward = {
+			add_tech_bonus = {
+				name = nuclear_bonus
+				bonus = 1.75
+				uses = 1
+				category = nuclear
+			}
+			
+		}
+	}
+	focus = {
+		id = KMT_Quaidam_Basin_Installations  
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Mainland_Qaidam_Basin
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Siphon_American_Material
+		}
+		prerequisite = {
+			focus = KMT_Joint_American_Chinese_Uranium_Extraction
+		}
+
+		x = 77
+		y = 4
+		completion_reward = {
+			604 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = nuclear_powerplant
+				level = 1
+				instant_build = yes
+				}
+			}
+			set_temp_variable = { money_to_gain = -50 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = KMT_Begin_Preperations_for_First_Nuclear_Test
+		completion_reward = {
+		}
+		icon = GFX_Nuclear_war
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Quaidam_Basin_Installations
+		}
+		prerequisite = {
+			focus = KMT_chinese_nuclear_plants
+		}
+		available = {
+			has_tech = atomic_reactor_0
+		}
+		x = 75
+		y = 5
+		completion_reward = {
+			add_tech_bonus = {
+				name = nuclear_bonus
+				bonus = 1.75
+				uses = 1
+				category = nuclear_fission
+			}
+			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = nuclear_reactor
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = KMT_Establish_Modern_Military_RD_Center
+		completion_reward = {
+		}
+		icon = GFX_KMT_50s_Establish_Modern_Military_RD_Center
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Quaidam_Basin_Installations
+		}
+		prerequisite = {
+			focus = KMT_chinese_nuclear_plants
+		}
+		x = 71
+		y = 5
+		completion_reward = {
+			country_event =  {
+					id = KMT_50s_Mainland.22
+					days = 2
+			}
+		}
+	}
+
+	focus = {
+		id = KMT_first_chinese_a_bomb
+		completion_reward = {
+		}
+		icon = GFX_Begin_Limited_Nuclear_Weapons_Program
+		cost = 5.2
+		prerequisite = {
+			focus = KMT_Begin_Preperations_for_First_Nuclear_Test
+		}
+		prerequisite = {
+			focus = KMT_Establish_Modern_Military_RD_Center
+		}
+		available = {
+			has_tech = atomic_weapons_armament_0
+		}
+		x = 73
+		y = 6
+		completion_reward = {
+			country_event =  {
+					id = KMT_Atoms.3
+					days = 2
+			}
+			add_ideas = armed_nation_nuke
+			hidden_effect = {
+				add_to_variable = { num_of_nukes = 1 }
+			}
+		}
+	}
+}
+
+

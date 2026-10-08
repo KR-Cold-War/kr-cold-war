@@ -1,0 +1,1023 @@
+# krcw: paced
+krcw_eng_fleet_category = {
+	krcw_eng_show_the_flag_pacific = {
+		icon = GFX_decision_generic_naval
+		cost = 40
+		available = {
+			has_completed_focus = krcw_eng_the_pacific_squadron
+		}
+		days_re_enable = 120
+		complete_effect = {
+			krcw_tension_up_small = yes
+			if = { limit = { country_exists = PSA } PSA = { add_opinion_modifier = { target = ENG modifier = krcw_eng_naval_guarantee } } }
+			navy_experience = 5
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 3 check_variable = { global.krcw_tension > 60 } }
+		}
+	}
+	krcw_eng_escort_the_young_nations = {
+		icon = GFX_decision_generic_naval
+		cost = 50
+		available = {
+			has_completed_focus = krcw_eng_the_indian_ocean_run
+		}
+		days_re_enable = 180
+		complete_effect = {
+			every_country = {
+				limit = { OR = { tag = KEN tag = TZN tag = ZAM tag = EGY } is_ai = yes NOT = { krcw_is_ma = yes } }
+				add_opinion_modifier = { target = ENG modifier = krcw_eu_ti_solidarity }
+			}
+			krcw_detente_up_small = yes
+		}
+		ai_will_do = {
+			factor = 8
+		}
+	}
+	krcw_eng_north_atlantic_exercise = {
+		icon = GFX_decision_generic_naval
+		cost = 60
+		available = {
+			has_completed_focus = krcw_eng_north_atlantic_command
+		}
+		days_re_enable = 200
+		complete_effect = {
+			navy_experience = 20
+			if = { limit = { country_exists = CAN } CAN = {
+				add_opinion_modifier = { target = ENG modifier = krcw_eu_ti_solidarity }
+			} }
+			if = { limit = { country_exists = WCA } WCA = {
+				add_opinion_modifier = { target = ENG modifier = krcw_eu_ti_solidarity }
+			} }
+			if = { limit = { country_exists = FRA } FRA = {
+				add_opinion_modifier = { target = ENG modifier = krcw_eu_ti_solidarity }
+			} }
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	krcw_eng_hunt_the_boats = {
+		icon = GFX_decision_generic_naval
+		cost = 35
+		available = {
+			has_completed_focus = krcw_eng_hunter_killer_groups
+		}
+		days_re_enable = 120
+		complete_effect = {
+			navy_experience = 10
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 4
+			modifier = { factor = 3 check_variable = { global.krcw_tension > 60 } }
+		}
+	}
+}
+krcw_ddr_protocol_category = {
+	krcw_ddr_raise_the_division_cap = {
+		icon = generic_political_actions
+		cost = 75
+		available = {
+			has_war_support > 0.4
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_manpower = 20000
+			army_experience = 10
+			if = { limit = { country_exists = SOV } add_opinion_modifier = { target = SOV modifier = krcw_ddr_loyal_ally } }
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_ddr_end_the_reparations = {
+		icon = generic_political_actions
+		cost = 100
+		available = {
+			OR = { NOT = { has_country_flag = krcw_ddr_relief_refused } has_global_flag = KRCW_savinkov_dead }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			if = { limit = { has_idea = krcw_ddr_reparations_unrest } remove_ideas = krcw_ddr_reparations_unrest }
+			add_stability = 0.05
+			add_political_power = 50
+			if = { limit = { has_country_flag = krcw_ddr_relief_granted } add_political_power = 50 }
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_ddr_court_the_communes = {
+		icon = generic_political_actions
+		cost = 50
+		visible = {
+			has_completed_focus = krcw_ddr_a_road_of_our_own
+		}
+		days_re_enable = 180
+		complete_effect = {
+			add_to_variable = { global.krcw_ti_crisis = 3 }
+			clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+			custom_effect_tooltip = krcw_ti_crisis_tt
+			add_political_power = -10
+			if = { limit = { country_exists = WGR } add_opinion_modifier = { target = WGR modifier = krcw_ddr_rival_germany } }
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+}
+krcw_sov_succession_category = {
+	krcw_sov_back_mil = {
+		icon = generic_army_support
+		cost = 40
+		days_re_enable = 60
+		complete_effect = {
+			add_to_variable = { krcw_sov_mil = 8 }
+			clamp_variable = { var = krcw_sov_mil min = 0 max = 100 }
+			custom_effect_tooltip = krcw_sov_bid_mil_8_tt
+			army_experience = 5
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	krcw_sov_back_civ = {
+		icon = generic_research
+		cost = 40
+		days_re_enable = 60
+		complete_effect = {
+			add_to_variable = { krcw_sov_civ = 8 }
+			clamp_variable = { var = krcw_sov_civ min = 0 max = 100 }
+			custom_effect_tooltip = krcw_sov_bid_civ_8_tt
+			add_tech_bonus = { name = krcw_sov_technocrat_bonus bonus = 0.25 uses = 1 category = industry }
+		}
+		ai_will_do = {
+			base = 30
+		}
+	}
+	krcw_sov_back_mon = {
+		icon = generic_political_actions
+		cost = 40
+		days_re_enable = 60
+		complete_effect = {
+			add_to_variable = { krcw_sov_mon = 8 }
+			clamp_variable = { var = krcw_sov_mon min = 0 max = 100 }
+			custom_effect_tooltip = krcw_sov_bid_mon_8_tt
+			add_popularity = { ideology = monarchism popularity = 0.03 }
+		}
+		ai_will_do = {
+			base = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+	}
+	krcw_sov_back_ext = {
+		icon = generic_political_actions
+		cost = 40
+		days_re_enable = 60
+		complete_effect = {
+			add_to_variable = { krcw_sov_ext = 8 }
+			clamp_variable = { var = krcw_sov_ext min = 0 max = 100 }
+			custom_effect_tooltip = krcw_sov_bid_ext_8_tt
+			add_war_support = 0.02
+		}
+		ai_will_do = {
+			base = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+	}
+}
+krcw_ent_courting_category = {
+	krcw_ent_ti_wool_contracts = {
+		icon = GFX_decision_generic_consumer_goods
+		cost = 50
+		visible = {
+			OR = { tag = FRA tag = ENG }
+		}
+		available = {
+			country_exists = AST
+			NOT = { has_global_flag = KRCW_ent_settled }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			if = { limit = { NOT = { has_variable = global.krcw_ent_lean } } set_variable = { global.krcw_ent_lean = 0 } }
+			add_to_variable = { global.krcw_ent_lean = 15 }
+			clamp_variable = { var = global.krcw_ent_lean min = -100 max = 100 }
+			custom_effect_tooltip = krcw_ent_lean_p15_tt
+			hidden_effect = {
+				if = {
+					limit = { check_variable = { global.krcw_ent_lean > 39 } NOT = { has_global_flag = KRCW_ent_paris_offer } }
+					set_global_flag = KRCW_ent_paris_offer
+					AST = { country_event = { id = krcw_ent.1 days = 3 } }
+				}
+				if = {
+					limit = { check_variable = { global.krcw_ent_lean < -39 } NOT = { has_global_flag = KRCW_ent_moscow_offer } }
+					set_global_flag = KRCW_ent_moscow_offer
+					AST = { country_event = { id = krcw_ent.2 days = 3 } }
+				}
+			}
+			add_political_power = -25
+			AST = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_courted } }
+			AST = { add_ideas = krcw_ent_ti_subsidies }
+			set_global_flag = KRCW_ent_wool
+		}
+		ai_will_do = {
+			base = 10
+			modifier = { factor = 0 has_political_power < 100 }
+		}
+	}
+	krcw_ent_ti_technical_mission = {
+		icon = GFX_decision_generic_industry
+		cost = 75
+		visible = {
+			OR = { tag = FRA tag = ENG }
+		}
+		available = {
+			country_exists = AST
+			NOT = { has_global_flag = KRCW_ent_settled }
+			has_global_flag = KRCW_ent_wool
+		}
+		fire_only_once = yes
+		complete_effect = {
+			if = { limit = { NOT = { has_variable = global.krcw_ent_lean } } set_variable = { global.krcw_ent_lean = 0 } }
+			add_to_variable = { global.krcw_ent_lean = 20 }
+			clamp_variable = { var = global.krcw_ent_lean min = -100 max = 100 }
+			custom_effect_tooltip = krcw_ent_lean_p20_tt
+			hidden_effect = {
+				if = {
+					limit = { check_variable = { global.krcw_ent_lean > 39 } NOT = { has_global_flag = KRCW_ent_paris_offer } }
+					set_global_flag = KRCW_ent_paris_offer
+					AST = { country_event = { id = krcw_ent.1 days = 3 } }
+				}
+				if = {
+					limit = { check_variable = { global.krcw_ent_lean < -39 } NOT = { has_global_flag = KRCW_ent_moscow_offer } }
+					set_global_flag = KRCW_ent_moscow_offer
+					AST = { country_event = { id = krcw_ent.2 days = 3 } }
+				}
+			}
+			AST = { capital_scope = { add_extra_state_shared_building_slots = 1 add_building_construction = { type = industrial_complex level = 1 instant_build = yes } } }
+			AST = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_courted } }
+		}
+		ai_will_do = {
+			base = 8
+			modifier = { factor = 0 has_political_power < 120 }
+		}
+	}
+	krcw_ent_ti_recognise_the_crown = {
+		icon = GFX_decision_generic_political_address
+		cost = 100
+		visible = {
+			OR = { tag = FRA tag = ENG }
+		}
+		available = {
+			country_exists = AST
+			NOT = { has_global_flag = KRCW_ent_settled }
+			date > 1951.3.15
+		}
+		fire_only_once = yes
+		complete_effect = {
+			if = { limit = { NOT = { has_variable = global.krcw_ent_lean } } set_variable = { global.krcw_ent_lean = 0 } }
+			add_to_variable = { global.krcw_ent_lean = 20 }
+			clamp_variable = { var = global.krcw_ent_lean min = -100 max = 100 }
+			custom_effect_tooltip = krcw_ent_lean_p20_tt
+			hidden_effect = {
+				if = {
+					limit = { check_variable = { global.krcw_ent_lean > 39 } NOT = { has_global_flag = KRCW_ent_paris_offer } }
+					set_global_flag = KRCW_ent_paris_offer
+					AST = { country_event = { id = krcw_ent.1 days = 3 } }
+				}
+				if = {
+					limit = { check_variable = { global.krcw_ent_lean < -39 } NOT = { has_global_flag = KRCW_ent_moscow_offer } }
+					set_global_flag = KRCW_ent_moscow_offer
+					AST = { country_event = { id = krcw_ent.2 days = 3 } }
+				}
+			}
+			krcw_detente_up_small = yes
+			AST = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_courted } }
+			if = { limit = { country_exists = NZL } NZL = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_courted } } }
+		}
+		ai_will_do = {
+			base = 5
+			modifier = { factor = 0 has_political_power < 150 }
+		}
+	}
+	krcw_ent_ma_arms_sales = {
+		icon = GFX_decision_generic_tank
+		cost = 50
+		visible = {
+			tag = SOV
+		}
+		available = {
+			country_exists = AST
+			NOT = { has_global_flag = KRCW_ent_settled }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			if = { limit = { NOT = { has_variable = global.krcw_ent_lean } } set_variable = { global.krcw_ent_lean = 0 } }
+			add_to_variable = { global.krcw_ent_lean = -15 }
+			clamp_variable = { var = global.krcw_ent_lean min = -100 max = 100 }
+			custom_effect_tooltip = krcw_ent_lean_m15_tt
+			hidden_effect = {
+				if = {
+					limit = { check_variable = { global.krcw_ent_lean > 39 } NOT = { has_global_flag = KRCW_ent_paris_offer } }
+					set_global_flag = KRCW_ent_paris_offer
+					AST = { country_event = { id = krcw_ent.1 days = 3 } }
+				}
+				if = {
+					limit = { check_variable = { global.krcw_ent_lean < -39 } NOT = { has_global_flag = KRCW_ent_moscow_offer } }
+					set_global_flag = KRCW_ent_moscow_offer
+					AST = { country_event = { id = krcw_ent.2 days = 3 } }
+				}
+			}
+			add_political_power = -25
+			AST = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_courted } }
+			AST = { add_ideas = krcw_ent_moscow_subsidies }
+			set_global_flag = KRCW_ent_tanks
+		}
+		ai_will_do = {
+			base = 10
+			modifier = { factor = 0 has_political_power < 100 }
+		}
+	}
+	krcw_ent_ma_pacific_squadron = {
+		icon = GFX_decision_generic_naval
+		cost = 75
+		visible = {
+			tag = SOV
+		}
+		available = {
+			country_exists = AST
+			NOT = { has_global_flag = KRCW_ent_settled }
+			has_global_flag = KRCW_ent_tanks
+		}
+		fire_only_once = yes
+		complete_effect = {
+			if = { limit = { NOT = { has_variable = global.krcw_ent_lean } } set_variable = { global.krcw_ent_lean = 0 } }
+			add_to_variable = { global.krcw_ent_lean = -20 }
+			clamp_variable = { var = global.krcw_ent_lean min = -100 max = 100 }
+			custom_effect_tooltip = krcw_ent_lean_m20_tt
+			hidden_effect = {
+				if = {
+					limit = { check_variable = { global.krcw_ent_lean > 39 } NOT = { has_global_flag = KRCW_ent_paris_offer } }
+					set_global_flag = KRCW_ent_paris_offer
+					AST = { country_event = { id = krcw_ent.1 days = 3 } }
+				}
+				if = {
+					limit = { check_variable = { global.krcw_ent_lean < -39 } NOT = { has_global_flag = KRCW_ent_moscow_offer } }
+					set_global_flag = KRCW_ent_moscow_offer
+					AST = { country_event = { id = krcw_ent.2 days = 3 } }
+				}
+			}
+			navy_experience = 10
+			AST = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_courted } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			base = 8
+			modifier = { factor = 0 has_political_power < 120 }
+		}
+	}
+	krcw_ent_ma_anti_syndicalist_compact = {
+		icon = GFX_decision_generic_protection
+		cost = 100
+		visible = {
+			tag = SOV
+		}
+		available = {
+			country_exists = AST
+			NOT = { has_global_flag = KRCW_ent_settled }
+			date > 1951.3.15
+		}
+		fire_only_once = yes
+		complete_effect = {
+			if = { limit = { NOT = { has_variable = global.krcw_ent_lean } } set_variable = { global.krcw_ent_lean = 0 } }
+			add_to_variable = { global.krcw_ent_lean = -20 }
+			clamp_variable = { var = global.krcw_ent_lean min = -100 max = 100 }
+			custom_effect_tooltip = krcw_ent_lean_m20_tt
+			hidden_effect = {
+				if = {
+					limit = { check_variable = { global.krcw_ent_lean > 39 } NOT = { has_global_flag = KRCW_ent_paris_offer } }
+					set_global_flag = KRCW_ent_paris_offer
+					AST = { country_event = { id = krcw_ent.1 days = 3 } }
+				}
+				if = {
+					limit = { check_variable = { global.krcw_ent_lean < -39 } NOT = { has_global_flag = KRCW_ent_moscow_offer } }
+					set_global_flag = KRCW_ent_moscow_offer
+					AST = { country_event = { id = krcw_ent.2 days = 3 } }
+				}
+			}
+			krcw_tension_up_small = yes
+			AST = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_courted } }
+			AST = { add_stability = -0.02 }
+		}
+		ai_will_do = {
+			base = 5
+			modifier = { factor = 0 has_political_power < 150 }
+			modifier = { factor = 0 has_country_flag = krcw_sov_outcome_civilian }
+		}
+	}
+}
+krcw_ent_canberra_category = {
+	krcw_ent_declare_armed_neutrality = {
+		icon = GFX_decision_generic_fortification
+		cost = 75
+		visible = {
+			tag = AST
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_ent_aligned }
+			OR = { NOT = { has_variable = global.krcw_ent_lean } AND = { check_variable = { global.krcw_ent_lean < 40 } check_variable = { global.krcw_ent_lean > -40 } } }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_ideas = krcw_ent_armed_neutrality
+			set_global_flag = KRCW_ent_neutral
+			if = { limit = { country_exists = NZL } NZL = { add_ideas = krcw_ent_armed_neutrality } }
+			krcw_tension_down_small = yes
+		}
+		ai_will_do = {
+			base = 20
+			modifier = { factor = 3 date > 1952.1.18 }
+		}
+	}
+	krcw_ent_play_both_sides = {
+		icon = GFX_decision_generic_fundraising
+		cost = 50
+		visible = {
+			tag = AST
+		}
+		available = {
+			NOT = { has_global_flag = KRCW_ent_aligned }
+			has_variable = global.krcw_ent_lean
+		}
+		days_re_enable = 180
+		complete_effect = {
+			add_political_power = 60
+			add_stability = 0.02
+			if = { limit = { check_variable = { global.krcw_ent_lean > 0 } } add_to_variable = { global.krcw_ent_lean = -5 } }
+			else = { add_to_variable = { global.krcw_ent_lean = 5 } }
+		}
+		ai_will_do = {
+			base = 5
+		}
+	}
+	krcw_ent_canberra_conference = {
+		icon = GFX_decision_generic_political_discourse
+		cost = 100
+		visible = {
+			tag = AST
+			has_global_flag = KRCW_ent_neutral
+		}
+		available = {
+			has_idea = krcw_ent_armed_neutrality
+			date > 1952.6.21
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_global_flag = KRCW_ent_settled
+			krcw_detente_up_medium = yes
+			krcw_tension_down_small = yes
+			add_stability = 0.05
+			random_country = { news_event = { id = krcw_ent.4 days = 2 } }
+		}
+		ai_will_do = {
+			base = 30
+		}
+	}
+}
+krcw_ti_congress_cat = {
+	krcw_ti_lobby_the_secretariat = {
+		icon = generic_political_actions
+		cost = 50
+		days_re_enable = 120
+		complete_effect = {
+			add_political_power = 25
+			if = { limit = { country_exists = FRA } FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_ti_secretariat_favour } } }
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_ti_table_a_resolution = {
+		icon = generic_political_actions
+		cost = 60
+		available = {
+			has_completed_focus = krcw_ti_the_national_road
+		}
+		days_re_enable = 180
+		complete_effect = {
+			add_political_power = 50
+			add_stability = 0.02
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_ti_small_members_caucus = {
+		icon = generic_political_actions
+		cost = 40
+		days_re_enable = 150
+		complete_effect = {
+			add_political_power = 25
+			every_country = { limit = { is_in_faction_with = ROOT NOT = { tag = ROOT } NOT = { tag = FRA } NOT = { tag = ENG } } add_opinion_modifier = { target = ROOT modifier = krcw_ti_comrades_in_arms } }
+		}
+		ai_will_do = {
+			factor = 4
+		}
+	}
+	krcw_ti_host_the_congress = {
+		icon = generic_political_actions
+		cost = 100
+		available = {
+			has_completed_focus = krcw_ti_the_permanent_delegation
+			OR = { has_completed_focus = krcw_ti_first_among_the_small has_completed_focus = krcw_ti_a_federation_of_equals }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = 100
+			add_stability = 0.04
+			krcw_detente_up_small = yes
+		}
+		ai_will_do = {
+			factor = 8
+		}
+	}
+}
+krcw_ti_specialisation_cat = {
+	krcw_ti_bid_for_a_contract = {
+		icon = generic_political_actions
+		cost = 45
+		days_re_enable = 120
+		complete_effect = {
+			add_political_power = 15
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	krcw_ti_request_machine_tools = {
+		icon = generic_political_actions
+		cost = 50
+		available = {
+			has_completed_focus = krcw_ti_the_secretariat_quota
+		}
+		days_re_enable = 150
+		complete_effect = {
+			capital_scope = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+			add_political_power = -10
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	krcw_ti_second_industry = {
+		icon = generic_political_actions
+		cost = 70
+		available = {
+			has_completed_focus = krcw_ti_national_accounting
+		}
+		days_re_enable = 200
+		complete_effect = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			}
+			add_stability = 0.02
+			if = { limit = { country_exists = FRA } add_opinion_modifier = { target = FRA modifier = krcw_ti_fraternal_dispute } }
+		}
+		ai_will_do = {
+			factor = 4
+		}
+	}
+	krcw_ti_send_workers_abroad = {
+		icon = generic_political_actions
+		cost = 35
+		available = {
+			has_completed_focus = krcw_ti_the_common_market_of_labour
+		}
+		days_re_enable = 120
+		complete_effect = {
+			add_political_power = 20
+			add_stability = 0.02
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+}
+krcw_ti_border_cat = {
+	krcw_ti_reinforce_the_frontier = {
+		icon = generic_political_actions
+		cost = 40
+		days_re_enable = 100
+		complete_effect = {
+			add_war_support = 0.02
+			every_owned_state = {
+				limit = { any_neighbor_state = { NOT = { is_owned_by = ROOT } } }
+				add_building_construction = { type = bunker level = 1 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			}
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_ti_quiet_talks = {
+		icon = generic_political_actions
+		cost = 55
+		days_re_enable = 180
+		complete_effect = {
+			add_political_power = 25
+			krcw_detente_up_small = yes
+			krcw_tension_down_small = yes
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	krcw_ti_refer_to_arbitration = {
+		icon = generic_political_actions
+		cost = 60
+		available = {
+			has_global_flag = KRCW_ti_arbitration_court
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = 50
+			add_stability = 0.03
+			krcw_detente_up_medium = yes
+		}
+		ai_will_do = {
+			factor = 8
+		}
+	}
+	krcw_ti_fund_the_kin_across = {
+		icon = generic_political_actions
+		cost = 45
+		days_re_enable = 150
+		complete_effect = {
+			add_political_power = 15
+			add_war_support = 0.02
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 3
+		}
+	}
+}
+krcw_ddr_berlin_cat = {
+	krcw_ddr_issue_permits = {
+		icon = GFX_decision_generic_civil_support
+		cost = 25
+		visible = {
+			has_global_flag = KRCW_berlin_crisis_over
+			date > 1952.1.18
+		}
+		available = {
+			has_political_power > 50
+			NOT = { has_country_flag = krcw_ddr_permits_issued }
+		}
+		complete_effect = {
+			add_stability = 0.03
+			set_country_flag = krcw_ddr_permits_issued
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = DDR modifier = krcw_ddr_monarchist_sympathy } } }
+			if = { limit = { country_exists = WGR } WGR = { country_event = { id = krcw_ddr.10 days = 3 } } }
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	krcw_ddr_tighten_checkpoints = {
+		icon = GFX_decision_generic_prepare_civil_war
+		cost = 15
+		visible = {
+			has_global_flag = KRCW_berlin_crisis_over
+		}
+		available = {
+			NOT = { has_country_flag = krcw_ddr_checkpoints_tight }
+		}
+		complete_effect = {
+			add_stability = -0.02
+			add_war_support = 0.02
+			set_country_flag = krcw_ddr_checkpoints_tight
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = DDR modifier = MA_protectorate_loyal } } }
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	krcw_ddr_inspect_the_trains = {
+		icon = generic_political_actions
+		cost = 40
+		allowed = {
+			tag = DDR
+		}
+		days_re_enable = 110
+		complete_effect = {
+			add_to_variable = { global.krcw_berlin_pressure = 9 }
+			clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+			add_political_power = 10
+			krcw_tension_up_small = yes
+			custom_effect_tooltip = krcw_berlin_pressure_tt
+		}
+		ai_will_do = {
+			factor = 7
+		}
+	}
+	krcw_ddr_corridor_exercises = {
+		icon = generic_air_support
+		cost = 45
+		allowed = {
+			tag = DDR
+		}
+		days_re_enable = 130
+		complete_effect = {
+			add_to_variable = { global.krcw_berlin_pressure = 8 }
+			clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+			air_experience = 10
+			krcw_tension_up_small = yes
+			custom_effect_tooltip = krcw_berlin_pressure_tt
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	krcw_ddr_seal_the_sector_border = {
+		icon = generic_operation_prepare_civil_war
+		cost = 75
+		allowed = {
+			tag = DDR
+		}
+		available = {
+			check_variable = { global.krcw_berlin_pressure > 49 }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_to_variable = { global.krcw_berlin_pressure = 18 }
+			clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+			add_stability = 0.05
+			add_political_power = -25
+			krcw_tension_up_medium = yes
+			set_global_flag = KRCW_berlin_sector_sealed
+			news_event = { id = krcw_wgr.48 days = 2 }
+			custom_effect_tooltip = krcw_berlin_pressure_tt
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+}
+krcw_ent_south_seas_category = {
+	krcw_ent_island_schools = {
+		icon = GFX_decision_generic_political_address
+		cost = 50
+		days_re_enable = 180
+		complete_effect = {
+			add_stability = 0.02
+			add_political_power = 25
+			krcw_detente_up_small = yes
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_ent_phosphate_quota = {
+		icon = GFX_decision_generic_industry
+		cost = 40
+		days_re_enable = 150
+		complete_effect = {
+			add_political_power = 25
+			random_owned_controlled_state = { limit = { is_core_of = ROOT } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+			add_stability = -0.02
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_ent_island_patrol = {
+		icon = GFX_decision_generic_naval
+		cost = 45
+		days_re_enable = 120
+		complete_effect = {
+			navy_experience = 10
+			add_political_power = 15
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_ent_answer_the_conference = {
+		icon = GFX_decision_generic_political_discourse
+		cost = 75
+		available = {
+			has_completed_focus = krcw_ent_the_island_councils
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -25
+			krcw_detente_up_small = yes
+			set_country_flag = krcw_ent_timetable_announced
+			random_country = { limit = { has_country_flag = KRCW_minor } add_opinion_modifier = { target = ROOT modifier = krcw_ent_pacific_understanding } }
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_ent_pacific_scholarships = {
+		icon = GFX_decision_generic_political_address
+		cost = 60
+		available = {
+			has_completed_focus = krcw_ent_the_national_university
+		}
+		days_re_enable = 200
+		complete_effect = {
+			add_political_power = 25
+			krcw_detente_up_small = yes
+			add_stability = 0.02
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+}
+krcw_wgr_berlin_cat = {
+	krcw_wgr_reinforce_the_airlift = {
+		icon = generic_air_support
+		cost = 45
+		allowed = {
+			tag = WGR
+		}
+		available = {
+			check_variable = { global.krcw_berlin_pressure > 9 }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			add_to_variable = { global.krcw_berlin_pressure = -9 }
+			clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+			air_experience = 10
+			custom_effect_tooltip = krcw_berlin_pressure_tt
+		}
+		ai_will_do = {
+			factor = 8
+		}
+	}
+	krcw_wgr_publish_the_agreement = {
+		icon = generic_political_actions
+		cost = 40
+		allowed = {
+			tag = WGR
+		}
+		days_re_enable = 150
+		complete_effect = {
+			add_to_variable = { global.krcw_berlin_pressure = -7 }
+			clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+			add_political_power = 15
+			krcw_detente_up_small = yes
+			custom_effect_tooltip = krcw_berlin_pressure_tt
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	krcw_wgr_day_passes_west = {
+		icon = generic_political_actions
+		cost = 35
+		allowed = {
+			tag = WGR
+		}
+		days_re_enable = 100
+		complete_effect = {
+			add_to_variable = { global.krcw_berlin_pressure = -6 }
+			clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+			if = { limit = { country_exists = DDR } DDR = { add_opinion_modifier = { target = ROOT modifier = krcw_wgr_german_brothers } } }
+			add_stability = 0.02
+			custom_effect_tooltip = krcw_berlin_pressure_tt
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+}
+krcw_aus_cat = {
+	krcw_aus_support_the_strike = {
+		icon = GFX_decision_generic_political_rally
+		cost = 75
+		allowed = {
+			original_tag = AUS
+		}
+		visible = {
+			tag = AUS
+			has_country_flag = krcw_aus_underground
+		}
+		available = {
+			has_war = no
+			152 = { OR = { is_owned_by = SOV is_owned_by = ADR } }
+			country_exists = SOV
+			custom_trigger_tooltip = { tooltip = krcw_aus_sov_weak_tt OR = {
+				has_global_flag = KRCW_world_war
+				check_variable = { global.krcw_ma_crisis > 59 }
+				AND = { has_global_flag = KRCW_savinkov_dead NOT = { has_global_flag = KRCW_russian_succession_over } }
+			} }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = krcw_aus_strike_called
+			krcw_tension_up_small = yes
+			SOV = { country_event = { id = krcw_aus.30 days = 7 } }
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+	}
+	krcw_aus_cross_the_enns = {
+		icon = GFX_decision_generic_military
+		cost = 100
+		allowed = {
+			original_tag = AUS
+		}
+		visible = {
+			tag = AUS
+			has_country_flag = krcw_aus_war_plan
+		}
+		available = {
+			has_war = no
+			152 = { OR = { is_owned_by = SOV is_owned_by = ADR } }
+			OR = {
+				has_country_flag = krcw_aus_strike_crushed
+				custom_trigger_tooltip = { tooltip = krcw_aus_sov_weak_tt OR = {
+					has_global_flag = KRCW_world_war
+					check_variable = { global.krcw_ma_crisis > 59 }
+					AND = { has_global_flag = KRCW_savinkov_dead NOT = { has_global_flag = KRCW_russian_succession_over } }
+				} }
+			}
+		}
+		fire_only_once = yes
+		complete_effect = {
+			custom_effect_tooltip = krcw_aus_war_tt
+			add_war_support = 0.05
+			krcw_tension_up_large = yes
+			if = { limit = { 152 = { is_owned_by = ADR } } declare_war_on = { target = ADR type = take_state_focus generator = { 152 1253 1119 1150 } } }
+			else = { declare_war_on = { target = SOV type = take_state_focus generator = { 152 1253 1119 1150 } } }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = { factor = 0 krcw_route_historical = yes }
+			modifier = { factor = 0 NOT = { has_global_flag = KRCW_world_war } }
+		}
+	}
+	krcw_aus_release_east_austria = {
+		icon = GFX_decision_generic_political_discourse
+		cost = 100
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			tag = SOV
+			country_exists = AUS
+			NOT = { country_exists = ADR }
+		}
+		available = {
+			has_war = no
+			NOT = { has_global_flag = KRCW_world_war }
+			152 = { is_owned_by = ROOT }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_global_flag = KRCW_aus_federal_state
+			152 = { add_core_of = ADR }
+			1253 = { add_core_of = ADR }
+			1119 = { add_core_of = ADR }
+			1150 = { add_core_of = ADR }
+			if = { limit = { 152 = { is_owned_by = ROOT } } ADR = { transfer_state = 152 } }
+			if = { limit = { 1253 = { is_owned_by = ROOT } } ADR = { transfer_state = 1253 } }
+			if = { limit = { 1119 = { is_owned_by = ROOT } } ADR = { transfer_state = 1119 } }
+			if = { limit = { 1150 = { is_owned_by = ROOT } } ADR = { transfer_state = 1150 } }
+			ADR = {
+				set_popularities = { Christian_Democratic = 45 conservative = 20 Social_Democratic = 15 neutrality = 10 socialist = 10 }
+				set_politics = { ruling_party = Christian_Democratic elections_allowed = no }
+				set_party_name = { ideology = Christian_Democratic name = krcw_adr_party_cs long_name = krcw_adr_party_cs_long }
+				if = { limit = { NOT = { has_character = ADR_krcw_miklas } } recruit_character = ADR_krcw_miklas }
+				promote_character = ADR_krcw_miklas
+				set_capital = { state = 152 }
+			}
+			puppet = ADR
+			if = { limit = { is_faction_leader = yes ADR = { is_in_faction = no } } add_to_faction = ADR }
+			news_event = { id = krcw_aus.40 days = 1 }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = { factor = 0 krcw_route_historical = yes }
+			modifier = { factor = 4 AUS = { has_country_flag = krcw_aus_vienna_road } }
+		}
+	}
+}

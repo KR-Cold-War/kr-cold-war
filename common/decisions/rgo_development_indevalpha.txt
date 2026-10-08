@@ -1,0 +1,604 @@
+# KRCW (build/patch_residue.py): 6 OTL decisions hidden while KRCW_active
+prospect_for_resources = {
+
+#############################################################
+################### SOVIET BLOCC  ###########################
+#############################################################
+	
+	##### ODESSA #####
+	
+	steel_odessa_I_develop = {
+		
+		icon = steel
+
+		allowed = {
+
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 192
+			}
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			#check_variable = { currentMoney > 360 }
+			has_tech = excavation_I
+			has_tech = civil_engineering_III
+			owns_state = 192
+			controls_state = 192
+			192 = {
+				state_infrastructure > 2
+			}
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 192
+			controls_state = 192
+			192 = {
+				NOT = {
+					has_state_flag = { 
+						flag = steel_odessa_I_developed
+						value = 5
+					}
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 0
+		days_remove = steel_odessa_I_develop_duration
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		remove_effect = {
+			add_to_variable = { var = steel_odessa_I_develop_duration value = 365 }
+			192 = {
+				if = {
+					limit = {
+						NOT = {
+							has_state_flag = steel_odessa_I_developed
+						}
+					}
+					set_state_flag = {
+						flag = steel_odessa_I_developed
+						value = 1
+					}
+				}
+				else = {
+					modify_state_flag = {
+						flag = steel_odessa_I_developed
+						value = 1
+					}
+				}
+			}
+			192 = {
+				add_resource = {
+					type = steel
+					amount = 24
+				}
+			}
+		}
+
+		complete_effect = {
+			add_to_variable = { currentMoney = -360 }
+			if = {
+				limit = {
+					check_variable = { var = steel_odessa_I_develop_duration value = 365 compare = less_than }
+				}
+				set_variable = { var = steel_odessa_I_develop_duration value = 365 }
+			}
+		}
+	}
+	
+	##### CHUKOTKA #####
+	
+	aluminium_chukotka_I_develop = {
+		
+		icon = resource
+
+		allowed = {
+
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 192644
+			}
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			#check_variable = { currentMoney > 360 }
+			has_tech = civil_engineering_II
+			has_tech = inframanagement_I
+			has_tech = grid_II
+			owns_state = 644
+			controls_state = 644
+			644 = {
+				state_infrastructure > 2
+			}
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 644
+			controls_state = 644
+			644 = {
+				NOT = {
+					has_state_flag = { 
+						flag = aluminium_chukotka_I_developed
+						value = 5
+					}
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 0
+		days_remove = aluminium_chukotka_I_develop_duration
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		remove_effect = {
+			add_to_variable = { var = aluminium_chukotka_I_develop_duration value = 365 }
+			644 = {
+				if = {
+					limit = {
+						NOT = {
+							has_state_flag = aluminium_chukotka_I_developed
+						}
+					}
+					set_state_flag = {
+						flag = aluminium_chukotka_I_developed
+						value = 1
+					}
+				}
+				else = {
+					modify_state_flag = {
+						flag = aluminium_chukotka_I_developed
+						value = 1
+					}
+				}
+			}
+			644 = {
+				add_resource = {
+					type = aluminium
+					amount = 12
+				}
+				add_resource = {
+					type = tungsten
+					amount = 6
+				}
+			}
+		}
+
+		complete_effect = {
+			add_to_variable = { currentMoney = -360 }
+			if = {
+				limit = {
+					check_variable = { var = aluminium_chukotka_I_develop_duration value = 365 compare = less_than }
+				}
+				set_variable = { var = aluminium_chukotka_I_develop_duration value = 365 }
+			}
+		}
+	}
+	
+	aluminium_chukotka_II_develop = {
+		
+		icon = tungsten
+
+		allowed = {
+
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 644
+			}
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			#check_variable = { currentMoney > 360 }
+			has_tech = inframanagement_II
+			has_tech = materials_II
+			owns_state = 644
+			controls_state = 644
+			644 = {
+				state_infrastructure > 2
+				water_infrastructure > 0
+				fuel_silo > 0
+				has_state_flag = aluminium_chukotka_I_developed
+			}
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 644
+			controls_state = 644
+			644 = {
+				has_state_flag = aluminium_chukotka_I_developed
+				NOT = {
+					has_state_flag = { 
+						flag = aluminium_chukotka_II_developed
+						value = 5
+					}
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 0
+		days_remove = aluminium_chukotka_II_develop_duration
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		remove_effect = {
+			add_to_variable = { var = aluminium_chukotka_II_develop_duration value = 365 }
+			644 = {
+				if = {
+					limit = {
+						NOT = {
+							has_state_flag = aluminium_chukotka_II_developed
+						}
+					}
+					set_state_flag = {
+						flag = aluminium_chukotka_II_developed
+						value = 1
+					}
+				}
+				else = {
+					modify_state_flag = {
+						flag = aluminium_chukotka_II_developed
+						value = 1
+					}
+				}
+			}
+			644 = {
+				add_resource = {
+					type = aluminium
+					amount = 12
+				}
+				add_resource = {
+					type = tungsten
+					amount = 6
+				}
+			}
+		}
+
+		complete_effect = {
+			add_to_variable = { currentMoney = -360 }
+			if = {
+				limit = {
+					check_variable = { var = aluminium_chukotka_II_develop_duration value = 365 compare = less_than }
+				}
+				set_variable = { var = aluminium_chukotka_II_develop_duration value = 365 }
+			}
+		}
+	}
+	aluminium_chukotka_III_develop = {
+		
+		icon = tungsten
+
+		allowed = {
+
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 644
+			}
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			#check_variable = { currentMoney > 360 }
+			has_tech = inframanagement_II
+			has_tech = chemistry_III
+			has_tech = renewables_II
+			owns_state = 644
+			controls_state = 644
+			644 = {
+				state_infrastructure > 3
+				renewable_powerplant > 0
+				has_state_flag = aluminium_chukotka_II_developed
+			}
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 644
+			controls_state = 644
+			644 = {
+				has_state_flag = aluminium_chukotka_II_developed
+				NOT = {
+					has_state_flag = { 
+						flag = aluminium_chukotka_III_developed
+						value = 5
+					}
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 0
+		days_remove = aluminium_chukotka_III_develop_duration
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		remove_effect = {
+			add_to_variable = { var = aluminium_chukotka_III_develop_duration value = 365 }
+			644 = {
+				if = {
+					limit = {
+						NOT = {
+							has_state_flag = aluminium_chukotka_III_developed
+						}
+					}
+					set_state_flag = {
+						flag = aluminium_chukotka_III_developed
+						value = 1
+					}
+				}
+				else = {
+					modify_state_flag = {
+						flag = aluminium_chukotka_III_developed
+						value = 1
+					}
+				}
+			}
+			644 = {
+				add_resource = {
+					type = aluminium
+					amount = 12
+				}
+				add_resource = {
+					type = tungsten
+					amount = 6
+				}
+			}
+		}
+
+		complete_effect = {
+			add_to_variable = { currentMoney = -360 }
+			if = {
+				limit = {
+					check_variable = { var = aluminium_chukotka_III_develop_duration value = 365 compare = less_than }
+				}
+				set_variable = { var = aluminium_chukotka_III_develop_duration value = 365 }
+			}
+		}
+	}
+	aluminium_chukotka_IV_develop = {
+		
+		icon = tungsten
+
+		allowed = {
+
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 644
+			}
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			#check_variable = { currentMoney > 360 }
+			has_tech = inframanagement_IV
+			has_tech = materials_III
+			owns_state = 644
+			controls_state = 644
+			644 = {
+				state_infrastructure > 3
+				tungsten_factory > 0
+				water_infrastructure >1
+				has_state_flag = aluminium_chukotka_III_developed
+			}
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 644
+			controls_state = 644
+			644 = {
+				has_state_flag = aluminium_chukotka_III_developed
+				NOT = {
+					has_state_flag = { 
+						flag = aluminium_chukotka_IV_developed
+						value = 5
+					}
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 0
+		days_remove = aluminium_chukotka_IV_develop_duration
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		remove_effect = {
+			add_to_variable = { var = aluminium_chukotka_IV_develop_duration value = 365 }
+			644 = {
+				if = {
+					limit = {
+						NOT = {
+							has_state_flag = aluminium_chukotka_IV_developed
+						}
+					}
+					set_state_flag = {
+						flag = aluminium_chukotka_IV_developed
+						value = 1
+					}
+				}
+				else = {
+					modify_state_flag = {
+						flag = aluminium_chukotka_IV_developed
+						value = 1
+					}
+				}
+			}
+			644 = {
+				add_resource = {
+					type = aluminium
+					amount = 12
+				}
+				add_resource = {
+					type = tungsten
+					amount = 6
+				}
+			}
+		}
+
+		complete_effect = {
+			add_to_variable = { currentMoney = -360 }
+			if = {
+				limit = {
+					check_variable = { var = aluminium_chukotka_IV_develop_duration value = 365 compare = less_than }
+				}
+				set_variable = { var = aluminium_chukotka_IV_develop_duration value = 365 }
+			}
+		}
+	}
+	aluminium_chukotka_V_develop = {
+		
+		icon = tungsten
+
+		allowed = {
+
+		}
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 644
+			}
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			#check_variable = { currentMoney > 360 }
+			has_tech = excavation_V
+			owns_state = 644
+			controls_state = 644
+			644 = {
+				state_infrastructure > 3
+				tungsten_factory > 0
+				has_state_flag = aluminium_chukotka_IV_developed
+			}
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 644
+			controls_state = 644
+			644 = {
+				has_state_flag = aluminium_chukotka_IV_developed
+				NOT = {
+					has_state_flag = { 
+						flag = aluminium_chukotka_V_developed
+						value = 5
+					}
+				}
+			}
+		}
+
+		fire_only_once = yes
+
+		cost = 0
+		days_remove = aluminium_chukotka_V_develop_duration
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		remove_effect = {
+			add_to_variable = { var = aluminium_chukotka_V_develop_duration value = 365 }
+			644 = {
+				if = {
+					limit = {
+						NOT = {
+							has_state_flag = aluminium_chukotka_V_developed
+						}
+					}
+					set_state_flag = {
+						flag = aluminium_chukotka_V_developed
+						value = 1
+					}
+				}
+				else = {
+					modify_state_flag = {
+						flag = aluminium_chukotka_V_developed
+						value = 1
+					}
+				}
+			}
+			644 = {
+				add_resource = {
+					type = aluminium
+					amount = 12
+				}
+				add_resource = {
+					type = tungsten
+					amount = 6
+				}
+			}
+		}
+
+		complete_effect = {
+			add_to_variable = { currentMoney = -360 }
+			if = {
+				limit = {
+					check_variable = { var = aluminium_chukotka_V_develop_duration value = 365 compare = less_than }
+				}
+				set_variable = { var = aluminium_chukotka_V_develop_duration value = 365 }
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+}

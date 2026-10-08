@@ -1,0 +1,76 @@
+# KRCW (build/patch_residue.py): 2 OTL decisions hidden while KRCW_active
+SOV_Sino_Soviet_War = {
+    SOV_Strike_The_Chinese_Railway = {
+        allowed = {
+            original_tag = SOV
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+            original_tag = SOV	
+        }
+        available = { NOT = { has_global_flag = KRCW_active } 
+            has_war_with = PRC
+        }
+        icon = GFX_decision_BHR_example
+        priority = 10
+		cost = 40
+        days_remove = 5
+		fire_only_once = yes
+        complete_effect = {
+            add_political_power = 25
+            add_stability = 0.005
+            add_war_support = 0.005
+        }
+        remove_effect = {
+            random = {
+                chance = 95
+                PRC = {
+                    add_stability = -0.014
+                    add_war_support = -0.023
+                }
+            }
+            random = {
+                chance = 5
+                PRC = {
+                    add_stability = 0.014
+                    add_war_support = 0.023
+                }
+            }
+            PRC = {
+                random_owned_state = {
+                    damage_building = {
+                        type = infrastructure
+                        damage = 1
+                    }
+                }
+            }
+        }
+    }
+    SOV_Support_American_With_Intel = {
+        allowed = {
+            original_tag = SOV
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+            original_tag = SOV	
+        }
+        available = { NOT = { has_global_flag = KRCW_active } 
+            has_war_with = PRC
+        }
+        icon = GFX_decision_BHR_example
+        priority = 10
+		cost = 40
+		fire_only_once = yes
+        remove_effect = {
+			USA = {
+                #gain_random_agency_upgrade = yes # disabled with the espionage system
+                add_equipment_to_stockpile = {
+                    type = infantry_equipment_2
+                    amount = 2500
+                }
+                add_opinion_modifier = {
+                    target = SOV
+                    modifier = medium_increase
+                }
+            }
+        }
+    }
+}

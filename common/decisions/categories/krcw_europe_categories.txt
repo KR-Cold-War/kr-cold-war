@@ -1,0 +1,110 @@
+krcw_eng_fleet_category = {
+	icon = GFX_decision_category_generic_naval
+	visible = {
+		tag = ENG
+		has_completed_focus = krcw_eng_the_naval_pillar
+	}
+	priority = 50
+}
+krcw_ddr_protocol_category = {
+	icon = generic_political_actions
+	visible = {
+		tag = DDR
+		has_completed_focus = krcw_ddr_revise_the_treaty
+	}
+	priority = 50
+}
+krcw_sov_succession_category = {
+	icon = generic_political_actions
+	allowed = {
+		original_tag = SOV
+	}
+	visible = {
+		NOT = { has_global_flag = KRCW_russian_succession_over }
+	}
+	priority = 50
+}
+krcw_ent_courting_category = {
+	icon = GFX_decision_category_generic_foreign_policy
+	allowed = {
+		OR = { original_tag = FRA original_tag = ENG original_tag = SOV }
+	}
+	visible = {
+		country_exists = AST
+		OR = { tag = FRA tag = ENG tag = SOV }
+		NOT = { has_global_flag = KRCW_ent_settled }
+	}
+	priority = 50
+}
+krcw_ent_canberra_category = {
+	icon = GFX_decision_category_AST_australia_first
+	allowed = {
+		OR = { original_tag = AST original_tag = NZL }
+	}
+	visible = {
+		OR = { tag = AST tag = NZL }
+		NOT = { has_global_flag = KRCW_ent_settled }
+	}
+	priority = 50
+}
+krcw_ti_congress_cat = {
+	icon = generic_political_actions
+	visible = {
+		has_completed_focus = krcw_ti_the_question_of_paris
+	}
+	priority = 50
+}
+krcw_ti_specialisation_cat = {
+	icon = generic_political_actions
+	visible = {
+		has_completed_focus = krcw_ti_the_specialisation_compact
+	}
+	priority = 50
+}
+krcw_ti_border_cat = {
+	icon = generic_political_actions
+	visible = {
+		has_completed_focus = krcw_ti_the_unfinished_borders
+	}
+	priority = 50
+}
+krcw_ddr_berlin_cat = {
+	icon = GFX_decision_category_generic_crisis
+	picture = GFX_decision_cat_picture_generic_border_conflicts
+	visible = {
+		tag = DDR
+		has_global_flag = KRCW_berlin_crisis_over
+	}
+	priority = 50
+}
+krcw_ent_south_seas_category = {
+	icon = GFX_decision_category_generic_foreign_policy
+	allowed = {
+		OR = { original_tag = AST original_tag = NZL }
+	}
+	visible = {
+		has_country_flag = krcw_ent_south_seas_office
+	}
+	priority = 50
+}
+krcw_wgr_berlin_cat = {
+	icon = GFX_decision_category_generic_crisis
+	visible = {
+		OR = { tag = WGR tag = DDR }
+		has_country_flag = krcw_berlin_contest_open
+	}
+	priority = 80
+}
+krcw_aus_cat = {
+	icon = GFX_decision_category_generic_political_actions
+	allowed = {
+		OR = { original_tag = AUS original_tag = SOV }
+	}
+	visible = {
+		OR = {
+			AND = { tag = AUS has_country_flag = krcw_aus_vienna_question }
+			AND = { tag = SOV country_exists = AUS 152 = { is_owned_by = SOV } }
+		}
+	}
+	priority = 70
+}

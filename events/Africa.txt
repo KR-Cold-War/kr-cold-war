@@ -1,0 +1,30 @@
+# KRCW (build/patch_residue.py): 1 OTL events dropped while KRCW_active
+
+add_namespace = au
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = au.1 
+ 	immediate = { }
+	title = au.1.t
+	desc = au.1.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		if = {
+			limit = {
+				has_idea = idea_OAU_member
+			}
+			  swap_ideas = {
+				remove_idea = idea_OAU_member
+				add_idea = idea_AU_member
+			  }
+		}
+	}
+	option = {
+		name = au.1.a
+		news_event = news.1769
+	}
+}

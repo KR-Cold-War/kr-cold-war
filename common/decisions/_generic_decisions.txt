@@ -1,0 +1,4412 @@
+# KRCW (build/patch_residue.py): 55 OTL decisions hidden while KRCW_active
+DDR_approval_bop_category = {
+	DDR_Tracking_the_Pulse_of_Opinion = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		allowed = {
+			tag = DDR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		cancel_trigger = {
+		}
+
+		selectable_mission = no
+		fire_only_once = yes
+		
+
+		
+		timeout_effect = {
+		}
+
+		complete_effect = {
+
+		}
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+WGR_approval_bop_category = {
+	WGR_Tracking_the_Pulse_of_Opinion = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		allowed = {
+			tag = WGR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		cancel_trigger = {
+		}
+
+		selectable_mission = no
+		fire_only_once = yes
+		
+
+		
+		timeout_effect = {
+		}
+
+		complete_effect = {
+
+		}
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+variables_calculation_category = {
+	The_Soviet_American_Chinese_War = {
+		allowed = {
+			OR = {
+				tag = USA
+				tag = SOV
+			}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				tag = USA
+				tag = SOV
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				tag = USA
+				tag = SOV
+			}
+			PRC = {
+				has_war_with = SOV
+				has_war_with = USA
+			}
+
+		}
+		
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			NOT = { has_war_with = PRC }
+		 } }
+}
+
+		selectable_mission = no
+		days_mission_timeout = 1095
+		fire_only_once = yes
+		
+
+		
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			news_event = PRC_USA_SOVIET_WAR.100
+		 }
+}
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+
+		 }
+}
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	The_Soviet_American_Chinese_War_PRC = {
+		
+		allowed = {
+			tag = PRC
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = PRC
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			tag = PRC
+			has_war_with = SOV
+			has_war_with = USA
+		}
+		
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			NOT = { has_war_with = SOV }
+			NOT = { has_war_with = USA }
+		 } }
+}
+
+		selectable_mission = no
+		days_mission_timeout = 1095
+		fire_only_once = yes
+		
+
+		
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			news_event = PRC_USA_SOVIET_WAR.100
+			every_enemy_country = {
+				white_peace = PRC
+			}
+		 }
+}
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+
+		 }
+}
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	Russia_Election_1991_Round_One = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_operation
+
+		allowed = {
+			tag = RUS
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		} 
+
+		days_mission_timeout = 70
+		days_remove = 70
+
+		fire_only_once = no
+
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		modifier = {
+		}
+		#Event List
+		#All News Unless Noted Elsewhise
+		#Russia_1991_Election.0 Election Rules and Schedule Established 
+		#Russia_1991_Election.1 Overview of Candidates (Country and Pick Candidate to Play As)
+		#Russia_1991_Election.2 Yeltsin Victory
+		#Russia_1991_Election.3 Yeltsin v. Ryzhkov Runoff
+		#Russia_1991_Election.4 Yeltsin v. Zhirinovsky Runoff
+		#Russia_1991_Election.5 Yeltsin v. Tuleyev Runoff
+		#Russia_1991_Election.6 Yeltsin v. Bakatin Runoff
+		#Russia_1991_Election.7 Yeltsin v. Makashov Runoff
+		#Russia_1991_Election.8 Yeltsin Runoff Victory (Against Communist)
+		#Russia_1991_Election.9 Yeltsin Runoff Victory (Against Zhirinovsky)
+		#Russia_1991_Election.10 Ryzhkov Runoff Victory
+		#Russia_1991_Election.11 Zhirinovsky Runoff Victory
+		#Russia_1991_Election.12 Tuleyev Runoff Victory
+		#Russia_1991_Election.13 Bakatin Runoff Victory
+		#Russia_1991_Election.14 Makashov Runoff Victory
+		
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			Calculate_Election_Results = yes
+			if = {
+				limit = {
+					check_variable = {
+						RUS_Runoff_Check = 1
+					}
+				}
+				if = {	#1991 Assume Only Yeltsin Can Break 50%
+					limit = {
+						check_variable = {
+							RUS_Winner_Value = 1
+						}
+					}
+					news_event = Russia_1991_Election.2
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						RUS_Runoff_Check = 2
+					}
+				}
+				activate_mission = Russia_Election_1991_Round_Two
+				RUS_Clear_Current_Election_Candidates_and_Statistics = yes	#Keep Issues and Voter Rolls
+				Yeltsin_Campaign_Launch_Runoff_1991 = yes
+				if = {
+					limit = {
+						check_variable = {
+							RUS_RunnerUp_Value = 2
+						}
+					}
+					Ryzhkov_Campaign_Launch_Runoff_1991 = yes
+					news_event = Russia_1991_Election.3 #Yeltsin v. Ryzhkov Runoff
+				}
+				else_if  = {
+					limit = {
+						check_variable = {
+							RUS_RunnerUp_Value = 3
+						}
+					}
+					Zhirinovsky_Campaign_Launch_Runoff_1991 = yes
+					news_event = Russia_1991_Election.4 #Yeltsin v. Zhirinovsky Runoff
+				}
+				else_if  = {
+					limit = {
+						check_variable = {
+							RUS_RunnerUp_Value = 4
+						}
+					}
+					Tuleyev_Campaign_Launch_Runoff_1991 = yes
+					news_event = Russia_1991_Election.5 #Yeltsin v. Tuleyev Runoff
+				}			
+				else_if  = {
+					limit = {
+						check_variable = {
+							RUS_RunnerUp_Value = 5
+						}
+					}
+					Bakatin_Campaign_Launch_Runoff_1991 = yes
+					news_event = Russia_1991_Election.6 #Yeltsin v. Bakatin Runoff
+				}			
+				else_if  = {
+					limit = {
+						check_variable = {
+							RUS_RunnerUp_Value = 6
+						}
+					}
+					Makashov_Campaign_Launch_Runoff_1991 = yes
+					news_event = Russia_1991_Election.7 #Yeltsin v. Makashov Runoff
+				}	
+				else = { }
+			}
+			else = { }
+		 }
+}
+	}
+	Russia_Election_1991_Round_Two = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_operation
+
+		allowed = {
+			tag = RUS
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		} 
+
+		days_mission_timeout = 14
+		days_remove = 14
+
+		fire_only_once = no
+
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		modifier = {
+		}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			Calculate_Election_Results = yes
+			if = {
+				limit = {
+					check_variable = {
+						RUS_First_Place_Value = 1
+					}
+					check_variable = {
+						RUS_RunnerUp_Value = 3
+					}
+				}
+				news_event = Russia_1991_Election.9 
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						RUS_First_Place_Value = 1
+					}
+				}
+				news_event = Russia_1991_Election.8
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						RUS_First_Place_Value = 2
+					}
+				}	
+				news_event = Russia_1991_Election.10 #Ryzhkov Runoff Victory
+				create_country_leader = {
+					name = "Nikolai Ryzhhkov"
+					picture = "Nikolai_Ryzhhkov.dds"
+					ideology = marxism_leninism
+				}
+				set_politics = {
+					ruling_party = communism
+					elections_allowed = no
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						RUS_First_Place_Value = 3
+					}
+				}	
+				news_event = Russia_1991_Election.11 #Zhirinovsky Runoff Victory
+				create_country_leader = {
+					name = "Vladimir Zhirinovsky"
+					picture = "Vladimir_Zhirinovsky.dds"
+					ideology = fascism_ideology
+				}
+				set_politics = {
+					ruling_party = fascism
+					elections_allowed = no
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						RUS_First_Place_Value = 4
+					}
+				}	
+				news_event = Russia_1991_Election.12 #Tuleyev Runoff Victory
+				create_country_leader = {
+					name = "Aman Tuleyev"
+					picture = "Aman_Tuleyev.dds"
+					ideology = liberal_communism
+				}
+				set_politics = {
+					ruling_party = communism
+					elections_allowed = no
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						RUS_First_Place_Value = 5
+					}
+				}	
+				news_event = Russia_1991_Election.13 #Bakatin Runoff Victory
+				create_country_leader = {
+					name = "Vadim Bakatin"
+					picture = "Vadim_Bakatin.dds"
+					ideology = liberal_communism
+				}
+				set_politics = {
+					ruling_party = communism
+					elections_allowed = no
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						RUS_First_Place_Value = 6
+					}
+				}	
+				news_event = Russia_1991_Election.14 #Makashov Runoff Victory
+				create_country_leader = {
+					name = "Albert Makashov"
+					picture = "Albert_Makashov.dds"
+					ideology = stalinism
+				}
+				set_politics = {
+					ruling_party = communism
+					elections_allowed = no
+				}
+			}
+			else = { }
+		 }
+}
+	}
+	#14 Days
+    The_Media_Cycle_RUS = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+        icon = generic_operation
+
+        allowed = {
+            tag = RUS
+        }
+
+        available = { NOT = { has_global_flag = KRCW_active } 
+            custom_trigger_tooltip = {
+                tooltip = RUS_media_cycle_available_TT		
+                always = no
+            }
+            
+        } 
+
+        days_mission_timeout = 4
+		days_remove = 1 
+
+        fire_only_once = no
+
+        activation = { NOT = { has_global_flag = KRCW_active } 
+            always = no
+        }
+        modifier = {
+        }    
+
+        timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            custom_effect_tooltip = "RUS_ADS_TT"
+            #AI DO STUFF HERE
+
+
+            #Weekly Stat Resets
+            Russia_Election_Cycle_Stat_Updates = yes
+
+            #Media Cycle Dates for GUI
+            set_variable = {
+                current_media_cycle_start = global.num_days
+            }
+            add_to_variable = {
+                current_media_cycle_start = 1    #Date Format Fix
+            }
+            set_variable = {
+                next_media_cycle_start = current_media_cycle_start
+            }
+            add_to_variable = {
+                next_media_cycle_start = 4    
+            }
+            set_variable = {
+                second_next_media_cycle_start = next_media_cycle_start
+            }
+            add_to_variable = {
+                second_next_media_cycle_start = 4
+            }
+
+            modulo_variable = {
+                var = current_media_cycle_start
+                value = 365
+            }
+            modulo_variable = {
+                var = next_media_cycle_start
+                value = 365
+            }
+            modulo_variable = {
+                var = second_next_media_cycle_start
+                value = 365
+            }
+            #December
+            if = {
+                limit = {
+                    check_variable = {
+                        current_media_cycle_start > 334
+                    }
+                }
+                set_variable = {
+                    current_media_cycle_start_month = 12
+                }
+                add_to_variable = {
+                    current_media_cycle_start = -334
+                }              
+            }
+            #November
+            else_if = {
+                limit = {
+                    check_variable = {
+                        current_media_cycle_start > 304
+                    }
+                }
+                set_variable = {
+                    current_media_cycle_start_month = 11
+                }
+                add_to_variable = {
+                    current_media_cycle_start = -304
+                }              
+            }
+            #October
+            else_if = {
+                limit = {
+                    check_variable = {
+                        current_media_cycle_start > 273
+                    }
+                }
+                set_variable = {
+                    current_media_cycle_start_month = 10
+                }
+                add_to_variable = {
+                    current_media_cycle_start = -273
+                }              
+            }
+            #September
+            else_if = {
+                limit = {
+                    check_variable = {
+                        current_media_cycle_start > 243
+                    }
+                }
+                set_variable = {
+                    current_media_cycle_start_month = 9
+                }
+                add_to_variable = {
+                    current_media_cycle_start = -243
+                }              
+            }
+            #August
+            else_if = {
+                limit = {
+                    check_variable = {
+                        current_media_cycle_start > 212
+                    }
+                }
+                set_variable = {
+                    current_media_cycle_start_month = 8
+                }
+                add_to_variable = {
+                    current_media_cycle_start = -212
+                }              
+            }
+            #July
+            else_if = {
+                limit = {
+                    check_variable = {
+                        current_media_cycle_start > 181
+                    }
+                }
+                set_variable = {
+                    current_media_cycle_start_month = 7
+                }
+                add_to_variable = {
+                    current_media_cycle_start = -181
+                }              
+            }
+            #June
+            else_if = {
+                limit = {
+                    check_variable = {
+                        current_media_cycle_start > 151
+                    }
+                }
+                set_variable = {
+                    current_media_cycle_start_month = 6
+                }
+                add_to_variable = {
+                    current_media_cycle_start = -151
+                }              
+            }
+            #May
+            else_if = {
+                limit = {
+                    check_variable = {
+                        current_media_cycle_start > 120
+                    }
+                }
+                set_variable = {
+                    current_media_cycle_start_month = 5
+                }
+                add_to_variable = {
+                    current_media_cycle_start = -120
+                }              
+            }
+            #April
+            else_if = {
+                limit = {
+                    check_variable = {
+                        current_media_cycle_start > 90
+                    }
+                }
+                set_variable = {
+                    current_media_cycle_start_month = 7
+                }
+                add_to_variable = {
+                    current_media_cycle_start = -90
+                }              
+            }
+            #March
+            else_if = {
+                limit = {
+                    check_variable = {
+                        current_media_cycle_start > 59
+                    }
+                }
+                set_variable = {
+                    current_media_cycle_start_month = 3
+                }
+                add_to_variable = {
+                    current_media_cycle_start = -59
+                }              
+            }
+            #February
+            else_if = {
+                limit = {
+                    check_variable = {
+                        current_media_cycle_start > 31
+                    }
+                }
+                set_variable = {
+                    current_media_cycle_start_month = 2
+                }
+                add_to_variable = {
+                    current_media_cycle_start = -31
+                }              
+            }
+            #January
+            else = {
+                set_variable = {
+                    current_media_cycle_start_month = 1
+                }
+            }
+            #December
+            if = {
+                limit = {
+                    check_variable = {
+                        next_media_cycle_start > 334
+                    }
+                }
+                set_variable = {
+                    next_media_cycle_start_month = 12
+                }
+                add_to_variable = {
+                    next_media_cycle_start = -334
+                }              
+            }
+            #November
+            else_if = {
+                limit = {
+                    check_variable = {
+                        next_media_cycle_start > 304
+                    }
+                }
+                set_variable = {
+                    next_media_cycle_start_month = 11
+                }
+                add_to_variable = {
+                    next_media_cycle_start = -304
+                }              
+            }
+            #October
+            else_if = {
+                limit = {
+                    check_variable = {
+                        next_media_cycle_start > 273
+                    }
+                }
+                set_variable = {
+                    next_media_cycle_start_month = 10
+                }
+                add_to_variable = {
+                    next_media_cycle_start = -273
+                }              
+            }
+            #September
+            else_if = {
+                limit = {
+                    check_variable = {
+                        next_media_cycle_start > 243
+                    }
+                }
+                set_variable = {
+                    next_media_cycle_start_month = 9
+                }
+                add_to_variable = {
+                    next_media_cycle_start = -243
+                }              
+            }
+            #August
+            else_if = {
+                limit = {
+                    check_variable = {
+                        next_media_cycle_start > 212
+                    }
+                }
+                set_variable = {
+                    next_media_cycle_start_month = 8
+                }
+                add_to_variable = {
+                    next_media_cycle_start = -212
+                }              
+            }
+            #July
+            else_if = {
+                limit = {
+                    check_variable = {
+                        next_media_cycle_start > 181
+                    }
+                }
+                set_variable = {
+                    next_media_cycle_start_month = 7
+                }
+                add_to_variable = {
+                    next_media_cycle_start = -181
+                }              
+            }
+            #June
+            else_if = {
+                limit = {
+                    check_variable = {
+                        next_media_cycle_start > 151
+                    }
+                }
+                set_variable = {
+                    next_media_cycle_start_month = 6
+                }
+                add_to_variable = {
+                    next_media_cycle_start = -151
+                }              
+            }
+            #May
+            else_if = {
+                limit = {
+                    check_variable = {
+                        next_media_cycle_start > 120
+                    }
+                }
+                set_variable = {
+                    next_media_cycle_start_month = 5
+                }
+                add_to_variable = {
+                    next_media_cycle_start = -120
+                }              
+            }
+            #April
+            else_if = {
+                limit = {
+                    check_variable = {
+                        next_media_cycle_start > 90
+                    }
+                }
+                set_variable = {
+                    next_media_cycle_start_month = 7
+                }
+                add_to_variable = {
+                    next_media_cycle_start = -90
+                }              
+            }
+            #March
+            else_if = {
+                limit = {
+                    check_variable = {
+                        next_media_cycle_start > 59
+                    }
+                }
+                set_variable = {
+                    next_media_cycle_start_month = 3
+                }
+                add_to_variable = {
+                    next_media_cycle_start = -59
+                }              
+            }
+            #February
+            else_if = {
+                limit = {
+                    check_variable = {
+                        next_media_cycle_start > 31
+                    }
+                }
+                set_variable = {
+                    next_media_cycle_start_month = 2
+                }
+                add_to_variable = {
+                    next_media_cycle_start = -31
+                }              
+            }
+            #January
+            else = {
+                set_variable = {
+                    next_media_cycle_start_month = 1
+                }
+            }
+            #December
+            if = {
+                limit = {
+                    check_variable = {
+                        second_next_media_cycle_start > 334
+                    }
+                }
+                set_variable = {
+                    second_next_media_cycle_start_month = 12
+                }
+                add_to_variable = {
+                    second_next_media_cycle_start = -334
+                }              
+            }
+            #November
+            else_if = {
+                limit = {
+                    check_variable = {
+                        second_next_media_cycle_start > 304
+                    }
+                }
+                set_variable = {
+                    second_next_media_cycle_start_month = 11
+                }
+                add_to_variable = {
+                    second_next_media_cycle_start = -304
+                }              
+            }
+            #October
+            else_if = {
+                limit = {
+                    check_variable = {
+                        second_next_media_cycle_start > 273
+                    }
+                }
+                set_variable = {
+                    second_next_media_cycle_start_month = 10
+                }
+                add_to_variable = {
+                    second_next_media_cycle_start = -273
+                }              
+            }
+            #September
+            else_if = {
+                limit = {
+                    check_variable = {
+                        second_next_media_cycle_start > 243
+                    }
+                }
+                set_variable = {
+                    second_next_media_cycle_start_month = 9
+                }
+                add_to_variable = {
+                    second_next_media_cycle_start = -243
+                }              
+            }
+            #August
+            else_if = {
+                limit = {
+                    check_variable = {
+                        second_next_media_cycle_start > 212
+                    }
+                }
+                set_variable = {
+                    second_next_media_cycle_start_month = 8
+                }
+                add_to_variable = {
+                    second_next_media_cycle_start = -212
+                }              
+            }
+            #July
+            else_if = {
+                limit = {
+                    check_variable = {
+                        second_next_media_cycle_start > 181
+                    }
+                }
+                set_variable = {
+                    second_next_media_cycle_start_month = 7
+                }
+                add_to_variable = {
+                    second_next_media_cycle_start = -181
+                }              
+            }
+            #June
+            else_if = {
+                limit = {
+                    check_variable = {
+                        second_next_media_cycle_start > 151
+                    }
+                }
+                set_variable = {
+                    second_next_media_cycle_start_month = 6
+                }
+                add_to_variable = {
+                    second_next_media_cycle_start = -151
+                }              
+            }
+            #May
+            else_if = {
+                limit = {
+                    check_variable = {
+                        second_next_media_cycle_start > 120
+                    }
+                }
+                set_variable = {
+                    second_next_media_cycle_start_month = 5
+                }
+                add_to_variable = {
+                    second_next_media_cycle_start = -120
+                }              
+            }
+            #April
+            else_if = {
+                limit = {
+                    check_variable = {
+                        second_next_media_cycle_start > 90
+                    }
+                }
+                set_variable = {
+                    second_next_media_cycle_start_month = 7
+                }
+                add_to_variable = {
+                    second_next_media_cycle_start = -90
+                }              
+            }
+            #March
+            else_if = {
+                limit = {
+                    check_variable = {
+                        second_next_media_cycle_start > 59
+                    }
+                }
+                set_variable = {
+                    second_next_media_cycle_start_month = 3
+                }
+                add_to_variable = {
+                    second_next_media_cycle_start = -59
+                }              
+            }
+            #February
+            else_if = {
+                limit = {
+                    check_variable = {
+                        second_next_media_cycle_start > 31
+                    }
+                }
+                set_variable = {
+                    second_next_media_cycle_start_month = 2
+                }
+                add_to_variable = {
+                    second_next_media_cycle_start = -31
+                }              
+            }
+            #January
+            else = {
+                set_variable = {
+                    second_next_media_cycle_start_month = 1
+                }
+            }
+
+            #Advert Effects Here
+            #RUS_election_ad_cycle_buyer = Playing_As                      #Buyer
+            #RUS_election_ad_cycle_type = selected_dem_topic               #Topic
+            #RUS_election_ad_cycle_target = RUS_election_ad_target_selected #Target
+            #RUS_election_ad_cycle_state = RUS_RUS_election_MEDIA_DETAILS   #State
+            #RUS_election_ad_cycle_status = 2                              #When Ads Conclude (2 Media Cycles Away)
+            #RUS_election_ad_cycle_format = media_type                     #Newspaper, Radio, TV
+            #RUS_election_ad_cycle_target_position                         #Target Position
+
+            
+            for_each_loop = {
+                array = RUS_election_ad_cycle_buyer  
+                if = {
+                    limit = {
+                        check_variable = {
+                            RUS_election_ad_cycle_status^i = 2
+                        }
+                    }
+                    add_to_variable = {
+                        RUS_election_ad_cycle_status^i = -1
+                    }
+                }
+                else_if = {
+                    limit = {
+                        check_variable = {
+                            RUS_election_ad_cycle_status^i = 1
+                        }
+                    }
+                    add_to_variable = {
+                        RUS_election_ad_cycle_status^i = -1
+                    }
+
+                    Russia_Ad_Position_Finder = yes #Get Position of Target
+                    if = {
+                        limit = {
+                            check_variable = { 
+                                RUS_election_ad_cycle_type^i = 1
+                            }
+                        }
+                        set_variable = {
+                            support_modifier = 1
+                        }
+                    }
+                    if = {
+                        limit = {
+                            check_variable = {
+                                RUS_election_ad_cycle_type^i = 2
+                            }
+                        }
+                        set_variable = {
+                            support_modifier = -1
+                        }
+                    }
+                    else = {
+                        set_variable = {
+                            support_modifier = 1
+                        }                      
+                    }
+                    randomize_variable = {
+                        var = Support_Change
+                        distribution = uniform
+                        min = 0.5
+                        max = 2
+                    }
+                    multiply_variable = {
+                        Support_Change = RUS_election_ad_cycle_format^i
+                    }
+                    multiply_variable = {
+                        Support_Change = support_modifier
+                    }
+                    var:RUS_election_ad_cycle_state^i = {
+                        add_to_variable = {
+                            Canidate_Support^RUS.RUS_election_ad_cycle_target_position = RUS.Support_Change
+                        }
+                    }
+                }
+                else = {
+                }
+            }
+            #Refresh generate_campaign_map_russia Here
+            generate_campaign_map_russia = yes
+            activate_mission = The_Media_Cycle_RUS
+         }
+}
+    }
+	UN_Intervention_Coalition = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		allowed = {
+		
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		fixed_random_seed = no
+		selectable_mission = no
+		days_mission_timeout = 730
+		fire_only_once = no
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			clr_country_flag = UN_Coalition_Target
+			clr_global_flag = UN_Coalition_War
+			every_enemy_country = {
+				white_peace = ROOT
+			}
+			news_event = UN_RESOLUTION.32
+		 }
+}
+	}
+	Send_Troops_to_Vietnam = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_civil_support
+
+        allowed = {
+            tag = PAK
+        }
+
+		available = { NOT = { has_global_flag = KRCW_active } 			
+			VIE = {
+                has_volunteers_amount_from = {
+                    tag = PAK
+                    count > 1
+                }                
+            }
+		}
+
+		days_mission_timeout = 90
+
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			
+		 } }
+}
+		is_good = no
+		ai_will_do = {
+			factor = 10
+		}
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            USA = {
+                country_event = Dem_Ayub65.5
+            }
+		 }
+}
+        timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            USA = {
+                country_event = Dem_Ayub65.4
+            }
+         }
+}
+	}
+	Modernization = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_decision
+		allowed = {
+			tag = MLA
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		#is_good = yes
+
+		selectable_mission = no
+		days_mission_timeout = 1825
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		fire_only_once = yes
+		
+		
+		fixed_random_seed = no
+		
+		
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			if = {
+				limit = {
+					check_variable = {
+						MLA.grossdomesticproduct > SIA.grossdomesticproduct
+					}
+					check_variable = {
+						MLA.grossdomesticproduct > VIE.grossdomesticproduct
+					}
+
+					check_variable = {
+						MLA.grossdomesticproduct > PHI.grossdomesticproduct
+					}
+					check_variable = {
+						MLA.grossdomesticproduct > BRM.grossdomesticproduct
+					}
+
+					check_variable = {
+						MLA.grossdomesticproduct > CAM.grossdomesticproduct
+					}
+					check_variable = {
+						MLA.grossdomesticproduct > CAM.grossdomesticproduct
+					}
+				}
+				country_event = MLA.21
+				news_event = MLA.10
+				add_country_leader_trait = modern_socialist
+				VIE = {
+					add_stability = -0.10
+					add_popularity = {
+						ideology = communism
+						popularity = 0.2
+					}
+				}
+				SIA = {
+					add_stability = -0.10
+					add_popularity = {
+						ideology = communism
+						popularity = 0.2
+					}
+				}
+				INO = {
+					add_stability = -0.10
+					add_popularity = {
+						ideology = communism
+						popularity = 0.2
+					}
+				}
+				BRM = {
+					add_stability = -0.10
+					add_popularity = {
+						ideology = communism
+						popularity = 0.2
+					}
+				}
+			}
+			else = {
+				country_event = MLA.23
+				news_event = MLA.22
+				add_stability = -0.5
+				remove_ideas = prc_great_leap_forward
+				remove_ideas = DDR_idea_first_five_year_plan
+				remove_ideas = agrarian_collectivization_process_1
+				remove_ideas = agrarian_collectivization_process_2
+				remove_ideas = agrarian_collectivization_process_3
+				remove_ideas = agrarian_collectivization_process_4
+				remove_ideas = agrarian_collectivization_process_5
+				add_country_leader_trait = Terrifying_Paranoiac
+				add_ideas = Industrial_Reconstruction_0
+				add_ideas = antiquated_infrastructure
+				add_ideas = Resistance_Level_Regional_Civil_War
+				add_ideas = Drought_4
+				add_ideas = famine5
+			}
+			
+		 }
+}
+	}
+	
+	Uberholen_ohne_Einzuholen = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_decision
+		allowed = {
+			tag = DDR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		#is_good = yes
+
+		selectable_mission = no
+		days_mission_timeout = 1825
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		fire_only_once = yes
+		
+		
+		fixed_random_seed = no
+		
+		
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			if = {
+				limit = {
+					check_variable = {
+						DDR.grossdomesticproduct > WGR.grossdomesticproduct
+					}
+				}
+				country_event = Uberholen_ohne_Einzuholen.2
+				news_event = Uberholen_ohne_Einzuholen.4
+				WGR = {
+					add_stability = -0.10
+					add_popularity = {
+						ideology = communism
+						popularity = 0.075
+					}
+				}
+			}
+			else = {
+				country_event = Uberholen_ohne_Einzuholen.3
+				add_stability = -0.075
+			}
+			
+		 }
+}
+	}
+	Overtake_the_West = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_decision
+		allowed = {
+			tag = ADR
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+
+		#is_good = yes
+
+		selectable_mission = no
+		days_mission_timeout = 1825
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		fire_only_once = yes
+		
+		
+		fixed_random_seed = no
+		
+		
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			if = {
+				limit = {
+					check_variable = {
+						ADR.grossdomesticproduct > AUS.grossdomesticproduct
+					}
+				}
+				news_event = ADR.12
+				AUS = {
+					add_stability = -0.15
+					add_popularity = {
+						ideology = communism
+						popularity = 0.15
+					}
+				}
+			}
+			else = {
+				add_stability = -0.15
+			}
+			
+		 }
+}
+	}
+	UN_WAR_END = {
+
+		icon = generic_decision
+		allowed = {
+			tag = UNS
+		}
+		available = {
+			has_war = no
+			is_in_faction = yes 
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		fire_only_once = no	
+		complete_effect = {
+			set_faction_leader = yes
+			dismantle_faction = yes
+		}	
+	}
+	UN_Vote_Cleanuo = {
+
+		icon = generic_decision
+		visible = {
+			tag = UNS
+		}
+		available = {
+			always = no
+		}
+
+		activation = {
+			always = no
+		}
+
+		#is_good = yes
+
+		selectable_mission = yes
+		days_mission_timeout = 15
+
+		available = {
+			
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		fire_only_once = no
+		
+		
+		fixed_random_seed = no
+		
+		cost = 0
+		
+		timeout_effect = {
+			UN_RESET_VOTE_STATE = yes
+		}
+	}
+	UN_Vote = {
+
+		icon = generic_decision
+		visible = {
+			tag = UNS
+		}
+		available = {
+			always = no
+		}
+
+		activation = {
+			always = no
+		}
+
+		#is_good = yes
+
+		selectable_mission = yes
+		days_mission_timeout = 10
+
+		available = {
+			
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		fire_only_once = no
+		
+		
+		fixed_random_seed = no
+		
+		cost = 0
+		
+		timeout_effect = {
+			UN_RESOLVE_CURRENT_VOTE = yes
+		}
+	}		
+
+	state_calculation = {
+
+		icon = generic_decision
+		visible = {
+			is_ai = no
+			has_tech = NBC_research
+		}
+		available = {
+			
+		}
+
+		#is_good = yes
+
+		selectable_mission = no
+
+		ai_will_do = {
+			factor = 0
+		}
+		fire_only_once = no
+		days_remove = 5
+		days_re_enable = 5
+		
+		fixed_random_seed = no
+		
+		cost = 0
+		
+		complete_effect = {
+			clear_array = WarCrimeTargetListChemical
+			distance_calculator_chemical_stateview = yes
+			set_variable = { ROOT.distance_check = 1 }
+		}
+		remove_effect = {
+			set_variable = { ROOT.distance_check = 0 }
+		}
+
+	}
+	
+	ic_pulse_one = {
+		activation = {
+			has_country_flag = ic_pulse_one_flag
+		}
+		available = {
+			has_country_flag = ic_pulse_one_flag
+			is_ai = yes
+		}
+
+		visible = {
+			has_country_flag = ic_pulse_one_flag
+			is_ai = yes
+		}
+
+		#is_good = yes
+		selectable_mission = yes
+		days_mission_timeout = 1
+		days_remove = 30
+	
+		timeout_effect = {
+			clr_country_flag = ic_pulse_one_flag
+			random_country = {
+				limit = { tag = VTC }
+				set_country_flag = ic_pulse_one_flag
+				ROOT = { ic_pulse = yes }
+			}
+		}
+
+		complete_effect = {
+			every_country = {
+				ic_pulse = yes
+			}
+			mercenary_calc_global = yes
+		}
+		
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+	ic_trade = {
+		allowed = {
+			tag = UNS
+		}
+		available = {
+			always = no
+		}
+		activation = {
+
+		}
+		selectable_mission = yes
+		days_mission_timeout = 30
+		
+		timeout_effect = {
+			export_script_for_pool = yes
+			credit_calculation_work = yes
+			every_country = {
+				if = {
+					limit = {
+						OR = {
+							check_variable = {
+								trade_automation = 2
+							}
+							is_ai = yes
+						}
+					}
+					country_event = trade.1
+					#trade_check = yes
+				}
+			}
+			activate_mission = ic_trade
+			#export_script_for_pool = yes
+		}
+	}
+	ic_Financial = {
+		allowed = {
+		}
+		visible = {
+		}
+		available = {
+			always = no
+		}
+		activation = {
+			always = no
+		}
+		#is_good = yes
+
+		selectable_mission = yes
+		days_mission_timeout = 30
+		
+		timeout_effect = {
+			hidden_effect = {
+				# Retired: ic_financial_monthly_pulse now runs from on_monthly.
+			}
+		}
+		complete_effect = {
+			hidden_effect = {
+				every_country = {
+					income_effect = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}	
+
+	ic_Financial_Start = {
+		allowed = {
+		}
+		visible = {
+			always = no
+		}
+		available = {
+			always = no
+		}
+		activation = {
+		}
+
+		fire_only_once = yes
+		selectable_mission = yes
+		days_mission_timeout = 1
+		
+		timeout_effect = {
+			hidden_effect = {
+				industrial_pulse = yes
+				monthly_power_projection_gain = yes
+				if = {	
+					limit = {
+						# is_ai = no
+						exists = yes
+					}
+					for_loop_effect = {
+						start = 0
+						end = 25
+						value = i
+						set_temp_variable = { new_income = random }
+						multiply_temp_variable = { new_income = 80 }
+						add_to_temp_variable = { new_income = 10 }
+						round_temp_variable = new_income
+						set_temp_variable = { new_food = random }
+						multiply_temp_variable = { new_food = 80 }
+						add_to_temp_variable = { new_food = 10 }
+						round_temp_variable = new_food
+						set_temp_variable = { new_debt = random }
+						multiply_temp_variable = { new_debt = 80 }
+						add_to_temp_variable = { new_debt = 10 }
+						round_temp_variable = new_debt
+						set_temp_variable = { new_electricity = random }
+						multiply_temp_variable = { new_electricity = 80 }
+						add_to_temp_variable = { new_coal = 10 }
+						round_temp_variable = new_electricity
+						set_temp_variable = { new_milexp = random }
+						multiply_temp_variable = { new_milexp = 80 }
+						add_to_temp_variable = { new_milexp = 10 }
+						round_temp_variable = new_milexp
+						resize_array = {
+							array = income_array
+							value = new_income
+							size = 25
+						}
+						remove_from_array = { array = income_array index = 0 }
+						resize_array = {
+							array = food_array
+							value = new_food
+							size = 25
+						}
+						remove_from_array = { array = food_array index = 0 }
+						resize_array = {
+							array = debt_array
+							value = new_debt
+							size = 25
+						}
+						remove_from_array = { array = debt_array index = 0 }
+						resize_array = {
+							array = electricity_array
+							value = new_electricity
+							size = 25
+						}
+						remove_from_array = { array = electricity_array index = 0 }
+						resize_array = {
+							array = milexp_array
+							value = new_milexp
+							size = 25
+						}
+						remove_from_array = { array = milexp_array index = 0 }
+					}
+					set_variable = { quarterly_report = 4 }
+					#add_to_variable = { currentDebt = debt_array^23 }
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}	
+	
+	transfer_crimea = {
+
+		icon = generic_industry
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_civil_war = no
+			UKR = { exists = yes is_subject_of = ROOT has_civil_war = no }
+			has_full_control_of_state = 137
+			original_tag = SOV
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			UKR = { exists = yes is_subject_of = ROOT }
+			owns_state = 137
+			original_tag = SOV
+		}
+
+		fire_only_once = yes
+
+
+		cost = 0
+
+		complete_effect = {
+			add_political_power = 50
+			UKR = { transfer_state = 137 }
+			137 = { add_core_of = UKR }
+			581 = { add_core_of = UKR }
+		}
+		
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 100
+				date > 1954.2.18
+			}
+		}
+	}
+
+#	usa_leave_nato = {
+#
+#		icon = generic_industry
+#
+#		available = {
+#				original_tag = USA
+#				has_global_flag = president_taft
+#		}
+#		visible = {
+#				original_tag = USA
+#				has_global_flag = president_taft
+#
+#		}
+#
+#		fire_only_once = yes
+#
+#
+#		cost = 100
+#
+#		complete_effect = {
+#			country_event = nato.9
+#
+#		}
+#		ai_will_do = {
+#			factor = 1
+#		}
+#	}
+#	usa_rejoin_nato_1 = {
+#
+#		icon = generic_industry
+#
+#		visible = {
+#				original_tag = USA
+#				has_global_flag = nato_disbanded
+#				NOT = { has_global_flag = edc_formed }
+#				NOT = { has_global_flag = president_taft }
+#		}
+#
+#		fire_only_once = yes
+#
+#
+#		cost = 100
+#
+#		complete_effect = {
+#			country_event = nato.14
+#
+#		}
+#		ai_will_do = {
+#			factor = 1
+#		}
+#	}
+#	usa_rejoin_nato_2 = {
+#
+#		icon = generic_industry
+#
+#		visible = {
+#				original_tag = USA
+#				has_global_flag = nato_disbanded
+#				has_global_flag = edc_formed
+#				NOT = { has_global_flag = president_taft }
+#		}
+#
+#		fire_only_once = yes
+#
+#
+#		cost = 100
+#
+#		complete_effect = {
+#			country_event = nato.16
+#
+#		}
+#		ai_will_do = {
+#			factor = 1
+#		}
+#	}
+#	usa_rejoin_nato_3 = {
+#
+#		icon = generic_industry
+#
+#		visible = {
+#				original_tag = USA
+#				has_global_flag = nato_disbanded
+#				has_global_flag = english_nato
+#				NOT = { has_global_flag = president_taft }
+#		}
+#
+#		fire_only_once = yes
+#
+#
+#		cost = 100
+#
+#		complete_effect = {
+#			country_event = nato.18
+#
+#		}
+#		ai_will_do = {
+#			factor = 1
+#		}
+#	}
+	Break_the_Stalemate = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			original_tag = USA
+			KOR = { has_war_with = KPA }
+
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = USA_50s_Implement_MacArthurs_Proposal
+		}
+		fire_only_once = yes
+
+		cost = 0
+		complete_effect = {
+			news_event = Operation_Firebird.1
+			korean_war_nuclear_super_event = yes
+			launch_nuke = { 
+				state = 608
+			}
+			launch_nuke = { 
+				state = 609
+			}
+			launch_nuke = { 
+				state = 745
+			}
+			launch_nuke = { 
+				state = 746
+			}
+			launch_nuke = { 
+				state = 747
+			}
+			launch_nuke = { 
+				state = 748
+			}
+			launch_nuke = { 
+				state = 1205
+			}
+			launch_nuke = { 
+				state = 527
+			}
+			launch_nuke = { 
+				state = 748
+			}
+			launch_nuke = { 
+				state = 716
+				province = 6860
+			}
+			launch_nuke = { 
+				state = 716
+				province = 6981
+			}
+			launch_nuke = { 
+				state = 328
+				province = 9848
+			}
+				
+			launch_nuke = { 
+				state = 1326
+				province = 3949
+			}
+			launch_nuke = { 
+				state = 1326
+				province = 9803
+			}
+			launch_nuke = { 
+				state = 1326
+				province = 800
+			}
+			launch_nuke = { 
+				state = 1326
+				province = 11781
+			}
+			launch_nuke = { 
+				state = 1326
+				province = 861
+			}
+			launch_nuke = { 
+				state = 1326
+				province = 11823
+			}
+			launch_nuke = { 
+				state = 1325
+				province = 3929
+			}
+			launch_nuke = { 
+				state = 1325
+				province = 944
+			}
+			launch_nuke = { 
+				state = 1325
+				province = 9897
+			}
+			launch_nuke = { 
+				state = 1325
+				province = 3944
+			}
+			CHI = {
+				create_faction_from_template = { template = faction_template_generic name = "Anti-Communist Salvation Front" }
+				add_to_faction = KOR
+				add_to_faction = USA
+				declare_war_on = {
+					target = PRC
+					type = annex_everything
+				}
+			}
+			USA = {
+				declare_war_on = {
+					target = PRC
+					type = annex_everything
+				}				
+			}
+			load_oob = KMT_FIREBIRD
+
+			every_country = {
+				limit = {
+					is_ai = no
+				}
+				set_variable = { show_korea = 1 }
+
+			}
+
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+   
+	
+   	
+	rename_coptic = {
+
+		icon = generic_industry
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_full_control_of_state = 447
+			original_tag = COP
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			original_tag = COP
+		}
+
+		fire_only_once = yes
+
+
+		cost = 0
+
+		complete_effect = {
+			447 = {
+				set_state_name = "Alexandria"
+			}
+			set_province_name = {
+				id = 4076
+				name = "Alexandria"
+			}
+			set_province_name = {
+				id = 7091
+				name = "Dishairi"
+			}
+			set_province_name = {
+				id = 7164
+				name = "Tantatho"
+			}
+			set_province_name = {
+				id = 11964
+				name = "Tamiat"
+			}
+			set_province_name = {
+				id = 10005
+				name = "Mansoura"
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}
+
+propaganda_efforts = {
+	# Propose_a_Neutral_Reunified_Germany removed: the Stalin Notes are now reached
+	# only through the German Question focus branch (entry event germanquestion.1),
+	# so this duplicate decision entry point no longer exists.
+
+}
+
+operations = {
+#	soviet_intervention = {
+#
+#		icon = generic_prepare_civil_war
+#
+#		visible = {
+#				tag = SOV
+#				KPA = { has_war_with = KOR }
+#				NOT = { has_war_with = KOR }
+#				
+#				OR = {
+#					NOT = { 745 = { is_controlled_by = KPA } }
+#					NOT = { 746 = { is_controlled_by = KPA } }
+#					NOT = { 747 = { is_controlled_by = KPA } }
+#					NOT = { 748 = { is_controlled_by = KPA } }
+#					NOT = { 749 = { is_controlled_by = KPA } }
+#					date > 1950.9.31
+#				}
+#		}
+#
+#		
+#		complete_effect = {
+#			country_event = korea.33
+#		}
+#
+#		cost = 0
+#
+#		fire_only_once = yes
+#		selectable_mission = no
+#
+#		days_remove = 1
+#
+#
+#
+#		ai_will_do = {
+#			factor = 0
+#		}
+#	}
+	# cancel_berlin_blockade = {  # Duplicate - already defined in SOV_speech_cpsu.txt, removed
+	# 	icon = decision_lebensraum
+	# 	fire_only_once = yes 
+	#
+	# 	ai_will_do = {
+	# 		factor = 1
+	# 	}
+	#
+	# 	allowed = {
+	# 		tag = SOV
+	# 	}
+	#
+	# 	available = {
+	# 		USA = {
+	# 			has_idea = maintain_airlift
+	# 		}
+	# 		
+	# 	}
+	#
+	# 	visible = {
+	# 		USA = {
+	# 			has_idea = maintain_airlift
+	# 		}
+	# 		
+	# 	}
+	#
+	# 	complete_effect = {
+	# 		USA = {
+	# 			remove_ideas = maintain_airlift
+	# 		}
+	# 		news_event = news.1002
+	# 	}
+	# }
+	PAK_Afghan_Relations_Border_War = {
+		allowed = {
+			tag = PAK
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = PAK
+			has_country_flag = AFG_Border_War_Unlocked
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = PAK
+			country_exists = AFG
+			has_border_war = no
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 445
+					num_provinces = 3
+					on_win = PAK_Afghan_Relations.150
+					on_lose = PAK_Afghan_Relations.151
+					on_cancel = Indochina_War.4
+				}
+							
+				defender = {
+					state = 1209
+					num_provinces = 3
+					on_win = Indochina_War.4
+					on_lose = Indochina_War.4
+					on_cancel = Indochina_War.4
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	
+	THIRD_BALKAN_WAR_TIMER = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+		allowed = {
+            tag = TUR
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		fire_only_once = yes
+		days_mission_timeout = 95
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            news_event = THIRD_BALKAN_WAR.75
+			
+		 }
+}
+	}
+
+    DOM_Invasion_of_Cuba = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+		allowed = {
+            OR = {
+                tag = CUB
+                tag = DOM
+            }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		fire_only_once = yes
+		days_mission_timeout = 730
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			OR = {
+                CUB = {
+                    NOT = {
+                        has_war_with = DOM
+                    }
+                }
+            }
+			
+		 } }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            if = {
+                limit = {
+                    tag = DOM
+                }
+                news_event = DOM_Cuba.34
+                white_peace = CUB
+            }
+		 }
+}
+	}
+	
+	Invasion_of_Nepal = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+		allowed = {
+            OR = {
+                tag = RAJ
+                tag = NEP
+            }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		fire_only_once = yes
+		days_mission_timeout = 243
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			OR = {
+                NOT = {
+                    country_exists = NEP
+                }
+                RAJ = {
+                    NOT = {
+                        has_war_with = NEP
+                    }
+                }
+            }
+			
+		 } }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            if = {
+                limit = {
+                    tag = RAJ
+                }
+                news_event = INDIA_COM_NEP.7
+                white_peace = NEP
+                white_peace = ENG
+                white_peace = USA
+            }
+		 }
+}
+	}
+	
+    Invasion_of_Sri_Lanka = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+		allowed = {
+            OR = {
+                tag = RAJ
+                tag = NEP
+            }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		fire_only_once = yes
+		days_mission_timeout = 243
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			OR = {
+                NOT = {
+                    country_exists = SRL
+                }
+                RAJ = {
+                    NOT = {
+                        has_war_with = SRL
+                    }
+                }
+            }
+			
+		 } }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            if = {
+                limit = {
+                    tag = RAJ
+                }
+                news_event = CPI_71.8
+                white_peace = SRL
+                white_peace = ENG
+                white_peace = USA
+            }
+		 }
+}
+	}
+	Invasion_of_Yugoslavia = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+		allowed = {
+            OR = {
+                tag = SOV
+                tag = YUG
+            }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		fire_only_once = yes
+		days_mission_timeout = 243
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			OR = {
+                NOT = {
+                    country_exists = YUG
+                }
+                SOV = {
+                    NOT = {
+                        has_war_with = YUG
+                    }
+                }
+            }
+			
+		 } }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            if = {
+                limit = {
+                    tag = SOV
+                }
+                news_event = YUG_SOV_WAR.2
+                white_peace = YUG
+                every_country = {
+                    limit = {
+                        is_in_faction_with = SOV
+                    }
+                    white_peace = YUG
+                }
+            }
+		 }
+}
+	}
+	Invasion_of_Turkey = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+		allowed = {
+            OR = {
+                tag = SOV
+                tag = TUR
+            }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		fire_only_once = yes
+		days_mission_timeout = 243
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			OR = {
+                NOT = {
+                    country_exists = TUR
+                }
+                SOV = {
+                    NOT = {
+                        has_war_with = TUR
+                    }
+                }
+            }
+			
+		 } }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            if = {
+                limit = {
+                    tag = SOV
+                }
+                news_event = TUR_SOV_WAR.2
+                white_peace = TUR
+                every_country = {
+                    limit = {
+                        is_in_faction_with = SOV
+                    }
+                    white_peace = TUR
+                }
+            }
+		 }
+}
+	}
+	Intervention_into_Syria = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_prepare_civil_war
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			if = {
+				limit = {
+					EGY = {
+						owns_state = 554
+					}
+				}
+				NOT = {
+					has_war_with = EGY
+				}
+			}
+			else_if = {
+				limit = {
+					LEB = {
+						owns_state = 554
+					}
+				}
+				NOT = {
+					has_war_with = LEB
+				}
+			}
+			else = {
+				NOT = {
+					has_war_with = SYR
+				}
+			}
+		 } }
+}
+		cost = 0
+
+		fire_only_once = yes
+		selectable_mission = yes
+
+		days_mission_timeout = 180
+
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			custom_effect_tooltip = IRQ_INTERVEITON_TT
+			white_peace = SYR
+			white_peace = LEB
+			white_peace = EGY
+			news_event = CIA_SYRIA.58
+		 }
+}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	Intervention_into_Syria_TUR = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_prepare_civil_war
+
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			if = {
+				limit = {
+					EGY = {
+						owns_state = 554
+					}
+				}
+				NOT = {
+					has_war_with = EGY
+				}
+			}
+			else_if = {
+				limit = {
+					LEB = {
+						owns_state = 554
+					}
+				}
+				NOT = {
+					has_war_with = LEB
+				}
+			}
+			else = {
+				NOT = {
+					has_war_with = SYR
+				}
+			}
+		 } }
+}
+		cost = 0
+
+		fire_only_once = yes
+		selectable_mission = yes
+
+		days_mission_timeout = 180
+
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			custom_effect_tooltip = SYR_IRAQI_INTERVENTION_TT
+			if = {
+				limit = {
+					controls_state = 894
+					controls_state = 677
+					controls_state = 810
+					controls_state = 777
+					controls_state = 680
+				}
+				news_event = CIA_SYRIA.60
+				894 = {
+					add_core_of = TUR
+				}
+				677 = {
+					add_core_of = TUR
+				}
+				810 = {
+					add_core_of = TUR
+				}
+				777 = {
+					add_core_of = TUR
+				}
+				680 = {
+					add_core_of = TUR
+				}
+				transfer_state = 894
+				transfer_state = 677
+				transfer_state = 810
+				transfer_state = 777
+				transfer_state = 680
+				white_peace = SYR
+				white_peace = LEB
+				white_peace = EGY
+			}
+			else_if = {
+				limit = {
+					controls_state = 894
+					controls_state = 677
+					controls_state = 810
+					controls_state = 777
+					controls_state = 680
+					controls_state = 554
+				}
+				news_event = CIA_SYRIA.60
+				EGY = {
+					release = SYR
+				}
+				SYR = {
+					create_country_leader = {
+						name = "Umar Kabbani"
+						picture = "Umar_Kabbani.dds"
+						ideology = military_junta
+					}
+					set_politics = {
+						ruling_party = neutrality
+						elections_allowed = no
+					}
+				set_autonomy = {
+                    target = SYR
+						autonomy_state = autonomy_associated_state
+                    }
+				}
+				894 = {
+					add_core_of = TUR
+				}
+				677 = {
+					add_core_of = TUR
+				}
+				810 = {
+					add_core_of = TUR
+				}
+				777 = {
+					add_core_of = TUR
+				}
+				680 = {
+					add_core_of = TUR
+				}
+				transfer_state = 894
+				transfer_state = 677
+				transfer_state = 810
+				transfer_state = 777
+				transfer_state = 680
+				white_peace = SYR
+				white_peace = LEB
+				white_peace = EGY
+			}
+			else_if = {
+				limit = {
+					OR = {
+						SYR = {
+							controls_state = 905
+						}
+						LEB = {
+							controls_state = 905
+						}
+						EGY = {
+							controls_state = 905
+						}
+					}
+				}
+				news_event = CIA_SYRIA.61
+				if = {
+					limit = {
+						EGY = {
+							controls_state = 905
+						}
+					}
+					EGY = {
+						transfer_state = 905
+					}
+				}
+				else_if = {
+					limit = {
+						LEB = {
+							controls_state = 905
+						}
+					}
+					LEB = {
+						transfer_state = 905
+					}
+				}
+				else = {
+				SYR = {
+					transfer_state = 905
+				}
+				}
+				white_peace = SYR
+				white_peace = LEB
+				white_peace = EGY
+			}
+			else = {
+				white_peace = SYR
+				white_peace = LEB
+				white_peace = EGY
+			}
+			
+			news_event = CIA_SYRIA.58
+		 }
+}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+
+	
+	UN_CEASEFIRE_RAJ_1962 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+		allowed = {
+			tag = PRC
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cost = 0
+
+		fire_only_once = yes
+		selectable_mission = yes
+
+		days_mission_timeout = 30
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			NOT = {
+				PRC = {
+					has_war_with = RAJ
+				}
+			}
+		 } }
+}
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			
+		 }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            effect_tooltip = {
+                sino_indian_war_ending_effect = yes
+            }
+		 }
+}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	UN_CEASEFIRE_PRC_1962 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+		allowed = {
+			tag = PRC
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cost = 0
+
+		fire_only_once = yes
+		selectable_mission = yes
+
+		days_mission_timeout = 30
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			NOT = {
+				PRC = {
+					has_war_with = RAJ
+				}
+			}
+		 } }
+}
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			
+		 }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            sino_indian_war_ending_effect = yes
+		 }
+}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	PRC_NEFA_Offensive = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+		allowed = {
+			tag = PRC
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cost = 0
+
+		fire_only_once = yes
+		selectable_mission = yes
+
+		days_mission_timeout = 50
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			NOT = {
+				PRC = {
+					has_war_with = RAJ
+				}
+			}
+		 } }
+}
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			
+		 }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            if = {
+                limit = {
+                    RAJ = {
+                        controls_state = 434
+                    }
+                }
+                RAJ = {
+                    country_event = SINO_INDIAN_WAR.20
+                }
+            }
+            if = {
+                limit = {
+                    PRC = {
+                        controls_state = 434
+                    }
+                }
+                PRC = {
+                    country_event = SINO_INDIAN_WAR.24
+                }
+            }
+		 }
+}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	The_Invasion_of_Tibet = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_prepare_civil_war
+		allowed = {
+			tag = PRC
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cost = 0
+
+		fire_only_once = yes
+		selectable_mission = yes
+
+		days_mission_timeout = 365
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			NOT = {
+				has_war_with = TIB
+			}
+		 } }
+}
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+
+			if = {
+				limit = {
+					TIB = {
+						surrender_progress > 0.70
+					}
+				}
+				TIB = {
+					country_event = PRC_Tibet.6
+					set_country_flag = Lhasa_Uprising_Precursor
+				}
+			}
+			else_if = {
+				limit = {
+					has_global_flag = Tibet_Indian_Intervention
+					OR = {
+						TIB = {
+							owns_state = 1557
+							owns_state = 604
+						}
+						RAJ = {
+							owns_state = 1557
+							owns_state = 604
+						}
+					}
+				}
+				TIB = {
+					transfer_state = 1557
+					transfer_state = 604
+					1557 = {
+						add_core_of = TIB
+					}
+					604 = {
+						add_core_of = TIB
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					has_global_flag = Tibet_Indian_Intervention
+				}
+				news_event = PRC_TIBETAN.4
+				set_global_flag = India_Defeats_PRC_Tibet
+			}
+			else = {
+				news_event = PRC_TIBETAN.2
+			}
+			white_peace = TIB
+			white_peace = RAJ
+			white_peace = KAS
+			RAJ = {
+				dismantle_faction = yes
+			}
+		 }
+}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	The_Lhasa_Uprising = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+
+		icon = generic_prepare_civil_war
+		allowed = {
+			tag = PRC
+		}
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cost = 0
+
+		fire_only_once = yes
+		selectable_mission = yes
+
+		days_mission_timeout = 180
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			NOT = {
+				has_war_with = TIB
+			}
+		 } }
+}
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			if = {
+				limit = {
+					TIB = {
+						surrender_progress > 0.70
+					}
+				}
+				news_event = PRC_TIBETAN.7
+				annex_country = { target = TIB transfer_troops = no }	
+			}
+			else = {
+				news_event = PRC_TIBETAN.5
+				white_peace = PRC
+			}
+		 }
+}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	#Retreat_to_Manchuria = {
+	#	icon = generic_prepare_civil_war
+	#	visible = {
+	#		tag = PRC
+	#		NOT = { has_global_flag = CCW_Over }
+	#	}
+	#	allowed = {
+	#		tag = PRC
+	#	}
+	#	available = {
+	#		always = no
+	#	}
+	#	activation = {
+	#		tag = PRC
+	#		has_war_with = CHI
+	#		CHI = {
+	#			has_global_flag = roc_stalled_ccp
+	#		}
+	#		NOT = { has_global_flag = CCW_Over }
+	#		CHI = {
+	#			controls_state = 606
+	#			controls_state = 613
+	#			controls_state = 598
+	#			controls_state = 596
+	#			controls_state = 597
+	#			controls_state = 614
+	#			controls_state = 620
+	#			controls_state = 607
+	#			controls_state = 615
+	#			controls_state = 622		
+	#		}
+	#	}
+	#	cost = 0
+	#
+	#	fire_only_once = yes
+	#	selectable_mission = yes
+	#
+	#	days_mission_timeout = 50
+	#
+	#	#complete_effect = {
+	#	#	news_event = Shanghai_Campaign.1
+	#	#}
+	#
+	#	timeout_effect = {
+	#		if = {
+	#			limit = {
+	#				CHI = {
+	#					controls_state = 606
+	#					controls_state = 613
+	#					controls_state = 598
+	#					controls_state = 596
+	#					controls_state = 597
+	#					controls_state = 614
+	#					controls_state = 620
+	#					controls_state = 607
+	#					controls_state = 615
+	#					controls_state = 622
+	#				}	
+	#			}
+	#			PRC_Lose_CCW = yes
+	#		}
+	#		else = {
+	#			
+	#		}
+	#	}
+	#
+	#	ai_will_do = {
+	#		factor = 0
+	#	}
+	#}
+	
+
+	Hangang_Bridge_Bombing = {
+
+		icon = generic_prepare_civil_war
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = KOR
+			has_idea = korean_war
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = KOR
+			has_idea = korean_war	
+			750 = {
+				is_controlled_by = KPA
+			}
+		}
+
+		
+		complete_effect = {
+			#news_event = korean_war.101
+			add_stability = 0.05
+			add_war_support = 0.05
+			750 = {
+				damage_building = {
+					type = infrastructure
+					damage = 10
+				}
+			}
+		}
+
+		cost = 0
+
+		fire_only_once = yes
+		selectable_mission = no
+
+		days_remove = 1
+
+
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	liquidate_the_bodo_league = {
+
+		icon = generic_prepare_civil_war
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = KOR
+			has_idea = korean_war
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = KOR
+			has_idea = korean_war		}
+
+		
+		complete_effect = {
+			#news_event = korean_war.100
+			add_stability = 0.05
+			add_popularity = {
+				ideology = communism
+				popularity = -0.15
+			}
+			every_owned_state = {
+				add_manpower = -15000
+			}
+		}
+
+		cost = 0
+
+		fire_only_once = yes
+		selectable_mission = no
+
+		days_remove = 1
+
+
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	blow_suez_canal = {
+
+		icon = GFX_decision_generic_ignite_civil_war
+
+		available = {
+			has_full_control_of_state = 743
+				any_country = {
+					has_war_with = ROOT
+					OR = {
+						controls_state = 452
+						controls_state = 447
+						controls_state = 446
+						controls_state = 456
+						controls_state = 457
+						controls_state = 453
+						controls_state = 454
+						controls_state = 455
+						controls_state = 805
+					}
+				}
+		}
+	
+		visible = {
+			has_war = yes
+			NOT = { has_global_flag = SUEZ_CANAL_BLOCKED }
+			any_state = {
+				is_controlled_by = ROOT
+				OR = {
+					region = 28
+					region = 128
+				}
+			}
+		}
+	
+		fire_only_once = no
+	
+		days_remove = 30
+	
+		cost = 75
+	
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		complete_effect = {
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							owns_state = 446
+							owns_state = 453
+						}
+					}
+					random_country = {
+						limit = {
+							owns_state = 446
+							owns_state = 453
+						}
+						country_event = { id = generic.12 days = 1 }
+					}
+				}
+			}
+		}
+	
+		remove_effect = {
+			if = {
+				limit = {
+					OR = {
+						has_full_control_of_state = 743
+					}
+				}
+				set_country_flag = blew_up_suez
+				set_global_flag = SUEZ_CANAL_BLOCKED
+				country_event = { id = wtt_news.40 hours = 6 }
+			}
+			effect_tooltip = {
+				if = {
+					limit = {
+						ENG = {
+							owns_state = 446
+							owns_state = 453
+						}
+					}
+					add_war_support = -0.05
+					add_stability = -0.05
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				any_country = {
+					is_in_faction_with = ROOT
+					NOT = {
+						OR = {
+							has_full_control_of_state = 457
+							has_full_control_of_state = 456
+						}
+						has_full_control_of_state = 551
+					}
+					OR = {
+						divisions_in_state = { state = 550 size > 0 }
+						divisions_in_state = { state = 268 size > 0 }
+						divisions_in_state = { state = 269 size > 0 }
+						divisions_in_state = { state = 559 size > 0 }
+					}
+				}
+			}
+			modifier = {
+				factor = 200
+				OR = {
+					has_full_control_of_state = 118
+					any_other_country = {
+						is_in_faction_with = ROOT
+						has_full_control_of_state = 118
+					}
+				}
+				has_war = yes
+				NOT = { tag = ENG }
+			}
+		}
+	}
+
+	blow_panama_canal = {
+
+		icon = GFX_decision_generic_ignite_civil_war
+
+		available = {
+			OR = {
+				has_full_control_of_state = 685
+				AND = {
+					has_full_control_of_state = 304
+					any_country = {
+						has_war_with = ROOT
+						owns_state = 685
+					}
+				}
+			}
+		}
+	
+		visible = {
+			has_war = yes
+			NOT = { has_global_flag = PANAMA_CANAL_BLOCKED }
+			any_state = {
+				is_controlled_by = ROOT
+				OR = {
+					region = 34
+					region = 124
+				}
+			}
+		}
+	
+		fire_only_once = no
+	
+		days_remove = 30
+	
+		cost = 75
+	
+		modifier = {
+			civilian_factory_use = 5
+		}
+
+		complete_effect = {
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							owns_state = 685
+						}
+					}
+					random_country = {
+						limit = {
+							owns_state = 685
+						}
+						country_event = { id = generic.13 days = 1 }
+					}
+				}
+			}
+		}
+	
+		remove_effect = {
+			if = {
+				limit = {
+					OR = {
+						has_full_control_of_state = 685
+						has_full_control_of_state = 304
+					}
+				}
+				set_country_flag = blew_up_panama
+				set_global_flag = PANAMA_CANAL_BLOCKED
+				country_event = { id = wtt_news.41 hours = 6 }
+			}
+			effect_tooltip = {
+				if = {
+					limit = {
+						USA = { owns_state = 685 }
+					}
+					add_war_support = -0.05
+					add_stability = -0.05
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}
+
+special_projects = {
+
+	rebuild_suez_canal = {
+
+		icon = GFX_decision_generic_special_project
+
+		available = {
+			has_full_control_of_state = 743
+			num_of_civilian_factories > 50
+		}
+	
+		visible = {
+			has_full_control_of_state = 743
+			has_global_flag = SUEZ_CANAL_BLOCKED
+		}
+	
+		fire_only_once = no
+	
+		days_remove = 365
+	
+		cost = 250
+	
+		modifier = {
+			civilian_factory_use = 50
+		}
+	
+		remove_effect = {
+			if = {
+				limit = {
+					has_full_control_of_state = 743
+				}
+				set_country_flag = rebuilt_suez
+				clr_global_flag = SUEZ_CANAL_BLOCKED
+				country_event = { id = wtt_news.42 hours = 6 }
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_navy_size = { size < 100 }
+			}
+			modifier = {
+				factor = 200
+				NOT = {
+					OR = {
+						has_full_control_of_state = 118
+						any_other_country = {
+							is_in_faction_with = ROOT
+							has_full_control_of_state = 118
+						}
+					}
+				}
+				OR = {
+					ITA = { surrender_progress < 0.1 }
+					NOT = { tag = ENG }
+				}
+				has_full_control_of_state = 447
+				has_full_control_of_state = 454
+				has_full_control_of_state = 452
+				has_full_control_of_state = 456
+				has_full_control_of_state = 457
+				NOT = { has_country_flag = blew_up_suez }
+			}
+		}
+	}
+
+	rebuild_panama_canal = {
+
+		icon = GFX_decision_generic_special_project
+
+		available = {
+			has_full_control_of_state = 685
+			NOT = {
+				any_country = {
+					has_war_with = ROOT
+					controls_state = 304
+				}
+			}
+			num_of_civilian_factories > 80
+		}
+	
+		visible = {
+			has_full_control_of_state = 685
+			has_global_flag = PANAMA_CANAL_BLOCKED
+		}
+	
+		fire_only_once = no
+	
+		days_remove = 550
+	
+		cost = 400
+	
+		modifier = {
+			civilian_factory_use = 80
+		}
+	
+		remove_effect = {
+			if = {
+				limit = {
+					has_full_control_of_state = 685
+					NOT = {
+						any_country = {
+							has_war_with = ROOT
+							controls_state = 304
+						}
+					}
+				}
+				set_country_flag = rebuilt_panama
+				clr_global_flag = PANAMA_CANAL_BLOCKED
+				country_event = { id = wtt_news.43 hours = 6 }
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_navy_size = { size < 100 }
+			}
+			modifier = {
+				factor = 0
+				has_country_flag = blew_up_panama
+			}
+		}
+	}
+}
+war_measures = {
+
+	
+	#negotiate_peace_with_israel_egy_2 = {
+
+	#		icon = generic_industry
+
+	#		available = {
+	#				surrender_progress > 0.25
+	#				has_civil_war = no
+	#
+	#		}
+	#		visible = {
+	#				tag = EGY
+	#				has_war_with = ISR
+	#				
+	#		}
+
+	#		fire_only_once = yes
+
+
+	#		cost = 100
+
+	#		complete_effect = {
+	#			country_event = egypte.8
+
+	#		}
+	#		ai_will_do = {
+	#			factor = 1
+	#		}
+	#	}
+
+	emergency_factory_conversion_defensive = {
+
+		icon = generic_industry
+
+		available = {
+			num_of_civilian_factories > 5 #Change this if amount of factories change
+		}
+
+		visible = {
+			has_defensive_war = yes
+			has_offensive_war = no			
+		}
+
+		fire_only_once = no
+
+		days_re_enable = 90
+
+		cost = 100
+
+		complete_effect = {
+			replace_civ_with_arms_factories = yes
+			add_war_support = -0.05
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	emergency_factory_conversion_offensive = {
+
+		icon = generic_industry
+
+		available = {
+			num_of_civilian_factories > 5 #Change this if amount of factories change
+		}
+
+		visible = {
+			has_offensive_war = yes
+		}
+
+		fire_only_once = no
+
+		days_re_enable = 90
+
+		cost = 100
+
+		complete_effect = {
+			replace_civ_with_arms_factories = yes
+			add_war_support = -0.05
+			add_stability = -0.03
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	desperate_defense = {
+
+		icon = generic_prepare_civil_war
+
+		available = {
+			OR = {
+				surrender_progress > 0.5
+				if = {
+					limit = {
+						tag = CHI
+					}
+					strength_ratio = {
+						tag = PRC
+						ratio < 0.6
+					}
+				}
+			}
+		}
+
+		visible = {
+			surrender_progress > 0
+		}
+
+		fire_only_once = no
+
+		days_remove = 45
+		days_re_enable = 360
+
+		cost = 25
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				surrender_progress > 0.6
+				factor = 10
+			}
+		}
+
+		modifier = {
+			defence = 0.2
+			dig_in_speed_factor = 0.5
+		}
+
+		complete_effect = {
+
+		}
+	}
+
+
+
+
+	women_in_the_workforce = {
+
+		icon = generic_industry
+
+		allowed = {
+		}
+
+		available = {
+			has_war = yes
+			has_idea = tot_economic_mobilisation
+			OR = {
+				AND = {
+					has_government = democratic
+					has_war_support > 0.79
+				}
+				AND = {
+					has_government = communism
+					has_war_support > 0.79
+				}
+				AND = {
+					has_government = fascism
+					OR = {
+						has_war_support > 0.89
+						surrender_progress > 0
+					}
+				}
+				AND = {
+					has_government = neutrality
+					has_war_support > 0.84
+					has_stability > 0.7
+				}
+			}
+		}
+		visible = {
+			has_war = yes
+		}
+		cost = 100
+		days_remove = -1
+		remove_trigger = {
+			has_war = no
+		}
+		modifier = {
+			conscription = 0.01
+			stability_factor = -0.05
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		complete_effect = {
+			if = {
+				limit = {
+					tag = CAN
+				}
+				country_event = { id = canada_vanilla.1 hours = 6 } # Ronnie the Bren Gun Girl
+			}
+		}
+   }
+
+	war_bonds = {
+		icon = generic_industry
+
+		allowed = {
+		}
+
+		available = {
+			has_war = yes
+			OR = {
+				AND = {
+					has_government = democratic
+					has_war_support > 0.79
+				}
+				AND = {
+					has_government = communism
+					has_war_support > 0.79
+				}
+				AND = {
+					has_government = fascism
+					OR = {
+						has_war_support > 0.89
+						surrender_progress > 0
+					}
+				}
+				AND = {
+					has_government = neutrality
+					has_war_support > 0.84
+					has_stability > 0.7
+				}
+			}
+		}
+		visible = {
+			has_war = yes
+		}
+
+		fire_only_once = no
+
+		days_remove = 180
+
+		cost = GER_war_bonds_var?50
+
+		modifier = {
+			consumer_goods_factor = -0.05
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				has_political_power < 150
+				factor = 0 #use as pp dump
+			}
+		}
+
+		remove_effect = {
+		}
+
+		complete_effect = {
+			if = {
+				limit = {
+					check_variable = {
+						var = GER_war_bonds_var
+						value = 50
+						compare = less_than
+					}
+				}
+				set_variable = {
+					var = GER_war_bonds_var
+					value = 50
+				}
+			}
+			add_to_variable = {
+				var = GER_war_bonds_var
+				value = 25
+			}
+		}
+	}
+}
+
+foreign_politics = {
+
+ 
+	nuclear_war = {
+		icon = generic_industry
+		allowed = {
+		}
+
+		available = { 
+			# KRCW: real stock, no strike running, cooldown over (as the player tab)
+			check_variable = { num_of_nukes > 0 }
+			NOT = { check_variable = { wmd_strike_ongoing = 1 } }
+			NOT = { check_variable = { wmd_strike_cooldown_var = 1 } }
+		 
+			is_ai = yes
+			has_war = yes
+			has_idea = defcon_system_1
+			check_variable = { var = wmd_missiles_total value = var:missile_cost compare = greater_than_or_equals }
+			OR = {
+				original_tag = FRA
+				original_tag = SOV
+			}
+		}
+		visible = {
+			is_ai = yes
+		}
+		cost = 0
+		ai_will_do = {
+			factor = 1000
+		}
+		complete_effect = {
+			wmd_select_all_enemies = yes
+			wmd_distance_calculator = yes
+			wmd_check_strike_missiles = yes
+			wmd_nuke_launch = yes
+		}
+	}
+    COMECON_DOCKYARD_Investment = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+        icon = generic_operation
+
+        allowed = {
+        }
+
+        available = { NOT = { has_global_flag = KRCW_active } 
+            always = no
+        } 
+
+        days_mission_timeout = COMECON_DOCKYARD_Investment_Duration
+		days_remove = COMECON_DOCKYARD_Investment_Duration
+
+        fire_only_once = no
+
+        activation = { NOT = { has_global_flag = KRCW_active } 
+            always = no
+        }
+
+        timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            SOV = {
+                subtract_from_variable = { var = COMECON_INVESTMENT_CONSUMER_GOODS value = 5 }  # Fixed: variable assignment syntax corrected
+            }
+			set_country_flag = COMECON_DOCKYARD_PROMPT
+            clr_country_flag = Soviet_Building_Dockyard
+            random_owned_controlled_state = {
+                limit = {
+                    is_coastal = yes
+                    free_building_slots = {
+                        building = dockyard
+                        size > 0
+                        include_locked = yes
+                    }
+                }
+                add_building_construction = {
+                    type = dockyard
+                    level = 1
+                    instant_build = yes
+                }
+            }
+         }
+}
+    }
+    COMECON_FACTORY_Investment = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+        icon = generic_operation
+
+        allowed = {
+        }
+
+        available = { NOT = { has_global_flag = KRCW_active } 
+            always = no
+        } 
+
+        days_mission_timeout = COMECON_FACTORY_Investment_Duration
+		days_remove = COMECON_FACTORY_Investment_Duration
+
+        fire_only_once = no
+
+        activation = { NOT = { has_global_flag = KRCW_active } 
+            always = no
+        }
+
+        timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            SOV = {
+                subtract_from_variable = { var = COMECON_INVESTMENT_CONSUMER_GOODS value = 5 }  # Fixed: variable assignment syntax corrected
+            }
+			set_country_flag = COMECON_FACTORY_PROMPT
+            clr_country_flag = Soviet_Building_Factory
+            random_owned_controlled_state = {
+                limit = {
+                    free_building_slots = {
+                        building = industrial_complex
+                        size > 0
+                        include_locked = yes
+                    }
+                }
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+            }
+         }
+}
+    }
+    COMECON_FARM_Investment = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+        icon = generic_operation
+
+        allowed = {
+        }
+
+        available = { NOT = { has_global_flag = KRCW_active } 
+            always = no
+        } 
+
+        days_mission_timeout = COMECON_FARM_Investment_Duration
+		days_remove = COMECON_FARM_Investment_Duration
+
+        fire_only_once = no
+
+        activation = { NOT = { has_global_flag = KRCW_active } 
+            always = no
+        }
+
+        timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            SOV = {
+                subtract_from_variable = { var = COMECON_INVESTMENT_CONSUMER_GOODS value = 5 }  # Fixed: variable assignment syntax corrected
+            }
+			set_country_flag = COMECON_FARM_PROMPT
+            clr_country_flag = Soviet_Building_Farms
+            random_owned_controlled_state = {
+                limit = {
+                    free_building_slots = {
+                        building = agri_industrial_complex
+                        size > 0
+                        include_locked = yes
+                    }
+                }
+                add_building_construction = {
+                    type = agri_industrial_complex
+                    level = 1
+                    instant_build = yes
+                }
+            }
+         }
+}
+    }
+    COMECON_ARMS_Investment = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+        icon = generic_operation
+
+        allowed = {
+        }
+
+        available = { NOT = { has_global_flag = KRCW_active } 
+            always = no
+        } 
+
+        days_mission_timeout = COMECON_ARMS_Investment_Duration
+		days_remove = COMECON_ARMS_Investment_Duration
+
+        fire_only_once = no
+
+        activation = { NOT = { has_global_flag = KRCW_active } 
+            always = no
+        }
+
+        timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+            SOV = {
+                subtract_from_variable = { var = COMECON_INVESTMENT_CONSUMER_GOODS value = 5 }  # Fixed: variable assignment syntax corrected
+            }
+			set_country_flag = COMECON_ARMS_PROMPT
+            clr_country_flag = Soviet_Building_Arms_Factory
+            random_owned_controlled_state = {
+                limit = {
+                    free_building_slots = {
+                        building = arms_factory
+                        size > 0
+                        include_locked = yes
+                    }
+                }
+                add_building_construction = {
+                    type = arms_factory
+                    level = 1
+                    instant_build = yes
+                }
+            }
+         }
+}
+    }
+	
+	increase_defcon = {
+		icon = generic_industry
+		allowed = {
+		}
+
+		available = {
+			is_ai = yes
+				if = { limit = { has_idea = defcon_system_5 }
+					custom_trigger_tooltip = {
+						tooltip = highest_defcon_TT
+						NOT = { has_idea = defcon_system_5 }
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = DEFCON_cooldown_TT
+					NOT = { check_variable = { DEFCON_cooldown = 1 } }
+				}
+				custom_trigger_tooltip = {
+					tooltip = has_nukes_TT
+					check_variable = { num_of_nukes > 0 }
+				}
+				has_war = no
+		}
+		visible = {
+			is_ai = yes
+		}
+		cost = 0
+		ai_will_do = {
+			factor = 1000
+		}
+		complete_effect = {
+			if = { 
+				limit = { 
+					has_idea = defcon_system_1
+				}
+				remove_ideas = defcon_system_1
+				add_ideas = defcon_system_2
+			}
+			else_if = { limit = { has_idea = defcon_system_2 }
+				remove_ideas = defcon_system_2
+				add_ideas = defcon_system_3
+			}
+			else_if = { limit = { has_idea = defcon_system_3 }
+				remove_ideas = defcon_system_3
+				add_ideas = defcon_system_4
+			}
+			else_if = { limit = { has_idea = defcon_system_4 }
+				remove_ideas = defcon_system_4
+				add_ideas = defcon_system_5
+			}
+			else = { }
+			set_variable = { DEFCON_cooldown = 1 }
+			THIS = { activate_mission = WMD_defcon_cooldown }
+		}
+	}
+	
+	decrease_defcon = {
+		icon = generic_industry
+		allowed = {
+		}
+
+		available = {
+			is_ai = yes
+				if = { limit = { has_idea = defcon_system_1 }
+					custom_trigger_tooltip = {
+						tooltip = lowest_defcon_TT
+						NOT = { has_idea = defcon_system_1 }
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = DEFCON_cooldown_TT
+					NOT = { check_variable = { DEFCON_cooldown = 1 } }
+				}
+				custom_trigger_tooltip = {
+					tooltip = has_nukes_TT
+					check_variable = { num_of_nukes > 0 }
+				}
+				if = { limit = { has_idea = defcon_system_5 }
+					custom_trigger_tooltip = {
+						tooltip = needs_60_WT_TT
+						threat > 0.6
+					}
+				}
+				else_if = { limit = { has_idea = defcon_system_4 }
+					custom_trigger_tooltip = {
+						tooltip = needs_80_WT_TT
+						threat > 0.8
+					}
+				}
+				else_if = { limit = { has_idea = defcon_system_3 }
+					custom_trigger_tooltip = {
+						tooltip = needs_90_WT_TT
+						threat > 0.9
+					}
+					custom_trigger_tooltip = {
+						tooltip = must_be_at_war_2_TT
+						has_war = yes
+					}
+				}
+				else_if = { limit = { has_idea = defcon_system_2 }
+					custom_trigger_tooltip = {
+						tooltip = needs_100_WT_TT
+						threat > 0.999
+					}
+					custom_trigger_tooltip = {
+						tooltip = must_be_at_war_1_TT
+						has_war = yes
+					}
+				}
+		}
+		visible = {
+			is_ai = yes
+		}
+		cost = 0
+		ai_will_do = {
+			factor = 1000
+		}
+		complete_effect = {
+				if = { limit = { has_idea = defcon_system_5 }
+					remove_ideas = defcon_system_5
+					add_ideas = defcon_system_4
+				}
+				else_if = { limit = { has_idea = defcon_system_4 }
+					remove_ideas = defcon_system_4
+					add_ideas = defcon_system_3
+				}
+				else_if = { limit = { has_idea = defcon_system_3 }
+					remove_ideas = defcon_system_3
+					add_ideas = defcon_system_2
+				}
+				else_if = { limit = { has_idea = defcon_system_2 }
+					remove_ideas = defcon_system_2
+					add_ideas = defcon_system_1
+				}
+				else = {
+					add_ideas = defcon_system_5
+				}
+				set_variable = { DEFCON_cooldown = 1 }
+				THIS = { activate_mission = WMD_defcon_cooldown }
+		}
+	}
+
+}
+
+
+
+MAL_ethnic_influence_bop_category = {
+
+	MAL_promote_malay_language_nationally = {
+		icon = generic_education
+		cost = 30
+		days_re_enable = 120
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 3 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 3 }
+			add_stability = 0.02
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = -0.04
+				tooltip_side = MAL_bop_malay_nationalism
+			}
+		}
+	}
+
+	MAL_expand_malay_broadcasting = {
+		icon = generic_radio
+		cost = 20
+		days_re_enable = 90
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 2.5 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 2.5 }
+			add_war_support = 0.03
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = -0.03
+				tooltip_side = MAL_bop_malay_nationalism
+			}
+		}
+	}
+
+	MAL_subsidize_malay_cultural_organizations = {
+		icon = generic_cultural_policy
+		cost = 25
+		days_re_enable = 100
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 2 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 2 }
+			add_timed_idea = {
+				idea = YUG_idea_cultural_societies_endorsed
+				days = 100
+			}
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = -0.03
+				tooltip_side = MAL_bop_malay_nationalism
+			}
+		}
+	}
+
+	MAL_prefer_malays_in_civil_service = {
+		icon = generic_politics
+		cost = 100
+		days_re_enable = 120
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 1 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 1 }
+			add_stability = 0.015
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = -0.05
+				tooltip_side = MAL_bop_malay_nationalism
+			}
+		}
+	}
+
+	MAL_malay_rural_grants = {
+		icon = generic_politics
+		cost = 30
+		days_re_enable = 365
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 3 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 3 }
+			add_stability = 0.01
+			add_timed_idea = {
+				idea = rural_development_spirit
+				days = 365
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = -0.035
+				tooltip_side = MAL_bop_malay_nationalism
+			}
+		}
+	}
+
+	MAL_expand_malay_education_network = {
+		icon = generic_school
+		cost = 20
+		days_re_enable = 90
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 2 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 2 }
+			increase_education_rate = yes
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = -0.03
+				tooltip_side = MAL_bop_malay_nationalism
+			}
+		}
+	}
+
+	MAL_public_affirmative_policy_malays = {
+		icon = generic_law
+		cost = 40
+		days_re_enable = 150
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 3.5 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 3.5 }
+			add_stability = 0.02
+			add_to_variable = {
+				CorruptionLevel = 0.005
+			}
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = -0.045
+				tooltip_side = MAL_bop_malay_nationalism
+			}
+		}
+	}
+
+	MAL_award_malay_local_contracts = {
+		icon = generic_trade
+		cost = 20
+		days_re_enable = 80
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 1.5 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 1.5 }
+			add_to_variable = {
+				CorruptionLevel = 0.01
+			}
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = -0.025
+				tooltip_side = MAL_bop_malay_nationalism
+			}
+		}
+	}
+
+	MAL_expand_malay_resettlement_schemes = {
+		icon = generic_population
+		cost = 35
+		days_re_enable = 140
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 3.5 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 3.5 }
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = -0.05
+				tooltip_side = MAL_bop_malay_nationalism
+			}
+		}
+	}
+
+	MAL_pass_malay_language_bill = {
+		icon = generic_book
+		cost = 25
+		days_re_enable = 100
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 2 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 2 }
+			add_stability = 0.02
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = -0.03
+				tooltip_side = MAL_bop_malay_nationalism
+			}
+		}
+	}
+	MAL_grant_chinese_school_autonomy = {
+		icon = generic_education
+		cost = 30
+		days_re_enable = 120
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 3 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 3 }
+			increase_education_rate = yes
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = 0.04
+				tooltip_side = MAL_bop_chinese_influence
+			}
+		}
+	}
+
+	MAL_protect_chinese_commercial_rights = {
+		icon = generic_trade
+		cost = 35
+		days_re_enable = 110
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 3.5 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 3.5 }
+			add_war_support = -0.01
+			add_stability = -0.01
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = 0.05
+				tooltip_side = MAL_bop_chinese_influence
+			}
+		}
+	}
+
+	MAL_expand_chinese_newspapers = {
+		icon = generic_radio
+		cost = 75
+		days_re_enable = 90
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 2 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 2 }
+			add_stability = -0.01
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = 0.03
+				tooltip_side = MAL_bop_chinese_influence
+			}
+		}
+	}
+
+	MAL_pass_multilingual_policy = {
+		icon = generic_law
+		cost = 30
+		days_re_enable = 100
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 2.5 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 2.5 }
+			add_stability = -0.03
+			add_war_support = -0.03
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = 0.035
+				tooltip_side = MAL_bop_chinese_influence
+			}
+		}
+	}
+
+	MAL_protect_chinese_property_rights = {
+		icon = generic_politics
+		cost = 75
+		days_re_enable = 100
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 2.5 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 2.5 }
+			add_stability = -0.02
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = 0.04
+				tooltip_side = MAL_bop_chinese_influence
+			}
+		}
+	}
+
+	MAL_reduce_business_restrictions_on_chinese = {
+		icon = generic_building
+		cost = 100
+		days_re_enable = 365
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 2 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 2 }
+			add_stability = -0.10
+			add_timed_idea = {
+				idea = economic_growth
+				days = 365
+			}
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = 0.03
+				tooltip_side = MAL_bop_chinese_influence
+			}
+		}
+	}
+
+	MAL_fund_chinese_community_centers = {
+		icon = generic_cultural_policy
+		cost = 30
+		days_re_enable = 100
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 2.5 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 2.5 }
+			add_stability = 0.01
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = 0.035
+				tooltip_side = MAL_bop_chinese_influence
+			}
+		}
+	}
+
+	MAL_enact_chinese_business_tax_relief = {
+		icon = generic_industry
+		cost = 15
+		days_re_enable = 365
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 0.2 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 0.2 }
+			decrease_lower_middle_tax_rate = yes
+			decrease_corporate_tax_rate = yes
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = 0.1
+				tooltip_side = MAL_bop_chinese_influence
+			}
+		}
+	}
+
+	MAL_expand_chinese_admissions_in_universities = {
+		icon = generic_school
+		cost = 20
+		days_re_enable = 90
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 2 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 2 }
+
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = 0.03
+				tooltip_side = MAL_bop_chinese_influence
+			}
+		}
+	}
+
+	MAL_support_chinese_in_local_government = {
+		icon = generic_politics
+		cost = 40
+		days_re_enable = 140
+		visible = { NOT = { has_global_flag = KRCW_active }  tag = MAL }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = { ROOT.currentMoney > 3.5 }
+		}
+		complete_effect = {
+			subtract_from_variable = { ROOT.currentMoney = 3.5 }
+			add_stability = -0.05
+			increase_service_policy = yes
+			add_power_balance_value = {
+				id = MAL_ethnic_balance_of_power
+				value = 0.05
+				tooltip_side = MAL_bop_chinese_influence
+			}
+		}
+	}
+}

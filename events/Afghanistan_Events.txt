@@ -1,0 +1,592 @@
+# KRCW (build/patch_residue.py): 30 OTL events dropped while KRCW_active
+add_namespace = Afghani_Coup
+add_namespace = AFG_REP
+add_namespace = Afghanistan
+add_namespace = HVA
+add_namespace = AFG_PM
+add_namespace = SocDemAfg
+add_namespace = USA_AFG
+add_namespace = AFG_SOV
+add_namespace = AFG_IND
+add_namespace = AFG_PAK
+add_namespace = CENTO
+add_namespace = AFG_SHIA
+add_namespace = AFGPAKWAR
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		#Coup Start
+	id = Afghani_Coup.1 
+ immediate = { }
+	title = Afghani_Coup.1.t2
+	desc = Afghani_Coup.1.d
+	picture = GFX_Afghan_Army_3
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = Afghani_Coup.1.a2
+		ai_chance  = {
+			base = 40
+			modifier = {
+				has_game_rule = {
+					rule = AFG_1950_coup_attempt
+					option = AFG_COUP_SUCCEEDS_1950
+				}
+				factor = 0
+			}
+		}
+		hidden_effect = {
+			news_event = Afghani_Coup.4
+			complete_national_focus = AFG_The_1950_Coup_Attempt
+			complete_national_focus = AFG_Crackdown_on_Hizb_I_Sirri_Ittihad
+		}
+	}
+	option = {
+		name = Afghani_Coup.1.b2
+		hidden_effect = {
+			country_event = Afghani_Coup.2
+			news_event = Afghani_Coup.3
+			complete_national_focus = AFG_The_1950_Coup_Attempt
+			complete_national_focus = AFG_Hizb_I_Sirri_Ittihad_Takeover
+		}
+		ai_chance  = {
+			base = 40 
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = AFG_1950_coup_attempt
+					option = AFG_COUP_FAILS_1950
+				}
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Afghani_Coup.2 
+ immediate = { }
+	title = Afghani_Coup.2.t2
+	desc = Afghani_Coup.2.d
+	picture = GFX_Afghan_Army
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = Afghani_Coup.2.a2
+		set_politics = {
+			ruling_party = liberal
+			elections_allowed = no
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_REP.1 
+ immediate = { }
+	title = AFG_REP.1.t2
+	desc = AFG_REP.1.d
+	picture = GFX_Afghan_Radio
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = AFG_REP.1.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Afghanistan.1 
+ immediate = { }
+	title = Afghanistan.1.t2
+	desc = Afghanistan.1.d
+	picture = GFX_Shah_Mahmud_Khan_AFG
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = Afghanistan.1.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Afghanistan.2 
+ immediate = { }
+	title = Afghanistan.2.t2
+	desc = Afghanistan.2.d
+	picture = GFX_Afghan_Radio
+
+	is_triggered_only = yes
+
+	option = {
+		name = Afghanistan.2.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Afghanistan.3 
+ immediate = { }
+	title = Afghanistan.3.t2
+	desc = Afghanistan.3.d
+	picture = GFX_Abdul_Ghaffar_Khan_Released
+
+	is_triggered_only = yes
+
+	option = {
+		name = Afghanistan.3.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Afghanistan.4 
+ immediate = { }
+	title = Afghanistan.4.t2
+	desc = Afghanistan.4.d
+	picture = GFX_Generic_AFG_Political_3
+
+	is_triggered_only = yes
+
+	option = {
+		name = Afghanistan.4.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Afghanistan.10 
+ immediate = { }
+	title = Afghanistan.10.t2
+	desc = Afghanistan.10.d
+	picture = GFX_Generic_AFG_Political_2
+
+	is_triggered_only = yes
+
+	option = {
+		name = Afghanistan.10.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HVA.1 
+ immediate = { }
+	title = HVA.1.t2
+	desc = HVA.1.d
+	picture = GFX_Helmand_Valley_Authority
+
+	is_triggered_only = yes
+
+	option = {
+		name = HVA.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		#Coup Start
+	id = AFG_PM.1 
+ immediate = { }
+	title = AFG_PM.1.t2
+	desc = AFG_PM.1.d
+	picture = GFX_Afghan_Cabinet_Meeting
+
+	is_triggered_only = yes
+
+	option = {
+		name = AFG_PM.1.a2
+		complete_national_focus = AFG_Appoint_Daud_Prime_Minister
+		create_country_leader = {
+			name = "Mohammed Daoud Khan"
+			picture = "Mohammed_Daoud_Khan.dds"
+			ideology = monarchist
+		}
+		ai_chance = {
+			base = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = AFG_new_prime_minister
+					option = AFG_MOHAMMAD_GHOBAR
+				}
+				factor = 0
+			}
+		}
+	}   
+	option = {
+		name = AFG_PM.1.b2
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = no
+		}
+		ai_chance = {
+			base = 10
+			modifier = {
+				has_game_rule = {
+					rule = AFG_new_prime_minister
+					option = AFG_DAOUD_KHAN
+				}
+				factor = 0
+			}
+		}
+		complete_national_focus = AFG_Appoint_Ghulam_Muhammad_Ghobar_Prime_Minister
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SocDemAfg.1 
+ immediate = { }
+	title = SocDemAfg.1.t2
+	desc = SocDemAfg.1.d
+	picture = GFX_Generic_AFG_Political
+
+	is_triggered_only = yes
+
+	option = {
+		name = SocDemAfg.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = USA_AFG.1 
+ immediate = { }
+	title = USA_AFG.1.t2
+	desc = USA_AFG.1.d
+	picture = GFX_US_Afghan
+
+	is_triggered_only = yes
+
+	option = {
+		name = USA_AFG.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_SOV.1 
+ immediate = { }
+	title = AFG_SOV.1.t2
+	desc = AFG_SOV.1.d
+	picture = GFX_andrey_vyshinsky_event
+
+	is_triggered_only = yes
+
+	option = {
+		name = AFG_SOV.1.a2
+		SOV = {
+			country_event = AFG_SOV.2
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_SOV.2 
+ immediate = { }
+	title = AFG_SOV.2.t2
+	desc = AFG_SOV.2.d
+	picture = GFX_andrey_vyshinsky_event
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = AFG_SOV.2.a2
+	}
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_IND.1 
+ immediate = { }
+	title = AFG_IND.1.t2
+	desc = AFG_IND.1.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = AFG_IND.1.a2
+		AFG = {
+			country_event = AFG_IND.3
+		}
+	}
+	option = {
+		name = AFG_IND.1.b2
+		AFG = {
+			country_event = AFG_IND.2
+		}
+		declare_war_on = {
+			target = PAK
+			type = annex_everything
+		}
+		news_event = AFG_IND.4
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_IND.2 
+ immediate = { }
+	title = AFG_IND.2.t2
+	desc = AFG_IND.2.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = AFG_IND.2.a2
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_IND.3 
+ immediate = { }
+	title = AFG_IND.3.t2
+	desc = AFG_IND.3.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = AFG_IND.3.a2
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_PAK.20 
+ immediate = { }
+	title = AFG_PAK.20.t2
+	desc = AFG_PAK.20.d
+	picture = GFX_Afghan_Army
+
+	is_triggered_only = yes
+
+	option = {
+		name = AFG_PAK.20.a2
+		transfer_state = 445
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_PAK.21 
+ immediate = { }
+	title = AFG_PAK.21.t2
+	desc = AFG_PAK.21.d
+	picture = GFX_Afghan_Army_2
+
+	is_triggered_only = yes
+
+	option = {
+		name = AFG_PAK.21.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_PAK.22 
+ immediate = { }
+	title = AFG_PAK.22.t2
+	desc = AFG_PAK.20.d
+	picture = GFX_Pashtunistan_Pak_Army
+
+	is_triggered_only = yes
+
+	option = {
+		name = AFG_PAK.22.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_PAK.23 
+ immediate = { }
+	title = AFG_PAK.23.t2
+	desc = AFG_PAK.21.d
+	picture = GFX_Afghan_Army_3
+
+	is_triggered_only = yes
+
+	option = {
+		name = AFG_PAK.23.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_PAK.24 
+ immediate = { }
+	title = AFG_PAK.24.t2
+	desc = AFG_PAK.24.d
+	picture = GFX_pasht
+
+	is_triggered_only = yes
+
+	option = {
+		name = AFG_PAK.24.a2
+		release_autonomy = {
+			target = WAZ
+			autonomy_state = autonomy_integrated_puppet
+			freedom_level = 0.1
+		}
+		WAZ ={
+			set_politics = {
+				ruling_party = neutrality
+				elections_allowed = no
+			}
+			set_popularities = {
+				neutrality = 20
+				nationalist = 80
+			}
+		}
+		ai_chance  = {
+			base = 30
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = AFG_PAK.24.b2
+		ai_chance  = { base = 70 }
+	}
+}
+
+
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Afghani_Coup.3 
+ immediate = { }
+	title = Afghani_Coup.3.t2
+	desc = Afghani_Coup.3.d
+	picture = GFX_Afghan_Coup
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = Afghani_Coup.3.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Afghani_Coup.4 
+ immediate = { }
+	title = Afghani_Coup.4.t2
+	desc = Afghani_Coup.4.d
+	picture = GFX_Kabul_1950s_Generic
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = Afghani_Coup.4.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CENTO.225 
+ immediate = { }
+	title = CENTO.225.t2
+	desc = CENTO.225.d
+	picture = GFX_Cento_News
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = CENTO.225.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_IND.4 
+ immediate = { }
+	title = AFG_IND.4.t2
+	desc = AFG_IND.4.d
+	picture = GFX_India_AFG_PAK_War
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = AFG_IND.4.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFGPAKWAR.1 
+ immediate = { }
+	title = AFGPAKWAR.1.t2
+	desc = AFGPAKWAR.1.d
+	picture = GFX_Afghanistan_Pakistan_War
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = AFGPAKWAR.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AFG_SHIA.5 
+ immediate = { }
+	title = AFG_SHIA.5.t2
+	desc = AFG_SHIA.5.d
+	picture = GFX_Afghan_Exile
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = AFG_SHIA.5.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Afghanistan.5 
+ immediate = { }
+	title = Afghanistan.5.t2
+	desc = Afghanistan.5.d
+	picture = GFX_Afghan_Army_News
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = Afghanistan.5.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Afghanistan.6 
+ immediate = { }
+	title = Afghanistan.6.t2
+	desc = Afghanistan.6.d
+	picture = GFX_Durrand_Line_Country
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = Afghanistan.6.a2
+	}
+}
+

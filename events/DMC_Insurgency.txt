@@ -1,0 +1,173 @@
+# KRCW (build/patch_residue.py): 8 OTL events dropped while KRCW_active
+add_namespace = DOM_insurgency_options
+add_namespace = DOM_insurgency_bombing
+add_namespace = DOM_Insurgency
+add_namespace = DMC_Return
+
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_insurgency_options.1 
+ 	immediate = { }
+	title = DOM_insurgency_options.1.t
+	desc = DOM_insurgency_options.1.d
+	picture = GFX_contra_insurgency_1
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = DOM_insurgency_options.1.a
+		add_to_variable = { pro_bosch_insurgency = -9 }
+
+		var:current_country_state_decision = {
+			set_state_flag = insurgency_infilitrated
+		}
+	}
+	}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_insurgency_options.2 
+ 	immediate = { }
+	title = DOM_insurgency_options.2.t
+	desc = DOM_insurgency_options.2.d
+	picture = GFX_contra_insurgency_1
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = DOM_insurgency_options.2.a
+			add_to_variable = { pro_bosch_insurgency = 5 }
+	}
+	}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_insurgency_options.3 
+	immediate = { }
+	title = DOM_insurgency_options.3.t
+	desc = DOM_insurgency_options.3.d
+	picture = GFX_contra_insurgency_2
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = DOM_insurgency_options.3.a
+		add_to_variable = { pro_bosch_insurgency = -7 }
+	}
+	}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_insurgency_options.4 
+ 	immediate = { }
+	title = DOM_insurgency_options.4.t
+	desc = DOM_insurgency_options.4.d
+	picture = GFX_contra_insurgency_2
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = DOM_insurgency_options.4.a
+		add_to_variable = { pro_bosch_insurgency = 5 }
+	}
+	}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_insurgency_bombing.1
+ 	immediate = { }
+	title = DOM_insurgency_bombing.1.t
+	desc = DOM_insurgency_bombing.1.d
+	picture = GFX_contra_insurgency_3
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = DOM_insurgency_bombing.1.a
+		add_to_variable = { pro_bosch_insurgency = -5 }
+		air_experience = 10
+	}
+	}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_insurgency_bombing.2 
+ 	immediate = { }
+	title = DOM_insurgency_bombing.2.t
+	desc = DOM_insurgency_bombing.2.d
+	picture = GFX_contra_insurgency_3
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = DOM_insurgency_bombing.2.a
+		add_to_variable = { pro_bosch_insurgency = 5 }
+		air_experience = 5
+	}
+	}
+
+country_event = {
+	id = DOM_Insurgency.1
+	immediate = {
+	}
+	title = DOM_Insurgency.1.t
+	picture = GFX_DOM_Insurgency.1
+	desc = DOM_Insurgency.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+		AND = {
+			date > 1973.2.3
+			date < 1973.3.30
+		}
+		NOT = {
+				has_country_leader = {
+					name = "Juan Bosch"
+					ruling_only = yes
+				}
+	}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_Insurgency.1.a
+		hidden_effect = {
+			set_country_flag = pro_bosch_insurgency
+			set_variable = { pro_bosch_insurgency = 30 }
+			1159  = {
+				set_state_flag = pro_bosch_target
+				set_state_flag = insurg_lvl1
+				add_province_modifier = {
+					static_modifiers = { insurgency_tier1 }
+					province = {
+						all_provinces = yes
+					}
+				}
+				add_state_modifier = { modifier = { local_factory_sabotage = 0.15 } }
+			}
+	}
+	}
+	}
+	news_event = {
+	id = DMC_Return.1
+	immediate = {
+	}
+	title = DMC_Return.1.t
+	picture = GFX_DOM_Bosch_Reinstated.1
+	desc = DMC_Return.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DMC_Return.1.a
+		}
+	}
+

@@ -1,0 +1,3515 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = MOR_1950s
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = MOR
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	focus = {
+		id = MOR_The_Post_War_Economic_Boom
+		completion_reward = {
+		}
+		icon = GFX_Balanced_Growth_GDR
+		cost = 10
+		x = 3
+		y = 0
+		completion_reward = {
+			capital_scope = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_timed_idea = {
+				idea = economic_growth
+				days = 1250
+			}
+			set_variable = { THIS.idea_len_@token:economic_growth = 1250 }
+			set_variable = { THIS.idea_date_@token:economic_growth = global.num_days }
+		}
+	}
+	focus = {
+		id = MOR_The_Reign_of_Muhhamed_V
+		completion_reward = {
+		}
+		icon = GFX_focus_puppet_monarchy
+		cost = 10
+		x = 16
+		y = 0
+		completion_reward = {
+			country_event = MOR_SETUP.1
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = MOR_The_Royal_Moroccan_Armed_Forces
+		completion_reward = {
+		}
+		icon = GFX_Royal_Moroccan_Armed_Forces
+		cost = 10
+		x = 38
+		y = 0
+		completion_reward = {
+			army_experience = 25
+			navy_experience = 25
+			air_experience = 25
+		}
+	}
+	focus = {
+		id = MOR_The_Situation_in_Sidi_Ifni
+		completion_reward = {
+		}
+		icon = GFX_IntotheFlames
+		cost = 10
+		x = 27
+		y = 0
+		available = {
+			#is_subject = no
+			#NOT = {
+			#	owns_state = 1003
+			#}
+			always = no
+		}
+	}
+	focus = {
+		id = MOR_Unrest_in_the_Rif
+		completion_reward = {
+		}
+		icon = GFX_Urban_Unrest
+		cost = 10
+		x = 2
+		y = 7
+		available = {
+			always = no
+		}
+	}
+	focus = {
+		id = MOR_The_Aliyah_Issue
+		completion_reward = {
+		}
+		icon = GFX_The_Aliyah_Issue
+		cost = 10
+		x = 9
+		y = 3
+		available = {
+			is_subject = no
+		}
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = MOR_The_Moroccan_Army_of_Liberation
+		completion_reward = {
+		}
+		icon = GFX_Moroccan_Army_of_Liberation
+		cost = 10
+		x = 9
+		y = 7
+		completion_reward = {
+			add_manpower = 15000
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = MOR_The_Persistence_of_the_Militias
+		completion_reward = {
+		}
+		icon = GFX_persistence_of_the_militia
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Moroccan_Army_of_Liberation
+		}
+		x = 9
+		y = 8
+		completion_reward = {
+			add_ideas = paramilitarism_focus
+			every_owned_state = {
+				add_to_variable = {
+					republican_influence = 50
+				}
+			}
+			custom_effect_tooltip = increse_republican_TT
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_Rally_Against_Continued_Occupation
+		completion_reward = {
+		}
+		icon = GFX_MOR_rally_against_continued_occupation
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Persistence_of_the_Militias
+		}
+		x = 2
+		y = 1
+		relative_position_id = MOR_The_Persistence_of_the_Militias
+		completion_reward = {
+		}
+		completion_reward = {
+			every_owned_state = {
+				add_to_variable = {
+					republican_influence = 25
+				}
+				custom_effect_tooltip = increse_republican_TT
+			}
+			MOR = {
+				add_opinion_modifier = {
+					target = SPR
+					modifier = large_decrease
+				}
+			}
+			SPR = {
+				add_opinion_modifier = {
+					target = MOR
+					modifier = large_decrease
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_The_Modernization_and_Development_Plans
+		completion_reward = {
+		}
+		icon = GFX_Travel_Modernization
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Post_War_Economic_Boom
+		}
+		x = 3
+		y = 1
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = MOR_Launch_Rural_Development_Programs
+		completion_reward = {
+		}
+		icon = GFX_Emergency_aid_to_the_rural_peasantry
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Modernization_and_Development_Plans
+		}
+		x = 2
+		y = 2
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = rural_poverty_crisis_2
+				}
+				remove_ideas = rural_poverty_crisis_2
+				add_ideas = rural_poverty_crisis_1
+			}
+			else_if = {
+				limit = {
+					has_idea = rural_poverty_crisis_1
+				}
+				remove_ideas = rural_poverty_crisis_1
+			}
+		}
+	}
+	focus = {
+		id = MOR_New_Irrigation_Systems
+		completion_reward = {
+		}
+		icon = GFX_Irrigation_Canals
+		cost = 10
+		prerequisite = {
+			focus = MOR_Launch_Rural_Development_Programs
+		}
+		x = 0
+		y = 3
+		completion_reward = {
+			every_owned_state = {
+				add_building_construction = {
+					instant_build = yes
+					type = water_infrastructure
+					level = 1
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Prioritize_Urban_Development
+		completion_reward = {
+		}
+		icon = GFX_Build_Track_Houses
+		cost = 10
+		prerequisite = {
+			focus = MOR_Unrest_in_the_Rif
+		}
+		x = 2
+		y = 8
+		completion_reward = {
+			add_timed_idea = {
+				idea = urban_planning
+				days = 1250
+			}
+			set_variable = { THIS.idea_len_@token:urban_planning = 1250 }
+			set_variable = { THIS.idea_date_@token:urban_planning = global.num_days }
+		}
+	}
+	focus = {
+		id = MOR_Marginalize_Northern_Rural_Area
+		completion_reward = {
+		}
+		icon = GFX_usa_truman_crackdown_on_strikers
+		cost = 10
+		prerequisite = {
+			focus = MOR_Prioritize_Urban_Development
+		}
+		x = 4
+		y = 9
+		completion_reward = {
+			add_stability = -0.02
+			461 = {
+				add_extra_state_shared_building_slots = 2
+			}
+			1469 = {
+				add_extra_state_shared_building_slots = 2
+			}
+			1468 = {
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = MOR_Arrest_Northern_Independence_Activists
+		completion_reward = {
+		}
+		icon = GFX_generic_arrests
+		cost = 10
+		prerequisite = {
+			focus = MOR_Prioritize_Urban_Development
+		}
+		x = 0
+		y = 9
+		completion_reward = {
+			add_timed_idea = {
+				idea = political_crackdown
+				days = 365
+			}
+			set_variable = { THIS.idea_len_@token:political_crackdown = 365 }
+			set_variable = { THIS.idea_date_@token:political_crackdown = global.num_days }
+			290 = {
+				add_to_variable = {
+					istqal_influence = 50
+				}
+				add_to_variable = {
+					republican_influence = 50
+				}
+				custom_effect_tooltip = incease_istqal_TT
+			}
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_The_18_Demands
+		completion_reward = {
+		}
+		icon = GFX_usa_50_bring_french_to_table
+		cost = 10
+		prerequisite = {
+			focus = MOR_Marginalize_Northern_Rural_Area
+		}
+		prerequisite = {
+			focus = MOR_Arrest_Northern_Independence_Activists
+		}
+		x = 2
+		y = 10
+		available = {
+			always = no
+		}
+	}
+	focus = {
+		id = MOR_Offer_Loans_to_Craftsman
+		completion_reward = {
+		}
+		icon = GFX_Gold
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Modernization_and_Development_Plans
+		}
+		x = 4
+		y = 2
+		completion_reward = {
+			add_timed_idea = {
+				idea = loans_for_craftsman
+				days = 1250
+			}
+			set_variable = { THIS.idea_len_@token:loans_for_craftsman = 1250 }
+			set_variable = { THIS.idea_date_@token:loans_for_craftsman = global.num_days }
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 2
+				uses = 1
+				category = industry
+			}
+		}
+	}
+	focus = {
+		id = MOR_Expand_Railways
+		completion_reward = {
+		}
+		icon = GFX_KOR_build_docks_and_roads
+		cost = 10
+		prerequisite = {
+			focus = MOR_Launch_Rural_Development_Programs
+		}
+		prerequisite = {
+			focus = MOR_Offer_Loans_to_Craftsman
+		}
+		x = 3
+		y = 3
+		completion_reward = {
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Encourage_Town_Development_in_the_Bled_el_Siba
+		completion_reward = {
+		}
+		icon = GFX_Urbanisation
+		cost = 10
+		prerequisite = {
+			focus = MOR_Expand_Railways
+		}
+		prerequisite = {
+			focus = MOR_New_Irrigation_Systems
+		}
+		x = 1
+		y = 4
+		completion_reward = {
+			1470 = {
+				add_extra_state_shared_building_slots = 2
+			}
+			1471 = {
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+	}
+	focus = {
+		id = MOR_Construct_New_Housing_Projects
+		completion_reward = {
+		}
+		icon = GFX_focus_public_housing
+		cost = 10
+		prerequisite = {
+			focus = MOR_Offer_Loans_to_Craftsman
+		}
+		x = 6
+		y = 3
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = housing_crisis_3
+				}
+				remove_ideas = housing_crisis_3
+				add_ideas = housing_crisis_2
+			}
+			else_if = {
+				limit = {
+					has_idea = housing_crisis_2
+				}
+				remove_ideas = housing_crisis_2
+				add_ideas = housing_crisis_1
+			}
+			else_if = {
+				limit = {
+					has_idea = housing_crisis_1
+				}
+				remove_ideas = housing_crisis_1
+			}
+		}
+	}
+	focus = {
+		id = MOR_Casablanca_Suburban_Devlopment
+		completion_reward = {
+		}
+		icon = GFX_Suburban_Development
+		cost = 10
+		prerequisite = {
+			focus = MOR_Construct_New_Housing_Projects
+		}
+		prerequisite = {
+			focus = MOR_Expand_Railways
+		}
+		x = 5
+		y = 4
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = housing_crisis_3
+				}
+				remove_ideas = housing_crisis_3
+				add_ideas = housing_crisis_2
+			}
+			else_if = {
+				limit = {
+					has_idea = housing_crisis_2
+				}
+				remove_ideas = housing_crisis_2
+				add_ideas = housing_crisis_1
+			}
+			else_if = {
+				limit = {
+					has_idea = housing_crisis_1
+				}
+				remove_ideas = housing_crisis_1
+			}
+			1468 = {
+				add_extra_state_shared_building_slots = 1
+				add_to_variable = {
+					nobility_influence = -50
+				}
+				add_to_variable = {
+					french_influence = 75
+				}
+				custom_effect_tooltip = increse_french_TT
+			}
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_Reform_The_Corrupt_Port_Cities
+		completion_reward = {
+		}
+		icon = GFX_integrate_the_black_market
+		cost = 10
+		prerequisite = {
+			focus = MOR_Casablanca_Suburban_Devlopment
+		}
+		prerequisite = {
+			focus = MOR_Encourage_Town_Development_in_the_Bled_el_Siba
+		}
+		x = 3
+		y = 5
+		available = {
+			owns_state = 1056
+		}
+		completion_reward = {
+			remove_ideas = port_corruption
+		}
+	}
+	focus = {
+		id = MOR_Grant_Citizenship_to_Morrocan_Jews
+		completion_reward = {
+		}
+		icon = GFX_Grant_Citizenship_to_Moroccan_Jew
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Aliyah_Issue
+		}
+		x = 9
+		y = 4
+		completion_reward = {
+			add_to_variable = {
+				aliyah_monthly_percentage = -0.001
+			}
+			custom_effect_tooltip = aliyah_decrease_TT
+		}
+	}
+	focus = {
+		id = MOR_Restrict_Passports
+		completion_reward = {
+		}
+		icon = GFX_restrict_passports
+		cost = 10
+		prerequisite = {
+			focus = MOR_Grant_Citizenship_to_Morrocan_Jews
+		}
+		x = 8
+		y = 5
+		completion_reward = {
+			add_to_variable = {
+				aliyah_monthly_percentage = -0.001
+			}
+			custom_effect_tooltip = aliyah_decrease_TT
+			ISR = {
+				add_opinion_modifier = {
+					target = MOR
+					modifier = small_decrease
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Combat_Republican_Influences
+		completion_reward = {
+		}
+		icon = GFX_Combat_Republican_Influence
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Persistence_of_the_Militias
+		}
+		x = 7
+		y = 9
+		completion_reward = {
+			add_popularity = {
+				ideology = monarchism
+				popularity = 0.075
+			}
+			add_political_power = 50
+			capital_scope = {
+				add_to_variable = {
+					republican_influence = -25
+				}
+				custom_effect_tooltip = decrease_republican_TT
+			}
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_Begin_Harrassment_Campaign_Against_The_Liberation_Army
+		completion_reward = {
+		}
+		icon = GFX_being_harassment_campaign_against_the_liberation_army
+		cost = 10
+		prerequisite = {
+			focus = MOR_Combat_Republican_Influences
+		}
+		prerequisite = {
+			focus = MOR_Rally_Against_Continued_Occupation
+		}
+		x = 9
+		y = 10
+		completion_reward = {
+			add_popularity = {
+				ideology = monarchism
+				popularity = 0.025
+			}
+			add_stability = -0.02
+			add_political_power = 50
+			every_owned_state = {
+				add_to_variable = {
+					republican_influence = -25
+				}
+				custom_effect_tooltip = decrease_republican_TT
+			}
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_Assasinate_Abbas_Messaadi
+		completion_reward = {
+		}
+		icon = GFX_assasinate_abbas_messaadi
+		cost = 10
+		prerequisite = {
+			focus = MOR_Begin_Harrassment_Campaign_Against_The_Liberation_Army
+		}
+		mutually_exclusive = {
+			focus = MOR_Halt_the_Campaign
+		}
+		x = 8
+		y = 11
+		completion_reward = {
+			country_event = MOR_Assasin.1
+		}
+	}
+	focus = {
+		id = MOR_Blame_Istqal
+		completion_reward = {
+		}
+		icon = GFX_Blame_Istiqlal
+		cost = 10
+		prerequisite = {
+			focus = MOR_Assasinate_Abbas_Messaadi
+		}
+		mutually_exclusive = {
+			focus = MOR_Pardon_Karim_Hajjaj
+		}
+		x = 9
+		y = 12
+		completion_reward = {
+			add_stability = 0.075
+			add_political_power = 50
+			country_event = MOR_Assasin.2
+		}
+	}
+	focus = {
+		id = MOR_Appoint_Jewish_Officials
+		completion_reward = {
+		}
+		icon = GFX_Appoint_Jewish_Officer
+		cost = 10
+		prerequisite = {
+			focus = MOR_Grant_Citizenship_to_Morrocan_Jews
+		}
+		x = 10
+		y = 5
+		completion_reward = {
+			add_to_variable = {
+				aliyah_monthly_percentage = -0.001
+			}
+			MOR = {
+				add_opinion_modifier = {
+					target = ISR
+					modifier = small_increase
+				}
+			}
+			ISR = {
+				add_opinion_modifier = {
+					target = MOR
+					modifier = small_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Seek_Negotiations_with_Israel
+		completion_reward = {
+		}
+		icon = GFX_Seek_negotiation_with_israel
+		cost = 10
+		prerequisite = {
+			focus = MOR_Restrict_Passports
+		}
+		prerequisite = {
+			focus = MOR_Appoint_Jewish_Officials
+		}
+		mutually_exclusive = {
+			focus = MOR_Forbid_Aliyah
+		}
+		x = 7
+		y = 6
+		completion_reward = {
+			ISR = {
+				country_event = MOR_ISR.1
+			}
+			MOR = {
+				add_opinion_modifier = {
+					target = ISR
+					modifier = large_increase
+				}
+			}
+			ISR = {
+				add_opinion_modifier = {
+					target = MOR
+					modifier = large_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Halt_the_Campaign
+		completion_reward = {
+		}
+		icon = GFX_MOR_Halt_The_Campaign
+		cost = 10
+		prerequisite = {
+			focus = MOR_Begin_Harrassment_Campaign_Against_The_Liberation_Army
+		}
+		mutually_exclusive = {
+			focus = MOR_Assasinate_Abbas_Messaadi
+		}
+		x = 10
+		y = 11
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_manpower = 5000
+			every_owned_state = {
+				add_to_variable = {
+					republican_influence = 50
+				}
+			}
+			custom_effect_tooltip = increse_republican_TT
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_Forbid_Aliyah
+		completion_reward = {
+		}
+		icon = GFX_Forbid_Aliyah
+		cost = 10
+		prerequisite = {
+			focus = MOR_Appoint_Jewish_Officials
+		}
+		prerequisite = {
+			focus = MOR_Restrict_Passports
+		}
+		mutually_exclusive = {
+			focus = MOR_Seek_Negotiations_with_Israel
+		}
+		x = 11
+		y = 6
+		completion_reward = {
+			add_to_variable = {
+				aliyah_monthly_percentage = -0.002
+			}
+			ISR = {
+				add_opinion_modifier = {
+					target = MOR
+					modifier = large_decrease
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Begin_Integrating_Republican_Officers
+		completion_reward = {
+		}
+		icon = GFX_Being_integrating_Republican_Officer
+		cost = 10
+		prerequisite = {
+			focus = MOR_Halt_the_Campaign
+		}
+		x = 11
+		y = 12
+		completion_reward = {
+			set_temp_variable = { percent_change = 15 }
+			change_domestic_influence_percentage = yes
+			army_experience = 25
+			add_manpower = 50000
+			create_corps_commander = {
+				name = "Abbas Messaadi"
+				picture = "Abbas_Messaadi.dds"
+				traits = {
+					trickster
+				}
+				skill = 4
+				attack_skill = 4
+				defense_skill = 2
+				planning_skill = 4
+				logistics_skill = 3
+			}
+		}
+	}
+	focus = {
+		id = MOR_Refuse_to_Ratify_French_Laws
+		completion_reward = {
+		}
+		icon = GFX_RiskyDeal
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Reign_of_Muhhamed_V
+		}
+		x = 13
+		y = 1
+		completion_reward = {
+			set_temp_variable = { percent_change = 15 }
+			change_domestic_influence_percentage = yes
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = MOR_The_Laghzaoui_Incident
+		completion_reward = {
+		}
+		icon = GFX_Room_Meeting
+		cost = 10
+		prerequisite = {
+			focus = MOR_Refuse_to_Ratify_French_Laws
+		}
+		x = 13
+		y = 2
+		completion_reward = {
+			country_event = MOR_POL.1
+		}
+	}
+	focus = {
+		id = MOR_Meet_with_Dismissed_Nationalists
+		completion_reward = {
+		}
+		icon = GFX_shadow_government
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Laghzaoui_Incident
+		}
+		mutually_exclusive = {
+			focus = MOR_Respect_Tradition
+		}
+		x = 11
+		y = 3
+		completion_reward = {
+			461 = {
+				add_to_variable = {
+					istqal_influence = 50
+				}
+				custom_effect_tooltip = incease_istqal_TT
+			}
+			1468 = {
+				add_to_variable = {
+					istqal_influence = 50
+				}
+				custom_effect_tooltip = incease_istqal_TT
+			}
+			462 = {
+				add_to_variable = {
+					istqal_influence = 50
+				}
+				custom_effect_tooltip = incease_istqal_TT
+			}
+			1471 = {
+				add_to_variable = {
+					istqal_influence = 50
+				}
+				custom_effect_tooltip = incease_istqal_TT
+			}
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_Respect_Tradition
+		completion_reward = {
+		}
+		icon = GFX_Bribery_Alt
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Laghzaoui_Incident
+		}
+		mutually_exclusive = {
+			focus = MOR_Meet_with_Dismissed_Nationalists
+		}
+		x = 15
+		y = 3
+		completion_reward = {
+			add_stability = 0.1
+		}
+	}
+	focus = {
+		id = MOR_Seek_Foriegn_Supporters
+		completion_reward = {
+		}
+		icon = GFX_usa_continued_diplomatic_meetings_suez
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Reign_of_Muhhamed_V
+		}
+		x = 16
+		y = 1
+		completion_reward = {
+			add_political_power = 75
+		}
+	}
+	focus = {
+		id = MOR_Empower_the_Fassis_in_the_Makhzen
+		completion_reward = {
+		}
+		icon = GFX_BuyLoyalty
+		cost = 10
+		prerequisite = {
+			focus = MOR_Seek_Foriegn_Supporters
+		}
+		x = 16
+		y = 2
+		completion_reward = {
+			1469 = {
+				add_extra_state_shared_building_slots = 2
+				add_to_variable = {
+					istqal_influence = 75
+				}
+				MOR_percentage_update_calc = yes
+				add_to_variable = {
+					nobility_influence = -50
+				}
+				custom_effect_tooltip = incease_istqal_TT
+			}
+		}
+	}
+	focus = {
+		id = MOR_Establish_Communication_with_the_Istqal
+		completion_reward = {
+		}
+		icon = GFX_microphone
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Reign_of_Muhhamed_V
+		}
+		x = 19
+		y = 1
+		completion_reward = {
+			461 = {
+				add_to_variable = {
+					istqal_influence = 50
+				}
+				custom_effect_tooltip = incease_istqal_TT
+			}
+			1468 = {
+				add_to_variable = {
+					istqal_influence = 50
+				}
+				custom_effect_tooltip = incease_istqal_TT
+			}
+			462 = {
+				add_to_variable = {
+					istqal_influence = 50
+				}
+				custom_effect_tooltip = incease_istqal_TT
+			}
+			1471 = {
+				add_to_variable = {
+					istqal_influence = 50
+				}
+				custom_effect_tooltip = incease_istqal_TT
+			}
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_The_Mesfioua_Incident
+		completion_reward = {
+		}
+		icon = GFX_Generic_Radio_Broadcast
+		cost = 10
+		prerequisite = {
+			focus = MOR_Establish_Communication_with_the_Istqal
+		}
+		x = 19
+		y = 2
+		completion_reward = {
+			country_event = MOR_POL.2
+		}
+	}
+	focus = {
+		id = MOR_Bypass_Thami
+		completion_reward = {
+		}
+		icon = GFX_Abolish_tribal_function
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Mesfioua_Incident
+		}
+		mutually_exclusive = {
+			focus = MOR_Recall_Thami_From_Paris
+		}
+		x = 17
+		y = 3
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = MOR_Recall_Thami_From_Paris
+		completion_reward = {
+		}
+		icon = GFX_Generic_Ripping_Papers
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Mesfioua_Incident
+		}
+		mutually_exclusive = {
+			focus = MOR_Bypass_Thami
+		}
+		x = 21
+		y = 3
+		completion_reward = {
+			custom_effect_tooltip = nobility_anger_TT
+			add_stability = -0.05
+			add_political_power = -50
+			462 = {
+				add_to_variable = {
+					istqal_influence = 50
+				}
+				add_to_variable = {
+					nobility_influence = -50
+				}
+				custom_effect_tooltip = incease_istqal_TT
+			}
+			MOR_percentage_update_calc = yes
+			
+		}
+	}
+	focus = {
+		id = MOR_The_1950_Feast_of_Mouloud
+		completion_reward = {
+		}
+		icon = GFX_Generic_Arab_Industry
+		cost = 10
+		prerequisite = {
+			focus = MOR_Respect_Tradition
+			focus = MOR_Meet_with_Dismissed_Nationalists
+		}
+		prerequisite = {
+			focus = MOR_Bypass_Thami
+			focus = MOR_Recall_Thami_From_Paris
+		}
+		x = 16
+		y = 4
+		completion_reward = {
+			country_event = MOR_POL.5
+		}
+	}
+	focus = {
+		id = MOR_Begin_Infilitration_Efforts
+		completion_reward = {
+		}
+		icon = GFX_Subterfuge
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Situation_in_Sidi_Ifni
+		}
+		x = 27
+		y = 1
+		completion_reward = {
+			custom_effect_tooltip = activate_ifni_war_decisions
+			set_country_flag = ifni_war_decisions_enable
+		}
+	}
+	focus = {
+		id = MOR_Launch_the_Assault_on_Ifni
+		completion_reward = {
+		}
+		icon = GFX_SwingtheSword
+		cost = 10
+		prerequisite = {
+			focus = MOR_Begin_Infilitration_Efforts
+		}
+		x = 25
+		y = 2
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = ifni_support_majority
+				OR = {
+					1003 = {
+						check_variable = {
+							1003.republican_influence > 1003.spanish_influence
+						}
+						check_variable = {
+							1003.republican_influence > 1003.istqal_influence
+						}
+						check_variable = {
+							1003.republican_influence > 1003.nobility_influence
+						}
+						check_variable = {
+							1003.republican_influence > 1003.french_influence
+						}
+					}
+					1003 = {
+						check_variable = {
+							1003.istqal_influence > 1003.spanish_influence
+						}
+						check_variable = {
+							1003.istqal_influence > 1003.french_influence
+						}
+						check_variable = {
+							1003.istqal_influence > 1003.nobility_influence
+						}
+						check_variable = {
+							1003.istqal_influence > 1003.republican_influence
+						}
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = tarafaya_support_majority
+				OR = {
+					1002 = {
+						check_variable = {
+							republican_influence > spanish_influence
+						}
+						check_variable = {
+							republican_influence > istqal_influence
+						}
+						check_variable = {
+							republican_influence > nobility_influence
+						}
+						check_variable = {
+							republican_influence > french_influence
+						}
+					}
+					1002 = {
+						check_variable = {
+							istqal_influence > spanish_influence
+						}
+						check_variable = {
+							istqal_influence > french_influence
+						}
+						check_variable = {
+							istqal_influence > nobility_influence
+						}
+						check_variable = {
+							istqal_influence > republican_influence
+						}
+					}
+				}
+			}
+		}
+		completion_reward = {
+			news_event = Ifni_War.1
+			hidden_effect = {
+				create_faction_from_template = { template = faction_template_generic name = "Morrocan Liberation Front" }
+				every_owned_state = {
+					limit = {
+						is_core_of = MOR
+					}
+					add_core_of = RIF
+				}
+				SPR = {
+					every_owned_state = {
+						limit = {
+							is_core_of = MOR
+						}
+						add_core_of = RIF
+					}
+				}
+				RIF = {
+					set_cosmetic_tag = RIF_MLA
+					transfer_state = 1002
+					load_oob = RIF_MLA_1950s
+				}
+				activate_mission = The_Ifni_War
+				add_to_faction = RIF
+				declare_war_on = {
+					target = SPR
+					type = annex_everything
+				}
+				RIF = {
+					declare_war_on = {
+						target = SPR
+						type = annex_everything
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Rally_the_Sahrawi
+		completion_reward = {
+		}
+		icon = GFX_BurningGlobe
+		cost = 10
+		prerequisite = {
+			focus = MOR_Begin_Infilitration_Efforts
+		}
+		x = 29
+		y = 2
+		available = {
+			has_completed_focus = MOR_Launch_the_Assault_on_Ifni
+		}
+		completion_reward = {
+			RIF = {
+				load_oob = Sahrawi_Militias
+			}
+		}
+	}
+	focus = {
+		id = MOR_Establish_the_Saharan_Liberation_Army
+		completion_reward = {
+		}
+		icon = GFX_usa_50_cia_back_indonesian_revolutionaries
+		cost = 10
+		prerequisite = {
+			focus = MOR_Rally_the_Sahrawi
+		}
+		prerequisite = {
+			focus = MOR_Launch_the_Assault_on_Ifni
+		}
+		x = 27
+		y = 3
+		completion_reward = {
+			RIF = {
+				load_oob = Sahrawi_Militias_2
+				set_cosmetic_tag = SLA_RIF
+			}
+			news_event = SLA.1
+		}
+	}
+	focus = {
+		id = MOR_The_Mauritanian_Incursion
+		completion_reward = {
+		}
+		icon = GFX_HeavyStrike
+		cost = 10
+		prerequisite = {
+			focus = MOR_Establish_the_Saharan_Liberation_Army
+		}
+		x = 27
+		y = 4
+		completion_reward = {
+			RIF = {
+				transfer_state = 1001
+			}
+			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 1001
+					num_provinces = 6
+					on_win = ifni_war.20
+					on_lose = ifni_war.21
+				}
+				defender = {
+					state = 965
+					num_provinces = 6
+					on_win = ifni_war.21					# WIP
+					on_lose = ifni_war.20
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Leave_them_to_their_Fate
+		completion_reward = {
+		}
+		icon = GFX_Death_Calls
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Mauritanian_Incursion
+		}
+		x = 26
+		y = 5
+		completion_reward = {
+			dismantle_faction = yes
+			FRA = {
+				declare_war_on = {
+					target = RIF
+					type = annex_everything
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Integrate_the_Morrocan_Liberation_Army
+		completion_reward = {
+		}
+		icon = GFX_Generic_Militarization
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Mauritanian_Incursion
+		}
+		x = 28
+		y = 5
+		completion_reward = {
+			news_event = IFNI_WAR_FRANCE.1
+			annex_country = {
+				target = RIF
+				transfer_troops = yes
+			}
+			hidden_effect = {
+				USA = {
+					set_country_flag = IFNI_INTERVENTION
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_The_Treaty_of_Treaty_of_Angra_de_Cintra
+		completion_reward = {
+		}
+		icon = GFX_usa_50_sign_the_tripart_agreement
+		cost = 10
+		prerequisite = {
+			focus = MOR_Leave_them_to_their_Fate
+			focus = MOR_Integrate_the_Morrocan_Liberation_Army
+		}
+		mutually_exclusive = {
+			focus = MOR_The_Treaty_of_Madrid
+			focus = MOR_The_Treaty_of_Casablanca
+		}
+		x = 27
+		y = 6
+		available = {
+			always = no
+		}
+	}
+	focus = {
+		id = MOR_The_Treaty_of_Madrid
+		completion_reward = {
+		}
+		icon = GFX_Blue_Legion_Spain
+		cost = 10
+		prerequisite = {
+			focus = MOR_Leave_them_to_their_Fate
+			focus = MOR_Integrate_the_Morrocan_Liberation_Army
+		}
+		mutually_exclusive = {
+			focus = MOR_The_Treaty_of_Treaty_of_Angra_de_Cintra
+		}
+		x = 24
+		y = 6
+		available = {
+			always = no
+		}
+	}
+	focus = {
+		id = MOR_The_Treaty_of_Casablanca
+		completion_reward = {
+		}
+		icon = GFX_Abolish_Legislative_Council
+		cost = 10
+		prerequisite = {
+			focus = MOR_Integrate_the_Morrocan_Liberation_Army
+			focus = MOR_Leave_them_to_their_Fate
+		}
+		mutually_exclusive = {
+			focus = MOR_The_Treaty_of_Treaty_of_Angra_de_Cintra
+		}
+		x = 30
+		y = 6
+		available = {
+			always = no
+		}
+	}
+	focus = {
+		id = MOR_The_Royal_Morrocan_Army
+		completion_reward = {
+		}
+		icon = GFX_The_Royal_Moroccan_Army
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Royal_Moroccan_Armed_Forces
+		}
+		x = 35
+		y = 1
+		completion_reward = {
+			army_experience = 50
+		}
+	}
+	focus = {
+		id = MOR_French_Artillery
+		completion_reward = {
+		}
+		icon = GFX_French_Artillery_Caches
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Royal_Morrocan_Army
+		}
+		x = 33
+		y = 2
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = artillery_equipment_1
+				amount = 250
+				producer = FRA
+			}
+		}
+	}
+	focus = {
+		id = MOR_Utilize_French_Weapon_Caches
+		completion_reward = {
+		}
+		icon = GFX_utilizefrenchweaponcache
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Royal_Morrocan_Army
+		}
+		x = 37
+		y = 2
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 20000
+				producer = FRA
+			}
+		}
+	}
+	focus = {
+		id = MOR_Contract_French_NCOs
+		completion_reward = {
+		}
+		icon = GFX_Contract_NCOs
+		cost = 10
+		prerequisite = {
+			focus = MOR_Utilize_French_Weapon_Caches
+		}
+		prerequisite = {
+			focus = MOR_French_Artillery
+		}
+		x = 35
+		y = 3
+		completion_reward = {
+			army_experience = 10
+			add_manpower = 5000
+			set_temp_variable = { percent_change = 10 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = MOR.id }
+			change_influence_percentage = yes		
+		}
+	}
+	focus = {
+		id = MOR_Acquire_M48_Patton
+		completion_reward = {
+		}
+		icon = GFX_acquirem48patton
+		cost = 10
+		prerequisite = {
+			focus = MOR_Contract_French_NCOs
+		}
+		x = 35
+		y = 4
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = mbt_equipment_4
+				amount = 250
+				producer = CAP
+			}
+		}
+	}
+	focus = {
+		id = MOR_The_Aviation_Royale_Cherifienne
+		completion_reward = {
+		}
+		icon = GFX_Moroccan_Air_Force
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Royal_Moroccan_Armed_Forces
+		}
+		x = 41
+		y = 1
+		completion_reward = {
+			air_experience = 50
+		}
+	}
+	focus = {
+		id = MOR_Integrate_French_Airbases
+		completion_reward = {
+		}
+		icon = GFX_integrateFrenchAirBase
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Aviation_Royale_Cherifienne
+		}
+		x = 39
+		y = 2
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = air_base
+						size > 1
+					}
+				}
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Acquire_Old_Foriegn_Surplus
+		completion_reward = {
+		}
+		icon = GFX_acquireoldforeignsurplus
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Aviation_Royale_Cherifienne
+		}
+		x = 43
+		y = 2
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment_3
+				amount = 350
+				producer = FRA
+			}
+		}
+	}
+	focus = {
+		id = MOR_Anti_Aircraft_Initiative
+		completion_reward = {
+		}
+		icon = GFX_Anti-Aircraftinitiative
+		cost = 10
+		prerequisite = {
+			focus = MOR_Acquire_Old_Foriegn_Surplus
+		}
+		prerequisite = {
+			focus = MOR_Integrate_French_Airbases
+		}
+		x = 41
+		y = 3
+		completion_reward = {
+			capital_scope = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			1468 = {
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Invest_in_Transporation_Aircraft
+		completion_reward = {
+		}
+		icon = GFX_investintransportationaircraft
+		cost = 10
+		prerequisite = {
+			focus = MOR_Anti_Aircraft_Initiative
+		}
+		x = 41
+		y = 4
+		completion_reward = {
+			if = {
+				limit = { FRA = { has_tech = transport4 } }
+				add_equipment_to_stockpile = {
+					type = transport_plane_equipment_4
+					amount = 200
+					producer = FRA
+				}
+			}
+			else = {
+				add_equipment_to_stockpile = {
+					type = transport_plane_equipment_3
+					amount = 200
+					producer = FRA
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_The_First_Throne_Crisis
+		completion_reward = {
+		}
+		icon = GFX_TheDebate
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_1950_Feast_of_Mouloud
+		}
+		x = 16
+		y = 5
+		completion_reward = {
+			country_event = Throne_Crisis.1
+		}
+	}
+	focus = {
+		id = MOR_Expel_Thami_El_Glaoui
+		completion_reward = {
+		}
+		icon = GFX_CrushResistance
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_First_Throne_Crisis
+		}
+		x = 15
+		y = 6
+		completion_reward = {
+			country_event = Throne_Crisis.2
+		}
+	}
+	focus = {
+		id = MOR_Escalate_Tensions_with_the_Nobility
+		completion_reward = {
+		}
+		icon = GFX_focus_internal_dissent
+		cost = 10
+		prerequisite = {
+			focus = MOR_Expel_Thami_El_Glaoui
+		}
+		x = 13
+		y = 7
+		completion_reward = {
+			add_popularity = {
+				ideology = monarchism
+				popularity = 0.05
+			}
+			add_political_power = 50
+			add_stability = -0.05
+		}
+	}
+	focus = {
+		id = MOR_Promote_Limited_Social_Modernization
+		completion_reward = {
+		}
+		icon = GFX_Social_Modernization
+		cost = 10
+		prerequisite = {
+			focus = MOR_Continue_Anti_French_Rhetoric
+		}
+		prerequisite = {
+			focus = MOR_Expel_Thami_El_Glaoui
+		}
+		x = 16
+		y = 7
+		completion_reward = {
+			hidden_effect = {
+				remove_ideas = policy_women_temp_0
+				remove_ideas = policy_women_temp_2
+				remove_ideas = policy_women_temp_3
+				remove_ideas = policy_women_temp_4
+				remove_ideas = policy_women_temp_4a
+			}
+			add_ideas = policy_women_temp_1
+		}
+	}
+	focus = {
+		id = MOR_Continue_Anti_French_Rhetoric
+		completion_reward = {
+		}
+		icon = GFX_Generic_Radio_Broadcast
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_First_Throne_Crisis
+		}
+		x = 17
+		y = 6
+		completion_reward = {
+			every_owned_state = {
+				add_to_variable = {
+					istqal_influence = 30
+				}
+				add_to_variable = {
+					republican_influence = 20
+				}
+			}
+			custom_effect_tooltip = incease_istqal_TT
+			custom_effect_tooltip = increse_republican_TT
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_The_Aix_Les_Bains_Conference
+		completion_reward = {
+		}
+		icon = GFX_goal_FRA_deal
+		cost = 10
+		prerequisite = {
+			focus = MOR_Outreach_to_the_Exiled_King
+		}
+		x = 16
+		y = 17
+		completion_reward = {
+			#Add event later
+			add_political_power = 50
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = MOR_Establishing_The_Regency_Council
+		completion_reward = {
+		}
+		icon = GFX_usa_50_increase_diplo_coordination
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Aix_Les_Bains_Conference
+		}
+		mutually_exclusive = {
+			focus = MOR_Breakdown_in_Negotiations
+		}
+		x = 20
+		y = 18
+		completion_reward = {
+			add_political_power = 50
+			country_event = MOR_POL.11
+		}
+	}
+	focus = {
+		id = MOR_Breakdown_in_Negotiations
+		completion_reward = {
+		}
+		icon = GFX_usa_50_denounce_tripart_aggression
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Aix_Les_Bains_Conference
+		}
+		mutually_exclusive = {
+			focus = MOR_Establishing_The_Regency_Council
+		}
+		available = { is_subject_of = FRA }
+		cancel_if_invalid  = yes
+		x = 12
+		y = 18
+		completion_reward = {
+			add_stability = -0.05
+			hidden_effect = {
+				#FRA = { set_autonomy = { target = MOR autonomy_state = autonomy_free } }
+				news_event = FRANCAFRIQUE_MOR.10
+				every_owned_state = {
+					limit = {
+						OR = {
+							AND = {
+								check_variable = {
+									istqal_influence > spanish_influence
+								}
+								check_variable = {
+									istqal_influence > french_influence
+								}
+								check_variable = {
+									istqal_influence > nobility_influence
+								}
+								check_variable = {
+									istqal_influence > republican_influence
+								}
+							}
+							AND = {
+								check_variable = {
+									republican_influence > spanish_influence
+								}
+								check_variable = {
+									republican_influence > french_influence
+								}
+								check_variable = {
+									republican_influence > nobility_influence
+								}
+								check_variable = {
+									republican_influence > istqal_influence
+								}
+							}
+						}
+					}
+					transfer_state_to = RIF
+				}
+				every_state = {
+					limit = { is_core_of = MOR }
+					add_core_of = RIF
+				}
+				RIF = {
+					set_capital = { state = 461 }
+					set_cosmetic_tag = MOR_REP
+					create_country_leader = {
+						name = "Mohammed V"
+						picture = "gfx/leaders/MOR/Mohammed_V_50s.dds"
+						ideology = monarchist
+					}
+					set_politics = {
+						ruling_party = monarchism
+						elections_allowed = no
+						name = "Hizb Al-Istiqlal"
+						long_name = "Hizb Al-Istiqlal"
+					}
+					set_popularities = {
+						monarchism = 60
+						nationalist = 40
+					}
+					on_independence_run = yes
+				}
+				transfer_units_fraction = {
+					target = RIF
+					size = 1
+				}
+				declare_war_on = {
+					target = RIF
+					type = annex_everything
+				}
+				add_civil_war_target = RIF
+				set_global_flag = morocco_civil_war
+			}
+		}
+	}
+	focus = {
+		id = MOR_Increase_Collaboration_with_France
+		completion_reward = {
+		}
+		icon = GFX_FRA_Cooperation
+		cost = 10
+		prerequisite = {
+			focus = MOR_Breakdown_in_Negotiations
+		}
+		available = { is_subject_of = FRA }
+		cancel_if_invalid  = yes
+		x = 11
+		y = 19
+		completion_reward = {
+			set_temp_variable = { percent_change = 10 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = MOR.id }
+			change_influence_percentage = yes		
+			1468 = {
+				add_to_variable = {
+					french_influence = 75
+				}
+				custom_effect_tooltip = increse_french_TT
+			}
+			462 = {
+				add_to_variable = {
+					french_influence = 75
+				}
+				custom_effect_tooltip = increse_french_TT
+			}
+			461 = {
+				add_to_variable = {
+					french_influence = 75
+				}
+				custom_effect_tooltip = increse_french_TT
+			}
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_Request_French_Military_Intervention
+		completion_reward = {
+		}
+		icon = GFX_usa_50_military_aid_to_france
+		cost = 10
+		prerequisite = {
+			focus = MOR_Breakdown_in_Negotiations
+		}
+		available = { is_subject_of = FRA }
+		cancel_if_invalid  = yes
+		x = 13
+		y = 19
+		completion_reward = {
+			FRA = {
+				country_event = FRANCAFRIQUE_MOR.1				#Starts the Civil War
+				add_to_war = {
+					targeted_alliance = MOR
+					enemy = RIF
+				}
+				add_ideas = saf_dont_call_ally
+			}
+		}
+	}
+	focus = {
+		id = MOR_French_Technical_Aid
+		completion_reward = {
+		}
+		icon = GFX_usa_50_invite_nations_to_technical_assistance
+		cost = 10
+		prerequisite = {
+			focus = MOR_Request_French_Military_Intervention
+		}
+		prerequisite = {
+			focus = MOR_Increase_Collaboration_with_France
+		}
+		available = { is_subject_of = FRA }
+		cancel_if_invalid  = yes
+		x = 12
+		y = 20
+		completion_reward = {
+			add_research_slot = 1
+			add_timed_idea = {
+				idea = french_technical_advisors
+				days = 2250
+			}
+			set_variable = { THIS.idea_len_@token:french_technical_advisors = 2250 }
+			set_variable = { THIS.idea_date_@token:french_technical_advisors = global.num_days }
+		}
+	}
+	focus = {
+		id = MOR_Empower_the_Nobility
+		completion_reward = {
+		}
+		icon = GFX_Aristocracy
+		cost = 10
+		prerequisite = {
+			focus = MOR_Request_French_Military_Intervention
+		}
+		available = { is_subject_of = FRA }
+		cancel_if_invalid  = yes
+		x = 15
+		y = 20
+		completion_reward = {
+			remove_ideas = entrenched_aristocracy
+			add_ideas = entrenched_aristocracy2
+		}
+	}
+	focus = {
+		id = MOR_Promote_European_Immigration
+		completion_reward = {
+		}
+		icon = GFX_Encourage_White_Immigration_Kenya
+		cost = 10
+		prerequisite = {
+			focus = MOR_Increase_Collaboration_with_France
+		}
+		available = { is_subject_of = FRA }
+		cancel_if_invalid  = yes
+		x = 9
+		y = 20
+		completion_reward = {
+			add_to_variable = {
+				French_Population = 25000
+			}
+			capital_scope = {
+				add_to_variable = {
+					french_influence = 50
+				}
+				custom_effect_tooltip = increse_french_TT
+				add_extra_state_shared_building_slots = 1
+				add_manpower = 10000
+				add_to_variable = {
+					ReligionChristianityCatholic = 10
+				}
+			}
+			358 = {
+				add_to_variable = {
+					french_influence = 75
+				}
+				custom_effect_tooltip = increse_french_TT
+				add_extra_state_shared_building_slots = 1
+				add_manpower = 15000
+				add_to_variable = {
+					ReligionChristianityCatholic = 15
+				}
+			}
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_Emphasize_Islamic_Values
+		completion_reward = {
+		}
+		icon = GFX_Sunni
+		cost = 10
+		prerequisite = {
+			focus = MOR_French_Technical_Aid
+		}
+		prerequisite = {
+			focus = MOR_Promote_European_Immigration
+		}
+		available = { is_subject_of = FRA }
+		cancel_if_invalid  = yes
+		x = 11
+		y = 21
+		completion_reward = {
+			add_timed_idea = {
+				idea = traditional_culture
+				days = 1250
+			}
+			set_variable = { THIS.idea_len_@token:traditional_culture = 1250 }
+			set_variable = { THIS.idea_date_@token:traditional_culture = global.num_days }
+		}
+	}
+	focus = {
+		id = MOR_Invest_in_Marrakesh
+		completion_reward = {
+		}
+		icon = GFX_Cash_for_Forts
+		cost = 10
+		prerequisite = {
+			focus = MOR_Empower_the_Nobility
+		}
+		prerequisite = {
+			focus = MOR_French_Technical_Aid
+		}
+		available = { is_subject_of = FRA }
+		cancel_if_invalid  = yes
+		x = 13
+		y = 21
+		completion_reward = {
+			462 = {
+				set_state_category = pop1dev2
+			}
+		}
+	}
+	focus = {
+		id = MOR_The_End_of_the_Istqal_Menance
+		completion_reward = {
+		}
+		icon = GFX_focus_rioting
+		cost = 10
+		prerequisite = {
+			focus = MOR_Invest_in_Marrakesh
+		}
+		prerequisite = {
+			focus = MOR_Emphasize_Islamic_Values
+		}
+		x = 12
+		y = 22
+		available = {
+			has_civil_war = no
+		}
+		completion_reward = {
+			every_owned_state = {
+				add_to_variable = {
+					istqal_influence = -50
+				}
+				add_to_variable = {
+					french_influence = 75
+				}
+				custom_effect_tooltip = increse_french_TT
+				custom_effect_tooltip = decrease_istqal_TT
+			}
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_Assasinate_Muhhammed_V
+		completion_reward = {
+		}
+		icon = GFX_Allow_targeted_assassinations
+		cost = 10
+		prerequisite = {
+			focus = MOR_Autonomy_from_France
+		}
+		x = 10
+		y = 24
+		available = {
+		}
+		completion_reward = {
+			news_event = MOR_CIVIL_WAR.10
+			every_owned_state = {
+				add_to_variable = {
+					istqal_influence = -50
+				}
+				add_to_variable = {
+					republican_influence = 150
+				}
+				custom_effect_tooltip = increse_republican_TT
+				custom_effect_tooltip = decrease_istqal_TT
+			}
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_Negotiate_with_the_Spanish
+		completion_reward = {
+		}
+		icon = GFX_Falange_Emblem
+		cost = 10
+		prerequisite = {
+			focus = MOR_Autonomy_from_France
+		}
+		x = 14
+		y = 24
+		completion_reward = {
+			SPR = {
+				country_event = SPR_MOR_ALT.1
+			}
+		}
+	}
+	focus = {
+		id = MOR_Autonomy_from_France
+		completion_reward = {
+		}
+		icon = GFX_usa_50_a_ceasefire
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_End_of_the_Istqal_Menance
+		}
+		x = 12
+		y = 23
+		completion_reward = {
+			FRA = {
+				set_autonomy = {
+					target = MOR
+					autonomy_state = autonomy_associated_state
+				}
+			}
+			hidden_effect = {
+				set_popularities = {
+					monarchism = 60
+					neutrality = 20
+					nationalist = 20
+				}
+				set_politics = { ruling_party = monarchism }
+				leave_faction = yes
+				every_state = {
+					limit = { is_claimed_by = MOR }
+					remove_claim_by = MOR
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Reinforce_French_Economic_Ties
+		completion_reward = {
+		}
+		icon = GFX_usa_50_for_the_almighty_dollar
+		cost = 10
+		prerequisite = {
+			focus = MOR_Negotiate_with_the_Spanish
+		}
+		prerequisite = {
+			focus = MOR_Assasinate_Muhhammed_V
+		}
+		x = 12
+		y = 25
+		completion_reward = {
+			1468 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = office_park
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Reject_Independent_Currency_Proposals
+		completion_reward = {
+		}
+		icon = GFX_RootoutFunding
+		cost = 10
+		prerequisite = {
+			focus = MOR_Assasinate_Muhhammed_V
+		}
+		x = 9
+		y = 25
+		completion_reward = {
+			set_temp_variable = { percent_change = 10 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = MOR.id }
+			change_influence_percentage = yes		
+			if = {
+				limit = {
+					has_idea = fiscal_fragmentation_2
+				}
+				remove_ideas = fiscal_fragmentation_2
+				add_ideas = fiscal_fragmentation_1
+			}
+			else_if = {
+				limit = {
+					has_idea = fiscal_fragmentation_1
+				}
+				remove_ideas = fiscal_fragmentation_1
+			}
+		}
+	}
+	focus = {
+		id = MOR_The_Republican_Menace
+		completion_reward = {
+		}
+		icon = GFX_Desert_Graveyard
+		cost = 10
+		prerequisite = {
+			focus = MOR_French_Military_Advisors
+		}
+		prerequisite = {
+			focus = MOR_Reinforce_French_Economic_Ties
+		}
+		prerequisite = {
+			focus = MOR_Reject_Independent_Currency_Proposals
+		}
+		x = 12
+		y = 26
+		completion_reward = {
+			country_event = MOR_CIVIL_WAR.1
+		}
+	}
+	focus = {
+		id = MOR_Our_Place_In_The_Federation
+		completion_reward = {
+		}
+		icon = GFX_usa_50_back_french
+		cost = 1
+		prerequisite = {
+			focus = MOR_The_Republican_Menace
+		}
+		mutually_exclusive = {
+			focus = MOR_Morocco_Liberated
+		}
+		x = 11
+		y = 27
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = mor_revolution_kingdom_tt
+				has_civil_war = no
+				is_subject_of = FRA
+			}
+		}
+		completion_reward = {
+			set_country_leader_name = {
+				ideology = monarchism
+				name = "Mohammed VI"
+			}
+		}
+	}
+	focus = {
+		id = MOR_Morocco_Liberated
+		completion_reward = {
+		}
+		icon = GFX_moroccan_spirit
+		cost = 1
+		prerequisite = {
+			focus = MOR_The_Republican_Menace
+		}
+		mutually_exclusive = {
+			focus = MOR_Our_Place_In_The_Federation
+		}
+		x = 13
+		y = 27
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = mor_revolution_committee_tt
+				has_civil_war = no
+				NOT = { is_subject_of = FRA }
+			}
+		}
+		completion_reward = {
+			set_popularities = {
+				maoism = 0
+				communism = 20
+				trotskyism = 0
+				socialist = 0
+				Social_Democratic = 30
+				
+				democratic = 0
+				Social_Liberalism = 0
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 0
+				Christian_Democratic = 0
+				conservative = 0
+				
+				neutrality = 0
+				nationalist = 40
+				monarchism = 10
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+		}
+	}
+	focus = {
+		id = MOR_French_Military_Advisors
+		completion_reward = {
+		}
+		icon = GFX_CHI_Send_Advisors_to_Vietnam
+		cost = 10
+		prerequisite = {
+			focus = MOR_Negotiate_with_the_Spanish
+		}
+		x = 15
+		y = 25
+		completion_reward = {
+			add_ideas = fra_french_advisors
+			add_tech_bonus = {
+				name = land_doctrine_bonus
+				bonus = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+	focus = {
+		id = MOR_Legislative_Concessions
+		completion_reward = {
+		}
+		icon = GFX_Bicameral_Legislature
+		cost = 10
+		prerequisite = {
+			focus = MOR_Continue_Anti_French_Rhetoric
+		}
+		x = 19
+		y = 7
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.03
+			set_temp_variable = { percent_change = 10 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = MOR.id }
+			change_influence_percentage = yes
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = monarchism
+				popularity = -0.03
+			}
+		}
+	}
+	focus = {
+		id = MOR_Conspiracies_in_the_Shadows
+		completion_reward = {
+		}
+		icon = GFX_Operate_in_the_shadows
+		cost = 10
+		prerequisite = {
+			focus = MOR_Legislative_Concessions
+		}
+		prerequisite = {
+			focus = MOR_Promote_Limited_Social_Modernization
+		}
+		prerequisite = {
+			focus = MOR_Escalate_Tensions_with_the_Nobility
+		}
+		x = 16
+		y = 8
+		completion_reward = {
+			country_event = MOR_CONSPIRACY.1
+		}
+	}
+	focus = {
+		id = MOR_Denounce_the_Istqal_Party
+		completion_reward = {
+		}
+		icon = GFX_Liquidate_the_Greek_Mafia
+		cost = 10
+		prerequisite = {
+			focus = MOR_Conspiracies_in_the_Shadows
+		}
+		x = 15
+		y = 9
+		completion_reward = {
+			add_stability = -0.03
+			add_political_power = 100
+			every_owned_state = {
+				add_to_variable = {
+					nobility_influence = 50
+				}
+				add_to_variable = {
+					istqal_influence = -25
+				}
+				add_to_variable = {
+					republican_influence = -25
+				}
+			}
+			custom_effect_tooltip = increse_nobility_TT
+			MOR_percentage_update_calc = yes
+
+			set_temp_variable = { percent_change = 10 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = MOR.id }
+			change_influence_percentage = yes		
+			country_event = Casablanca_Riots.1
+		}
+	}
+	focus = {
+		id = MOR_Declare_Arafa_the_Imam
+		completion_reward = {
+		}
+		icon = GFX_Sunni_Gov
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_French_Sultan
+		}
+		x = 16
+		y = 11
+		completion_reward = {
+			add_stability = -0.03
+			add_political_power = 100
+			country_event = Arafa.1
+			set_temp_variable = { percent_change = 10 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = MOR.id }
+			change_influence_percentage = yes		
+		}
+	}
+	focus = {
+		id = MOR_Arrest_Muhhammed_V
+		completion_reward = {
+		}
+		icon = GFX_SAF_The_Happiest_Police_State
+		cost = 10
+		prerequisite = {
+			focus = MOR_Conspiracies_in_the_Shadows
+		}
+		x = 17
+		y = 9
+		completion_reward = {
+			country_event = MOR_EXILE.1
+		}
+	}
+	focus = {
+		id = MOR_Exile_the_Old_King
+		completion_reward = {
+		}
+		icon = GFX_Close_Exile_Camps
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_French_Sultan
+		}
+		x = 19
+		y = 11
+		completion_reward = {
+			news_event = MOR_EXILE.2
+			#set_country_flag = enable_arafa_missions
+			#add_to_variable = {
+			#	istqal_mission = 10
+			#}
+			#add_to_variable = {
+			#	republican_mission = 10
+			#}
+		}
+	}
+	focus = {
+		id = MOR_The_French_Sultan
+		completion_reward = {
+		}
+		icon = GFX_focus_puppet_monarchy
+		cost = 10
+		prerequisite = {
+			focus = MOR_Arrest_Muhhammed_V
+		}
+		prerequisite = {
+			focus = MOR_Denounce_the_Istqal_Party
+		}
+		x = 16
+		y = 10
+		completion_reward = {
+			news_event = MOR_EXILE.3
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "Mohammed Ben Aarafa"
+				picture = "Mohammed_Ben_Aarafa_50s.dds"
+				ideology = monarchist
+			}
+		}
+	}
+	focus = {
+		id = MOR_A_Trip_to_the_Market
+		completion_reward = {
+		}
+		icon = GFX_the_new_terror
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_French_Sultan
+		}
+		x = 13
+		y = 11
+		completion_reward = {
+			news_event = Arafa.0
+		}
+	}
+	focus = {
+		id = MOR_Launch_Mass_Repression_Campaign
+		completion_reward = {
+		}
+		icon = GFX_Repress_The_Bandits
+		cost = 10
+		prerequisite = {
+			focus = MOR_Exile_the_Old_King
+		}
+		prerequisite = {
+			focus = MOR_Declare_Arafa_the_Imam
+		}
+		prerequisite = {
+			focus = MOR_A_Trip_to_the_Market
+		}
+		x = 16
+		y = 12
+		completion_reward = {
+			add_timed_idea = {
+				idea = repression
+				days = 700
+			}
+			set_variable = { THIS.idea_len_@token:repression = 700 }
+			set_variable = { THIS.idea_date_@token:repression = global.num_days }
+		}
+	}
+	focus = {
+		id = MOR_Empower_The_Ruling_Council
+		completion_reward = {
+		}
+		icon = GFX_Force_Left_wing_party_mergers
+		cost = 10
+		prerequisite = {
+			focus = MOR_Launch_Mass_Repression_Campaign
+		}
+		x = 15
+		y = 13
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = -50
+		}
+	}
+	focus = {
+		id = MOR_The_Presence_Francaise_Party
+		completion_reward = {
+		}
+		icon = GFX_The_Rogue_Colony
+		cost = 10
+		prerequisite = {
+			focus = MOR_Launch_Mass_Repression_Campaign
+		}
+		x = 17
+		y = 13
+		completion_reward = {
+			add_stability = -0.03
+			capital_scope = {
+				add_extra_state_shared_building_slots = 1
+				add_to_variable = {
+					french_influence = 75
+				}
+				custom_effect_tooltip = increse_french_TT
+			}
+			1468 = {
+				add_extra_state_shared_building_slots = 2
+				add_to_variable = {
+					french_influence = 75
+				}
+				custom_effect_tooltip = increse_french_TT
+			}
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_Accede_to_the_Resident_General
+		completion_reward = {
+		}
+		icon = GFX_Manipulate_Tribal_Leaders
+		cost = 10
+		prerequisite = {
+			focus = MOR_Empower_The_Ruling_Council
+		}
+		x = 13
+		y = 14
+		completion_reward = {
+			add_stability = -0.01
+			MOR = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = large_increase
+				}
+			}
+			FRA = {
+				add_opinion_modifier = {
+					target = MOR
+					modifier = large_increase
+				}
+			}
+			add_popularity = {
+				ideology = monarchism
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.03
+			}
+		}
+	}
+	focus = {
+		id = MOR_Attempt_to_Placate_French_Settlers
+		completion_reward = {
+		}
+		icon = GFX_GDR_Protect_Ethnic_Minorities
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Presence_Francaise_Party
+		}
+		prerequisite = {
+			focus = MOR_Empower_The_Ruling_Council
+		}
+		x = 16
+		y = 14
+		completion_reward = {
+			add_stability = -0.02
+			add_to_variable = {
+				French_Population = 25000
+			}
+			capital_scope = {
+				add_to_variable = {
+					french_influence = 50
+				}
+				custom_effect_tooltip = increse_french_TT
+				add_extra_state_shared_building_slots = 1
+				add_manpower = 10000
+				add_to_variable = {
+					ReligionChristianityCatholic = 10
+				}
+			}
+			358 = {
+				add_to_variable = {
+					french_influence = 75
+				}
+				custom_effect_tooltip = increse_french_TT
+				add_extra_state_shared_building_slots = 1
+				add_manpower = 15000
+				add_to_variable = {
+					ReligionChristianityCatholic = 15
+				}
+			}
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_Launch_Raids_Against_Morrocan_Independent_Activists
+		completion_reward = {
+		}
+		icon = GFX_UndergroundPolitics
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Presence_Francaise_Party
+		}
+		x = 19
+		y = 14
+		completion_reward = {
+			add_stability = -0.05
+			every_owned_state = {
+				add_to_variable = {
+					istqal_influence = -20
+				}
+				add_to_variable = {
+					french_influence = 20
+				}
+				custom_effect_tooltip = increse_french_TT
+				custom_effect_tooltip = decrease_istqal_TT
+			}
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_The_Accension_of_Thami_El_Glaoui
+		completion_reward = {
+		}
+		icon = GFX_King_compromises_with_Junta
+		cost = 10
+		prerequisite = {
+			focus = MOR_Attempt_to_Placate_French_Settlers
+		}
+		prerequisite = {
+			focus = MOR_Accede_to_the_Resident_General
+		}
+		x = 14
+		y = 15
+		completion_reward = {
+			462 = {
+				add_to_variable = {
+					nobility_influence = 50
+				}
+				custom_effect_tooltip = increse_nobility_TT
+			}
+			1471 = {
+				add_to_variable = {
+					nobility_influence = 50
+				}
+				custom_effect_tooltip = increse_nobility_TT
+			}
+			MOR_percentage_update_calc = yes
+		}
+	}
+	focus = {
+		id = MOR_Investigate_Rural_Reform
+		completion_reward = {
+		}
+		icon = GFX_Emergency_aid_to_the_rural_peasantry
+		cost = 10
+		prerequisite = {
+			focus = MOR_Launch_Raids_Against_Morrocan_Independent_Activists
+		}
+		prerequisite = {
+			focus = MOR_Attempt_to_Placate_French_Settlers
+		}
+		x = 18
+		y = 15
+		completion_reward = {
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = MOR_Outreach_to_the_Exiled_King
+		completion_reward = {
+		}
+		icon = GFX_usa_continued_diplomatic_meetings
+		cost = 10
+		prerequisite = {
+			focus = MOR_Investigate_Rural_Reform
+		}
+		prerequisite = {
+			focus = MOR_The_Accension_of_Thami_El_Glaoui
+		}
+		x = 16
+		y = 16
+		completion_reward = {
+			country_event = REVOLUTION_KING.0
+		}
+	}
+	focus = {
+		id = MOR_Convince_Arafa
+		completion_reward = {
+		}
+		icon = GFX_BrinkOfCollapse
+		cost = 10
+		prerequisite = {
+			focus = MOR_Establishing_The_Regency_Council
+		}
+		x = 20
+		y = 19
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = MOR_Appoint_the_Old_Vizeir
+		completion_reward = {
+		}
+		icon = GFX_King_compromises_with_Junta
+		cost = 10
+		prerequisite = {
+			focus = MOR_Establishing_The_Regency_Council
+		}
+		x = 17
+		y = 19
+		completion_reward = {
+			set_politics = {
+				ruling_party = monarchism
+				elections_allowed = no
+				name = "Regency Council"
+				long_name = "Regency Council"
+			}
+			create_country_leader = {
+				name = "Mohammad al-Muqri"
+				picture = "Mohammed_al-Muqri_50s.dds"
+				ideology = regency
+			}
+			add_political_power = 50
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = MOR_The_Revolution_of_King_and_People
+		completion_reward = {
+		}
+		icon = GFX_usa_50_sumatran_revolt
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Decleration_of_La_Celle_Saint_Cloud
+		}
+		x = 20
+		y = 21
+		completion_reward = {
+			news_event = REVOLUTION_KING.5
+			FRA = {
+				set_autonomy = {
+					target = MOR
+					autonomous_state = autonomy_free
+				}
+			}
+			drop_cosmetic_tag = yes
+			hidden_effect = {
+				add_popularity = {
+					ideology = neutrality
+					popularity = -100
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Negotiate_A_Political_Framework
+		completion_reward = {
+		}
+		icon = GFX_usa_50_bring_both_to_negotiating_table
+		cost = 10
+		prerequisite = {
+			focus = MOR_Establishing_The_Regency_Council
+		}
+		x = 23
+		y = 19
+		completion_reward = {
+			add_political_power = 75
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = MOR_The_Decleration_of_La_Celle_Saint_Cloud
+		completion_reward = {
+		}
+		icon = GFX_Rally
+		cost = 10
+		prerequisite = {
+			focus = MOR_Negotiate_A_Political_Framework
+		}
+		prerequisite = {
+			focus = MOR_Convince_Arafa
+		}
+		prerequisite = {
+			focus = MOR_Appoint_the_Old_Vizeir
+		}
+		x = 20
+		y = 20
+		completion_reward = {
+			news_event = REVOLUTION_KING.6
+		}
+	}
+	focus = {
+		id = MOR_Begin_Negotiations_with_Spain
+		completion_reward = {
+		}
+		icon = GFX_goal_SPR_deal
+		cost = 10
+		prerequisite = {
+			focus = MOR_Appoint_Mbarek_Bekkay_as_Prime_Minister
+		}
+		x = 18
+		y = 23
+		completion_reward = {
+			SPR = {
+				country_event = SPANISH_MOR.1
+			}
+		}
+	}
+	focus = {
+		id = MOR_The_French_Morrocan_Agreement
+		completion_reward = {
+		}
+		icon = GFX_French_diplo
+		cost = 10
+		prerequisite = {
+			focus = MOR_Appoint_Mbarek_Bekkay_as_Prime_Minister
+		}
+		x = 22
+		y = 23
+		completion_reward = {
+			set_temp_variable = { percent_change = 10 }
+			change_domestic_influence_percentage = yes
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = MOR_Ban_the_Communist_Party
+		completion_reward = {
+		}
+		icon = GFX_TheRussianBearCurtailed
+		cost = 10
+		prerequisite = {
+			focus = MOR_Begin_Negotiations_with_Spain
+		}
+		prerequisite = {
+			focus = MOR_The_French_Morrocan_Agreement
+		}
+		x = 20
+		y = 24
+		completion_reward = {
+			add_ideas = communism_banned
+		}
+	}
+	focus = {
+		id = MOR_Abrogate_the_Fez_Treaties
+		completion_reward = {
+		}
+		icon = GFX_Generic_Ripping_Papers
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_French_Morrocan_Agreement
+		}
+		x = 17
+		y = 24
+		completion_reward = {
+			set_temp_variable = { percent_change = 15 }
+			change_domestic_influence_percentage = yes
+			add_political_power = 50
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = MOR_Attempt_to_Bar_New_Parties
+		completion_reward = {
+		}
+		icon = GFX_ChampagneRepression
+		cost = 10
+		prerequisite = {
+			focus = MOR_Ban_the_Communist_Party
+		}
+		prerequisite = {
+			focus = MOR_Abrogate_the_Fez_Treaties
+		}
+		x = 19
+		y = 25
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			add_stability = -0.03
+		}
+	}
+	focus = {
+		id = MOR_Empower_the_Istqal_Party
+		completion_reward = {
+		}
+		icon = GFX_CollaboratewithLocalElites
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Tangier_Protocol
+		}
+		prerequisite = {
+			focus = MOR_Ban_the_Communist_Party
+		}
+		x = 21
+		y = 25
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = MOR_The_Tangier_Protocol
+		completion_reward = {
+		}
+		icon = GFX_goal_SPR_Proclamation
+		cost = 10
+		prerequisite = {
+			focus = MOR_Begin_Negotiations_with_Spain
+		}
+		x = 23
+		y = 24
+		#bypass = {	#why?
+		#	SPR = {
+		#		owns_state = 1056
+		#	}
+		#}
+		completion_reward = {
+			news_event = TANGIERS_PROTOCOL.1
+			annex_country = {
+				target = TNG
+				transfer_troops = yes
+			}
+			add_ideas = port_corruption
+			1056 = { set_demilitarized_zone = no }
+			hidden_effect = {
+				1056 = { remove_core_of = TNG }
+			}
+		}
+	}
+	focus = {
+		id = MOR_Appoint_Mbarek_Bekkay_as_Prime_Minister
+		completion_reward = {
+		}
+		icon = GFX_usa_80_cia_contact_government
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Revolution_of_King_and_People
+		}
+		x = 20
+		y = 22
+		completion_reward = {
+			country_event = MOR_POL.12
+		}
+	}
+	focus = {
+		id = MOR_The_Balafrej_Government
+		completion_reward = {
+		}
+		icon = GFX_focus_internal_dissent
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_May_1958_Crisis
+		}
+		x = 20
+		y = 27
+		completion_reward = {
+			set_politics = {
+				ruling_party = nationalist
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			create_country_leader = {
+				name = "Ahmed Balafrej"
+				picture = "Ahmed_Balafrej_50s.dds"
+				ideology = nationalist_ideology
+			}
+		}
+	}
+	focus = {
+		id = MOR_Apply_to_the_United_Nations
+		completion_reward = {
+		}
+		icon = GFX_a_strong_united_nation
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Balafrej_Government
+		}
+		x = 20
+		y = 28
+		completion_reward = {
+			news_event = MOR_UN.1
+			add_ideas = un_member
+			custom_effect_tooltip = ENABLE_UN_MECHANIC
+		}
+	}
+	focus = {
+		id = MOR_Join_the_Arab_League
+		completion_reward = {
+		}
+		icon = GFX_pan_arab_threat
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Balafrej_Government
+		}
+		x = 17
+		y = 28
+		completion_reward = {
+			set_country_flag = arab_league_member
+			add_to_array = {
+				country_politics_list = 25				#ARAB LEAGUE
+			}
+			custom_effect_tooltip = ARAB_LEAGUE_ENABLE
+		}
+	}
+	focus = {
+		id = MOR_Join_The_Organization_of_African_Unity
+		completion_reward = {
+		}
+		icon = GFX_create_the_organization_of_african_unity
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Balafrej_Government
+		}
+		x = 23
+		y = 28
+		completion_reward = {
+			set_country_flag = OAU_Member
+			add_stability = 0.05
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = MOR_Appoint_Abdallah_Ibrahim_Prime_Minister
+		completion_reward = {
+		}
+		icon = GFX_usa_80_cia_contact_government
+		cost = 10
+		prerequisite = {
+			focus = MOR_Join_The_Organization_of_African_Unity
+		}
+		prerequisite = {
+			focus = MOR_Apply_to_the_United_Nations
+		}
+		prerequisite = {
+			focus = MOR_Join_the_Arab_League
+		}
+		x = 20
+		y = 29
+		completion_reward = {
+			set_politics = {
+				ruling_party = nationalist
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.03
+			}
+			create_country_leader = {
+				name = "Abdallah Ibrahim"
+				picture = "Abdallah_Ibrahim_50s.dds"
+				ideology = nationalist_ideology
+			}
+		}
+	}
+	focus = {
+		id = MOR_The_May_1958_Crisis
+		completion_reward = {
+		}
+		icon = GFX_Election_system_Debate
+		cost = 10
+		prerequisite = {
+			focus = MOR_Empower_the_Istqal_Party
+		}
+		prerequisite = {
+			focus = MOR_Attempt_to_Bar_New_Parties
+		}
+		x = 20
+		y = 26
+		completion_reward = {
+			country_event = MOR_POL.25
+		}
+	}
+	focus = {
+		id = MOR_The_Coronation_of_Muhhamed_V
+		completion_reward = {
+		}
+		icon = GFX_Monarchist_Reduce_Autonomy
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_French_Morrocan_Agreement
+		}
+		x = 26
+		y = 24
+		completion_reward = {
+			news_event = MOR_Coronation.2
+			hidden_effect = {	
+				create_country_leader = {
+					name = "Mohammad V"
+					picture = "gfx/leaders/MOR/Mohammed_V_50s.dds"
+					ideology = monarchist
+				}
+				set_party_name = {
+					ideology = monarchism
+					long_name = "Alaouite Dynasty"
+					name = "Alaouite Dynasty"
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Modernize_The_Bureacracy
+		completion_reward = {
+		}
+		icon = GFX_State_Control
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Coronation_of_Muhhamed_V
+		}
+		x = 25
+		y = 25
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = fractured_legal_system_2
+				}
+				remove_ideas = fractured_legal_system_2
+				add_ideas = fractured_legal_system_1
+			}
+			else_if = {
+				limit = {
+					has_idea = fractured_legal_system_1
+				}
+				remove_ideas = fractured_legal_system_1
+			}
+		}
+	}
+	focus = {
+		id = MOR_Laying_a_Constitutional_Framework
+		completion_reward = {
+		}
+		icon = GFX_CardTricks
+		cost = 10
+		prerequisite = {
+			focus = MOR_Sideline_Radical_Nationalists
+		}
+		prerequisite = {
+			focus = MOR_Modernize_The_Bureacracy
+		}
+		x = 26
+		y = 26
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = MOR_Sideline_Radical_Nationalists
+		completion_reward = {
+		}
+		icon = GFX_Crackdown_on_Black_Nationalism
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_Coronation_of_Muhhamed_V
+		}
+		x = 27
+		y = 25
+		completion_reward = {
+			add_popularity = {
+				ideology = monarchism
+				popularity = 0.05
+			}
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = MOR_Establish_the_Bank_Al-Maghrib
+		completion_reward = {
+		}
+		icon = GFX_Cash_and_Carry
+		cost = 10
+		prerequisite = {
+			focus = MOR_Appoint_Abdallah_Ibrahim_Prime_Minister
+		}
+		x = 20
+		y = 30
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = fiscal_fragmentation_2
+				}
+				remove_ideas = fiscal_fragmentation_2
+				add_ideas = fiscal_fragmentation_1
+			}
+			else_if = {
+				limit = {
+					has_idea = fiscal_fragmentation_1
+				}
+				remove_ideas = fiscal_fragmentation_1
+			}
+		}
+	}
+	focus = {
+		id = MOR_Enact_Social_Democratic_Policies
+		completion_reward = {
+		}
+		icon = GFX_Welfare_State
+		cost = 10
+		prerequisite = {
+			focus = MOR_Appoint_Abdallah_Ibrahim_Prime_Minister
+		}
+		x = 17
+		y = 30
+		completion_reward = {
+			add_timed_idea = {
+				idea = civilian_boost_general
+				days = 1250
+			}
+			set_variable = { THIS.idea_len_@token:civilian_boost_general = 1250 }
+			set_variable = { THIS.idea_date_@token:civilian_boost_general = global.num_days }
+		}
+	}
+	focus = {
+		id = MOR_Aid_Rural_Farmers
+		completion_reward = {
+		}
+		icon = GFX_support_tribal_farmer
+		cost = 10
+		prerequisite = {
+			focus = MOR_Establish_the_Bank_Al-Maghrib
+		}
+		prerequisite = {
+			focus = MOR_Enact_Social_Democratic_Policies
+		}
+		x = 18
+		y = 31
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = rural_poverty_crisis_2
+				}
+				remove_ideas = rural_poverty_crisis_2
+				add_ideas = rural_poverty_crisis_1
+			}
+			else_if = {
+				limit = {
+					has_idea = rural_poverty_crisis_1
+				}
+				remove_ideas = rural_poverty_crisis_1
+			}
+		}
+	}
+	focus = {
+		id = MOR_Reform_The_Civil_Code
+		completion_reward = {
+		}
+		icon = GFX_FocusFairTrials
+		cost = 10
+		prerequisite = {
+			focus = MOR_Legalize_the_National_Union_of_Popular_Forces
+		}
+		prerequisite = {
+			focus = MOR_Establish_the_Bank_Al-Maghrib
+		}
+		x = 22
+		y = 31
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = fractured_legal_system_2
+				}
+				remove_ideas = fractured_legal_system_2
+				add_ideas = fractured_legal_system_1
+			}
+			else_if = {
+				limit = {
+					has_idea = fractured_legal_system_1
+				}
+				remove_ideas = fractured_legal_system_1
+			}
+		}
+	}
+	focus = {
+		id = MOR_Legalize_the_National_Union_of_Popular_Forces
+		completion_reward = {
+		}
+		icon = GFX_Legalize_Unions
+		cost = 10
+		prerequisite = {
+			focus = MOR_Appoint_Abdallah_Ibrahim_Prime_Minister
+		}
+		x = 23
+		y = 30
+		completion_reward = {
+			country_event = MOR_POL.10
+			add_popularity = {
+				ideology = Social_Democratic
+				popularity = 0.15
+			}
+		}
+	}
+	focus = {
+		id = MOR_Decrease_Foriegn_Military_Influences
+		completion_reward = {
+		}
+		icon = GFX_BullishDiplomacy
+		cost = 10
+		prerequisite = {
+			focus = MOR_Reform_The_Civil_Code
+		}
+		prerequisite = {
+			focus = MOR_Aid_Rural_Farmers
+		}
+		x = 20
+		y = 32
+		completion_reward = {
+			set_temp_variable = { percent_change = 12 }
+			change_domestic_influence_percentage = yes
+			army_experience = 50
+		}
+	}
+	focus = {
+		id = MOR_Establish_Muhhamed_V_University
+		completion_reward = {
+		}
+		icon = GFX_Universities
+		cost = 10
+		prerequisite = {
+			focus = MOR_Laying_a_Constitutional_Framework
+		}
+		x = 26
+		y = 27
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = MOR_Establish_Seperate_Legal_Systems
+		completion_reward = {
+		}
+		icon = GFX_Integrate_illegal_traders_into_the_party
+		cost = 10
+		prerequisite = {
+			focus = MOR_Promote_European_Immigration
+		}
+		available = { is_subject_of = FRA }
+		cancel_if_invalid  = yes
+		x = 8
+		y = 21
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = fractured_legal_system_2
+				}
+				remove_ideas = fractured_legal_system_2
+				add_ideas = fractured_legal_system_1
+			}
+			else_if = {
+				limit = {
+					has_idea = fractured_legal_system_1
+				}
+				remove_ideas = fractured_legal_system_1
+			}
+		}
+	}
+	focus = {
+		id = MOR_Enact_the_Reforms
+		completion_reward = {
+		}
+		icon = GFX_ReopentheStockMarkets
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_18_Demands
+		}
+		mutually_exclusive = {
+			focus = MOR_Reject_the_Reforms
+		}
+		x = 1
+		y = 11
+		completion_reward = {
+			add_to_variable = {
+				currentMoney = -250
+			}
+			custom_effect_tooltip = spend_250_TT
+			add_stability = 0.05
+			290 = {
+				add_extra_state_shared_building_slots = 4
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 3
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 1.75
+				uses = 1
+				category = agriculture
+			}
+		}
+	}
+	focus = {
+		id = MOR_Reject_the_Reforms
+		completion_reward = {
+		}
+		icon = GFX_Eliminate_Local_government
+		cost = 10
+		prerequisite = {
+			focus = MOR_The_18_Demands
+		}
+		mutually_exclusive = {
+			focus = MOR_Enact_the_Reforms
+		}
+		x = 3
+		y = 11
+		completion_reward = {
+			complete_national_focus = MOR_The_Second_Rif_Revolt
+		}
+	}
+	focus = {
+		id = MOR_The_Second_Rif_Revolt
+		completion_reward = {
+		}
+		icon = GFX_HeavyStrike
+		cost = 10
+		prerequisite = {
+			focus = MOR_Reject_the_Reforms
+		}
+		x = 3
+		y = 12
+		completion_reward = {
+			news_event = second_rif_revolt.1
+			RIF = {
+				transfer_state = 461
+				#load_oob = RIF_1950s
+				declare_war_on = {
+					target = MOR
+					type = annex_everything
+				}
+			}
+			every_owned_state = {
+				limit = {
+					check_variable = {
+						republican_influence > spanish_influence
+					}
+					check_variable = {
+						republican_influence > istqal_influence
+					}
+					check_variable = {
+						republican_influence > nobility_influence
+					}
+					check_variable = {
+						republican_influence > french_influence
+					}
+				}
+				RIF = {
+					transfer_state = PREV
+				}
+			}
+		}
+	}
+	focus = {
+		id = MOR_Pardon_Karim_Hajjaj
+		completion_reward = {
+		}
+		icon = GFX_Pardon_Karim_Hajjaj
+		cost = 10
+		prerequisite = {
+			focus = MOR_Assasinate_Abbas_Messaadi
+		}
+		mutually_exclusive = {
+			focus = MOR_Blame_Istqal
+		}
+		x = 7
+		y = 12
+		completion_reward = {
+			add_stability = -0.05
+			country_event = MOR_Assasin.3
+			every_owned_state = {
+				add_to_variable = {
+					istqal_influence = 50
+				}
+				custom_effect_tooltip = incease_istqal_TT
+			}
+			MOR_percentage_update_calc = yes
+		}
+	}
+}

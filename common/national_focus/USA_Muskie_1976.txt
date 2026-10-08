@@ -1,0 +1,537 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = USA_Muskie_1976
+	country = {
+		factor = 0
+		modifier = {
+			add = 0
+			tag = USA
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	shared_focus = USA_70s_The_CIA
+	shared_focus = USA_70s_The_Paris_Peace_Accords
+	shared_focus = USA_70s_American_Armed_Forces
+	focus = {
+		id = USA_MUSKIE76_The_Muskie_Administration
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_MuskieAdministration
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		x = 5
+		y = 0
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Persue_Gun_Control_Legislation
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_focus_gun_control
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_The_Muskie_Administration
+		}
+		x = 3
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = Gun_Control_Legislation
+				days = 3500
+			}
+			set_variable = { THIS.idea_len_@token:Gun_Control_Legislation = 3500 }
+			set_variable = { THIS.idea_date_@token:Gun_Control_Legislation = global.num_days }
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Push_for_Clean_Power
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Persue_Gun_Control_Legislation
+		}
+		x = 1
+		y = 2
+		completion_reward = {
+			add_tech_bonus = {
+				name = renewables_bonus
+				bonus = 1.75
+				uses = 2
+				category = renewables
+			}
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Community_Reinvestment_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Cash_and_Carry
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_The_Muskie_Administration
+		}
+		x = 7
+		y = 1
+		completion_reward = {
+			set_country_flag = Community_Reinvestment_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Community_Reinvestment_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Push_for_Free_Four_Year_University
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Universities
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Community_Reinvestment_Act
+		}
+		prerequisite = {
+			focus = USA_MUSKIE76_Persue_Gun_Control_Legislation
+		}
+		x = 5
+		y = 2
+		completion_reward = {
+			add_ideas = policy_education_temp_4
+			hidden_effect = {
+				remove_ideas = policy_education_temp_1
+				remove_ideas = policy_education_temp_2
+				remove_ideas = policy_education_temp_3
+				remove_ideas = policy_education_temp_0
+			}
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Establish_the_Department_of_Energy
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Push_for_Free_Four_Year_University
+		}
+		prerequisite = {
+			focus = USA_MUSKIE76_Push_for_Clean_Power
+		}
+		x = 3
+		y = 3
+		completion_reward = {
+			country_event = Department_of_Energy.1
+			set_country_flag = US_Resource_Bonus
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Emergency_Natural_Gas_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_oil_derrick
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Establish_the_Department_of_Energy
+		}
+		x = 2
+		y = 4
+		completion_reward = {
+			set_country_flag = Emergency_Natural_Gas_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Emergency_Natural_Gas_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Humphrey_Hawkins_Full_Employment_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_industrial_subsidies
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Community_Reinvestment_Act
+		}
+		x = 9
+		y = 2
+		completion_reward = {
+			set_country_flag = Humphrey_Hawkins_Full_Employment_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = humphrey_hawkins_full_employment_act
+			}
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Push_for_a_Universal_Healthcare_Program
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Humphrey_Hawkins_Full_Employment_Act
+		}
+		prerequisite = {
+			focus = USA_MUSKIE76_Push_for_Free_Four_Year_University
+		}
+		x = 7
+		y = 3
+		completion_reward = {
+			add_ideas = policy_healthcare_temp_4
+			hidden_effect = {
+				remove_ideas = policy_healthcare_temp_0
+				remove_ideas = policy_healthcare_temp_1
+				remove_ideas = policy_healthcare_temp_2
+				remove_ideas = policy_healthcare_temp_3
+				remove_ideas = policy_healthcare_temp_5
+			}
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Energy_Security_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_Further_Oil
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Push_for_a_Universal_Healthcare_Program
+		}
+		prerequisite = {
+			focus = USA_MUSKIE76_Establish_the_Department_of_Energy
+		}
+		x = 5
+		y = 4
+		completion_reward = {
+			set_country_flag = Energy_Security_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Energy_Security_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Job_Training_Partnership_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Generic_Arab_Infrastructure
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Push_for_a_Universal_Healthcare_Program
+		}
+		x = 8
+		y = 4
+		completion_reward = {
+			set_country_flag = Job_Training_Partnership_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Job_Training_Partnership_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Nuclear_Waste_Policy_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Nuclear_Energy
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Energy_Security_Act
+		}
+		prerequisite = {
+			focus = USA_MUSKIE76_Job_Training_Partnership_Act
+		}
+		x = 7
+		y = 5
+		completion_reward = {
+			set_country_flag = Nuclear_Waste_Policy_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Nuclear_Waste_Policy_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Public_Infrastructure_Investments
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Generic_Arab_Infrastructure
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Nuclear_Waste_Policy_Act
+		}
+		x = 9
+		y = 6
+		completion_reward = {
+			add_timed_idea = {
+				idea = public_infrastructure_development
+				days = 1250
+			}
+			set_variable = { THIS.idea_len_@token:public_infrastructure_development = 1250 }
+			set_variable = { THIS.idea_date_@token:public_infrastructure_development = global.num_days }
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Campaign_for_Consumer_Protections
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Mongolian_Political_Investigations
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Nuclear_Waste_Policy_Act
+		}
+		prerequisite = {
+			focus = USA_MUSKIE76_Surface_Transportation_Assistance_Act
+		}
+		x = 5
+		y = 6
+		completion_reward = {
+			add_timed_idea = {
+				idea = enforce_Consumer_Protection_Laws
+				days = 2250
+			}
+			set_variable = { THIS.idea_len_@token:enforce_Consumer_Protection_Laws = 2250 }
+			set_variable = { THIS.idea_date_@token:enforce_Consumer_Protection_Laws = global.num_days }
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Staggs_Railroad_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_FocusBuildRailroads
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_CERCLA_Act
+		}
+		prerequisite = {
+			focus = USA_MUSKIE76_Ban_Mountaintop_Strip_Mining
+		}
+		x = 6
+		y = 8
+		completion_reward = {
+			set_country_flag = Staggs_Railroad_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Staggs_Railroad_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Surface_Transportation_Assistance_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Generic_Arab_Industry
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Energy_Security_Act
+		}
+		prerequisite = {
+			focus = USA_MUSKIE76_Emergency_Natural_Gas_Act
+		}
+		x = 3
+		y = 5
+		completion_reward = {
+			set_country_flag = Surface_Transportation_Assistance_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Surface_Transportation_Assistance_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Bayh_Dole_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_Introduce_Political_Background_Checks
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Comprehensive_Crime_Control_Act
+		}
+		prerequisite = {
+			focus = USA_MUSKIE76_Staggs_Railroad_Act
+		}
+		x = 5
+		y = 9
+		completion_reward = {
+			set_country_flag = Bayh_Dole_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Bayh_Dole_Act_idea
+			}
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Comprehensive_Crime_Control_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_focus_police
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Ban_Mountaintop_Strip_Mining
+		}
+		prerequisite = {
+			focus = USA_MUSKIE76_CERCLA_Act
+		}
+		x = 4
+		y = 8
+		completion_reward = {
+			set_country_flag = Comprehensive_Crime_Control_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Fight_Crime
+			}
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Strengthen_Unions
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_SP_focus_trade_unions
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Surface_Transportation_Assistance_Act
+		}
+		x = 1
+		y = 6
+		completion_reward = {
+			hidden_effect = {
+				remove_ideas = policy_union_temp_0
+				remove_ideas = policy_union_temp_1
+				remove_ideas = policy_union_temp_2
+				remove_ideas = policy_union_temp_3
+				remove_ideas = policy_union_temp_4
+			}
+			add_ideas = policy_union_temp_4
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_Ban_Mountaintop_Strip_Mining
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Strengthen_Unions
+		}
+		prerequisite = {
+			focus = USA_MUSKIE76_Campaign_for_Consumer_Protections
+		}
+		x = 3
+		y = 7
+		completion_reward = {
+			add_to_variable = {
+				RGO_COST_PENALTY = 0.15
+			}
+			add_political_power = 75
+			add_stability = 0.04
+		}
+	}
+	focus = {
+		id = USA_MUSKIE76_CERCLA_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_unknown
+		search_filters = {
+			IC_FILTER
+		}
+		cost = 5
+		prerequisite = {
+			focus = USA_MUSKIE76_Public_Infrastructure_Investments
+		}
+		prerequisite = {
+			focus = USA_MUSKIE76_Campaign_for_Consumer_Protections
+		}
+		x = 7
+		y = 7
+		completion_reward = {
+			set_country_flag = CERCLA_Act_Vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = CERCLA_Act_idea
+			}
+		}
+	}
+}

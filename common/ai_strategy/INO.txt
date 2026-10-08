@@ -1,0 +1,54 @@
+# KRCW (build/patch_residue.py): 3 CWIC AI strategies gated while KRCW_active
+INO_Maluku = {
+	allowed = { original_tag = INO }
+	enable = { NOT = { has_global_flag = KRCW_active }  
+		INO = {
+            has_war_with = SMK
+        }
+	}
+	abort_when_not_enabled = yes
+	
+	ai_strategy = {
+        type = front_control
+        state_trigger = {
+            industrial_complex > 1
+            is_owned_by = SMK
+        }
+        ratio = 0.7
+        ordertype = front
+        execution_type = rush
+        manual_attack = no
+    }
+}
+RAJ_support_INO = {
+    allowed = {
+       original_tag = RAJ 
+    }
+    enable = { NOT = { has_global_flag = KRCW_active } 
+        INO = {
+			has_war_with = WPA
+		}
+    }
+    abort_when_not_enabled = yes
+    ai_strategy = {
+        type = send_lend_lease_desire
+        id = INO
+        value = 10000
+    }
+}
+HOL_support_WPA = {
+    allowed = {
+       original_tag = WPA
+    }
+    enable = { NOT = { has_global_flag = KRCW_active } 
+        INO = {
+			has_war_with = WPA
+		}
+    }
+    abort_when_not_enabled = yes
+    ai_strategy = {
+        type = send_lend_lease_desire
+        id = WPA
+        value = 100
+    }
+}

@@ -1,0 +1,513 @@
+# krcw: paced
+# krcw: x-coords doubled for icon clearance
+focus_tree = {
+	id = krcw_vin_tree
+	continuous_focus_position = { x = 50 y = 970 }
+	country = {
+		factor = 0
+		modifier = { add = 5000 tag = VIN }
+	}
+	default = no
+	reset_on_civilwar = no
+	focus = {
+		id = krcw_vin_our_revolution
+		icon = GFX_goal_VIN_Proclamation
+		x = 12
+		y = 0
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_stability = 0.03
+			# reward_fill.py
+			add_manpower = 10000
+			add_tech_bonus = { name = krcw_vin_our_revolution bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_vin_national_front
+		icon = GFX_goal_generic_national_unity
+		x = 4
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_vin_our_revolution }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_ideas = krcw_vin_national_front_sp
+		}
+	}
+	focus = {
+		id = krcw_vin_rice_cooperatives
+		icon = GFX_focus_generic_farmland
+		x = 2
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_vin_national_front }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_vin_rice_cooperatives_sp
+		}
+	}
+	focus = {
+		id = krcw_vin_three_regions
+		icon = GFX_focus_generic_improve_the_administration
+		x = 6
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_vin_national_front }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+			# reward_fill.py
+			random_owned_controlled_state = { limit = { is_core_of = ROOT } add_building_construction = { type = infrastructure level = 1 instant_build = yes } }
+			add_tech_bonus = { name = krcw_vin_three_regions bonus = 0.5 uses = 1 category = infrastructure }
+		}
+	}
+	focus = {
+		id = krcw_vin_haiphong
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 2
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_vin_rice_cooperatives }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			786 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			} }
+			786 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_vin_hanoi_saigon_rail
+		icon = GFX_focus_generic_railroad
+		x = 6
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_vin_three_regions }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1758 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1759 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			757 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_vin_industry
+		icon = GFX_focus_generic_industry_1
+		x = 4
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_vin_haiphong }
+		prerequisite = { focus = krcw_vin_hanoi_saigon_rail }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			286 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			1760 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_vin_peoples_army
+		icon = GFX_focus_generic_jungle_training
+		x = 14
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_vin_our_revolution }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_ideas = krcw_vin_peoples_army_sp
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_vin_jungle_doctrine
+		icon = GFX_focus_generic_jungle_troops
+		x = 12
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_vin_peoples_army }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_vin_doctrine bonus = 0.5 uses = 2 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_vin_militia
+		icon = GFX_goal_generic_allies_build_infantry
+		x = 16
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_vin_peoples_army }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_manpower = 15000
+			add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 1500 producer = VIN }
+		}
+	}
+	focus = {
+		id = krcw_vin_hanoi_nanjing
+		icon = GFX_focus_generic_conference
+		x = 22
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_vin_our_revolution }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			CHI = { country_event = { id = krcw_chi.92 days = 5 } }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_vin_equal_partner
+		icon = GFX_goal_generic_improve_relations
+		x = 20
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_vin_hanoi_nanjing }
+		mutually_exclusive = { focus = krcw_vin_closer_to_nanjing focus = krcw_vin_permanent_revolution }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_ideas = krcw_vin_equal_partner_sp
+			if = { limit = { is_subject = yes } add_autonomy_ratio = { value = 0.1 localization = krcw_brother_more_autonomy } }
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_vin_closer_to_nanjing
+		icon = GFX_goal_generic_major_alliance
+		x = 24
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_vin_hanoi_nanjing }
+		mutually_exclusive = { focus = krcw_vin_equal_partner focus = krcw_vin_permanent_revolution }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			if = { limit = { is_subject = yes } add_autonomy_ratio = { value = -0.1 localization = krcw_brother_closer_ties } }
+			CHI = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+			add_ideas = krcw_br_chinese_advisors_sp
+		}
+	}
+	focus = {
+		id = krcw_vin_constitution
+		icon = GFX_focus_generic_vote
+		x = 22
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_vin_equal_partner focus = krcw_vin_closer_to_nanjing }
+		prerequisite = { focus = krcw_vin_three_regions }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 75
+			# reward_fill.py
+			add_ideas = krcw_fill_vin_cooperative_economy
+		}
+	}
+	focus = {
+		id = krcw_vin_buddhist_dialogue
+		icon = GFX_focus_generic_public_meetings
+		x = 26
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_vin_constitution }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			# reward_fill.py
+			add_ideas = krcw_fill_vin_buddhist_accord
+		}
+	}
+	focus = {
+		id = krcw_vin_indochina_federation
+		icon = GFX_focus_JAP_the_indochinese_soviet
+		x = 18
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_vin_constitution }
+		prerequisite = { focus = krcw_vin_jungle_doctrine }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			set_country_flag = krcw_vin_council_open
+			every_country = { limit = { OR = { tag = CAM tag = LOS } exists = yes } add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = krcw_vin_mekong
+		icon = GFX_focus_focus_generic_build_dam
+		x = 10
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_vin_industry }
+		prerequisite = { focus = krcw_vin_indochina_federation }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			983 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1752 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_stability = 0.03
+		}
+	}
+	focus = {
+		id = krcw_vin_giap_academy
+		icon = GFX_focus_generic_military_academy
+		x = 14
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_vin_jungle_doctrine }
+		prerequisite = { focus = krcw_vin_militia }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 20
+			add_tech_bonus = { name = krcw_vin_inf bonus = 0.5 uses = 1 category = infantry_weapons }
+		}
+	}
+	focus = {
+		id = krcw_vin_independent_voice
+		icon = GFX_goal_generic_neutrality_focus
+		x = 24
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_vin_buddhist_dialogue }
+		available = {
+			has_completed_focus = krcw_vin_equal_partner
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { is_subject = yes } add_autonomy_ratio = { value = 0.1 localization = krcw_brother_more_autonomy } }
+			add_political_power = 100
+			CHI = { country_event = { id = krcw_chi.94 days = 3 } }
+		}
+	}
+	focus = {
+		id = krcw_vin_republic_matures
+		icon = GFX_focus_generic_self_management
+		x = 18
+		y = 6
+		cost = 8
+		prerequisite = { focus = krcw_vin_mekong }
+		prerequisite = { focus = krcw_vin_giap_academy }
+		prerequisite = { focus = krcw_vin_buddhist_dialogue focus = krcw_vin_independent_voice }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			remove_ideas = krcw_vin_own_revolution
+			add_stability = 0.1
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = krcw_vin_giap_offensive_doctrine
+		icon = GFX_focus_generic_army_doctrines_2
+		x = 14
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_vin_giap_academy }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_vin_doctrine2 bonus = 0.5 uses = 1 category = land_doctrine }
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_vin_permanent_revolution
+		icon = GFX_focus_generic_workers_and_farmers_rise
+		x = 26
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_vin_hanoi_nanjing }
+		mutually_exclusive = { focus = krcw_vin_equal_partner focus = krcw_vin_closer_to_nanjing }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_vin_radical_sp
+			add_popularity = { ideology = trotskyism popularity = 0.1 }
+			add_stability = -0.05
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_vin_cochinchina_question
+		icon = GFX_focus_generic_improve_the_administration
+		x = 26
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_vin_three_regions }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = { id = krcw_chi.210 days = 3 }
+		}
+	}
+	focus = {
+		id = krcw_vin_hoa_community
+		icon = GFX_focus_generic_concessions
+		x = 8
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_vin_industry }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			CHI = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_vin_rubber
+		icon = GFX_goal_generic_production
+		x = 4
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_vin_industry }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1760 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_vin_coal_of_tonkin
+		icon = GFX_focus_generic_steel
+		x = 2
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_vin_haiphong }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1281 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_vin_coal bonus = 0.5 uses = 1 category = industry }
+		}
+	}
+	focus = {
+		id = krcw_vin_siam_border
+		icon = GFX_goal_generic_forceful_treaty
+		x = 18
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_vin_giap_academy }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_war_support = 0.03
+			add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 1500 producer = VIN }
+			krcw_tension_up_small = yes
+		}
+	}
+}

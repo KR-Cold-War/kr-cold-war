@@ -1,0 +1,399 @@
+add_namespace = krcw_black
+
+country_event = {
+	id = krcw_black.1
+	title = krcw_black_1_t
+	desc = krcw_black_1_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_black_1.a
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = 25
+		add_stability = 0.03
+	}
+	option = {
+		name = krcw_black_1.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.05
+		add_political_power = -25
+		set_country_flag = krcw_sov_rewards_abolished
+	}
+	option = {
+		name = krcw_black_1.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = -0.02
+	}
+}
+
+country_event = {
+	id = krcw_black.3
+	title = krcw_black_3_t
+	desc = krcw_black_3_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_black_3.a
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -15
+		add_stability = 0.05
+		set_country_flag = krcw_sov_digest_circulated
+	}
+	option = {
+		name = krcw_black_3.b
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_black_3.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.06
+		add_political_power = -25
+		random_owned_controlled_state = {
+			limit = { is_core_of = ROOT }
+			add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+		}
+	}
+}
+
+country_event = {
+	id = krcw_black.5
+	title = krcw_black_5_t
+	desc = krcw_black_5_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_black_5.a
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		add_stability = 0.04
+		add_research_slot = 1
+		set_country_flag = krcw_sov_independent_survey
+	}
+	option = {
+		name = krcw_black_5.b
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = 25
+		add_stability = -0.02
+	}
+	option = {
+		name = krcw_black_5.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.06
+		add_political_power = -50
+		set_global_flag = KRCW_sov_local_election_trial
+		if = { limit = { NOT = { has_variable = krcw_sov_civ } } set_variable = { krcw_sov_civ = 0 } }
+		add_to_variable = { krcw_sov_civ = 10 }
+		clamp_variable = { var = krcw_sov_civ min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_civ_10_tt
+	}
+}
+
+country_event = {
+	id = krcw_black.7
+	title = krcw_black_7_t
+	desc = krcw_black_7_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_black_7.a
+		ai_chance = {
+			base = 50
+		}
+		add_political_power = 25
+		add_stability = 0.04
+	}
+	option = {
+		name = krcw_black_7.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.05
+		add_political_power = -25
+		set_country_flag = krcw_sov_exile_evidence
+	}
+	option = {
+		name = krcw_black_7.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.06
+		add_political_power = -50
+		set_global_flag = KRCW_sov_exile_judicialised
+		if = { limit = { NOT = { has_variable = krcw_sov_civ } } set_variable = { krcw_sov_civ = 0 } }
+		add_to_variable = { krcw_sov_civ = 10 }
+		clamp_variable = { var = krcw_sov_civ min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_civ_10_tt
+	}
+}
+
+country_event = {
+	id = krcw_black.9
+	title = krcw_black_9_t
+	desc = krcw_black_9_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_black_9.a
+		ai_chance = {
+			base = 50
+		}
+		add_stability = 0.05
+		add_manpower = 40000
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_black_9.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.06
+		add_manpower = 60000
+		add_political_power = -50
+		set_global_flag = KRCW_sov_fileless_released
+	}
+	option = {
+		name = krcw_black_9.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = -0.03
+	}
+}
+
+country_event = {
+	id = krcw_black.11
+	title = krcw_black_11_t
+	desc = krcw_black_11_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_black_11.a
+		ai_chance = {
+			base = 60
+		}
+		add_stability = 0.06
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_black_11.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = -0.05
+		set_country_flag = krcw_sov_confessional_demanded
+	}
+}
+
+country_event = {
+	id = krcw_black.13
+	title = krcw_black_13_t
+	desc = krcw_black_13_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_black_13.a
+		ai_chance = {
+			base = 55
+		}
+		add_stability = 0.05
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_black_13.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = -0.04
+		set_country_flag = krcw_sov_unregistered_suppressed
+		if = { limit = { NOT = { has_variable = krcw_sov_ext } } set_variable = { krcw_sov_ext = 0 } }
+		add_to_variable = { krcw_sov_ext = 5 }
+		clamp_variable = { var = krcw_sov_ext min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_ext_5_tt
+	}
+}
+
+country_event = {
+	id = krcw_black.15
+	title = krcw_black_15_t
+	desc = krcw_black_15_d
+	picture = GFX_report_event_german_reichstag_gathering
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_black_15.a
+		ai_chance = {
+			base = 50
+		}
+		add_political_power = 25
+		add_stability = 0.03
+	}
+	option = {
+		name = krcw_black_15.b
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		army_experience = 10
+		add_stability = -0.03
+		set_country_flag = krcw_sov_favoured_monarchists
+		if = { limit = { NOT = { has_variable = krcw_sov_mon } } set_variable = { krcw_sov_mon = 0 } }
+		add_to_variable = { krcw_sov_mon = 10 }
+		clamp_variable = { var = krcw_sov_mon min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mon_10_tt
+	}
+	option = {
+		name = krcw_black_15.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -15
+		add_stability = 0.04
+	}
+}
+
+country_event = {
+	id = krcw_black.17
+	title = krcw_black_17_t
+	desc = krcw_black_17_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_black_17.a
+		ai_chance = {
+			base = 55
+		}
+		add_political_power = 50
+		add_stability = -0.02
+	}
+	option = {
+		name = krcw_black_17.b
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		add_stability = 0.04
+		army_experience = -15
+		set_global_flag = KRCW_sov_republic_declared
+		subtract_from_variable = { krcw_sov_mon = 20 }
+		clamp_variable = { var = krcw_sov_mon min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_mon_purged_tt
+	}
+	option = {
+		name = krcw_black_17.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -50
+		add_stability = 0.03
+		set_global_flag = KRCW_sov_throne_assembly
+		if = { limit = { NOT = { has_variable = krcw_sov_mon } } set_variable = { krcw_sov_mon = 0 } }
+		add_to_variable = { krcw_sov_mon = 15 }
+		clamp_variable = { var = krcw_sov_mon min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mon_15_tt
+	}
+}
+
+country_event = {
+	id = krcw_black.19
+	title = krcw_black_19_t
+	desc = krcw_black_19_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_black_19.a
+		ai_chance = {
+			base = 55
+		}
+		add_political_power = 50
+		add_stability = 0.06
+		army_experience = 25
+	}
+	option = {
+		name = krcw_black_19.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = 0.03
+		army_experience = 10
+	}
+}

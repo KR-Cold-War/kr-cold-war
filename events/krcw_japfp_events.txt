@@ -1,0 +1,132 @@
+# krcw: paced
+add_namespace = krcw_japfp
+
+country_event = {
+	id = krcw_japfp.10
+	title = krcw_japfp_10_t
+	desc = krcw_japfp_10_d
+	picture = GFX_krcw_us_jap_diet2
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+		date > 1950.10.12
+		date < 1953.8.3
+		OR = { has_country_flag = krcw_jap_bureaucratic_path has_country_flag = krcw_jap_diet_path }
+	}
+	mean_time_to_happen = {
+		months = 14
+		modifier = { factor = 0.6 has_country_flag = krcw_jap_no_reform }
+		modifier = { factor = 1.5 has_country_flag = krcw_jap_limited_reform }
+	}
+	option = {
+		name = krcw_japfp_10.a
+		ai_chance = {
+			base = 60
+		}
+		add_stability = 0.03
+		add_political_power = 25
+		add_popularity = { ideology = conservative popularity = 0.03 }
+		if = { limit = { has_country_flag = krcw_jap_limited_reform } add_stability = 0.03 }
+		if = { limit = { has_country_flag = krcw_jap_no_reform } add_political_power = -25 }
+	}
+	option = {
+		name = krcw_japfp_10.b
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = -0.05
+		add_war_support = 0.03
+		add_political_power = 50
+		add_popularity = { ideology = nationalist popularity = 0.05 }
+	}
+	option = {
+		name = krcw_japfp_10.c
+		ai_chance = {
+			base = 15
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.05
+		add_political_power = -75
+		add_popularity = { ideology = Social_Democratic popularity = 0.06 }
+	}
+}
+
+country_event = {
+	id = krcw_japfp.11
+	title = krcw_japfp_11_t
+	desc = krcw_japfp_11_d
+	picture = GFX_krcw_us_jap_yard_c
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+		date > 1952.6.21
+		has_completed_focus = krcw_jap_shipbuilding
+	}
+	mean_time_to_happen = {
+		months = 11
+	}
+	option = {
+		name = krcw_japfp_11.a
+		ai_chance = {
+			base = 70
+		}
+		1607 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = dockyard level = 1 instant_build = yes }
+		} }
+		1603 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = dockyard level = 1 instant_build = yes }
+		} }
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_japfp_11.b
+		ai_chance = {
+			base = 30
+		}
+		1605 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+		} }
+		add_stability = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_japfp.12
+	title = krcw_japfp_12_t
+	desc = krcw_japfp_12_d
+	picture = GFX_krcw_us_jap_taipei_c
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+		has_completed_focus = krcw_jap_formosa_assembly
+	}
+	mean_time_to_happen = {
+		months = 5
+	}
+	option = {
+		name = krcw_japfp_12.a
+		ai_chance = {
+			base = 70
+		}
+		add_stability = 0.04
+		add_political_power = 25
+
+	}
+	option = {
+		name = krcw_japfp_12.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 50
+		add_stability = -0.03
+		krcw_tension_up_small = yes
+	}
+}

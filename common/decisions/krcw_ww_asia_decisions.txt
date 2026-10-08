@@ -1,0 +1,42 @@
+# krcw: paced
+krcw_ww_asia_cat = {
+	krcw_ww_retake_taiwan = {
+		icon = GFX_decision_generic_ignite_civil_war
+		cost = 100
+		allowed = { original_tag = CHI }
+		visible = { has_global_flag = KRCW_active date > 1951.3.15 NOT = { has_global_flag = KRCW_world_war } NOT = { has_global_flag = KRCW_cold_war_over } OR = { check_variable = { global.krcw_tension > 60 } AND = { krcw_gv_qd_adjourned = yes check_variable = { global.krcw_tension > 50 } } } has_war = no OR = { 593 = { is_owned_by = JAP } 524 = { is_owned_by = JAP } 1547 = { is_owned_by = JAP } 1648 = { is_owned_by = JAP } 2032 = { is_owned_by = JAP } } }
+		available = { has_country_flag = krcw_ww_taiwan_ready num_of_naval_factories > 5 }
+		fire_only_once = yes
+		complete_effect = {
+			declare_war_on = { target = JAP type = take_state_focus generator = { 593 524 1547 1648 2032 } }
+			JAP = { country_event = { id = krcw_ww.41 days = 1 } }
+			SOV = { country_event = { id = krcw_ww.42 days = 3 } }
+		}
+		ai_will_do = { factor = 0 }
+	}
+	krcw_ww_demand_north = {
+		icon = GFX_decision_generic_civil_support
+		cost = 100
+		allowed = { original_tag = CHI }
+		visible = { has_global_flag = KRCW_active date > 1951.3.15 NOT = { has_global_flag = KRCW_world_war } NOT = { has_global_flag = KRCW_cold_war_over } OR = { check_variable = { global.krcw_tension > 60 } AND = { krcw_gv_qd_adjourned = yes check_variable = { global.krcw_tension > 50 } } } has_war = no OR = { 408 = { is_owned_by = SOV } 409 = { is_owned_by = SOV } 561 = { is_owned_by = SOV } } }
+		available = { has_country_flag = krcw_ww_north_ready has_war_support > 0.5 }
+		fire_only_once = yes
+		complete_effect = {
+			SOV = { country_event = { id = krcw_ww.43 days = 2 } }
+		}
+		ai_will_do = { factor = 0 }
+	}
+	krcw_ww_march_north = {
+		icon = GFX_decision_generic_ignite_civil_war
+		cost = 100
+		allowed = { original_tag = JAP }
+		visible = { has_global_flag = KRCW_active date > 1951.3.15 NOT = { has_global_flag = KRCW_world_war } NOT = { has_global_flag = KRCW_cold_war_over } OR = { check_variable = { global.krcw_tension > 60 } AND = { krcw_gv_qd_adjourned = yes check_variable = { global.krcw_tension > 50 } } } has_war = no KOR = { exists = yes } }
+		available = { has_country_flag = krcw_ww_korea_ready has_war_support > 0.5 }
+		fire_only_once = yes
+		complete_effect = {
+			declare_war_on = { target = KOR type = annex_everything }
+			CHI = { country_event = { id = krcw_ww.44 days = 2 } }
+		}
+		ai_will_do = { factor = 0 }
+	}
+}

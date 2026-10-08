@@ -1,0 +1,44 @@
+# KRCW (build/patch_residue.py): 1 OTL events dropped while KRCW_active
+add_namespace = book_releases
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = book_releases.1 
+ immediate = { }
+	title = book_releases.1.t
+	desc = book_releases.1.d
+	picture = GFX_nineteeneightyfour
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = book_releases.1.a
+		trigger = {
+			NOT = {
+				has_government = fascism
+				has_government = communism
+				has_government = neutrality
+				has_government = maoism
+				has_government = trotskyism
+				has_government = islamism
+				has_government = radical_shiaism
+				has_government = Salafism
+			}
+		}
+	}
+	option = {
+		name = book_releases.1.b
+		trigger = {
+			OR = {
+				has_government = fascism
+				has_government = communism
+				has_government = neutrality
+				has_government = maoism
+				has_government = trotskyism
+				has_government = islamism
+				has_government = radical_shiaism
+				has_government = Salafism
+			}
+		}
+	}
+}

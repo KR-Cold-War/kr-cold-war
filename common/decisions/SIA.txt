@@ -1,0 +1,2541 @@
+# KRCW (build/patch_residue.py): 92 OTL decisions hidden while KRCW_active
+SIA_The_Triangle = {
+	SIA_Refresh_GUI = {
+		complete_effect = {
+			add_to_variable = {
+				SIA_Triangle_GUI_Variable = 1
+			}
+		}
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			is_debug = yes
+		}
+
+
+		fire_only_once = no
+		selectable_mission = no
+	}
+	SIA_1957_Election_Countdown = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			always = no
+		 } }
+}
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			add_to_variable = {
+				SIA_Triangle_GUI_Variable = 1
+			}
+		 }
+}
+		days_mission_timeout = 516
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			country_event = { id = SIA_1957_Election.8 }
+		 }
+}
+	}
+	##Regular Non-Election Decisions
+	SIA_Triangle_Decisions_Show = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+		complete_effect = {
+			set_country_flag = SIA_Triangle_Decisions_Toggle_flag
+		}
+		
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		fire_only_once = no
+		selectable_mission = no
+	}
+	SIA_Triangle_Decisions_Hide = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+		complete_effect = {
+			clr_country_flag = SIA_Triangle_Decisions_Toggle_flag
+		}
+		
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		fire_only_once = no
+		selectable_mission = no
+	}
+	##Phase I, before radio/silent coup
+	
+	SIA_Triangle_Add_Support_Phibun = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = 3 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phibun_Selected_flag
+				}
+				is_ai = yes
+			}
+			has_country_flag = SIA_Triangle_Phase_I_flag
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 30
+		fire_only_once = no
+	}
+	SIA_Triangle_Minus_Support_Phibun = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = -2 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phibun_Selected_flag
+				}
+				is_ai = yes
+			}
+			has_country_flag = SIA_Triangle_Phase_I_flag
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 30
+		fire_only_once = no
+	}
+	SIA_Triangle_Support_for_Money_Phibun = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phibun_Selected_flag
+				}
+				is_ai = yes
+			}
+			has_country_flag = SIA_Triangle_Phase_I_flag
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = -2.5 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		remove_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = 0.1 }
+			cwic_change_money = yes
+		}
+		days_remove = 14
+		days_re_enable = 28
+		cost = 10
+		fire_only_once = no
+	}
+	SIA_Triangle_Bribe_for_Support_Phibun = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phibun_Selected_flag
+				}
+				is_ai = yes
+			}
+			has_country_flag = SIA_Triangle_Phase_I_flag
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = -0.2 }
+			cwic_change_money = yes
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = 2.5 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 10
+		fire_only_once = no
+	}
+	SIA_Triangle_Add_Support_Sarit = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = 3 }
+			SIA_Sakdina_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Sarit_Selected_flag
+				}
+				is_ai = yes
+			}
+			has_country_flag = SIA_Triangle_Phase_I_flag
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 30
+		fire_only_once = no
+	}
+	SIA_Triangle_Minus_Support_Sarit = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = -2 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Sarit_Selected_flag
+				}
+				is_ai = yes
+			}
+			has_country_flag = SIA_Triangle_Phase_I_flag
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 30
+		fire_only_once = no
+	}
+	SIA_Triangle_Support_for_Money_Sarit = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Sarit_Selected_flag
+				}
+				is_ai = yes
+			}
+			has_country_flag = SIA_Triangle_Phase_I_flag
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = -2.5 }
+			SIA_Sakdina_Support_effect = yes
+		}
+		remove_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = 0.1 }
+			cwic_change_money = yes
+		}
+		days_remove = 14
+		days_re_enable = 28
+		cost = 10
+		fire_only_once = no
+	}
+	SIA_Triangle_Bribe_for_Support_Sarit = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Sarit_Selected_flag
+				}
+				is_ai = yes
+			}
+			has_country_flag = SIA_Triangle_Phase_I_flag
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = -0.2 }
+			cwic_change_money = yes
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = 2.5 }
+			SIA_Sakdina_Support_effect = yes
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 10
+		fire_only_once = no
+	}
+	SIA_Triangle_Add_Support_Phao = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = 3 }
+			SIA_Diamond_Ring_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phao_Selected_flag
+				}
+				is_ai = yes
+			}
+			has_country_flag = SIA_Triangle_Phase_I_flag
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 30
+		fire_only_once = no
+	}
+	SIA_Triangle_Minus_Support_Phao = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = -2 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phao_Selected_flag
+				}
+				is_ai = yes
+			}
+			has_country_flag = SIA_Triangle_Phase_I_flag
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 30
+		fire_only_once = no
+	}
+	SIA_Triangle_Support_for_Money_Phao = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phao_Selected_flag
+				}
+				is_ai = yes
+			}
+			has_country_flag = SIA_Triangle_Phase_I_flag
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = -2.5 }
+			SIA_Diamond_Ring_Support_effect = yes
+		}
+		remove_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = 0.1 }
+			cwic_change_money = yes
+		}
+		days_remove = 14
+		days_re_enable = 28
+		cost = 10
+		fire_only_once = no
+	}
+	SIA_Triangle_Bribe_for_Support_Phao = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phao_Selected_flag
+				}
+				is_ai = yes
+			}
+			has_country_flag = SIA_Triangle_Phase_I_flag
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = -0.2 }
+			cwic_change_money = yes
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = 2.5 }
+			SIA_Diamond_Ring_Support_effect = yes
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 10
+		fire_only_once = no
+	}
+	##Phase II, After Radio coup, before 1957 election countdown
+	SIA_Phibun_Action = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			always = no
+		 } }
+}
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			
+		 }
+}
+		days_mission_timeout = 28
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			SIA_Triangle_Phibun_Action_effect = yes
+			activate_mission = SIA_Phibun_Action
+		 }
+}
+	}
+	SIA_Phao_Action = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			always = no
+		 } }
+}
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			
+		 }
+}
+		days_mission_timeout = 28
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			SIA_Triangle_Phao_Action_effect = yes
+			activate_mission = SIA_Phao_Action
+		 }
+}
+	}
+	SIA_Sarit_Action = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			always = no
+		 } }
+}
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			
+		 }
+}
+		days_mission_timeout = 28
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			SIA_Triangle_Sarit_Action_effect = yes
+			activate_mission = SIA_Sarit_Action
+		 }
+}
+	}
+	##Phibun
+	SIA_Triangle_Add_Support_Phibun_Phase_II = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = 1 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phibun_Selected_flag
+					has_country_flag = SIA_Triangle_Phibun_Acting_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+				}
+				is_ai = yes
+			}
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 30
+		fire_only_once = no
+	}
+	SIA_Triangle_Minus_Support_Phibun_Sarit_Phase_II = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = -1.5 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phibun_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					has_country_flag = SIA_Triangle_Sarit_Acting_flag
+				}
+				is_ai = yes
+			}
+		}
+		days_remove = 21
+		days_re_enable = 21
+		cost = 20
+		fire_only_once = no
+	}
+	SIA_Triangle_Bribe_for_Minus_Support_Phibun_Phase_II = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = -0.3 }
+			cwic_change_money = yes
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = -1.5 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phibun_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					NOT = { has_country_flag = SIA_Triangle_Phibun_Acting_flag }
+				}
+				is_ai = yes
+			}
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 30
+		fire_only_once = no
+	}
+	SIA_Triangle_Add_More_Support_Phibun_Phase_II = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = 2 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phibun_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					has_country_flag = SIA_Triangle_Phibun_Acting_flag
+				}
+				is_ai = yes
+			}
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 50
+		fire_only_once = no
+	}
+	SIA_Triangle_Support_for_Money_Phibun_Phase_II = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phibun_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					has_country_flag = SIA_Triangle_Phibun_Acting_flag
+				}
+				is_ai = yes
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = -2.5 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		remove_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = 0.1 }
+			cwic_change_money = yes
+		}
+		days_remove = 14
+		days_re_enable = 28
+		cost = 10
+		fire_only_once = no
+	}
+	SIA_Triangle_Bribe_for_Support_Phibun_Phase_II = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phibun_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					has_country_flag = SIA_Triangle_Phibun_Acting_flag
+				}
+				is_ai = yes
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = -0.2 }
+			cwic_change_money = yes
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = 1.5 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 10
+		fire_only_once = no
+	}
+	SIA_Triangle_Bribe_for_More_Support_Phibun_Phase_II = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phibun_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					has_country_flag = SIA_Triangle_Phibun_Acting_flag
+				}
+				is_ai = yes
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = -0.5 }
+			cwic_change_money = yes
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = 3 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 10
+		fire_only_once = no
+	}
+	##Sarit
+	SIA_Triangle_Add_Support_Sarit_Phase_II = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = 1 }
+			SIA_Sakdina_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Sarit_Selected_flag
+					has_country_flag = SIA_Triangle_Sarit_Acting_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+				}
+				is_ai = yes
+			}
+		}
+		days_remove = 21
+		days_re_enable = 21
+		cost = 20
+		fire_only_once = no
+	}
+	SIA_Triangle_Use_Military_Sarit_Phase_II = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = 3 }
+			SIA_Sakdina_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Sarit_Selected_flag
+					has_country_flag = SIA_Triangle_Sarit_Acting_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+				}
+				is_ai = yes
+			}
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 30
+		fire_only_once = no
+	}
+	SIA_Triangle_Minus_Support_Sarit_Phibun_Phase_II = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = -1.5 }
+			SIA_Sakdina_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Sarit_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					has_country_flag = SIA_Triangle_Phibun_Acting_flag
+				}
+				is_ai = yes
+			}
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 30
+		fire_only_once = no
+	}
+	SIA_Triangle_Bribe_for_Minus_Support_Sarit_Phase_II = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = -0.3 }
+			cwic_change_money = yes
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = -1.5 }
+			SIA_Sakdina_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Sarit_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					NOT = { has_country_flag = SIA_Triangle_Sarit_Acting_flag }
+				}
+				is_ai = yes
+			}
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 30
+		fire_only_once = no
+	}
+	SIA_Triangle_Support_for_Money_Sarit_Phase_II = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Sarit_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					has_country_flag = SIA_Triangle_Sarit_Acting_flag
+				}
+				is_ai = yes
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = -2.5 }
+			SIA_Sakdina_Support_effect = yes
+		}
+		remove_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = 0.1 }
+			cwic_change_money = yes
+		}
+		days_remove = 14
+		days_re_enable = 21
+		cost = 10
+		fire_only_once = no
+	}
+	SIA_Triangle_Bribe_for_Support_Sarit_Phase_II = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Sarit_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					has_country_flag = SIA_Triangle_Sarit_Acting_flag
+				}
+				is_ai = yes
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = -0.2 }
+			cwic_change_money = yes
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = 1.5 }
+			SIA_Sakdina_Support_effect = yes
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 10
+		fire_only_once = no
+	}
+	##Phao
+	SIA_Triangle_Add_Support_Phao_Phase_II = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = 1 }
+			SIA_Diamond_Ring_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phao_Selected_flag
+					has_country_flag = SIA_Triangle_Phao_Acting_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+				}
+				is_ai = yes
+			}
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 30
+		fire_only_once = no
+	}
+	SIA_Triangle_Minus_Support_Phao_Sarit_Phase_II = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = -1.5 }
+			SIA_Diamond_Ring_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phao_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					has_country_flag = SIA_Triangle_Sarit_Acting_flag
+				}
+				is_ai = yes
+			}
+		}
+		days_remove = 21
+		days_re_enable = 21
+		cost = 20
+		fire_only_once = no
+	}
+	SIA_Triangle_Minus_Support_Phao_Phibun_Phase_II = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = -1.5 }
+			SIA_Diamond_Ring_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phao_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					has_country_flag = SIA_Triangle_Phibun_Acting_flag
+				}
+				is_ai = yes
+			}
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 30
+		fire_only_once = no
+	}
+	SIA_Triangle_Bribe_for_Minus_Support_Phao_Phase_II = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = -0.3 }
+			cwic_change_money = yes
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = -1.5 }
+			SIA_Diamond_Ring_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phao_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					NOT = { has_country_flag = SIA_Triangle_Phao_Acting_flag }
+				}
+				is_ai = yes
+			}
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 30
+		fire_only_once = no
+	}
+	SIA_Triangle_Use_Police_For_Support_Phao_Phase_II = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			add_stability = -0.02
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = 3 }
+			SIA_Diamond_Ring_Support_effect = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phao_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					has_country_flag = SIA_Triangle_Phao_Acting_flag
+				}
+				is_ai = yes
+			}
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 50
+		fire_only_once = no
+	}
+	SIA_Triangle_Support_for_Money_Phao_Phase_II = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phao_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					has_country_flag = SIA_Triangle_Phao_Acting_flag
+				}
+				is_ai = yes
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = -2.5 }
+			SIA_Diamond_Ring_Support_effect = yes
+		}
+		remove_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = 0.1 }
+			cwic_change_money = yes
+		}
+		days_remove = 14
+		days_re_enable = 28
+		cost = 10
+		fire_only_once = no
+	}
+	SIA_Triangle_Bribe_for_Support_Phao_Phase_II = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Phao_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					has_country_flag = SIA_Triangle_Phao_Acting_flag
+				}
+				is_ai = yes
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = -0.2 }
+			cwic_change_money = yes
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = 1.5 }
+			SIA_Diamond_Ring_Support_effect = yes
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 10
+		fire_only_once = no
+	}
+	SIA_Triangle_Use_Police_to_Clamp_Down_Sarit_Phao_Phase_II = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Sarit_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					has_country_flag = SIA_Triangle_Phao_Acting_flag
+				}
+				is_ai = yes
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			add_stability = -0.02
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = -3 }
+			SIA_Sakdina_Support_effect = yes
+		}
+		days_remove = 28
+		days_re_enable = 35
+		cost = 30
+		fire_only_once = no
+	}
+	SIA_Triangle_Use_Police_to_Clamp_Down_Phibun_Phao_Phase_II = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+					has_country_flag = SIA_Triangle_Sarit_Selected_flag
+					has_country_flag = SIA_Triangle_Phase_II_flag
+					has_country_flag = SIA_Triangle_Phao_Acting_flag
+				}
+				is_ai = yes
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		complete_effect = {
+			add_stability = -0.02
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = -3 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		days_remove = 28
+		days_re_enable = 35
+		cost = 30
+		fire_only_once = no
+	}
+	##Phase III, After Election Countdown
+	## NORMAL DECISIONS
+	SIA_1957_Election_Utilize_the_Media = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+			has_country_flag = SIA_Triangle_Phibun_Selected_flag
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = 1.5 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		days_remove = 14
+		days_re_enable = 28
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+		}
+		cost = 25
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Buy_Votes = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+			has_country_flag = SIA_Triangle_Phibun_Selected_flag
+		}
+		complete_effect = {
+			set_temp_variable = { money_change_temp = SIA.display_income }
+			multiply_temp_variable = { money_change_temp = 0.2 }
+			multiply_temp_variable = { money_change_temp = -1 }
+			cwic_change_money = yes
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = 2 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		days_remove = 14
+		days_re_enable = 28
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+		}
+		cost = 25
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Use_Police_to_Intimidate_Voters_and_Democratic_Factions = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+			has_country_flag = SIA_Triangle_Phibun_Selected_flag
+			has_country_flag = SIA_1957_Election_Phao_Chosen
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = -0.5 }
+			SIA_Diamond_Ring_Support_effect = yes
+			set_temp_variable = { SIA_Phibun_Support_temp = 2 }
+			SIA_Phibunsongkram_Support_effect = yes
+			add_to_variable = {
+				SIA_Election_Police_Intimidation_Count = 1
+			}
+			add_stability = -0.01
+		}
+		days_remove = 14
+		days_re_enable = 28
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+		}
+		cost = 25
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Use_Royal_Connections_to_Boost_Support = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+			has_country_flag = SIA_Triangle_Phibun_Selected_flag
+			has_country_flag = SIA_1957_Election_Sarit_Chosen
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = 1.5 }
+			SIA_Phibunsongkram_Support_effect = yes
+			add_to_variable = {
+				SIA_Election_Royal_Connections_Count = 1
+			}
+		}
+		days_remove = 14
+		days_re_enable = 28
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+		}
+		cost = 25
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Make_Token_Concessions_to_The_Royalty = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+			has_country_flag = SIA_Triangle_Sarit_Selected_flag
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = -1.5 }
+			SIA_Sakdina_Support_effect = yes
+		}
+		days_remove = 14
+		days_re_enable = 28
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+		}
+		cost = 25
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Supress_the_Sarit_Faction = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+			has_country_flag = SIA_Triangle_Sarit_Selected_flag
+			NOT = { has_country_flag = SIA_1957_Election_Sarit_Chosen }
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = -2.5 }
+			SIA_Sakdina_Support_effect = yes
+		}
+		days_remove = 28
+		days_re_enable = 28
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+		}
+		cost = 50
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Use_Police_to_Attack_Sarit = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+			has_country_flag = SIA_Triangle_Sarit_Selected_flag
+			has_country_flag = SIA_1957_Election_Phao_Chosen
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = 1 }
+			SIA_Diamond_Ring_Support_effect = yes
+			set_temp_variable = { SIA_Sakdina_Support_temp = -2.5 }
+			SIA_Sakdina_Support_effect = yes
+		}
+		days_remove = 28
+		days_re_enable = 28
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+		}
+		cost = 30
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Make_Token_Concessions_to_The_Police = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+			has_country_flag = SIA_Triangle_Phao_Selected_flag
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = -1.5 }
+			SIA_Diamond_Ring_Support_effect = yes
+		}
+		days_remove = 14
+		days_re_enable = 28
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+		}
+		cost = 25
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Supress_the_Phao_Faction = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+			has_country_flag = SIA_Triangle_Phao_Selected_flag
+			NOT = { has_country_flag = SIA_1957_Election_Phao_Chosen }
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = -2.5 }
+			SIA_Diamond_Ring_Support_effect = yes
+		}
+		days_remove = 28
+		days_re_enable = 28
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+		}
+		cost = 50
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Use_Royal_Connections_to_Attack_Phao = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_Triangle_Decisions_Toggle_flag
+			has_country_flag = SIA_Triangle_Phao_Selected_flag
+			has_country_flag = SIA_1957_Election_Sarit_Chosen
+		}
+		complete_effect = {
+			
+		}
+		remove_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = 1 }
+			SIA_Sakdina_Support_effect = yes
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = -2.5 }
+			SIA_Diamond_Ring_Support_effect = yes
+			add_to_variable = {
+				SIA_Election_Royal_Connections_Count = 1
+			}
+		}
+		days_remove = 28
+		days_re_enable = 28
+		available = { NOT = { has_global_flag = KRCW_active } 
+
+		}
+		cost = 30
+		fire_only_once = yes
+	}
+	## ELECTIONS DECISIONS (Triggered by events)
+	SIA_1957_Election_Decision_Show = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			NOT = { has_country_flag = SIA_1957_Election_Decision_Toggle_flag }
+		}
+		complete_effect = {
+			set_country_flag = SIA_1957_Election_Decision_Toggle_flag
+		}
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		fire_only_once = no
+	}
+	SIA_1957_Election_Decision_Hide = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			NOT = { has_country_flag = SIA_1957_Election_Decision_Toggle_flag }
+		}
+		complete_effect = {
+			clr_country_flag = SIA_1957_Election_Decision_Toggle_flag
+		}
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		fire_only_once = no
+	}
+	SIA_1957_Election_No_Alliance = {
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			NOT = { has_country_flag = SIA_1957_Election_Decision_Toggle_flag }
+		}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			set_temp_variable = { SIA_Phibun_Support_temp = 5 }
+			SIA_Phibunsongkram_Support_effect = yes
+			set_country_flag = SIA_1957_Election_None_Chosen
+			custom_effect_tooltip = SIA_1957_Election_No_Alliance_tt
+		 }
+}
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			set_temp_variable = { SIA_Phibun_Support_temp = 5 }
+			SIA_Phibunsongkram_Support_effect = yes
+			set_country_flag = SIA_1957_Election_None_Chosen
+			custom_effect_tooltip = SIA_1957_Election_No_Alliance_tt
+		 }
+}
+		days_mission_timeout = 90
+		selectable_mission = yes
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			has_country_flag = SIA_1957_Election_Phao_Chosen
+			has_country_flag = SIA_1957_Election_Sarit_Chosen
+		 } }
+}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				OR = {
+					has_country_flag = SIA_1957_Election_Phao_Chosen
+					has_country_flag = SIA_1957_Election_Sarit_Chosen
+				}
+			}
+		}
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Phao_Alliance_Against_Sakdina = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_1957_Election_Phao_flag
+			NOT = { has_country_flag = SIA_1957_Election_Decision_Toggle_flag }
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = 10 }
+			SIA_Diamond_Ring_Support_effect = yes
+			set_temp_variable = { SIA_Phibun_Support_temp = 10 }
+			SIA_Phibunsongkram_Support_effect = yes
+			set_country_flag = SIA_1957_Election_Phao_Chosen
+			custom_effect_tooltip = SIA_1957_Election_Phao_Alliance_Against_Sakdina_tt
+		}
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				OR = {
+					has_country_flag = SIA_1957_Election_Sarit_Chosen
+					has_country_flag = SIA_1957_Election_None_Chosen
+				}
+			}
+		}
+		cost = 25
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Request_Sarit_Support = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_1957_Election_Sarit_flag
+			NOT = { has_country_flag = SIA_1957_Election_Decision_Toggle_flag }
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = 10 }
+			SIA_Sakdina_Support_effect = yes
+			set_temp_variable = { SIA_Phibun_Support_temp = 10 }
+			SIA_Phibunsongkram_Support_effect = yes
+			set_country_flag = SIA_1957_Election_Sarit_Chosen
+			custom_effect_tooltip = SIA_1957_Election_Request_Sarit_Support_tt
+		}
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				OR = {
+					has_country_flag = SIA_1957_Election_Phao_Chosen
+					has_country_flag = SIA_1957_Election_None_Chosen
+				}
+			}
+		}
+		cost = 25
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Allow_Pridi_Return = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_1957_Election_Pridi_flag
+			NOT = { has_country_flag = SIA_1957_Election_Decision_Toggle_flag }
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = -5 }
+			SIA_Diamond_Ring_Support_effect = yes
+			set_temp_variable = { SIA_Sakdina_Support_temp = -10 }
+			SIA_Sakdina_Support_effect = yes
+			set_country_flag = SIA_1957_Election_Pridi_Return_Allowed_flag
+		}
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = SIA_1957_Election_Pridi_Return_Rejected_flag
+			}
+		}
+		cost = 50
+		fire_only_once = yes
+	}	
+	SIA_1957_Election_Reject_Pridi_Return = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_1957_Election_Pridi_flag
+			NOT = { has_country_flag = SIA_1957_Election_Decision_Toggle_flag }
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Phibun_Support_temp = -5 }
+			SIA_Phibunsongkram_Support_effect = yes
+			set_country_flag = SIA_1957_Election_Pridi_Return_Rejected_flag
+		}
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = SIA_1957_Election_Pridi_Return_Allowed_flag
+			}
+		}
+		cost = 50
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Allow_Freedom_of_Speech = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_1957_Election_Media_flag
+			NOT = { has_country_flag = SIA_1957_Election_Decision_Toggle_flag }
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = 5 }
+			SIA_Diamond_Ring_Support_effect = yes
+			set_temp_variable = { SIA_Sakdina_Support_temp = 5 }
+			SIA_Sakdina_Support_effect = yes
+			set_country_flag = SIA_1957_Election_Freedom_of_Speech_Allowed_flag
+			add_ideas = policy_media_temp_1
+		}
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = SIA_1957_Election_Freedom_of_Speech_Chosen
+			}
+		}
+		cost = 50
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Reject_Freedom_of_Speech = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_1957_Election_Media_flag
+			NOT = { has_country_flag = SIA_1957_Election_Decision_Toggle_flag }
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = -5 }
+			SIA_Diamond_Ring_Support_effect = yes
+			set_temp_variable = { SIA_Sakdina_Support_temp = -5 }
+			SIA_Sakdina_Support_effect = yes
+			set_country_flag = SIA_1957_Election_Freedom_of_Speech_Rejected_flag
+		}
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = SIA_1957_Election_Freedom_of_Speech_Chosen
+			}
+		}
+		cost = 25
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Distract_The_Police = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_1957_Election_Phao_flag
+			NOT = { has_country_flag = SIA_1957_Election_Decision_Toggle_flag }
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = -10 }
+			SIA_Diamond_Ring_Support_effect = yes
+			set_temp_variable = { SIA_Phibun_Support_temp = -5 }
+			SIA_Phibunsongkram_Support_effect = yes
+		}
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_1957_Election_None_Chosen
+		}
+		cost = 25
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Ensure_Royalties_Power = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_1957_Election_Sarit_flag
+			NOT = { has_country_flag = SIA_1957_Election_Decision_Toggle_flag }
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = -10 }
+			SIA_Sakdina_Support_effect = yes
+			set_temp_variable = { SIA_Phibun_Support_temp = -5 }
+			SIA_Phibunsongkram_Support_effect = yes
+			set_country_flag = SIA_1957_Election_Ensure_Royalties_Power_flag
+		}
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_1957_Election_None_Chosen
+		}
+		cost = 25
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Send_Police_Against_Sakdina = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_1957_Election_Sarit_flag
+			NOT = { has_country_flag = SIA_1957_Election_Decision_Toggle_flag }
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = -10 }
+			SIA_Sakdina_Support_effect = yes
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = 5 }
+			SIA_Diamond_Ring_Support_effect = yes
+		}
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_1957_Election_Phao_Chosen
+		}
+		cost = 25
+		fire_only_once = yes
+	}
+	SIA_1957_Election_Use_Royalties_Against_Phao = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_active_mission = SIA_1957_Election_Countdown
+			has_country_flag = SIA_Triangle_Phase_III_flag
+			has_country_flag = SIA_1957_Election_Phao_flag
+			NOT = { has_country_flag = SIA_1957_Election_Decision_Toggle_flag }
+		}
+		complete_effect = {
+			set_temp_variable = { SIA_Sakdina_Support_temp = 10 }
+			SIA_Sakdina_Support_effect = yes
+			set_temp_variable = { SIA_Diamond_Ring_Support_temp = -5 }
+			SIA_Diamond_Ring_Support_effect = yes
+		}
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_1957_Election_Sarit_Chosen
+		}
+		cost = 25
+		fire_only_once = yes
+	}
+	
+}
+
+SIA_Land_Reform = {
+	SIA_Land_Reform_Decision = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		state_target = yes
+		target_root_trigger = {
+			has_completed_focus = SIA_Lands_to_the_Tillers
+		}
+		target_array = SIA.core_states
+		target_trigger = {
+			FROM = {
+				is_owned_by = ROOT
+			}
+		}
+		on_map_mode = map_and_decisions_view
+		icon = my_icon
+		cost = 50
+		complete_effect = {
+			add_to_variable = {
+				currentMoney = -0.5
+			}
+			set_temp_variable = {
+				x = -500
+				tooltip = adjust_money_mil_tt
+			}
+		}
+		days_remove = 200
+		remove_effect = {
+			FROM = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}	
+	}
+}
+
+SIA_Development_Decisions = {
+	SIA_Show_Development_Decisions = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		cost = 0
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = SIA_Development_Decisions_Visible }
+		}
+		complete_effect = {
+			set_country_flag = SIA_Development_Decisions_Visible
+		}
+	}
+	SIA_Hide_Development_Decisions = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		cost = 0
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+		}
+		complete_effect = {
+			clr_country_flag = SIA_Development_Decisions_Visible
+		}
+	}
+	SIA_Expand_the_Bangkok_Port = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 200
+		available = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 883
+			883 = {
+				free_building_slots = {
+					building = dockyard
+					size > 1
+				}
+			}
+		}
+        days_remove = 180
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -20 }
+			cwic_change_money = yes
+        }
+		remove_effect = {
+			883 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			7408 = {
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+    }
+	SIA_Restore_Mittraphap_Road = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 150
+		available = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1940
+			owns_state = 882
+			882 = {
+				free_building_slots = {
+					building = infrastructure
+					size > 0
+				}
+			}
+			1940 = {
+				free_building_slots = {
+					building = infrastructure
+					size > 0
+				}
+			}
+		}
+        days_remove = 180
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -30 }
+			cwic_change_money = yes
+			country_event = {
+				id = SIA_ECON.12
+			}
+        }
+		remove_effect = {
+			327 = {
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+				add_to_variable = {
+					tourism_infrastructure = 1
+					tooltip = tourism_infra_tt
+				}
+			}
+		}
+    }
+	SIA_Develop_Don_Muenag_International_Airport = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 150
+		available = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 883
+			883 = {
+				free_building_slots = {
+					building = air_base
+					size > 0
+				}
+			}
+		}
+        days_remove = 150
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -15 }
+			cwic_change_money = yes
+        }
+		remove_effect = {
+			883 = {
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				category = air_equipment
+				bonus = 0.15
+				uses = 1
+			}
+		}
+    }
+	SIA_Establish_Bangkok_Electric_Works = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 250
+		available = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 882
+			882 = {
+				free_building_slots = {
+					building = infrastructure
+					size > 0
+				}
+			}
+			any_owned_state = {
+				free_building_slots = {
+					building = fossil_fuel_powerplant
+					size > 1
+				}
+			}
+		}
+        days_remove = 270
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -35 }
+			cwic_change_money = yes
+			country_event = {
+				id = SIA_ECON.13
+			}
+        }
+		remove_effect = {
+			882 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = {
+					free_building_slots = {
+						building = fossil_fuel_powerplant
+						size > 1
+					}
+				}
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+    }
+	SIA_Construct_the_Bhumibol_Dam = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 150
+		available = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 882
+		}
+        days_remove = 360
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -40 }
+			cwic_change_money = yes
+			country_event = {
+				id = SIA_ECON.14
+			}
+        }
+		remove_effect = {
+			7353 = {
+				add_building_construction = {
+					type = dam
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+    }
+	SIA_Expand_the_Sattahip_Naval_Base = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 150
+		available = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1939
+			1939 = {
+				free_building_slots = {
+					building = dockyard
+					size > 1
+				}
+			}
+		}
+        days_remove = 240
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -30 }
+			cwic_change_money = yes
+        }
+		remove_effect = {
+			1939 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			7225 = {
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+    }
+	SIA_Modernize_the_Aeronautical_Workshops = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 180
+		available = { NOT = { has_global_flag = KRCW_active } 
+			any_owned_state = {
+				free_building_slots = {
+					building = arms_factory
+					size > 1
+				}
+			}
+		}
+        days_remove = 210
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -30 }
+			cwic_change_money = yes
+			country_event = {
+				id = SIA_ECON.15
+			}
+        }
+		remove_effect = {
+			random_owned_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = jet_multirole_equipment_1
+				amount = 20
+				producer = CAP
+			}
+			air_experience = 100
+		}
+    }
+	SIA_Launch_Rural_Development_Program = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 200
+		available = { NOT = { has_global_flag = KRCW_active } 
+			any_owned_state = {
+				free_building_slots = {
+					building = infrastructure
+					size > 1
+				}
+			}
+		}
+        days_remove = 270
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -30 }
+			cwic_change_money = yes
+        }
+		remove_effect = {
+			random_owned_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 1
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = {
+					free_building_slots = {
+						building = infrastructure
+						size > 1
+					}
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+    }
+	SIA_Develop_Lopburi_Military_City = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 250
+		available = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+        days_remove = 270
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -45 }
+			cwic_change_money = yes
+			country_event = {
+				id = SIA_ECON.19
+			}
+        }
+		remove_effect = {
+			882 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 3
+			}
+			10221 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_country_flag = SIA_Develop_Lopburi_Military_City_flag
+		}
+    }
+	SIA_Invest_in_Thai_Tourism = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 100
+		available = { NOT = { has_global_flag = KRCW_active } 
+			883 = {
+				free_building_slots = {
+					building = office_park
+					size > 0
+				}
+			}
+		}
+        days_remove = 180
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -50 }
+			cwic_change_money = yes
+			country_event = {
+				id = SIA_ECON.16
+			}
+        }
+		remove_effect = {
+			882 = {
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+				add_to_variable = {
+					tourism_infrastructure = 1
+					tooltip = tourism_infra_tt
+				}
+			}
+		}
+    }
+	SIA_Upgrade_Thailand_State_Railway = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 180
+		available = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+        days_remove = 360
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -35 }
+			cwic_change_money = yes
+        }
+		remove_effect = {
+			1941 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			1318 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+    }
+	SIA_Industrial_Promotion_Act_of_1954 = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 200
+		available = { NOT = { has_global_flag = KRCW_active } 
+			883 = {
+				free_building_slots = {
+					building = industrial_complex
+					size > 1
+				}
+			}
+		}
+        days_remove = 300
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -35 }
+			cwic_change_money = yes
+			country_event = {
+				id = SIA_ECON.17
+			}
+        }
+		remove_effect = {
+			883 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				category = construction_tech
+				bonus = 0.15
+				uses = 1
+			}
+		}
+    }
+	SIA_Expand_Thai_Airways_Program = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 100
+		available = { NOT = { has_global_flag = KRCW_active } 
+			883 = {
+				free_building_slots = {
+					building = air_base
+					size > 0
+				}
+			}
+		}
+        days_remove = 180
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -10 }
+			cwic_change_money = yes
+        }
+		remove_effect = {
+			883 = {
+				add_building_construction = {
+					type = air_base
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_tech_bonus = {
+				category = air_equipment
+				bonus = 0.15
+				uses = 1
+			}
+		}
+    }
+	SIA_Expand_Chulalongkorn_Hospital = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 100
+		available = { NOT = { has_global_flag = KRCW_active } 
+			883 = {
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+				}
+			}
+		}
+        days_remove = 210
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -30 }
+			cwic_change_money = yes
+        }
+		remove_effect = {
+			883 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_stability = 0.05
+		}
+    }
+	SIA_Bangkok_Urban_Modernization_Plan = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 200
+		available = { NOT = { has_global_flag = KRCW_active } 
+			883 = {
+				free_building_slots = {
+					building = state_infrastructure
+					size > 0
+				}
+			}
+		}
+        days_remove = 360
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -40 }
+			cwic_change_money = yes
+        }
+		remove_effect = {
+			883 = {
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+			}
+		}
+    }
+	SIA_Security_Development_Program = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 120
+		available = { NOT = { has_global_flag = KRCW_active } 
+			883 = {
+				free_building_slots = {
+					building = arms_factory
+					size > 0
+				}
+			}
+		}
+        days_remove = 180
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -30 }
+			cwic_change_money = yes
+        }
+		remove_effect = {
+			883 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_stability = 0.1
+			add_war_support = 0.05
+		}
+    }
+	SIA_Expand_Thammasat_University = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 200
+		available = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+        days_remove = 180
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -25 }
+			cwic_change_money = yes
+        }
+		remove_effect = {
+			add_research_slot = 1
+		}
+    }
+	SIA_Modernize_Bangkok_Tram_System = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+        }
+        cost = 150
+		available = { NOT = { has_global_flag = KRCW_active } 
+			1938 = {
+				free_building_slots = {
+					building = infrastructure
+					size > 0
+				}
+			}
+			883 = {
+				free_building_slots = {
+					building = infrastructure
+					size > 0
+				}
+			}
+		}
+        days_remove = 240
+        fire_only_once = yes
+        complete_effect = {
+			set_temp_variable = { money_change_temp = -20 }
+			cwic_change_money = yes
+			country_event = {
+				id = SIA_ECON.18
+			}
+        }
+		remove_effect = {
+			883 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			883 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+    }
+	SIA_Relocation_of_Capital = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Development_Decisions_Visible
+			has_country_flag = SIA_Develop_Lopburi_Military_City_flag
+        }
+        cost = 30
+		available = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+        fire_only_once = yes
+        complete_effect = {
+			country_event = {
+				id = SIA_ECON.20
+			}
+        }
+		remove_effect = {
+			
+		}
+    }
+}
+
+SIA_Dealing_With_Separatists = {
+	SIA_update_GUI = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			is_debug = yes
+        }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+        complete_effect = {
+			add_to_variable = { SIA_Separatists_GUI_Variable = 1 }
+        }
+		remove_effect = {
+			
+		}
+    }
+	SIA_Show_Separatists_Decisions = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = { has_country_flag = SIA_Separatists_Decisions_Show_flag }
+        }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+        complete_effect = {
+			set_country_flag = SIA_Separatists_Decisions_Show_flag
+        }
+		remove_effect = {
+			
+		}
+    }
+	SIA_Separatists_Quarterly_Update = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			always = no
+		 } }
+}
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			
+		 }
+}
+		days_mission_timeout = 90
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			SIA_Seperatists_Pulse_effect = yes
+			activate_mission = SIA_Separatists_Quarterly_Update
+		 }
+}
+	}
+	SIA_Hide_Separatists_Decisions = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Separatists_Decisions_Show_flag
+        }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+        complete_effect = {
+			clr_country_flag = SIA_Separatists_Decisions_Show_flag
+		}
+		remove_effect = {
+			
+		}
+    }
+	SIA_Separatists_Isan_Promise_Irrigation_Infrastructure = {
+        ai_will_do = {
+            factor = 1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = SIA_Separatists_Decisions_Show_flag
+			OR = {
+				check_variable = { SIA_Selected_State = 1940 }
+				check_variable = { SIA_Selected_State = 884 }
+				check_variable = { SIA_Selected_State = 1976 }
+			}
+        }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					check_variable = { SIA_Selected_State = 1940 }
+					1940 = { free_building_slots = { building = water_infrastructure size > 0 } }
+				}
+				AND = {
+					check_variable = { SIA_Selected_State = 884 }
+					884 = { free_building_slots = { building = water_infrastructure size > 0 } }
+				}
+				AND = {
+					check_variable = { SIA_Selected_State = 1976 }
+					1976 = { free_building_slots = { building = water_infrastructure size > 0 } }
+				}
+			}
+		}
+        complete_effect = {
+			activate_mission = SIA_Separatists_Isan_Promise_Irrigation_Infrastructure_mission
+			set_variable = {
+				SIA_Isan_Irrigation_State = SIA_Selected_State
+			}
+			set_variable = {
+				SIA_Isan_Irrigation_State_Water_Infra_req = SIA_Isan_Irrigation_State:building_level@water_infrastructure
+			}
+			add_to_variable = {
+				SIA_Isan_Irrigation_State_Water_Infra_req = 1
+			}
+		}
+		cost = 50
+    }
+	SIA_Separatists_Isan_Promise_Irrigation_Infrastructure_mission = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+        activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = {
+				SIA_Isan_Irrigation_State:building_level@water_infrastructure > SIA_Isan_Irrigation_State_Water_Infra_req
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			always = no
+		 } }
+}
+		days_mission_timeout = 730
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			add_political_power = 50
+			set_temp_variable = {
+				SIA_Thaificiation_Change_culture_id = 2
+			}
+			set_temp_variable = {
+				SIA_Support_Change_temp = 2
+			}
+			SIA_Change_Support = yes
+		 }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			set_temp_variable = {
+				SIA_Thaificiation_Change_culture_id = 2
+			}
+			set_temp_variable = {
+				SIA_Support_Change_temp = -2
+			}
+			SIA_Change_Support = yes
+		 }
+}
+    }
+}

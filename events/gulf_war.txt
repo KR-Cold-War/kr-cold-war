@@ -1,0 +1,316 @@
+# KRCW (build/patch_residue.py): 13 OTL events dropped while KRCW_active
+add_namespace = kuwait_iraq
+add_namespace = gulf_war_news
+add_namespace = gulf_war
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    	id = kuwait_iraq.1
+ immediate = { }
+	title = kuwait_iraq.1.t
+	Desc = kuwait_iraq.1.d
+	#picture = 
+
+	is_triggered_only = yes
+
+    fire_only_once = yes
+
+	option = { 
+		name = kuwait_iraq.1.a
+
+        country_event = kuwait_iraq.2
+
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = { 
+		name = kuwait_iraq.1.b
+
+        country_event = kuwait_iraq.3
+
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    	id = kuwait_iraq.2
+ immediate = { }
+	title = kuwait_iraq.2.t
+	Desc = kuwait_iraq.2.d
+	#picture = 
+
+	is_triggered_only = yes
+
+    fire_only_once = yes
+
+	option = { 
+    
+    name = kuwait_iraq.2.a
+
+	declare_war_on = { target = KUW type = annex_everything }
+
+    news_event = kuwait_iraq.4
+    
+	hidden_effect = {
+			country_event = {
+				id = kuwait_iraq.5
+				days = 7		
+			}
+		}
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    	id = kuwait_iraq.3
+ immediate = { }
+	title = kuwait_iraq.3.t
+	Desc = kuwait_iraq.3.d
+	#picture = 
+
+	is_triggered_only = yes
+
+    fire_only_once = yes
+
+	option = { 
+    
+    name = kuwait_iraq.3.a
+
+    add_political_power = 250
+    add_stability = 0.1
+
+    }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = kuwait_iraq.4
+ immediate = { }
+	title = kuwait_iraq.4.t
+	Desc = kuwait_iraq.4.d
+	picture = GFX_news_gulf_war_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = kuwait_iraq.4.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    	id = kuwait_iraq.5
+ immediate = { }
+	title = kuwait_iraq.5.t
+	Desc = kuwait_iraq.5.d
+	#picture = 
+
+	is_triggered_only = yes
+
+    fire_only_once = yes
+
+	option = { 
+    
+    name = kuwait_iraq.5.a
+
+    IRQ = {
+        release_puppet = KUW
+    }
+
+    KUW = {
+
+        set_cosmetic_tag = IRQ_KUW
+        
+        set_politics = {
+            ruling_party = fascism
+            elections_allowed = no
+            last_election = "1935.12.17"
+            election_frequency = 48
+        }
+        
+        create_country_leader = {
+            name = "Alaa Hussein Ali"
+            desc = ""
+            picture = "Alaa_Hussein_Ali.dds"
+            ideology = baathism
+                traits = {
+                }
+            }
+            
+            set_popularities = {
+                fascism = 100
+            }
+        
+        }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = kuwait_iraq.6
+ immediate = { }
+	title = kuwait_iraq.6.t
+	Desc = kuwait_iraq.6.d
+	#picture = 
+
+	is_triggered_only = yes
+
+    fire_only_once = yes
+
+	option = {
+		
+		name = kuwait_iraq.6.a
+        
+		annex_country = {
+			target = KUW
+		} 	
+		
+		656 = {
+			set_state_name = "Kuwait Governorate"
+		}
+		
+		1472 = {
+			set_state_name = "Saddamiyat al-Mitla'"
+		}
+	}
+
+    option = {
+        name = kuwait_iraq.6.b
+        add_political_power = -100
+    }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = gulf_war_news.1
+ immediate = { }
+	title = gulf_war_news.1.t
+	Desc = gulf_war_news.1.d
+	picture = GFX_news_gulf_war_UN
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = gulf_war_news.1.a
+	}
+}
+
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = gulf_war_news.2
+ immediate = { }
+	title = gulf_war_news.2.t
+	Desc = gulf_war_news.2.d
+	picture = GFX_news_gulf_war_air_campaign
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = gulf_war_news.2.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = gulf_war_news.3
+ immediate = { }
+	title = gulf_war_news.3.t
+	Desc = gulf_war_news.3.d
+	picture = GFX_iraq_bombs_israel
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = gulf_war_news.3.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = gulf_war_news.4
+ immediate = { }
+	title = gulf_war_news.4.t
+	Desc = gulf_war_news.4.d
+	picture = GFX_news_gulf_war_israel_bomb
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = gulf_war_news.4.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = gulf_war_news.5
+ immediate = { }
+	title = gulf_war_news.5.t
+	Desc = gulf_war_news.5.d
+	picture = GFX_news_gulf_war_israel_bomb
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = gulf_war_news.5.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    	id = gulf_war.1  #USA
+ immediate = { }
+	title = gulf_war.1.t
+	Desc = gulf_war.1.d
+	#picture = 
+
+	is_triggered_only = yes
+
+    fire_only_once = yes
+
+	option = { 
+    
+    name = gulf_war.1.a
+
+	declare_war_on = { target = IRQ type = annex_everything }
+
+	news_event = gulf_war_news.2
+    
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    	id = gulf_war.2  #USA
+ immediate = { }
+	title = gulf_war.2.t
+	Desc = gulf_war.2.d
+	#picture = 
+
+	is_triggered_only = yes
+
+    fire_only_once = yes
+
+	option = { 
+    
+    name = gulf_war.2.a
+
+	declare_war_on = { target = IRQ type = annex_everything }
+    
+    }
+}

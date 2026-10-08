@@ -1,0 +1,588 @@
+# KRCW (build/patch_residue.py): 21 OTL events dropped while KRCW_active
+add_namespace = Fulro
+add_namespace = North_Vietnam
+add_namespace = Cambodia_Com
+add_namespace = Bangkok_Plot
+add_namespace = Mon_Cambodia
+add_namespace = Thai_Focus
+
+news_event = {
+	id = Fulro.1 
+ immediate = { }
+	title = Fulro.1.t
+	picture = GFX_Rise_of_Furlo
+	is_triggered_only = yes
+	desc = Fulro_1_desc
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		not = { has_country_flag = rise_furlo }
+	}
+
+	immediate = {
+		set_country_flag = rise_furlo
+		if = {
+			limit = {
+				owns_state = 982
+			}
+			FUL = {
+				transfer_state = 982
+			}
+		}
+	}
+
+	option = {
+		name = Fulro.1.a
+	}
+}news_event = {
+	id = North_Vietnam.1 
+ immediate = { }
+	title = North_Vietnam.1.t
+	picture = GFX_Funeral_of_Ho_Chi_Minh
+	is_triggered_only = yes
+	desc = North_Vietnam_1_desc
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		not = { has_country_flag = ho_chi_minh_death }
+	}
+
+	immediate = {
+		set_country_flag = ho_chi_minh_death
+	}
+
+	option = {
+		trigger = {
+			OR = {
+				NOT = { tag = USA }
+				NOT = { tag = SIA }
+				NOT = { tag = CHI }
+				NOT = { tag = KOR }
+				NOT = { tag = "PHI" }
+				NOT = { tag = CAM }
+				NOT = { tag = VIE }
+				NOT = { tag = AST }
+				NOT = { tag = JAP }
+				NOT = { tag = USA }
+			}
+		}
+		name = North_Vietnam.1.a
+	}
+	option = {
+		trigger = {
+			OR = {
+				tag = USA
+				tag = SIA
+				tag = CHI
+				tag = KOR
+				tag = "PHI"
+				tag = CAM
+				tag = VIE
+				tag = AST
+				tag = JAP
+				tag = USA
+			}
+		}
+		name = North_Vietnam.1.b
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = North_Vietnam.2 
+ immediate = { }
+	title = North_Vietnam.2.t
+	picture = GFX_VIN_Land_Reform
+	is_triggered_only = yes
+	desc = North_Vietnam_2_desc
+
+	option = {
+		name = North_Vietnam.2.a
+	}
+
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = North_Vietnam.3 
+ immediate = { }
+	title = North_Vietnam.3.t
+	picture = GFX_VIN_Land_Reform2
+	is_triggered_only = yes
+	major = yes
+	desc = North_Vietnam_3_desc
+
+	option = {
+		name = North_Vietnam.3.a
+	}
+
+}
+news_event = {
+	id = Cambodia_Com.1 
+ immediate = { }
+	title = Cambodia_Com.1.t
+	picture = GFX_Cambodia_Communist_Form
+	is_triggered_only = yes
+	desc = Cambodia_Com_1_desc
+
+	immediate = {
+		set_country_flag = Cambodia_Com_flag_1
+	}
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		NOT = { has_country_flag = Cambodia_Com_flag_1 }
+	}
+
+
+	option = {
+
+		name = Cambodia_Com.1.a
+	}
+
+}
+news_event = {
+	id = Cambodia_Com.2 
+ immediate = { }
+	title = Cambodia_Com.2.t
+	picture = GFX_Cambodia_Krom_Pracheachon
+	is_triggered_only = yes
+	desc = Cambodia_Com_2_desc
+	immediate = {
+		set_country_flag = Cambodia_Com_flag_2
+	}
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		NOT = { has_country_flag = Cambodia_Com_flag_2 }
+	}
+
+	option = {
+
+		name = Cambodia_Com.2.a
+	}
+
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bangkok_Plot.1 
+ immediate = { }
+	title = Bangkok_Plot.1.t
+	picture = GFX_Bangkok_Plot_Success
+	is_triggered_only = yes
+	major = yes
+	desc = Bangkok_Plot_1_desc
+
+
+	option = {
+
+		name = Bangkok_Plot.1.a
+	}
+
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bangkok_Plot.2 
+ immediate = { }
+	title = Bangkok_Plot.2.t
+	picture = GFX_Bangkok_Plot_Failure
+	is_triggered_only = yes
+	major = yes
+	desc = Bangkok_Plot_2_desc
+
+
+	option = {
+
+		name = Bangkok_Plot.2.a
+	}
+
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Mon_Cambodia.1 
+ immediate = { }
+	title = Mon_Cambodia.1.t
+	picture = GFX_Dap_Chhuon_Assasination
+	is_triggered_only = yes
+	major = yes
+	desc = Mon_Cambodia_1_desc
+
+
+	option = {
+
+		name = Mon_Cambodia.1.a
+	}
+
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Mon_Cambodia.2 
+ immediate = { }
+	title = Mon_Cambodia.2.t
+	picture = GFX_Nop_Bophann_Assasination
+	is_triggered_only = yes
+	major = yes
+	desc = Mon_Cambodia_2_desc
+
+
+	option = {
+
+		name = Mon_Cambodia.2.a
+	}
+
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Mon_Cambodia.3 
+ immediate = { }
+	title = Mon_Cambodia.3.t
+	picture = GFX_Tou_Samouth_Assasination
+	is_triggered_only = yes
+	major = yes
+	desc = Mon_Cambodia_3_desc
+
+
+	option = {
+
+		name = Mon_Cambodia.3.a
+	}
+
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Thai_Focus.1 
+ immediate = { }
+	title = Thai_Focus.1.t
+	picture = GFX_Thai_One
+	is_triggered_only = yes
+	major = yes
+	desc = Thai_Focus_1_desc
+
+
+	option = {
+
+		name = Thai_Focus.1.a
+	}
+
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Thai_Focus.2 
+ immediate = { }
+	title = Thai_Focus.2.t
+	picture = GFX_Thai_Two
+	is_triggered_only = yes
+	major = yes
+	desc = Thai_Focus_2_desc
+
+
+	option = {
+
+		name = Thai_Focus.2.a
+	}
+
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Thai_Focus.3 
+ immediate = { }
+	title = Thai_Focus.3.t
+	picture = GFX_Thai_Five
+	is_triggered_only = yes
+	major = yes
+	desc = Thai_Focus_3_desc
+
+
+	option = {
+
+		name = Thai_Focus.3.a
+	}
+
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Thai_Focus.4 
+ immediate = { }
+	title = Thai_Focus.4.t
+	picture = GFX_Thai_Four
+	is_triggered_only = yes
+	major = yes
+	desc = Thai_Focus_4_desc
+
+
+	option = {
+
+		name = Thai_Focus.4.a
+	}
+
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Thai_Focus.5 
+ immediate = { }
+	title = Thai_Focus.5.t
+	picture = GFX_Thai_Three
+	is_triggered_only = yes
+	major = yes
+	desc = Thai_Focus_5_desc
+
+	option = {
+
+		name = Thai_Focus.5.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Thai_Focus.6 
+ immediate = { }
+	title = Thai_Focus.6.t
+	picture = GFX_report_event_elections
+	is_triggered_only = yes
+	desc = Thai_Focus_6_desc
+	fire_only_once = yes
+
+	option = {
+		name = Thai_Focus.6.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Thai_Focus.100 
+ immediate = { }
+	title = Thai_Focus.100.t
+	is_triggered_only = yes
+	desc = Thai_Focus_100_desc
+	fire_only_once = yes
+	option = {
+		name = Thai_Focus.100.a
+		ai_chance = {
+			factor = 5
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = SIA_silent_coup
+					option = SIA_SILENT_COUP_FAIL
+				}
+				factor = 0
+			}
+		}
+		complete_national_focus = SIA_Coup_Succeeds
+		news_event = Thai_Focus.3
+	}
+	option = {
+		name = Thai_Focus.100.b
+		ai_chance = {
+			factor = 5
+			modifier = {
+				has_game_rule = {
+					rule = SIA_silent_coup
+					option = SIA_SILENT_COUP_SUCCEED
+				}
+				factor = 0
+			}
+		}
+		news_event = Thai_Focus.4
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Thai_Focus.1952 
+ immediate = { }
+	title = Thai_Focus.1952.t
+	desc = Thai_Focus.1952.d
+	picture = GFX_report_event_cambodia
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = Thai_Focus.1952.a
+		ai_chance = {
+			factor = 5
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = SIA_1952_elections
+					option = SIA_DEMOCRATIC_VICTORY_1952
+				}
+				factor = 0
+			}
+		}
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = no
+		}
+	}
+	option = {
+		name = Thai_Focus.1952.b
+		ai_chance = {
+			factor = 5
+			modifier = {
+				has_game_rule = {
+					rule = SIA_1952_elections
+					option = SIA_PLAEK_ELECTED_1952
+				}
+				factor = 0
+			}
+		}
+		complete_national_focus = SIA_Democratic_Victory
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = no
+		}
+	}
+}
+#SIA_The_1952_Elections
+#	SIA_Democratic_Victory
+#	SIA_Plaek_Phibunsongkhram_Re_Elected
+
+#SIA_The_1957_Elections
+#	SIA_Democratic_Victory_57
+#	SIA_Seri_Manangkhasila_Party_Victory
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Thai_Focus.1957 
+ immediate = { }
+	title = Thai_Focus.1957.t
+	desc = Thai_Focus.1957.d
+	picture = GFX_report_event_cambodia
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = Thai_Focus.1957.a
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 10
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				has_game_rule = {
+					rule = SIA_1957_elections
+					option = SIA_DEMOCRATIC_VICTORY_1957
+				}
+				factor = 0
+			}
+			
+		}
+		complete_national_focus = SIA_The_1957_Elections
+		complete_national_focus = SIA_Seri_Manangkhasila_Party_Victory
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = no
+		}
+	}
+	option = {
+		name = Thai_Focus.1957.b
+		ai_chance = {
+			factor = 5
+			modifier = {
+				has_game_rule = {
+					rule = SIA_1957_elections
+					option = SIA_SERI_ELECTED_1957
+				}
+				factor = 0
+			}
+		}
+		complete_national_focus = SIA_The_1957_Elections
+		complete_national_focus = SIA_Democratic_Victory_57
+		set_politics = {
+			ruling_party = liberal
+			elections_allowed = no
+		}
+	}
+}
+#SIA_The_Second_1957_Elections
+#	SIA_Socialist_Front_Coalition_Victory
+#	SIA_Democratic_Victory_57_2
+#	SIA_Sahaphum_Victory
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Thai_Focus.19572 
+ immediate = { }
+	title = Thai_Focus.19572.t
+	desc = Thai_Focus.19572.d
+	picture = GFX_report_event_cambodia
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = Thai_Focus.19572.a
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 10
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = SIA_1957_elections_renewed
+						option = SIA_SOCIALIST_FRONT_1957
+					}
+					has_game_rule = {
+						rule = SIA_1957_elections_renewed
+						option = SIA_DEMOCRATIC_VICTORY_1957_2
+					}
+				}
+				factor = 0
+			}
+		}
+		complete_national_focus = SIA_The_Second_1957_Elections
+		complete_national_focus = SIA_Sahaphum_Victory
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = no
+		}
+		set_party_name = { 
+			ideology = neutrality 
+			long_name = "Phak Chat Sangkhomniyom" 
+			name = "Phak Chat Sangkhom" 
+		}
+	}
+	option = {
+		name = Thai_Focus.19572.b
+		ai_chance = {
+			factor = 5
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = SIA_1957_elections_renewed
+						option = SIA_SOCIALIST_FRONT_1957
+					}
+					has_game_rule = {
+						rule = SIA_1957_elections_renewed
+						option = SIA_SAHAPRUM_1957
+					}
+				}
+				factor = 0
+			}
+		}
+		complete_national_focus = SIA_The_Second_1957_Elections
+		complete_national_focus = SIA_Democratic_Victory_57_2
+		set_politics = {
+			ruling_party = liberal
+			elections_allowed = no
+		}
+	}
+	option = {
+		name = Thai_Focus.19572.c
+		ai_chance = {
+			factor = 5
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = SIA_1957_elections_renewed
+						option = SIA_DEMOCRATIC_VICTORY_1957_2
+					}
+					has_game_rule = {
+						rule = SIA_1957_elections_renewed
+						option = SIA_SAHAPRUM_1957
+					}
+				}
+				factor = 0
+			}
+		}
+		complete_national_focus = SIA_The_Second_1957_Elections
+		complete_national_focus = SIA_Socialist_Front_Coalition_Victory
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = no
+		}
+	}
+}
+

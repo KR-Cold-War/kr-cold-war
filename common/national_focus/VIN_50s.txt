@@ -1,0 +1,6163 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = VIN_1950s
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = VIN
+		}
+
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	shared_focus = VIN_Our_Position_in_the_New_Order
+	focus = {
+		id = VIN_Toan_Quoc_Khang_Chien
+		completion_reward = {
+		}
+		icon = GFX_VIN_Toan_Quoc_Khang_Chien
+		cost = 5.6
+		x = 10
+		y = 0
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = SWF_VIN.0
+			FRA = {
+				add_popularity = {
+					ideology = communism
+					popularity  = 0.01
+				}
+				add_political_power = -100
+			}
+			VIE = {
+				add_popularity = {
+					ideology = communism
+					popularity  = 0.01
+				}
+				add_political_power = -100
+			}
+		}
+	}
+	focus = {
+		id = VIN_1950_Trip_Beijing_Moscow
+		completion_reward = {
+		}
+		icon = GFX_moscow_approve
+		cost = 5.6
+		relative_position_id = VIN_Toan_Quoc_Khang_Chien
+		prerequisite = {
+			focus = VIN_Toan_Quoc_Khang_Chien
+		}
+		mutually_exclusive = {
+			focus = VIN_1950_Trip_Nanking_Moscow
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = VIN_Chinese_PRC_Victory_tt
+				has_global_flag = PRC_Victory
+			}
+		}
+		x = -12
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			SOV = {
+				country_event = SWF_VIN.1
+			}
+			PRC = {
+				country_event = SWF_VIN.2
+			}
+			set_temp_variable = { indochina_phase_amount = 50 }
+			indochina_struggle_escalate = yes
+			vin_campaign_initialize = yes
+			set_temp_variable = { vin_supply_amount = 40 }
+			vin_change_campaign_supply = yes
+		}
+	}
+	focus = {
+		id = VIN_1950_Trip_Nanking_Moscow
+		completion_reward = {
+		}
+		icon = GFX_AcademyForStudyOnRevolution
+		cost = 5.6
+		relative_position_id = VIN_Toan_Quoc_Khang_Chien
+		prerequisite = {
+			focus = VIN_Toan_Quoc_Khang_Chien
+		}
+		mutually_exclusive = {
+			focus = VIN_1950_Trip_Beijing_Moscow
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = VIN_Chinese_ROC_Victory_tt
+				has_global_flag = ROC_Victory
+			}
+		}
+		x = -8
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			SOV = {
+				country_event = SWF_VIN.3
+			}
+			CHI = {
+				country_event = SWF_VIN.4
+			}
+			set_temp_variable = { indochina_phase_amount = 50 }
+			indochina_struggle_escalate = yes
+			vin_campaign_initialize = yes
+			set_temp_variable = { vin_supply_amount = 25 }
+			vin_change_campaign_supply = yes
+		}
+	}
+	focus = {
+		id = VIN_Found_Tong_Cuc_Chinh_Tri
+		completion_reward = {
+		}
+		icon = GFX_PRC_Denounce_liberalization
+		cost = 5.6
+		relative_position_id = VIN_Toan_Quoc_Khang_Chien
+		prerequisite = {
+			focus = VIN_1950_Trip_Beijing_Moscow
+			focus = VIN_1950_Trip_Nanking_Moscow
+		}
+		x = -12
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = SWF_VIN.5
+			add_popularity = {
+				ideology = communism
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = VIN_Learning_Hundred_Flowers_Campaign
+		completion_reward = {
+		}
+		icon = GFX_focus_Hundred_Flowers
+		cost = 5.6
+		relative_position_id = VIN_Toan_Quoc_Khang_Chien
+		prerequisite = {
+			focus = VIN_1950_Trip_Beijing_Moscow
+			focus = VIN_1950_Trip_Nanking_Moscow
+		}
+		x = -8
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = SWF_VIN.6
+		}
+	}
+	focus = {
+		id = VIN_Closer_Ties_Chua_Meo
+		completion_reward = {
+		}
+		icon = GFX_Arm_the_Hmong
+		cost = 5.6
+		relative_position_id = VIN_Toan_Quoc_Khang_Chien
+		prerequisite = {
+			focus = VIN_Toan_Quoc_Khang_Chien
+		}
+		x = -5
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			MEO = {
+				add_offsite_building = {
+					type = arms_factory
+					level = 1
+				}
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Contact_Vong_A_Sang
+		completion_reward = {
+		}
+		icon = GFX_NUN_President_VongASang
+		cost = 5.6
+		relative_position_id = VIN_Toan_Quoc_Khang_Chien
+		prerequisite = {
+			focus = VIN_Closer_Ties_Chua_Meo
+		}
+		x = -5
+		y = 2
+		available = {
+			NUN = {
+				has_completed_focus = NUN_NhiQuy_Proposal
+			}
+		}
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			NUN = {
+				add_offsite_building = {
+					type = arms_factory
+					level = 1
+				}
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Dai_Hoi_II
+		completion_reward = {
+		}
+		icon = GFX_Socialist_Electoral_Reform
+		cost = 5.6
+		relative_position_id = VIN_Toan_Quoc_Khang_Chien
+		prerequisite = {
+			focus = VIN_Found_Tong_Cuc_Chinh_Tri
+		}
+		prerequisite = {
+			focus = VIN_Learning_Hundred_Flowers_Campaign
+		}
+
+		x = -10
+		y = 3
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			country_event = SWF_VIN.50
+		}
+	}
+	focus = {
+		id = VIN_Rally_The_Gio_Tri_Thuc
+		completion_reward = {
+		}
+		icon = GFX_Collaborate_with_Progressive_Bourgeois
+		cost = 5.6
+		relative_position_id = VIN_Toan_Quoc_Khang_Chien
+		prerequisite = {
+			focus = VIN_Toan_Quoc_Khang_Chien
+		}
+		x = -3
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_popularity = {
+				ideology = Social_Democratic
+				popularity  = 0.05
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity  = 0.05
+			}
+			add_manpower = 10000
+		}
+	}
+	focus = {
+		id = VIN_Lay_Dan_Lam_Goc
+		completion_reward = {
+		}
+		icon = GFX_PRC_50s_Tighten_up_The_Management_of_Intellectuals
+		cost = 5.6
+		relative_position_id = VIN_Toan_Quoc_Khang_Chien
+		prerequisite = {
+			focus = VIN_Toan_Quoc_Khang_Chien
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = SWF_VIN.7
+			add_political_power = 150
+		}
+	}
+	focus = {
+		id = VIN_The_National_Solidarity_Bloc
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_co_opt_non_communist_parties
+		cost = 5.6
+		relative_position_id = VIN_Toan_Quoc_Khang_Chien
+		prerequisite = {
+			focus = VIN_Toan_Quoc_Khang_Chien
+		}
+		x = 3
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			country_event = SWF_VIN.8
+		}
+	}
+	focus = {
+		id = VIN_Ngo_Dinh_Diem_Manifesto
+		completion_reward = {
+		}
+		icon = GFX_PreserveTheDiemRegime
+		cost = 5.6
+		relative_position_id = VIN_Lay_Dan_Lam_Goc
+		prerequisite = {
+			focus = VIN_Rally_The_Gio_Tri_Thuc
+		}
+		prerequisite = {
+			focus = VIN_Lay_Dan_Lam_Goc
+		}
+		prerequisite = {
+			focus = VIN_The_National_Solidarity_Bloc
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = SWF_VIN.9
+			hidden_effect = {
+				add_stability = -0.05
+			}
+		}
+	}
+	focus = {
+		id = VIN_Integrate_Patriotic_Religious_Organizations
+		completion_reward = {
+		}
+		icon = GFX_focus_liberation_theology
+		cost = 5.6
+		relative_position_id = VIN_Ngo_Dinh_Diem_Manifesto
+		prerequisite = {
+			focus = VIN_Ngo_Dinh_Diem_Manifesto
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_ideas = policy_religion_temp_3
+			add_opinion_modifier = {
+				target = PRC
+				modifier = medium_decrease
+			}
+			PRC = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = medium_decrease
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Merge_Viet_Minh_Lien_Viet
+		completion_reward = {
+		}
+		icon = GFX_Legacy_of_the_1918_revolution
+		cost = 5.6
+		relative_position_id = VIN_Integrate_Patriotic_Religious_Organizations
+		prerequisite = {
+			focus = VIN_Integrate_Patriotic_Religious_Organizations
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			country_event = SWF_VIN.10
+			set_party_name = {
+				ideology = Social_Liberalism
+				long_name = VIN_party_mat_tran_lien_viet_long
+				name = VIN_party_mat_tran_lien_viet
+			}
+			set_party_name = {
+				ideology = Social_Democratic
+				long_name = VIN_party_mat_tran_lien_viet_long
+				name = VIN_party_mat_tran_lien_viet
+			}
+			set_party_name = {
+				ideology = socialist
+				long_name = VIN_party_mat_tran_lien_viet_long
+				name = VIN_party_mat_tran_lien_viet
+			}
+			set_party_name = {
+				ideology = liberal
+				long_name = VIN_party_mat_tran_lien_viet_long
+				name = VIN_party_mat_tran_lien_viet
+			}
+		}
+	}
+	focus = {
+		id = VIN_Reign_of_Stalin
+		completion_reward = {
+		}
+		icon = GFX_Announce_Stalins_Retirement
+		cost = 5.6
+		relative_position_id = VIN_Merge_Viet_Minh_Lien_Viet
+		mutually_exclusive = {
+			focus = VIN_The_Death_of_Stalin
+		}
+		prerequisite = {
+			focus = VIN_Merge_Viet_Minh_Lien_Viet
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = SWF_VIN.11
+			add_opinion_modifier = {
+				target = SOV
+				modifier = medium_increase
+			}
+			SOV = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = medium_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Under_Political_Discipline
+		completion_reward = {
+		}
+		icon = GFX_SOV_Test_Hos_Revolutionary_Commitment
+		cost = 5.6
+		relative_position_id = VIN_Reign_of_Stalin
+		mutually_exclusive = {
+			focus = VIN_Unity_for_Independence
+		}
+		prerequisite = {
+			focus = VIN_Reign_of_Stalin
+			focus = VIN_The_Death_of_Stalin
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_war_support = 0.05
+			add_command_power = 50
+			CAM = {
+				add_popularity = {
+					ideology = communism
+					popularity = 0.05
+				}
+			}
+			LOS = {
+				add_popularity = {
+					ideology = communism
+					popularity = 0.05
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_The_Strength_in_Our_Heart
+		completion_reward = {
+		}
+		icon = GFX_generic_revolutionary_women
+		cost = 5.6
+		relative_position_id = VIN_Under_Political_Discipline
+		prerequisite = {
+			focus = VIN_Under_Political_Discipline
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			custom_effect_tooltip = Increase_Militia_Modifier
+			add_to_variable = { VIN_M_SDM_RDG = 0.025 }
+			add_to_variable = { VIN_M_SDM_TSF = 0.05 }
+			add_to_variable = { VIN_M_SDM_BR = 0.025 }
+			add_to_variable = { VIN_M_SDM_MRC = 0.025 }
+			add_to_variable = { VIN_M_SDM_MS = 0.05 }
+			add_to_variable = { VIN_M_SDM_SFTT = -0.05 }
+			add_to_variable = { VIN_M_SDM_MT = 0.025 }
+		}
+	}
+	focus = {
+		id = VIN_The_Revolutionary_Struggle
+		completion_reward = {
+		}
+		icon = GFX_PRC_50s_Break_Down_Individualism
+		cost = 5.6
+		relative_position_id = VIN_The_Strength_in_Our_Heart
+		prerequisite = {
+			focus = VIN_The_Strength_in_Our_Heart
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_opinion_modifier = {
+				target = PRC
+				modifier = large_increase
+			}
+			PRC = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = SOV
+				modifier = large_increase
+			}
+			SOV = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = DDR
+				modifier = large_increase
+			}
+			DDR = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = POL
+				modifier = large_increase
+			}
+			POL = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = CZE
+				modifier = large_increase
+			}
+			CZE = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = HUN
+				modifier = large_increase
+			}
+			HUN = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = YUG
+				modifier = large_increase
+			}
+			YUG = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = KPA
+				modifier = large_increase
+			}
+			KPA = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = ROM
+				modifier = large_increase
+			}
+			ROM = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = BUL
+				modifier = large_increase
+			}
+			BUL = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = MON
+				modifier = large_increase
+			}
+			MON = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_The_Death_of_Stalin
+		completion_reward = {
+		}
+		icon = GFX_Announce_Stalins_Retirement
+		cost = 5.6
+		relative_position_id = VIN_Merge_Viet_Minh_Lien_Viet
+		mutually_exclusive = {
+			focus = VIN_Reign_of_Stalin
+		}
+		prerequisite = {
+			focus = VIN_Merge_Viet_Minh_Lien_Viet
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = SWF_VIN.12
+			add_opinion_modifier = {
+				target = PRC
+				modifier = medium_increase
+			}
+			PRC = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = medium_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Unity_for_Independence
+		completion_reward = {
+		}
+		icon = GFX_PRC_50s_Transform_Intellectuals
+		cost = 5.6
+		relative_position_id = VIN_The_Death_of_Stalin
+		mutually_exclusive = {
+			focus = VIN_Under_Political_Discipline
+		}
+		prerequisite = {
+			focus = VIN_Reign_of_Stalin
+			focus = VIN_The_Death_of_Stalin
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			every_country = {
+				limit = {
+					is_in_faction_with = VIN
+				}
+				set_country_flag = Faction_with_VIN
+			}
+			dismantle_faction = yes
+			create_faction_from_template = {
+				template = faction_template_viet_minh
+				name = "Indochinese Front"
+			}
+			every_country = {
+				limit = {
+					has_country_flag = Faction_with_VIN
+				}
+				VIN = {
+					add_to_faction = PREV
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_The_Virtue_of_Mind
+		completion_reward = {
+		}
+		icon = GFX_Continue_Repression_and_Observation_of_Noted_Intelligenistia
+		cost = 5.6
+		relative_position_id = VIN_Unity_for_Independence
+		prerequisite = {
+			focus = VIN_Unity_for_Independence
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			increase_education_rate = yes
+		}
+	}
+	focus = {
+		id = VIN_The_National_Struggle
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_50
+		cost = 5.6
+		relative_position_id = VIN_The_Virtue_of_Mind
+		prerequisite = {
+			focus = VIN_The_Virtue_of_Mind
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			add_manpower = 50000
+			add_war_support = 0.10
+			add_stability = 0.05
+			add_opinion_modifier = {
+				target = TAM
+				modifier = large_increase
+			}
+			TAM = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = NUN
+				modifier = large_increase
+			}
+			NUN = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = MEO
+				modifier = large_increase
+			}
+			MEO = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = TAI
+				modifier = large_increase
+			}
+			TAI = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = large_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Bamboo_Diplomacy
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Diplomacy_49
+		cost = 5.6
+		relative_position_id = VIN_The_Revolutionary_Struggle
+		prerequisite = {
+			focus = VIN_The_Revolutionary_Struggle
+			focus = VIN_The_National_Struggle
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = SWF_VIN.13
+		}
+	}
+	focus = {
+		id = VIN_Establish_International_Ties
+		completion_reward = {
+		}
+		icon = GFX_Generic_Diplomacy_3
+		cost = 5.6
+		relative_position_id = VIN_Bamboo_Diplomacy
+		prerequisite = {
+			focus = VIN_Bamboo_Diplomacy
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+		    if = {
+				limit = { has_idea = unrecognized_state }
+				add_ideas = semi_recognized_state
+			}
+			else_if = {
+				limit = { has_idea = semi_recognized_state }
+				add_ideas = un_member
+			}
+		}
+	}
+	focus = {
+		id = VIN_Support_Lao_Issara_Khmer_Issarak
+		completion_reward = {
+		}
+		icon = GFX_contact_pathet_lao
+		cost = 5.6
+		relative_position_id = VIN_Establish_International_Ties
+		prerequisite = {
+			focus = VIN_Establish_International_Ties
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			LAO = {
+				add_stability = 0.05
+				add_popularity = {
+					ideology = trotskyism
+					popularity = 0.05
+				}
+			}
+			LOS = {
+				add_stability = 0.05
+				add_popularity = {
+					ideology = trotskyism
+					popularity = 0.05
+				}
+			}
+			CAM = {
+				add_stability = 0.05
+				add_popularity = {
+					ideology = trotskyism
+					popularity = 0.05
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Nam_Bo_Khang_Chien
+		icon = GFX_Viet_Cong_Icon
+		cost = 5.6
+		relative_position_id = VIN_Toan_Quoc_Khang_Chien
+		prerequisite = {
+			focus = VIN_Toan_Quoc_Khang_Chien
+		}
+		x = 5
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = SWF_VIN.14
+		}
+	}
+	focus = {
+		id = VIN_Raise_the_Smuggling_Fleet
+		icon = GFX_Generic_Soviet_Trade
+		cost = 5.6
+		relative_position_id = VIN_Nam_Bo_Khang_Chien
+		prerequisite = {
+			focus = VIN_Nam_Bo_Khang_Chien
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 100
+			}
+			NLF = {
+				add_equipment_to_stockpile = {
+					type = convoy
+					amount = 50
+				}
+				1287 = {
+					add_building_construction = {
+						type = naval_base
+						level = 1
+						province = 1300
+						instant_build = yes
+					}
+				}
+			}
+
+		}
+	}
+	focus = {
+		id = VIN_Empower_the_Democratic_Front
+		icon = GFX_Generic_National_Focus_Politics_12
+		cost = 5.6
+		relative_position_id = VIN_Nam_Bo_Khang_Chien
+		prerequisite = {
+			focus = VIN_Nam_Bo_Khang_Chien
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = SWF_VIN.15
+		}
+	}
+	focus = {
+		id = VIN_Mass_Recruitments_Binh_Xuyen_and_Sectarians
+		icon = GFX_VIE_Incorporate_Religious_Sects_BinhXuyen_Forces
+		cost = 5.6
+		relative_position_id = VIN_Empower_the_Democratic_Front
+		prerequisite = {
+			focus = VIN_Raise_the_Smuggling_Fleet
+		}
+		prerequisite = {
+			focus = VIN_Empower_the_Democratic_Front
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			NLF = {
+				add_manpower = 50000
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_1
+					amount = 1000
+					producer = VIE
+				}
+			}
+			VIE = {
+				add_stability = -0.05
+			}
+		}
+	}
+	focus = {
+		id = VIN_Summon_Nguyen_Binh_North
+		icon = GFX_Generic_National_Focus_Politics_14
+		cost = 5.6
+		relative_position_id = VIN_Mass_Recruitments_Binh_Xuyen_and_Sectarians
+		mutually_exclusive = {
+			focus = VIN_Keep_Binh_in_Nam_Bo
+		}
+		prerequisite = {
+			focus = VIN_Mass_Recruitments_Binh_Xuyen_and_Sectarians
+		}
+		x = 0
+		y = 1
+		available = {
+			date > 1951.3.01
+		}
+		bypass = {
+			has_country_flag = Binh_Outcome
+		}
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes
+			}
+		}
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			set_country_flag = VIN_Binh_Recall_Asked
+			country_event = Binh_Cung_Leadership.11
+		}
+	}
+	focus = {
+		id = VIN_Keep_Binh_in_Nam_Bo
+		icon = GFX_VIN_Our_Southern_Comrade
+		cost = 5.6
+		relative_position_id = VIN_Summon_Nguyen_Binh_North
+		mutually_exclusive = {
+			focus = VIN_Summon_Nguyen_Binh_North
+		}
+		prerequisite = {
+			focus = VIN_Mass_Recruitments_Binh_Xuyen_and_Sectarians
+		}
+		x = 3
+		y = 0
+		available = {
+			date > 1951.3.01
+		}
+		bypass = {
+			has_country_flag = Binh_Outcome
+		}
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			set_country_flag = VIN_Binh_Recall_Asked
+			vin_binh_keep_in_nam_bo = yes
+		}
+	}
+	focus = {
+		id = VIN_Nguyen_Binh_Ambush
+		icon = GFX_Pengang_ambush
+		cost = 5.6
+		relative_position_id = VIN_Summon_Nguyen_Binh_North
+		prerequisite = {
+			focus = VIN_Summon_Nguyen_Binh_North
+			focus = VIN_Keep_Binh_in_Nam_Bo
+		}
+		x = 0
+		y = 1
+		available = {
+			always = no
+		}
+		bypass = {
+			check_variable = { VIN_Binh_Route = 3 }
+		}
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+		}
+	}
+	focus = {
+		id = VIN_Death_of_Nguyen_Binh
+		icon = GFX_skull_treaty
+		cost = 5.6
+		relative_position_id = VIN_Nguyen_Binh_Ambush
+		mutually_exclusive = {
+			focus = VIN_Nguyen_Binh_Survives
+		}
+		prerequisite = {
+			focus = VIN_Nguyen_Binh_Ambush
+		}
+		x = -1
+		y = 1
+		available = {
+			always = no
+		}
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = SWF_VIN.16
+			add_political_power = 75
+			NLF = {
+				add_command_power = -50
+				add_war_support = -0.05
+			}
+		}
+	}
+	focus = {
+		id = VIN_Nguyen_Binh_Survives
+		icon = GFX_Generic_National_Focus_Politics_53
+		cost = 5.6
+		relative_position_id = VIN_Nguyen_Binh_Ambush
+		mutually_exclusive = {
+			focus = VIN_Death_of_Nguyen_Binh
+		}
+		prerequisite = {
+			focus = VIN_Nguyen_Binh_Ambush
+		}
+		x = 1
+		y = 1
+		available = {
+			always = no
+		}
+		bypass = {
+			check_variable = { VIN_Binh_Route = 3 }
+		}
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_war_support = 0.05
+			NLF = {
+				add_war_support = 0.10
+				add_manpower = 15000
+			}
+		}
+	}
+	focus = {
+		id = VIN_Fate_of_Kieu_Cong_Cung_Revisionists
+		icon = GFX_Generic_National_Focus_Politics_40
+		cost = 5.6
+		relative_position_id = VIN_Nguyen_Binh_Survives
+		prerequisite = {
+			focus = VIN_Death_of_Nguyen_Binh
+			focus = VIN_Nguyen_Binh_Survives
+		}
+		x = -1
+		y = 1
+		bypass = {
+			NOT = { country_exists = NLF }
+		}
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = SWF_VIN.17
+			NLF = {
+				country_event = SWF_VIN.17
+			}
+		}
+	}
+	focus = {
+		id = VIN_Promote_Le_Duc_Tho_Orthodoxy
+		icon = GFX_Generic_National_Focus_Politics_14
+		cost = 5.6
+		relative_position_id = VIN_Fate_of_Kieu_Cong_Cung_Revisionists
+		mutually_exclusive = {
+			focus = VIN_Retain_Nguyen_Binh_United_Front
+		}
+		prerequisite = {
+			focus = VIN_Fate_of_Kieu_Cong_Cung_Revisionists
+		}
+		x = -1
+		y = 1
+		available = {
+			OR = {
+				has_country_flag = VIN_southern_orthodoxy_prioritized
+				NLF = { NLF_orthodox_southern_command_trigger = yes }
+				AND = {
+					has_completed_focus = VIN_Nguyen_Binh_Survives
+					NOT = { has_country_flag = VIN_southern_unity_prioritized }
+				}
+			}
+		}
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			NLF = {
+				add_ideas = ideological_fanaticism_focus
+				add_popularity = {
+					ideology = communism
+					popularity = 0.25
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Dak_Doa_Offensive
+		icon = GFX_Battle_of_Black_River_Valley
+		cost = 3.4
+		relative_position_id = VIN_Fate_of_Kieu_Cong_Cung_Revisionists
+		prerequisite = {
+			focus = VIN_Promote_Le_Duc_Tho_Orthodoxy
+			focus = VIN_Retain_Nguyen_Binh_United_Front
+		}
+		x = 0
+		y = 2
+		continue_if_invalid = yes
+		available = {
+			date > 1954.02.10
+			VIN_dak_doa_available_trigger = yes
+		}
+		bypass = {
+			OR = {
+				has_global_flag = Indochina_War_Over
+				has_global_flag = geneva_conference_concluded
+				NLF = { VIN_dak_doa_campaign_terminal_trigger = yes }
+				NOT = { country_exists = NLF }
+				NOT = { country_exists = FUL }
+			}
+		}
+		completion_reward = {
+			custom_effect_tooltip = VIN_Dak_Doa_Offensive_tt
+			NLF = { nlf_dak_doa_begin = yes }
+		}
+		ai_will_do = {
+			base = 1
+			modifier = { factor = 25 is_historical_focus_on = yes }
+		}
+	}
+	focus = {
+		id = VIN_Bac_Tien
+		icon = GFX_VIN_Our_Southern_Comrade
+		cost = 5.6
+		relative_position_id = VIN_Promote_Le_Duc_Tho_Orthodoxy
+		mutually_exclusive = {
+			focus = VIN_Victory_in_the_South
+		}
+		prerequisite = {
+			focus = VIN_Promote_Le_Duc_Tho_Orthodoxy
+			focus = VIN_Retain_Nguyen_Binh_United_Front
+		}
+		prerequisite = {
+			focus = VIN_Dak_Doa_Offensive
+		}
+		x = 0
+		y = 4
+		available = {
+			geneva_conference_available_trigger = yes
+		}
+		completion_reward = {
+			indochina_struggle_vin_focus_breakthrough = yes
+			annex_country = { target = NLF transfer_troops = yes }
+			add_war_support = 0.10
+		}
+	}
+	focus = {
+		id = VIN_Retain_Nguyen_Binh_United_Front
+		icon = GFX_MLA_Formation_Syndicalist_System
+		cost = 5.6
+		relative_position_id = VIN_Fate_of_Kieu_Cong_Cung_Revisionists
+		mutually_exclusive = {
+			focus = VIN_Promote_Le_Duc_Tho_Orthodoxy
+		}
+		prerequisite = {
+			focus = VIN_Fate_of_Kieu_Cong_Cung_Revisionists
+		}
+		x = 1
+		y = 1
+		available = {
+			OR = {
+				has_country_flag = VIN_southern_unity_prioritized
+				NLF = { NLF_united_front_southern_command_trigger = yes }
+				AND = {
+					has_completed_focus = VIN_Nguyen_Binh_Survives
+					NOT = { has_country_flag = VIN_southern_orthodoxy_prioritized }
+				}
+			}
+		}
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			NLF = {
+				add_command_power = 50
+				add_war_support = 0.15
+				add_manpower = 5000
+			}
+		}
+	}
+	focus = {
+		id = VIN_Victory_in_the_South
+		icon = GFX_SOV_Regarding_Vietnams_Struggle
+		cost = 5.6
+		relative_position_id = VIN_Retain_Nguyen_Binh_United_Front
+		mutually_exclusive = {
+			focus = VIN_Bac_Tien
+		}
+		prerequisite = {
+			focus = VIN_Promote_Le_Duc_Tho_Orthodoxy
+			focus = VIN_Retain_Nguyen_Binh_United_Front
+		}
+		prerequisite = {
+			focus = VIN_Dak_Doa_Offensive
+		}
+		x = 0
+		y = 4
+		available = {
+			indochina_struggle_ending_communist_victory_available_trigger = yes
+		}
+		completion_reward = {
+			indochina_struggle_vin_focus_capstone = yes
+			add_stability = 0.10
+		}
+	}
+	focus = {
+		id = VIN_Nhan_Van_Giai_Pham_Affair
+		completion_reward = {
+		}
+		available = { always = no }
+		icon = GFX_KPA_50s_an_asian_peoples_democracy
+		cost = 5.6
+		x = 0
+		y = 4
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+		}
+	}
+	focus = {
+		id = VIN_Destroy_Reactionary_Thoughts
+		completion_reward = {
+		}
+		icon = GFX_Take_out_local_collaborators
+		cost = 5.6
+		relative_position_id = VIN_Nhan_Van_Giai_Pham_Affair
+		prerequisite = {
+			focus = VIN_Nhan_Van_Giai_Pham_Affair
+		}
+		mutually_exclusive = {
+			focus = VIN_Let_Hundred_Flowers_Bloom
+		}
+		x = -4
+		y = 1
+		available = {
+			has_global_flag = Playing_Government_VIN
+		}
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Nhan_Van_Giai_Pham.2
+		}
+	}
+	focus = {
+		id = VIN_Nghi_Quyet_So_30_Van_Nghe
+		completion_reward = {
+		}
+		icon = GFX_Mongolian_Political_Investigations
+		cost = 5.6
+		relative_position_id = VIN_Destroy_Reactionary_Thoughts
+		prerequisite = {
+			focus = VIN_Destroy_Reactionary_Thoughts
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Nhan_Van_Giai_Pham.3
+		}
+	}
+	focus = {
+		id = VIN_A_United_Front
+		completion_reward = {
+		}
+		icon = GFX_POR_Amend_the_Constitution
+		cost = 5.6
+		relative_position_id = VIN_Nghi_Quyet_So_30_Van_Nghe
+		prerequisite = {
+			focus = VIN_Nghi_Quyet_So_30_Van_Nghe
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Nhan_Van_Giai_Pham.4
+		}
+	}
+	focus = {
+		id = VIN_Of_Our_Pen_and_Bayonet
+		completion_reward = {
+		}
+		icon = GFX_Peoples_Daily_head
+		cost = 5.6
+		relative_position_id = VIN_A_United_Front
+		prerequisite = {
+			focus = VIN_A_United_Front
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_timed_idea = {
+				idea = ideological_fanaticism_focus
+				days = 1825
+			}
+		}
+	}
+	focus = {
+		id = VIN_Do_Not_Be_Deceived
+		completion_reward = {
+		}
+		icon = GFX_promise_wide_autonomy
+		cost = 5.6
+		relative_position_id = VIN_Of_Our_Pen_and_Bayonet
+		prerequisite = {
+			focus = VIN_Of_Our_Pen_and_Bayonet
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_ideas = socialist_realism
+		}
+	}
+	focus = {
+		id = VIN_Enforce_Ideological_Unity
+		completion_reward = {
+		}
+		icon = GFX_SOV_rev_pol_bureau
+		cost = 5.6
+		relative_position_id = VIN_Destroy_Reactionary_Thoughts
+		prerequisite = {
+			focus = VIN_Destroy_Reactionary_Thoughts
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_popularity = {
+				ideology = maoism
+				popularity  = 0.1
+			}
+			add_popularity = {
+				ideology = communism
+				popularity  = 0.05
+			}
+		}
+	}
+	focus = {
+		id = VIN_The_Enemies_in_Our_Mind
+		completion_reward = {
+		}
+		icon = GFX_SOV_Develop_New_Administrtive_Transparency_Mechanisms
+		cost = 5.6
+		relative_position_id = VIN_Enforce_Ideological_Unity
+		prerequisite = {
+			focus = VIN_Enforce_Ideological_Unity
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			swap_ideas = {
+				remove_idea = policy_women_temp_2
+				add_idea = policy_women_temp_3
+			}
+			swap_ideas = {
+				remove_idea = policy_saga_temp_2
+				add_idea = policy_saga_temp_1
+			}
+		}
+	}
+	focus = {
+		id = VIN_The_Counterrevolutionary_Betrayal
+		completion_reward = {
+		}
+		icon = GFX_PRC_50s_The_Campaign_to_Suppress_Counterrevolutionaries
+		cost = 5.6
+		relative_position_id = VIN_The_Enemies_in_Our_Mind
+		prerequisite = {
+			focus = VIN_The_Enemies_in_Our_Mind
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			swap_ideas = {
+				remove_idea = policy_media_temp_1
+				add_idea = policy_media_temp_0
+			}
+		}
+	}
+	focus = {
+		id = VIN_Nothing_But_Punishment
+		completion_reward = {
+		}
+		icon = GFX_SOV_Mass_Arrests_of_Corrupted_Officials
+		cost = 5.6
+		relative_position_id = VIN_The_Counterrevolutionary_Betrayal
+		prerequisite = {
+			focus = VIN_The_Counterrevolutionary_Betrayal
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_manpower = -20000
+			add_stability = -0.05
+		}
+	}
+	focus = {
+		id = VIN_Enforce_Purges_Against_Revisionist_Arts
+		completion_reward = {
+		}
+		icon = GFX_Move_the_capital_MLA
+		cost = 5.6
+		relative_position_id = VIN_Nothing_But_Punishment
+		prerequisite = {
+			focus = VIN_Do_Not_Be_Deceived
+		}
+		prerequisite = {
+			focus = VIN_Nothing_But_Punishment
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			news_event = VIN_Nhan_Van_Giai_Pham.100
+		}
+	}
+	focus = {
+		id = VIN_Stand_Together_In_Orthodoxy
+		completion_reward = {
+		}
+		icon = GFX_Stalin_Purge_the_Leningrad_Dissenters
+		cost = 5.6
+		relative_position_id = VIN_Enforce_Purges_Against_Revisionist_Arts
+		prerequisite = {
+			focus = VIN_Enforce_Purges_Against_Revisionist_Arts
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_popularity = {
+				ideology = communism
+				popularity  = 0.2
+			}
+		}
+	}
+	focus = {
+		id = VIN_Every_Writer_is_a_Soldier
+		completion_reward = {
+		}
+		icon = GFX_SOV_Accords_Signed
+		cost = 5.6
+		relative_position_id = VIN_Stand_Together_In_Orthodoxy
+		prerequisite = {
+			focus = VIN_Stand_Together_In_Orthodoxy
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			custom_effect_tooltip = Increase_Militia_Modifier
+			add_to_variable = { VIN_M_SDM_RDG = 0.025 }
+			add_to_variable = { VIN_M_SDM_TSF = 0.05 }
+			add_to_variable = { VIN_M_SDM_BR = 0.025 }
+			add_to_variable = { VIN_M_SDM_MRC = 0.025 }
+			add_to_variable = { VIN_M_SDM_MS = 0.05 }
+			add_to_variable = { VIN_M_SDM_SFTT = -0.05 }
+			add_to_variable = { VIN_M_SDM_MT = 0.025 }
+		}
+	}
+	focus = {
+		id = VIN_Let_Hundred_Flowers_Bloom
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_49
+		cost = 5.6
+		relative_position_id = VIN_Nhan_Van_Giai_Pham_Affair
+		prerequisite = {
+			focus = VIN_Nhan_Van_Giai_Pham_Affair
+		}
+		mutually_exclusive = {
+			focus = VIN_Destroy_Reactionary_Thoughts
+		}
+		x = 4
+		y = 1
+		available = {
+			has_global_flag = Playing_Nhan_Van_VIN
+		}
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Nhan_Van_Giai_Pham.5
+		}
+	}
+	focus = {
+		id = VIN_Accept_Democratization_and_Individualization
+		completion_reward = {
+		}
+		icon = GFX_Turkish_Individual
+		cost = 5.6
+		relative_position_id = VIN_Let_Hundred_Flowers_Bloom
+		prerequisite = {
+			focus = VIN_Let_Hundred_Flowers_Bloom
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			swap_ideas = {
+				remove_idea = policy_media_temp_1
+				add_idea = policy_media_temp_2
+			}
+		}
+	}
+	focus = {
+		id = VIN_The_Right_Path_to_Democratization
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_establish_the_national_academy_of_science
+		cost = 5.6
+		relative_position_id = VIN_Accept_Democratization_and_Individualization
+		prerequisite = {
+			focus = VIN_Accept_Democratization_and_Individualization
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Nhan_Van_Giai_Pham.6
+		}
+	}
+	focus = {
+		id = VIN_The_Budapest_Model
+		completion_reward = {
+		}
+		icon = GFX_Rehabilitate_Kadar
+		cost = 5.6
+		relative_position_id = VIN_The_Right_Path_to_Democratization
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = VIN_Budapest_Model_tt
+				has_global_flag = VIN_Budapest_Model
+			}
+		}
+		prerequisite = {
+			focus = VIN_The_Right_Path_to_Democratization
+		}
+		mutually_exclusive = {
+			focus = VIN_Ho_Chi_Minh_Promises
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Nhan_Van_Giai_Pham.7
+		}
+	}
+	focus = {
+		id = VIN_Ho_Chi_Minh_Promises
+		completion_reward = {
+		}
+		icon = GFX_Ho_Chi_Minh_Icon
+		cost = 5.6
+		relative_position_id = VIN_The_Right_Path_to_Democratization
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = VIN_HCM_Model_tt
+				has_global_flag = VIN_HCM_Model
+			}
+		}
+		prerequisite = {
+			focus = VIN_The_Right_Path_to_Democratization
+		}
+		mutually_exclusive = {
+			focus = VIN_The_Budapest_Model
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Nhan_Van_Giai_Pham.8
+		}
+	}
+	focus = {
+		id = VIN_Double_Down_on_De_Stalinzation
+		completion_reward = {
+		}
+		icon = GFX_Destalinization
+		cost = 5.6
+		relative_position_id = VIN_The_Budapest_Model
+		prerequisite = {
+			focus = VIN_The_Budapest_Model
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_opinion_modifier = {
+				target = SOV
+				modifier = large_decrease
+			}
+			add_opinion_modifier = {
+				target = USA
+				modifier = VIN_Destalinization
+			}
+			add_opinion_modifier = {
+				target = VIE
+				modifier = VIN_Destalinization
+			}
+		}
+	}
+	focus = {
+		id = VIN_Agreement_for_Democracy
+		completion_reward = {
+		}
+		icon = GFX_usa_50_allow_free_elections
+		cost = 5.6
+		relative_position_id = VIN_Ho_Chi_Minh_Promises
+		prerequisite = {
+			focus = VIN_Ho_Chi_Minh_Promises
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_stability = 0.05
+			add_political_power = 75
+			add_popularity = {
+				ideology = communism
+				popularity = -0.10
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.10
+			}
+		}
+	}
+	focus = {
+		id = VIN_Cultural_Liberalization
+		completion_reward = {
+		}
+		icon = GFX_GDR_Liberalize_Media_Censorship_Laws
+		cost = 5.6
+		relative_position_id = VIN_Let_Hundred_Flowers_Bloom
+		prerequisite = {
+			focus = VIN_Let_Hundred_Flowers_Bloom
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			swap_ideas = {
+				remove_idea = policy_saga_temp_2
+				add_idea = policy_saga_temp_3
+			}
+		}
+	}
+	focus = {
+		id = VIN_People_Speak_We_Listen
+		completion_reward = {
+		}
+		icon = GFX_SOV_Acceleration_of_Scientific_and_Technical_Progress_in_the_National_Economy
+		cost = 5.6
+		relative_position_id = VIN_Cultural_Liberalization
+		prerequisite = {
+			focus = VIN_Cultural_Liberalization
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Nhan_Van_Giai_Pham.8
+		}
+	}
+	focus = {
+		id = VIN_The_New_Poetry_Movement
+		completion_reward = {
+		}
+		icon = GFX_Music_and_science
+		cost = 5.6
+		relative_position_id = VIN_People_Speak_We_Listen
+		prerequisite = {
+			focus = VIN_People_Speak_We_Listen
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Nhan_Van_Giai_Pham.9
+		}
+	}
+	focus = {
+		id = VIN_Two_Thousand_Years_of_History
+		completion_reward = {
+		}
+		icon = GFX_Begin_the_Literacy_Campaign
+		cost = 5.6
+		relative_position_id = VIN_The_New_Poetry_Movement
+		prerequisite = {
+			focus = VIN_The_New_Poetry_Movement
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			increase_education_rate = yes
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = VIN_Across_the_Spectrum
+		completion_reward = {
+		}
+		icon = GFX_break_peoples_daily
+		cost = 5.6
+		relative_position_id = VIN_Agreement_for_Democracy
+		prerequisite = {
+			focus = VIN_Double_Down_on_De_Stalinzation
+			focus = VIN_Agreement_for_Democracy
+		}
+		prerequisite = {
+			focus = VIN_Two_Thousand_Years_of_History
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_popularity = {
+				ideology = communism
+				popularity = -0.2
+			}
+		}
+	}
+	focus = {
+		id = VIN_Let_Hundred_Thoughts_Contend
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Politics_1
+		cost = 5.6
+		relative_position_id = VIN_Across_the_Spectrum
+		prerequisite = {
+			focus = VIN_Across_the_Spectrum
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			news_event = VIN_Nhan_Van_Giai_Pham.101
+		}
+	}
+	focus = {
+		id = VIN_Land_Reform_Du_Luat_197_HL
+		completion_reward = {
+		}
+		available = {
+			date > 1951.1.1
+		}
+		icon = GFX_VIN_Land_Reform_Du_Luat_197_HL
+		cost = 5.6
+		x = -16
+		y = 4
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			news_event = VIN_Land_Reform.100
+		}
+	}
+	focus = {
+		id = VIN_Follow_Maos_Advice
+		completion_reward = {
+		}
+		icon = GFX_VIN_Follow_Maos_Advice
+		cost = 5.6
+		relative_position_id = VIN_Land_Reform_Du_Luat_197_HL
+		prerequisite = {
+			focus = VIN_Land_Reform_Du_Luat_197_HL
+		}
+		mutually_exclusive = {
+			focus = VIN_Follow_a_Flexible_Path
+		}
+		x = -4
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_stability = 0.05
+			add_opinion_modifier = {
+				target = PRC
+				modifier = large_increase
+			}
+			add_opinion_modifier = {
+				target = SOV
+				modifier = large_decrease
+			}
+			add_popularity = {
+				ideology = maoism
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = VIN_Nghi_Quyet_So_09_NQ_TW
+		completion_reward = {
+		}
+		icon = GFX_VIN_Nghi_Quyet_So_09_NQ_TW
+		cost = 5.6
+		relative_position_id = VIN_Follow_Maos_Advice
+		prerequisite = {
+			focus = VIN_Follow_Maos_Advice
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Land_Reform.1
+		}
+	}
+	focus = {
+		id = VIN_Speed_Up_Communization_Reform
+		completion_reward = {
+		}
+		icon = GFX_VIN_Speed_Up_Communization_Reform
+		cost = 5.6
+		relative_position_id = VIN_Follow_Maos_Advice
+		prerequisite = {
+			focus = VIN_Follow_Maos_Advice
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_manpower = -50000
+			country_event = VIN_Land_Reform.2
+		}
+	}
+	focus = {
+		id = VIN_The_Next_Step_of_Revolution
+		completion_reward = {
+		}
+		icon = GFX_VIN_The_Next_Step_of_Revolution
+		cost = 5.6
+		relative_position_id = VIN_Speed_Up_Communization_Reform
+		prerequisite = {
+			focus = VIN_Speed_Up_Communization_Reform
+		}
+		prerequisite = {
+			focus = VIN_Nghi_Quyet_So_09_NQ_TW
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Land_Reform.5
+		}
+	}
+	focus = {
+		id = VIN_Follow_a_Flexible_Path
+		completion_reward = {
+		}
+		icon = GFX_VIN_Follow_a_Flexible_Path
+		cost = 5.6
+		relative_position_id = VIN_Land_Reform_Du_Luat_197_HL
+		prerequisite = {
+			focus = VIN_Land_Reform_Du_Luat_197_HL
+		}
+		mutually_exclusive = {
+			focus = VIN_Follow_Maos_Advice
+		}
+		x = 4
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_stability = 0.05
+			add_opinion_modifier = {
+				target = YUG
+				modifier = large_increase
+			}
+			add_opinion_modifier = {
+				target = USA
+				modifier = large_increase
+			}
+			add_opinion_modifier = {
+				target = PRC
+				modifier = large_decrease
+			}
+			add_opinion_modifier = {
+				target = SOV
+				modifier = large_decrease
+			}
+			add_popularity = {
+				ideology = Social_Democratic
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = VIN_Permit_Class_Collaborations
+		completion_reward = {
+		}
+		icon = GFX_VIN_Permit_Class_Collaborations
+		cost = 5.6
+		relative_position_id = VIN_Follow_a_Flexible_Path
+		prerequisite = {
+			focus = VIN_Follow_a_Flexible_Path
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Land_Reform.3
+		}
+	}
+	focus = {
+		id = VIN_Decrease_Collectivization_Process
+		completion_reward = {
+		}
+		icon = GFX_VIN_Decrease_Collectivization_Process
+		cost = 5.6
+		relative_position_id = VIN_Follow_a_Flexible_Path
+		prerequisite = {
+			focus = VIN_Follow_a_Flexible_Path
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			country_event = VIN_Land_Reform.4
+		}
+	}
+	focus = {
+		id = VIN_A_Bountiful_Harvest
+		completion_reward = {
+		}
+		icon = GFX_VIN_A_Bountiful_Harvest
+		cost = 5.6
+		relative_position_id = VIN_Decrease_Collectivization_Process
+		prerequisite = {
+			focus = VIN_Decrease_Collectivization_Process
+		}
+		prerequisite = {
+			focus = VIN_Permit_Class_Collaborations
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Land_Reform.5
+		}
+	}
+	focus = {
+		id = VIN_The_Commissar
+		completion_reward = {
+		}
+		icon = GFX_VIN_The_Commissar
+		cost = 5.6
+		available = { always = no }
+		relative_position_id = VIN_The_Next_Step_of_Revolution
+		prerequisite = {
+			focus = VIN_The_Next_Step_of_Revolution
+			focus = VIN_A_Bountiful_Harvest
+		}
+		mutually_exclusive = {
+			focus = VIN_Our_Southern_Comrade
+		}
+		mutually_exclusive = {
+			focus = VIN_The_Face_of_the_Party
+		}
+		mutually_exclusive = {
+			focus = VIN_The_Peoples_General
+		}
+		mutually_exclusive = {
+			focus = VIN_A_Radical_Choice
+		}
+		x = -4
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			set_country_flag = Nguyen_Chi_Thanh_Ascendant
+			custom_effect_tooltip = Nguyen_Chi_Thanh_Ascendant_TT
+		}
+	}
+	focus = {
+		id = VIN_Our_Southern_Comrade
+		completion_reward = {
+		}
+		icon = GFX_VIN_Our_Southern_Comrade
+		cost = 5.6
+		available = { always = no }
+		relative_position_id = VIN_The_Next_Step_of_Revolution
+		prerequisite = {
+			focus = VIN_The_Next_Step_of_Revolution
+			focus = VIN_A_Bountiful_Harvest
+		}
+		mutually_exclusive = {
+			focus = VIN_The_Commissar
+		}
+		mutually_exclusive = {
+			focus = VIN_The_Face_of_the_Party
+		}
+		mutually_exclusive = {
+			focus = VIN_The_Peoples_General
+		}
+		mutually_exclusive = {
+			focus = VIN_A_Radical_Choice
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			set_country_flag = Le_Duan_Ascendant
+			custom_effect_tooltip = Le_Duan_Ascendant_TT
+		}
+	}
+	focus = {
+		id = VIN_The_Peoples_General
+		completion_reward = {
+		}
+		icon = GFX_VIN_The_Peoples_General
+		cost = 5.6
+		available = { always = no }
+		relative_position_id = VIN_The_Next_Step_of_Revolution
+		prerequisite = {
+			focus = VIN_The_Next_Step_of_Revolution
+			focus = VIN_A_Bountiful_Harvest
+		}
+		mutually_exclusive = {
+			focus = VIN_The_Commissar
+		}
+		mutually_exclusive = {
+			focus = VIN_Our_Southern_Comrade
+		}
+		mutually_exclusive = {
+			focus = VIN_The_Face_of_the_Party
+		}
+		mutually_exclusive = {
+			focus = VIN_A_Radical_Choice
+		}
+		x = 4
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			set_country_flag = Giap_Ascendant
+			custom_effect_tooltip = Giap_Ascendant_TT
+		}
+	}
+	focus = {
+		id = VIN_The_Face_of_the_Party
+		completion_reward = {
+		}
+		icon = GFX_VIN_The_Face_of_the_Party
+		cost = 5.6
+		available = { always = no }
+		relative_position_id = VIN_A_Bountiful_Harvest
+		prerequisite = {
+			focus = VIN_The_Next_Step_of_Revolution
+			focus = VIN_A_Bountiful_Harvest
+		}
+		mutually_exclusive = {
+			focus = VIN_The_Commissar
+		}
+		mutually_exclusive = {
+			focus = VIN_Our_Southern_Comrade
+		}
+		mutually_exclusive = {
+			focus = VIN_The_Peoples_General
+		}
+		mutually_exclusive = {
+			focus = VIN_A_Radical_Choice
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			set_country_flag = Truong_Chinh_Ascendant
+			custom_effect_tooltip = Truong_Chinh_Ascendant_TT
+		}
+	}
+	focus = {
+		id = VIN_A_Radical_Choice
+		completion_reward = {
+		}
+		icon = GFX_VIN_A_Radical_Choice
+		cost = 5.6
+		available = { always = no }
+		relative_position_id = VIN_A_Bountiful_Harvest
+		prerequisite = {
+			focus = VIN_The_Next_Step_of_Revolution
+			focus = VIN_A_Bountiful_Harvest
+		}
+		mutually_exclusive = {
+			focus = VIN_The_Commissar
+		}
+		mutually_exclusive = {
+			focus = VIN_Our_Southern_Comrade
+		}
+		mutually_exclusive = {
+			focus = VIN_The_Face_of_the_Party
+		}
+		mutually_exclusive = {
+			focus = VIN_The_Peoples_General
+		}
+		x = 4
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			set_country_flag = Le_Duc_Tho_Ascendant
+			custom_effect_tooltip = Le_Duc_Tho_Ascendant_TT
+		}
+	}
+	focus = {
+		id = VIN_Preparation_for_Industrialization
+		completion_reward = {
+		}
+		icon = GFX_Socialist_Rites
+		cost = 5.6
+		relative_position_id = VIN_The_Peoples_General
+		prerequisite = {
+			focus = VIN_The_Commissar
+			focus = VIN_Our_Southern_Comrade
+			focus = VIN_The_Peoples_General
+			focus = VIN_The_Face_of_the_Party
+			focus = VIN_A_Radical_Choice
+		}
+		x = 0
+		y = 3
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			unlock_national_focus = VIN_First_Phase_Towards_Socialism
+			set_country_flag = Unlocked_First_Five_Year_Plan_VIN
+		}
+	}
+	focus = {
+		id = VIN_The_Geneva_Peace_Conference
+		completion_reward = {
+		}
+		icon = GFX_usa_50_a_ceasefire
+		cost = 5.6
+		relative_position_id = VIN_Every_Writer_is_a_Soldier
+		prerequisite = {
+			focus = VIN_Preparation_for_Industrialization
+		}
+		prerequisite = {
+			focus = VIN_Every_Writer_is_a_Soldier
+			focus = VIN_Let_Hundred_Thoughts_Contend
+		}
+		prerequisite = {
+			focus = VIN_Support_Lao_Issara_Khmer_Issarak
+		}
+		prerequisite = {
+			focus = VIN_Bac_Tien
+			focus = VIN_Victory_in_the_South
+		}
+		x = 0
+		y = 2
+		available = {
+			geneva_conference_convened_trigger = yes
+		}
+		bypass = {
+			OR = {
+				geneva_conference_available_trigger = yes
+				has_global_flag = geneva_conference_concluded
+				has_global_flag = Indochina_War_Over
+			}
+		}
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_global_flag = geneva_conf_attendance_autogranted } }
+				set_temp_variable = { geneva_lev_amount = 25 }
+				geneva_add_communist_leverage = yes
+				if = {
+					limit = { has_global_flag = geneva_conference_in_session }
+					add_to_variable = { geneva_weight = 15 }
+					custom_effect_tooltip = geneva_weight_boost_TT
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_A_Failed_State
+		completion_reward = {
+		}
+		icon = GFX_usa_50_bring_french_to_table2
+		cost = 5.6
+		relative_position_id = VIN_The_Geneva_Peace_Conference
+		prerequisite = {
+			focus = VIN_The_Geneva_Peace_Conference
+		}
+		mutually_exclusive = {
+			focus = VIN_Accept_French_Three_Vietnam_Federal_Scheme
+		}
+		mutually_exclusive = {
+			focus = VIN_Accept_Temporary_Partitions
+		}
+		mutually_exclusive = {
+			focus = VIN_Total_Victory
+		}
+		x = -8
+		y = 2
+		available = {
+			always = no	# never chosen: the collapse of Indochina is something that happens to Hanoi, not something it declares
+		}
+		bypass = {
+			indochina_struggle_ending_failed_state_available_trigger = yes
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+			effect_tooltip = {
+				news_event = { id = Indochina_Struggle_Ending.10 }
+			}
+			set_cosmetic_tag = VIN_Anarchy
+			add_stability = -0.50
+			add_war_support = -0.50
+			add_political_power = -500
+		}
+	}
+	focus = {
+		id = VIN_Accept_French_Three_Vietnam_Federal_Scheme
+		completion_reward = {
+		}
+		icon = GFX_usa_50_a_british_counteroffer
+		cost = 5.6
+		relative_position_id = VIN_The_Geneva_Peace_Conference
+		prerequisite = {
+			focus = VIN_The_Geneva_Peace_Conference
+		}
+		mutually_exclusive = {
+			focus = VIN_A_Failed_State
+		}
+		mutually_exclusive = {
+			focus = VIN_Accept_Temporary_Partitions
+		}
+		mutually_exclusive = {
+			focus = VIN_Total_Victory
+		}
+		x = -4
+		y = 2
+		available = {
+			always = no	# the federal scheme is France's to impose and Hanoi's to swallow; it is never Hanoi's to proclaim
+		}
+		bypass = {
+			indochina_struggle_ending_federal_vietnam_available_trigger = yes
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+			effect_tooltip = {
+				news_event = { id = Indochina_Struggle_Ending.3 }
+			}
+		}
+	}
+	focus = {
+		id = VIN_Accept_Temporary_Partitions
+		completion_reward = {
+		}
+		icon = GFX_NegotiateOverVietnam
+		cost = 5.6
+		relative_position_id = VIN_The_Geneva_Peace_Conference
+		prerequisite = {
+			focus = VIN_The_Geneva_Peace_Conference
+		}
+		mutually_exclusive = {
+			focus = VIN_A_Failed_State
+		}
+		mutually_exclusive = {
+			focus = VIN_Accept_French_Three_Vietnam_Federal_Scheme
+		}
+		mutually_exclusive = {
+			focus = VIN_Total_Victory
+		}
+		x = 0
+		y = 2
+		available = {
+			always = no
+		}
+		bypass = {
+			OR = {
+				geneva_conference_available_trigger = yes
+				has_global_flag = geneva_conference_concluded
+			}
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+			effect_tooltip = {
+				news_event = { id = Geneva_Conference_Session.5 }
+			}
+		}
+	}
+	focus = {
+		id = VIN_Preparation_for_Reunification_Election
+		completion_reward = {
+		}
+		icon = GFX_usa_50_allow_unification_elections
+		cost = 5.6
+		relative_position_id = VIN_Accept_Temporary_Partitions
+		prerequisite = {
+			focus = VIN_Accept_French_Three_Vietnam_Federal_Scheme
+			focus = VIN_Accept_Temporary_Partitions
+		}
+		x = -2
+		y = 1
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = geneva_election_campaign_open_avail_TT
+				geneva_election_campaign_open_trigger = yes
+			}
+		}
+		bypass = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = geneva_elections_never_scheduled_TT
+					AND = {
+						has_global_flag = geneva_conference_concluded
+						NOT = { has_global_flag = geneva_unified_settlement }
+						NOT = { check_variable = { global.geneva_elections_term > 1 } }
+					}
+				}
+				AND = {	# Saigon has already refused; do not put the question a second time
+					country_exists = VIE
+					VIE = { has_country_flag = VIE_reunification_election_refused }
+				}
+			}
+		}
+		completion_reward = {
+			country_event = VIE_VIN_Reunification_50s.1
+			VIE = {
+				country_event = VIE_VIN_Reunification_50s.2
+			}
+		}
+	}
+	focus = {
+		id = VIN_The_Election_is_Cancelled
+		completion_reward = {
+		}
+		icon = GFX_usa_50_rig_vietnamese_elections
+		cost = 5.6
+		relative_position_id = VIN_Preparation_for_Reunification_Election
+		prerequisite = {
+			focus = VIN_Preparation_for_Reunification_Election
+		}
+		mutually_exclusive = {
+			focus = VIN_Reunification_of_Vietnams
+		}
+		x = -2
+		y = 1
+		available = {
+			has_country_flag = VIN_reunification_election_cancelled
+		}
+		completion_reward = {
+			country_event = VIE_VIN_Reunification_50s.3
+		}
+	}
+	focus = {
+		id = VIN_Begin_the_Charles_de_Gaulle_Talks
+		completion_reward = {
+		}
+		icon = GFX_Invite_UN_Observers_to_Monitor_the_Election
+		cost = 5.6
+		relative_position_id = VIN_The_Election_is_Cancelled
+		prerequisite = {
+			focus = VIN_The_Election_is_Cancelled
+		}
+		mutually_exclusive = {
+			focus = VIN_Preparation_for_the_Liberation_of_the_South
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			country_event = VIE_VIN_Reunification_50s.4
+		}
+	}
+	focus = {
+		id = VIN_Preparation_for_the_Liberation_of_the_South
+		completion_reward = {
+		}
+		icon = GFX_Vietnam_War
+		cost = 5.6
+		relative_position_id = VIN_The_Election_is_Cancelled
+		prerequisite = {
+			focus = VIN_The_Election_is_Cancelled
+		}
+		mutually_exclusive = {
+			focus = VIN_Begin_the_Charles_de_Gaulle_Talks
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			country_event = VIE_VIN_Reunification_50s.5
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = VIN_Reunification_of_Vietnams
+		completion_reward = {
+		}
+		icon = GFX_usa_50_allow_free_elections
+		cost = 5.6
+		relative_position_id = VIN_Preparation_for_Reunification_Election
+		prerequisite = {
+			focus = VIN_Preparation_for_Reunification_Election
+		}
+		mutually_exclusive = {
+			focus = VIN_The_Election_is_Cancelled
+		}
+		x = 2
+		y = 1
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = VIN_election_won_avail_tt
+				has_global_flag = geneva_election_resolved
+				NOT = { country_exists = VIE }
+			}
+		}
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = VIN_election_never_held_bypass_tt
+				OR = {
+					has_country_flag = VIN_reunification_election_cancelled
+					has_country_flag = VIN_liberation_of_the_south_prepared
+				}
+			}
+		}
+		completion_reward = {
+			news_event = VIE_VIN_Reunification_50s.100
+		}
+	}
+	focus = {
+		id = VIN_Total_Victory
+		completion_reward = {
+		}
+		icon = GFX_Generic_Communism
+		cost = 5.6
+		relative_position_id = VIN_The_Geneva_Peace_Conference
+		prerequisite = {
+			focus = VIN_The_Geneva_Peace_Conference
+		}
+		mutually_exclusive = {
+			focus = VIN_A_Failed_State
+		}
+		mutually_exclusive = {
+			focus = VIN_Accept_French_Three_Vietnam_Federal_Scheme
+		}
+		mutually_exclusive = {
+			focus = VIN_Accept_Temporary_Partitions
+		}
+		x = 4
+		y = 2
+		available = {
+			always = no	# won in the field and awarded by the struggle ending, never declared here - it used to be free, and its child handed Hanoi all of Indochina
+		}
+		bypass = {
+			indochina_struggle_ending_communist_victory_available_trigger = yes
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+			effect_tooltip = {
+				news_event = { id = Indochina_Struggle_Ending.1 }
+			}
+		}
+	}
+	focus = {
+		id = VIN_Proclaim_the_Indochinese_Federation
+		completion_reward = {
+		}
+		icon = GFX_VIN_The_Next_Step_of_Revolution
+		cost = 5.6
+		relative_position_id = VIN_Total_Victory
+		prerequisite = {
+			focus = VIN_Total_Victory
+		}
+		x = 0
+		y = 1
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = VIN_Proclaim_Indochinese_Federation_avail_TT
+				owns_state = 286	# Saigon. No union is proclaimed over a South that is not ours
+			}
+		}
+		completion_reward = {
+			news_event = VIN_Geneva_Conference.200
+			if = {
+				limit = { country_exists = NLF }
+				annex_country = { target = NLF transfer_troops = yes }
+			}
+			if = {
+				limit = { country_exists = LAO }
+				annex_country = { target = LAO transfer_troops = yes }
+			}
+			if = {
+				limit = { country_exists = LOS }
+				annex_country = { target = LOS transfer_troops = yes }
+			}
+			if = {
+				limit = { country_exists = CAM }
+				annex_country = { target = CAM transfer_troops = yes }
+			}
+			set_cosmetic_tag = VIN_Indochinese_Union
+		}
+	}
+	focus = {
+		id = VIN_Dai_Hoi_III
+		completion_reward = {
+		}
+		available = {
+			date > 1960.9.5
+		}
+		icon = GFX_Socialist_Electoral_Reform
+		cost = 5.6
+		relative_position_id = VIN_Reunification_of_Vietnams
+		x = 0
+		y = 2
+		available = {
+			always = no
+		}
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+
+		}
+	}
+
+	#VIE ECON
+	focus = {
+		id = VIN_Promote_Tu_Cung_Tu_Cap
+		completion_reward = {
+		}
+		icon = GFX_VIN_Promote_Tu_Cung_Tu_Cap
+		cost = 5
+		x = 30
+		y = 0
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			if = {
+				limit = { owns_state = 1280 }
+				1280 = {
+					add_building_construction = {
+						type = agri_industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { owns_state = 881 }
+				881 = {
+					add_building_construction = {
+						type = agri_industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Repairing_Key_Infrastructures
+		completion_reward = {
+		}
+		icon = GFX_MEN_50s_Collectivization
+		cost = 5
+		relative_position_id = VIN_Promote_Tu_Cung_Tu_Cap
+		prerequisite = {
+			focus = VIN_Promote_Tu_Cung_Tu_Cap
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_to_variable = {
+				currentMoney = -0.15
+			}
+			set_temp_variable = {
+				x = -150
+				tooltip = adjust_money_mil_tt
+			}
+			country_event = VIN_Econ.2
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Expand_Hop_tac_xa_Thuy_Tinh-Dan_Chu
+		completion_reward = {
+		}
+		icon = GFX_CollectivizePastoralEconomies
+		cost = 5
+		relative_position_id = VIN_Repairing_Key_Infrastructures
+		prerequisite = {
+			focus = VIN_Repairing_Key_Infrastructures
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Econ.1
+			if = {
+				limit = { owns_state = 1280 }
+				1280 = {
+					add_building_construction = {
+						type = agri_industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { owns_state = 881 }
+				881 = {
+					add_building_construction = {
+						type = agri_industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			add_tech_bonus = {
+				bonus = 0.15
+				uses = 2
+				category = agriculture
+			}
+		}
+	}
+	focus = {
+		id = VIN_Incorporate_the_Tong_Lien_Doan_Lao_Dong
+		completion_reward = {
+		}
+		icon = GFX_VIN_Incorporate_the_Tong_Lien_Doan_Lao_Dong
+		cost = 5
+		relative_position_id = VIN_Promote_Tu_Cung_Tu_Cap
+		prerequisite = {
+			focus = VIN_Promote_Tu_Cung_Tu_Cap
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Econ.3
+			if = {
+				limit = { owns_state = 1280 }
+				1280 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 2
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 2
+				}
+			}
+			else_if = {
+				limit = { owns_state = 881 }
+				881 = {
+					add_building_construction = {
+						type = industrial_complex
+						level = 2
+						instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 2
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Begin_Domestic_Arms_Productions
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Economics_2
+		cost = 5
+		relative_position_id = VIN_Incorporate_the_Tong_Lien_Doan_Lao_Dong
+		prerequisite = {
+			focus = VIN_Incorporate_the_Tong_Lien_Doan_Lao_Dong
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			custom_effect_tooltip = VIN_Unlock_Mil_Focus_tt
+			set_country_flag = VIN_Mil_Focus_Unlocked
+			add_offsite_building = {
+				type = arms_factory
+				level = 2
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 750
+				producer = FRA
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_1
+				amount = 50
+				producer = FRA
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment_1
+				amount = 5
+				producer = FRA
+			}
+		}
+	}
+	focus = {
+		id = VIN_Promote_Thi_dua_San_Xuat
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Economics_16
+		cost = 5
+		relative_position_id = VIN_Incorporate_the_Tong_Lien_Doan_Lao_Dong
+		prerequisite = {
+			focus = VIN_Incorporate_the_Tong_Lien_Doan_Lao_Dong
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_0
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_0
+					add_idea = Industrial_Reconstruction_1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_1
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_1
+					add_idea = Industrial_Reconstruction_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_2
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_2
+					add_idea = Industrial_Reconstruction_3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_3
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_3
+					add_idea = Industrial_Reconstruction_4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_4
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_4
+					add_idea = Industrial_Reconstruction_5
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_5
+				}
+				remove_ideas = Industrial_Reconstruction_5
+			}
+
+			add_tech_bonus = {
+				bonus = 0.15
+				uses = 2
+				category = industry
+			}
+			add_timed_idea = {
+				idea = VIN_Thi_dua_San_Xuat
+				days = 200
+			}
+		}
+	}
+	focus = {
+		id = VIN_Mobilizing_the_Youth
+		completion_reward = {
+		}
+		icon = GFX_Establish_an_inquiry_about_youth_and_socialism
+		cost = 5
+		relative_position_id = VIN_Incorporate_the_Tong_Lien_Doan_Lao_Dong
+		prerequisite = {
+			focus = VIN_Begin_Domestic_Arms_Productions
+		}
+		prerequisite = {
+			focus = VIN_Promote_Thi_dua_San_Xuat
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			add_ideas = VIN_Mobilizing_The_Youth
+			add_manpower = 10000
+		}
+	}
+	focus = {
+		id = VIN_Repair_Colonial_Workshops
+		completion_reward = {
+		}
+		icon = GFX_VIN_Repair_Colonial_Workshops
+		cost = 5
+		relative_position_id = VIN_Promote_Tu_Cung_Tu_Cap
+		prerequisite = {
+			focus = VIN_Promote_Tu_Cung_Tu_Cap
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			random_owned_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Utilizing_Patriotic_Donations
+		completion_reward = {
+		}
+		icon = GFX_VIN_Utilizing_Patriotic_Donations
+		cost = 5
+		relative_position_id = VIN_Repair_Colonial_Workshops
+		prerequisite = {
+			focus = VIN_Repair_Colonial_Workshops
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Econ.4
+			add_to_variable = {
+				currentMoney = 0.1
+			}
+			set_temp_variable = {
+				x = 100
+				tooltip = adjust_money_mil_tt
+			}
+			add_popularity = {
+				ideology = Social_Democratic
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.03
+			}
+		}
+	}
+	focus = {
+		id = VIN_Collectivize_Viet_Gian_Properties
+		completion_reward = {
+		}
+		icon = GFX_JAP_Reorganize_the_Farm_Collectives
+		cost = 5
+		relative_position_id = VIN_Repair_Colonial_Workshops
+		prerequisite = {
+			focus = VIN_Repair_Colonial_Workshops
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_0
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_0
+					add_idea = Industrial_Reconstruction_1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_1
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_1
+					add_idea = Industrial_Reconstruction_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_2
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_2
+					add_idea = Industrial_Reconstruction_3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_3
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_3
+					add_idea = Industrial_Reconstruction_4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_4
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_4
+					add_idea = Industrial_Reconstruction_5
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_5
+				}
+				remove_ideas = Industrial_Reconstruction_5
+			}
+
+			if = {
+				limit = {
+					has_idea = feudal_politics
+				}
+				swap_ideas = {
+					remove_idea = feudal_politics
+					add_idea = feudal_politics2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = feudal_politics2
+				}
+				swap_ideas = {
+					remove_idea = feudal_politics2
+					add_idea = feudal_politics3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = feudal_politics3
+				}
+				swap_ideas = {
+					remove_idea = feudal_politics3
+					add_idea = feudal_politics4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = feudal_politics4
+				}
+				remove_ideas = feudal_politics4
+			}
+			add_to_variable = {
+				currentMoney = 0.2
+			}
+			set_temp_variable = {
+				x = 200
+				tooltip = adjust_money_mil_tt
+			}
+			VIE = {
+				add_opinion_modifier ={
+					target = VIN
+					modifier = small_decrease
+				}
+			}
+			FRA = {
+				add_opinion_modifier ={
+					target = VIN
+					modifier = small_decrease
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Issue_Sac_Lenh_giam-to
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Economics_14
+		cost = 5
+		relative_position_id = VIN_Repair_Colonial_Workshops
+		prerequisite = {
+			focus = VIN_Collectivize_Viet_Gian_Properties
+		}
+		prerequisite = {
+			focus = VIN_Utilizing_Patriotic_Donations
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_stability = 0.05
+			add_to_variable = {
+				currentMoney = -0.05
+			}
+			set_temp_variable = {
+				x = -50
+				tooltip = adjust_money_mil_tt
+			}
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = VIN_Relocate_Assets_to_Hanoi
+		available = {
+			capital_scope = { state = 1760 }
+		}
+		completion_reward = {
+		}
+		icon = GFX_Strip_Ankara_Arms_Industry
+		cost = 5
+		relative_position_id = VIN_Expand_Hop_tac_xa_Thuy_Tinh-Dan_Chu
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			set_temp_variable = { CaoBang_mils = 0 }
+			set_temp_variable = { CaoBang_civs = 0 }
+			if = {
+				limit = { owns_state = 1280 }
+				1280 = {
+					set_temp_variable = { CaoBang_mils = building_level@arms_factory }
+					set_temp_variable = { CaoBang_civs = building_level@industrial_complex }
+					remove_building = {
+						type = arms_factory
+						level = building_level@arms_factory
+					}
+					remove_building = {
+						type = industrial_complex
+						level = building_level@industrial_complex
+					}
+				}
+			}
+			else_if = {
+				limit = { owns_state = 881 }
+				881 = {
+					set_temp_variable = { CaoBang_mils = building_level@arms_factory }
+					set_temp_variable = { CaoBang_civs = building_level@industrial_complex }
+					remove_building = {
+						type = arms_factory
+						level = building_level@arms_factory
+					}
+					remove_building = {
+						type = industrial_complex
+						level = building_level@industrial_complex
+					}
+				}
+			}
+			1760 = {
+				add_building_construction = {
+					type = arms_factory
+					level = CaoBang_mils
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = CaoBang_civs
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Request_Economic_Aid_From_Socialist_Countries
+		completion_reward = {
+		}
+		icon = GFX_Soviet_Loans
+		cost = 5
+		relative_position_id = VIN_Relocate_Assets_to_Hanoi
+		prerequisite = {
+			focus = VIN_Relocate_Assets_to_Hanoi
+		}
+		mutually_exclusive = {
+			focus = VIN_Request_Economic_Aid_From_America
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			SOV = {
+				country_event = VIN_Econ.5
+				add_opinion_modifier = {
+					target = VIN
+					modifier = VIN_Asked_For_Economical_Aid
+				}
+				every_subject_country = {
+					add_opinion_modifier = {
+					target = VIN
+					modifier = VIN_Asked_For_Economical_Aid
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_0
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_0
+					add_idea = Industrial_Reconstruction_1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_1
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_1
+					add_idea = Industrial_Reconstruction_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_2
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_2
+					add_idea = Industrial_Reconstruction_3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_3
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_3
+					add_idea = Industrial_Reconstruction_4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_4
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_4
+					add_idea = Industrial_Reconstruction_5
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_5
+				}
+				remove_ideas = Industrial_Reconstruction_5
+			}
+			unlock_decision_tooltip = VIN_Accept_Foreign_Investments
+		}
+	}
+	focus = {
+		id = VIN_Request_Economic_Aid_From_America
+		completion_reward = {
+		}
+		icon = GFX_SWK_Welcome_US_Investments
+		cost = 5
+		relative_position_id = VIN_Relocate_Assets_to_Hanoi
+		prerequisite = {
+			focus = VIN_Relocate_Assets_to_Hanoi
+		}
+		mutually_exclusive = {
+			focus = VIN_Request_Economic_Aid_From_Socialist_Countries
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			USA = {
+				country_event = VIN_Econ.6
+				add_opinion_modifier = {
+					target = VIN
+					modifier = VIN_Asked_For_Economical_Aid
+				}
+				every_subject_country = {
+					add_opinion_modifier = {
+					target = VIN
+					modifier = VIN_Asked_For_Economical_Aid
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_0
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_0
+					add_idea = Industrial_Reconstruction_1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_1
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_1
+					add_idea = Industrial_Reconstruction_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_2
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_2
+					add_idea = Industrial_Reconstruction_3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_3
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_3
+					add_idea = Industrial_Reconstruction_4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_4
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_4
+					add_idea = Industrial_Reconstruction_5
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_5
+				}
+				remove_ideas = Industrial_Reconstruction_5
+			}
+			unlock_decision_tooltip = VIN_Accept_Foreign_Investments
+		}
+	}
+	focus = {
+		id = VIN_Implement_Financial_Reforms
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Economics_17
+		cost = 5
+		relative_position_id = VIN_Relocate_Assets_to_Hanoi
+		prerequisite = {
+			focus = VIN_Request_Economic_Aid_From_Socialist_Countries
+			focus = VIN_Request_Economic_Aid_From_America
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Econ.7
+			if = {
+				limit = {
+					has_idea = fiscal_collapse_3
+				}
+				swap_ideas = {
+					remove_idea = fiscal_collapse_3
+					add_idea = fiscal_collapse_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = fiscal_collapse_2
+				}
+				swap_ideas = {
+					remove_idea = fiscal_collapse_2
+					add_idea = fiscal_collapse_1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = fiscal_collapse_1
+				}
+				remove_ideas = fiscal_collapse_1
+			}
+			JAP = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = small_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Establish_the_National_Bank
+		completion_reward = {
+		}
+		icon = GFX_Generic_Bank
+		cost = 5
+		relative_position_id = VIN_Implement_Financial_Reforms
+		prerequisite = {
+			focus = VIN_Implement_Financial_Reforms
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			country_event = VIN_Econ.8
+			add_stability = 0.05
+			if = {
+				limit = {
+					has_idea = fiscal_collapse_3
+				}
+				swap_ideas = {
+					remove_idea = fiscal_collapse_3
+					add_idea = fiscal_collapse_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = fiscal_collapse_2
+				}
+				swap_ideas = {
+					remove_idea = fiscal_collapse_2
+					add_idea = fiscal_collapse_1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = fiscal_collapse_1
+				}
+				remove_ideas = fiscal_collapse_1
+			}
+		}
+	}
+	focus = {
+		id = VIN_Begin_Post_War_Reconstruction
+		completion_reward = {
+		}
+		icon = GFX_FUL_Electrify_FUL
+		cost = 5
+		relative_position_id = VIN_Establish_the_National_Bank
+		prerequisite = {
+			focus = VIN_Establish_the_National_Bank
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = VIN_Rebuild_River_Levees_System
+		completion_reward = {
+		}
+		icon = GFX_raise_river_embankment
+		cost = 5
+		relative_position_id = VIN_Establish_the_National_Bank
+		prerequisite = {
+			focus = VIN_Establish_the_National_Bank
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			unlock_decision_tooltip = VIN_Rebuild_River_Levees
+		}
+	}
+	focus = {
+		id = VIN_First_Phase_Towards_Socialism
+		completion_reward = {
+		}
+		icon = GFX_Five_Year_Plan_Generic
+		cost = 5
+		relative_position_id = VIN_Establish_the_National_Bank
+		prerequisite = {
+			focus = VIN_Rebuild_River_Levees_System
+		}
+		prerequisite = {
+			focus = VIN_Begin_Post_War_Reconstruction
+		}
+		x = 0
+		y = 2
+		available = {
+			has_country_flag = Unlocked_First_Five_Year_Plan_VIN
+		}
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Econ.9
+		}
+	}
+	focus = {
+		id = VIN_Rebuild_Hai_Phong_Shipyard
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Trading_3
+		cost = 5
+		relative_position_id = VIN_First_Phase_Towards_Socialism
+		prerequisite = {
+			focus = VIN_First_Phase_Towards_Socialism
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Econ.10
+			786 = {
+				add_building_construction = {
+					type = naval_facility
+					level = 1
+					instant_build = yes
+					province = 4119	# province-scoped building; omitting this silently built nothing
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+					province = 4119
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 20
+				producer = FRA
+			}
+			add_to_variable = {
+				var = VIN_M_N_EGF
+				value = 0.05
+				tooltip = experience_gain_navy_factor_tooltip
+			}
+		}
+	}
+	focus = {
+		id = VIN_Expand_Bo_Ho_Electricity_Plant
+		completion_reward = {
+		}
+		icon = GFX_1st_Electric_Program
+		cost = 5
+		relative_position_id = VIN_Rebuild_Hai_Phong_Shipyard
+		prerequisite = {
+			focus = VIN_Rebuild_Hai_Phong_Shipyard
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_to_variable = {
+				currentMoney = -0.2
+			}
+			set_temp_variable = {
+				x = -200
+				tooltip = adjust_money_mil_tt
+			}
+			country_event = VIN_Econ.11
+			1760 = {
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_resource = {
+				type = coal
+				amount = 10
+				state = 1760
+			}
+		}
+	}
+	focus = {
+		id = VIN_Electrify_Hong_River_Delta
+		completion_reward = {
+		}
+		icon = GFX_PRC_50s_Launch_Electrification_Campaign
+		cost = 5
+		relative_position_id = VIN_Expand_Bo_Ho_Electricity_Plant
+		prerequisite = {
+			focus = VIN_Expand_Bo_Ho_Electricity_Plant
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			unlock_decision_tooltip = VIN_Build_Power_Plant
+		}
+	}
+	focus = {
+		id = VIN_Electrify_Viet_Bac_and_Tay_Bac
+		completion_reward = {
+		}
+		icon = GFX_PRC_50s_National_Electrification_Campaign
+		cost = 5
+		relative_position_id = VIN_Electrify_Hong_River_Delta
+		prerequisite = {
+			focus = VIN_Electrify_Hong_River_Delta
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			every_subject_country = {
+				capital_scope = {
+					add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Form_Viet_Nam_Rail
+		completion_reward = {
+		}
+		icon = GFX_PRC_restructuring_the_railway
+		cost = 5
+		relative_position_id = VIN_Rebuild_Hai_Phong_Shipyard
+		prerequisite = {
+			focus = VIN_Rebuild_Hai_Phong_Shipyard
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Econ.12
+			effect_tooltip = {
+				add_ideas = VIN_Vietnam_Rail
+			}
+		}
+	}
+	focus = {
+		id = VIN_Rebuild_Quoc_Lo
+		completion_reward = {
+		}
+		icon = GFX_INO_Fixing_the_Railways
+		cost = 5
+		relative_position_id = VIN_Form_Viet_Nam_Rail
+		prerequisite = {
+			focus = VIN_Form_Viet_Nam_Rail
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			1763 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Rebuild_Ha_Noi-Lao_Cai_Rail_line
+		completion_reward = {
+		}
+		icon = GFX_Guangxi_Railway
+		cost = 5
+		relative_position_id = VIN_Rebuild_Quoc_Lo
+		prerequisite = {
+			focus = VIN_Rebuild_Quoc_Lo
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_to_variable = {
+				currentMoney = -0.1
+			}
+			set_temp_variable = {
+				x = -100
+				tooltip = adjust_money_mil_tt
+			}
+			build_railway = {
+				level = 2
+				start_province = 4075
+				target_province = 12319
+				path = { 4075 12075 10075 13775 12319 }
+			}
+		}
+	}
+	focus = {
+		id = VIN_Rebuild_Ha_Noi-Dong_Dang_Rail_line
+		completion_reward = {
+		}
+		icon = GFX_FUL_Central_Highland_Railways
+		cost = 5
+		relative_position_id = VIN_Rebuild_Quoc_Lo
+		prerequisite = {
+			focus = VIN_Rebuild_Quoc_Lo
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_to_variable = {
+				currentMoney = -0.1
+			}
+			set_temp_variable = {
+				x = -100
+				tooltip = adjust_money_mil_tt
+			}
+			build_railway = {
+				level = 2
+				start_province = 4075
+				target_province = 12065
+				path = { 4075 12048 1073 7015 13767 12065 }
+			}
+		}
+	}
+	focus = {
+		id = VIN_Modernize_Autonomous_Zones
+		completion_reward = {
+		}
+		icon = GFX_SAF_Deploy_mineproof
+		cost = 5
+		relative_position_id = VIN_Rebuild_Hai_Phong_Shipyard
+		prerequisite = {
+			focus = VIN_Rebuild_Ha_Noi-Dong_Dang_Rail_line
+		}
+		prerequisite = {
+			focus = VIN_Rebuild_Ha_Noi-Lao_Cai_Rail_line
+		}
+		prerequisite = {
+			focus = VIN_Electrify_Viet_Bac_and_Tay_Bac
+		}
+		x = 0
+		y = 4
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_to_variable = {
+				currentMoney = -0.5
+			}
+			set_temp_variable = {
+				x = -500
+				tooltip = adjust_money_mil_tt
+			}
+			every_subject_country = {
+				capital_scope = {
+					add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+					}
+					add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Expand_Food_Production
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Trading_10
+		cost = 5
+		relative_position_id = VIN_Modernize_Autonomous_Zones
+		prerequisite = {
+			focus = VIN_Modernize_Autonomous_Zones
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			1761 = {
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			1763 = {
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = VIN_Promote_Khai_Hoang
+		completion_reward = {
+		}
+		icon = GFX_SWK_Expand_Forestry_Industry
+		cost = 5
+		relative_position_id = VIN_Modernize_Autonomous_Zones
+		prerequisite = {
+			focus = VIN_Modernize_Autonomous_Zones
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			unlock_decision_tooltip = VIN_Deforestation
+		}
+	}
+	focus = {
+		id = VIN_Open_Lao-Cai_Apatite_Mine
+		completion_reward = {
+		}
+		icon = GFX_SWK_Expand_Bau_Gold_Mines
+		cost = 5
+		relative_position_id = VIN_Modernize_Autonomous_Zones
+		prerequisite = {
+			focus = VIN_Promote_Khai_Hoang
+		}
+		prerequisite = {
+			focus = VIN_Expand_Food_Production
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_to_variable = {
+				currentMoney = 0.3
+			}
+			set_temp_variable = {
+				x = 300
+				tooltip = adjust_money_mil_tt
+			}
+			add_resource = {
+				type = steel
+				amount = 25
+				state = 1761
+			}
+		}
+	}
+	focus = {
+		id = VIN_Emphasize_on_Agricultural_and_Light_Industries
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Agriculture_8
+		cost = 5
+		relative_position_id = VIN_First_Phase_Towards_Socialism
+		prerequisite = {
+			focus = VIN_First_Phase_Towards_Socialism
+		}
+		mutually_exclusive = {
+			focus = VIN_Rushing_Cong_Nghiepization_and_Hien_Dainization
+		}
+		x = -6
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Econ.13
+			add_tech_bonus = {
+				bonus = 0.15
+				uses = 2
+				category = agri_tech
+			}
+		}
+	}
+	focus = {
+		id = VIN_Standardize_Irrigation_Systems
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Agriculture_1
+		cost = 5
+		relative_position_id = VIN_Emphasize_on_Agricultural_and_Light_Industries
+		prerequisite = {
+			focus = VIN_Emphasize_on_Agricultural_and_Light_Industries
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			if = {
+				limit = {
+					has_tech = water_I
+				}
+				add_tech_bonus = {
+					bonus = 0.2
+					uses = 1
+					category = water
+				}
+			}
+			else = {
+				set_technology = {
+					water_I = 1
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Promote_Tang_Gia_San_Xuat
+		completion_reward = {
+		}
+		icon = GFX_Social_reforms
+		cost = 5
+		relative_position_id = VIN_Standardize_Irrigation_Systems
+		prerequisite = {
+			focus = VIN_Standardize_Irrigation_Systems
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Econ.14
+			add_timed_idea = {
+				idea = VIN_Tang_gia_San_Xuat
+				days = 100
+			}
+			if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_0
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_0
+					add_idea = antiquated_agricultural_sector_1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_1
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_1
+					add_idea = antiquated_agricultural_sector_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_2
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_2
+					add_idea = antiquated_agricultural_sector_3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_3
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_3
+					add_idea = antiquated_agricultural_sector_4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_4
+				}
+				remove_ideas = antiquated_agricultural_sector_4
+			}
+			if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_0
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_0
+					add_idea = Industrial_Reconstruction_1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_1
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_1
+					add_idea = Industrial_Reconstruction_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_2
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_2
+					add_idea = Industrial_Reconstruction_3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_3
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_3
+					add_idea = Industrial_Reconstruction_4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_4
+				}
+				swap_ideas = {
+					remove_idea = Industrial_Reconstruction_4
+					add_idea = Industrial_Reconstruction_5
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = Industrial_Reconstruction_5
+				}
+				remove_ideas = Industrial_Reconstruction_5
+			}
+		}
+	}
+	focus = {
+		id = VIN_Reopen_Thai_Nguyen_Tea_Plantation
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Agriculture_11
+		cost = 5
+		relative_position_id = VIN_Promote_Tang_Gia_San_Xuat
+		prerequisite = {
+			focus = VIN_Promote_Tang_Gia_San_Xuat
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Econ.15
+			add_to_variable = {
+				currentMoney = 0.1
+			}
+			set_temp_variable = {
+				x = 100
+				tooltip = adjust_money_mil_tt
+			}
+		}
+	}
+	focus = {
+		id = VIN_Import_Soviet_Machineries
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 5
+		relative_position_id = VIN_Standardize_Irrigation_Systems
+		prerequisite = {
+			focus = VIN_Standardize_Irrigation_Systems
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_timed_idea = {
+				idea = soviet_technical_advisors_PRC
+				days = 1000
+			}
+			if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_0
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_0
+					add_idea = antiquated_agricultural_sector_1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_1
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_1
+					add_idea = antiquated_agricultural_sector_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_2
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_2
+					add_idea = antiquated_agricultural_sector_3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_3
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_3
+					add_idea = antiquated_agricultural_sector_4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_4
+				}
+				remove_ideas = antiquated_agricultural_sector_4
+			}
+			add_tech_bonus = {
+				bonus = 0.15
+				uses = 2
+				category = industry
+			}
+			SOV = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = small_increase
+				}
+				reverse_add_opinion_modifier = {
+					target = VIN
+					modifier = small_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Push_on_Nong_nghiep_Co_gioi
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Agriculture_9
+		cost = 5
+		relative_position_id = VIN_Import_Soviet_Machineries
+		prerequisite = {
+			focus = VIN_Import_Soviet_Machineries
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_0
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_0
+					add_idea = antiquated_agricultural_sector_1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_1
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_1
+					add_idea = antiquated_agricultural_sector_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_2
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_2
+					add_idea = antiquated_agricultural_sector_3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_3
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_3
+					add_idea = antiquated_agricultural_sector_4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_4
+				}
+				remove_ideas = antiquated_agricultural_sector_4
+			}
+		}
+	}
+	focus = {
+		id = VIN_Popularize_Modern_Agricultural_Methods
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Agriculture_12
+		cost = 5
+		relative_position_id = VIN_Standardize_Irrigation_Systems
+		prerequisite = {
+			focus = VIN_Standardize_Irrigation_Systems
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_to_variable = {
+				currentMoney = -0.4
+			}
+			set_temp_variable = {
+				x = -400
+				tooltip = adjust_money_mil_tt
+			}
+			add_tech_bonus = {
+				bonus = 0.15
+				uses = 2
+				category = agri_tech
+			}
+			random_owned_state = {
+				limit = {
+					free_building_slots = {
+						building = agri_industrial_complex
+						size > 0
+					}
+				}
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				limit = {
+					free_building_slots = {
+						building = agri_industrial_complex
+						size > 0
+					}
+				}
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Study_Soviet_And_American_Agricultural_Methods
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Agriculture_14
+		cost = 5
+		relative_position_id = VIN_Popularize_Modern_Agricultural_Methods
+		prerequisite = {
+			focus = VIN_Popularize_Modern_Agricultural_Methods
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_tech_bonus = {
+				bonus = 0.05
+				uses = 2
+				category = agri_tech
+			}
+			random_owned_state = {
+				limit = {
+					free_building_slots = {
+						building = agri_industrial_complex
+						size > 0
+					}
+				}
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_state = {
+				add_building_construction = {
+					type = water_infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			USA = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = tiny_increase
+				}
+			}
+			SOV = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = tiny_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Expand_Hop_tac_Xa_models
+		completion_reward = {
+		}
+		icon = GFX_SWK_Expand_Rice_Production
+		cost = 5
+		relative_position_id = VIN_Push_on_Nong_nghiep_Co_gioi
+		prerequisite = {
+			focus = VIN_Study_Soviet_And_American_Agricultural_Methods
+		}
+		prerequisite = {
+			focus = VIN_Push_on_Nong_nghiep_Co_gioi
+		}
+		prerequisite = {
+			focus = VIN_Reopen_Thai_Nguyen_Tea_Plantation
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_0
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_0
+					add_idea = antiquated_agricultural_sector_1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_1
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_1
+					add_idea = antiquated_agricultural_sector_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_2
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_2
+					add_idea = antiquated_agricultural_sector_3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_3
+				}
+				swap_ideas = {
+					remove_idea = antiquated_agricultural_sector_3
+					add_idea = antiquated_agricultural_sector_4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = antiquated_agricultural_sector_4
+				}
+				remove_ideas = antiquated_agricultural_sector_4
+			}
+		}
+	}
+	focus = {
+		id = VIN_Enforce_Doi_Song_Moi
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Agriculture_26
+		cost = 5
+		relative_position_id = VIN_Expand_Hop_tac_Xa_models
+		prerequisite = {
+			focus = VIN_Expand_Hop_tac_Xa_models
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Econ.16
+			add_stability = 0.05
+			if = {
+				limit = {
+					has_idea = feudal_politics
+				}
+				swap_ideas = {
+					remove_idea = feudal_politics
+					add_idea = feudal_politics2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = feudal_politics2
+				}
+				swap_ideas = {
+					remove_idea = feudal_politics2
+					add_idea = feudal_politics3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = feudal_politics3
+				}
+				swap_ideas = {
+					remove_idea = feudal_politics3
+					add_idea = feudal_politics4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = feudal_politics4
+				}
+				remove_ideas = feudal_politics4
+			}
+		}
+	}
+	focus = {
+		id = VIN_Reorganize_Colonial_Farmlands
+		completion_reward = {
+		}
+		icon = GFX_Coffee_Plantations
+		cost = 5
+		relative_position_id = VIN_Expand_Hop_tac_Xa_models
+		prerequisite = {
+			focus = VIN_Expand_Hop_tac_Xa_models
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			country_event = VIN_Econ.17
+			add_stability = -0.05
+		}
+	}
+	focus = {
+		id = VIN_Rushing_Cong_Nghiepization_and_Hien_Dainization
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Production_7
+		cost = 5
+		relative_position_id = VIN_First_Phase_Towards_Socialism
+		prerequisite = {
+			focus = VIN_First_Phase_Towards_Socialism
+		}
+		mutually_exclusive = {
+			focus = VIN_Emphasize_on_Agricultural_and_Light_Industries
+		}
+		x = 6
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Econ.18
+			swap_ideas = {
+				remove_idea = antiquated_agricultural_sector_0
+				add_idea = VIN_ongoing_industrialization_0
+			}
+		}
+	}
+	focus = {
+		id = VIN_Learn_From_Cholima_Movement
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_chollima_cooperative_movement
+		cost = 5
+		relative_position_id = VIN_Rushing_Cong_Nghiepization_and_Hien_Dainization
+		prerequisite = {
+			focus = VIN_Rushing_Cong_Nghiepization_and_Hien_Dainization
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			KPA = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = VIN_Followed_Our_Model
+				}
+				add_offsite_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			swap_ideas = {
+				remove_idea = VIN_ongoing_industrialization_0
+				add_idea = VIN_ongoing_industrialization_1
+			}
+			add_offsite_building = {
+					type = industrial_complex
+					level = 1
+			}
+		}
+	}
+	focus = {
+		id = VIN_Rebuild_Hai_Phong_Cement_Factory
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Production_17
+		cost = 5
+		relative_position_id = VIN_Learn_From_Cholima_Movement
+		prerequisite = {
+			focus = VIN_Learn_From_Cholima_Movement
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_to_variable = {
+				currentMoney = 0.5
+			}
+			set_temp_variable = {
+				x = 500
+				tooltip = adjust_money_mil_tt
+			}
+			country_event = VIN_Econ.19
+			786 = {
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Build_Hung_Yen_and_Bac_Ninh_Electronic_Assemblies
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Production_19
+		cost = 5
+		relative_position_id = VIN_Rushing_Cong_Nghiepization_and_Hien_Dainization
+		prerequisite = {
+			focus = VIN_Rushing_Cong_Nghiepization_and_Hien_Dainization
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_to_variable = {
+				currentMoney = 1
+			}
+			set_temp_variable = {
+				x = 1
+				tooltip = adjust_money_bil_tt
+			}
+			country_event = VIN_Econ.20
+			add_tech_bonus = {
+				category = electronics
+				bonus = 0.15
+				uses = 2
+			}
+		}
+	}
+	focus = {
+		id = VIN_Build_Tai_Nguyen_Steel_and_Iron_Works
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Production_13
+		cost = 5
+		relative_position_id = VIN_Build_Hung_Yen_and_Bac_Ninh_Electronic_Assemblies
+		prerequisite = {
+			focus = VIN_Build_Hung_Yen_and_Bac_Ninh_Electronic_Assemblies
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_to_variable = {
+				currentMoney = 0.3
+			}
+			set_temp_variable = {
+				x = 300
+				tooltip = adjust_money_mil_tt
+			}
+			881 = {
+				add_building_construction = {
+					type = steel_factory
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = steel
+					amount = 20
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Establish_Cong_Nghiep_Zones
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Production_18
+		cost = 5
+		relative_position_id = VIN_Rushing_Cong_Nghiepization_and_Hien_Dainization
+		prerequisite = {
+			focus = VIN_Rushing_Cong_Nghiepization_and_Hien_Dainization
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			capital_scope = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Rebuild_Nam_Dinh_Textile_Factory
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Production_1
+		cost = 5
+		relative_position_id = VIN_Establish_Cong_Nghiep_Zones
+		prerequisite = {
+			focus = VIN_Establish_Cong_Nghiep_Zones
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_to_variable = {
+				currentMoney = 0.3
+			}
+			set_temp_variable = {
+				x = 300
+				tooltip = adjust_money_mil_tt
+			}
+			country_event = VIN_Econ.21
+			786 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Rebuild_Bach_mai-Phu_Bai_Airports
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Military_7
+		cost = 5
+		relative_position_id = VIN_Rushing_Cong_Nghiepization_and_Hien_Dainization
+		prerequisite = {
+			focus = VIN_Rebuild_Nam_Dinh_Textile_Factory
+		}
+		prerequisite = {
+			focus = VIN_Build_Tai_Nguyen_Steel_and_Iron_Works
+		}
+		prerequisite = {
+			focus = VIN_Rebuild_Hai_Phong_Cement_Factory
+		}
+		x = 0
+		y = 3
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_to_variable = {
+				currentMoney = -0.2
+			}
+			set_temp_variable = {
+				x = -200
+				tooltip = adjust_money_mil_tt
+			}
+			country_event = VIN_Econ.22
+			1760 = {
+				add_building_construction = {
+					type = air_base
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_COMECON_Integration
+		completion_reward = {
+		}
+		icon = GFX_COMECON
+		cost = 5
+		relative_position_id = VIN_Rebuild_Bach_mai-Phu_Bai_Airports
+		prerequisite = {
+			focus = VIN_Rebuild_Bach_mai-Phu_Bai_Airports
+		}
+		mutually_exclusive = {
+			focus = VIN_Invite_Western_Companies
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Econ.23
+			SOV = {
+				country_event = VIN_Econ.23
+			}
+			add_ideas = COMECON_Integration
+		}
+	}
+	focus = {
+		id = VIN_Invite_Western_Companies
+		completion_reward = {
+		}
+		icon = GFX_usa_50_encourage_american_corporate_investment
+		cost = 5
+		relative_position_id = VIN_Rebuild_Bach_mai-Phu_Bai_Airports
+		prerequisite = {
+			focus = VIN_Rebuild_Bach_mai-Phu_Bai_Airports
+		}
+		mutually_exclusive = {
+			focus = VIN_COMECON_Integration
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				show_mio_tooltip = VIN_General_Electric_Material_mio
+				show_mio_tooltip = VIN_Ford_Material_mio
+				show_mio_tooltip = VIN_Colt_Material_mio
+			}
+			else = {
+				set_country_flag = American_Companies_Unlocked
+				show_ideas_tooltip = general_electric_vin
+				show_ideas_tooltip = ford_motor_company_vin
+				show_ideas_tooltip = colt_vin
+			}
+			USA = {
+				country_event = VIN_Econ.24
+			}
+		}
+	}
+	focus = {
+		id = VIN_Import_Foreign_Vehicles
+		completion_reward = {
+		}
+		icon = GFX_western_cars
+		cost = 5
+		relative_position_id = VIN_COMECON_Integration
+		prerequisite = {
+			focus = VIN_Invite_Western_Companies
+			focus = VIN_COMECON_Integration
+		}
+		mutually_exclusive = {
+			focus = VIN_Chien_Thang_Automobile
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			set_technology = {
+				motorised_infantry_2 = 1
+			}
+			if = {
+				limit = {
+					has_completed_focus = VIN_COMECON_Integration
+				}
+				add_equipment_to_stockpile = {
+					type = motorized_equipment_2
+					amount = 200
+					producer = SOV
+				}
+				add_equipment_to_stockpile = {
+					type = motorized_equipment_2
+					amount = 200
+					producer = PRC
+				}
+			}
+			else = {
+				add_equipment_to_stockpile = {
+					type = motorized_equipment_2
+					amount = 400
+					producer = USA
+				}
+			}
+			1760 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Modernize_Gia_Lam_Train_Company
+		completion_reward = {
+		}
+		icon = GFX_Jungle_Railway
+		cost = 5
+		relative_position_id = VIN_Import_Foreign_Vehicles
+		prerequisite = {
+			focus = VIN_Import_Foreign_Vehicles
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			set_technology = {
+				wartime_train = 1
+			}
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				show_mio_tooltip = VIN_Gia_Lam_Train_Company_mio
+			}
+			else = {
+				show_ideas_tooltip = Gia_Lam_Train_Company
+			}
+			1760 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Chien_Thang_Automobile
+		completion_reward = {
+		}
+		icon = GFX_One_Family_one_car
+		cost = 5
+		relative_position_id = VIN_Invite_Western_Companies
+		prerequisite = {
+			focus = VIN_Invite_Western_Companies
+			focus = VIN_COMECON_Integration
+		}
+		mutually_exclusive = {
+			focus = VIN_Import_Foreign_Vehicles
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Econ.25
+			set_technology = {
+				motorised_infantry_2 = 1
+			}
+			1760 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Invite_Zastava_Specialist
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Trading_7
+		cost = 5
+		relative_position_id = VIN_Chien_Thang_Automobile
+		prerequisite = {
+			focus = VIN_Chien_Thang_Automobile
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				show_mio_tooltip = Zastava_Automobiles_mio
+			}
+			else = {
+				show_ideas_tooltip = Zastava_Automobiles
+			}
+			add_tech_bonus = {
+				bonus = 0.15
+				uses = 3
+				category = vehicles
+				category = armor
+			}
+		}
+	}
+	focus = {
+		id = VIN_Research_Foreign_Designs
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Construction_9
+		cost = 5
+		relative_position_id = VIN_Chien_Thang_Automobile
+		prerequisite = {
+			focus = VIN_Chien_Thang_Automobile
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_tech_bonus = {
+				bonus = 0.1
+				uses = 2
+				category = vehicles
+				category = train_tech
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_2
+				amount = 10
+				producer = USA
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_2
+				amount = 20
+				producer = YUG
+			}
+		}
+	}
+	focus = {
+		id = VIN_First_Domestic_Car_Brand
+		completion_reward = {
+		}
+		icon = GFX_Develop_Chemical_and_Automotive_Industries
+		cost = 5
+		relative_position_id = VIN_Chien_Thang_Automobile
+		prerequisite = {
+			focus = VIN_Invite_Zastava_Specialist
+		}
+		prerequisite = {
+			focus = VIN_Research_Foreign_Designs
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_Econ.26
+			add_stability = 0.05
+			swap_ideas  = {
+				remove_idea = VIN_ongoing_industrialization_1
+				add_idea = VIN_ongoing_industrialization_2
+			}
+		}
+	}
+	#Military
+	focus = {
+		id = VIN_Issue_Ao
+		completion_reward = {
+		}
+		icon = GFX_Expand_Military_Funding
+		cost = 5.6
+		x = 43
+		y = 0
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			set_technology = { protection_equip_1 = 1}
+			set_technology = { manpats_1 = 1}
+
+		}
+	}
+	focus = {
+		id = VIN_Chin_Tranh
+		completion_reward = {
+		}
+		icon = GFX_MEO_receive_aids_from_pla
+		cost = 5.6
+		x = 45
+		y = 0
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_MIL.0
+			custom_effect_tooltip = Increase_Militia_Modifier
+			add_to_variable = { VIN_M_SDM_RDG = 0.025 }
+			add_to_variable = { VIN_M_SDM_TSF = 0.05 }
+			add_to_variable = { VIN_M_SDM_BR = 0.025 }
+			add_to_variable = { VIN_M_SDM_MRC = 0.025 }
+			add_to_variable = { VIN_M_SDM_MS = 0.05 }
+			add_to_variable = { VIN_M_SDM_SFTT = -0.05 }
+			add_to_variable = { VIN_M_SDM_MT = 0.025 }
+		}
+	}
+	focus = {
+		id = VIN_Mass_Defectors
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_USSR_12
+		cost = 5.6
+		x = 47
+		y = 0
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_manpower = 5000
+			VIN_improve_drv_army = yes
+		}
+	}
+	focus = {
+		id = VIN_Equip_Cong_Binh
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Military_24
+		prerequisite = {
+			focus = VIN_Chin_Tranh
+		}
+		cost = 5.6
+		relative_position_id = VIN_Chin_Tranh
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			set_technology = { tech_signal_company = 1 }
+			set_technology = { tech_engineers2 = 1 }
+		}
+	}
+	focus = {
+		id = VIN_Establish_Quan
+		completion_reward = {
+		}
+		icon = GFX_SOV_Expand_Medical_Research_Facilities
+		prerequisite = {
+			focus = VIN_Mass_Defectors
+		}
+		prerequisite = {
+			focus = VIN_Issue_Ao
+		}
+		cost = 5.6
+		relative_position_id = VIN_Chin_Tranh
+		x = 2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_MIL.2
+			set_technology = { tech_field_hospital2 = 1 }
+		}
+	}
+	focus = {
+		id = VIN_Formalize_Tieu
+		completion_reward = {
+		}
+		icon = GFX_Generic_Diplomacy_1
+		prerequisite = {
+			focus = VIN_Mass_Defectors
+		}
+		prerequisite = {
+			focus = VIN_Issue_Ao
+		}
+		cost = 5.6
+		relative_position_id = VIN_Chin_Tranh
+		x = -2
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_MIL.1
+			add_units_to_division_template = {
+				template_name = "Trung doan Bo binh Infantry"
+				regiments = {
+					infantry = 0
+					infantry = 0
+					infantry = 1
+				}
+				support = {
+					logistics_company = 0
+					artillery_support = 0
+					signal_company = 0
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Sign_Sac_17
+		completion_reward = {
+		}
+		icon = GFX_MEO_adapt_pavns_reforms
+		prerequisite = {
+			focus = VIN_Equip_Cong_Binh
+		}
+		prerequisite = {
+			focus = VIN_Establish_Quan
+		}
+		prerequisite = {
+			focus = VIN_Formalize_Tieu
+		}
+		cost = 5.6
+		relative_position_id = VIN_Equip_Cong_Binh
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 25
+				is_historical_focus_on = yes
+			}
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			country_event = VIN_MIL.3
+		}
+	}
+
+	focus = {
+		id = VIN_Expand_Viet_Bac_Guerilla_Networks
+		completion_reward = {
+		}
+		icon = GFX_expand_trung_doan_dong_van
+		prerequisite = {
+			focus = VIN_Sign_Sac_17
+		}
+		cost = 5.6
+		relative_position_id = VIN_Sign_Sac_17
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 25
+				is_historical_focus_on = yes
+			}
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			set_country_flag = VIN_Guerilla_Networks_Expanded
+			custom_effect_tooltip = VIN_Guerilla_Networks_tt
+			vin_sync_guerilla_networks = yes
+		}
+	}
+	focus = {
+		id = VIN_Establish_Tong
+		completion_reward = {
+		}
+		icon = GFX_MEO_capturing_kmts_weapon_caches
+		prerequisite = {
+			focus = VIN_Expand_Viet_Bac_Guerilla_Networks
+		}
+		cost = 5.6
+		relative_position_id = VIN_Sign_Sac_17
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 25
+				is_historical_focus_on = yes
+			}
+		}
+		x = -1
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_MIL.9
+			VIN_improve_drv_army = yes
+		}
+	}
+	focus = {
+		id = VIN_Found_the_Cuc_Quan_Bao_Intelligence_Branch
+		completion_reward = {
+		}
+		icon = GFX_Allow_military_service_in_the_KGB
+		prerequisite = {
+			focus = VIN_Expand_Viet_Bac_Guerilla_Networks
+		}
+		cost = 5.6
+		relative_position_id = VIN_Sign_Sac_17
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 25
+				is_historical_focus_on = yes
+			}
+		}
+		x = 1
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			#establish_VIN_Black_Operations_Agency = yes	Not Yet
+			country_event = VIN_MIL.10
+		}
+	}
+	focus = {
+		id = VIN_Sign_Sac_50
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Military_3
+		prerequisite = {
+			focus = VIN_Found_the_Cuc_Quan_Bao_Intelligence_Branch
+		}
+		prerequisite = {
+			focus = VIN_Establish_Tong
+		}
+		cost = 5.6
+		relative_position_id = VIN_Found_the_Cuc_Quan_Bao_Intelligence_Branch
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 25
+				is_historical_focus_on = yes
+			}
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			country_event = VIN_MIL.11
+		}
+	}
+	focus = {
+		id = VIN_Utilizing_Chien
+		completion_reward = {
+		}
+		icon = GFX_MLA_Enforce_Revolutionary
+		prerequisite = {
+			focus = VIN_Sign_Sac_17
+		}
+		cost = 5.6
+		relative_position_id = VIN_Sign_Sac_17
+		x = -4
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Chien Si Viet Nam Moi Foreign Divisions\" division_template = \"Chien Si Viet Nam Moi Foreign Divisions\" start_experience_factor = 1 start_equipment_factor = 1"
+					owner = VIN
+					count = 2
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Raiding_CEFEO_Arsenals
+		completion_reward = {
+		}
+		icon = GFX_Vietnam_MLA
+		prerequisite = {
+			focus = VIN_Utilizing_Chien
+		}
+		cost = 5.6
+		relative_position_id = VIN_Utilizing_Chien
+		x = -1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			custom_effect_tooltip = Unlock_Arsenal_Raids_TT
+			set_country_flag = Arsenal_Raids_Unlocked
+			add_war_support = 0.10
+		}
+	}
+	focus = {
+		id = VIN_Smuggling_Weapons
+		completion_reward = {
+		}
+		icon = GFX_heavy_weapons_through_vietnam
+		prerequisite = {
+			focus = VIN_Utilizing_Chien
+		}
+		cost = 5.6
+		relative_position_id = VIN_Utilizing_Chien
+		x = 1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_1
+				amount = 500
+				producer = PRC
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 5000
+				producer = PRC
+			}
+		}
+	}
+	focus = {
+		id = VIN_Expand_Binh_Cong_xuong
+		completion_reward = {
+		}
+		icon = GFX_Declare_Revolutionary_Situation
+		prerequisite = {
+			focus = VIN_Smuggling_Weapons
+		}
+		prerequisite = {
+			focus = VIN_Raiding_CEFEO_Arsenals
+		}
+		cost = 5.6
+		relative_position_id = VIN_Utilizing_Chien
+		x = 0
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			random_owned_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 2
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = VIN_Sign_Sac_121
+		completion_reward = {
+		}
+		icon = GFX_Smuggle_Guns_to_the_Vietnamese
+		prerequisite = {
+			focus = VIN_Sign_Sac_17
+		}
+		cost = 5.6
+		relative_position_id = VIN_Sign_Sac_17
+		x = 4
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_MIL.8
+		}
+	}
+
+
+	focus = {
+		id = VIN_Employ_Tran
+		completion_reward = {
+		}
+		icon = GFX_MEO_expand_weapon_foundaries
+		prerequisite = {
+			focus = VIN_Sign_Sac_121
+		}
+		cost = 5.6
+		relative_position_id = VIN_Sign_Sac_121
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = VIN_Mimic_French
+		completion_reward = {
+		}
+		icon = GFX_Begin_international_market_research
+		prerequisite = {
+			focus = VIN_Employ_Tran
+		}
+		mutually_exclusive = {
+			focus = VIN_Maintain_Domestic_Weapon_Programs
+		}
+		cost = 5.6
+		relative_position_id = VIN_Employ_Tran
+		x = -1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 10000
+				producer = FRA
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 2000
+				producer = USA
+			}
+		}
+	}
+	focus = {
+		id = VIN_Maintain_Domestic_Weapon_Programs
+		completion_reward = {
+		}
+		icon = GFX_Begin_Selling_Weapons_to_Baku
+		prerequisite = {
+			focus = VIN_Employ_Tran
+		}
+		mutually_exclusive = {
+			focus = VIN_Mimic_French
+		}
+		cost = 5.6
+		relative_position_id = VIN_Employ_Tran
+		x = 1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			set_technology = { infantry_equip_2 = 1}
+		}
+	}
+	focus = {
+		id = VIN_Plan_Large
+		icon = GFX_Launch_the_Great_offensive
+		cost = 5.6
+		relative_position_id = VIN_Sign_Sac_17
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 25
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 5
+				NOT = { has_global_flag = Indochina_War_Over }
+			}
+		}
+		x = 0
+		y = 4
+		available = {
+			date > 1949.06.01
+			VIN_indochina_campaign_window_trigger = yes
+		}
+		bypass = {
+			OR = {
+				has_global_flag = Indochina_War_Over
+				geneva_conference_available_trigger = yes
+			}
+		}
+		completion_reward = {
+			set_country_flag = Enable_Larger_Raids
+			custom_effect_tooltip = Enable_Larger_Raids_TT
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						global.Indochina_War_Next_Phase_A_Points = 25
+						tooltip = Add_to_Escalation_Phase_TT
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Thap_Van_Dai
+		icon = GFX_The_battle_of_the_day_river
+		prerequisite = {
+			focus = VIN_Plan_Large
+		}
+		cost = 5.6
+		relative_position_id = VIN_Plan_Large
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 25
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 5
+				NOT = { has_global_flag = Indochina_War_Over }
+			}
+		}
+		x = -1
+		y = 1
+		continue_if_invalid = yes	# the gate governs selecting the campaign, never finishing one already in the field
+		available = {
+			date > 1949.06.01
+			VIN_indochina_campaign_window_trigger = yes
+			VIN_campaign_cooldown_ready_trigger = yes
+		}
+		bypass = {
+			OR = {
+				has_global_flag = Indochina_War_Over
+				geneva_conference_available_trigger = yes
+			}
+		}
+		completion_reward = {
+			add_manpower = 10000
+			add_command_power = 50
+			add_opinion_modifier = {
+				target = PRC
+				modifier = small_increase
+			}
+			PRC = {
+				add_opinion_modifier = {
+					target = VIN
+					modifier = small_increase
+				}
+			}
+			set_country_flag = VIN_Campaign_Cooldown_Thap_Van_Dai
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						global.Indochina_War_Next_Phase_A_Points = 25
+						tooltip = Add_to_Escalation_Phase_TT
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Operation_Cao-Bac
+		icon = GFX_Battle_of_Black_River_Valley
+		prerequisite = {
+			focus = VIN_Plan_Large
+		}
+		cost = 5.6
+		relative_position_id = VIN_Plan_Large
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 25
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 5
+				NOT = { has_global_flag = Indochina_War_Over }
+			}
+		}
+		x = 1
+		y = 1
+		continue_if_invalid = yes
+		available = {
+			OR = {
+				date > 1950.09.01
+				has_global_flag = PRC_Victory
+			}
+			country_exists = THO
+			VIN_indochina_campaign_window_trigger = yes
+			VIN_no_campaign_running_trigger = yes
+			VIN_campaign_cooldown_ready_trigger = yes
+		}
+		bypass = {
+			OR = {
+				has_global_flag = Indochina_War_Over
+				geneva_conference_available_trigger = yes
+				AND = {
+					owns_state = 1280
+					owns_state = 1768
+				}
+				NOT = { country_exists = THO }
+			}
+		}
+		will_lead_to_war_with = THO
+		completion_reward = {
+			set_country_flag = VIN_Campaign_Cao_Bac_Active
+			set_temp_variable = { vin_camp_id = 4 }
+			vin_campaign_begin = yes
+			custom_effect_tooltip = VIN_Camp_War_Cao_Bac_tt
+			hidden_effect = { vin_campaign_declare_war = yes }
+		}
+	}
+	focus = {
+		id = VIN_Strike_Vinh_Yen
+		icon = GFX_Generic_National_Focus_Military_14
+		prerequisite = { focus = VIN_Thap_Van_Dai }
+		prerequisite = { focus = VIN_Operation_Cao-Bac }
+		cost = 3.4
+		relative_position_id = VIN_Operation_Cao-Bac
+		x = -3
+		y = 1
+		ai_will_do = { base = 1 modifier = { factor = 25 is_historical_focus_on = yes } }
+		continue_if_invalid = yes
+		available = {
+			date > 1950.12.24
+			country_exists = TAI
+			VIN_indochina_campaign_window_trigger = yes
+			VIN_no_campaign_running_trigger = yes
+			VIN_campaign_cooldown_ready_trigger = yes
+		}
+		bypass = { OR = { has_global_flag = Indochina_War_Over geneva_conference_available_trigger = yes VIN_vinh_yen_terminal_trigger = yes NOT = { country_exists = TAI } } }
+		will_lead_to_war_with = TAI
+		completion_reward = {
+			set_country_flag = VIN_Campaign_Vinh_Yen_Active
+			set_temp_variable = { vin_camp_id = 5 }
+			vin_campaign_begin = yes
+			custom_effect_tooltip = VIN_Camp_War_Vinh_Yen_tt
+			hidden_effect = { vin_campaign_declare_war = yes }
+			}
+		}
+	focus = {
+		id = VIN_Attack_Mao_Khe
+		icon = GFX_Generic_National_Focus_Military_17
+		prerequisite = { focus = VIN_Thap_Van_Dai }
+		prerequisite = { focus = VIN_Operation_Cao-Bac }
+		cost = 3.4
+		relative_position_id = VIN_Operation_Cao-Bac
+		x = -1
+		y = 1
+		ai_will_do = { base = 1 modifier = { factor = 25 is_historical_focus_on = yes } }
+		continue_if_invalid = yes
+		available = {
+			date > 1951.02.26
+			VIN_vinh_yen_terminal_trigger = yes
+			country_exists = FRE
+			VIN_indochina_campaign_window_trigger = yes
+			VIN_no_campaign_running_trigger = yes
+			VIN_campaign_cooldown_ready_trigger = yes
+		}
+		bypass = { OR = { has_global_flag = Indochina_War_Over geneva_conference_available_trigger = yes VIN_mao_khe_terminal_trigger = yes NOT = { country_exists = FRE } } }
+		will_lead_to_war_with = FRE
+		completion_reward = {
+			set_country_flag = VIN_Campaign_Mao_Khe_Active
+			set_temp_variable = { vin_camp_id = 6 }
+			vin_campaign_begin = yes
+			custom_effect_tooltip = VIN_Camp_War_Mao_Khe_tt
+			hidden_effect = { vin_campaign_declare_war = yes }
+					}
+				}
+	focus = {
+		id = VIN_The_Battle_of_the_Day_River
+		icon = GFX_Battle_of_Black_River_Valley
+		prerequisite = { focus = VIN_Thap_Van_Dai }
+		prerequisite = { focus = VIN_Operation_Cao-Bac }
+		cost = 3.4
+		relative_position_id = VIN_Operation_Cao-Bac
+		x = 1
+		y = 1
+		ai_will_do = { base = 1 modifier = { factor = 25 is_historical_focus_on = yes } }
+		continue_if_invalid = yes
+		available = {
+			date > 1951.05.15
+			VIN_mao_khe_terminal_trigger = yes
+			country_exists = FRE
+			VIN_indochina_campaign_window_trigger = yes
+			VIN_no_campaign_running_trigger = yes
+			VIN_campaign_cooldown_ready_trigger = yes
+			}
+		bypass = { OR = { has_global_flag = Indochina_War_Over geneva_conference_available_trigger = yes VIN_day_river_terminal_trigger = yes NOT = { country_exists = FRE } } }
+		will_lead_to_war_with = FRE
+		completion_reward = {
+			set_country_flag = VIN_Campaign_Day_River_Active
+			set_temp_variable = { vin_camp_id = 7 }
+			vin_campaign_begin = yes
+			custom_effect_tooltip = VIN_Camp_War_Day_River_tt
+			hidden_effect = { vin_campaign_declare_war = yes }
+		}
+	}
+	focus = {
+		id = VIN_Liberate_Duyen
+		icon = GFX_MEO_dig_out_gun_caches
+		prerequisite = {
+			focus = VIN_Strike_Vinh_Yen
+			focus = VIN_Attack_Mao_Khe
+			focus = VIN_The_Battle_of_the_Day_River
+		}
+		cost = 5.6
+		relative_position_id = VIN_Attack_Mao_Khe
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 25
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 5
+				NOT = { has_global_flag = Indochina_War_Over }
+			}
+		}
+		x = 0
+		y = 1
+		continue_if_invalid = yes
+		available = {
+			date > 1951.10.02
+			country_exists = TAM
+			VIN_indochina_campaign_window_trigger = yes
+			VIN_no_campaign_running_trigger = yes
+			VIN_campaign_cooldown_ready_trigger = yes
+		}
+		bypass = {
+			OR = {
+				has_global_flag = Indochina_War_Over
+				geneva_conference_available_trigger = yes
+				owns_state = 1766	# Hoa Binh already flies our flag
+				NOT = { country_exists = TAM }
+			}
+		}
+		will_lead_to_war_with = TAM
+
+		completion_reward = {
+			set_country_flag = VIN_Campaign_Hoa_Binh_Active
+			set_temp_variable = { vin_camp_id = 2 }
+			vin_campaign_begin = yes
+			custom_effect_tooltip = VIN_Camp_War_Hoa_Binh_tt
+			hidden_effect = { vin_campaign_declare_war = yes }
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						global.Indochina_War_Next_Phase_A_Points = 100
+						tooltip = Add_to_Escalation_Phase_TT
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Northwest
+		icon = GFX_prepare_operations_against_the_sip_song_tai
+		prerequisite = {
+			focus = VIN_Liberate_Duyen
+		}
+		cost = 5.6
+		relative_position_id = VIN_Liberate_Duyen
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 25
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 5
+				NOT = { has_global_flag = Indochina_War_Over }
+			}
+		}
+		x = -1
+		y = 1
+		continue_if_invalid = yes
+		available = {
+			date > 1952.09.14
+			country_exists = TAI
+			VIN_indochina_campaign_window_trigger = yes
+			VIN_no_campaign_running_trigger = yes
+			VIN_campaign_cooldown_ready_trigger = yes
+		}
+		bypass = {
+			OR = {
+				has_global_flag = Indochina_War_Over
+				geneva_conference_available_trigger = yes
+				owns_state = 1761
+				NOT = { country_exists = TAI }
+			}
+		}
+		will_lead_to_war_with = TAI
+		completion_reward = {
+			set_country_flag = VIN_Campaign_Tay_Bac_Active
+			set_temp_variable = { vin_camp_id = 1 }
+			vin_campaign_begin = yes
+			if = {
+				limit = { country_exists = FRE }
+				fre_tai_highlands_relief = yes
+				FRE = { fre_lorraine_response_offer = yes }
+			}
+			custom_effect_tooltip = VIN_Camp_War_Tay_Bac_tt
+			hidden_effect = { vin_campaign_declare_war = yes }
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						global.Indochina_War_Next_Phase_A_Points = 100
+						tooltip = Add_to_Escalation_Phase_TT
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Reopen_the_Northwest_Corridor
+		icon = GFX_prepare_operations_against_the_sip_song_tai
+		prerequisite = { focus = VIN_Northwest }
+		cost = 3.4
+		relative_position_id = VIN_Northwest
+		x = -1
+		y = 1
+		continue_if_invalid = yes
+		available = {
+			has_country_flag = VIN_Campaign_Tay_Bac_Result_Failure
+			NOT = { has_country_flag = VIN_Campaign_Northwest_Recovery_Attempted }
+			check_variable = { VIN_Campaign_Supply > 74 }
+			has_political_power > 49
+			VIN_northwest_recovery_target_available_trigger = yes
+			VIN_indochina_campaign_window_trigger = yes
+			VIN_no_campaign_running_trigger = yes
+			VIN_campaign_cooldown_ready_trigger = yes
+		}
+		bypass = {
+			OR = {
+				has_global_flag = Indochina_War_Over
+				geneva_conference_available_trigger = yes
+				has_country_flag = VIN_Campaign_Northwest_Recovery_Attempted
+				owns_state = 1761
+			}
+		}
+		completion_reward = {
+			set_country_flag = VIN_Campaign_Northwest_Recovery_Attempted
+			set_country_flag = VIN_Campaign_Northwest_Recovery_Active
+			add_political_power = -50
+			set_temp_variable = { vin_supply_amount = -75 }
+			vin_change_campaign_supply = yes
+			set_temp_variable = { vin_camp_id = 9 }
+			vin_campaign_begin = yes
+			custom_effect_tooltip = VIN_Camp_War_Northwest_Recovery_tt
+			hidden_effect = { vin_campaign_declare_war = yes }
+		}
+		ai_will_do = {
+			base = 1
+			modifier = { factor = 100 is_historical_focus_on = yes }
+		}
+	}
+	focus = {
+		id = VIN_Assault_Na_San
+		icon = GFX_Battle_of_Black_River_Valley
+		prerequisite = { focus = VIN_Liberate_Duyen }
+		cost = 3.4
+		relative_position_id = VIN_Liberate_Duyen
+		x = 1
+		y = 1
+		ai_will_do = {
+			base = 1
+			modifier = { factor = 25 is_historical_focus_on = yes }
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+				has_country_flag = VIN_Campaign_Tay_Bac_Result_Failure
+				NOT = { has_country_flag = VIN_Campaign_Northwest_Recovery_Attempted }
+				VIN_northwest_recovery_target_available_trigger = yes
+			}
+		}
+		continue_if_invalid = yes
+		available = {
+			date > 1952.11.01
+			country_exists = TAI
+			VIN_indochina_campaign_window_trigger = yes
+			VIN_no_campaign_running_trigger = yes
+		}
+		bypass = { OR = { has_global_flag = Indochina_War_Over geneva_conference_available_trigger = yes VIN_na_san_terminal_trigger = yes NOT = { country_exists = TAI } } }
+		will_lead_to_war_with = TAI
+		completion_reward = {
+			set_country_flag = VIN_Campaign_Na_San_Active
+			set_temp_variable = { vin_camp_id = 8 }
+			vin_campaign_begin = yes
+			custom_effect_tooltip = VIN_Camp_War_Na_San_tt
+			hidden_effect = { vin_campaign_declare_war = yes }
+		}
+	}
+	focus = {
+		id = VIN_Prepare_Dien
+		icon = GFX_usa_50_approaching_a_conclusion
+		prerequisite = {
+			focus = VIN_Northwest
+		}
+		prerequisite = {
+			focus = VIN_Assault_Na_San
+		}
+		cost = 5.6
+		relative_position_id = VIN_Liberate_Duyen
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 25
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 5
+				NOT = { has_global_flag = Indochina_War_Over }
+			}
+		}
+		x = 0
+		y = 2
+		continue_if_invalid = yes
+		available = {
+			date > 1954.01.18
+			country_exists = TAI
+			owns_state = 1761	# the Northwest campaign has to have delivered the corridor first
+			VIN_indochina_campaign_window_trigger = yes
+			VIN_no_campaign_running_trigger = yes
+			VIN_campaign_cooldown_ready_trigger = yes
+		}
+		bypass = {
+			OR = {
+				has_global_flag = Indochina_War_Over
+				geneva_conference_available_trigger = yes
+				AND = {
+					controls_province = 4529
+					has_country_flag = VIN_Campaign_Cooldown_Dien_Bien
+				}
+				AND = {
+					NOT = { country_exists = TAI }
+					NOT = { any_country = { owns_state = 671  has_war_with = VIN } }
+				}
+			}
+		}
+		will_lead_to_war_with = FRE
+
+		completion_reward = {
+			add_timed_idea = {
+				idea = PRC_50s_Southwest_Offensive_Spirit
+				days = 365
+			}
+			set_temp_variable = { geneva_lev_amount = 25 }
+			geneva_add_communist_leverage = yes
+			if = {
+				limit = {
+					NOT = { has_global_flag = Indochina_War_Over }
+				}
+				FRA = {
+					add_to_variable = {
+						global.Indochina_War_Next_Phase_A_Points = 175
+						tooltip = Add_to_Escalation_Phase_TT
+					}
+				}
+			}
+			if = {
+				limit = {
+					VIN_no_campaign_running_trigger = yes
+					VIN_campaign_cooldown_ready_trigger = yes
+				}
+				if = {
+					limit = { country_exists = FRE }
+					fre_tai_highlands_relief = yes
+					fre_dbp_fortify_camp = yes
+				}
+				set_country_flag = VIN_Campaign_Dien_Bien_Active
+				set_temp_variable = { vin_camp_id = 3 }
+				vin_campaign_begin = yes
+				custom_effect_tooltip = VIN_Camp_War_Dien_Bien_tt
+				hidden_effect = { vin_campaign_declare_war = yes }
+				country_event = { id = VIN_Camp.3 hours = 1 }
+			}
+			else = {
+				hidden_effect = {
+					country_event = { id = SWF_Indochina_War.14 days = 120 random_days = 30 }	# something else is in the field; the old opportunistic chain picks it up
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Push_for_Negotiations
+		icon = GFX_usa_50_a_ceasefire
+		prerequisite = { focus = VIN_Prepare_Dien }
+		mutually_exclusive = { focus = VIN_Carry_the_Revolution_South }
+		relative_position_id = VIN_Prepare_Dien
+		x = -2
+		y = 1
+		cost = 2
+		continue_if_invalid = yes
+		available = { vin_post_dbp_strategy_focus_available_trigger = yes }
+		bypass = {
+			OR = {
+				has_country_flag = VIN_Post_DBP_Negotiations_Chosen
+				has_global_flag = Indochina_War_Over
+				has_global_flag = geneva_conference_announced
+				has_global_flag = geneva_conference_in_session
+				has_global_flag = geneva_conference_concluded
+			}
+		}
+		completion_reward = {
+			if = {
+				limit = { vin_post_dbp_strategy_focus_available_trigger = yes }
+				vin_post_dbp_press_for_geneva = yes
+			}
+			else = { set_country_flag = VIN_Post_DBP_Strategy_Focus_Superseded }
+		}
+		ai_will_do = {
+			base = 10
+			modifier = { factor = 100 is_historical_focus_on = yes }
+			modifier = {
+				factor = 0.1
+				is_historical_focus_on = no
+				country_exists = VIE
+				strength_ratio = { tag = VIE ratio > 1.25 }
+			}
+		}
+	}
+	focus = {
+		id = VIN_Carry_the_Revolution_South
+		icon = GFX_Generic_Communism
+		prerequisite = { focus = VIN_Prepare_Dien }
+		mutually_exclusive = { focus = VIN_Push_for_Negotiations }
+		relative_position_id = VIN_Prepare_Dien
+		x = 2
+		y = 1
+		cost = 4.8
+		continue_if_invalid = yes
+		available = { vin_post_dbp_strategy_focus_available_trigger = yes }
+		bypass = {
+			OR = {
+				has_country_flag = VIN_Post_DBP_Escalation_Chosen
+				has_global_flag = Indochina_War_Over
+				has_global_flag = geneva_conference_announced
+				has_global_flag = geneva_conference_in_session
+				has_global_flag = geneva_conference_concluded
+			}
+		}
+		completion_reward = {
+			if = {
+				limit = { vin_post_dbp_strategy_focus_available_trigger = yes }
+				vin_post_dbp_fund_southern_war = yes
+			}
+			else = { set_country_flag = VIN_Post_DBP_Strategy_Focus_Superseded }
+		}
+		ai_will_do = {
+			base = 1
+			modifier = { factor = 0 is_historical_focus_on = yes }
+			modifier = {
+				factor = 0
+				OR = {
+					NOT = { country_exists = VIE }
+					has_global_flag = geneva_conference_announced
+					has_global_flag = geneva_conference_in_session
+					has_global_flag = geneva_conference_concluded
+					NOT = { strength_ratio = { tag = VIE ratio > 1.25 } }
+				}
+			}
+			modifier = { factor = 25 is_historical_focus_on = no }
+		}
+	}
+	focus = {
+		id = VIN_Mobilize_for_National_Reunification
+		icon = GFX_prepare_operations_against_the_sip_song_tai
+		prerequisite = { focus = VIN_Carry_the_Revolution_South }
+		relative_position_id = VIN_Carry_the_Revolution_South
+		x = 0
+		y = 1
+		cost = 8
+		continue_if_invalid = yes
+		available = {
+			has_country_flag = VIN_Post_DBP_Escalation_Chosen
+			NOT = { has_global_flag = Indochina_War_Over }
+			NOT = { has_global_flag = geneva_conference_announced }
+			NOT = { has_global_flag = geneva_conference_in_session }
+			NOT = { has_global_flag = geneva_conference_concluded }
+			NOT = { has_global_flag = Geneva_Conference_Preparations }
+		}
+		bypass = {
+			OR = {
+				NOT = { country_exists = VIE }
+				has_global_flag = Indochina_War_Over
+				has_global_flag = geneva_conference_concluded
+			}
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					country_exists = VIE
+					NOT = { has_global_flag = Indochina_War_Over }
+					NOT = { has_global_flag = geneva_conference_announced }
+					NOT = { has_global_flag = geneva_conference_in_session }
+					NOT = { has_global_flag = geneva_conference_concluded }
+					NOT = { has_global_flag = Geneva_Conference_Preparations }
+				}
+				set_country_flag = VIN_Post_DBP_Reunification_AI_Active
+				add_timed_idea = { idea = VIN_National_Reunification_Preparation days = 180 }
+			}
+			else = { set_country_flag = VIN_Post_DBP_Mobilization_Superseded }
+		}
+		ai_will_do = { base = 25 }
+	}
+	focus = {
+		id = VIN_Launch_the_General_Offensive
+		icon = GFX_Vietnam_War
+		prerequisite = { focus = VIN_Mobilize_for_National_Reunification }
+		relative_position_id = VIN_Mobilize_for_National_Reunification
+		x = 0
+		y = 1
+		cost = 2
+		continue_if_invalid = yes
+		available = {
+			country_exists = VIE
+			VIN_no_campaign_running_trigger = yes
+			NOT = { has_global_flag = Indochina_War_Over }
+			NOT = { has_global_flag = geneva_conference_announced }
+			NOT = { has_global_flag = geneva_conference_in_session }
+			NOT = { has_global_flag = geneva_conference_concluded }
+			NOT = { has_global_flag = Geneva_Conference_Preparations }
+		}
+		bypass = {
+			OR = {
+				NOT = { country_exists = VIE }
+				has_global_flag = Indochina_War_Over
+				has_global_flag = geneva_conference_concluded
+			}
+		}
+		will_lead_to_war_with = VIE
+		completion_reward = {
+			if = {
+				limit = {
+					country_exists = VIE
+					VIN_no_campaign_running_trigger = yes
+					NOT = { has_global_flag = Indochina_War_Over }
+					NOT = { has_global_flag = geneva_conference_announced }
+					NOT = { has_global_flag = geneva_conference_in_session }
+					NOT = { has_global_flag = geneva_conference_concluded }
+					NOT = { has_global_flag = Geneva_Conference_Preparations }
+				}
+				set_country_flag = VIN_Post_DBP_General_Offensive_Terminal
+				if = {
+					limit = { NOT = { has_war_with = VIE } }
+					set_country_flag = VIN_Post_DBP_Invasion_Declared
+					declare_war_on = { target = VIE type = annex_everything }
+				}
+				else = { set_country_flag = VIN_Post_DBP_Invasion_Already_Active }
+			}
+			else = { set_country_flag = VIN_Post_DBP_General_Offensive_Superseded }
+		}
+		ai_will_do = { base = 50 }
+	}
+	focus = {
+		id = VIN_Implement_Vo
+		completion_reward = {
+		}
+		icon = GFX_MEO_modernize_guerila_tactics
+		prerequisite = {
+			focus = VIN_Sign_Sac_17
+		}
+		cost = 5.6
+		relative_position_id = VIN_Sign_Sac_17
+		x = 9
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_MIL.4
+			VIN_improve_drv_army = yes
+		}
+	}
+
+	focus = {
+		id = VIN_Establish_Ban_Khong
+		completion_reward = {
+		}
+		icon = GFX_focus_soviet_mig_15
+		prerequisite = {
+			focus = VIN_Implement_Vo
+		}
+		cost = 5.6
+		relative_position_id = VIN_Implement_Vo
+		x = -3
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			VIN_improve_drv_air_force = yes
+			country_event = VIN_MIL.5
+		}
+	}
+	focus = {
+		id = VIN_Establish_Ban_Thuy
+		completion_reward = {
+		}
+		icon = GFX_Generic_National_Focus_Trading_3
+		prerequisite = {
+			focus = VIN_Implement_Vo
+		}
+		cost = 5.6
+		relative_position_id = VIN_Implement_Vo
+		x = 1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			VIN_improve_drv_navy = yes
+			country_event = VIN_MIL.6
+		}
+	}
+	focus = {
+		id = VIN_Promote_Revolutionary_Patriotism
+		completion_reward = {
+		}
+		icon = GFX_VIN_Utilizing_Patriotic_Donations
+		prerequisite = {
+			focus = VIN_Establish_Ban_Khong
+		}
+
+		prerequisite = {
+			focus = VIN_Establish_Ban_Thuy
+		}
+		cost = 5.6
+		relative_position_id = VIN_Implement_Vo
+		x = -1
+		y = 2
+		completion_reward = {
+			indochina_struggle_vin_focus_major = yes
+			custom_effect_tooltip = Increase_Militia_Modifier
+			add_to_variable = { VIN_M_SDM_RDG = 0.025 }
+			add_to_variable = { VIN_M_SDM_TSF = 0.05 }
+			add_to_variable = { VIN_M_SDM_BR = 0.025 }
+			add_to_variable = { VIN_M_SDM_MRC = 0.025 }
+			add_to_variable = { VIN_M_SDM_MS = 0.05 }
+			add_to_variable = { VIN_M_SDM_SFTT = -0.05 }
+			add_to_variable = { VIN_M_SDM_MT = 0.025 }
+		}
+	}
+	focus = {
+		id = VIN_Expand_the_300th_Dac_Cong_Command_Unit
+		completion_reward = {
+		}
+		icon = GFX_jungle_warfare
+		prerequisite = {
+			focus = VIN_Promote_Revolutionary_Patriotism
+		}
+		cost = 5.6
+		relative_position_id = VIN_Promote_Revolutionary_Patriotism
+		x = 0
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			custom_effect_tooltip = Increase_SF_Cap_by_1_TT
+			add_to_variable = {
+				VIN_M_N_SFC = 1
+			}
+		}
+	}
+	focus = {
+		id = VIN_Other_Arms
+		completion_reward = {
+		}
+		icon = GFX_Strengthen_the_Secret_Police
+		prerequisite = {
+			focus = VIN_Implement_Vo
+		}
+		cost = 5.6
+		relative_position_id = VIN_Implement_Vo
+		x = 4
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			army_experience = 15
+			air_experience = 15
+			navy_experience = 15
+			custom_effect_tooltip = Increase_Militia_Modifier
+			add_to_variable = { VIN_M_SDM_RDG = 0.025 }
+			add_to_variable = { VIN_M_SDM_TSF = 0.05 }
+			add_to_variable = { VIN_M_SDM_BR = 0.025 }
+			add_to_variable = { VIN_M_SDM_MRC = 0.025 }
+			add_to_variable = { VIN_M_SDM_MS = 0.05 }
+			add_to_variable = { VIN_M_SDM_SFTT = -0.05 }
+			add_to_variable = { VIN_M_SDM_MT = 0.025 }
+		}
+	}
+	focus = {
+		id = VIN_Equip_Nha_Cong
+		completion_reward = {
+		}
+		icon = GFX_Establish_a_Secret_police
+		prerequisite = {
+			focus = VIN_Other_Arms
+		}
+		cost = 5.6
+		relative_position_id = VIN_Other_Arms
+		x = -1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			country_event = VIN_MIL.7
+			capital_scope = {
+				create_unit = {
+					division = "name = \"People's Public Security\" division_template = \"Dan quan tu ve Militia\" start_experience_factor = 0.5 start_equipment_factor = 1"
+					owner = VIN
+					count = 2
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIN_Mass_Expansion
+		completion_reward = {
+		}
+		icon = GFX_expand_dan_quan_bien_phong_forces
+		prerequisite = {
+			focus = VIN_Other_Arms
+		}
+		cost = 5.6
+		relative_position_id = VIN_Other_Arms
+		x = 1
+		y = 1
+		completion_reward = {
+			indochina_struggle_vin_focus_standard = yes
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Dan quan tu ve Militia\" division_template = \"Dan quan tu ve Militia\" start_experience_factor = 0.5 start_equipment_factor = 1"
+					owner = VIN
+					count = 2
+				}
+			}
+		}
+	}
+}

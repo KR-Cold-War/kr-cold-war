@@ -1,0 +1,485 @@
+# KRCW: copy of CWIC diplomacy_scripted_triggers.txt with a volunteer branch (build/patch_diplomacy.py)
+#	Triggers to control if diplomatic actions are enabled:
+#		Format:
+#
+#		<diplomatic action tag>_enabled_trigger = {
+#			<trigger contents>
+#		}
+#
+#		ROOT is the country initiating the diplomatic action.
+#		FROM is the recipient or target of the diplomatic action.
+#		Note:  For cleaner tooltips, it is recommended that you use
+#			if triggers within the enable triggers, and a single
+#			custom_trigger_tooltip trigger within each if trigger.
+#
+#		Example: (Germany is prevented from declaring war on the Soviet Union.)
+#
+#		DIPLOMACY_WAR_ENABLE_TRIGGER = {
+#			if = {
+#				limit = {
+#					tag = GER
+#				}
+#				custom_trigger_tooltip = {
+#					tooltip = PREVENT_GER_WAR_ON_SOV
+#					FROM = {
+#						NOT = {
+#							tag = SOV
+#						}
+#					}
+#				}
+#			}
+#		}
+# This specifically overrides the rule check as to whether or not you can guarantee other ideologies
+DIPLOMACY_GUARANTEE_ENABLE_TRIGGER_OVERRIDES_GAME = {
+	custom_trigger_tooltip = {
+		tooltip = RULE_GUARANTEE_BLOCKED_TT
+		always = no
+	}
+}
+DIPLOMACY_JOIN_ALLY_ENABLE_TRIGGER = {
+	OR = {
+		custom_trigger_tooltip = {
+			tooltip = NATO_ARTICLE_5_NO_TT
+			NOT = { is_in_faction_with = USA }
+			NOT = { has_idea = nato_member }
+		}
+		custom_trigger_tooltip = {
+			tooltip = NATO_ARTICLE_5_TT
+			is_in_faction_with = USA
+			has_idea = nato_member
+			OR = {
+				FROM = {
+					is_subject_of = ROOT
+				}
+				is_subject_of = FROM
+				has_global_flag = Article_5_Triggered
+			}
+		}
+	}
+	if = {
+		limit = {
+			tag = VIN
+			FROM = { 
+				tag = NLF 
+				has_country_flag = VIN_no_join_NLF
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = VIN_no_join_NLF_tt 
+			always = no
+		}
+	}
+}
+DIPLOMACY_CALL_ALLY_ENABLE_TRIGGER = {
+	NOT = {
+		AND = {
+			tag = WPA
+			is_subject_of = HOL
+			has_war_with = INO
+		}
+	}
+	OR = {
+		custom_trigger_tooltip = {
+			tooltip = NATO_ARTICLE_5_NO_TT
+			NOT = { is_in_faction_with = USA }
+			NOT = { has_idea = nato_member }
+		}
+		custom_trigger_tooltip = {
+			tooltip = NATO_ARTICLE_5_TT
+			is_in_faction_with = USA
+			has_idea = nato_member
+			OR = {
+				FROM = {
+					is_subject_of = ROOT
+				}
+				is_subject_of = FROM
+				has_global_flag = Article_5_Triggered
+			}
+		}
+	}
+	if = {
+		limit = {
+			AND = {
+				tag = NLF
+				has_country_flag = VIN_no_join_NLF
+			}
+			FROM = { tag = VIN }
+		}
+		custom_trigger_tooltip = {
+			tooltip = VIN_no_join_NLF_tt 
+			always = no
+		}
+	}
+}
+
+
+DIPLOMACY_GUARANTEE_ENABLE_TRIGGER = {
+	custom_trigger_tooltip = {
+		tooltip = RULE_GUARANTEE_BLOCKED_TT
+		always = no
+	}
+}
+
+DIPLOMACY_REVOKE_GUARANTEE_ENABLE_TRIGGER = {
+	custom_trigger_tooltip = {
+		tooltip = RULE_GUARANTEE_BLOCKED_TT
+		always = yes
+	}
+}
+
+DIPLOMACY_RELEASE_NATION_ENABLE_TRIGGER = {
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_RELEASE_NATIONS_BLOCKED_TOOLTIP
+			always = no
+		}
+}
+
+DIPLOMACY_REVOKE_MILACC_ENABLE_TRIGGER = {
+	if = {
+		limit = {
+			OR = {
+				tag = PHI
+				tag = HUK
+			}
+			OR = {
+				FROM = { tag = PHI }
+				FROM = { tag = HUK }
+			}
+			has_global_flag = huks_insurgency
+		}
+		custom_trigger_tooltip = {
+			tooltip = HUK_revoke_mil_access_tt
+			always = no
+		}
+	}
+}
+
+DIPLOMACY_REVOKE_OFFER_MILACC_ENABLE_TRIGGER = {
+	if = {
+		limit = {
+			OR = {
+				tag = PHI
+				tag = HUK
+			}
+			OR = {
+				FROM = { tag = PHI }
+				FROM = { tag = HUK }
+			}
+			has_global_flag = huks_insurgency
+		}
+		custom_trigger_tooltip = {
+			tooltip = HUK_mil_access_tt
+			always = no
+		}
+	}
+}
+
+DIPLOMACY_MILACC_ENABLE_TRIGGER = {
+}
+
+DIPLOMACY_OFFER_MILACC_ENABLE_TRIGGER = {
+}
+
+DIPLOMACY_DOCKING_RIGHTS_ENABLE_TRIGGER = {
+}
+
+DIPLOMACY_OFFER_DOCKING_RIGHTS_ENABLE_TRIGGER = {
+}
+
+DIPLOMACY_LEND_LEASE_ENABLE_TRIGGER = {
+	# PERF: sphere check first so most country pairs short-circuit here.
+	# BUGFIX: NOT+faction checks wrapped in AND (was OR'd separately, so any
+	# country with a nonzero Sphere_Leader passed against anyone).
+	custom_trigger_tooltip = {
+		tooltip = Same_Sphere_Requirement_TT
+		OR = {
+			check_variable = {
+				ROOT.Sphere_Leader = FROM.Sphere_Leader
+			}
+			AND = {
+				NOT = { check_variable = { ROOT.Sphere_Leader = 0 } }
+				FROM = { is_in_faction_with = ROOT }
+			}
+		}
+	}
+	# PERF: else_if chain instead of 5 independent ifs - evaluates
+	# has_game_rule once for the common FREE/LIMITED cases instead of 5 times.
+	# LIMITED is the default and should be placed first
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_lend_lease
+				option = LIMITED
+			}
+		}
+		always = yes		#handled by game logic, see above
+	}
+	else_if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_lend_lease
+				option = FREE
+			}
+		}
+		always = yes
+	}
+	else_if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_lend_lease
+				option = SAME_IDEOLOGY
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_LEND_LEASE_SAME_IDEOLOGY_TT
+			has_government = FROM
+		}
+	}
+	else_if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_lend_lease
+				option = SAME_FACTION
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_LEND_LEASE_SAME_FACTION_TT
+			is_in_faction_with = FROM
+		}
+	}
+	else_if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_lend_lease
+				option = BLOCKED
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_LEND_LEASE_BLOCKED_TT
+			always = no
+		}
+	}
+}
+
+DIPLOMACY_INCOMING_LEND_LEASE_ENABLE_TRIGGER = {
+	# BUGFIX: was implicit AND of all three conditions (required same sphere
+	# AND nonzero sphere AND faction) - now matches outgoing trigger logic.
+	custom_trigger_tooltip = {
+		tooltip = Same_Sphere_Requirement_TT
+		OR = {
+			check_variable = {
+				ROOT.Sphere_Leader = FROM.Sphere_Leader
+			}
+			AND = {
+				NOT = { check_variable = { ROOT.Sphere_Leader = 0 } }
+				FROM = { is_in_faction_with = ROOT }
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_lend_lease
+				option = LIMITED
+			}
+		}
+		always = yes		#handled by game logic, see above
+	}
+	else_if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_lend_lease
+				option = FREE
+			}
+		}
+		always = yes
+	}
+	else_if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_lend_lease
+				option = SAME_IDEOLOGY
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_LEND_LEASE_SAME_IDEOLOGY_TT
+			has_government = FROM
+		}
+	}
+	else_if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_lend_lease
+				option = SAME_FACTION
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_LEND_LEASE_SAME_FACTION_TT
+			is_in_faction_with = FROM
+		}
+	}
+	else_if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_lend_lease
+				option = BLOCKED
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_LEND_LEASE_BLOCKED_TT
+			always = no
+		}
+	}
+}
+
+DIPLOMACY_REQUEST_LICENSED_PRODUCTION_ENABLE_TRIGGER = {
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_licensing
+				option = FREE
+			}
+		}
+		always = yes
+	}
+	else_if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_licensing
+				option = SAME_IDEOLOGY
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_LICENSING_SAME_IDEOLOGY_TT
+			has_government = FROM
+		}
+	}
+	else_if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_licensing
+				option = SAME_FACTION
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_LICENSING_SAME_FACTION_TT
+			is_in_faction_with = FROM
+		}
+	}
+	else_if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_licensing
+				option = BLOCKED
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = RULE_ALLOW_LICENSING_BLOCKED_TT
+			always = no
+		}
+	}
+}
+
+DIPLOMACY_GENERATE_WARGOAL_ENABLE_TRIGGER = {
+}
+
+opt_influence_puppet_action_ENABLE_TRIGGER = {
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_dependent_state
+				option = FREE
+			}
+		}
+		always = yes
+	}
+	if = {
+		limit = {
+			has_game_rule = {
+				rule = allow_dependent_state
+				option = BLOCKED
+			}
+		}
+		always = yes #handled by game logic, see above
+	}
+}
+
+DIPLOMACY_BOOST_PARTY_POPULARITY_ENABLE_TRIGGER = {
+	custom_trigger_tooltip = {
+		tooltip = RULE_BOOST_PARTY_BLOCKED_TT
+		always = no
+	}
+}
+
+DIPLOMACY_STAGE_COUP_ENABLE_TRIGGER = {
+	custom_trigger_tooltip = {
+		tooltip = RULE_COUP_BLOCKED_TT
+		always = no
+	}
+}
+
+DIPLOMACY_LEAVE_FACTION_ENABLE_TRIGGER = {
+	custom_trigger_tooltip = {
+		tooltip = RULE_LEAVE_BLOCKED_TOOLTIP
+		always = no
+	}
+}
+
+DIPLOMACY_ASSUME_FACTION_LEADERSHIP_ENABLE_TRIGGER = {
+}
+
+DIPLOMACY_KICK_FROM_FACTION_ENABLE_TRIGGER = {
+	custom_trigger_tooltip = {
+		tooltip = RULE_KICK_FROM_FACTION_BLOCKED_TOOLTIP
+		always = no
+	}
+}
+
+DIPLOMACY_SEND_VOLUNTEERS_ENABLE_TRIGGER = {
+	OR = {
+		custom_trigger_tooltip = {
+			tooltip = KRCW_volunteer_exception_tt
+			has_global_flag = KRCW_active
+			ROOT = { has_idea = krcw_volunteer_mobilisation }
+		}
+		custom_trigger_tooltip = {
+			tooltip = Same_Sphere_Requirement_TT
+			OR = {
+				check_variable = {
+					ROOT.Sphere_Leader = FROM.Sphere_Leader
+				}
+				AND = {
+					NOT = { check_variable = { ROOT.Sphere_Leader = 0 } }
+					FROM = { is_in_faction_with = ROOT }
+				}
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = Special_Exception_TT
+			check_variable = {
+				ROOT.Volunteer_Allowance^FROM = 1
+			}
+		}
+	}
+}
+
+DIPLOMACY_JOIN_FACTION_ENABLE_TRIGGER = {
+	custom_trigger_tooltip = {
+		tooltip = RULE_ALLOW_JOIN_FACTION_BLOCKED_TOOLTIP
+		always = no
+	}
+}
+
+DIPLOMACY_OFFER_JOIN_FACTION_ENABLE_TRIGGER = {
+	custom_trigger_tooltip = {
+		tooltip = RULE_ALLOW_JOIN_FACTION_BLOCKED_TOOLTIP
+		always = no
+	}
+}
+
+DIPLOMACY_CREATE_FACTION_ENABLE_TRIGGER = {
+	custom_trigger_tooltip = {
+		tooltip = RULE_ALLOW_CREATE_FACTION_BLOCKED_TOOLTIP
+		always = no
+	}
+}

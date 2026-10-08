@@ -1,0 +1,666 @@
+# krcw: paced
+# krcw: x-coords doubled for icon clearance
+focus_tree = {
+	id = krcw_kor_tree
+	continuous_focus_position = { x = 50 y = 1360 }
+	country = {
+		factor = 0
+		modifier = { add = 5000 tag = KOR }
+	}
+	default = no
+	reset_on_civilwar = no
+	focus = {
+		id = krcw_kor_republic_restored
+		icon = GFX_goal_KOR_Proclamation
+		x = 12
+		y = 0
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_stability = 0.03
+			# reward_fill.py
+			capital_scope = { add_extra_state_shared_building_slots = 1 add_building_construction = { type = industrial_complex level = 1 instant_build = yes } }
+		}
+	}
+	focus = {
+		id = krcw_kor_land_reform
+		icon = GFX_focus_generic_land_redistribution
+		x = 4
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_kor_republic_restored }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_ideas = krcw_kor_land_reform_sp
+		}
+	}
+	focus = {
+		id = krcw_kor_reconstruction
+		icon = GFX_focus_generic_industry_1
+		x = 4
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_kor_land_reform }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_kor_reconstruction_sp
+			746 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_kor_hungnam
+		icon = GFX_focus_generic_steel
+		x = 2
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_kor_reconstruction }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			746 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			745 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_kor_gyeongbu
+		icon = GFX_focus_generic_railroad
+		x = 6
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_kor_reconstruction }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			750 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			751 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			1782 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_kor_busan_yards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 4
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_kor_hungnam }
+		prerequisite = { focus = krcw_kor_gyeongbu }
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			751 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_kor_national_army
+		icon = GFX_focus_JAP_korean_volunteer_army
+		x = 12
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_kor_republic_restored }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_ideas = krcw_kor_national_army_sp
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_kor_whampoa_officers
+		icon = GFX_focus_chi_whampoa_military_academy
+		x = 10
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_kor_national_army }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 20
+			add_tech_bonus = { name = krcw_kor_doctrine bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_kor_coastal_defense
+		icon = GFX_goal_generic_defence
+		x = 14
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_kor_national_army }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_war_support = 0.03
+			add_tech_bonus = { name = krcw_kor_arty bonus = 0.5 uses = 1 category = artillery }
+		}
+	}
+	focus = {
+		id = krcw_kor_joint_command
+		icon = GFX_goal_generic_military_deal
+		x = 12
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_kor_whampoa_officers }
+		prerequisite = { focus = krcw_kor_coastal_defense }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 2000 producer = CHI }
+			CHI = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_kor_line_question
+		icon = GFX_focus_generic_conference
+		x = 20
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_kor_republic_restored }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 15
+		}
+		completion_reward = {
+			add_political_power = 50
+			# reward_fill.py
+			if = { limit = { country_exists = CHI } CHI = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			add_tech_bonus = { name = krcw_kor_line_question bonus = 0.5 uses = 1 category = industry }
+		}
+	}
+	focus = {
+		id = krcw_kor_brotherhood
+		icon = GFX_goal_generic_major_alliance
+		x = 18
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_kor_line_question }
+		mutually_exclusive = { focus = krcw_kor_own_line focus = krcw_kor_hardline_bloc }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			if = { limit = { is_subject = yes } add_autonomy_ratio = { value = -0.1 localization = krcw_brother_closer_ties } }
+			CHI = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = krcw_kor_own_line
+		icon = GFX_focus_south_korea_flag
+		x = 22
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_kor_line_question }
+		mutually_exclusive = { focus = krcw_kor_brotherhood focus = krcw_kor_hardline_bloc }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_kor_own_line_sp
+			if = { limit = { is_subject = yes } add_autonomy_ratio = { value = 0.15 localization = krcw_brother_more_autonomy } }
+			CHI = { country_event = { id = krcw_chi.82 days = 3 } }
+		}
+	}
+	focus = {
+		id = krcw_kor_national_assembly
+		icon = GFX_focus_generic_vote
+		x = 20
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_kor_brotherhood focus = krcw_kor_own_line }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+			# reward_fill.py
+			add_ideas = krcw_fill_kor_national_assembly
+		}
+	}
+	focus = {
+		id = krcw_kor_hangul_schools
+		icon = GFX_focus_generic_education
+		x = 24
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_kor_national_assembly }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_kor_edu bonus = 0.5 uses = 1 category = industry }
+			add_research_slot = 1
+		}
+	}
+	focus = {
+		id = krcw_kor_japan_question
+		icon = GFX_focus_JAP_ignite_the_korean_peninsula
+		x = 16
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_kor_joint_command }
+		prerequisite = { focus = krcw_kor_national_assembly }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_war_support = 0.05
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_kor_straits_treaty
+		icon = GFX_goal_generic_position_armies
+		x = 16
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_kor_japan_question }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_war_support = 0.04
+			army_experience = 10
+			set_country_flag = krcw_kor_defence_plan
+			# reward_fill.py
+			add_ideas = krcw_fill_kor_river_lines
+			add_equipment_to_stockpile = { type = support_equipment amount = 300 }
+		}
+	}
+	focus = {
+		id = krcw_kor_seoul_industry
+		icon = GFX_focus_generic_industry_2
+		x = 8
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_kor_busan_yards }
+		prerequisite = { focus = krcw_kor_hangul_schools }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			750 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = { type = industrial_complex level = 2 instant_build = yes }
+			} }
+			1358 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_kor_asian_bureau
+		icon = GFX_focus_JAP_a_red_dawn_over_asia
+		x = 22
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_kor_hangul_schools }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 75
+			FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+		}
+	}
+	focus = {
+		id = krcw_kor_republic_at_ten
+		icon = GFX_goal_KOR_deal
+		x = 14
+		y = 6
+		cost = 8
+		prerequisite = { focus = krcw_kor_straits_treaty }
+		prerequisite = { focus = krcw_kor_seoul_industry }
+		prerequisite = { focus = krcw_kor_asian_bureau }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			remove_ideas = krcw_kor_reconstruction_sp
+			add_stability = 0.1
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = krcw_kor_hardline_bloc
+		icon = GFX_focus_generic_the_giant_wakes
+		x = 26
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_kor_line_question }
+		mutually_exclusive = { focus = krcw_kor_brotherhood focus = krcw_kor_own_line }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_kor_hardliners_sp
+			CHI = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+			add_war_support = 0.05
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_kor_the_assembly_convenes
+		icon = GFX_focus_generic_vote
+		x = 16
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_kor_hardline_bloc }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = { id = krcw_chi.200 days = 3 }
+		}
+	}
+	focus = {
+		id = krcw_kor_coalition_cabinet
+		icon = GFX_goal_generic_political_pressure
+		x = 20
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_kor_national_assembly }
+		available = {
+			has_idea = krcw_kor_broad_front_sp
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+			# reward_fill.py
+			add_ideas = krcw_fill_kor_coalition_cabinet
+		}
+	}
+	focus = {
+		id = krcw_kor_wonsan_yards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 4
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_kor_seoul_industry }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_kor_naval_yards_sp
+			751 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			} }
+			1778 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_kor_electronics
+		icon = GFX_focus_generic_socialist_science
+		x = 10
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_kor_seoul_industry }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			750 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_kor_elec bonus = 0.5 uses = 1 category = electronics }
+		}
+	}
+	focus = {
+		id = krcw_kor_coastal_navy
+		icon = GFX_goal_generic_navy_submarine
+		x = 18
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_kor_joint_command }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			set_country_flag = krcw_kor_strait_watch
+			add_tech_bonus = { name = krcw_kor_sub bonus = 0.5 uses = 1 category = ss_tech }
+			navy_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_kor_air_defense
+		icon = GFX_focus_generic_air_defense
+		x = 14
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_kor_japan_question }
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_kor_aa bonus = 0.5 uses = 1 category = cat_air_doctrine }
+			750 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = anti_air_building level = 2 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_kor_diaspora
+		icon = GFX_focus_generic_little_entente
+		x = 30
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_kor_line_question }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			CHI = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+		}
+	}
+	focus = {
+		id = krcw_kor_reparations_demand
+		icon = GFX_goal_generic_forceful_treaty
+		x = 16
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_kor_straits_treaty }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_war_support = 0.03
+			if = { limit = { country_exists = JAP } JAP = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_rival } } }
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_kor_busan_perimeter
+		icon = GFX_goal_generic_fortify_city
+		x = 12
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_kor_straits_treaty }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			751 = { if = { limit = { is_owned_by = ROOT } add_building_construction = { type = coastal_bunker level = 2 province = { all_provinces = yes limit_to_coastal = yes } instant_build = yes } } }
+			1356 = { if = { limit = { is_owned_by = ROOT } add_building_construction = { type = coastal_bunker level = 1 province = { all_provinces = yes limit_to_coastal = yes } instant_build = yes } } }
+			add_war_support = 0.02
+		}
+	}
+	focus = {
+		id = krcw_kor_incheon_coast
+		icon = GFX_focus_generic_coastal_fort
+		x = 16
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_kor_straits_treaty }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1357 = { if = { limit = { is_owned_by = ROOT } add_building_construction = { type = coastal_bunker level = 2 province = { all_provinces = yes limit_to_coastal = yes } instant_build = yes } } }
+			navy_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_kor_reserve_divisions
+		icon = GFX_goal_generic_allies_build_infantry
+		x = 20
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_kor_straits_treaty }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_kor_reserve_divisions_sp
+			add_manpower = 20000
+			add_equipment_to_stockpile = { type = infantry_equipment_1 amount = 2000 producer = KOR }
+		}
+	}
+	focus = {
+		id = krcw_kor_southern_air_bases
+		icon = GFX_focus_generic_air_bases
+		x = 14
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_kor_busan_perimeter }
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			751 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 2 instant_build = yes }
+			} }
+			1004 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = air_base level = 2 instant_build = yes }
+			} }
+			air_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_kor_jirisan_plan
+		icon = GFX_focus_CHI_guerrilla_warfare
+		x = 18
+		y = 8
+		cost = 5
+		prerequisite = { focus = krcw_kor_reserve_divisions }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_kor_guerrilla bonus = 0.5 uses = 1 category = land_doctrine }
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_kor_joint_plan_with_nanjing
+		icon = GFX_goal_generic_military_deal
+		x = 16
+		y = 9
+		cost = 5
+		prerequisite = { focus = krcw_kor_incheon_coast }
+		prerequisite = { focus = krcw_kor_southern_air_bases }
+		prerequisite = { focus = krcw_kor_jirisan_plan }
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			set_country_flag = krcw_kor_defence_ready
+			add_war_support = 0.05
+			add_stability = 0.02
+			if = { limit = { country_exists = CHI } CHI = { set_country_flag = krcw_chi_korea_pledge add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } } }
+		}
+	}
+}

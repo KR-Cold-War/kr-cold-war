@@ -1,0 +1,205 @@
+# KRCW override of CWIC on_declare_war.txt: SOV sov_jvs.13 (Stalin) event on USA-PER war removed.
+on_actions = {
+	on_declare_war = {
+		effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_global_flag = USA_Iran_War
+					}
+					FROM = {
+						OR = {
+							tag = USA
+							tag = PER
+						}
+					}
+					ROOT = {
+						OR = {
+							tag = USA
+							tag = PER
+						}
+					}
+				}
+				set_global_flag = USA_Iran_War
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_global_flag = korean_war
+					}
+					FROM = {
+						OR = {
+							tag = KOR
+							tag = KPA
+						}
+					}
+					ROOT = {
+						OR = {
+							tag = KOR
+							tag = KPA
+						}
+					}
+				}
+				set_global_flag = korean_war
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_global_flag = FLAG_SINO_SOVIET_WAR
+					}
+					FROM = {
+						OR = {
+							original_tag = SOV
+							original_tag = PRC
+						}
+					}
+					ROOT = {
+						OR = {
+							original_tag = PRC
+							original_tag = SOV
+						}
+					}
+				}
+				set_global_flag = FLAG_SINO_SOVIET_WAR
+				MON = {
+					add_to_war = {
+						targeted_alliance = SOV
+						enemy = PRC
+						hostility_reason = asked_to_join
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_global_flag = Indochina_War_Over
+					}
+					check_variable = {
+						global.Indochina_War_Active_Phase > 3
+					}
+					check_variable = {
+						global.Indochina_War_Active_Phase < 9
+					}
+					OR = {
+						AND = {
+							FROM = {
+								original_tag = VIE
+							}
+							ROOT = {
+								original_tag = VIN
+							}
+						}
+						AND = {
+							FROM = {
+								original_tag = VIN
+							}
+							ROOT = {
+								original_tag = VIE
+							}
+						}
+					}
+				}
+				set_variable = {
+					global.Indochina_War_Active_Phase = 3
+				}
+				set_variable = {
+					global.Indochina_War_Next_Phase_A_Points = 0
+				}
+				set_variable = {
+					global.Indochina_War_Next_Phase_B_Points = 0
+				}
+				indochina_struggle_update_phase_transitions = yes
+				every_country = {
+					limit = {
+						OR = {
+							is_in_array = {
+								FRA.StruggleInvolvedNationsIndochinaCommunist = THIS.id
+							}
+							is_in_array = {
+								FRA.StruggleInvolvedNationsIndochinaProFrance = THIS.id
+							}
+							is_in_array = {
+								FRA.StruggleInvolvedNationsIndochinaProIndependence = THIS.id
+							}
+							is_in_array = {
+								FRA.StruggleInvolvedNationsIndochinaKuomintang = THIS.id
+							}
+							is_in_array = {
+								FRA.StruggleInvolvedNationsIndochinaProEthnic = THIS.id
+							}
+						}
+					}
+					indochina_struggle_starting_idea_phase_change = yes
+				}
+				set_variable = {
+					global.indochina_phase_check = 1
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_global_flag = Indochina_War_Over
+					}
+					OR = {
+						AND = {
+							FROM = {
+								original_tag = VIE
+							}
+							ROOT = {
+								original_tag = VIN
+							}
+						}
+						AND = {
+							FROM = {
+								original_tag = VIN
+							}
+							ROOT = {
+								original_tag = VIE
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						country_exists = FRE
+						FRE = {
+							NOT = {
+								has_war_with = VIE
+							}
+							NOT = {
+								has_war_with = VIN
+							}
+						}
+					}
+					FRE = {
+						add_to_war = {
+							targeted_alliance = VIE
+							enemy = VIN
+							hostility_reason = asked_to_join
+						}
+					}
+				}
+				if = {
+					limit = {
+						country_exists = TAM
+						TAM = {
+							NOT = {
+								has_war_with = VIE
+							}
+							NOT = {
+								has_war_with = VIN
+							}
+						}
+					}
+					TAM = {
+						add_to_war = {
+							targeted_alliance = VIE
+							enemy = VIN
+							hostility_reason = asked_to_join
+						}
+					}
+				}
+			}
+		}
+	}
+}

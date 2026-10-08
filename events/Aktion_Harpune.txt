@@ -1,0 +1,53 @@
+# KRCW (build/patch_residue.py): 2 OTL events dropped while KRCW_active
+add_namespace = Aktion_Harpune
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Aktion_Harpune.1 
+ immediate = { }
+	title = Aktion_Harpune.1.t
+	desc = Aktion_Harpune.1.d
+	picture = GFX_Operation_Harpoon_Monarchist
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Aktion_Harpune.1.a
+		if = {
+			limit = {
+				tag = WGR
+			}
+			set_politics = {
+				ruling_party = nationalist
+				elections_allowed = no
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Aktion_Harpune.2 
+ immediate = { }
+	title = Aktion_Harpune.2.t
+	desc = Aktion_Harpune.2.d
+	picture = GFX_Operation_Harpoon_Fascist
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Aktion_Harpune.2.a
+		if = {
+			limit = {
+				tag = WGR
+			}
+			set_politics = {
+				ruling_party = fascism
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Walter Kopp"
+				picture = "Walter_Kopp.dds"
+				ideology = fascism_ideology
+			}
+		}
+	}
+}

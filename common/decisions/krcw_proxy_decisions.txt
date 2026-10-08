@@ -1,0 +1,322 @@
+krcw_proxy_gre_cat = {
+	krcw_proxy_gre_reb_arms = {
+		icon = generic_prepare_civil_war
+		cost = 50
+		visible = { OR = { tag = FRA tag = ENG tag = ITA tag = WGR tag = WCA tag = CAN tag = CHI tag = KOR tag = VIN tag = CAM tag = LOS tag = BRM tag = HOL tag = BEL tag = LUX tag = DEN tag = NOR tag = IRE tag = SPR } }
+		available = {
+			has_global_flag = krcw_proxy_gre
+			event_target:krcw_proxy_gre_rebels = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = -1500 }
+			event_target:krcw_proxy_gre_rebels = { add_equipment_to_stockpile = { type = infantry_equipment amount = 1500 } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+	krcw_proxy_gre_reb_vol = {
+		icon = generic_prepare_civil_war
+		cost = 75
+		visible = { OR = { tag = FRA tag = ENG tag = ITA tag = WGR tag = WCA tag = CAN tag = CHI tag = KOR tag = VIN tag = CAM tag = LOS tag = BRM tag = HOL tag = BEL tag = LUX tag = DEN tag = NOR tag = IRE tag = SPR } }
+		available = {
+			has_global_flag = krcw_proxy_gre
+			event_target:krcw_proxy_gre_rebels = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+			event_target:krcw_proxy_gre_rebels = { PREV = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+			custom_effect_tooltip = krcw_volunteers_tt
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+	krcw_proxy_gre_gov_arms = {
+		icon = generic_prepare_civil_war
+		cost = 50
+		visible = { OR = { tag = SOV tag = USA tag = MEX tag = RAJ tag = DDR tag = MON tag = POL tag = HUN tag = ROM tag = BUL tag = CZE tag = TUR tag = GRE tag = PER tag = AFG tag = YUG } }
+		available = {
+			has_global_flag = krcw_proxy_gre
+		}
+		days_re_enable = 120
+		complete_effect = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = -1500 }
+			GRE = { add_equipment_to_stockpile = { type = infantry_equipment amount = 1500 } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+	krcw_proxy_gre_gov_mission = {
+		icon = generic_prepare_civil_war
+		cost = 75
+		visible = { OR = { tag = SOV tag = USA tag = MEX tag = RAJ tag = DDR tag = MON tag = POL tag = HUN tag = ROM tag = BUL tag = CZE tag = TUR tag = GRE tag = PER tag = AFG tag = YUG } }
+		available = {
+			has_global_flag = krcw_proxy_gre
+		}
+		days_re_enable = 120
+		complete_effect = {
+			GRE = { add_timed_idea = { idea = krcw_proxy_mission_sov days = 180 } army_experience = 5 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+}
+krcw_proxy_per_cat = {
+	krcw_proxy_per_reb_arms = {
+		icon = generic_prepare_civil_war
+		cost = 50
+		visible = { OR = { tag = FRA tag = ENG tag = ITA tag = WGR tag = WCA tag = CAN tag = CHI tag = KOR tag = VIN tag = CAM tag = LOS tag = BRM tag = HOL tag = BEL tag = LUX tag = DEN tag = NOR tag = IRE tag = SPR } }
+		available = {
+			has_global_flag = krcw_proxy_per
+			event_target:krcw_proxy_per_rebels = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = -1500 }
+			event_target:krcw_proxy_per_rebels = { add_equipment_to_stockpile = { type = infantry_equipment amount = 1500 } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+	krcw_proxy_per_reb_vol = {
+		icon = generic_prepare_civil_war
+		cost = 75
+		visible = { OR = { tag = FRA tag = ENG tag = ITA tag = WGR tag = WCA tag = CAN tag = CHI tag = KOR tag = VIN tag = CAM tag = LOS tag = BRM tag = HOL tag = BEL tag = LUX tag = DEN tag = NOR tag = IRE tag = SPR } }
+		available = {
+			has_global_flag = krcw_proxy_per
+			event_target:krcw_proxy_per_rebels = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+			event_target:krcw_proxy_per_rebels = { PREV = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+			custom_effect_tooltip = krcw_volunteers_tt
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+	krcw_proxy_per_gov_arms = {
+		icon = generic_prepare_civil_war
+		cost = 50
+		visible = { OR = { tag = SOV tag = USA tag = MEX tag = RAJ tag = DDR tag = MON tag = POL tag = HUN tag = ROM tag = BUL tag = CZE tag = TUR tag = GRE tag = PER tag = AFG tag = YUG } }
+		available = {
+			has_global_flag = krcw_proxy_per
+		}
+		days_re_enable = 120
+		complete_effect = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = -1500 }
+			PER = { add_equipment_to_stockpile = { type = infantry_equipment amount = 1500 } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+	krcw_proxy_per_gov_mission = {
+		icon = generic_prepare_civil_war
+		cost = 75
+		visible = { OR = { tag = SOV tag = USA tag = MEX tag = RAJ tag = DDR tag = MON tag = POL tag = HUN tag = ROM tag = BUL tag = CZE tag = TUR tag = GRE tag = PER tag = AFG tag = YUG } }
+		available = {
+			has_global_flag = krcw_proxy_per
+		}
+		days_re_enable = 120
+		complete_effect = {
+			PER = { add_timed_idea = { idea = krcw_proxy_mission_sov days = 180 } army_experience = 5 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+}
+krcw_proxy_phi_cat = {
+	krcw_proxy_phi_reb_arms = {
+		icon = generic_prepare_civil_war
+		cost = 50
+		visible = { OR = { tag = FRA tag = ENG tag = ITA tag = WGR tag = WCA tag = CAN tag = CHI tag = KOR tag = VIN tag = CAM tag = LOS tag = BRM tag = HOL tag = BEL tag = LUX tag = DEN tag = NOR tag = IRE tag = SPR } }
+		available = {
+			has_global_flag = krcw_proxy_phi
+			event_target:krcw_proxy_phi_rebels = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = -1500 }
+			event_target:krcw_proxy_phi_rebels = { add_equipment_to_stockpile = { type = infantry_equipment amount = 1500 } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+	krcw_proxy_phi_reb_vol = {
+		icon = generic_prepare_civil_war
+		cost = 75
+		visible = { OR = { tag = FRA tag = ENG tag = ITA tag = WGR tag = WCA tag = CAN tag = CHI tag = KOR tag = VIN tag = CAM tag = LOS tag = BRM tag = HOL tag = BEL tag = LUX tag = DEN tag = NOR tag = IRE tag = SPR } }
+		available = {
+			has_global_flag = krcw_proxy_phi
+			event_target:krcw_proxy_phi_rebels = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+			event_target:krcw_proxy_phi_rebels = { PREV = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+			custom_effect_tooltip = krcw_volunteers_tt
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+	krcw_proxy_phi_gov_arms = {
+		icon = generic_prepare_civil_war
+		cost = 50
+		visible = { OR = { tag = SOV tag = USA tag = MEX tag = RAJ tag = DDR tag = MON tag = POL tag = HUN tag = ROM tag = BUL tag = CZE tag = TUR tag = GRE tag = PER tag = AFG tag = YUG } }
+		available = {
+			has_global_flag = krcw_proxy_phi
+		}
+		days_re_enable = 120
+		complete_effect = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = -1500 }
+			PHI = { add_equipment_to_stockpile = { type = infantry_equipment amount = 1500 } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+	krcw_proxy_phi_gov_mission = {
+		icon = generic_prepare_civil_war
+		cost = 75
+		visible = { OR = { tag = SOV tag = USA tag = MEX tag = RAJ tag = DDR tag = MON tag = POL tag = HUN tag = ROM tag = BUL tag = CZE tag = TUR tag = GRE tag = PER tag = AFG tag = YUG } }
+		available = {
+			has_global_flag = krcw_proxy_phi
+		}
+		days_re_enable = 120
+		complete_effect = {
+			PHI = { add_timed_idea = { idea = krcw_proxy_mission_sov days = 180 } army_experience = 5 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+}
+krcw_proxy_brm_cat = {
+	krcw_proxy_brm_reb_arms = {
+		icon = generic_prepare_civil_war
+		cost = 50
+		visible = { OR = { tag = SOV tag = USA tag = MEX tag = RAJ tag = DDR tag = MON tag = POL tag = HUN tag = ROM tag = BUL tag = CZE tag = TUR tag = GRE tag = PER tag = AFG tag = YUG } }
+		available = {
+			has_global_flag = krcw_proxy_brm
+			event_target:krcw_proxy_brm_rebels = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = -1500 }
+			event_target:krcw_proxy_brm_rebels = { add_equipment_to_stockpile = { type = infantry_equipment amount = 1500 } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+	krcw_proxy_brm_reb_mission = {
+		icon = generic_prepare_civil_war
+		cost = 75
+		visible = { OR = { tag = SOV tag = USA tag = MEX tag = RAJ tag = DDR tag = MON tag = POL tag = HUN tag = ROM tag = BUL tag = CZE tag = TUR tag = GRE tag = PER tag = AFG tag = YUG } }
+		available = {
+			has_global_flag = krcw_proxy_brm
+			event_target:krcw_proxy_brm_rebels = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			event_target:krcw_proxy_brm_rebels = { add_timed_idea = { idea = krcw_proxy_mission_sov days = 180 } army_experience = 5 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+	krcw_proxy_brm_gov_arms = {
+		icon = generic_prepare_civil_war
+		cost = 50
+		visible = { OR = { tag = FRA tag = ENG tag = ITA tag = WGR tag = WCA tag = CAN tag = CHI tag = KOR tag = VIN tag = CAM tag = LOS tag = BRM tag = HOL tag = BEL tag = LUX tag = DEN tag = NOR tag = IRE tag = SPR } }
+		available = {
+			has_global_flag = krcw_proxy_brm
+		}
+		days_re_enable = 120
+		complete_effect = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = -1500 }
+			BRM = { add_equipment_to_stockpile = { type = infantry_equipment amount = 1500 } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+	krcw_proxy_brm_gov_mission = {
+		icon = generic_prepare_civil_war
+		cost = 75
+		visible = { OR = { tag = FRA tag = ENG tag = ITA tag = WGR tag = WCA tag = CAN tag = CHI tag = KOR tag = VIN tag = CAM tag = LOS tag = BRM tag = HOL tag = BEL tag = LUX tag = DEN tag = NOR tag = IRE tag = SPR } }
+		available = {
+			has_global_flag = krcw_proxy_brm
+		}
+		days_re_enable = 120
+		complete_effect = {
+			BRM = { add_timed_idea = { idea = krcw_proxy_mission_chi days = 180 } army_experience = 5 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+}
+krcw_proxy_mex_cat = {
+	krcw_proxy_mex_reb_arms = {
+		icon = generic_prepare_civil_war
+		cost = 50
+		visible = { OR = { tag = FRA tag = ENG tag = ITA tag = WGR tag = WCA tag = CAN tag = CHI tag = KOR tag = VIN tag = CAM tag = LOS tag = BRM tag = HOL tag = BEL tag = LUX tag = DEN tag = NOR tag = IRE tag = SPR } }
+		available = {
+			has_global_flag = krcw_proxy_mex
+			event_target:krcw_proxy_mex_rebels = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = -1500 }
+			event_target:krcw_proxy_mex_rebels = { add_equipment_to_stockpile = { type = infantry_equipment amount = 1500 } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+	krcw_proxy_mex_reb_vol = {
+		icon = generic_prepare_civil_war
+		cost = 75
+		visible = { OR = { tag = FRA tag = ENG tag = ITA tag = WGR tag = WCA tag = CAN tag = CHI tag = KOR tag = VIN tag = CAM tag = LOS tag = BRM tag = HOL tag = BEL tag = LUX tag = DEN tag = NOR tag = IRE tag = SPR } }
+		available = {
+			has_global_flag = krcw_proxy_mex
+			event_target:krcw_proxy_mex_rebels = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+			event_target:krcw_proxy_mex_rebels = { PREV = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+			custom_effect_tooltip = krcw_volunteers_tt
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+	krcw_proxy_mex_gov_arms = {
+		icon = generic_prepare_civil_war
+		cost = 50
+		visible = { OR = { tag = SOV tag = USA tag = MEX tag = RAJ tag = DDR tag = MON tag = POL tag = HUN tag = ROM tag = BUL tag = CZE tag = TUR tag = GRE tag = PER tag = AFG tag = YUG } }
+		available = {
+			has_global_flag = krcw_proxy_mex
+		}
+		days_re_enable = 120
+		complete_effect = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = -1500 }
+			MEX = { add_equipment_to_stockpile = { type = infantry_equipment amount = 1500 } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+	krcw_proxy_mex_gov_mission = {
+		icon = generic_prepare_civil_war
+		cost = 75
+		visible = { OR = { tag = SOV tag = USA tag = MEX tag = RAJ tag = DDR tag = MON tag = POL tag = HUN tag = ROM tag = BUL tag = CZE tag = TUR tag = GRE tag = PER tag = AFG tag = YUG } }
+		available = {
+			has_global_flag = krcw_proxy_mex
+		}
+		days_re_enable = 120
+		complete_effect = {
+			MEX = { add_timed_idea = { idea = krcw_proxy_mission_sov days = 180 } army_experience = 5 }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 4 }
+	}
+}

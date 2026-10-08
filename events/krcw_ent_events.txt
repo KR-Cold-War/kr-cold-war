@@ -1,0 +1,473 @@
+add_namespace = krcw_ent
+
+country_event = {
+	id = krcw_ent.1
+	title = krcw_ent_1_t
+	desc = krcw_ent_1_d
+	picture = GFX_krcw_eu_ast_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_ent_1.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0.5 krcw_route_historical = yes }
+		}
+		set_global_flag = KRCW_ent_aligned
+		set_global_flag = KRCW_ent_settled
+		set_global_flag = KRCW_ent_paris_accepted
+		if = { limit = { NOT = { has_idea = krcw_ent_ti_subsidies } } add_ideas = krcw_ent_ti_subsidies }
+		add_stability = -0.03
+		add_political_power = 50
+		every_country = { limit = { OR = { tag = FRA tag = ENG } } country_event = { id = krcw_ent.3 days = 2 } }
+	}
+	option = {
+		name = krcw_ent_1.b
+		ai_chance = {
+			base = 60
+		}
+		add_to_variable = { global.krcw_ent_lean = -20 }
+		add_war_support = 0.03
+		every_country = { limit = { OR = { tag = FRA tag = ENG } } ROOT = { add_opinion_modifier = { target = PREV modifier = krcw_ent_rebuffed } } }
+		every_country = { limit = { OR = { tag = FRA tag = ENG } } country_event = { id = krcw_ent.3 days = 2 } }
+	}
+}
+
+country_event = {
+	id = krcw_ent.2
+	title = krcw_ent_2_t
+	desc = krcw_ent_2_d
+	picture = GFX_krcw_eu_ast_army
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_ent_2.a
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0.5 krcw_route_historical = yes }
+		}
+		set_global_flag = KRCW_ent_aligned
+		set_global_flag = KRCW_ent_settled
+		set_global_flag = KRCW_ent_moscow_accepted
+		if = { limit = { NOT = { has_idea = krcw_ent_moscow_subsidies } } add_ideas = krcw_ent_moscow_subsidies }
+		add_stability = -0.05
+		add_war_support = 0.05
+		krcw_tension_up_small = yes
+		if = { limit = { country_exists = SOV } SOV = { country_event = { id = krcw_ent.3 days = 2 } } }
+	}
+	option = {
+		name = krcw_ent_2.b
+		ai_chance = {
+			base = 70
+		}
+		add_to_variable = { global.krcw_ent_lean = 20 }
+		add_stability = 0.03
+		if = { limit = { country_exists = SOV } add_opinion_modifier = { target = SOV modifier = krcw_ent_rebuffed } }
+		if = { limit = { country_exists = SOV } SOV = { country_event = { id = krcw_ent.3 days = 2 } } }
+	}
+}
+
+country_event = {
+	id = krcw_ent.3
+	title = krcw_ent_3_t
+	desc = {
+		text = krcw_ent_3_d0
+		trigger = {
+			has_global_flag = KRCW_ent_paris_accepted
+		}
+	}
+	desc = {
+		text = krcw_ent_3_d1
+		trigger = {
+			has_global_flag = KRCW_ent_moscow_accepted
+		}
+	}
+	desc = {
+		text = krcw_ent_3_d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_ast_sydney
+	is_triggered_only = yes
+	option = {
+		name = krcw_ent_3.a
+		trigger = {
+			krcw_is_ti = yes
+		}
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { has_global_flag = KRCW_ent_paris_accepted } add_political_power = 50 }
+	}
+	option = {
+		name = krcw_ent_3.b
+		trigger = {
+			NOT = { krcw_is_ti = yes }
+		}
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { has_global_flag = KRCW_ent_moscow_accepted } add_political_power = 50 }
+	}
+}
+
+news_event = {
+	id = krcw_ent.4
+	title = krcw_ent_4_t
+	desc = krcw_ent_4_d
+	picture = GFX_krcw_eu_ast_crowd_n
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_ent_4.a
+		trigger = {
+			krcw_is_ti = yes
+		}
+		ai_chance = {
+			base = 1
+		}
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_ent_4.b
+		trigger = {
+			krcw_is_ma = yes
+		}
+		ai_chance = {
+			base = 1
+		}
+		add_political_power = 15
+	}
+	option = {
+		name = krcw_ent_4.c
+		trigger = {
+			NOT = { krcw_is_ti = yes }
+			NOT = { krcw_is_ma = yes }
+		}
+		ai_chance = {
+			base = 1
+		}
+		add_stability = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_ent.20
+	title = krcw_ent_20_t
+	desc = krcw_ent_20_d
+	picture = GFX_report_event_ast_parliament_house
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_ent_20.a
+		ai_chance = {
+			base = 25
+		}
+		add_war_support = 0.04
+		add_political_power = 25
+		set_country_flag = krcw_ent_court_first
+	}
+	option = {
+		name = krcw_ent_20.b
+		ai_chance = {
+			base = 50
+		}
+		add_stability = 0.04
+		add_political_power = 50
+		set_country_flag = krcw_ent_dominion_first
+	}
+	option = {
+		name = krcw_ent_20.c
+		ai_chance = {
+			base = 25
+		}
+		add_political_power = -25
+		add_popularity = { ideology = Social_Democratic popularity = 0.04 }
+		set_country_flag = krcw_ent_question_open
+	}
+}
+
+country_event = {
+	id = krcw_ent.22
+	title = krcw_ent_22_t
+	desc = krcw_ent_22_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_ent_22.a
+		ai_chance = {
+			base = 55
+		}
+		set_country_flag = krcw_ent_referendum_called
+		add_political_power = -25
+		add_stability = -0.03
+	}
+	option = {
+		name = krcw_ent_22.b
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = 25
+		add_stability = 0.02
+		add_popularity = { ideology = Liberal_Conservatism popularity = 0.03 }
+	}
+}
+
+country_event = {
+	id = krcw_ent.24
+	title = krcw_ent_24_t
+	desc = krcw_ent_24_d
+	picture = GFX_report_event_ast_troops_landing
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_ent_24.a
+		ai_chance = {
+			base = 70
+		}
+		add_political_power = 25
+		add_stability = 0.03
+		krcw_tension_down_small = yes
+		clr_country_flag = krcw_ent_plan_albion
+	}
+	option = {
+		name = krcw_ent_24.b
+		ai_chance = {
+			base = 25
+		}
+		add_war_support = 0.05
+		army_experience = 20
+		set_country_flag = krcw_ent_albion_ready
+		krcw_tension_up_small = yes
+	}
+	option = {
+		name = krcw_ent_24.c
+		ai_chance = {
+			base = 5
+		}
+		set_country_flag = krcw_ent_albion_moscow
+		if = { limit = { NOT = { has_variable = global.krcw_ent_lean } } set_variable = { global.krcw_ent_lean = 0 } }
+		add_to_variable = { global.krcw_ent_lean = -25 }
+		clamp_variable = { var = global.krcw_ent_lean min = -100 max = 100 }
+		custom_effect_tooltip = krcw_ent_tree_lean_m25_tt
+		krcw_tension_up_medium = yes
+	}
+}
+
+country_event = {
+	id = krcw_ent.26
+	title = krcw_ent_26_t
+	desc = krcw_ent_26_d
+	picture = GFX_report_event_AST_referendum
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_ent_26.a
+		ai_chance = {
+			base = 50
+		}
+		add_political_power = -50
+		set_country_flag = krcw_ent_govt_campaigned
+		random_list = {
+			50 = {
+				modifier = { factor = 1.2 has_war_support < 0.4 }
+				country_event = { id = krcw_ent.27 days = 3 }
+			}
+			50 = {
+				modifier = { factor = 1.3 has_stability > 0.6 }
+				modifier = { factor = 1.2 has_idea = krcw_ent_the_court_in_melbourne }
+				country_event = { id = krcw_ent.29 days = 3 }
+			}
+		}
+	}
+	option = {
+		name = krcw_ent_26.b
+		ai_chance = {
+			base = 50
+		}
+		add_stability = 0.02
+		random_list = {
+			40 = {
+				modifier = { factor = 1.2 has_war_support < 0.4 }
+				country_event = { id = krcw_ent.27 days = 3 }
+			}
+			60 = {
+				modifier = { factor = 1.3 has_stability > 0.6 }
+				modifier = { factor = 1.2 has_idea = krcw_ent_the_court_in_melbourne }
+				country_event = { id = krcw_ent.29 days = 3 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = krcw_ent.27
+	title = krcw_ent_27_t
+	desc = krcw_ent_27_d
+	picture = GFX_report_event_AST_referendum
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_ent_27.a
+		ai_chance = {
+			base = 1
+		}
+		set_country_flag = krcw_ent_republic_declared
+		add_stability = -0.04
+		add_political_power = 25
+		add_popularity = { ideology = Social_Democratic popularity = 0.05 }
+		if = { limit = { has_country_flag = krcw_ent_govt_campaigned } add_stability = -0.02 }
+	}
+}
+
+country_event = {
+	id = krcw_ent.29
+	title = krcw_ent_29_t
+	desc = krcw_ent_29_d
+	picture = GFX_report_event_AST_referendum
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_ent_29.a
+		ai_chance = {
+			base = 1
+		}
+		add_stability = 0.03
+		add_political_power = 25
+		add_popularity = { ideology = Liberal_Conservatism popularity = 0.05 }
+		clr_country_flag = krcw_ent_republic_road
+		if = { limit = { has_country_flag = krcw_ent_govt_campaigned } add_political_power = -25 add_stability = -0.02 }
+	}
+}
+
+country_event = {
+	id = krcw_ent.28
+	title = krcw_ent_28_t
+	desc = krcw_ent_28_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_ent_28.a
+		ai_chance = {
+			base = 55
+		}
+		add_political_power = -25
+		add_stability = 0.03
+		set_country_flag = krcw_ent_islands_autonomy
+	}
+	option = {
+		name = krcw_ent_28.b
+		ai_chance = {
+			base = 30
+		}
+		add_political_power = 25
+		add_stability = -0.03
+		if = { limit = { country_exists = FRA } FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_colonial_grievance } } }
+	}
+	option = {
+		name = krcw_ent_28.c
+		ai_chance = {
+			base = 15
+		}
+		add_political_power = -50
+		add_stability = 0.05
+		set_country_flag = krcw_ent_islands_revenue
+	}
+}
+
+country_event = {
+	id = krcw_ent.30
+	title = krcw_ent_30_t
+	desc = krcw_ent_30_d
+	picture = GFX_report_event_generic_strike
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_ent_30.a
+		ai_chance = {
+			base = 45
+		}
+		add_manpower = 20000
+		add_stability = 0.02
+		set_country_flag = krcw_ent_europe_only
+	}
+	option = {
+		name = krcw_ent_30.b
+		ai_chance = {
+			base = 35
+		}
+		add_manpower = 15000
+		add_political_power = 25
+		set_country_flag = krcw_ent_quiet_crack
+	}
+	option = {
+		name = krcw_ent_30.c
+		ai_chance = {
+			base = 20
+		}
+		set_country_flag = krcw_ent_open_door_chosen
+		add_stability = -0.04
+		if = { limit = { country_exists = CHI } CHI = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_pacific_understanding } } }
+	}
+}
+
+country_event = {
+	id = krcw_ent.40
+	title = krcw_ent_40_t
+	desc = krcw_ent_40_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		OR = { tag = AST tag = NZL }
+	}
+	option = {
+		name = krcw_ent_40.a
+		ai_chance = {
+			base = 60
+		}
+		add_stability = 0.04
+		if = { limit = { country_exists = NZL } NZL = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_dominion_partner } } }
+		set_global_flag = KRCW_tasman_leaning_compact
+	}
+	option = {
+		name = krcw_ent_40.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		set_global_flag = KRCW_tasman_leaning_union
+	}
+}
+
+news_event = {
+	id = krcw_ent.42
+	title = krcw_ent_42_t
+	desc = krcw_ent_42_d
+	picture = GFX_report_event_generic_parliament_n
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_ent_42.a
+		trigger = { tag = AST }
+		ai_chance = {
+			base = 100
+		}
+		if = { limit = { country_exists = NZL } annex_country = { target = NZL transfer_troops = yes } }
+		add_political_power = 100
+		add_stability = 0.05
+		add_war_support = 0.03
+		set_cosmetic_tag = KRCW_AST_PACFED
+	}
+	option = {
+		name = krcw_major_viewer.a
+		trigger = { NOT = { tag = AST } }
+		ai_chance = { base = 1 }
+	}
+}

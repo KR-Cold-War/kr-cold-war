@@ -1,0 +1,97 @@
+# krcw: paced
+add_namespace = krcw_tibstage
+
+country_event = {
+	id = krcw_tibstage.1
+	title = krcw_tibstage.1.t
+	desc = krcw_tibstage.1.d
+	picture = GFX_report_event_krcw_tib_lhasa
+	trigger = {
+		tag = CHI
+		TIB = { is_subject_of = CHI check_variable = { krcw_revolt_progress > 44 } }
+		NOT = { has_global_flag = KRCW_tibet_revolt_started }
+	}
+	mean_time_to_happen = {
+		days = 14
+	}
+	fire_only_once = yes
+	option = {
+		name = krcw_tibstage.1.a
+		ai_chance = {
+			base = 100
+		}
+		add_political_power = 25
+		if = { limit = { has_country_flag = krcw_chi_lhasa_intel } TIB = { TIB = {
+			subtract_from_variable = { krcw_revolt_progress = 5 }
+			clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_tibrev_progress_down_5_tt } }
+	}
+}
+
+country_event = {
+	id = krcw_tibstage.2
+	title = krcw_tibstage.2.t
+	desc = krcw_tibstage.2.d
+	picture = GFX_report_event_krcw_tib_army
+	trigger = {
+		tag = CHI
+		TIB = { is_subject_of = CHI check_variable = { krcw_revolt_progress > 59 } }
+		NOT = { has_global_flag = KRCW_tibet_revolt_started }
+	}
+	mean_time_to_happen = {
+		days = 14
+	}
+	fire_only_once = yes
+	option = {
+		name = krcw_tibstage.2.a
+		ai_chance = {
+			base = 100
+		}
+		add_war_support = 0.03
+		krcw_tension_up_small = yes
+	}
+}
+
+country_event = {
+	id = krcw_tibstage.3
+	title = krcw_tibstage.3.t
+	desc = krcw_tibstage.3.d
+	picture = GFX_report_event_krcw_tib_lhasa
+	trigger = {
+		tag = CHI
+		TIB = { is_subject_of = CHI check_variable = { krcw_revolt_progress > 74 } }
+		NOT = { has_global_flag = KRCW_tibet_revolt_started }
+	}
+	mean_time_to_happen = {
+		days = 11
+	}
+	fire_only_once = yes
+	option = {
+		name = krcw_tibstage.3.a
+		ai_chance = {
+			base = 35
+		}
+		add_war_support = 0.05
+		add_political_power = -50
+		krcw_tension_up_small = yes
+		TIB = { TIB = {
+			subtract_from_variable = { krcw_revolt_progress = 12 }
+			clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_tibrev_progress_down_12_tt }
+	}
+	option = {
+		name = krcw_tibstage.3.b
+		ai_chance = {
+			base = 65
+		}
+		add_political_power = -25
+		add_stability = -0.02
+		TIB = { TIB = {
+			subtract_from_variable = { krcw_revolt_progress = 20 }
+			clamp_variable = { var = krcw_revolt_progress min = 0 max = 100 }
+		}
+		custom_effect_tooltip = krcw_tibrev_progress_down_20_tt }
+	}
+}

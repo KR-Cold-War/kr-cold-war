@@ -1,0 +1,617 @@
+# krcw: paced
+add_namespace = krcw_ddrd
+
+country_event = {
+	id = krcw_ddrd.10
+	title = krcw_ddrd_10_t
+	desc = krcw_ddrd_10_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = DDR
+	}
+	option = {
+		name = krcw_ddrd_10.a
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = -25
+		add_stability = 0.04
+		add_to_variable = { krcw_ddr_emigration = -8 }
+		clamp_variable = { var = krcw_ddr_emigration min = 0 max = 100 }
+		custom_effect_tooltip = krcw_ddr_emigration_tt
+	}
+	option = {
+		name = krcw_ddrd_10.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 15
+		add_stability = -0.03
+		add_to_variable = { krcw_ddr_emigration = -10 }
+		clamp_variable = { var = krcw_ddr_emigration min = 0 max = 100 }
+		custom_effect_tooltip = krcw_ddr_emigration_tt
+	}
+	option = {
+		name = krcw_ddrd_10.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ddr_loyal_ally } } }
+		if = { limit = { country_exists = WGR } add_opinion_modifier = { target = WGR modifier = krcw_ddr_the_thief_across } }
+	}
+}
+
+country_event = {
+	id = krcw_ddrd.12
+	title = krcw_ddrd_12_t
+	desc = krcw_ddrd_12_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = DDR
+	}
+	option = {
+		name = krcw_ddrd_12.a
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = 25
+		set_country_flag = krcw_ddr_wall_authorised
+	}
+	option = {
+		name = krcw_ddrd_12.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.04
+		add_to_variable = { krcw_ddr_emigration = -6 }
+		clamp_variable = { var = krcw_ddr_emigration min = 0 max = 100 }
+		custom_effect_tooltip = krcw_ddr_emigration_tt
+	}
+	option = {
+		name = krcw_ddrd_12.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.06
+		krcw_detente_up_medium = yes
+		add_political_power = -25
+		set_global_flag = KRCW_ddr_no_wall_pledge
+	}
+}
+
+country_event = {
+	id = krcw_ddrd.14
+	title = krcw_ddrd_14_t
+	desc = krcw_ddrd_14_d
+	picture = GFX_report_event_german_reichstag_gathering
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = DDR
+	}
+	option = {
+		name = krcw_ddrd_14.a
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 50
+		add_stability = -0.03
+		add_war_support = 0.03
+		set_country_flag = krcw_ddr_staff_supremacy
+	}
+	option = {
+		name = krcw_ddrd_14.b
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = 25
+		add_stability = 0.02
+	}
+	option = {
+		name = krcw_ddrd_14.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.05
+		add_political_power = -25
+		army_experience = -10
+		set_country_flag = krcw_ddr_civilian_supremacy
+	}
+}
+
+country_event = {
+	id = krcw_ddrd.16
+	title = krcw_ddrd_16_t
+	desc = krcw_ddrd_16_d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = DDR
+	}
+	option = {
+		name = krcw_ddrd_16.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.05
+		army_experience = 20
+		add_to_variable = { krcw_ddr_emigration = 8 }
+		clamp_variable = { var = krcw_ddr_emigration min = 0 max = 100 }
+		custom_effect_tooltip = krcw_ddr_emigration_tt
+	}
+	option = {
+		name = krcw_ddrd_16.b
+		ai_chance = {
+			base = 40
+		}
+		add_stability = 0.05
+		add_to_variable = { krcw_ddr_emigration = -12 }
+		clamp_variable = { var = krcw_ddr_emigration min = 0 max = 100 }
+		add_political_power = -25
+		custom_effect_tooltip = krcw_ddr_emigration_tt
+	}
+	option = {
+		name = krcw_ddrd_16.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.03
+		add_stability = 0.03
+		add_to_variable = { krcw_ddr_emigration = -6 }
+		clamp_variable = { var = krcw_ddr_emigration min = 0 max = 100 }
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ddr_loyal_ally } } }
+		add_political_power = -50
+		custom_effect_tooltip = krcw_ddr_emigration_tt
+	}
+}
+
+country_event = {
+	id = krcw_ddrd.18
+	title = krcw_ddrd_18_t
+	desc = krcw_ddrd_18_d
+	picture = GFX_report_event_german_reichstag_gathering
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = DDR
+	}
+	option = {
+		name = krcw_ddrd_18.a
+		ai_chance = {
+			base = 100
+		}
+		add_political_power = 25
+		add_stability = 0.03
+	}
+}
+
+country_event = {
+	id = krcw_ddrd.20
+	title = krcw_ddrd_20_t
+	desc = krcw_ddrd_20_d
+	picture = GFX_report_event_generic_parliament
+	fire_only_once = yes
+	trigger = {
+		tag = DDR
+		check_variable = { krcw_ddr_emigration > 39 }
+		NOT = { has_country_flag = krcw_ddr_leak_band_1 }
+	}
+	mean_time_to_happen = {
+		days = 11
+	}
+	immediate = {
+		set_country_flag = krcw_ddr_leak_band_1
+	}
+	option = {
+		name = krcw_ddrd_20.a
+		ai_chance = {
+			base = 55
+		}
+		add_political_power = -25
+		add_to_variable = { krcw_ddr_emigration = -8 }
+		clamp_variable = { var = krcw_ddr_emigration min = 0 max = 100 }
+		add_stability = 0.03
+		custom_effect_tooltip = krcw_ddr_emigration_tt
+	}
+	option = {
+		name = krcw_ddrd_20.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_to_variable = { krcw_ddr_emigration = -10 }
+		clamp_variable = { var = krcw_ddr_emigration min = 0 max = 100 }
+		add_stability = -0.03
+		add_political_power = 15
+		custom_effect_tooltip = krcw_ddr_emigration_tt
+	}
+}
+
+country_event = {
+	id = krcw_ddrd.22
+	title = krcw_ddrd_22_t
+	desc = krcw_ddrd_22_d
+	picture = GFX_report_event_generic_parliament
+	major = yes
+	fire_only_once = yes
+	trigger = {
+		tag = DDR
+		check_variable = { krcw_ddr_emigration > 69 }
+		NOT = { has_country_flag = krcw_ddr_leak_band_2 }
+	}
+	mean_time_to_happen = {
+		days = 10
+	}
+	immediate = {
+		set_country_flag = krcw_ddr_leak_band_2
+	}
+	option = {
+		name = krcw_ddrd_22.a
+		trigger = { tag = DDR }
+		ai_chance = {
+			base = 45
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		add_stability = 0.04
+		add_to_variable = { krcw_ddr_emigration = -40 }
+		clamp_variable = { var = krcw_ddr_emigration min = 0 max = 100 }
+		add_to_variable = { global.krcw_berlin_pressure = 18 }
+		clamp_variable = { var = global.krcw_berlin_pressure min = 0 max = 100 }
+		krcw_tension_up_medium = yes
+		set_global_flag = KRCW_berlin_sector_sealed
+		news_event = { id = krcw_wgr.48 days = 2 }
+		custom_effect_tooltip = krcw_ddr_emigration_tt
+		if = { limit = { has_country_flag = krcw_ddr_wall_authorised } add_political_power = 25 }
+		if = { limit = { has_global_flag = KRCW_ddr_no_wall_pledge } add_stability = -0.08 krcw_detente_down_medium = yes }
+	}
+	option = {
+		name = krcw_ddrd_22.b
+		trigger = { tag = DDR }
+		ai_chance = {
+			base = 35
+		}
+		add_political_power = -75
+		add_stability = 0.05
+		add_to_variable = { krcw_ddr_emigration = -18 }
+		clamp_variable = { var = krcw_ddr_emigration min = 0 max = 100 }
+		custom_effect_tooltip = krcw_ddr_emigration_tt
+	}
+	option = {
+		name = krcw_ddrd_22.c
+		trigger = { tag = DDR }
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 15
+		krcw_tension_up_small = yes
+		if = { limit = { country_exists = WGR } add_opinion_modifier = { target = WGR modifier = krcw_ddr_the_thief_across } }
+		add_to_variable = { krcw_ddr_emigration = -5 }
+		clamp_variable = { var = krcw_ddr_emigration min = 0 max = 100 }
+		custom_effect_tooltip = krcw_ddr_wgr_centres_tt
+		random_list = {
+			25 = {
+				modifier = { factor = 2 WGR = { has_completed_focus = krcw_wgr_the_transit_agreement } }
+				modifier = { factor = 1.5 WGR = { has_country_flag = krcw_wgr_leader_renn } }
+				add_to_variable = { krcw_ddr_emigration = -12 }
+				clamp_variable = { var = krcw_ddr_emigration min = 0 max = 100 }
+				add_stability = 0.02
+			}
+			75 = {
+				add_war_support = 0.02
+			}
+		}
+		custom_effect_tooltip = krcw_ddr_emigration_tt
+	}
+	option = {
+		name = krcw_major_viewer.a
+		trigger = { NOT = { tag = DDR } }
+		ai_chance = { base = 1 }
+	}
+}
+
+country_event = {
+	id = krcw_ddrd.30
+	title = krcw_ddrd_30_t
+	desc = krcw_ddrd_30_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = DDR
+	}
+	option = {
+		name = krcw_ddrd_30.a
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = -25
+		add_stability = 0.06
+		set_country_flag = krcw_ddr_succession_written
+		custom_effect_tooltip = krcw_ddr_succession_roll_tt
+		country_event = { id = krcw_ddrd.38 days = 162 random_days = 90 }
+	}
+	option = {
+		name = krcw_ddrd_30.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		army_experience = 10
+		add_stability = -0.02
+		set_country_flag = krcw_ddr_staff_deputy
+		custom_effect_tooltip = krcw_ddr_succession_roll_tt
+		country_event = { id = krcw_ddrd.38 days = 162 random_days = 90 }
+	}
+	option = {
+		name = krcw_ddrd_30.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 50
+		add_stability = -0.04
+		set_country_flag = krcw_ddr_assessment_buried
+		custom_effect_tooltip = krcw_ddr_succession_roll_tt
+		country_event = { id = krcw_ddrd.38 days = 162 random_days = 90 }
+	}
+}
+
+country_event = {
+	id = krcw_ddrd.38
+	title = krcw_ddrd_38_t
+	desc = {
+		text = krcw_ddrd_38_d0
+		trigger = {
+			has_country_flag = krcw_ddr_succession_orderly
+			has_country_flag = krcw_ddr_staff_deputy
+		}
+	}
+	desc = {
+		text = krcw_ddrd_38_d1
+		trigger = {
+			has_country_flag = krcw_ddr_succession_orderly
+		}
+	}
+	desc = {
+		text = krcw_ddrd_38_d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = DDR
+	}
+	immediate = {
+		set_country_flag = krcw_ddr_schleicher_dead
+		add_ideas = krcw_ddr_after_schleicher
+		random_list = {
+			50 = {
+				modifier = { factor = 1.6 has_country_flag = krcw_ddr_succession_written }
+				modifier = { factor = 1.3 has_country_flag = krcw_ddr_staff_deputy }
+				modifier = { factor = 0.5 has_country_flag = krcw_ddr_assessment_buried }
+				modifier = { factor = 1.2 has_stability > 0.5 }
+				# krcw_ddrd.14: either answer to the Staff's veto at least wrote down who decides
+				modifier = { factor = 1.2 OR = { has_country_flag = krcw_ddr_staff_supremacy has_country_flag = krcw_ddr_civilian_supremacy } }
+				# krcw_ddrd.32: the People's Police already holds the streets
+				modifier = { factor = 1.2 has_country_flag = krcw_ddr_police_takes_interior }
+				set_country_flag = krcw_ddr_succession_orderly
+			}
+			50 = {
+				modifier = { factor = 1.3 has_country_flag = krcw_ddr_strike_crushed }
+				modifier = { factor = 1.2 has_stability < 0.35 }
+				set_country_flag = krcw_ddr_succession_contested
+			}
+		}
+	}
+	option = {
+		name = krcw_ddrd_38.a
+		trigger = {
+			has_country_flag = krcw_ddr_succession_orderly
+			has_country_flag = krcw_ddr_staff_deputy
+		}
+		ai_chance = {
+			base = 1
+		}
+		kill_country_leader = yes
+		if = { limit = { NOT = { has_government = nationalist } } set_politics = { ruling_party = nationalist elections_allowed = no } }
+		promote_character = DDR_krcw_heinrici
+		army_experience = 10
+		add_stability = -0.02
+	}
+	option = {
+		name = krcw_ddrd_38.b
+		trigger = {
+			has_country_flag = krcw_ddr_succession_orderly
+			NOT = { has_country_flag = krcw_ddr_staff_deputy }
+		}
+		ai_chance = {
+			base = 1
+		}
+		kill_country_leader = yes
+		if = { limit = { NOT = { has_government = nationalist } } set_politics = { ruling_party = nationalist elections_allowed = no } }
+		promote_character = DDR_krcw_heinrici
+		add_political_power = 50
+	}
+	option = {
+		name = krcw_ddrd_38.c
+		trigger = {
+			has_country_flag = krcw_ddr_succession_contested
+		}
+		ai_chance = {
+			base = 60
+		}
+		kill_country_leader = yes
+		if = { limit = { NOT = { has_government = nationalist } } set_politics = { ruling_party = nationalist elections_allowed = no } }
+		promote_character = DDR_krcw_heinrici
+		add_stability = -0.06
+		add_war_support = 0.03
+		set_country_flag = krcw_ddr_staff_held_the_line
+	}
+	option = {
+		name = krcw_ddrd_38.d
+		trigger = {
+			has_country_flag = krcw_ddr_succession_contested
+		}
+		ai_chance = {
+			base = 40
+		}
+		kill_country_leader = yes
+		if = { limit = { NOT = { has_government = nationalist } } set_politics = { ruling_party = nationalist elections_allowed = no } }
+		promote_character = DDR_krcw_heinrici
+		add_stability = -0.04
+		add_political_power = -50
+		set_country_flag = krcw_ddr_court_asked
+	}
+}
+
+country_event = {
+	id = krcw_ddrd.32
+	title = krcw_ddrd_32_t
+	desc = krcw_ddrd_32_d
+	picture = GFX_report_event_german_reichstag_gathering
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = DDR
+	}
+	option = {
+		name = krcw_ddrd_32.a
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		army_experience = 20
+		add_war_support = 0.04
+		add_stability = -0.04
+		add_to_variable = { krcw_ddr_emigration = 4 }
+		clamp_variable = { var = krcw_ddr_emigration min = 0 max = 100 }
+		custom_effect_tooltip = krcw_ddr_emigration_tt
+	}
+	option = {
+		name = krcw_ddrd_32.b
+		ai_chance = {
+			base = 45
+		}
+		add_stability = 0.04
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_ddrd_32.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		add_stability = 0.03
+		army_experience = 15
+		set_country_flag = krcw_ddr_police_takes_interior
+	}
+}
+
+country_event = {
+	id = krcw_ddrd.34
+	title = krcw_ddrd_34_t
+	desc = krcw_ddrd_34_d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = DDR
+	}
+	option = {
+		name = krcw_ddrd_34.a
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = -25
+		add_to_variable = { krcw_ddr_emigration = -8 }
+		clamp_variable = { var = krcw_ddr_emigration min = 0 max = 100 }
+		custom_effect_tooltip = krcw_ddr_emigration_tt
+		add_stability = 0.03
+	}
+	option = {
+		name = krcw_ddrd_34.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 15
+		add_stability = -0.03
+		add_to_variable = { krcw_ddr_emigration = -5 }
+		clamp_variable = { var = krcw_ddr_emigration min = 0 max = 100 }
+		custom_effect_tooltip = krcw_ddr_emigration_tt
+		if = { limit = { country_exists = WGR } add_opinion_modifier = { target = WGR modifier = krcw_ddr_rival_germany } }
+	}
+	option = {
+		name = krcw_ddrd_34.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_ddrd.36
+	title = krcw_ddrd_36_t
+	desc = krcw_ddrd_36_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = DDR
+	}
+	option = {
+		name = krcw_ddrd_36.a
+		ai_chance = {
+			base = 50
+		}
+		add_political_power = 25
+		if = { limit = { country_exists = SOV } add_opinion_modifier = { target = SOV modifier = krcw_ddr_loyal_ally } }
+		army_experience = 15
+	}
+	option = {
+		name = krcw_ddrd_36.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		add_stability = 0.04
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+		set_country_flag = krcw_ddr_asked_parity
+	}
+	option = {
+		name = krcw_ddrd_36.c
+		ai_chance = {
+			base = 15
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 15
+		krcw_detente_up_small = yes
+		if = { limit = { country_exists = WGR } add_opinion_modifier = { target = WGR modifier = krcw_ddr_inner_german_trade } }
+		set_country_flag = krcw_ddr_direct_channel
+	}
+}

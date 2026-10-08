@@ -1,0 +1,45 @@
+# KRCW (build/patch_residue.py): 1 OTL events dropped while KRCW_active
+add_namespace = saarland
+
+#Saar Statute Referendum
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = saarland.1 
+ immediate = { }
+	title = saarland.1.t
+	desc = saarland.1.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = saarland.1.a
+		ai_chance = {
+			factor = 0
+		}
+		set_autonomy = { target = SAR autonomy_state = autonomy_free }
+		SAR = {
+			drop_cosmetic_tag = yes
+			set_politics = {
+				ruling_party = Christian_Democratic
+				elections_allowed = yes
+			}
+			add_popularity = {
+				ideology = Christian_Democratic
+				popularity = 0.9
+			}
+		}
+	}
+
+	option = {
+		name = saarland.1.b
+		ai_chance = {
+			factor = 100
+		}
+		trigger = {
+			country_exists = WGR
+		}
+		SAR = { drop_cosmetic_tag = yes }
+		WGR = { annex_country = { target = SAR transfer_troops = yes } }
+	}
+}

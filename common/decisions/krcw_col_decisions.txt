@@ -1,0 +1,82 @@
+krcw_col_cat = {
+	krcw_col_radio = {
+		icon = GFX_decision_generic_civil_support
+		cost = 25
+		allowed = { OR = { original_tag = FRA original_tag = SOV } }
+		visible = { has_global_flag = KRCW_active NOT = { has_global_flag = KRCW_world_war } NOT = { has_global_flag = KRCW_cold_war_over } is_faction_leader = yes }
+		days_re_enable = 60
+		complete_effect = {
+			if = { limit = { original_tag = FRA } add_to_variable = { global.krcw_ma_crisis = 3 } clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 } }
+			if = { limit = { original_tag = SOV } add_to_variable = { global.krcw_ti_crisis = 3 } clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 } }
+		}
+		ai_will_do = { factor = 1 }
+	}
+	krcw_col_underground = {
+		icon = GFX_decision_generic_civil_support
+		cost = 50
+		allowed = { OR = { original_tag = FRA original_tag = SOV } }
+		visible = { has_global_flag = KRCW_active NOT = { has_global_flag = KRCW_world_war } NOT = { has_global_flag = KRCW_cold_war_over } is_faction_leader = yes }
+		days_re_enable = 120
+		complete_effect = {
+			if = { limit = { original_tag = FRA } add_to_variable = { global.krcw_ma_crisis = 5 } clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 } }
+			if = { limit = { original_tag = SOV } add_to_variable = { global.krcw_ti_crisis = 5 } clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = { factor = 1 }
+	}
+	krcw_col_econ_war = {
+		icon = GFX_decision_generic_civil_support
+		cost = 75
+		allowed = { OR = { original_tag = FRA original_tag = SOV } }
+		visible = { has_global_flag = KRCW_active NOT = { has_global_flag = KRCW_world_war } NOT = { has_global_flag = KRCW_cold_war_over } is_faction_leader = yes }
+		days_re_enable = 180
+		complete_effect = {
+			if = { limit = { original_tag = FRA } add_to_variable = { global.krcw_ma_crisis = 2 } clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 } }
+			if = { limit = { original_tag = SOV } add_to_variable = { global.krcw_ti_crisis = 2 } clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 } }
+			add_stability = -0.02
+			krcw_econ_down_small = yes
+			if = { limit = { original_tag = FRA country_exists = SOV } SOV = { krcw_econ_down_medium = yes add_timed_idea = { idea = krcw_econ_embargoed days = 180 } } }
+			if = { limit = { original_tag = SOV country_exists = FRA } FRA = { krcw_econ_down_medium = yes add_timed_idea = { idea = krcw_econ_embargoed days = 180 } } }
+		}
+		ai_will_do = { factor = 1 }
+	}
+	krcw_col_purge = {
+		icon = GFX_decision_generic_civil_support
+		cost = 50
+		allowed = { OR = { original_tag = FRA original_tag = SOV } }
+		visible = { has_global_flag = KRCW_active NOT = { has_global_flag = KRCW_world_war } NOT = { has_global_flag = KRCW_cold_war_over } is_faction_leader = yes }
+		days_re_enable = 90
+		complete_effect = {
+			if = { limit = { original_tag = FRA } add_to_variable = { global.krcw_ti_crisis = -5 } clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 } }
+			if = { limit = { original_tag = SOV } add_to_variable = { global.krcw_ma_crisis = -5 } clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 } }
+			add_stability = -0.03
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 5 original_tag = FRA check_variable = { global.krcw_ti_crisis > 39 } }
+			modifier = { add = 5 original_tag = SOV check_variable = { global.krcw_ma_crisis > 39 } }
+			modifier = { add = 5 has_variable = krcw_econ_tier check_variable = { krcw_econ_tier < 2 } }
+		}
+	}
+	krcw_col_stabilise = {
+		icon = GFX_decision_generic_civil_support
+		cost = 100
+		allowed = { OR = { original_tag = FRA original_tag = SOV } }
+		visible = { has_global_flag = KRCW_active NOT = { has_global_flag = KRCW_world_war } NOT = { has_global_flag = KRCW_cold_war_over } is_faction_leader = yes }
+		days_re_enable = 180
+		complete_effect = {
+			if = { limit = { original_tag = FRA } add_to_variable = { global.krcw_ti_crisis = -3 } clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 } }
+			if = { limit = { original_tag = SOV } add_to_variable = { global.krcw_ma_crisis = -3 } clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 } }
+			add_political_power = -25
+			krcw_econ_up_medium = yes
+			krcw_econ_bloat_down = yes
+			krcw_econ_heat_down = yes
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 5 original_tag = FRA check_variable = { global.krcw_ti_crisis > 39 } }
+			modifier = { add = 5 original_tag = SOV check_variable = { global.krcw_ma_crisis > 39 } }
+			modifier = { add = 5 has_variable = krcw_econ_tier check_variable = { krcw_econ_tier < 2 } }
+		}
+	}
+}

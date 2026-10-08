@@ -1,0 +1,701 @@
+# KRCW (build/patch_residue.py): 20 CWIC AI strategies gated while KRCW_active
+# befriend
+# conquer
+# antagonize
+# build_ship
+# build_army
+# unit_ratio
+# build_building
+# research_tech
+# garrison
+# protect
+# influence
+# contain
+# area_priority
+
+naval_ratios = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		not = {
+			has_dlc = "Man the Guns"
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_capital
+		value = 50
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_sub
+		value = 50
+	}
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_screen
+		value = 100
+	}
+}
+naval_ratios = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		has_dlc = "Man the Guns"
+	}
+	abort_when_not_enabled = yes
+
+
+	ai_strategy = {
+		type = role_ratio
+		id = naval_screen_light
+		value = 45
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = naval_screen_medium
+		value = 35
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = naval_screen_heavy
+		value = 25
+	}
+	
+	ai_strategy = {
+		type = role_ratio
+		id = naval_carrier_light
+		value = 15
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = naval_carrier_medium
+		value = 10
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = naval_carrier_super
+		value = 5
+	}
+	
+	ai_strategy = {
+		type = role_ratio
+		id = naval_capital
+		value = 15
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = naval_capital_largo
+		value = 10
+	}
+	
+	ai_strategy = {
+		type = role_ratio
+		id = naval_submarine_light
+		value = 15
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = naval_submarine_medium
+		value = 10
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = naval_submarine_heavy
+		value = 5
+	}
+	
+	ai_strategy = {
+		type = unit_ratio
+		id = naval_bomber
+		value = 5
+	}
+}
+
+stellar_unit_production_militia = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		num_of_military_factories < 8
+	}
+	abort_when_not_enabled = yes
+	
+	#ARMY#
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 100
+	}
+	
+	#AIR FORCE#
+	ai_strategy = {
+		type = unit_ratio
+		id = fighter
+		value = 25
+	}
+}
+
+stellar_unit_production_basic = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		num_of_military_factories > 7
+		num_of_military_factories < 14
+	}
+	abort_when_not_enabled = yes
+	
+	#ARMY#
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 75
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 25
+	}
+	
+	#AIR FORCE#
+	ai_strategy = {
+		type = unit_ratio
+		id = fighter
+		value = 50
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = tactical_bomber
+		value = 20
+	}
+}
+
+stellar_unit_production_base = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		num_of_military_factories > 13
+		num_of_military_factories < 22
+	}
+	abort_when_not_enabled = yes
+	
+	#ARMY#
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 50
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = infantry_mech
+		value = 25
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 15
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 10
+	}
+	
+	#AIR FORCE#
+	ai_strategy = {
+		type = unit_ratio
+		id = cas
+		value = 20
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = fighter
+		value = 60
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = tactical_bomber
+		value = 20
+	}
+}
+
+default_spyplanes_production = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		has_tech = recon0
+		num_of_military_factories > 19
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = equipment_production_min_factories
+		id = scout_plane
+		value = 1
+	}
+}
+
+stellar_unit_production_improved = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		num_of_military_factories > 21
+		num_of_military_factories < 29
+	}
+	abort_when_not_enabled = yes
+	
+	#ARMY#
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 30
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = infantry_motor
+		value = 20
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = infantry_mech
+		value = 20
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 30
+	}
+	
+	#AIR FORCE#
+	ai_strategy = {
+		type = unit_ratio
+		id = cas
+		value = 20
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = fighter
+		value = 50
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = interceptor
+		value = 20
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = tactical_bomber
+		value = 10
+	}
+}
+
+stellar_unit_production_stronk = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		num_of_military_factories > 28
+		num_of_military_factories < 46
+	}
+	abort_when_not_enabled = yes
+	
+	#ARMY#
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 15
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = infantry_motor
+		value = 30
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = infantry_mech
+		value = 25
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 30
+	}
+	
+	#AIR FORCE#
+	ai_strategy = {
+		type = unit_ratio
+		id = cas
+		value = 20
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = fighter
+		value = 30
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = strategic_bomber
+		value = 10
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = interceptor
+		value = 30
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = tactical_bomber
+		value = 10
+	}
+}
+
+stellar_unit_production_superpower = {
+    allowed = { NOT = { tag = USA  } }
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		num_of_military_factories > 45
+	}
+	abort_when_not_enabled = yes
+	
+	#ARMY#
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = 10
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = infantry_motor
+		value = 20
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = infantry_mech
+		value = 40
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = 30
+	}
+	
+	#AIR FORCE#
+	ai_strategy = {
+		type = unit_ratio
+		id = cas
+		value = 20
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = fighter
+		value = 30
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = strategic_bomber
+		value = 10
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = interceptor
+		value = 30
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = tactical_bomber
+		value = 10
+	}
+}
+
+ai_IC_port = {
+	enable = { NOT = { has_global_flag = KRCW_active }  always = yes }
+	abort = { always = no }
+	ai_strategy = {
+		type = role_ratio
+		id = paratroopers
+		value = -420
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = mountaineers
+		value = -100
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = marines
+		value = -420
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = armor
+		value = -420
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = infantry
+		value = -420
+	}
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = -420
+	}
+	ai_strategy = {
+		type = area_priority
+		id = europe
+		value = 200
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = north_america
+		value = 100
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = south_america
+		value = 75
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = asia
+		value = 100
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = middle_east
+		value = 100
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = africa
+		value = 50
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = pacific
+		value = 75
+	}
+	
+	ai_strategy = {
+		type = area_priority
+		id = oceania
+		value = 30
+	}
+	
+	ai_strategy = {
+		type = pp_spend_priority
+		id = relation
+		value = -9999
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = scout_plane
+		value = -99
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = scout_plane
+		value = -99
+	}
+}
+
+ai_unit_production_limiter = {
+    enable = { NOT = { has_global_flag = KRCW_active } 
+	always = yes
+	NOT = { original_tag = USA }
+        check_variable = {
+            num_divisions > num_of_factories
+        }
+    }
+    abort = {
+        OR = {
+            check_variable = {
+                num_divisions < num_of_factories
+            }
+        }
+    }
+	ai_strategy = {
+		type = air_factory_balance
+		value = 50
+	}
+	ai_strategy = {
+		type = dockyard_to_military_factory_ratio
+		value = 50
+	}
+}
+
+save_admiral_pp_for_later = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		has_war = no
+		threat < 0.3
+		has_political_power < 200		
+	}
+	abort = {
+		OR = {
+			has_war = yes	
+			threat > 0.3
+			has_political_power > 200
+		}
+	}
+
+	ai_strategy = { # dont burn PP on admirals (can still get free ones)
+		type = pp_spend_priority
+		id = admiral
+		value = -100
+	}
+}
+
+do_not_waste_pp_if_saving_for_manpower_laws = {
+
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		manpower_per_military_factory < 500
+		has_war = yes
+	}
+	abort = {
+		OR = {
+			manpower_per_military_factory > 500
+			has_war = no
+		}
+	}
+
+	ai_strategy = {
+		type = pp_spend_priority
+		id = relation
+		value = -9999
+	}
+
+	ai_strategy = {
+		type = pp_spend_priority
+		id = guarantee
+		value = -9999
+	}
+}
+
+default_pp_spend_amount = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		always = yes
+	}
+	abort = { always = no }
+	ai_strategy = {
+		type = pp_spend_amount
+		id = idea
+		value = 150
+	}
+	
+	ai_strategy = {
+		type = pp_spend_amount
+		id = decision
+		value = 150
+	}
+}
+
+build_intelligence_agency = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		num_of_civilian_factories_available_for_projects > 24
+	}
+	abort = {
+		OR = {
+			num_of_civilian_factories_available_for_projects < 25
+		}
+	}
+
+	ai_strategy = {
+		type = intelligence_agency_usable_factories
+		value = 5
+	}
+
+}
+build_intelligence_agency2 = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		OR = {
+			num_of_civilian_factories_available_for_projects > 49
+			AND = {
+				num_of_civilian_factories_available_for_projects > 24
+				agency_upgrade_number < 5
+			}
+		}
+	}
+	abort = {
+		OR = {
+			num_of_civilian_factories_available_for_projects < 50
+		}
+	}
+
+	ai_strategy = {
+		type = intelligence_agency_usable_factories
+		value = 15
+	}
+
+}
+build_intelligence_agency3 = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		OR = {
+			num_of_civilian_factories_available_for_projects > 74
+			AND = {
+				num_of_civilian_factories_available_for_projects > 49
+				agency_upgrade_number < 15
+			}
+		}
+	}
+	abort = {
+		OR = {
+			num_of_civilian_factories_available_for_projects < 75
+		}
+	}
+
+	ai_strategy = {
+		type = intelligence_agency_usable_factories
+		value = 30
+	}
+
+}
+addintelligence_agency_normal_upgrade_prio = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		always = yes
+	}
+	abort = { always = no }
+	ai_strategy = {
+		type = intelligence_agency_branch_desire_factor
+		id = branch_intelligence
+		value = 1500
+	}
+	ai_strategy = {
+		type = intelligence_agency_branch_desire_factor
+		id = branch_defense
+		value = 1000
+	}
+	ai_strategy = {
+		type = intelligence_agency_branch_desire_factor
+		id = branch_operation
+		value = 1000
+	}
+	ai_strategy = {
+		type = intelligence_agency_branch_desire_factor
+		id = branch_operative
+		value = 250
+	}
+	ai_strategy = {
+		type = intelligence_agency_branch_desire_factor
+		id = branch_crypto
+		value = 1500
+	}	
+}
+
+put_garrisons_on_high_prio = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		always = yes
+	}
+	abort = { always = no }
+	ai_strategy = {
+		type = garrison_reinforcement_priority
+		value = 100 # positive is high prio, negative is low prio
+	}
+}
+default_produce_floating_harbors = {
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		is_historical_focus_on = no
+		has_war = yes
+		num_of_naval_factories > 25
+		num_of_military_factories > 40 # floating harbors are used for invasions. Why do large invasions if you don't have the industrial capacity?
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = unit_ratio
+		id = floating_harbor # for floating harbors, 'unit_ratio' is actually not a ratio but an absolute desired number
+		value = 10
+	}
+}

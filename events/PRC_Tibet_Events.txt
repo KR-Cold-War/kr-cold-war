@@ -1,0 +1,229 @@
+# KRCW (build/patch_residue.py): 8 OTL events dropped while KRCW_active
+
+add_namespace = PRC_TIBETAN
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PRC_TIBETAN.1 
+    immediate = {
+		if = {
+			limit = {
+				original_tag = PRC
+			}
+			
+		}
+		hidden_effect = {
+			set_autonomy = {
+                target = TIB
+                autonomous_state = autonomy_China_Local_Government
+            }
+			TIB = {
+				set_cosmetic_tag = TIB_PRC_liberation
+			}
+			TIB = {
+				set_popularities = { 
+					communism = 7
+					monarchism = 41
+					neutrality = 25
+					maoism = 27
+				}
+				set_politics = {
+					ruling_party = monarchism
+					last_election = "1945.1.1"
+					election_frequency = 60
+					elections_allowed = no
+				}
+			}
+			if = {
+				limit = {
+					RAJ = {
+						has_war_with = PRC
+					}
+				}
+				RAJ = {
+					white_peace = PRC
+					dismantle_faction = yes
+				}
+				KAS = { white_peace = PRC }
+			}
+		}
+	}
+	title = PRC_TIBETAN.1.t2
+	picture = GFX_PRC_TIBETAN_1
+	desc = PRC_TIBETAN.1.d
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_TIBETAN.1.a2
+		trigger = {
+			NOT = {
+				original_tag = PRC
+			}
+		}
+	}
+	option = {
+		name = PRC_TIBETAN.1.a
+		trigger = {
+			original_tag = PRC
+		}
+		effect_tooltip = {
+			set_autonomy = {
+                target = TIB
+                autonomous_state = autonomy_China_Local_Government
+            }
+			TIB = {
+				set_cosmetic_tag = TIB_PRC_liberation
+			}
+			if = {
+				limit = {
+					RAJ = {
+						has_war_with = PRC
+					}
+				}
+				RAJ = {
+					white_peace = PRC
+					dismantle_faction = yes
+				}
+				KAS = { white_peace = PRC }
+			}
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PRC_TIBETAN.2
+ immediate = { }
+	title = PRC_TIBETAN.2.t2
+	picture = GFX_PRC_TIBETAN_2
+	desc = PRC_TIBETAN.2.d
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_TIBETAN.2.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PRC_TIBETAN.3
+ immediate = { }
+	title = PRC_TIBETAN.3.t2
+	picture = GFX_PRC_TIBETAN_3
+	desc = PRC_TIBETAN.3.d
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_TIBETAN.3.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PRC_TIBETAN.4
+ immediate = { }
+	title = PRC_TIBETAN.4.t2
+	picture = GFX_PRC_TIBETAN_4
+	desc = PRC_TIBETAN.4.d
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_TIBETAN.4.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PRC_TIBETAN.5
+ immediate = { }
+	title = PRC_TIBETAN.5.t2
+	picture = GFX_PRC_TIBETAN_5
+	desc = PRC_TIBETAN.5.d
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_TIBETAN.5.a2
+	}
+}
+ news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PRC_TIBETAN.6
+ immediate = { }
+	title = PRC_TIBETAN.6.t2
+	picture = GFX_PRC_TIBETAN_6
+	desc = PRC_TIBETAN.6.d
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_TIBETAN.6.a2
+	}
+}
+ news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PRC_TIBETAN.7
+ immediate = { }
+	title = PRC_TIBETAN.7.t2
+	picture = GFX_PRC_TIBETAN_7
+	desc = PRC_TIBETAN.7.d
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_TIBETAN.7.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		#Coup Start
+	id = PRC_TIBETAN.10
+ immediate = { }
+	title = PRC_TIBETAN.10.t2
+	desc = PRC_TIBETAN.10.d
+	picture = GFX_PRC_TIBETAN_10
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = PRC_TIBETAN.10.a2
+			ai_chance  = {
+				base = 60
+			}
+	}
+	option = {
+		name = PRC_TIBETAN.10.b2
+        set_global_flag = Tibet_Indian_Intervention
+        create_faction_from_template = { template = faction_template_generic name = "Himalayan Defense Pact" }
+        add_to_faction = TIB
+        declare_war_on = {
+            target = PRC
+            type = annex_everything
+        }
+        news_event = PRC_TIBETAN.3
+		ai_chance  = {
+			base = 40 
+			modifier = {
+				factor = 0 
+				is_historical_focus_on = yes
+			}
+		}
+	}
+}
+
+

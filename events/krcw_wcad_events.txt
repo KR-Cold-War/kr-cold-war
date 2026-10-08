@@ -1,0 +1,325 @@
+# krcw: paced
+add_namespace = krcw_wcad
+
+country_event = {
+	id = krcw_wcad.1
+	title = krcw_wcad_1_t
+	desc = krcw_wcad_1_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WCA
+	}
+	option = {
+		name = krcw_wcad_1.a
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 25
+		set_country_flag = krcw_wca_leaning_builders
+	}
+	option = {
+		name = krcw_wcad_1.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.04
+		set_country_flag = krcw_wca_leaning_liberators
+	}
+	option = {
+		name = krcw_wcad_1.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.04
+		set_country_flag = krcw_wca_leaning_onebigunion
+	}
+}
+
+country_event = {
+	id = krcw_wcad.3
+	title = krcw_wcad_3_t
+	desc = krcw_wcad_3_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WCA
+	}
+	option = {
+		name = krcw_wcad_3.a
+		ai_chance = {
+			base = 70
+		}
+		add_stability = 0.06
+		add_political_power = 25
+		set_country_flag = krcw_wca_opposition_kept
+	}
+	option = {
+		name = krcw_wcad_3.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.04
+		add_political_power = 25
+		add_stability = -0.03
+		set_country_flag = krcw_wca_opposition_curbed
+	}
+}
+
+country_event = {
+	id = krcw_wcad.5
+	title = krcw_wcad_5_t
+	desc = krcw_wcad_5_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WCA
+	}
+	option = {
+		name = krcw_wcad_5.a
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.05
+		add_political_power = -25
+		set_country_flag = krcw_wca_published_both
+	}
+	option = {
+		name = krcw_wcad_5.b
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 25
+		add_stability = -0.02
+	}
+	option = {
+		name = krcw_wcad_5.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -15
+		add_stability = 0.04
+		set_country_flag = krcw_wca_asked_why
+	}
+}
+
+country_event = {
+	id = krcw_wcad.7
+	title = krcw_wcad_7_t
+	desc = krcw_wcad_7_d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WCA
+	}
+	option = {
+		name = krcw_wcad_7.a
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = 0.03
+		add_tech_bonus = { name = krcw_wca_trades bonus = 0.5 uses = 1 category = industry }
+	}
+	option = {
+		name = krcw_wcad_7.b
+		ai_chance = {
+			base = 40
+		}
+		add_stability = 0.04
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_wcad_7.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.05
+		add_political_power = -15
+		1634 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+	}
+}
+
+country_event = {
+	id = krcw_wcad.8
+	title = krcw_wcad_8_t
+	desc = krcw_wcad_8_d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WCA
+	}
+	option = {
+		name = krcw_wcad_8.a
+		ai_chance = {
+			base = 50
+		}
+		add_political_power = -25
+		set_country_flag = krcw_wca_asked_why
+		country_event = { id = krcw_wcad.7 days = 30 }
+	}
+	option = {
+		name = krcw_wcad_8.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = -0.02
+		add_war_support = 0.02
+		krcw_ohio_up_small = yes
+	}
+	option = {
+		name = krcw_wcad_8.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 15
+		add_stability = -0.02
+		if = { limit = { country_exists = USA } USA = { add_political_power = 10 } }
+	}
+}
+
+country_event = {
+	id = krcw_wcad.9
+	title = krcw_wcad_9_t
+	desc = krcw_wcad_9_d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WCA
+	}
+	option = {
+		name = krcw_wcad_9.a
+		ai_chance = {
+			base = 45
+		}
+		add_stability = 0.04
+		1634 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		add_political_power = -25
+	}
+	option = {
+		name = krcw_wcad_9.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.06
+		1634 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+		} }
+	}
+	option = {
+		name = krcw_wcad_9.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		1634 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		add_political_power = 25
+		add_stability = -0.04
+	}
+}
+
+country_event = {
+	id = krcw_wcad.11
+	title = krcw_wcad_11_t
+	desc = krcw_wcad_11_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WCA
+	}
+	option = {
+		name = krcw_wcad_11.a
+		ai_chance = {
+			base = 50
+		}
+		add_political_power = 50
+		add_stability = 0.04
+		set_global_flag = KRCW_wca_reunification_plan
+	}
+	option = {
+		name = krcw_wcad_11.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		army_experience = 15
+		add_war_support = 0.03
+	}
+	option = {
+		name = krcw_wcad_11.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.03
+
+	}
+}
+
+country_event = {
+	id = krcw_wcad.13
+	title = krcw_wcad_13_t
+	desc = krcw_wcad_13_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WCA
+	}
+	option = {
+		name = krcw_wcad_13.a
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = 25
+		set_country_flag = krcw_wca_clause_tabled
+	}
+	option = {
+		name = krcw_wcad_13.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = -0.03
+	}
+	option = {
+		name = krcw_wcad_13.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		add_stability = 0.04
+		set_country_flag = krcw_wca_rolls_published
+	}
+}

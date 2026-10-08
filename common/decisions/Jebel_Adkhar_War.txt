@@ -1,0 +1,383 @@
+# KRCW (build/patch_residue.py): 9 OTL decisions hidden while KRCW_active
+Jebel_Adkhar_War_decisions = {
+	OMA_Invade_the_Imamate = {
+
+		icon = generic_civil_support
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = OMA
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = OMA
+			date > 1954.12.1
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		fire_only_once = yes
+		cost = 100
+		
+		complete_effect = {
+			ENG = { set_autonomy = { target = OMA autonomy_state = autonomy_free } }
+			declare_war_on = {
+				target = SMI
+				type = annex_everything
+			}
+			activate_mission = The_Fall_of_the_Immamate
+			news_event = OMA_Jebel_Adkhar.12
+		}
+	}
+	SAU_Help_the_Immamate = {
+
+		icon = generic_civil_support
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = SAU
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = SAU
+			OMA = {
+				has_war_with = SMI
+			}
+			SMI = {
+				surrender_progress > 0.1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		fire_only_once = no
+		days_re_enable = 150
+		cost = 100
+		
+		complete_effect = {
+			random_list = {
+				75 = {
+					SMI = {
+						send_equipment = {
+							equipment = infantry_equipment
+							amount = 1000
+							target = SAU
+						}
+						send_equipment = {
+							equipment = support_equipment
+							amount = 500
+							target = SAU
+						}
+					}
+				}
+				10 = {
+					SMI = {
+						add_war_support = 0.05
+					}
+				}
+				10 = {
+					SMI = {
+						army_experience = 100
+					}
+				}
+				5 = {
+					SMI = {
+						1102 = {
+							create_unit = {
+								division = "name = \"Infantry Division\"division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = PREV allow_spawning_on_enemy_provs = yes
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	ENG_Help_the_Sultanate = {
+
+		icon = generic_civil_support
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = ENG
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = ENG
+			OMA = {
+				has_war_with = SMI
+				surrender_progress > 0.1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		fire_only_once = no
+		days_re_enable = 150
+		cost = 100
+		
+		complete_effect = {
+			random_list = {
+				75 = {
+					OMA = {
+						send_equipment = {
+							equipment = infantry_equipment
+							amount = 1000
+							target = ENG
+						}
+						send_equipment = {
+							equipment = support_equipment
+							amount = 500
+							target = ENG
+						}
+					}
+				}
+				10 = {
+					OMA = {
+						add_war_support = 0.05
+					}
+				}
+				10 = {
+					OMA = {
+						army_experience = 100
+					}
+				}
+				5 = {
+					OMA = {
+						1102 = {
+							create_unit = {
+								division = "name = \"Infantry Division\"division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = PREV allow_spawning_on_enemy_provs = yes
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	The_Fall_of_the_Immamate = {
+		icon = generic_prepare_civil_war
+		allowed = {
+            OR = {
+                tag = SMI
+                tag = OMA
+            }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = Jebel_Adkhar_War  # Fixed: has_country_flag not allowed in allowed block, moved to available
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+            OR = {
+                tag = SMI
+                tag = OMA
+            }
+			has_country_flag = Jebel_Adkhar_War
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+            OR = {
+                tag = SMI
+                tag = OMA
+            }
+			has_country_flag = Jebel_Adkhar_War
+		}
+		selectable_mission = no
+		fire_only_once = yes
+		days_mission_timeout = 365
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			OR = {
+                NOT = {
+                    country_exists = SMI
+                }
+                NOT = {
+                    country_exists = OMA
+                }
+            }
+			
+		 } }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			white_peace = SMI
+			white_peace = OMA
+		 }
+}
+	}
+	Raid_The_Royalists = {
+
+		icon = generic_civil_support
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = SMI
+			OMA = {
+				has_war_with = SMI
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = SMI
+			OMA = {
+				has_war_with = SMI
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		fire_only_once = no
+		days_re_enable = 75
+		
+		fixed_random_seed = no
+		
+		cost = 0
+		
+		complete_effect = {
+			random_list = {
+				50 = {
+					country_event = SMI_Jebel_Adkhar.3
+				}
+				50 = {
+					country_event = SMI_Jebel_Adkhar.4
+				}
+			}
+		}
+	}
+	Bomb_The_Royalists = {
+
+		icon = generic_civil_support
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = SMI
+			OMA = {
+				has_war_with = SMI
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = SMI
+			OMA = {
+				has_war_with = SMI
+			}
+			has_deployed_air_force_size = {
+				size > 10
+				type = cas
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		fire_only_once = no
+		days_re_enable = 180
+		
+		fixed_random_seed = no
+		
+		cost = 0
+		
+		complete_effect = {
+			random_list = {
+				75 = {
+					country_event = SMI_Jebel_Adkhar.5
+				}
+				25 = {
+					country_event = SMI_Jebel_Adkhar.6
+				}
+			}
+		}
+	}
+	Infilitrate_The_Imamate = {
+		icon = generic_civil_support
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = OMA
+			OMA = {
+				has_war_with = SMI
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = OMA
+			OMA = {
+				has_war_with = SMI
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		fire_only_once = no
+		days_re_enable = 25
+		
+		fixed_random_seed = no
+		
+		cost = 0
+		
+		complete_effect = {
+			random_list = {
+				60 = {
+					country_event = OMA_Jebel_Adkhar.1
+				}
+				40 = {
+					country_event = OMA_Jebel_Adkhar.2
+				}
+			}
+		}
+	}
+	Raid_The_Imamate = {
+
+		icon = generic_civil_support
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = OMA
+			OMA = {
+				has_war_with = SMI
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = OMA
+			OMA = {
+				has_war_with = SMI
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		fire_only_once = no
+		days_re_enable = 75
+		
+		fixed_random_seed = no
+		
+		cost = 0
+		
+		complete_effect = {
+			random_list = {
+				50 = {
+					country_event = OMA_Jebel_Adkhar.3
+				}
+				50 = {
+					country_event = OMA_Jebel_Adkhar.4
+				}
+			}
+		}
+	}
+	Bomb_The_Imamate = {
+
+		icon = generic_civil_support
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			tag = OMA
+			OMA = {
+				has_war_with = SMI
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			tag = OMA
+			OMA = {
+				has_war_with = SMI
+			}
+			has_deployed_air_force_size = {
+				size > 10
+				type = cas
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		fire_only_once = no
+		days_re_enable = 180
+		
+		fixed_random_seed = no
+		
+		cost = 0
+		
+		complete_effect = {
+			random_list = {
+				75 = {
+					country_event = OMA_Jebel_Adkhar.5
+				}
+				25 = {
+					country_event = OMA_Jebel_Adkhar.6
+				}
+			}
+		}
+	}
+}

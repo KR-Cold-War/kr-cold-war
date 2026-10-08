@@ -1,0 +1,43 @@
+# KRCW (build/patch_residue.py): 1 OTL events dropped while KRCW_active
+##############
+# North Vietnam Events
+#
+#
+##############
+
+add_namespace = nva
+
+
+#FROM rejects!
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nva.1 
+ immediate = { }
+	title = nva.1.t
+	desc = nva.1.d
+	#picture = GFX_report_event_political_deal2
+
+	is_triggered_only = yes
+
+	option = {	#Unification
+		name = nva.1.a
+		trigger = {
+			is_ai = no
+		}
+		#complete_national_focus = VIN_A_Unified_Vietnam
+		annex_country = { target = VIE transfer_troops = yes }
+		set_politics = {
+			ruling_party = monarchism
+			elections_allowed = no
+		}
+		add_popularity = { ideology = monarchism popularity = 0.5 }
+	}
+	option = {
+		name = nva.1.b
+		#complete_national_focus = VIN_The_Unification_War
+	}
+	option = {
+		name = nva.1.c
+		#complete_national_focus = VIN_Accept_the_Division
+	}
+}

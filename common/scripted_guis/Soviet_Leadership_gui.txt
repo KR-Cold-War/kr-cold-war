@@ -1,0 +1,91 @@
+# KRCW (build/patch_residue.py): 2 OTL country GUIs hidden while KRCW_active
+scripted_gui = {
+	soviet_leadership_menu = {
+		context_type = player_context
+		 
+		window_name = "Soviet_Leadership_Window"
+        #dirty = comecon_redux_variable
+        dynamic_lists = {
+            soviet_leader_grid = {
+                array = soviet_leader_list
+				entry_container = soviet_leader_entry
+            }
+        }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+            tag = SOV 
+			check_variable = { leadership_display > 0 }
+		}
+		effects = {
+			exitbutton_click = {
+				set_variable = { leadership_display = 0 }
+			}
+			POC_Frame_click_enabled = {
+				if = {
+					limit = {
+						check_variable = { root.soviet_leader_list^i = 1 }
+					}
+					custom_effect_tooltip = "STalin desc"
+				}
+				if = {
+					limit = {
+						check_variable = { root.soviet_leader_list^i = 2 }
+					}
+					custom_effect_tooltip = "STalin"
+				}
+			}
+		}
+		triggers = {
+            POC_Frame_click_enabled = {
+				always = no
+			}
+        }
+		properties = {
+			portrait_leader_ussr = {
+				image = "[portrait_leader_ussr_texture]"
+			}
+		}
+    }
+	soviet_diplomacy_menu = {
+		context_type = player_context
+		 
+		window_name = "Soviet_diplomacy_window"
+        #dirty = comecon_redux_variable
+        dynamic_lists = {
+            disputed_list_button_grid = {
+                array = disputed_countries
+				change_scope = yes
+				entry_container = disputed_list_entry
+            }
+        }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+            tag = SOV 
+			check_variable = { diplomacy_display > 0 }
+		}
+		effects = {
+			exitbutton_click = {
+				set_variable = { diplomacy_display = 0 }
+			}
+			country_title_click = {
+				if = {
+					limit = {
+						var:disputed_countries^i = { 
+							original_tag = ALB
+						}
+					}
+					SOV = { add_political_power = 100 }
+				}
+				if = {
+					limit = {
+						var:disputed_countries^i = { 
+							original_tag = AUS
+						}
+					}
+					SOV = { country_event = sov_guide.1 }
+				}
+			}
+		}
+		triggers = {
+            
+        }
+    }
+}

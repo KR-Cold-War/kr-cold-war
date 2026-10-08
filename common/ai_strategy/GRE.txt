@@ -1,0 +1,176 @@
+# KRCW (build/patch_residue.py): 8 CWIC AI strategies gated while KRCW_active
+annex_commigreece = {
+	allowed = {
+		original_tag = GRE
+	}		
+	enable = { NOT = { has_global_flag = KRCW_active } 	
+		original_tag = GRE
+		country_exists = PDG
+	}
+	
+	abort = {
+		NOT = { country_exists = PDG }
+	}
+	
+	ai_strategy = {
+		type = conquer
+		id = "PDG"			
+		value = 50000
+	}
+	ai_strategy = {
+		type = antagonize
+		id = "PDG"			
+		value = 4000
+	}
+	ai_strategy = {
+		type = front_unit_request
+		tag = PDG
+		value = 5000
+	}
+	ai_strategy = {
+		type = front_unit_request
+		tag = BUL
+		value = -5000
+	}
+}
+Greece_avoid_korea_war = {
+	allowed = { original_tag = GRE }
+	enable = { NOT = { has_global_flag = KRCW_active } 		
+		original_tag = GRE
+        has_war_with = PDG
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = support
+		id = "GRE"			
+		value = -500
+	}
+}
+Greece_Offensive = {
+	allowed = { original_tag = GRE }
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = GRE
+		country_exists = PDG
+		has_war_with = PDG
+	}
+	abort = {
+		OR = {
+			NOT = { country_exists = PDG }
+			NOT = { has_war_with = PDG }
+		}
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+        type = front_control
+        area = greece_civil_war
+        priority = 10
+        ratio = 0.2
+        ordertype = invasion
+        execute_order = yes
+    }
+}
+Greece_Army_Offensive_2 = {
+	allowed = {
+		tag = GRE
+	}		
+	enable = { NOT = { has_global_flag = KRCW_active } 		
+		tag = GRE
+		GRE = {
+			has_war_with = PDG
+		}
+	}
+	abort = { always = no }
+	ai_strategy = {
+        type = ignore_army_incompetence
+        value = 500
+    }
+	ai_strategy = {
+        type = front_control
+        state_trigger = {
+            industrial_complex > 1
+            is_owned_by = PDG
+        }
+        ratio = 0.2
+        ordertype = front
+        execution_type = balanced
+        manual_attack = no
+		priority = 500
+    }
+}
+USA_Support_GRE = {
+    allowed = {
+       original_tag = USA 
+    }
+    enable = { NOT = { has_global_flag = KRCW_active } 
+        tag = USA
+        GRE = {
+			has_war_with = PDG
+		}
+    }
+    abort_when_not_enabled = yes
+    ai_strategy = {
+        type = support
+        id = GRE
+        value = 1500
+    }
+}
+YUG_Support_PDG = {
+    allowed = {
+       original_tag = YUG
+    }
+    enable = { NOT = { has_global_flag = KRCW_active } 
+        tag = YUG
+        PDG = {
+			has_war_with = GRE
+		}
+		date < 1949.7.6
+    }
+    abort_when_not_enabled = yes
+    ai_strategy = {
+        type = support
+        id = PDG
+        value = 500
+    }
+}
+ALB_Support_PDG = {
+    allowed = {
+       original_tag = ALB
+    }
+    enable = { NOT = { has_global_flag = KRCW_active } 
+        tag = ALB
+        PDG = {
+			has_war_with = GRE
+		}
+    }
+    abort_when_not_enabled = yes
+	ai_strategy = {
+        type = support
+        id = PDG
+        value = 500
+    }
+}
+SOV_Hate_PDG = {
+    allowed = {
+       OR = {
+		    has_faction_template = faction_template_cominform
+			original_tag = SOV 
+			original_tag = BUL 
+			original_tag = ROM 
+			original_tag = DDR 
+			original_tag = POL
+			original_tag = CZE
+			original_tag = HUN 
+	    }
+    }
+    enable = { NOT = { has_global_flag = KRCW_active } 
+        PDG = {
+			has_war_with = GRE
+		}
+    }
+    abort_when_not_enabled = yes
+    ai_strategy = {
+        type = ignore
+        id = PDG
+        value = 1500
+    }
+}

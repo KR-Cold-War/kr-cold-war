@@ -1,0 +1,1846 @@
+# KRCW (build/patch_residue.py): 54 OTL events dropped while KRCW_active
+add_namespace = Indonesian_National_Revolution
+add_namespace = dutch_east_indies_war
+#for if they both attack both routes fire, for if they both pick A, then just the Dutch A should fire, i doubt they would be able to infiltrate enough guys to do the siege of surakarta
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.1
+	title = Indonesian_National_Revolution.1.t2  #Indonesia
+	desc = Indonesian_National_Revolution.1.d
+	picture = GFX_Indonesian_National_Revolution_1
+    fire_only_once = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+    immediate = {
+    }
+	option = {
+        name = Indonesian_National_Revolution.1.a2
+    }
+	#option = {
+        #name = "Prepare for a new General Offensive"
+        #set_country_flag = Indonesia_B_Route
+        #WPA = {
+            #country_event = Indonesian_National_Revolution.2
+        #}
+    #}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.2
+ immediate = { }	
+	title = Indonesian_National_Revolution.2.t2  #Holland
+	desc = Indonesian_National_Revolution.2.d
+	picture = GFX_Indonesian_National_Revolution_2
+    fire_only_once = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+    ##for if they both attack both routes fire, for if they both pick A, then just the Dutch A should fire, i doubt they would be able to infiltrate enough guys to do the siege of surakarta
+	option = {
+        name = Indonesian_National_Revolution.2.a2
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+        set_country_flag = Dutch_A_Route
+        if = {
+            limit = {
+                INO = {
+                    has_country_flag = Indonesia_B_Route
+                }
+            }
+            country_event = {
+                id = Indonesian_National_Revolution.22
+                days = 3
+            }
+            INO = {
+                country_event = {
+                    id = Indonesian_National_Revolution.16
+                    days = 3
+                }
+            }   
+        }
+        if = {
+            limit = {
+                INO = {
+                    has_country_flag = Indonesia_A_Route
+                }
+            }
+            country_event = {
+                id = Indonesian_National_Revolution.22
+                days = 3
+            }
+        }
+    }
+	option = {
+        name = Indonesian_National_Revolution.2.b2 #Historical
+		ai_chance = {
+			factor = 80
+			modifier = {
+				factor = 1
+				is_historical_focus_on = yes
+			}
+		}
+        set_country_flag = Dutch_B_Route
+        if = {
+            limit = {
+                INO = {
+                    has_country_flag = Indonesia_B_Route
+                }
+            }
+            country_event = {
+                id = Indonesian_National_Revolution.3
+                days = 15
+            }
+            INO = {
+                country_event = {
+                    id = Indonesian_National_Revolution.4
+                    days = 45
+                }    
+            }
+        }
+        if = {
+            limit = {
+                INO = {
+                    has_country_flag = Indonesia_A_Route
+                }
+            }
+            country_event = {
+                id = Indonesian_National_Revolution.3
+                days = 15
+            }
+            INO = {
+                country_event = {
+                    id = Indonesian_National_Revolution.16
+                    days = 15
+                }    
+            }
+        }
+        
+    }
+}
+
+#Indonesia B/Netherlands B
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.3   #June 15, 1949
+ immediate = { }	
+	title = Indonesian_National_Revolution.3.t2  
+	desc = Indonesian_National_Revolution.3.d
+	picture = GFX_Indonesian_National_Revolution_3
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Indonesian_National_Revolution.3.a2
+		custom_effect_tooltip = Add_Indos_to_Amsterdam_TT
+		846 = {
+			add_manpower = -100000
+			add_to_variable = {
+				ReligionChristianityProtestant = -60
+			}
+			add_to_variable = {
+				ReligionChristianityCatholic = -40
+			}
+		}
+		7 = {
+			add_to_array = {
+				culture = 121
+			}
+			add_manpower = 100000
+			add_to_variable = {
+				ReligionIrreligious = -10
+			}
+			add_to_variable = {
+				ReligionChristianityCatholic = 10
+			}
+		}
+		religious_drift = yes
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.4   #July 6, 1949
+ immediate = { }	
+	title = Indonesian_National_Revolution.4.t2  
+	desc = Indonesian_National_Revolution.4.d
+	picture = GFX_Indonesian_National_Revolution_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+        name = Indonesian_National_Revolution.4.a2
+        add_stability = 0.05
+        transfer_state = 846
+        country_event = {
+            id = Indonesian_National_Revolution.5
+            days = 14
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.5   #July 20, 1949
+ immediate = { }	
+	title = Indonesian_National_Revolution.5.t2  
+	desc = Indonesian_National_Revolution.5.d
+	picture = GFX_Indonesian_National_Revolution_5
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+        name = Indonesian_National_Revolution.5.a2
+        add_timed_idea = {
+            idea = Military_Reorganization
+            days = 1825
+        }
+        set_variable = { THIS.idea_len_@token:Military_Reorganization = 1825 }
+        set_variable = { THIS.idea_date_@token:Military_Reorganization = global.num_days }
+        news_event = {
+            id = Indonesian_National_Revolution.6
+            days = 12
+        }
+		hidden_effect = {
+			country_event = {
+				id = Indonesian_National_Revolution.7
+				days = 15
+			}
+		}
+    }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.6   #August 1, 1949
+ immediate = { }
+	title = Indonesian_National_Revolution.6.t2
+	desc = Indonesian_National_Revolution.6.d
+	picture = GFX_Indonesian_National_Revolution_6
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+	option = {
+		name = Indonesian_National_Revolution.6.a2
+		if = {
+			limit = {
+				tag = HOL
+			}
+			add_opinion_modifier = {
+				target = INO
+				modifier = medium_increase
+			}
+		}
+		else_if = {
+			limit = {
+				tag = INO
+			}
+			add_opinion_modifier = {
+				target = HOL
+				modifier = medium_increase
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.7   #August 4, 1949
+ immediate = { }	
+	title = Indonesian_National_Revolution.7.t2  
+	desc = Indonesian_National_Revolution.7.d
+	picture = GFX_Indonesian_National_Revolution_7
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+        name = Indonesian_National_Revolution.7.a2
+        add_timed_idea = {
+            idea = Militia_Violence
+            days = 1095
+        }
+        set_variable = { THIS.idea_len_@token:Militia_Violence = 1095 }
+        set_variable = { THIS.idea_date_@token:Militia_Violence = global.num_days }
+		hidden_effect = {
+			country_event = {
+				id = Indonesian_National_Revolution.8
+				days = 2
+			}
+		}
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.8   #August 6, 1949
+ immediate = { }	
+	title = Indonesian_National_Revolution.8.t2  
+	desc = Indonesian_National_Revolution.8.d
+	picture = GFX_Indonesian_National_Revolution_8
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+        name = Indonesian_National_Revolution.8.a2
+        news_event = Indonesian_National_Revolution.9
+        HOL = {
+            country_event = Indonesian_National_Revolution.10
+        }
+    }
+	option = {
+        name = Indonesian_National_Revolution.8.b2
+        news_event = {
+            id = Indonesian_National_Revolution.14
+            days = 14
+        }
+        news_event = {
+            id = Indonesian_National_Revolution.15
+            days = 21
+        }
+        news_event = {
+            id = Indonesian_National_Revolution.26
+            days = 30
+        }
+        set_global_flag = Roundtable_Historical_Ending
+    }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.9   #August 7, 1949
+ immediate = { }
+	title = Indonesian_National_Revolution.9.t2
+	desc = Indonesian_National_Revolution.9.d
+	picture = GFX_Indonesian_National_Revolution_9
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+	option = {
+		name = Indonesian_National_Revolution.9.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.10
+ immediate = { }	
+	title = Indonesian_National_Revolution.10.t2  
+	desc = Indonesian_National_Revolution.10.d
+	picture = GFX_Indonesian_National_Revolution_10
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+        name = Indonesian_National_Revolution.10.a2   #Historical
+		ai_chance = {
+			factor = 80
+			modifier = {
+				factor = 1
+				is_historical_focus_on = yes
+			}
+		}
+		hidden_effect = {
+			country_event = {
+				id = Indonesian_National_Revolution.13
+				days = 5
+			}
+			news_event = {
+				id = Indonesian_National_Revolution.11
+				days = 3
+			}
+			news_event = {
+				id = Indonesian_National_Revolution.14
+				days = 14
+			}
+			news_event = {
+				id = Indonesian_National_Revolution.15
+				days = 21
+			}
+			news_event = {
+				id = Indonesian_National_Revolution.26
+				days = 30
+			}
+			set_global_flag = Roundtable_Historical_Ending
+		}
+	}
+	option = {
+        name = Indonesian_National_Revolution.10.b2
+        hidden_effect = {
+            country_event = {
+                id = Indonesian_National_Revolution.13
+                days = 5
+            }
+            news_event = {
+                id = Indonesian_National_Revolution.12
+                days = 3
+            }
+            news_event = {
+                id = Indonesian_National_Revolution.14
+                days = 14
+            }
+            news_event = {
+                id = Indonesian_National_Revolution.15
+                days = 21
+            }
+            news_event = {
+                id = Indonesian_National_Revolution.26
+                days = 30
+            }
+            set_global_flag = Roundtable_Indonesia_Victory_Ending
+        }
+    }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.11
+ immediate = { }
+	title = Indonesian_National_Revolution.11.t2
+	desc = Indonesian_National_Revolution.11.d
+	picture = GFX_Indonesian_National_Revolution_11
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+	option = {
+		name = Indonesian_National_Revolution.11.a2
+    }
+}
+ 
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.12
+ immediate = { }
+	title = Indonesian_National_Revolution.12.t2
+	desc = Indonesian_National_Revolution.12.d
+	picture = GFX_Indonesian_National_Revolution_12
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+	option = {
+		name = Indonesian_National_Revolution.12.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.13
+ immediate = { }	
+	title = Indonesian_National_Revolution.13.t2  
+	desc = Indonesian_National_Revolution.13.d
+	picture = GFX_Indonesian_National_Revolution_13
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+        name = Indonesian_National_Revolution.13.a2 
+        add_timed_idea = {
+            idea = War_Weary
+            days = 1095
+        }
+        set_variable = { THIS.idea_len_@token:War_Weary = 1095 }
+        set_variable = { THIS.idea_date_@token:War_Weary = global.num_days }
+    }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.14   #August 11, 1949
+ immediate = { }
+	title = Indonesian_National_Revolution.14.t2
+	desc = Indonesian_National_Revolution.14.d
+	picture = GFX_Indonesian_National_Revolution_14
+
+	is_triggered_only = yes
+	fire_only_once = no
+	major = yes
+
+	option = {
+		name = Indonesian_National_Revolution.14.a2
+    }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.15   #August 15, 1949
+ immediate = { }
+	title = Indonesian_National_Revolution.15.t2
+	desc = Indonesian_National_Revolution.15.d
+	picture = GFX_Indonesian_National_Revolution_15
+
+	is_triggered_only = yes
+	fire_only_once = no
+	major = yes
+
+	option = {
+		name = Indonesian_National_Revolution.15.a2
+    }
+}
+#For Indonesian Offensive
+#7381 Jakarta
+#4608 Surabaya
+#12268 Palembang
+#4652 Medan
+
+#For Dutch Offensive
+#10354 Bukittinggi
+#10135 Yogyakarta
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.100
+ 
+	hidden = yes
+    fire_only_once = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		if = {
+			limit = {
+				check_variable = {
+					global.province_controllers^7381 = INO.id
+				}	
+				check_variable = {
+					global.province_controllers^4608 = INO.id
+				}	
+				check_variable = {
+					global.province_controllers^12268 = INO.id
+				}	
+				check_variable = {
+					global.province_controllers^4652 = INO.id
+				}		
+				check_variable = {
+					global.province_controllers^10354 = INO.id
+				}		
+				check_variable = {
+					global.province_controllers^10135 = INO.id
+				}			                
+			}
+			HOL = {
+				country_event = Indonesian_National_Revolution.21
+			}
+			INO = {
+				country_event = Indonesian_National_Revolution.19
+			}
+			set_global_flag = Roundtable_Indonesia_Victory_Ending 
+		}
+		else_if = {
+			limit = {
+				check_variable = {
+					global.province_controllers^7381 = HOL.id
+				}	
+				check_variable = {
+					global.province_controllers^4608 = HOL.id
+				}	
+				check_variable = {
+					global.province_controllers^12268 = HOL.id
+				}	
+				check_variable = {
+					global.province_controllers^4652 = HOL.id
+				}		
+				check_variable = {
+					global.province_controllers^10382 = HOL.id
+				}		
+				check_variable = {
+					global.province_controllers^10135 = HOL.id
+				}			                
+			} 
+			HOL = {
+				country_event = Indonesian_National_Revolution.25
+			}
+			INO = {
+				country_event = Indonesian_National_Revolution.21
+			}
+			set_global_flag = Roundtable_Dutch_Victory_Ending
+			
+		}
+		else = {
+			HOL = {
+				country_event = Indonesian_National_Revolution.20
+			}
+			INO = {
+				country_event = Indonesian_National_Revolution.20
+			}
+			set_global_flag = Roundtable_Historical_Ending
+		}
+		hidden_effect = {   #Java and Sumatra Truces Fire Regardless
+			news_event = {
+				id = Indonesian_National_Revolution.14
+				days = 7
+			}
+			news_event = {
+				id = Indonesian_National_Revolution.15
+				days = 11
+			}
+			news_event = {
+				id = Indonesian_National_Revolution.26
+				days = 20
+			}
+		}
+		HOL = {
+			white_peace = INO
+		}
+		INS = {
+			white_peace = INO
+		}
+	}	
+}
+#Indonesia B
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.16
+ immediate = { }	
+	title = Indonesian_National_Revolution.16.t2  
+	desc = Indonesian_National_Revolution.16.d
+	picture = GFX_Indonesian_National_Revolution_16
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Indonesian_National_Revolution.16.a2
+		335 = {
+			create_unit = {
+				division = "name = \"1st Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0"
+				owner = INO
+			}
+			create_unit = {
+				division = "name = \"2nd Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0"
+				owner = INO
+			}            
+		}
+		833 = {
+			create_unit = {
+				division = "name = \"1st Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0"
+				owner = INO
+			}
+			create_unit = {
+				division = "name = \"2nd Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0"
+				owner = INO
+			}            
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.17
+ immediate = { }	
+	title = Indonesian_National_Revolution.17.t2  
+	desc = Indonesian_National_Revolution.17.d
+	picture = GFX_Indonesian_National_Revolution_17
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+        name = Indonesian_National_Revolution.17.a2
+        HOL = {
+            country_event = Indonesian_National_Revolution.18
+            hidden_effect = {
+                country_event = {
+                    id = Indonesian_National_Revolution.100      #End of Fighting Calculations
+                    days = 14
+                } 
+                declare_war_on = {
+                    target = INO
+                    type = annex_everything
+                }                
+            }
+        }
+        hidden_effect = {
+            INS = {
+                declare_war_on = {
+                    target = INO
+                    type = annex_everything
+                }                    
+            }           
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.18
+ immediate = { }	
+	title = Indonesian_National_Revolution.18.t2  
+	desc = Indonesian_National_Revolution.18.d
+	picture = GFX_Indonesian_National_Revolution_18
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+        name = Indonesian_National_Revolution.18.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.19
+ immediate = { }	
+	title = Indonesian_National_Revolution.19.t2  
+	desc = Indonesian_National_Revolution.19.d
+	picture = GFX_Indonesian_National_Revolution_19
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+        name = Indonesian_National_Revolution.19.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.20
+ immediate = { }	
+	title = Indonesian_National_Revolution.20.t2  
+	desc = Indonesian_National_Revolution.20.d
+	picture = GFX_Indonesian_National_Revolution_20
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+        name = Indonesian_National_Revolution.20.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.21
+ immediate = { }	
+	title = Indonesian_National_Revolution.21.t2  
+	desc = Indonesian_National_Revolution.21.d
+	picture = GFX_Indonesian_National_Revolution_21
+
+	is_triggered_only = yes
+	fire_only_once = yes
+    
+	option = {
+        name = Indonesian_National_Revolution.21.a2
+    }
+}
+
+#Netherlands A
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.22
+ immediate = { }	
+	title = Indonesian_National_Revolution.22.t2  
+	desc = Indonesian_National_Revolution.22.d
+	picture = GFX_Indonesian_National_Revolution_22
+
+	is_triggered_only = yes
+	fire_only_once = yes
+    fire_only_once = yes
+
+	option = {
+        name = Indonesian_National_Revolution.22.a2
+        HOL = {
+            country_event = {
+                id = Indonesian_National_Revolution.23
+                days = 30
+            }
+            news_event = {
+                id = Indonesian_National_Revolution.24
+                days = 30                
+            }
+        }
+        INO = {
+            country_event = {
+                id = Indonesian_National_Revolution.23
+                days = 30
+            }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.23
+ immediate = { }	
+	title = Indonesian_National_Revolution.23.t2  
+	desc = Indonesian_National_Revolution.23.d
+	picture = GFX_Indonesian_National_Revolution_23
+
+	is_triggered_only = yes
+	fire_only_once = yes
+    immediate = {
+        hidden_effect = {
+            if = {
+                limit = {
+                    tag = HOL
+                }
+                HOL = {
+                    country_event = {
+                        id = Indonesian_National_Revolution.100      #End of Fighting Calculations
+                        days = 14
+                    } 
+                    declare_war_on = {
+                        target = INO
+                        type = annex_everything
+                    }                
+                }
+                INS = {
+                    declare_war_on = {
+                        target = INO
+                        type = annex_everything
+                    }                    
+                } 
+            }
+        }
+    }
+	option = {
+        name = Indonesian_National_Revolution.23.a2
+
+    }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.24   
+ immediate = { }
+	title = Indonesian_National_Revolution.24.t2
+	desc = Indonesian_National_Revolution.24.d
+	picture = GFX_Indonesian_National_Revolution_24
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+    immediate = {
+        if = {
+            limit = {
+                tag = UNS
+            }
+            UN_QUEUE_DUTCH_INDONESIA_WAR_SANCTIONS_EFFECT = yes
+        }
+    }
+	option = {
+		name = Indonesian_National_Revolution.24.a2
+        custom_effect_tooltip = UN_EMERGENCY_VOTE_ON_DUTCH_AGGRESSION_TT
+    }
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.25
+ immediate = { }	
+	title = Indonesian_National_Revolution.25.t2  
+	desc = Indonesian_National_Revolution.25.d
+	picture = GFX_Indonesian_National_Revolution_25
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+        name = Indonesian_National_Revolution.25.a2
+    }
+}
+
+#Offensive Inconclusive (If Indonesia/Netherlands still have major cities, peace talks will go Indonesia’s way) Indonesian_National_Revolution.20
+#-Peace? (ceasefire, If Indonesia/Netherlands still have major cities, peace talks will go historical, the Java and Sumatra ceasefire events still fire)
+
+#Offensive Fails (If Indonesia fails to capture cities and loses its major cities, peace talks go Indonesia’s way) Indonesian_National_Revolution.21
+#-Peace? (ceasefire, If Netherlands fails to capture cities and loses its major cities, peace talks go Indonesia’s way, the Java and Sumatra ceasefire events still fire)
+
+#Historical End of War Path
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.26      #August 23rd
+ immediate = { }
+	title = Indonesian_National_Revolution.26.t2
+	desc = Indonesian_National_Revolution.26.d
+	picture = GFX_Indonesian_National_Revolution_26
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					has_global_flag = Roundtable_Historical_Ending
+				}
+				HOL = {
+					country_event = {
+						id = Indonesian_National_Revolution.27 
+						days = 42
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.28
+						days = 80
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.29
+						days = 93
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.30
+						days = 95
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.32  
+						days = 101
+					}
+				}
+				INO = {
+					country_event = {
+						id = Indonesian_National_Revolution.27 
+						days = 42
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.28
+						days = 80
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.29
+						days = 93
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.30
+						days = 95
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.31  #Indonesian Only
+						days = 97
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.32  
+						days = 101
+					}
+					news_event = {
+						id = Indonesian_National_Revolution.33
+						days = 105
+					}      
+					country_event = {
+						id = Indonesian_National_Revolution.34  
+						days = 131
+					}    
+					news_event = {
+						id = Indonesian_National_Revolution.35
+						days = 163
+					}          
+					news_event = {
+						id = Indonesian_National_Revolution.36
+						days = 194
+					}    
+					country_event = {
+						id = Indonesian_National_Revolution.37
+						days = 226
+					}    
+					country_event = {
+						id = Indonesian_National_Revolution.38
+						days = 286
+					}    
+					news_event = {
+						id = Indonesian_National_Revolution.39
+						days = 303
+					}  
+					country_event = {
+						id = Indonesian_National_Revolution.40
+						days = 307
+					}   
+					news_event = {
+						id = Indonesian_National_Revolution.51
+						days = 398
+					}  
+				}
+			}
+			else_if = {
+				limit = {
+					has_global_flag = Roundtable_Indonesia_Victory_Ending
+				}
+				HOL = {
+					country_event = {
+						id = Indonesian_National_Revolution.27 
+						days = 42
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.28
+						days = 80
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.46
+						days = 93
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.47
+						days = 95
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.49
+						days = 99
+					}
+				}
+				INO = {
+					country_event = {
+						id = Indonesian_National_Revolution.27 
+						days = 42
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.28
+						days = 80
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.46
+						days = 93
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.47
+						days = 95
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.49
+						days = 99
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.48
+						days = 97
+					}
+					news_event = {
+						id = Indonesian_National_Revolution.33
+						days = 101
+					}
+					news_event = {
+						id = Indonesian_National_Revolution.39
+						days = 150
+					}
+					news_event = {
+						id = Indonesian_National_Revolution.50
+						days = 156
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					has_global_flag = Roundtable_Dutch_Victory_Ending
+				}
+				HOL = {
+					country_event = {
+						id = Indonesian_National_Revolution.27 
+						days = 42
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.28
+						days = 80
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.41 
+						days = 93
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.42
+						days = 95
+					}
+				}
+				INO = {
+					country_event = {
+						id = Indonesian_National_Revolution.27 
+						days = 42
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.28
+						days = 80
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.41 
+						days = 93
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.42
+						days = 95
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.43
+						days = 98
+					}
+					news_event = {
+						id = Indonesian_National_Revolution.33
+						days = 102
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.34
+						days = 128
+					}
+					news_event = {
+						id = Indonesian_National_Revolution.35
+						days = 157
+					}
+					news_event = {
+						id = Indonesian_National_Revolution.44
+						days = 188
+					}
+					country_event = {
+						id = Indonesian_National_Revolution.45
+						days = 197
+					}
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = Indonesian_National_Revolution.26.a2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.27   #October 5
+ immediate = { }	
+	title = Indonesian_National_Revolution.27.t2  
+	desc = Indonesian_National_Revolution.27.d
+	picture = GFX_Indonesian_National_Revolution_27
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+        name = Indonesian_National_Revolution.27.a2
+        if = {
+            limit = {
+                tag = INO
+            }
+            INO = {
+                swap_ideas = {
+                    remove_idea = Military_Reorganization
+                    add_idea = Military_Reorganization2
+                }
+            }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.28   #October 11
+ immediate = { }	
+	title = Indonesian_National_Revolution.28.t2  
+	desc = Indonesian_National_Revolution.28.d
+	picture = GFX_Indonesian_National_Revolution_28
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+        name = Indonesian_National_Revolution.28.a2
+        INO = {
+            add_ideas = Dutch_Corporations
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.29   #October 24
+ immediate = { }	
+	title = Indonesian_National_Revolution.29.t2  
+	desc = Indonesian_National_Revolution.29.d
+	picture = GFX_Indonesian_National_Revolution_29
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+        name = Indonesian_National_Revolution.29.a2
+        add_timed_idea = {
+            idea = Colonial_Debts
+            days = 1825
+        }
+        set_variable = { THIS.idea_len_@token:Colonial_Debts = 1825 }
+        set_variable = { THIS.idea_date_@token:Colonial_Debts = global.num_days }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.30   #October 26
+ immediate = { }	
+	title = Indonesian_National_Revolution.30.t2  
+	desc = Indonesian_National_Revolution.30.d
+	picture = GFX_Indonesian_National_Revolution_30
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+        name = Indonesian_National_Revolution.30.a2
+
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.31   #October 29
+ immediate = { }	
+	title = Indonesian_National_Revolution.31.t2  
+	desc = Indonesian_National_Revolution.31.d
+	picture = GFX_Indonesian_National_Revolution_31
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Indonesian_National_Revolution.31.a2
+		set_politics = {
+            ruling_party = nationalist
+			long_name = "Kabinet Susanto"
+            name = "Kabinet Susanto"
+		}
+		set_cosmetic_tag = INO_TEMP_1
+		add_country_leader_role = {
+            character = INO_Soesanto_Tirtoprodjo
+            promote_leader = yes
+            country_leader = {
+                ideology = provisional_government
+                expire = "1965.1.1.1"
+                traits = { }
+            }
+        }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.32   #1 November
+ immediate = { }	
+	title = Indonesian_National_Revolution.32.t2  
+	desc = Indonesian_National_Revolution.32.d
+	picture = GFX_Indonesian_National_Revolution_32
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+        name = Indonesian_National_Revolution.32.a2
+    }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.33   #2 November 1949
+ immediate = { }
+	title = Indonesian_National_Revolution.33.t2
+	desc = Indonesian_National_Revolution.33.d
+	picture = GFX_Indonesian_National_Revolution_33
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+	option = {
+		name = Indonesian_National_Revolution.33.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.34   #28 November
+ immediate = { }	
+	title = Indonesian_National_Revolution.34.t2  
+	desc = Indonesian_National_Revolution.34.d
+	picture = GFX_Indonesian_National_Revolution_34
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+        name = Indonesian_National_Revolution.34.a2
+        HOL = {
+            add_opinion_modifier = {
+                target = INO
+                modifier = large_increase
+            }
+        }
+        INO = {
+            add_opinion_modifier = {
+                target = HOL
+                modifier = large_increase
+            }
+        }
+    }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.35   #27 December, 1949
+	immediate = { }
+	title = Indonesian_National_Revolution.35.t2
+	desc = Indonesian_National_Revolution.35.d
+	picture = GFX_Indonesian_National_Revolution_35
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+	option = {
+		name = Indonesian_National_Revolution.35.a2
+		trigger = {
+			tag = INO
+		}
+		HOL = {
+			every_owned_state = {
+				limit = {
+					is_core_of = INO
+				}
+				add_dynamic_modifier = { modifier = autonomous_state }
+				transfer_state_to = INO
+			}	
+		}
+		set_autonomy = {
+			target = INS
+			autonomy_state = autonomy_protectorate
+		}
+		hidden_effect = {
+			INS = {
+				set_politics = {
+					ruling_party = Social_Democratic
+				}
+				add_popularity = {
+					ideology = Social_Democratic
+					popularity = 1
+				}
+			}
+			WPA = {
+				set_politics = {
+					ruling_party = neutrality
+				}
+				set_popularities = {
+					neutrality = 100
+				}
+				create_country_leader = {
+					name = "Stephan Lucien Joseph van Waardenburg"
+					picture = "Stephan_Lucien_Joseph_van_Waardenburg_50s.dds"
+					expire = "1965.1.1"
+					ideology = colonial_regime
+				}
+			}
+			transfer_state = 846
+			set_capital = { state = 846 }
+			846 = {
+				remove_dynamic_modifier = { modifier = autonomous_state } 
+			}
+		}
+	}
+	option = {
+		name = Indonesian_National_Revolution.35.b2
+		trigger = {
+			NOT = {	tag = INO }
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.36   #26 January, 1950
+ immediate = { }
+	title = Indonesian_National_Revolution.36.t2
+	desc = Indonesian_National_Revolution.36.d
+	picture = GFX_Indonesian_National_Revolution_36
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+	option = {
+		name = Indonesian_National_Revolution.36.a2
+        if = {
+            limit = {
+                tag = INO
+            }
+            add_ideas = Political_Instability
+            HOL = {
+                add_opinion_modifier = {
+                    target = INO
+                    modifier = medium_decrease
+                }
+            }
+            INO = {
+                add_opinion_modifier = {
+                    target = HOL
+                    modifier = medium_decrease
+                }
+            }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.37   #27 January
+ immediate = { }	
+	title = Indonesian_National_Revolution.37.t2  
+	desc = Indonesian_National_Revolution.37.d
+	picture = GFX_Indonesian_National_Revolution_37
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Indonesian_National_Revolution.37.a2
+		swap_ideas = {
+			remove_idea = Political_Instability
+			add_idea = Political_Instability_2
+		}
+		844 = {
+			remove_dynamic_modifier = { modifier = autonomous_state } 
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.38   #10 April 1950
+ immediate = { }	
+	title = Indonesian_National_Revolution.38.t2  
+	desc = Indonesian_National_Revolution.38.d
+	picture = GFX_Indonesian_National_Revolution_38
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+        name = Indonesian_National_Revolution.38.a2
+        swap_ideas = {
+            remove_idea = Political_Instability_2
+            add_idea = Political_Instability_3
+        }
+    }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.39   #27 April 1950
+ immediate = { }
+	title = Indonesian_National_Revolution.39.t2
+	desc = Indonesian_National_Revolution.39.d
+	picture = GFX_Indonesian_National_Revolution_39
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+	option = {
+		name = Indonesian_National_Revolution.39.a2
+		if = {
+			limit = {
+				tag = INO
+			}
+			SMK = {
+				transfer_state = 668
+			}
+			declare_war_on = { target = SMK type = annex_everything }
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.40   #1 May 1950
+ immediate = { }	
+	title = Indonesian_National_Revolution.40.t2  
+	desc = Indonesian_National_Revolution.40.d
+	picture = GFX_Indonesian_National_Revolution_40
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Indonesian_National_Revolution.40.a2
+		swap_ideas = {
+			remove_idea = Political_Instability_3
+			add_idea = Political_Instability_4
+		}
+		every_owned_state = {
+			remove_dynamic_modifier = { modifier = autonomous_state }
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.51   #August 17, 1950
+ immediate = { }
+	title = Indonesian_National_Revolution.51.t2
+	desc = Indonesian_National_Revolution.51.d
+	picture = GFX_Indonesian_National_Revolution_51
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+	option = {
+		name = Indonesian_National_Revolution.51.a2
+		if = {
+			limit = {
+				tag = INO
+			}
+			set_politics = {
+				ruling_party = socialist
+				elections_allowed = no
+			}
+			remove_ideas = Political_Instability_4
+			drop_cosmetic_tag = yes
+			set_capital = { state = 842 }
+			annex_country = {
+				target = INS
+				transfer_troops = yes
+			}
+		}
+	}
+}
+
+
+#Dutch Victory Route
+#Dutch-Indonesia Roundtable Conference Begins (August 23rd) Indonesian_National_Revolution.26
+
+#Agreement on Dutch Troop Withdrawal (October 5) Indonesian_National_Revolution.27
+
+#Agreement on Protection of Dutch Civilians and Companies (October 11) Indonesian_National_Revolution.28
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.41   #October 24
+ immediate = { }	
+	title = Indonesian_National_Revolution.41.t2  
+	desc = Indonesian_National_Revolution.41.d
+	picture = GFX_Indonesian_National_Revolution_41
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+        name = Indonesian_National_Revolution.41.a2
+        INO = {
+            add_timed_idea = {
+                idea = Colonial_Debts
+                days = 3650
+            }
+            set_variable = { THIS.idea_len_@token:Colonial_Debts = 3650 }
+            set_variable = { THIS.idea_date_@token:Colonial_Debts = global.num_days }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.42   #October 26
+ immediate = { }	
+	title = Indonesian_National_Revolution.42.t2  
+	desc = Indonesian_National_Revolution.42.d
+	picture = GFX_Indonesian_National_Revolution_42
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+        name = Indonesian_National_Revolution.42.a2
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.43   #October 29
+ immediate = { }	
+	title = Indonesian_National_Revolution.43.t2  
+	desc = Indonesian_National_Revolution.43.d
+	picture = GFX_Indonesian_National_Revolution_43
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Indonesian_National_Revolution.43.a2
+		set_politics = {
+            ruling_party = nationalist
+			long_name = "Kabinet Susanto"
+            name = "Kabinet Susanto"
+		}
+		set_cosmetic_tag = INO_TEMP_1
+		add_country_leader_role = {
+            character = INO_Soesanto_Tirtoprodjo
+            promote_leader = yes
+            country_leader = {
+                ideology = provisional_government
+                expire = "1965.1.1.1"
+                traits = { }
+            }
+        }
+	}
+}
+
+#Dutch-Indonesia Roundtable Conference Concludes (2 November 1949) Indonesian_National_Revolution.33
+
+#Republican Prisoners Released (28 November 1949) Indonesian_National_Revolution.34
+
+#Netherlands Transfer Sovereignty to the United States of Indonesia (27 December) Indonesian_National_Revolution.35
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.44   #26 January, 1950
+ immediate = { }
+	title = Indonesian_National_Revolution.44.t2
+	desc = Indonesian_National_Revolution.44.d
+	picture = GFX_Indonesian_National_Revolution_44
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+	option = {
+		name = Indonesian_National_Revolution.44.a2
+		if = {
+			limit = {
+				tag = INO
+			}
+			create_country_leader = {
+				name = "Syarif Hamid II"
+				picture = "Syarif_Hamid_II.dds"
+				ideology = conservatism
+			}
+			set_politics = {
+				ruling_party = conservative
+				elections_allowed = no
+			}
+			set_popularities = {
+				conservative = 30
+				islamism = 28
+				socialist = 42
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.45   #4 February 1950
+ immediate = { }	
+	title = Indonesian_National_Revolution.45.t2  
+	desc = Indonesian_National_Revolution.45.d
+	picture = GFX_Indonesian_National_Revolution_45
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+        name = Indonesian_National_Revolution.45.a2
+    }
+}
+#Indonesia Victory Route
+#Dutch-Indonesia Roundtable Conference Begins (August 23rd) Indonesian_National_Revolution.26
+
+#Agreement on Dutch Troop Withdrawal (October 5) Indonesian_National_Revolution.27
+
+#Agreement on Protection of Dutch Civilians and Companies (October 11) Indonesian_National_Revolution.28
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.46   #October 24
+ immediate = { }	
+	title = Indonesian_National_Revolution.46.t2  
+	desc = Indonesian_National_Revolution.46.d
+	picture = GFX_Indonesian_National_Revolution_46
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+        name = Indonesian_National_Revolution.46.a2
+        HOL = {
+            add_timed_idea = {
+                idea = Colonial_Debts
+                days = 3650
+            }
+            set_variable = { THIS.idea_len_@token:Colonial_Debts = 3650 }
+            set_variable = { THIS.idea_date_@token:Colonial_Debts = global.num_days }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.47   #October 26
+ immediate = { }	
+	title = Indonesian_National_Revolution.47.t2  
+	desc = Indonesian_National_Revolution.47.d
+	picture = GFX_Indonesian_National_Revolution_47
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = Indonesian_National_Revolution.47.a2
+		WPA = {
+			drop_cosmetic_tag = yes
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.48   #October 28
+ immediate = { }	
+	title = Indonesian_National_Revolution.48.t2  
+	desc = Indonesian_National_Revolution.48.d
+	picture = GFX_Indonesian_National_Revolution_48
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+        name = Indonesian_National_Revolution.48.a2
+        every_owned_state = {
+            remove_dynamic_modifier = { modifier = autonomous_state } 
+        }
+        drop_cosmetic_tag = yes
+    }
+}
+
+#Dutch-Indonesia Roundtable Conference Concludes (2 November 1949) Indonesian_National_Revolution.33
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.49   #November 2, 1949
+ immediate = { }	
+	title = Indonesian_National_Revolution.49.t2  
+	desc = Indonesian_National_Revolution.49.d
+	picture = GFX_Indonesian_National_Revolution_49
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+        name = Indonesian_National_Revolution.49.a2
+        HOL = {
+            add_opinion_modifier = {
+                target = INO
+                modifier = large_increase
+            }
+        }
+        INO = {
+            add_opinion_modifier = {
+                target = HOL
+                modifier = large_increase
+            }
+        }
+    }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Indonesian_National_Revolution.50   #27 December, 1949
+	immediate = { }
+	title = Indonesian_National_Revolution.50.t2
+	desc = Indonesian_National_Revolution.50.d
+	picture = GFX_Indonesian_National_Revolution_50
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+	option = {
+		name = Indonesian_National_Revolution.50.a2
+		if = {
+			limit = {
+				tag = INO
+			}
+			annex_country = {
+				target = INS
+				transfer_troops = yes
+			}
+			#Dutch PNG
+			transfer_state = 669
+			transfer_state = 858
+			set_province_name = {
+				id = 12371 
+				name = "Kota Baru"
+			}
+
+			#Indonesia
+			HOL = {
+				every_owned_state = {
+					limit = {
+						is_core_of = INO
+					}
+					transfer_state_to = INO
+				}
+			}
+			set_capital = { state = 842 }
+			remove_ideas = Political_Instability_4
+			every_owned_state = {
+				remove_dynamic_modifier = { modifier = autonomous_state } 
+			}
+			drop_cosmetic_tag = yes
+		}    
+	}
+}
+
+
+
+###############################################
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = dutch_east_indies_war.2
+	title = dutch_east_indies_war.2.t
+	desc = dutch_east_indies_war.2.d
+    fire_only_once = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+    immediate = {
+    }
+	option = {
+        name = dutch_east_indies_war.2.a
+		custom_effect_tooltip = dei_death_tt
+		hidden_effect = {
+            retire_character = WPA_Simon_Spoor
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = dutch_east_indies_war.1
+	title = dutch_east_indies_war.1.t  #WPA, it's west papua's initial but it's actually the Dutch East Indies... go figure
+	desc = dutch_east_indies_war.1.d
+    fire_only_once = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+    immediate = {
+    }
+	option = {
+        name = dutch_east_indies_war.1.a
+	    add_threat = 4
+	    declare_war_on = {
+        target = INO
+        type = annex_everything
+        }
+
+    }
+	option = {
+        name = dutch_east_indies_war.1.b
+		ai_chance = {
+			base = 90
+			
+			modifier = {
+				factor = 1000
+				is_historical_focus_on = yes
+			}
+		}
+    }
+	option = {
+        name = dutch_east_indies_war.1.c
+		HOL = {
+			white_peace = INO
+		}
+		WPA = {
+			white_peace = INO
+		}
+		INO = {
+			annex_country = { target = INS }
+		}
+		INO = {
+			annex_country = { target = WPA }
+		}
+		INO = {
+			release_puppet = WPA
+		}
+		WPA = {
+			drop_cosmetic_tag = yes
+		}
+			set_politics = {
+				ruling_party = neutrality
+				elections_allowed = no
+				last_election = "1935.12.17"
+				election_frequency = 48
+				long_name = "Angkatan Perang Repoeblik Indonesia"
+				name = "Angkatan Perang Repoeblik Indonesia"
+			}
+		create_country_leader = {
+			name = "Gatot Soebroto"
+				#desc = "POLITICS_MOHAMMED_ZAHIR_SHAH_DESC"
+				picture = GFX_Gatot_Soebroto.png
+				ideology = military_junta
+				traits = {
+				}
+			}
+		remove_ideas = {
+        WPA_Legacy_of_VOC
+        WPA_Unpopular_War
+		WPA_The_Jewels_of_Asia
+       }
+	   inherit_technology = INO
+    }
+}

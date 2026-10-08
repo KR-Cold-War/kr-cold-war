@@ -1,0 +1,1222 @@
+# krcw: paced
+# krcw: x-coords doubled for icon clearance
+focus_tree = {
+	id = krcw_ent_tree
+	continuous_focus_position = { x = 50 y = 1230 }
+	country = {
+		factor = 0
+		modifier = { add = 3000 tag = AST }
+		modifier = { add = 3000 tag = NZL }
+	}
+	default = no
+	reset_on_civilwar = no
+	focus = {
+		id = krcw_ent_the_crown_in_exile
+		icon = GFX_focus_AST_the_australian_commonwealth
+		x = 30
+		y = 0
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_ideas = krcw_ent_the_court_in_melbourne
+			add_political_power = 75
+			if = { limit = { original_tag = AST country_exists = NZL } NZL = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_dominion_partner } } }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_privy_council
+		icon = GFX_focus_generic_monarchist_sentiment
+		x = 10
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_crown_in_exile }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.03
+			country_event = { id = krcw_ent.20 days = 3 }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_restoration_committee
+		icon = GFX_focus_AST_realize_the_value_of_british_citizenship
+		x = 4
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_privy_council }
+		mutually_exclusive = { focus = krcw_ent_the_canberra_settlement focus = krcw_ent_the_republican_petition }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 8
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_ent_the_restoration_project
+			set_country_flag = krcw_ent_restoration_road
+			add_war_support = 0.05
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_ent_the_canberra_settlement
+		icon = GFX_focus_AST_the_publics_australia
+		x = 10
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_privy_council }
+		mutually_exclusive = { focus = krcw_ent_the_restoration_committee focus = krcw_ent_the_republican_petition }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 40
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_ent_the_court_in_melbourne } remove_ideas = krcw_ent_the_court_in_melbourne }
+			add_ideas = krcw_ent_dominion_of_our_own
+			set_country_flag = krcw_ent_dominion_road
+			add_stability = 0.06
+			add_political_power = 50
+			if = { limit = { original_tag = AST country_exists = NZL } NZL = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_dominion_partner } } }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_republican_petition
+		icon = GFX_focus_AST_end_the_kingdom
+		x = 16
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_privy_council }
+		mutually_exclusive = { focus = krcw_ent_the_restoration_committee focus = krcw_ent_the_canberra_settlement }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			set_country_flag = krcw_ent_republic_road
+			add_political_power = -25
+			add_stability = -0.04
+			add_popularity = { ideology = Social_Democratic popularity = 0.06 }
+			country_event = { id = krcw_ent.22 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_exile_ministries
+		icon = GFX_focus_AST_permanent_military_forces
+		x = 2
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_restoration_committee }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_tech_bonus = { name = krcw_ent_archives bonus = 0.5 uses = 1 category = industry }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_loyal_diaspora
+		icon = GFX_focus_AST_a_controversial_recruitment
+		x = 6
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_restoration_committee }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_manpower = 15000
+			add_political_power = 25
+			add_stability = -0.02
+			if = { limit = { country_exists = SAF } add_opinion_modifier = { target = SAF modifier = krcw_ent_the_old_flag } }
+		}
+	}
+	focus = {
+		id = krcw_ent_plan_albion
+		icon = GFX_focus_AST_the_ultimate_overseas_duty
+		x = 4
+		y = 6
+		cost = 8
+		prerequisite = { focus = krcw_ent_the_exile_ministries }
+		prerequisite = { focus = krcw_ent_the_loyal_diaspora }
+		available = {
+			has_country_flag = krcw_ent_restoration_road
+			krcw_high_tension = yes
+			date > 1952.11.23
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			set_country_flag = krcw_ent_plan_albion
+			add_war_support = 0.1
+			army_experience = 25
+			krcw_tension_up_medium = yes
+			country_event = { id = krcw_ent.24 days = 7 }
+		}
+	}
+	focus = {
+		id = krcw_ent_an_australian_citizenship
+		icon = GFX_focus_generic_vote
+		x = 8
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_canberra_settlement }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 25
+			if = { limit = { original_tag = AST }
+			add_popularity = { ideology = Liberal_Conservatism popularity = 0.04 }
+			}
+			else_if = { limit = { original_tag = NZL }
+			add_popularity = { ideology = conservative popularity = 0.04 }
+			}
+		}
+	}
+	focus = {
+		id = krcw_ent_the_anzac_union
+		icon = GFX_focus_AST_anzac_spirit
+		x = 12
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_canberra_settlement }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.03
+			if = { limit = { original_tag = AST }
+			if = { limit = { country_exists = NZL } NZL = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_dominion_partner } } }
+			}
+			else_if = { limit = { original_tag = NZL }
+			if = { limit = { country_exists = AST } AST = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_dominion_partner } } }
+			}
+		}
+	}
+	focus = {
+		id = krcw_ent_a_pacific_nation
+		icon = GFX_focus_AST_northern_advancement
+		x = 10
+		y = 6
+		cost = 8
+		prerequisite = { focus = krcw_ent_an_australian_citizenship }
+		prerequisite = { focus = krcw_ent_the_anzac_union }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+			if = { limit = { NOT = { has_variable = global.krcw_ent_lean } } set_variable = { global.krcw_ent_lean = 0 } }
+			add_to_variable = { global.krcw_ent_lean = 5 }
+			clamp_variable = { var = global.krcw_ent_lean min = -100 max = 100 }
+			custom_effect_tooltip = krcw_ent_tree_lean_p5_tt
+			# reward_fill.py
+			add_ideas = krcw_fill_ent_new_textbooks
+		}
+	}
+	focus = {
+		id = krcw_ent_the_referendum
+		icon = GFX_focus_AST_eureka_stockade_monument_rally
+		x = 16
+		y = 4
+		cost = 8
+		prerequisite = { focus = krcw_ent_the_republican_petition }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			country_event = { id = krcw_ent.26 days = 3 }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_new_constitution
+		icon = GFX_focus_AST_lang_is_right
+		x = 14
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_referendum }
+		available = {
+			has_country_flag = krcw_ent_republic_declared
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_ent_the_court_in_melbourne } remove_ideas = krcw_ent_the_court_in_melbourne }
+			add_ideas = krcw_ent_the_australian_republic
+			add_stability = 0.05
+			add_political_power = 75
+			if = { limit = { NOT = { has_variable = global.krcw_ent_lean } } set_variable = { global.krcw_ent_lean = 0 } }
+			add_to_variable = { global.krcw_ent_lean = 10 }
+			clamp_variable = { var = global.krcw_ent_lean min = -100 max = 100 }
+			custom_effect_tooltip = krcw_ent_tree_lean_p10_tt
+		}
+	}
+	focus = {
+		id = krcw_ent_a_clean_slate
+		icon = GFX_focus_AST_part_with_colonizer
+		x = 18
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_new_constitution }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_political_power = 50
+			if = { limit = { NOT = { has_variable = global.krcw_ent_lean } } set_variable = { global.krcw_ent_lean = 0 } }
+			add_to_variable = { global.krcw_ent_lean = 10 }
+			clamp_variable = { var = global.krcw_ent_lean min = -100 max = 100 }
+			custom_effect_tooltip = krcw_ent_tree_lean_p10_tt
+			if = { limit = { country_exists = FRA } add_opinion_modifier = { target = FRA modifier = krcw_ent_pacific_understanding } }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_lesson_of_singapore
+		icon = GFX_focus_AST_stretch_the_fleet
+		x = 24
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_crown_in_exile }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ent_fortress_antipodes
+			navy_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_ent_the_royal_australian_navy
+		icon = GFX_focus_AST_royal_australian_navy
+		x = 22
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_lesson_of_singapore }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_coastal = yes }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			}
+			add_tech_bonus = { name = krcw_ent_escorts bonus = 0.5 uses = 1 category = naval_equipment }
+			navy_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_ent_the_coast_watchers
+		icon = GFX_focus_AST_coast_watchers
+		x = 26
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_lesson_of_singapore }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 10
+			add_tech_bonus = { name = krcw_ent_radar bonus = 0.5 uses = 1 category = radar_tech }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_ent_the_anzac_divisions
+		icon = GFX_focus_AST_australian_regular_army
+		x = 24
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_royal_australian_navy focus = krcw_ent_the_coast_watchers }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 20
+			add_tech_bonus = { name = krcw_ent_infantry bonus = 0.5 uses = 1 category = infantry_weapons }
+			add_manpower = 20000
+		}
+	}
+	focus = {
+		id = krcw_ent_the_raaf
+		icon = GFX_focus_AST_no1_flying_training_school
+		x = 28
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_anzac_divisions }
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			capital_scope = {
+				add_building_construction = { type = air_base level = 2 instant_build = yes }
+			}
+			air_experience = 15
+			add_tech_bonus = { name = krcw_ent_air bonus = 0.5 uses = 1 category = air_equipment }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_southern_shipyards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 22
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_royal_australian_navy }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_coastal = yes }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			}
+			random_owned_controlled_state = {
+				limit = { is_coastal = yes }
+				add_building_construction = { type = naval_base level = 1 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			}
+			navy_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_ent_the_wool_clip
+		icon = GFX_focus_AST_rural_concessions
+		x = 38
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_crown_in_exile }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ent_the_wool_cheque
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_ent_the_wheat_belt
+		icon = GFX_focus_generic_agricultural_subsidies
+		x = 36
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_wool_clip }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			}
+			add_stability = 0.03
+			add_tech_bonus = { name = krcw_ent_farm bonus = 0.5 uses = 1 category = industry }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_pilbara_iron
+		icon = GFX_focus_AST_broken_hill_proprietary_company
+		x = 40
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_wool_clip }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_ent_newcastle_steel
+		icon = GFX_focus_generic_steel
+		x = 38
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_wheat_belt focus = krcw_ent_the_pilbara_iron }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ent_southern_industry
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+		}
+	}
+	focus = {
+		id = krcw_ent_the_snowy_scheme
+		icon = GFX_focus_generic_hydroelectric_energy
+		x = 36
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_ent_newcastle_steel }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+			capital_scope = {
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			}
+			add_stability = 0.03
+		}
+	}
+	focus = {
+		id = krcw_ent_the_national_university
+		icon = GFX_goal_generic_scientific_exchange
+		x = 40
+		y = 4
+		cost = 8
+		prerequisite = { focus = krcw_ent_newcastle_steel }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_research_slot = 1
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_ent_new_markets
+		icon = GFX_goal_generic_positive_trade_relations
+		x = 42
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_pilbara_iron }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_tech_bonus = { name = krcw_ent_trade bonus = 0.5 uses = 1 category = industry }
+			if = { limit = { country_exists = CHI } add_opinion_modifier = { target = CHI modifier = krcw_ent_pacific_understanding } }
+			if = { limit = { country_exists = JAP } add_opinion_modifier = { target = JAP modifier = krcw_ent_pacific_understanding } }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_island_administration
+		icon = GFX_focus_AST_dividing_the_pacific
+		x = 50
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_crown_in_exile }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ent_the_island_mandates
+			add_political_power = 25
+			set_country_flag = krcw_ent_south_seas_office
+		}
+	}
+	focus = {
+		id = krcw_ent_nauru_phosphate
+		icon = GFX_focus_JAP_expand_coal_islands
+		x = 48
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_island_administration }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+			add_political_power = 25
+			add_stability = -0.02
+		}
+	}
+	focus = {
+		id = krcw_ent_the_island_councils
+		icon = GFX_focus_generic_self_management
+		x = 52
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_island_administration }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.03
+			add_political_power = -25
+			country_event = { id = krcw_ent.28 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_pacific_commonwealth_f
+		icon = GFX_focus_AST_all_for_one_one_for_all
+		x = 50
+		y = 4
+		cost = 8
+		prerequisite = { focus = krcw_ent_the_island_councils }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_ent_the_island_mandates } remove_ideas = krcw_ent_the_island_mandates }
+			add_ideas = krcw_ent_the_pacific_commonwealth
+			add_stability = 0.05
+			set_country_flag = krcw_ent_pacific_commonwealth
+		}
+	}
+	focus = {
+		id = krcw_ent_the_colour_line
+		icon = GFX_focus_generic_court
+		x = 58
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_crown_in_exile }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			add_stability = 0.02
+			country_event = { id = krcw_ent.30 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_ent_populate_or_perish
+		icon = GFX_focus_AST_its_fight_work_or_perish
+		x = 56
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_colour_line }
+		mutually_exclusive = { focus = krcw_ent_the_open_door }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 30
+		}
+		completion_reward = {
+			add_manpower = 30000
+			add_political_power = 25
+			add_stability = 0.02
+			# reward_fill.py
+			add_ideas = krcw_fill_ent_migrant_ships
+		}
+	}
+	focus = {
+		id = krcw_ent_the_open_door
+		icon = GFX_focus_AST_repeal_immigration_restrictions
+		x = 60
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_colour_line }
+		mutually_exclusive = { focus = krcw_ent_populate_or_perish }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 12
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_ent_open_the_gates
+			add_stability = -0.05
+			add_political_power = -50
+			if = { limit = { country_exists = CHI } add_opinion_modifier = { target = CHI modifier = krcw_ent_pacific_understanding } }
+			if = { limit = { country_exists = RAJ } add_opinion_modifier = { target = RAJ modifier = krcw_ent_pacific_understanding } }
+		}
+	}
+	focus = {
+		id = krcw_ent_a_new_australia
+		icon = GFX_focus_generic_immigration
+		x = 58
+		y = 5
+		cost = 8
+		prerequisite = { focus = krcw_ent_populate_or_perish focus = krcw_ent_the_open_door }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_manpower = 40000
+			add_stability = 0.04
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+		}
+	}
+	focus = {
+		id = krcw_ent_between_the_blocs
+		icon = GFX_focus_AST_defying_american_interference
+		x = 78
+		y = 0
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_crown_in_exile }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			# reward_fill.py
+			add_ideas = krcw_fill_ent_southern_legations
+		}
+	}
+	focus = {
+		id = krcw_ent_talks_with_paris
+		icon = GFX_focus_generic_diplomatic_treaty
+		x = 72
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ent_between_the_blocs }
+		mutually_exclusive = { focus = krcw_ent_arms_from_moscow focus = krcw_ent_the_southern_cross }
+		available = {
+			NOT = { has_global_flag = KRCW_ent_settled }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 8
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			if = { limit = { NOT = { has_variable = global.krcw_ent_lean } } set_variable = { global.krcw_ent_lean = 0 } }
+			add_to_variable = { global.krcw_ent_lean = 15 }
+			clamp_variable = { var = global.krcw_ent_lean min = -100 max = 100 }
+			custom_effect_tooltip = krcw_ent_tree_lean_p15_tt
+			add_political_power = 25
+			if = { limit = { country_exists = FRA } add_opinion_modifier = { target = FRA modifier = krcw_ent_pacific_understanding } }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_wool_and_the_ledger
+		icon = GFX_focus_AST_new_south_wales_government_railways
+		x = 72
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ent_talks_with_paris }
+		available = {
+			NOT = { has_global_flag = KRCW_ent_settled }
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 8
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			if = { limit = { NOT = { has_variable = global.krcw_ent_lean } } set_variable = { global.krcw_ent_lean = 0 } }
+			add_to_variable = { global.krcw_ent_lean = 15 }
+			clamp_variable = { var = global.krcw_ent_lean min = -100 max = 100 }
+			custom_effect_tooltip = krcw_ent_tree_lean_p15_tt
+			if = { limit = { NOT = { has_idea = krcw_ent_ti_subsidies } } add_ideas = krcw_ent_ti_subsidies }
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			}
+		}
+	}
+	focus = {
+		id = krcw_ent_a_seat_at_the_congress
+		icon = GFX_focus_AST_the_red_pacific
+		x = 72
+		y = 3
+		cost = 8
+		prerequisite = { focus = krcw_ent_the_wool_and_the_ledger }
+		available = {
+			NOT = { has_global_flag = KRCW_ent_settled }
+			check_variable = { global.krcw_ent_lean > 39 }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 6
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			set_global_flag = KRCW_ent_settled
+			set_global_flag = KRCW_ent_aligned
+			if = { limit = { country_exists = FRA FRA = { is_faction_leader = yes } } FRA = { add_to_faction = ROOT } }
+			add_stability = 0.04
+		}
+	}
+	focus = {
+		id = krcw_ent_arms_from_moscow
+		icon = GFX_focus_generic_befriend_basmachi
+		x = 84
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ent_between_the_blocs }
+		mutually_exclusive = { focus = krcw_ent_talks_with_paris focus = krcw_ent_the_southern_cross }
+		available = {
+			NOT = { has_global_flag = KRCW_ent_settled }
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 6
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			if = { limit = { NOT = { has_variable = global.krcw_ent_lean } } set_variable = { global.krcw_ent_lean = 0 } }
+			add_to_variable = { global.krcw_ent_lean = -15 }
+			clamp_variable = { var = global.krcw_ent_lean min = -100 max = 100 }
+			custom_effect_tooltip = krcw_ent_tree_lean_m15_tt
+			if = { limit = { NOT = { has_idea = krcw_ent_moscow_subsidies } } add_ideas = krcw_ent_moscow_subsidies }
+			army_experience = 15
+		}
+	}
+	focus = {
+		id = krcw_ent_the_darwin_mission
+		icon = GFX_focus_generic_befriend_monarchist_georgia
+		x = 84
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ent_arms_from_moscow }
+		available = {
+			NOT = { has_global_flag = KRCW_ent_settled }
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 6
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			if = { limit = { NOT = { has_variable = global.krcw_ent_lean } } set_variable = { global.krcw_ent_lean = 0 } }
+			add_to_variable = { global.krcw_ent_lean = -15 }
+			clamp_variable = { var = global.krcw_ent_lean min = -100 max = 100 }
+			custom_effect_tooltip = krcw_ent_tree_lean_m15_tt
+			army_experience = 15
+			add_stability = -0.02
+			krcw_tension_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_ent_the_accord_guarantee
+		icon = GFX_goal_generic_major_alliance
+		x = 84
+		y = 3
+		cost = 8
+		prerequisite = { focus = krcw_ent_the_darwin_mission }
+		available = {
+			NOT = { has_global_flag = KRCW_ent_settled }
+			check_variable = { global.krcw_ent_lean < -39 }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			set_global_flag = KRCW_ent_settled
+			set_global_flag = KRCW_ent_aligned
+			if = { limit = { country_exists = SOV SOV = { is_faction_leader = yes } } SOV = { add_to_faction = ROOT } }
+			krcw_tension_up_medium = yes
+			add_war_support = 0.05
+		}
+	}
+	focus = {
+		id = krcw_ent_the_southern_cross
+		icon = GFX_goal_generic_neutrality_focus
+		x = 78
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_ent_between_the_blocs }
+		mutually_exclusive = { focus = krcw_ent_talks_with_paris focus = krcw_ent_arms_from_moscow }
+		available = {
+			NOT = { has_global_flag = KRCW_ent_settled }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 25
+		}
+		completion_reward = {
+			add_stability = 0.04
+			add_war_support = 0.03
+			add_political_power = 25
+			# reward_fill.py
+			random_owned_controlled_state = { limit = { is_core_of = ROOT is_coastal = yes } add_building_construction = { type = naval_base level = 1 instant_build = yes province = { all_provinces = yes limit_to_naval_base = yes } } }
+			add_tech_bonus = { name = krcw_ent_the_southern_cross bonus = 0.5 uses = 1 category = naval_equipment }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_canberra_initiative
+		icon = GFX_goal_generic_navy_cruiser
+		x = 76
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_southern_cross }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 25
+		}
+		completion_reward = {
+			add_political_power = 25
+			navy_experience = 15
+			if = { limit = { country_exists = PSA } add_opinion_modifier = { target = PSA modifier = krcw_ent_pacific_understanding } }
+			if = { limit = { country_exists = JAP } add_opinion_modifier = { target = JAP modifier = krcw_ent_pacific_understanding } }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_pacific_pact
+		icon = GFX_goal_generic_dangerous_deal
+		x = 80
+		y = 3
+		cost = 8
+		prerequisite = { focus = krcw_ent_the_canberra_initiative }
+		available = {
+			NOT = { has_global_flag = KRCW_ent_settled }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			set_country_flag = krcw_ent_pacific_pact
+			add_political_power = 25
+			add_war_support = 0.03
+			navy_experience = 10
+			if = { limit = { country_exists = PSA } add_opinion_modifier = { target = PSA modifier = krcw_ent_pacific_understanding } }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_armed_neutral
+		icon = GFX_focus_generic_home_defense
+		x = 78
+		y = 4
+		cost = 8
+		prerequisite = { focus = krcw_ent_the_pacific_pact }
+		available = {
+			NOT = { has_global_flag = KRCW_ent_settled }
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 25
+		}
+		completion_reward = {
+			if = { limit = { NOT = { has_idea = krcw_ent_armed_neutrality } } add_ideas = krcw_ent_armed_neutrality }
+			set_global_flag = KRCW_ent_neutral
+			set_global_flag = KRCW_ent_settled
+			add_stability = 0.05
+			krcw_tension_down_small = yes
+			if = { limit = { original_tag = AST country_exists = NZL } NZL = { add_ideas = krcw_ent_armed_neutrality } }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_woomera_range
+		icon = GFX_focus_wonderweapons
+		x = 88
+		y = 1
+		cost = 8
+		prerequisite = { focus = krcw_ent_a_seat_at_the_congress focus = krcw_ent_the_accord_guarantee focus = krcw_ent_the_armed_neutral }
+		prerequisite = { focus = krcw_ent_the_national_university }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_ent_rockets bonus = 0.5 uses = 1 category = rocketry }
+			capital_scope = {
+				add_building_construction = { type = air_base level = 1 instant_build = yes }
+			}
+		}
+	}
+	focus = {
+		id = krcw_ent_the_lucas_heights
+		icon = GFX_goal_generic_construct_infrastructure
+		x = 90
+		y = 2
+		cost = 8
+		prerequisite = { focus = krcw_ent_the_woomera_range }
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_ent_nuclear bonus = 0.5 uses = 1 category = nuclear }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_ent_the_southern_hemisphere
+		icon = GFX_focus_generic_the_giant_wakes
+		x = 88
+		y = 3
+		cost = 8
+		prerequisite = { focus = krcw_ent_the_lucas_heights }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_tech_bonus = { name = krcw_ent_rev_threshold bonus = 0.5 uses = 1 category = nuclear }
+			add_war_support = 0.03
+			add_political_power = 25
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_ent_the_tasman_question
+		icon = GFX_focus_generic_treaty
+		x = 32
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_anzac_union }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			country_event = { id = krcw_ent.40 days = 5 }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_tasman_compact_f
+		icon = GFX_goal_generic_positive_trade_relations
+		x = 26
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_tasman_question }
+		mutually_exclusive = { focus = krcw_ent_the_federation_act }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 14
+		}
+		completion_reward = {
+			add_ideas = krcw_ent_the_tasman_compact
+			add_stability = 0.05
+			if = { limit = { country_exists = NZL } NZL = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_dominion_partner } } }
+			set_global_flag = KRCW_tasman_compact
+		}
+	}
+	focus = {
+		id = krcw_ent_the_federation_act
+		icon = GFX_focus_generic_universal_suffrage
+		x = 38
+		y = 6
+		cost = 8
+		prerequisite = { focus = krcw_ent_the_tasman_question }
+		mutually_exclusive = { focus = krcw_ent_the_tasman_compact_f }
+		available = {
+			country_exists = NZL
+			NZL = { is_in_faction_with = ROOT }
+			has_global_flag = KRCW_ent_settled
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 8
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_ideas = krcw_ent_the_pacific_federation
+			country_event = { id = krcw_ent.42 days = 3 }
+			set_global_flag = KRCW_pacific_federation
+		}
+	}
+	focus = {
+		id = krcw_ent_one_parliament
+		icon = GFX_focus_generic_public_meetings
+		x = 38
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_federation_act }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 75
+			add_stability = 0.04
+			add_manpower = 30000
+			# reward_fill.py
+			add_ideas = krcw_fill_ent_federal_parliament
+		}
+	}
+	focus = {
+		id = krcw_ent_the_southern_dominion_navy
+		icon = GFX_goal_generic_navy_cruiser
+		x = 30
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_ent_the_tasman_compact_f focus = krcw_ent_the_federation_act }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			navy_experience = 20
+			if = { limit = { country_exists = NZL } NZL = { add_opinion_modifier = { target = ROOT modifier = krcw_ent_dominion_partner } } }
+			add_war_support = 0.03
+		}
+	}
+	focus = {
+		id = krcw_ent_draw_up_the_southern_defence_plan
+		icon = GFX_focus_AST_permanent_military_forces
+		x = 78
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_ent_a_seat_at_the_congress focus = krcw_ent_the_accord_guarantee focus = krcw_ent_the_armed_neutral }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 10
+			navy_experience = 10
+			add_war_support = 0.03
+			# reward_fill.py
+			add_ideas = krcw_fill_ent_northern_coast_plan
+			random_owned_controlled_state = { limit = { is_core_of = ROOT is_coastal = yes } add_building_construction = { type = air_base level = 1 instant_build = yes } }
+		}
+	}
+	focus = {
+		id = krcw_ent_fortify_the_northern_coast
+		icon = GFX_focus_generic_coastal_fort
+		x = 74
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_ent_draw_up_the_southern_defence_plan }
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_coastal = yes }
+				add_building_construction = { type = naval_base level = 1 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			}
+			capital_scope = {
+				add_building_construction = { type = anti_air_building level = 1 instant_build = yes }
+			}
+			navy_experience = 10
+		}
+	}
+	focus = {
+		id = krcw_ent_expand_the_citizen_forces
+		icon = GFX_focus_AST_australian_regular_army
+		x = 82
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_ent_draw_up_the_southern_defence_plan }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_manpower = 30000
+			army_experience = 15
+			add_tech_bonus = { name = krcw_ent_rev_landdoc bonus = 0.5 uses = 1 category = land_doctrine }
+			add_stability = -0.02
+		}
+	}
+	focus = {
+		id = krcw_ent_maritime_patrol_squadrons
+		icon = GFX_goal_generic_air_naval_bomber
+		x = 74
+		y = 7
+		cost = 5
+		prerequisite = { focus = krcw_ent_fortify_the_northern_coast }
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			air_experience = 15
+			capital_scope = {
+				add_building_construction = { type = air_base level = 1 instant_build = yes }
+			}
+			add_tech_bonus = { name = krcw_ent_rev_patrol bonus = 0.5 uses = 1 category = air_equipment }
+		}
+	}
+	focus = {
+		id = krcw_ent_the_munitions_board
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 82
+		y = 7
+		cost = 8
+		prerequisite = { focus = krcw_ent_expand_the_citizen_forces }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			}
+			random_owned_controlled_state = {
+				limit = { is_core_of = ROOT  }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			}
+			add_political_power = -25
+		}
+	}
+	focus = {
+		id = krcw_ent_proclaim_the_southern_bastion
+		icon = GFX_focus_AST_coast_watchers
+		x = 78
+		y = 8
+		cost = 8
+		prerequisite = { focus = krcw_ent_maritime_patrol_squadrons }
+		prerequisite = { focus = krcw_ent_the_munitions_board }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = krcw_ent_the_southern_bastion
+			add_war_support = 0.04
+			add_stability = 0.03
+			if = { limit = { original_tag = AST country_exists = NZL } NZL = { add_war_support = 0.03 } }
+		}
+	}
+}

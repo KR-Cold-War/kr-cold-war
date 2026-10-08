@@ -1,0 +1,230 @@
+# KRCW (build/patch_residue.py): 2 OTL country GUIs hidden while KRCW_active
+scripted_gui = {
+	Cold_War_Iron_Curtain_Intro_PC = {
+		context_type = player_context
+		window_name = "Cold_War_Iron_Curtain_Intro_PC"
+
+		ai_enabled = {
+			always = no
+		}
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			always = yes 
+		}
+
+		effects = {
+			CWIC_INTRO_CLICK_click = {
+				set_country_flag = CWIC_Opening_Gui
+				set_variable = { save_click = 0 }
+			}
+			CWIC_news_button_click = {
+				if = {
+					limit = { has_country_flag = CWIC_News_Open }
+					clr_country_flag = CWIC_News_Open
+				}
+				else = {
+					set_country_flag = CWIC_News_Open
+					set_variable = { CWIC_news_frame = 1 }
+				}
+			}
+		}
+
+		properties = {
+			CWIC_news_button = {
+				frame = CWIC_news_frame
+			}
+		}
+
+	}
+    Cold_War_Iron_Curtain_Intro = {
+		context_type = player_context
+		window_name = "Cold_War_Iron_Curtain_Intro"
+
+		ai_enabled = {
+			always = no
+		}
+		
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = CWIC_Opening_Gui
+			NOT = {
+				check_variable = {
+					save_click > 1
+				}
+			}
+		}
+		
+		effects = {
+			Cold_War_Intro_Screen_Button_click = {
+				if = {
+					limit = {
+						tag = JAP
+						check_variable = {
+							click_first_time < 1
+						}
+					}
+					scoped_play_song = "Kimigayo - The Longest Day of Japan"
+					country_event = { id = JAP_debug.1 }
+					clr_country_flag = CWIC_Opening_Gui
+					set_variable = { click_first_time = 1 }
+					set_variable = { save_click = 1 }
+				}
+				else_if = {
+					limit = {
+						tag = KOR
+						check_variable = {
+							click_first_time < 1
+						}
+					}
+					scoped_play_song = "National Anthem of the Republic of Korea"
+					clr_country_flag = CWIC_Opening_Gui
+					set_variable = { click_first_time = 1 }
+					set_variable = { save_click = 1 }
+				}
+				else_if = {
+					limit = {
+						tag = USA
+						check_variable = {
+							click_first_time < 1
+						}
+					}
+					scoped_play_song = "Star Spangled Banner"
+					clr_country_flag = CWIC_Opening_Gui
+					set_variable = { click_first_time = 1 }
+					set_variable = { save_click = 1 }
+				}
+				else_if = {
+					limit = {
+						tag = ZIM
+						check_variable = {
+							click_first_time < 1
+						}
+					}
+					scoped_play_song = "Rise O Voices of Rhodesia"
+					clr_country_flag = CWIC_Opening_Gui
+					set_variable = { click_first_time = 1 }
+					set_variable = { save_click = 1 }
+				}
+				else_if = {
+					limit = {
+						tag = PRC
+						check_variable = {
+							click_first_time < 1
+						}
+					}
+					scoped_play_song = "March of the Volunteers"
+					clr_country_flag = CWIC_Opening_Gui
+					set_variable = { click_first_time = 1 }
+					set_variable = { save_click = 1 }
+				}
+				else_if = {
+					limit = {
+						tag = WGR
+						check_variable = {
+							click_first_time < 1
+						}
+					}
+					scoped_play_song = "Deutschlandlied"
+					clr_country_flag = CWIC_Opening_Gui
+					set_variable = { click_first_time = 1 }
+					set_variable = { save_click = 1 }
+				}
+				else = {
+					clr_country_flag = CWIC_Opening_Gui
+					set_variable = { save_click = 1 }
+				}
+			}
+			Cold_War_Intro_Info_Button_click = {
+				set_variable = { intro_screen = 0 }
+			}
+			Cold_War_Intro_Path_Button_click = {
+				set_variable = { intro_screen = 2 }
+			}
+			Cold_War_Intro_Credit_Button_click = {
+				set_variable = { intro_screen = 1 }
+			}
+			Cold_War_Intro_Settings_Button_click = {
+				set_variable = { intro_screen = 3 }
+				CWIC_Refresh_Mode_Frames = yes
+			}
+			CWIC_mode_all_button_click = {
+				clr_country_flag = CWIC_se_pref_off
+				clr_country_flag = CWIC_se_pref_majors
+				clr_country_flag = CWIC_se_pref_own_majors
+							CWIC_Refresh_Mode_Frames = yes
+			}
+			CWIC_mode_own_button_click = {
+				clr_country_flag = CWIC_se_pref_off
+				clr_country_flag = CWIC_se_pref_majors
+				set_country_flag = CWIC_se_pref_own_majors
+							CWIC_Refresh_Mode_Frames = yes
+			}
+			CWIC_mode_majors_button_click = {
+				clr_country_flag = CWIC_se_pref_off
+				clr_country_flag = CWIC_se_pref_own_majors
+				set_country_flag = CWIC_se_pref_majors
+							CWIC_Refresh_Mode_Frames = yes
+			}
+			CWIC_mode_off_button_click = {
+				clr_country_flag = CWIC_se_pref_majors
+				clr_country_flag = CWIC_se_pref_own_majors
+				set_country_flag = CWIC_se_pref_off
+							CWIC_Refresh_Mode_Frames = yes
+			}
+		}
+		
+		properties = {
+			Intro_Screen_Picture = { 
+				image = "[GetOpeningScreenPicture]" 
+			}
+			flag_for_intro_screen = {
+				image = "[This.GetFlag]"
+			}
+			Intro_Screen_Header = {
+				image = "[GetIntroScreenHeaderPicture]"
+			}
+			CWIC_mode_all_button = { frame = CWIC_cb_all }
+			CWIC_mode_own_button = { frame = CWIC_cb_own }
+			CWIC_mode_majors_button = { frame = CWIC_cb_majors }
+			CWIC_mode_off_button = { frame = CWIC_cb_off }
+		}
+		
+		triggers = {
+			Cold_War_Intro_Screen_Description_visible = {
+				check_variable = {
+					intro_screen = 0
+				}
+			}
+			Cold_War_Intro_Screen_Credit_Description_visible = {
+				check_variable = {
+					intro_screen = 1
+				}
+			}
+			Cold_War_Intro_Screen_Paths_visible = {
+				check_variable = {
+					intro_screen = 2
+				}
+			}
+			CWIC_se_settings_header_visible = { check_variable = { intro_screen = 3 } }
+			CWIC_se_settings_hint_visible = { check_variable = { intro_screen = 3 } }
+			CWIC_mode_all_button_visible = { check_variable = { intro_screen = 3 } }
+			CWIC_mode_all_label_visible = { check_variable = { intro_screen = 3 } }
+			CWIC_mode_own_button_visible = { check_variable = { intro_screen = 3 } }
+			CWIC_mode_own_label_visible = { check_variable = { intro_screen = 3 } }
+			CWIC_mode_majors_button_visible = { check_variable = { intro_screen = 3 } }
+			CWIC_mode_majors_label_visible = { check_variable = { intro_screen = 3 } }
+			CWIC_mode_off_button_visible = { check_variable = { intro_screen = 3 } }
+			CWIC_mode_off_label_visible = { check_variable = { intro_screen = 3 } }	
+		}
+		ai_weights = {
+            Cold_War_Intro_Screen_Button_click = {
+                ai_will_do = {
+                    base = 1000
+                    factor = 2
+                }
+                ignore_lower_weights = {
+                    factor = 1
+                }
+            }
+        }
+	}
+}

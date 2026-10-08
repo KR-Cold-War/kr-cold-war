@@ -1,0 +1,2025 @@
+# KRCW (build/patch_residue.py): 82 OTL events dropped while KRCW_active
+ add_namespace = fin
+ add_namespace = nfc
+ add_namespace = finv
+
+ country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+ 	id = finv.1
+ 	title = finv.1.t
+ 	desc = finv.1.d
+	picture = GFX_StalinNotes_58
+
+ 	is_triggered_only = yes
+
+ 	option = {
+ 		name = finv.1.a2
+		add_ideas = fcoalition1
+ 	}
+
+ }
+ country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+ 	id = finv.2
+ 	title = finv.2.t
+ 	desc = finv.2.d
+	picture = GFX_fin_alco
+
+ 	is_triggered_only = yes
+
+ 	option = {
+ 		name = finv.2.a2
+ 	}
+
+ }
+ 
+ country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+ 	id = finv.3
+ 	title = finv.3.t
+ 	desc = finv.3.d
+	picture = GFX_StalinNotes_58
+
+ 	is_triggered_only = yes
+
+ 	option = {
+ 		name = finv.3.a2
+		swap_ideas = {
+			remove_idea = fcoalition1
+			add_idea = fcoalition2
+		}
+ 	}
+
+ }
+ 
+  country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+ 	id = finv.4
+ 	title = finv.4.t
+ 	desc = finv.4.d
+	picture = GFX_StalinNotes_58
+
+ 	is_triggered_only = yes
+
+ 	option = {
+ 		name = finv.4.a2
+ 	}
+
+ }
+
+ country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+ 	id = fin.1
+	immediate = { }
+ 	title = fin.1.t2
+ 	desc = "fin.1.d"
+	picture = GFX_kemi_strike
+
+ 	is_triggered_only = yes
+
+ 	option = {
+ 		name = fin.1.a2
+		add_stability = -0.03
+ 	}
+
+}
+
+ country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+ 	id = fin.2
+	immediate = { }
+ 	title = fin.2.t2
+ 	desc = fin.2.d
+	picture = GFX_ensi
+ 	is_triggered_only = yes
+
+	 option = {
+ 	name = fin.2.a2
+		add_stability = 0.01
+		add_political_power = 50
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.3
+	immediate = { }
+	title = fin.3.t
+	desc = fin.3.d
+	picture = report_event_paasikiviv_ded
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+
+	option = {
+		name = fin.3.a2
+		complete_national_focus = FIN_kekkonen_voted
+		complete_national_focus = FIN_Kekkonen_Victory_1956
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = FIN_1956_elections
+					option = FIN_PAASIKIVI_KUUSINEN
+				}
+				factor = 0
+			}
+		}
+	}
+	
+	option = {
+		name = fin.3.b2
+		trigger = {
+			has_country_flag = kuusinen1
+			has_country_flag = kuusinen2
+		}
+		complete_national_focus = FIN_kuusinen_voted
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = FIN_1956_elections
+					option = FIN_PAASIKIVI_KEKKONEN
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.4
+	immediate = { }
+	title = fin.4.t
+	desc = fin.4.d
+	picture = GFX_paasikivi_kekkonen
+
+	is_triggered_only = yes
+
+	option = {
+		name = fin.4.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.5
+	immediate = { }
+	title = fin.5.t
+	desc = fin.5.d
+	picture = GFX_porkkala
+
+	is_triggered_only = yes
+
+	option = {
+		name = fin.5.a
+		SOV = {
+			country_event = { id = fin.6 days = 7 }
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.6
+	immediate = { }
+	title = fin.6.t
+	desc = fin.6.d
+	picture = GFX_porkkala2
+	is_triggered_only = yes
+
+	option = {
+		name = fin.6.a2
+		FIN = {
+			country_event = { id = fin.8 days = 5 }
+		}
+		ai_chance = {
+			factor = 90
+			modifier = {
+				has_game_rule = {
+					rule = FIN_return_of_porkkala
+					option = FIN_PORKKALA_KEPT
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = fin.6.b2
+		custom_effect_tooltip = fin.6.tt
+		FIN = {
+			country_event = { id = fin.9 days = 5 }
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				has_game_rule = {
+					rule = FIN_return_of_porkkala
+					option = FIN_PORKKALA_RETURNED
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.7
+	immediate = { }
+	title = fin.7.t2
+	desc = fin.7.d
+	picture = GFX_news_event_FIN_mannerheim_funeral
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = yes
+
+	option = {
+		name = fin.7.a2
+		trigger = {
+				NOT = { tag = FIN }
+		}
+	}
+	option = {
+		name = fin.7.b2
+		trigger = {
+			tag = FIN
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.8
+	immediate = { }
+	title = fin.8.t
+	desc = fin.8.d
+	picture = GFX_porkkala2
+	is_triggered_only = yes
+
+	option = {
+		name = fin.8.a2
+		FIN = {
+			country_event = { id = fin.10 days = 185 }
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.9
+	immediate = { }
+	title = fin.9.t
+	desc = fin.9.d
+	picture = GFX_porkkala
+	is_triggered_only = yes
+
+	option = {
+		name = fin.9.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.10
+	immediate = { }
+	title = fin.10.t
+	desc = fin.10.d
+	picture = GFX_porkkala4
+	is_triggered_only = yes
+
+	option = {
+		name = fin.10.a2
+		FIN = {
+			transfer_state = 962
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.11
+	immediate = { }
+	title = fin.11.t
+	desc = fin.11.d
+	picture = GFX_porkkala3
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = fin.11.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.12
+	immediate = { }
+	title = fin.12.t
+	desc = fin.12.d
+	picture = GFX_juna
+	is_triggered_only = yes
+
+	option = {
+		name = fin.12.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.13
+	immediate = { }
+	title = fin.13.t
+	desc = fin.13.d
+	picture = GFX_youth_festifal_62
+	is_triggered_only = yes
+
+	option = {
+		name = fin.13.a2
+		add_opinion_modifier = {
+				target = DDR
+				modifier = small_increase
+			}
+			DDR = {
+				add_opinion_modifier = {
+					target = FIN
+					modifier = small_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = POL
+				modifier = small_increase
+			}
+			POL = {
+				add_opinion_modifier = {
+					target = FIN
+					modifier = small_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = BUL
+				modifier = small_increase
+			}
+			BUL = {
+				add_opinion_modifier = {
+					target = FIN
+					modifier = small_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = CZE
+				modifier = small_increase
+			}
+			CZE = {
+				add_opinion_modifier = {
+					target = FIN
+					modifier = small_increase
+				}
+			}
+		}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.14
+	immediate = { }
+	title = fin.14.t
+	desc = fin.14.d
+	picture = GFX_finno_karelia
+	is_triggered_only = yes
+
+	option = {
+		name = fin.14.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.15
+	immediate = { }
+	title = fin.15.t
+	desc = fin.15.d
+	picture = GFX_finno_karelia
+	is_triggered_only = yes
+
+	option = {
+		name = fin.15.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.16
+	immediate = { }
+	title = fin.16.t
+	desc = fin.16.d
+	picture = GFX_finno_karelia
+	is_triggered_only = yes
+
+	option = {
+		name = fin.16.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.17
+	immediate = { }
+	title = fin.17.t
+	desc = fin.17.d
+	picture = GFX_finlandc
+	is_triggered_only = yes
+
+	option = {
+		name = fin.17.a2
+		set_politics = {
+			ruling_party = communism
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Hertta Kuusinen"
+			picture = "Hertta_Kuusinen.dds"
+			ideology = stalinism
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.18
+	immediate = { }
+	title = fin.18.t
+	desc = fin.18.d
+	picture = GFX_fin_tv
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = fin.18.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.19
+	immediate = { }
+	title = fin.19.t
+	desc = fin.19.d
+	picture = GFX_kuusinen2
+	is_triggered_only = yes
+
+	option = {
+		name = fin.19.a2
+	}
+	option = {
+		name = fin.19.b2
+		create_country_leader = {
+				name = "Ville Pessi"
+				picture = "Ville_Pessi.dds"
+				ideology = stalinism
+			}
+	}
+	option = {
+		name = fin.19.c2
+		create_country_leader = {
+			name = "Aimo Aaltonen"
+			picture = "Aimo_Aaltonen_50s.dds"
+			ideology = stalinism
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.20
+	immediate = { }
+	title = fin.20.t
+	desc = fin.20.d
+	picture = GFX_norppa
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = fin.20.a2
+		add_stability = 0.01
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.21
+	immediate = { }
+	title = fin.21.t
+	desc = fin.21.d
+	picture = GFX_eduskunta
+	is_triggered_only = yes
+
+	option = {
+		name = fin.21.a2
+		add_popularity = {
+							ideology = fascism
+							popularity = -0.03
+						}
+					add_popularity = {
+							ideology = Liberal_Conservatism
+							popularity = -0.01
+						}
+					add_popularity = {
+							ideology = nationalist
+							popularity = -0.02
+						}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.22
+	immediate = { }
+	title = fin.22.t
+	desc = fin.22.d
+	picture = GFX_eduskunta
+	is_triggered_only = yes
+
+	option = {
+		name = fin.22.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.23
+	immediate = { }
+	title = fin.23.t
+	desc = fin.23.d
+	picture = GFX_ambulanssi
+	is_triggered_only = yes
+
+	option = {
+		name = fin.23.a2
+		complete_national_focus = FIN_The_Death_of_President_Pekkala
+		complete_national_focus = FIN_President_Kuusinen
+		retire_country_leader = yes
+		set_country_flag = kuusinen1
+		create_country_leader = {
+			name = "Hertta Kuusinen"
+			picture = "Hertta_Kuusinen.dds"
+			ideology = neocommunism
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = FIN_1950_elections
+					option = FIN_PEKKALA_KILPI
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = fin.23.b2
+		complete_national_focus = FIN_The_Death_of_President_Pekkala
+		complete_national_focus = FIN_President_Kilpi
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Eino Kilpi"
+			picture = "Eino_Kilpi.dds"
+			ideology = democratic_socialist
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = FIN_1950_elections
+					option = FIN_PEKKALA_KUUSINEN
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.24
+	immediate = { }
+	title = fin.24.t
+	desc = fin.24.d
+	picture = GFX_eduskunta
+	is_triggered_only = yes
+
+	option = {
+		name = fin.24.a2
+		hidden_effect = {
+			add_popularity = {
+				ideology = communism
+				popularity = -0.03
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.25
+	immediate = { }
+	title = fin.25.t
+	desc = fin.25.d
+	picture = GFX_eduskunta
+	is_triggered_only = yes
+
+	option = {
+		name = fin.25.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.26
+	immediate = { }
+	title = fin.26.t
+	desc = fin.26.d
+	picture = GFX_strikes
+	is_triggered_only = yes
+
+	option = {
+		name = fin.26.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.27
+	immediate = { }
+	title = fin.27.t
+	desc = fin.27.d
+	picture = GFX_strikes
+	is_triggered_only = yes
+
+	option = {
+		name = fin.27.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.28
+	immediate = { }
+	title = fin.28.t
+	desc = fin.28.d
+	picture = GFX_strikes
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = fin.28.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.29
+	immediate = { }
+	title = fin.29.t
+	desc = fin.29.d
+	picture = GFX_owk_visa
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = fin.29.a2
+		trigger = {
+			has_government = centrist
+		}
+		set_country_flag = owk_no_visa
+		ai_chance = {
+			factor = 90
+		}
+	}
+	
+	option = {
+		name = fin.29.b2
+		trigger = {
+			has_government = Social_Democratic
+		}
+		set_country_flag = owk_yes_visa
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.30
+	immediate = { }
+	title = fin.30.t
+	desc = fin.30.d
+	picture = GFX_fin_wood_boost
+	is_triggered_only = yes
+
+	option = {
+		name = fin.30.a2
+		add_ideas = civilian_boost_general
+		hidden_effect = {
+			country_event = { id = fin.31 days = 638 }
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.31
+	immediate = { }
+	title = fin.31.t
+	desc = fin.31.d
+	picture = GFX_fin_wood_bad
+	is_triggered_only = yes
+
+	option = {
+		name = fin.31.a2
+		set_country_flag = korean_inflation
+		swap_ideas = {
+			remove_idea = civilian_boost_general
+			add_idea = Inflation_Crisis
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.32
+	immediate = { }
+	title = fin.32.t
+	desc = fin.32.d
+	picture = GFX_kekkonen_skog
+	is_triggered_only = yes
+
+	option = {
+		name = fin.32.a2
+		add_stability = -0.01
+		add_popularity = { ideology = centrist popularity = -0.02 }
+		add_timed_idea = {
+				idea = k_program
+				days = 730
+		}
+		set_variable = { THIS.idea_len_@token:k_program = 730 }
+		set_variable = { THIS.idea_date_@token:k_program = global.num_days }
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = fin.32.b2
+		add_timed_idea = {
+			idea = s_program
+			days = 730
+		}
+		set_variable = { THIS.idea_len_@token:s_program = 730 }
+		set_variable = { THIS.idea_date_@token:s_program = global.num_days }
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.33
+	immediate = { }
+	title = fin.33.t
+	desc = fin.33.d
+	picture = GFX_red_valpo
+	is_triggered_only = yes
+
+	option = {
+		name = fin.33.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.34
+	immediate = { }
+	title = fin.34.t
+	desc = fin.34.d
+	picture = GFX_fin_alco
+	is_triggered_only = yes
+
+	option = {
+		name = fin.34.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.35
+	immediate = { }
+	title = fin.35.t
+	desc = fin.35.d
+	picture = GFX_finnair50
+	is_triggered_only = yes
+
+	option = {
+		name = fin.35.a2
+		add_timed_idea = { idea = Foriegn_Student_Program  days = 3650 }
+		set_variable = { THIS.idea_len_@token:Foriegn_Student_Program = 3650 }
+		set_variable = { THIS.idea_date_@token:Foriegn_Student_Program = global.num_days }
+		FIN = {
+			add_timed_idea = { idea = Foriegn_Student_Program  days = 3650 }
+			set_variable = { THIS.idea_len_@token:Foriegn_Student_Program = 3650 }
+			set_variable = { THIS.idea_date_@token:Foriegn_Student_Program = global.num_days }
+			country_event = { id = fin.36 days = 20 }
+		}
+		ai_chance = {
+			factor = 90
+		}
+	}
+	
+	option = {
+		name = fin.35.b2
+		FIN = {
+			country_event = { id = fin.37 days = 20 }
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.36
+	immediate = { }
+	title = fin.36.t
+	desc = fin.36.d
+	picture = GFX_finnair50
+	is_triggered_only = yes
+
+	option = {
+		name = fin.36.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.37
+	immediate = { }
+	title = fin.37.t
+	desc = fin.37.d
+	picture = GFX_finnair50
+	is_triggered_only = yes
+
+	option = {
+		name = fin.37.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.38
+	immediate = { }
+	title = fin.38.t
+	desc = fin.38.d
+	picture = GFX_kultaranta
+	is_triggered_only = yes
+
+	option = {
+		name = fin.38.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.39
+	immediate = { }
+	title = fin.39.t
+	desc = fin.39.d
+	picture = GFX_Commonwealth_Generic
+	is_triggered_only = yes
+
+	option = {
+		name = fin.39.a2
+		set_party_name = {
+			ideology = centrist
+			long_name = "Keskustapuolue"
+			name = "Keskusta"
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.40
+	immediate = { }
+	title = fin.40.t
+	desc = fin.40.d
+	picture = GFX_Aero_311
+	is_triggered_only = yes
+
+	option = {
+		name = fin.40.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.41
+	immediate = { }
+	title = fin.41.t
+	desc = fin.41.d
+	picture = GFX_fin_reactor_start
+	is_triggered_only = yes
+
+	option = {
+		name = fin.41.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.42
+	immediate = { }
+	title = fin.42.t
+	desc = fin.42.d
+	picture = GFX_fin_corruption_scandal
+	is_triggered_only = yes
+
+	option = {
+		name = fin.42.a2
+		add_popularity = {
+	ideology = centrist
+	popularity = -0.04
+	}
+add_popularity = {
+	ideology = Social_Democratic
+	popularity = -0.04
+}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.43
+	immediate = { }
+	title = fin.43.t
+	desc = fin.43.d
+	picture = GFX_blasphemy
+	is_triggered_only = yes
+
+	option = {
+		name = fin.43.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.44
+	immediate = { }
+	title = fin.44.t
+	desc = fin.44.d
+	picture = GFX_death_penalty
+	is_triggered_only = yes
+
+	option = {
+		name = fin.44.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.45
+	immediate = { }
+	title = fin.45.t
+	desc = fin.45.d
+	picture = GFX_death_penalty
+	is_triggered_only = yes
+
+	option = {
+		name = fin.45.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.46
+	immediate = { }
+	title = fin.46.t
+	desc = fin.46.d
+	picture = GFX_ostrobotnia
+	is_triggered_only = yes
+
+	option = {
+		name = fin.46.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.47
+	title = fin.47.t
+	desc = fin.47.d
+	picture = GFX_korso_riot_65
+	is_triggered_only = yes
+
+	option = {
+		name = fin.47.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.48
+	title = fin.48.t
+	desc = fin.48.d
+	picture = GFX_fra_crisis_4
+	is_triggered_only = yes
+
+	option = {
+		name = fin.48.a2
+		retire_country_leader = yes
+		set_politics = {
+			ruling_party = Social_Democratic
+		}
+		
+		create_country_leader = {
+			name = "Mauno Koivisto"
+			picture = "Mauno_Koivisto_70s.dds"
+			ideology = social_democrat
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.49
+	title = fin.49.t
+	desc = fin.49.d
+	picture = GFX_riots_in_portugal
+	is_triggered_only = yes
+
+	option = {
+		name = fin.49.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.50
+	title = fin.50.t
+	desc = fin.50.d
+	picture = GFX_report_event_elections
+	is_triggered_only = yes
+
+	option = {
+		name = fin.50.a2
+		retire_country_leader = yes
+		set_politics = {
+			ruling_party = socialist
+		}
+		create_country_leader = {
+			name = "Ele Alenius"
+			picture = "Ele_Alenius.dds"
+			ideology = socialism
+		}
+	}
+	
+	option = {
+		name = fin.50.b2
+		retire_country_leader = yes
+				set_politics = {
+			ruling_party = centrist
+		}
+		create_country_leader = {
+			name = "Johannes Virolainen"
+			picture = "Johannes_Virolainen.dds"
+			ideology = centrism
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.51
+	title = fin.51.t
+	desc = fin.51.d
+	picture = GFX_report_event_notecrisis9
+	is_triggered_only = yes
+
+	option = {
+		name = fin.51.a2
+		complete_national_focus = FIN_60s_taistolaiset
+		retire_country_leader = yes
+				set_politics = {
+			ruling_party = communism
+		}
+		create_country_leader = {
+			name = "Taisto Sinisalo"
+			picture = "Taisto_Sinisalo.dds"
+			ideology = stalinism
+		}
+	}
+	
+	option = {
+		name = fin.51.b2
+		complete_national_focus = FIN_60s_saarislaiset
+		retire_country_leader = yes
+		set_politics = {
+			ruling_party = communism
+		}
+		create_country_leader = {
+			name = "Aarne Saarinen"
+			picture = "Aarne_Saarinen.dds"
+			ideology = liberal_communism
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.52
+	title = fin.52.t
+	desc = fin.52.d
+	picture = GFX_fin_alco
+	is_triggered_only = yes
+
+	option = {
+		name = fin.52.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.53
+	title = fin.53.t
+	desc = fin.53.d
+	picture = GFX_Adenauer53.7
+	is_triggered_only = yes
+
+	option = {
+		name = fin.53.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.54
+	title = fin.54.t
+	desc = fin.54.d
+	picture = GFX_TUTOR_102
+	is_triggered_only = yes
+
+	option = {
+		name = fin.54.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.55
+	title = fin.55.t
+	desc = fin.55.d
+	picture = GFX_finnish_riots
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = fin.55.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.56
+	title = fin.56.t
+	desc = fin.56.d
+	picture = GFX_finnish_bordels
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = fin.56.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = fin.57
+	title = fin.57.t
+	desc = fin.57.d
+	picture = GFX_fin_parlament
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = fin.57.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nfc.1
+	immediate = { }
+	title = nfc.1.t
+	desc = nfc.1.d
+	picture = GFX_eduskunta
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = nfc.1.a2
+		FIN = { country_event = { id = nfc.2 days = 1 } }
+	}
+
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nfc.2
+	immediate = { }
+	title = nfc.2.t
+	desc = nfc.2.d
+	picture = GFX_eduskunta
+	is_triggered_only = yes
+
+	option = {
+		name = nfc.2.a2
+		hidden_effect = {
+			SOV = { country_event = { id = nfc.3 days = 20 } }
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nfc.3
+	immediate = { }
+	title = nfc.3.t
+	desc = nfc.3.d
+	picture = GFX_eduskunta
+	is_triggered_only = yes
+
+	option = {
+		name = nfc.3.a2
+		FIN = { country_event = { id = nfc.4 days = 10 } }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nfc.4
+	immediate = { }
+	title = nfc.4.t
+	desc = nfc.4.d
+	picture = GFX_eduskunta
+	is_triggered_only = yes
+
+	option = {
+		name = nfc.4.a2
+		SOV = { country_event = { id = nfc.5 days = 10 } }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nfc.5
+	immediate = { }
+	title = nfc.5.t
+	desc = nfc.5.d
+	picture = GFX_eduskunta
+	is_triggered_only = yes
+
+	option = {
+		name = nfc.5.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nfc.7
+	immediate = { }
+	title = nfc.7.t
+	desc = nfc.7.d
+	picture = GFX_eduskunta
+	is_triggered_only = yes
+
+	option = {
+		name = nfc.7.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nfc.8
+	immediate = { }
+	title = nfc.8.t
+	desc = nfc.8.d
+	picture = GFX_kekko_n_khru
+	is_triggered_only = yes
+
+	option = {
+		name = nfc.8.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nfc.10
+	immediate = { }
+	title = nfc.10.t
+	desc = nfc.10.d
+	picture = GFX_report_event_001
+	is_triggered_only = yes
+
+	option = {
+		name = nfc.10.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nfc.11
+	immediate = { }
+	title = nfc.11.t
+	desc = nfc.11.d
+	picture = GFX_report_event_001
+	is_triggered_only = yes
+
+	option = {
+		name = nfc.11.a2
+		country_event = { id = nfc.12 days = 30 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nfc.12
+	immediate = { }
+	title = nfc.12.t
+	desc = nfc.12.d
+	picture = GFX_report_event_001
+	is_triggered_only = yes
+
+	option = {
+		name = nfc.12.a2
+		country_event = { id = nfc.13 days = 7 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nfc.13
+	immediate = { }
+	title = nfc.13.t
+	desc = nfc.13.d
+	picture = GFX_report_event_001
+	is_triggered_only = yes
+
+	option = {
+		name = nfc.13.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nfc.14
+	immediate = { }
+	title = nfc.14.t
+	desc = nfc.14.d
+	picture = GFX_report_event_001
+	is_triggered_only = yes
+
+	option = {
+		name = nfc.14.a2
+		country_event = { id = nfc.15 days = 30 }
+	}
+	
+	option = {
+		name = nfc.14.b2
+		country_event = { id = nfc.16 days = 30 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nfc.15
+	immediate = { }
+	title = nfc.15.t
+	desc = nfc.15.d
+	picture = GFX_report_event_001
+	is_triggered_only = yes
+
+	option = {
+		name = nfc.15.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nfc.16
+	immediate = { }
+	title = nfc.16.t
+	desc = nfc.16.d
+	picture = GFX_report_event_001
+	is_triggered_only = yes
+
+	option = {
+		name = nfc.16.a2
+	}
+}
+
+####ELECTIONS######
+country_event = {
+	id = fin.200
+	immediate = { }
+	title = fin.200.t2
+	desc = fin.200.d
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		date > 1950.1.1
+		date < 1951.1.1
+		tag = FIN
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = fin.200.a2
+
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = yes
+		}
+		add_popularity = { ideology = Liberal_Conservatism popularity = 0.05 }
+		complete_national_focus = FIN_Paasikivi_Reelected
+		ai_chance = {
+			factor = 75
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = FIN_1950_elections
+						option = FIN_PEKKALA_KUUSINEN
+					}
+					has_game_rule = {
+						rule = FIN_1950_elections
+						option = FIN_PEKKALA_KILPI
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = fin.200.b2
+
+		set_politics = {
+			ruling_party = socialist
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Mauno Pekkala"
+			picture = "Mauno_Pekkala.dds"
+			expire = "1952.12.14"
+			ideology = democratic_socialist
+		}
+		add_popularity = { ideology = socialist popularity = 0.05 }
+		complete_national_focus = FIN_Pekkala_Victory
+		ai_chance = {
+			factor = 25
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = FIN_1950_elections
+					option = FIN_PAASIKIVI_1950
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = fin.201
+	immediate = { }
+	title = fin.201.t2
+	desc = fin.201.d
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = FIN
+		date > 1956.1.1
+		date < 1957.1.1
+	}
+
+	is_triggered_only = yes
+	picture = GFX_fin_elec_56
+
+	option = {
+		name = fin.201.a2
+
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = yes
+		}
+		add_popularity = { ideology = centrist popularity = 0.05 }
+		complete_national_focus = FIN_Kekkonen_Victory_1956
+		set_country_flag = kekkonen56
+		hidden_effect = {
+			country_event = fin.26
+		}
+		ai_chance = {
+			factor = 70
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = FIN_1956_elections
+						option = FIN_FAGERHOLM_1956
+					}
+					has_game_rule = {
+						rule = FIN_1956_elections
+						option = FIN_PAASIKIVI_KUUSINEN
+					}
+					has_game_rule = {
+						rule = FIN_1956_elections
+						option = FIN_PAASIKIVI_KEKKONEN
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = fin.201.b2
+
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Karl-August Fagerholm"
+			picture = "Karl-August_Fagerholm.dds"
+			ideology = social_democrat
+		}
+		complete_national_focus = FIN_Fagerholm_Victory
+		add_popularity = { ideology = Social_Democratic popularity = 0.05 }
+		set_country_flag = left56
+		hidden_effect = {
+			country_event = fin.26
+		}
+		ai_chance = {
+			factor = 20
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = FIN_1956_elections
+						option = FIN_KEKKONEN_1956
+					}
+					has_game_rule = {
+						rule = FIN_1956_elections
+						option = FIN_PAASIKIVI_KUUSINEN
+					}
+					has_game_rule = {
+						rule = FIN_1956_elections
+						option = FIN_PAASIKIVI_KEKKONEN
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = fin.201.c2
+
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Juho Kusti Paasikivi"
+			picture = "Juho_Kusti_Paasikivi_50s.dds"
+			ideology = liberal_conservatives
+			traits = {
+				sickly
+			}
+		}
+		complete_national_focus = FIN_paasikivi_56
+		add_popularity = { ideology = Liberal_Conservatism popularity = 0.05 }
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = FIN_1956_elections
+						option = FIN_KEKKONEN_1956
+					}
+					has_game_rule = {
+						rule = FIN_1956_elections
+						option = FIN_FAGERHOLM_1956
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = fin.202
+	immediate = { }
+	title = fin.202.t2
+	desc = fin.202.d
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = FIN
+		date > 1962.1.1
+		date < 1963.1.1
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = fin.202.a2
+
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = yes
+		}
+		add_popularity = { ideology = centrist popularity = 0.05 }
+		complete_national_focus = FIN_60s_62_kekkonen
+		complete_national_focus = FIN_60s_1962_election
+		ai_chance = {
+			factor = 66
+		}
+	}
+	option = {
+		name = fin.202.b2
+
+		set_politics = {
+			ruling_party = socialist
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Paavo Aitio"
+			picture = "Paavo_Aitio.dds"
+			ideology = democratic_socialist
+		}
+		add_popularity = { ideology = socialist popularity = 0.05 }
+		complete_national_focus = FIN_60s_aitio
+		complete_national_focus = FIN_60s_1962_election
+		set_country_flag = no_kekkonen_62
+		ai_chance = {
+			factor = 34
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	
+	option = {
+		name = fin.202.c2
+
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Olavi Honka"
+			picture = "Olavi_Honka.dds"
+			ideology = independent
+		}
+		set_party_name = {
+			ideology = neutrality
+			long_name = "Honka-liitto"
+			name = "Honka-liitto"
+		}
+		complete_national_focus = FIN_60s_honka
+		complete_national_focus = FIN_60s_1962_election
+		set_country_flag = no_kekkonen_62
+		 trigger = {
+			has_country_flag = honkayes
+		}
+		ai_chance = {
+			factor = 34
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = fin.203
+	immediate = { }
+	title = fin.203.t2
+	desc = fin.203.d
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = FIN
+		date > 1968.1.1
+		date < 1969.1.1
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = fin.203.a2
+
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = yes
+		}
+		add_popularity = { ideology = centrist popularity = 0.1 }
+		complete_national_focus = FIN_60s_kekkonen_68
+		complete_national_focus = FIN_60s_68_elec
+		ai_chance = {
+			factor = 50
+		}
+	}
+	option = {
+		name = fin.203.b2
+
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Matti Virkkunen"
+			picture = "Matti_Virkkunen.dds"
+			ideology = liberal_conservatives
+		}
+		add_popularity = { ideology = Liberal_Conservatism popularity = 0.1 }
+		complete_national_focus = FIN_60s_matti_virkkunen
+		complete_national_focus = FIN_60s_68_elec
+		ai_chance = {
+			factor = 25
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+
+	option = {
+		name = fin.203.c2
+
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Rafael Paasio"
+			picture = "Rafael_Paasio.dds"
+			ideology = social_democrat
+		}
+		add_popularity = { ideology = Social_Democratic popularity = 0.1 }
+		complete_national_focus = FIN_60s_socialist_68
+		complete_national_focus = FIN_60s_68_elec
+		trigger = {
+			has_country_flag = no_kekkonen_62
+		}
+		ai_chance = {
+			factor = 25
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = fin.204
+	immediate = { }
+	title = fin.204.t2
+	desc = fin.203.d
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = FIN
+		date > 1974.1.1
+		date < 1975.1.1
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = fin.204.a2
+		trigger = {
+			has_country_leader = {
+				name = "Urho Kekkonen"
+				ruling_only = yes
+			}
+		}
+
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = yes
+		}
+		add_popularity = { ideology = centrist popularity = 0.1 }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+		name = fin.204.b2
+
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Matti Virkkunen"
+			picture = "Matti_Virkkunen.dds"
+			ideology = liberal_conservatives
+		}
+		add_popularity = { ideology = Liberal_Conservatism popularity = 0.1 }
+		ai_chance = {
+			factor = 25
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	
+	option = {
+		name = fin.204.c2
+
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Rafael Paasio"
+			picture = "Rafael_Paasio.dds"
+			ideology = social_democrat
+		}
+		add_popularity = { ideology = Social_Democratic popularity = 0.1 }
+		ai_chance = {
+			factor = 25
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = fin.205
+	immediate = { }
+	title = fin.205.t2
+	desc = fin.203.d
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = FIN
+		date > 1978.1.1
+		date < 1979.1.1
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = fin.205.a2
+		trigger = {
+			has_country_leader = {
+				name = "Urho Kekkonen"
+				ruling_only = yes
+			}
+		}
+
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = yes
+		}
+		add_popularity = { ideology = centrist popularity = 0.1 }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+		name = fin.205.b2
+
+		set_politics = {
+			ruling_party = Christian_Democratic
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Raino Westerholm"
+			picture = "Raino_Westerholm.dds"
+			ideology = christian_democracy
+		}
+		add_popularity = { ideology = Christian_Democratic popularity = 0.1 }
+		ai_chance = {
+			factor = 25
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = fin.206
+	immediate = { }
+	title = fin.206.t2
+	desc = fin.203.d
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = FIN
+		date > 1982.1.1
+		date < 1983.1.1
+	}
+
+	is_triggered_only = yes
+
+	option = {
+		name = fin.206.a2
+
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Mauno Koivisto"
+			picture = "Mauno_Koivisto_80s.dds"
+			ideology = social_democrat
+		}
+		add_popularity = { ideology = Social_Democratic popularity = 0.1 }
+		ai_chance = {
+			factor = 50
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+		name = fin.206.b2
+
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Harri Holkeri"
+			picture = "Harri_Holkeri.dds"
+			ideology = conservative_liberalism
+		}
+		add_popularity = { ideology = Liberal_Conservatism popularity = 0.1 }
+		ai_chance = {
+			factor = 25
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	
+	option = {
+		name = fin.206.c2
+
+		set_politics = {
+			ruling_party = centrist
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Johannes Virolainen"
+			picture = "Johannes_Virolainen.dds"
+			ideology = centrism
+		}
+		add_popularity = { ideology = centrist popularity = 0.1 }
+		ai_chance = {
+			factor = 25
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}

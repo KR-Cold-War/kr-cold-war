@@ -1,0 +1,811 @@
+# KRCW (build/patch_residue.py): 30 OTL events dropped while KRCW_active
+################################
+# Cold War Uprisings
+################################
+
+add_namespace = cwu
+add_namespace = ULT_SOV
+
+# Berlin uprising 1953
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.1 
+ immediate = { }
+	title = cwu.1.t
+	desc = cwu.1.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Fight them
+		name = cwu.1.a
+		hidden_effect = {
+			news_event = cwu.2
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				is_historical_focus_on = no
+				factor = 80
+			}
+		}
+	}
+
+	immediate = {
+		set_global_flag = berlin_uprising_1952
+	}
+}
+#Berlin Uprising 1953 News Event
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.2 
+ immediate = { }
+	title = cwu.2.t
+	desc = cwu.2.d
+	picture = GFX_news_event_berlin_uprising_1953
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = yes
+
+	option = {
+		name = cwu.2.a
+		trigger = { tag = DDR }
+	}
+
+	option = {
+		name = cwu.2.b
+		trigger = { NOT = { tag = DDR } }
+	}
+}
+# Poznan June 1956
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.4 
+ immediate = { }
+	title = cwu.4.t
+	desc = cwu.4.d
+
+	is_triggered_only = yes
+	immediate = {
+		set_global_flag = poznan_uprising_1956
+		set_country_flag = pol_fight_democrats
+		complete_national_focus = POL_The_Poznan_Uprising
+		SOV = {
+			complete_national_focus = SOV_The_Polish_Uprising_of_1956
+		}
+	}
+
+	option = { # Fight them
+		name = cwu.4.a
+		news_event = cwu.5
+		SOV = { country_event = { id = Polish_October.10 days = 30 } } 
+	}
+}
+# Pozan June 1956 News Event
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.5 
+ immediate = { }
+	title = cwu.5.t
+	desc = {
+		text = cwu.5.d
+		trigger = { has_country_flag = pol_fight_democrats }
+	}
+	desc = {
+		text = cwu.5.desc
+		trigger = { has_country_flag = pol_become_democratic }
+	}
+	picture = GFX_news_event_poznan_uprising_1956
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = cwu.5.a
+		trigger = { tag = POL }
+	}
+
+	option = {
+		name = cwu.5.b
+		trigger = { NOT = { tag = POL } }
+	}
+}
+# Pozan June hidden trigger
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.6 
+ immediate = { }
+	hidden = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { }
+
+	immediate = {
+		POL = { country_event = cwu.4 }
+	}
+}
+# Polish Protests 1970
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.13 
+ immediate = { }
+	title = cwu.13.t
+	desc = cwu.13.d
+
+	is_triggered_only = yes
+
+	option = { # Fight them
+		name = cwu.13.a
+
+		hidden_effect = {
+			set_country_flag = pol_fight_democrats_1970
+			news_event = cwu.14
+		}
+		ai_chance = { factor = 1 modifier = { is_historical_focus_on = no factor = 80 } }
+	}
+
+	option = { # Give in to their demands
+		name = cwu.13.b
+		set_politics = {
+			ruling_party = democratic
+			elections_allowed = yes
+			last_election = "1968.1.5"
+		}
+		hidden_effect = {
+			set_country_flag = pol_become_democratic_1970
+			news_event = cwu.14
+		}
+		ai_chance = { factor = 0 modifier = { is_historical_focus_on = no factor = 20 } }
+	}
+
+	immediate = {
+		set_global_flag = polish_uprising_1970
+	}
+}
+# Polish Protests 1970 News Event
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.14 
+ immediate = { }
+	title = cwu.14.t
+	desc = {
+		text = cwu.14.d
+		trigger = { has_country_flag = pol_fight_democrats_1970 }
+	}
+	desc = {
+		text = cwu.14.desc
+		trigger = { has_country_flag = pol_become_democratic_1970 }
+	}
+	picture = GFX_news_event_polish_uprising_1970
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = cwu.14.a
+		trigger = { tag = POL }
+	}
+
+	option = {
+		name = cwu.14.b
+		trigger = { NOT = { tag = POL } }
+	}
+}
+# Polish Protests hidden trigger
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.15 
+ immediate = { }
+	hidden = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { }
+
+	immediate = {
+		POL = { country_event = cwu.13 }
+	}
+}
+# Coaotion Spring 1971
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.16 
+ immediate = { }
+	title = cwu.16.t
+	desc = cwu.16.d
+
+	is_triggered_only = yes
+
+	option = { # Fight them
+		name = cwu.16.a
+		YUG = {
+			release = CRO
+			declare_war_on = { target = CRO type = civil_war }
+		}
+		hidden_effect = {
+			set_country_flag = cro_fight_democrats_1971
+			news_event = cwu.17
+			CRO = { load_oob = "CRO_1971" }
+		}
+		ai_chance = { factor = 1 modifier = { is_historical_focus_on = no factor = 80 } }
+	}
+
+	option = { # Give in to their demands
+		name = cwu.16.b
+		YUG = {
+			release = CRO
+			puppet = CRO
+		}
+		CRO = {
+			set_politics = {
+				ruling_party = communism
+				elections_allowed = no
+				last_election = "1971.9.3"
+			}
+		}
+		hidden_effect = {
+			set_country_flag = cro_become_free_1971
+			news_event = cwu.17
+		}
+		ai_chance = { factor = 0 modifier = { is_historical_focus_on = no factor = 20 } }
+	}
+
+	immediate = {
+		set_global_flag = croatian_uprising_1971
+	}
+}
+# Croation Spring 1971 News Event
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.17 
+ immediate = { }
+	title = cwu.17.t
+	desc = {
+		text = cwu.17.d
+		trigger = { has_country_flag = cro_fight_democrats_1971 }
+	}
+	desc = {
+		text = cwu.17.desc
+		trigger = { has_country_flag = cro_become_free_1971 }
+	}
+	picture = GFX_news_event_croatian_uprising_1971
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = cwu.17.a
+		trigger = { tag = CRO }
+	}
+
+	option = {
+		name = cwu.17.b
+		trigger = { NOT = { tag = CRO } }
+	}
+}
+# Croation Spring hidden trigger
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.18 
+ immediate = { }
+	hidden = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { }
+
+	immediate = {
+		YUG = { country_event = cwu.16 }
+	}
+}
+# Uprising in Kosovo 1981
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.19 
+ immediate = { }
+	title = cwu.19.t
+	desc = cwu.19.d
+
+	is_triggered_only = yes
+
+	option = { # Fight them
+		name = cwu.19.a
+		YUG = {
+			release = KOS
+			declare_war_on = { target = KOS type = civil_war }
+		}
+		ai_chance = { factor = 1 modifier = { is_historical_focus_on = no factor = 80 } }
+		hidden_effect = {
+			set_country_flag = kos_fight_democrats_81
+			news_event = cwu.20
+			KOS = {
+				load_oob = "KOS_1981"
+				create_country_leader = {
+					name = "Ilaz Kurteshi"
+					picture = "Portrait_Kosovo_Ilaz_Kurteshi.dds"
+					ideology = stalinism
+				}
+			}
+		}
+	}
+
+	option = { # Give in to their demands
+		name = cwu.19.b
+		YUG = {
+			release = KOS
+			puppet = KOS
+		}
+		KOS = {
+			set_politics = {
+				ruling_party = communism
+				elections_allowed = no
+				last_election = "1981.3.11"
+			}
+		}
+		hidden_effect = {
+			set_country_flag = kos_become_free_81
+			news_event = cwu.20
+			KOS = {
+				create_country_leader = {
+					name = "Ilaz Kurteshi"
+					picture = "Portrait_Kosovo_Ilaz_Kurteshi.dds"
+					ideology = stalinism
+				}
+			}
+		}
+		ai_chance = { factor = 0 modifier = { is_historical_focus_on = no factor = 20 } }
+	}
+
+	immediate = {
+		set_global_flag = kosovan_uprising_81
+	}
+}
+# Uprising in Kosovo 1981 News Event
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.20 
+ immediate = { }
+	title = cwu.20.t
+	desc = {
+		text = cwu.20.d
+		trigger = { has_country_flag = kos_fight_democrats_81 }
+	}
+	desc = {
+		text = cwu.20.desc
+		trigger = { has_country_flag = kos_become_free_81 }
+	}
+	picture = GFX_news_event_kosovan_uprising_81
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = cwu.20.a
+		trigger = { tag = KOS }
+	}
+
+	option = {
+		name = cwu.20.b
+		trigger = { NOT = { tag = KOS } }
+	}
+}
+# Uprising in Kosovo hidden trigger
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.21 
+ immediate = { }
+	hidden = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { }
+
+	immediate = {
+		YUG = { country_event = cwu.19 }
+	}
+}
+# Slovene Spring 1987
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.22 
+ immediate = { }
+	title = cwu.22.t
+	desc = cwu.22.d
+
+	is_triggered_only = yes
+
+	option = { # Fight them
+		name = cwu.22.a
+		YUG = {
+			release = SLV
+			declare_war_on = { target = SLV type = civil_war }
+		}
+		hidden_effect = {
+			set_country_flag = slv_fight_democrats_87
+			news_event = cwu.23
+			KOS = {
+				load_oob = "SLV_1987"
+				create_country_leader = {
+					name = "France Popit"
+					picture = "Portrait_Slovenia_France_Popit.dds"
+					ideology = stalinism
+				}
+			}
+		}
+		ai_chance = { factor = 1 modifier = { is_historical_focus_on = no factor = 80 } }
+	}
+
+	option = { # Give in to their demands
+		name = cwu.22.b
+		YUG = {
+			release = SLV
+			puppet = SLV
+		}
+		KOS = {
+			set_politics = {
+				ruling_party = communism
+				elections_allowed = no
+				last_election = "1987.12.6"
+			}
+		}
+		hidden_effect = {
+			set_country_flag = slv_become_free_87
+			news_event = cwu.23
+			KOS = {
+				create_country_leader = {
+					name = "France Popit"
+					picture = "Portrait_Slovenia_France_Popit.dds"
+					ideology = stalinism
+				}
+			}
+		}
+		ai_chance = { factor = 0 modifier = { is_historical_focus_on = no factor = 20 } }
+	}
+
+	immediate = {
+		set_global_flag = slovene_uprising_87
+	}
+}
+# Slovene Spring 1987 News Event
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.23 
+ immediate = { }
+	title = cwu.23.t
+	desc = {
+		text = cwu.23.d
+		trigger = { has_country_flag = slv_fight_democrats_87 }
+	}
+	desc = {
+		text = cwu.23.desc
+		trigger = { has_country_flag = slv_become_free_87 }
+	}
+	picture = GFX_news_event_slovene_uprising_87
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = cwu.23.a
+		trigger = { tag = SLV }
+	}
+
+	option = {
+		name = cwu.23.b
+		trigger = { NOT = { tag = SLV } }
+	}
+}
+# Slovene Spring hidden trigger
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.24 
+ immediate = { }
+	hidden = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { }
+
+	immediate = {
+		YUG = { country_event = cwu.22 }
+	}
+}# Second Malayan Emergency 1967
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.25 
+ immediate = { }
+	title = cwu.25.t
+	desc = cwu.25.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { # Fight them
+		name = cwu.25.a
+		MLA = {
+			transfer_state = 791
+			791 = {
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					instant_build = yes
+					province = 12271
+				}
+			}
+			transfer_state = 333
+			declare_war_on = { target = MAL type = civil_war }
+			load_oob = "MAL_CIVIL_WAR_OOB"
+		}
+		hidden_effect = {
+			set_variable = { MAL.victory_points = 0 }
+			set_variable = { MLA.victory_points = 0 }
+			set_country_flag = mal_fight_commies_67
+			news_event = cwu.26
+		}
+		ai_chance = { factor = 1 modifier = { is_historical_focus_on = no factor = 80 } }
+	}
+	immediate = {
+		set_global_flag = malayan_uprising_67
+	}
+}
+# Second Malayan Emergency 1967 News Event
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.26 
+ immediate = { }
+	title = cwu.26.t
+	desc = {
+		text = cwu.26.d
+		trigger = { has_country_flag = mal_fight_commies_67 } # If the country choses to fight the commies
+	}
+	desc = {
+		text = cwu.26.desc
+		trigger = { MLA = { controls_state = 786 } } # When the commies control the state
+	}
+	picture = GFX_news_event_malayan_uprising_67
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = cwu.26.a
+		trigger = { OR = { tag = MAL tag = MLA } } # What the two countries say to the news event
+	}
+
+	option = {
+		name = cwu.26.b
+		trigger = { NOT = { tag = MLA tag = MAL } } #What the others say to it
+	}
+}
+# Second Malayan Emergency hidden trigger
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.27 
+ immediate = { }
+	hidden = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { }
+
+	immediate = {
+		MAL = { country_event = cwu.25 } #Malaysia gets the event of communist uprisings
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.100 
+ immediate = { }
+	title = cwu.100.t
+	desc = cwu.100.d
+	picture = GFX_news_event_american_ultimatum
+
+	major = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = cwu.100.a
+		trigger = {
+				tag = SOV
+
+			}
+			white_peace = CZE
+			news_event = cwu.101
+		}
+	option = {
+		name = cwu.100.b
+		trigger = {
+				tag = SOV
+
+			}
+			USA = { add_to_war = { targeted_alliance = CZE enemy = SOV } }
+			news_event = cwu.102
+		}
+	option = {
+		name = cwu.100.c
+		trigger = {
+				NOT = { tag = SOV }
+
+			}
+			white_peace = CZE
+		}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.101 
+ immediate = { }
+	title = cwu.101.t
+	desc = cwu.101.d
+	picture = GFX_news_event_american_ultimatum
+
+	major = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = cwu.101.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.102 
+ immediate = { }
+	title = cwu.102.t
+	desc = cwu.102.d
+	picture = GFX_news_event_american_ultimatum
+
+	major = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = cwu.102.a
+			every_country = {
+				limit = {
+					has_idea = nato_member
+				}
+				add_to_war = { targeted_alliance = CZE enemy = SOV }
+			}
+		}
+
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.300 
+ immediate = { }
+	title = cwu.300.t
+	desc = cwu.300.d
+
+	is_triggered_only = yes
+
+	option = { # Fight them
+		name = cwu.300.a
+		complete_national_focus = USA_50s_Bring_the_Issue_to_the_UN
+		news_event = cwu.310
+		ai_chance = { factor = 1 modifier = { is_historical_focus_on = no factor = 80 } }
+	}
+	option = { # Fight them
+		name = cwu.300.b
+		complete_national_focus = USA_50s_Threaten_the_Soviets
+		ai_chance = { factor = 1 modifier = { is_historical_focus_on = no factor = 80 } }
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ULT_SOV.1 
+ immediate = { }
+	title = ULT_SOV.1.t
+	desc = ULT_SOV.1.d
+
+	is_triggered_only = yes
+
+	option = { # Release Hungary
+		name = ULT_SOV.1.a
+		news_event = cwu.311
+		USA = { complete_national_focus = USA_50s_The_Curtain_Opens }
+		ai_chance = { factor = 1 modifier = { is_historical_focus_on = no factor = 80 } }
+		set_country_flag = Hungary_let_go
+	}
+	option = { # Fight them
+		name = ULT_SOV.1.b
+		USA = { country_event = ULT_SOV.2 }
+		ai_chance = { factor = 1 modifier = { is_historical_focus_on = no factor = 80 } }
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ULT_SOV.2 
+ immediate = { }
+	title = ULT_SOV.2.t
+	desc = ULT_SOV.2.d
+
+	is_triggered_only = yes
+
+	option = { #
+		name = ULT_SOV.2.a
+		news_event = cwu.312
+		create_faction = NATO
+		HUN = {
+			add_ideas = nato_member
+
+		}
+		add_to_faction = HUN
+		news_event = cwu.312
+		USA = { complete_national_focus = USA_50s_Stand_By_Our_Word }
+		ai_chance = { factor = 1 modifier = { is_historical_focus_on = no factor = 80 } }
+	}
+	option = { # Fight them
+		name = ULT_SOV.2.b
+		news_event = cwu.313
+		USA = { complete_national_focus = USA_50s_Back_Down_HUN }
+		ai_chance = { factor = 1 modifier = { is_historical_focus_on = no factor = 80 } }
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.311 
+ immediate = { }
+	title = cwu.311.t
+	desc = cwu.311.d
+	picture = GFX_report_event_Hungarian_Revolution_One
+
+	major = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = cwu.311.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.312 
+ immediate = { }
+	title = cwu.312.t
+	desc = cwu.312.d
+	picture = GFX_report_event_Hungarian_Revolution_Two
+
+	major = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = cwu.312.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.313 
+ immediate = { }
+	title = cwu.313.t
+	desc = cwu.313.d
+	picture = GFX_report_event_Hungarian_Revolution_Three
+
+	major = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = cwu.313.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cwu.314 
+ immediate = { }
+	title = cwu.314.t
+	desc = cwu.314.d
+	picture = GFX_report_event_Hungarian_Revolution_Four
+
+	major = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = cwu.314.a
+	}
+}

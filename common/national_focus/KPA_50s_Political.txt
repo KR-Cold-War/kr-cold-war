@@ -1,0 +1,1425 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = KPA_50s_Political
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = KPA
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	shared_focus = KPA_50s_the_stalinization_of_democratic_peoples_republic_of_korea
+	shared_focus = KPA_50s_the_three_year_plan
+	shared_focus = KPA_50s_the_first_five_year_plan
+	shared_focus = KPA_50s_the_korean_peoples_army
+	shared_focus = KPA_50s_the_fatherland_liberation_war
+	focus = {
+		id = KPA_50s_premier_kim_il_sung
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_premier_kim_il_sung
+		cost = 10
+		x = 15
+		y = 0
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 100
+			add_to_variable = {
+				personality_cult_pp = 0.05
+			}
+			add_to_variable = {
+				personality_cult_cf = 0.05
+			}
+			add_to_variable = {
+				personality_cult_rsf = -0.01
+			}
+			add_to_variable = {
+				personality_cult_ddf = 0.05
+			}
+			add_to_variable = {
+				personality_cult_wsf = 0.05
+			}
+			custom_effect_tooltip = personality_cult_strength_increase_TT
+		}
+	}
+	focus = {
+		id = KPA_50s_arrival_of_korean_troops_from_abroad
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_arrival_of_korean_troops_from_abroad
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_premier_kim_il_sung
+		}
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_premier_kim_il_sung
+	}
+	focus = {
+		id = KPA_50s_establish_the_fatherland_unification_democratic_front
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_establish_the_fatherland_unification_democratic_front
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_premier_kim_il_sung
+		}
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+		relative_position_id = KPA_50s_premier_kim_il_sung
+	}
+	focus = {
+		id = KPA_50s_confirm_guarantee_of_war_support_from_stalin_and_mao
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_confirm_guarantee_of_war_support_from_stalin_and_mao
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_arrival_of_korean_troops_from_abroad
+		}
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_arrival_of_korean_troops_from_abroad
+	}
+	focus = {
+		id = KPA_50s_final_preparations_of_fatherland_liberation_war
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_final_preparations_of_fatherland_liberation_war
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_arrival_of_korean_troops_from_abroad
+		}
+		prerequisite = {
+			focus = KPA_50s_establish_the_fatherland_unification_democratic_front
+		}
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_arrival_of_korean_troops_from_abroad
+	}
+	focus = {
+		id = KPA_50s_integrate_the_workers_party_of_south_korea
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_integrate_the_workers_party_of_south_korea
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_establish_the_fatherland_unification_democratic_front
+		}
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+			set_party_name = {
+				ideology = communism 
+				name = "Choson Rodongdang - Manjup'a" # ŏ
+				long_name = "Choson Rodongdang - Manjup'a" # ŏ
+			}
+		}
+		relative_position_id = KPA_50s_establish_the_fatherland_unification_democratic_front
+	}
+	focus = {
+		id = KPA_50s_execute_cho_mansik
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_execute_cho_mansik
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_confirm_guarantee_of_war_support_from_stalin_and_mao
+		}
+		prerequisite = {
+			focus = KPA_50s_final_preparations_of_fatherland_liberation_war
+		}
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			news_event = KPA_Purge.3
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.03
+			}
+		}
+		relative_position_id = KPA_50s_confirm_guarantee_of_war_support_from_stalin_and_mao
+	}
+	focus = {
+		id = KPA_50s_launch_sweeping_purges
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_launch_sweeping_purges
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_final_preparations_of_fatherland_liberation_war
+		}
+		prerequisite = {
+			focus = KPA_50s_integrate_the_workers_party_of_south_korea
+		}
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = {
+				kwp_strength_stability = -0.025
+			}
+			add_to_variable = {
+				kwp_strength_pp = -0.025
+			}
+			add_to_variable = {
+				gulag_factor_neg = -0.01
+			}
+			add_to_variable = {
+				gulag_factor_five = 0.05
+			}
+			custom_effect_tooltip = gulag_factor_increase_TT
+			custom_effect_tooltip = kwp_strength_decrease_TT
+		}
+		relative_position_id = KPA_50s_final_preparations_of_fatherland_liberation_war
+	}
+	focus = {
+		id = KPA_50s_finding_a_scapegoat
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_finding_a_scapegoat
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_execute_cho_mansik
+		}
+		prerequisite = {
+			focus = KPA_50s_launch_sweeping_purges
+		}
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 15
+			add_political_power = 50
+			add_stability = 0.02
+		}
+		relative_position_id = KPA_50s_execute_cho_mansik
+	}
+	focus = {
+		id = KPA_50s_criticize_ho_kai
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_criticize_ho_kai
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_finding_a_scapegoat
+		}
+		x = -3
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.2
+			custom_effect_tooltip = domestic_influence_gain
+			set_temp_variable = { percent_change = 15 }
+			change_domestic_influence_percentage = yes
+		}
+		relative_position_id = KPA_50s_finding_a_scapegoat
+	}
+	focus = {
+		id = KPA_50s_purge_southern_communists
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_purge_southern_communists
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_finding_a_scapegoat
+		}
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_POL.3
+			custom_effect_tooltip = KPA_WPK_consolidation
+			hidden_effect = {
+				add_to_variable = {
+					KPA_DPA_ddf = 0.1
+				}
+				add_to_variable = {
+					KPA_DPA_pp = 0.05
+				}
+				add_to_variable = {
+					KPA_KPA_DPA_sf = -0.1
+				}
+			}
+		}
+		relative_position_id = KPA_50s_finding_a_scapegoat
+	}
+	focus = {
+		id = KPA_50s_blame_yanan_generals_for_disaster
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_blame_yanan_generals_for_disaster
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_finding_a_scapegoat
+		}
+		x = 3
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			remove_unit_leader = 33003
+			set_temp_variable = { percent_change = -10 }
+			set_temp_variable = { tag_index = PRC.id }
+			set_temp_variable = { influence_target = KPA.id }
+			change_influence_percentage = yes
+			news_event = KPA_Purge.4
+		}
+		relative_position_id = KPA_50s_finding_a_scapegoat
+	}
+	focus = {
+		id = KPA_50s_administrative_district_reorganization
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_administrative_district_reorganization
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_criticize_ho_kai
+		}
+		prerequisite = {
+			focus = KPA_50s_purge_southern_communists
+		}
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+		}
+		relative_position_id = KPA_50s_criticize_ho_kai
+	}
+	focus = {
+		id = KPA_50s_establish_the_national_academy_of_science
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_establish_the_national_academy_of_science
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_purge_southern_communists
+		}
+		prerequisite = {
+			focus = KPA_50s_blame_yanan_generals_for_disaster
+		}
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+		relative_position_id = KPA_50s_purge_southern_communists
+	}
+	focus = {
+		id = KPA_50s_change_in_the_leadership_of_soviet_union
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_change_in_the_leadership_of_soviet_union
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_administrative_district_reorganization
+		}
+		prerequisite = {
+			focus = KPA_50s_establish_the_national_academy_of_science
+		}
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			has_global_flag = stalin_dead
+		}
+		bypass = {
+			has_global_flag = stalin_dead
+		}
+		completion_reward = {
+		}
+		relative_position_id = KPA_50s_establish_the_national_academy_of_science
+	}
+	focus = {
+		id = KPA_50s_the_6th_plenary_session_of_the_workers_party
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_political_pressure
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_change_in_the_leadership_of_soviet_union
+		}
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_change_in_the_leadership_of_soviet_union
+	}
+	focus = {
+		id = KPA_50s_expand_the_personality_cult
+		completion_reward = {
+		}
+		icon = GFX_Expand_the_Personality_Cult_KPA
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_the_6th_plenary_session_of_the_workers_party
+		}
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			custom_effect_tooltip = personality_cult_strength_increase_TT
+			add_to_variable = {
+				personality_cult_pp = 0.1
+			}
+			add_to_variable = {
+				personality_cult_cf = 0.05
+			}
+			add_to_variable = {
+				personality_cult_rsf = -0.01
+			}
+			add_to_variable = {
+				personality_cult_ddf = 0.05
+			}
+			add_to_variable = {
+				personality_cult_wsf = 0.05
+			}
+		}
+		relative_position_id = KPA_50s_the_6th_plenary_session_of_the_workers_party
+	}
+	focus = {
+		id = KPA_50s_promote_kims_supporters
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_the_6th_plenary_session_of_the_workers_party
+		}
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = {
+				kwp_party_strength_pp = 0.05
+			}
+			add_to_variable = {
+				kwp_party_strength_rsf = -0.05
+			}
+			add_to_variable = {
+				kwp_party_strength_sf = 0.05
+			}
+			custom_effect_tooltip = kwp_strength_increase_TT
+		}
+		relative_position_id = KPA_50s_the_6th_plenary_session_of_the_workers_party
+	}
+	focus = {
+		id = KPA_50s_purge_pak_ilu
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_expand_the_personality_cult
+		}
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 50
+			set_temp_variable = { percent_change = -10 }
+			set_temp_variable = { tag_index = PRC.id }
+			set_temp_variable = { influence_target = KPA.id }
+			change_influence_percentage = yes
+			news_event = KPA_Purge.9
+		}
+		relative_position_id = KPA_50s_expand_the_personality_cult
+	}
+	focus = {
+		id = KPA_50s_the_famine_of_1955
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_expand_the_personality_cult
+		}
+		prerequisite = {
+			focus = KPA_50s_promote_kims_supporters
+		}
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_expand_the_personality_cult
+	}
+	focus = {
+		id = KPA_50s_execute_pak_honyong
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_promote_kims_supporters
+		}
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			news_event = KPA_Purge.7
+			add_to_variable = {
+				gulag_factor_neg = -0.01
+			}
+			add_to_variable = {
+				gulag_factor_five = 0.05
+			}
+			hidden_effect = {
+				add_to_variable = {
+					KPA_DPA_ddf = 0.1
+				}
+				add_to_variable = {
+					KPA_DPA_pp = 0.05
+				}
+				add_to_variable = {
+					KPA_KPA_DPA_sf = -0.1
+				}
+			}
+			custom_effect_tooltip = gulag_factor_increase_TT
+			custom_effect_tooltip = KPA_WPK_consolidation
+		}
+		relative_position_id = KPA_50s_promote_kims_supporters
+	}
+	focus = {
+		id = KPA_50s_establishing_juche
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_purge_pak_ilu
+		}
+		prerequisite = {
+			focus = KPA_50s_the_famine_of_1955
+		}
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			news_event = Juche.1
+			set_variable = {
+				personality_cult_pp = 0.1
+			}
+			set_variable = {
+				personality_cult_cf = 0.05
+			}
+			set_variable = {
+				personality_cult_rsf = -0.1
+			}
+			set_variable = {
+				personality_cult_ddf = 0.05
+			}
+			set_variable = {
+				personality_cult_wsf = 0.05
+			}
+		}
+		relative_position_id = KPA_50s_purge_pak_ilu
+	}
+	focus = {
+		id = KPA_50s_3rd_congress_of_the_workers_party_of_korea
+		completion_reward = {
+		}
+		icon = GFX_goal_support_democracy
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_the_famine_of_1955
+		}
+		prerequisite = {
+			focus = KPA_50s_execute_pak_honyong
+		}
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_the_famine_of_1955
+	}
+	focus = {
+		id = KPA_50s_tour_the_eastern_bloc
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_establishing_juche
+		}
+		prerequisite = {
+			focus = KPA_50s_3rd_congress_of_the_workers_party_of_korea
+		}
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = communism
+				popularity = 0.05
+			}
+			news_event = KPA_FOR.1
+			add_opinion_modifier = {
+				target = HUN
+				modifier = medium_increase
+			}
+			HUN = {
+				add_opinion_modifier = {
+					target = KPA
+					modifier = medium_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = POL
+				modifier = medium_increase
+			}
+			POL = {
+				add_opinion_modifier = {
+					target = KPA
+					modifier = medium_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = ROM
+				modifier = medium_increase
+			}
+			ROM = {
+				add_opinion_modifier = {
+					target = KPA
+					modifier = medium_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = CZE
+				modifier = medium_increase
+			}
+			CZE = {
+				add_opinion_modifier = {
+					target = KPA
+					modifier = medium_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = DDR
+				modifier = medium_increase
+			}
+			DDR = {
+				add_opinion_modifier = {
+					target = KPA
+					modifier = medium_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = BUL
+				modifier = medium_increase
+			}
+			BUL = {
+				add_opinion_modifier = {
+					target = KPA
+					modifier = medium_increase
+				}
+			}
+		}
+		relative_position_id = KPA_50s_3rd_congress_of_the_workers_party_of_korea
+	}
+	focus = {
+		id = KPA_50s_the_august_faction_incident
+		completion_reward = {
+		}
+		icon = GFX_August_Faction_Incident
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_tour_the_eastern_bloc
+		}
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_tour_the_eastern_bloc
+	}
+	focus = {
+		id = KPA_50s_unwelcome_visit_of_mikoyan_and_peng
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_the_august_faction_incident
+		}
+		x = -5
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_the_august_faction_incident
+	}
+	focus = {
+		id = KPA_50s_purge_the_opposing_factions
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_unwelcome_visit_of_mikoyan_and_peng
+		}
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			#legacy code from 'Purge the Yanan Faction'
+			custom_effect_tooltip = KPA_WPK_consolidation
+			set_temp_variable = { percent_change = -10 }
+			set_temp_variable = { tag_index = PRC.id }
+			set_temp_variable = { influence_target = KPA.id }
+			change_influence_percentage = yes
+			add_opinion_modifier = {
+				target = PRC
+				modifier = large_decrease
+			}
+			PRC = {
+				add_opinion_modifier = {
+					target = KPA
+					modifier = large_decrease
+				}
+			}
+			hidden_effect = {
+				add_to_variable = {
+					KPA_DPA_ddf = 0.1
+				}
+				add_to_variable = {
+					KPA_DPA_pp = 0.05
+				}
+				add_to_variable = {
+					KPA_KPA_DPA_sf = -0.1
+				}
+			}
+			#legacy code from 'Purge the Soviet Faction'
+			custom_effect_tooltip = KPA_WPK_consolidation
+			set_temp_variable = { percent_change = -10 }
+			set_temp_variable = { tag_index = SOV.id }
+			set_temp_variable = { influence_target = KPA.id }
+			change_influence_percentage = yes
+			add_opinion_modifier = {
+				target = SOV
+				modifier = large_decrease
+			}
+			SOV = {
+				add_opinion_modifier = {
+					target = KPA
+					modifier = large_decrease
+				}
+			}
+			hidden_effect = {
+				add_to_variable = {
+					KPA_DPA_ddf = 0.1
+				}
+				add_to_variable = {
+					KPA_DPA_pp = 0.05
+				}
+				add_to_variable = {
+					KPA_KPA_DPA_sf = -0.1
+				}
+			}
+		}
+		relative_position_id = KPA_50s_unwelcome_visit_of_mikoyan_and_peng
+	}
+	focus = {
+		id = KPA_50s_receive_apology_from_moscow_and_beijing
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_unwelcome_visit_of_mikoyan_and_peng
+		}
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_unwelcome_visit_of_mikoyan_and_peng
+	}
+	focus = {
+		id = KPA_50s_empower_han_sorya
+		completion_reward = {
+		}
+		icon = GFX_Empower_Han_Sorya
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_purge_the_opposing_factions
+		}
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = Han_Sorya.2
+			custom_effect_tooltip = KPA_decrease_illiteracy
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = asian_illiteracy_3
+					}
+					remove_ideas = asian_illiteracy_3
+					add_ideas = asian_illiteracy_2
+				}
+				else_if = {
+					limit = {
+						has_idea = asian_illiteracy_2
+					}
+					remove_ideas = asian_illiteracy_2
+					add_ideas = asian_illiteracy_1
+				}
+				else_if = {
+					limit = {
+						has_idea = asian_illiteracy_1
+					}
+					remove_ideas = asian_illiteracy_1
+					add_ideas = asian_illiteracy_0
+				}
+				else_if = {
+					limit = {
+						has_idea = asian_illiteracy_0
+					}
+					remove_ideas = asian_illiteracy_0
+				}
+				else = {
+				}
+			}
+		}
+		relative_position_id = KPA_50s_purge_the_opposing_factions
+	}
+	focus = {
+		id = KPA_50s_the_guerilla_faction_triumphant
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_purge_the_opposing_factions
+		}
+		prerequisite = {
+			focus = KPA_50s_receive_apology_from_moscow_and_beijing
+		}
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			custom_effect_tooltip = KPA_WPK_consolidation
+			custom_effect_tooltip = personality_cult_strength_increase
+			add_to_variable = {
+				personality_cult_pp = 0.05
+			}
+			add_to_variable = {
+				personality_cult_cf = -0.02
+			}
+			add_to_variable = {
+				personality_cult_rsf = -0.03
+			}
+			add_to_variable = {
+				personality_cult_ddf = 0.05
+			}
+			add_to_variable = {
+				personality_cult_wsf = -0.02
+			}
+			hidden_effect = {
+				add_to_variable = {
+					KPA_DPA_ddf = 0.1
+				}
+				add_to_variable = {
+					KPA_DPA_pp = 0.05
+				}
+				add_to_variable = {
+					KPA_KPA_DPA_sf = -0.1
+				}
+			}
+		}
+		relative_position_id = KPA_50s_purge_the_opposing_factions
+	}
+	focus = {
+		id = KPA_50s_decrease_russian_language_education
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_scientific_exchange
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_receive_apology_from_moscow_and_beijing
+		}
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			set_temp_variable = { percent_change = -10 }
+			set_temp_variable = { tag_index = SOV.id }
+			set_temp_variable = { influence_target = KPA.id }
+			change_influence_percentage = yes
+			custom_effect_tooltip = KPA_decrease_cultural_frag
+			hidden_effect = {
+				add_to_variable = {
+					KPA_DPA_ddf = 0.1
+				}
+				add_to_variable = {
+					KPA_DPA_pp = 0.05
+				}
+				add_to_variable = {
+					KPA_KPA_DPA_sf = -0.1
+				}
+			}
+		}
+		relative_position_id = KPA_50s_receive_apology_from_moscow_and_beijing
+	}
+	focus = {
+		id = KPA_50s_the_second_arduous_march
+		completion_reward = {
+		}
+		icon = GFX_The_Second_Arduous_March
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_empower_han_sorya
+		}
+		prerequisite = {
+			focus = KPA_50s_the_guerilla_faction_triumphant
+		}
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			news_event = August_Faction.2
+		}
+		relative_position_id = KPA_50s_empower_han_sorya
+	}
+	focus = {
+		id = KPA_50s_begin_the_chollima_movement
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_chollima_cooperative_movement
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_the_guerilla_faction_triumphant
+		}
+		prerequisite = {
+			focus = KPA_50s_decrease_russian_language_education
+		}
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_the_guerilla_faction_triumphant
+	}
+	focus = {
+		id = KPA_50s_withdraw_peoples_republic_of_china_forces_in_korea
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_the_second_arduous_march
+		}
+		prerequisite = {
+			focus = KPA_50s_begin_the_chollima_movement
+		}
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_begin_the_chollima_movement
+	}
+	focus = {
+		id = KPA_50s_begin_the_settlement_of_japanokoreans
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_withdraw_peoples_republic_of_china_forces_in_korea
+		}
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_withdraw_peoples_republic_of_china_forces_in_korea
+	}
+	focus = {
+		id = KPA_50s_introduce_the_chongsanri_method
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_begin_the_settlement_of_japanokoreans
+		}
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_begin_the_settlement_of_japanokoreans
+	}
+	focus = {
+		id = KPA_50s_the_consolidation_of_power
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_introduce_the_chongsanri_method
+		}
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_stability = 0.03
+			set_country_flag = kim_korea_solidified
+			set_temp_variable = { percent_change = 20 }
+			change_domestic_influence_percentage = yes
+		}
+		relative_position_id = KPA_50s_introduce_the_chongsanri_method
+	}
+	focus = {
+		id = KPA_50s_blistering_criticism_of_Kims_leadership
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_the_august_faction_incident
+		}
+		x = 5
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_the_august_faction_incident
+	}
+	focus = {
+		id = KPA_50s_resigning_of_kim_il_sung
+		completion_reward = {
+		}
+		icon = GFX_KPA_50s_premier_kim_il_sung
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_blistering_criticism_of_Kims_leadership
+		}
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_blistering_criticism_of_Kims_leadership
+	}
+	focus = {
+		id = KPA_50s_political_support_from_miyokan_and_peng
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_blistering_criticism_of_Kims_leadership
+		}
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_blistering_criticism_of_Kims_leadership
+	}
+	focus = {
+		id = KPA_50s_formation_of_kimpakchoe_triumverate
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_resigning_of_kim_il_sung
+		}
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_resigning_of_kim_il_sung
+	}
+	focus = {
+		id = KPA_50s_purge_the_manju_faction
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_resigning_of_kim_il_sung
+		}
+		prerequisite = {
+			focus = KPA_50s_political_support_from_miyokan_and_peng
+		}
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			custom_effect_tooltip = KPA_WPK_consolidation
+			news_event = KPA_Purge.8
+			hidden_effect = {
+				add_to_variable = {
+					KPA_DPA_ddf = 0.1
+				}
+				add_to_variable = {
+					KPA_DPA_pp = 0.05
+				}
+				add_to_variable = {
+					KPA_KPA_DPA_sf = -0.1
+				}
+			}
+		}
+		relative_position_id = KPA_50s_resigning_of_kim_il_sung
+	}
+	focus = {
+		id = KPA_50s_dismiss_han_sorya
+		completion_reward = {
+		}
+		icon = GFX_Dismiss_Han_Sorya
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_political_support_from_miyokan_and_peng
+		}
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			remove_ideas = socialist_realism
+			country_event = Han_Sorya.3
+			custom_effect_tooltip = KPA_decrease_cultural_frag
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = cultural_fragmentation3
+					}
+					remove_ideas = cultural_fragmentation3
+					add_ideas = cultural_fragmentation2
+				}
+				else_if = {
+					limit = {
+						has_idea = cultural_fragmentation2
+					}
+					remove_ideas = cultural_fragmentation2
+					add_ideas = cultural_fragmentation1
+				}
+				else_if = {
+					limit = {
+						has_idea = cultural_fragmentation1
+					}
+					remove_ideas = cultural_fragmentation1
+				}
+				else = {
+				}
+			}
+		}
+		relative_position_id = KPA_50s_political_support_from_miyokan_and_peng
+	}
+	focus = {
+		id = KPA_50s_weaken_the_personality_cult
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_formation_of_kimpakchoe_triumverate
+		}
+		prerequisite = {
+			focus = KPA_50s_purge_the_manju_faction
+		}
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			news_event = PWK.20
+			remove_dynamic_modifier = {
+				modifier = personality_cult_strength
+			}
+		}
+		relative_position_id = KPA_50s_formation_of_kimpakchoe_triumverate
+	}
+	focus = {
+		id = KPA_50s_rehabilitate_purged_writers
+		completion_reward = {
+		}
+		icon = GFX_Rehabilitate_Purged_KPA_Writers
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_purge_the_manju_faction
+		}
+		prerequisite = {
+			focus = KPA_50s_dismiss_han_sorya
+		}
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			custom_effect_tooltip = KPA_WPK_consolidation
+			hidden_effect = {
+				add_to_variable = {
+					KPA_DPA_ddf = 0.1
+				}
+				add_to_variable = {
+					KPA_DPA_pp = 0.05
+				}
+				add_to_variable = {
+					KPA_KPA_DPA_sf = -0.1
+				}
+			}
+			add_stability = 0.02
+		}
+		relative_position_id = KPA_50s_purge_the_manju_faction
+	}
+	focus = {
+		id = KPA_50s_increase_chinese_cultural_influences
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_weaken_the_personality_cult
+		}
+		prerequisite = {
+			focus = KPA_50s_rehabilitate_purged_writers
+		}
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			set_temp_variable = { percent_change = -10 }
+			set_temp_variable = { tag_index = SOV.id }
+			set_temp_variable = { influence_target = KPA.id }
+			change_influence_percentage = yes
+			custom_effect_tooltip = KPA_decrease_cultural_frag
+			hidden_effect = {
+				if = {
+					limit = {
+						has_idea = cultural_fragmentation3
+					}
+					remove_ideas = cultural_fragmentation3
+					add_ideas = cultural_fragmentation2
+				}
+				else_if = {
+					limit = {
+						has_idea = cultural_fragmentation2
+					}
+					remove_ideas = cultural_fragmentation2
+					add_ideas = cultural_fragmentation1
+				}
+				else_if = {
+					limit = {
+						has_idea = cultural_fragmentation1
+					}
+					remove_ideas = cultural_fragmentation1
+				}
+				else = {
+				}
+			}
+		}
+		relative_position_id = KPA_50s_rehabilitate_purged_writers
+	}
+	focus = {
+		id = KPA_50s_purge_kim_loyalists
+		completion_reward = {
+		}
+		icon = GFX_Purge_Kim_Loyalists
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_increase_chinese_cultural_influences
+		}
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			custom_effect_tooltip = KPA_WPK_consolidation
+			hidden_effect = {
+				add_to_variable = {
+					KPA_DPA_ddf = 0.1
+				}
+				add_to_variable = {
+					KPA_DPA_pp = 0.05
+				}
+				add_to_variable = {
+					KPA_KPA_DPA_sf = -0.1
+				}
+			}
+			add_political_power = 50
+		}
+		relative_position_id = KPA_50s_increase_chinese_cultural_influences
+	}
+	focus = {
+		id = KPA_50s_embrace_destalinization
+		completion_reward = {
+		}
+		icon = GFX_Embrace_Destalinization_KPA
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_purge_kim_loyalists
+		}
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_to_variable = {
+				gulag_factor_neg = -0.02
+			}
+			add_to_variable = {
+				gulag_factor_five = 0.1
+			}
+			custom_effect_tooltip = gulag_factor_decrease_TT
+		}
+		relative_position_id = KPA_50s_purge_kim_loyalists
+	}
+	focus = {
+		id = KPA_50s_fracture_within_the_new_regime
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = KPA_50s_embrace_destalinization
+		}
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			country_event = KPA_Purge.1
+		}
+		relative_position_id = KPA_50s_embrace_destalinization
+	}
+}

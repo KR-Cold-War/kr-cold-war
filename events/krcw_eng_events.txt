@@ -1,0 +1,1210 @@
+# krcw: paced
+add_namespace = krcw_eng
+
+country_event = {
+	id = krcw_eng.20
+	title = krcw_eng_20_t
+	desc = krcw_eng_20_d
+	picture = GFX_krcw_eu_councilist_c
+	is_triggered_only = yes
+	option = {
+		name = krcw_eng_20.a
+		ai_chance = {
+			base = 65
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_road_stewards }
+		}
+		add_stability = 0.03
+		add_political_power = -25
+		add_popularity = { ideology = trotskyism popularity = 0.02 }
+		set_country_flag = krcw_eng_stewards_board
+		if = { limit = { has_country_flag = krcw_eng_road_federal } add_political_power = -25 }
+	}
+	option = {
+		name = krcw_eng_20.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_road_federal }
+		}
+		add_political_power = 40
+		add_stability = -0.02
+		set_country_flag = krcw_eng_stewards_rebuffed
+		if = { limit = { has_country_flag = krcw_eng_road_stewards } add_stability = -0.03 }
+	}
+}
+
+country_event = {
+	id = krcw_eng.21
+	title = krcw_eng_21_t
+	desc = krcw_eng_21_d
+	picture = GFX_krcw_eu_strike
+	is_triggered_only = yes
+	option = {
+		name = krcw_eng_21.a
+		ai_chance = {
+			base = 70
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_stewards_board }
+		}
+		add_stability = 0.05
+		add_political_power = 50
+		set_country_flag = krcw_eng_charter
+		if = { limit = { has_country_flag = krcw_eng_stewards_board } add_stability = 0.02 }
+		if = { limit = { has_country_flag = krcw_eng_clyde_broken } add_political_power = -25 }
+	}
+	option = {
+		name = krcw_eng_21.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_stewards_rebuffed }
+		}
+		add_political_power = -30
+		add_stability = -0.05
+		if = { limit = { NOT = { has_idea = krcw_ti_bureaucratization } } add_ideas = krcw_ti_bureaucratization }
+		set_country_flag = krcw_eng_technocratic
+		if = { limit = { OR = { has_country_flag = krcw_eng_stewards_rebuffed has_country_flag = krcw_eng_clyde_broken } } add_stability = -0.03 add_popularity = { ideology = trotskyism popularity = -0.03 } }
+	}
+}
+
+country_event = {
+	id = krcw_eng.22
+	title = krcw_eng_22_t
+	desc = krcw_eng_22_d
+	picture = GFX_krcw_eu_map_brit
+	is_triggered_only = yes
+	option = {
+		name = krcw_eng_22.a
+		ai_chance = {
+			base = 70
+		}
+		add_stability = 0.03
+		126 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		if = { limit = { has_idea = krcw_eng_blackshirt_remnant } remove_ideas = krcw_eng_blackshirt_remnant }
+	}
+	option = {
+		name = krcw_eng_22.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		add_war_support = 0.02
+		add_stability = -0.01
+		set_country_flag = krcw_eng_blackshirts_banned
+		random_list = {
+			55 = {
+				modifier = { factor = 1.3 has_stability > 0.6 }
+				country_event = { id = krcw_eng.12 days = 54 random_days = 30 }
+			}
+			45 = {
+				modifier = { factor = 1.3 has_country_flag = krcw_eng_clyde_broken }
+				modifier = { factor = 1.2 has_stability < 0.4 }
+				country_event = { id = krcw_eng.13 days = 40 random_days = 30 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = krcw_eng.12
+	title = krcw_eng_12_t
+	desc = krcw_eng_12_d
+	picture = GFX_krcw_eu_map_brit
+	is_triggered_only = yes
+	option = {
+		name = krcw_eng_12.a
+		ai_chance = {
+			base = 1
+		}
+		add_stability = 0.02
+		if = { limit = { has_idea = krcw_eng_blackshirt_remnant } remove_ideas = krcw_eng_blackshirt_remnant }
+	}
+}
+
+country_event = {
+	id = krcw_eng.13
+	title = krcw_eng_13_t
+	desc = krcw_eng_13_d
+	picture = GFX_krcw_eu_strike
+	is_triggered_only = yes
+	option = {
+		name = krcw_eng_13.a
+		ai_chance = {
+			base = 55
+		}
+		add_war_support = 0.02
+		add_stability = -0.02
+		add_political_power = -25
+		if = { limit = { has_idea = krcw_eng_blackshirt_remnant } remove_ideas = krcw_eng_blackshirt_remnant }
+	}
+	option = {
+		name = krcw_eng_13.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -50
+		add_stability = 0.02
+		126 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		if = { limit = { has_idea = krcw_eng_blackshirt_remnant } remove_ideas = krcw_eng_blackshirt_remnant }
+	}
+}
+
+country_event = {
+	id = krcw_eng.23
+	title = krcw_eng_23_t
+	desc = krcw_eng_23_d
+	picture = GFX_krcw_eu_diplomacy1
+	is_triggered_only = yes
+	option = {
+		name = krcw_eng_23.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_road_federal }
+			modifier = { factor = 1.3 has_country_flag = krcw_eng_clyde_forced }
+			modifier = { factor = 0.5 has_country_flag = krcw_eng_charter }
+		}
+		if = { limit = { NOT = { has_character = ENG_krcw_horner } } recruit_character = ENG_krcw_horner }
+		promote_character = ENG_krcw_horner
+		add_political_power = 50
+		add_stability = 0.02
+		if = { limit = { OR = { has_country_flag = krcw_eng_clyde_broken has_country_flag = krcw_eng_charter } } add_stability = -0.03 }
+	}
+	option = {
+		name = krcw_eng_23.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 2 has_country_flag = krcw_eng_charter }
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_road_stewards }
+			modifier = { factor = 1.3 has_country_flag = krcw_eng_stewards_board }
+		}
+		if = { limit = { NOT = { has_character = ENG_krcw_gallacher } } recruit_character = ENG_krcw_gallacher }
+		promote_character = ENG_krcw_gallacher
+		add_popularity = { ideology = trotskyism popularity = 0.04 }
+		add_stability = 0.03
+		if = { limit = { OR = { has_country_flag = krcw_eng_stewards_board has_country_flag = krcw_eng_clyde_by_stewards } } add_stability = 0.02 }
+		if = { limit = { OR = { has_country_flag = krcw_eng_clyde_broken has_country_flag = krcw_eng_technocratic } } add_political_power = -50 }
+	}
+	option = {
+		name = krcw_eng_23.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 2 has_country_flag = krcw_eng_technocratic }
+		}
+		if = { limit = { NOT = { has_character = ENG_krcw_wilkinson } } recruit_character = ENG_krcw_wilkinson }
+		promote_character = ENG_krcw_wilkinson
+		if = { limit = { NOT = { has_idea = krcw_eng_consumer_turn } } add_ideas = krcw_eng_consumer_turn }
+		add_political_power = 25
+		if = { limit = { has_country_flag = krcw_eng_technocratic } add_political_power = 50 }
+	}
+}
+
+country_event = {
+	id = krcw_eng.24
+	title = krcw_eng_24_t
+	desc = krcw_eng_24_d
+	picture = GFX_krcw_eu_councilist_c
+	is_triggered_only = yes
+	option = {
+		name = krcw_eng_24.a
+		ai_chance = {
+			base = 70
+		}
+		132 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = dockyard level = 1 instant_build = yes }
+		} }
+		add_political_power = 25
+		navy_experience = 10
+	}
+	option = {
+		name = krcw_eng_24.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		navy_experience = 15
+		add_war_support = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_eng.25
+	title = krcw_eng_25_t
+	desc = krcw_eng_25_d
+	picture = GFX_krcw_eu_map_brit
+	is_triggered_only = yes
+	option = {
+		name = krcw_eng_25.a
+		ai_chance = {
+			base = 60
+		}
+		131 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = dockyard level = 1 instant_build = yes }
+		} }
+		navy_experience = 15
+		set_country_flag = krcw_eng_escorts_first
+	}
+	option = {
+		name = krcw_eng_25.b
+		ai_chance = {
+			base = 40
+		}
+		air_experience = 15
+		add_tech_bonus = { name = krcw_eng_bomber bonus = 0.5 uses = 1 category = strategic_destruction_tree }
+		set_country_flag = krcw_eng_bombers_first
+	}
+}
+
+country_event = {
+	id = krcw_eng.1
+	title = krcw_eng_1_t
+	desc = krcw_eng_1_d
+	picture = GFX_krcw_eu_eng_mann_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_eng_1.a
+		ai_chance = {
+			base = 60
+		}
+		add_stability = 0.03
+		add_political_power = 25
+		set_country_flag = krcw_eng_road_federal
+	}
+	option = {
+		name = krcw_eng_1.b
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 50
+		add_popularity = { ideology = trotskyism popularity = 0.02 }
+		set_country_flag = krcw_eng_road_stewards
+	}
+}
+
+country_event = {
+	id = krcw_eng.2
+	title = krcw_eng_2_t
+	desc = krcw_eng_2_d
+	picture = GFX_krcw_eu_map_brit
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_eng_2.a
+		trigger = {
+			country_exists = IRE
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_ulster_regret }
+		}
+		add_political_power = -25
+		set_country_flag = krcw_eng_belfast_proposal
+		IRE = { country_event = { id = krcw_eng.3 days = 5 } }
+	}
+	option = {
+		name = krcw_eng_2.b
+		ai_chance = {
+			base = 25
+		}
+		add_political_power = -25
+		add_manpower = 5000
+		add_stability = -0.01
+		set_country_flag = krcw_eng_belfast_resettled
+		if = { limit = { country_exists = IRE } IRE = { add_opinion_modifier = { target = ENG modifier = krcw_eu_secretariat_slight } } }
+	}
+	option = {
+		name = krcw_eng_2.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_ulster_accepted }
+		}
+		add_political_power = 25
+		set_country_flag = krcw_eng_belfast_left
+		if = { limit = { country_exists = IRE } IRE = { add_opinion_modifier = { target = ENG modifier = krcw_eu_ti_solidarity } } }
+	}
+}
+
+country_event = {
+	id = krcw_eng.3
+	title = krcw_eng_3_t
+	desc = krcw_eng_3_d
+	picture = GFX_krcw_eu_ire_starry_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_eng_3.a
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 has_opinion = { target = ENG value > 30 } }
+			modifier = { factor = 0.6 ENG = { has_country_flag = krcw_eng_ulster_regret } }
+		}
+		add_stability = -0.01
+		add_opinion_modifier = { target = ENG modifier = krcw_eu_sister_federation }
+		ENG = { set_country_flag = krcw_eng_belfast_guarantee country_event = { id = krcw_eng.8 days = 5 } }
+	}
+	option = {
+		name = krcw_eng_3.b
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = 25
+		ENG = { set_country_flag = krcw_eng_belfast_refused country_event = { id = krcw_eng.8 days = 5 } }
+	}
+}
+
+country_event = {
+	id = krcw_eng.8
+	title = krcw_eng_8_t
+	desc = {
+		text = krcw_eng_8_d0
+		trigger = {
+			has_country_flag = krcw_eng_belfast_guarantee
+		}
+	}
+	desc = {
+		text = krcw_eng_8_d1
+		trigger = {
+			has_country_flag = krcw_eng_belfast_refused
+		}
+	}
+	picture = GFX_krcw_eu_map_brit
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_eng_8.a
+		trigger = {
+			has_country_flag = krcw_eng_belfast_guarantee
+		}
+		ai_chance = {
+			base = 1
+		}
+		add_stability = 0.02
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_eng_8.b
+		trigger = {
+			has_country_flag = krcw_eng_belfast_refused
+		}
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = 25
+		add_stability = -0.02
+	}
+	option = {
+		name = krcw_eng_8.c
+		trigger = {
+			has_country_flag = krcw_eng_belfast_refused
+		}
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = -25
+		add_stability = 0.01
+		set_country_flag = krcw_eng_irish_grievance
+		if = { limit = { country_exists = IRE } IRE = { add_opinion_modifier = { target = ENG modifier = krcw_eu_secretariat_slight } } }
+	}
+}
+
+country_event = {
+	id = krcw_eng.4
+	title = krcw_eng_4_t
+	desc = krcw_eng_4_d
+	picture = GFX_krcw_eu_ast_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_eng_4.a
+		ai_chance = {
+			base = 65
+		}
+		set_country_flag = krcw_ast_replied_to_london
+		add_opinion_modifier = { target = ENG modifier = krcw_eu_detente_contact }
+		ENG = { country_event = { id = krcw_eng.7 days = 7 } }
+	}
+	option = {
+		name = krcw_eng_4.b
+		ai_chance = {
+			base = 35
+		}
+		add_war_support = 0.02
+		ENG = { country_event = { id = krcw_eng.7 days = 7 } }
+	}
+}
+
+country_event = {
+	id = krcw_eng.5
+	title = krcw_eng_5_t
+	desc = krcw_eng_5_d
+	picture = GFX_krcw_eu_strike
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_eng_5.a
+		ai_chance = {
+			base = 60
+			modifier = { factor = 1.3 has_country_flag = krcw_eng_road_federal }
+		}
+		add_stability = 0.02
+		add_political_power = -25
+		set_country_flag = krcw_eng_clyde_settled
+		133 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = dockyard level = 1 instant_build = yes }
+		} }
+	}
+	option = {
+		name = krcw_eng_5.b
+		ai_chance = {
+			base = 25
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_road_federal }
+		}
+		add_political_power = 25
+		add_stability = -0.01
+		set_country_flag = krcw_eng_clyde_ordered
+		random_list = {
+			55 = {
+				modifier = { factor = 1.4 has_stability > 0.6 }
+				modifier = { factor = 1.2 has_country_flag = krcw_eng_road_federal }
+				country_event = { id = krcw_eng.10 days = 10 random_days = 5 }
+			}
+			45 = {
+				modifier = { factor = 1.5 has_country_flag = krcw_eng_stewards_rebuffed }
+				modifier = { factor = 1.3 has_country_flag = krcw_eng_road_stewards }
+				modifier = { factor = 1.3 has_country_flag = krcw_eng_glasgow_warned }
+				modifier = { factor = 0.7 has_country_flag = krcw_eng_scotland_reassured }
+				country_event = { id = krcw_eng.11 days = 10 random_days = 5 }
+			}
+		}
+	}
+	option = {
+		name = krcw_eng_5.c
+		trigger = {
+			OR = { has_idea = krcw_eng_shop_stewards has_country_flag = krcw_eng_stewards_board }
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_road_stewards }
+		}
+		add_stability = 0.03
+		set_country_flag = krcw_eng_clyde_settled
+		set_country_flag = krcw_eng_clyde_by_stewards
+		133 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = dockyard level = 1 instant_build = yes }
+		} }
+	}
+}
+
+country_event = {
+	id = krcw_eng.10
+	title = krcw_eng_10_t
+	desc = krcw_eng_10_d
+	picture = GFX_krcw_eu_councilist_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_eng_10.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = -25
+		add_stability = 0.02
+		set_country_flag = krcw_eng_clyde_settled
+	}
+	option = {
+		name = krcw_eng_10.b
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 25
+		add_stability = -0.01
+		set_country_flag = krcw_eng_clyde_forced
+	}
+}
+
+country_event = {
+	id = krcw_eng.11
+	title = krcw_eng_11_t
+	desc = krcw_eng_11_d
+	picture = GFX_krcw_eu_strike
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_eng_11.a
+		ai_chance = {
+			base = 65
+		}
+		add_political_power = -50
+		add_stability = 0.02
+		set_country_flag = krcw_eng_clyde_settled
+		133 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = dockyard level = 1 instant_build = yes }
+		} }
+	}
+	option = {
+		name = krcw_eng_11.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = -0.03
+		add_war_support = 0.02
+		navy_experience = 10
+		add_timed_idea = { idea = krcw_eng_yards_dispute days = 365 }
+		set_country_flag = krcw_eng_clyde_broken
+	}
+}
+
+country_event = {
+	id = krcw_eng.6
+	title = krcw_eng_6_t
+	desc = krcw_eng_6_d
+	picture = GFX_krcw_eu_spr_cnt
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		118 = { is_owned_by = ROOT }
+	}
+	option = {
+		name = krcw_eng_6.a
+		ai_chance = {
+			base = 65
+			modifier = { factor = 1.5 has_opinion = { target = ENG value > 30 } }
+			modifier = { factor = 0.5 has_war = yes }
+		}
+		add_political_power = 25
+		add_opinion_modifier = { target = ENG modifier = krcw_eu_sister_federation }
+		ENG = { set_country_flag = krcw_eng_gibraltar_access country_event = { id = krcw_eng.9 days = 5 } }
+	}
+	option = {
+		name = krcw_eng_6.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 1.5 krcw_high_detente = yes }
+		}
+		add_stability = 0.02
+		ENG = { set_country_flag = krcw_eng_gibraltar_refused country_event = { id = krcw_eng.9 days = 5 } }
+	}
+}
+
+country_event = {
+	id = krcw_eng.9
+	title = krcw_eng_9_t
+	desc = {
+		text = krcw_eng_9_d0
+		trigger = {
+			has_country_flag = krcw_eng_gibraltar_access
+		}
+	}
+	desc = {
+		text = krcw_eng_9_d1
+		trigger = {
+			has_country_flag = krcw_eng_gibraltar_refused
+		}
+	}
+	picture = GFX_krcw_eu_map_brit
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_eng_9.a
+		trigger = {
+			has_country_flag = krcw_eng_gibraltar_access
+		}
+		ai_chance = {
+			base = 1
+		}
+		navy_experience = 10
+		add_political_power = 25
+		if = { limit = { country_exists = SPR } add_opinion_modifier = { target = SPR modifier = krcw_eu_sister_federation } }
+	}
+	option = {
+		name = krcw_eng_9.b
+		trigger = {
+			has_country_flag = krcw_eng_gibraltar_refused
+		}
+		ai_chance = {
+			base = 1
+		}
+		add_political_power = 25
+		navy_experience = 5
+	}
+}
+
+country_event = {
+	id = krcw_eng.7
+	title = krcw_eng_7_t
+	desc = {
+		text = krcw_eng_7_d0
+		trigger = {
+			AST = { has_country_flag = krcw_ast_replied_to_london }
+		}
+	}
+	desc = {
+		text = krcw_eng_7_d1
+		trigger = {
+			NOT = { AST = { has_country_flag = krcw_ast_replied_to_london } }
+		}
+	}
+	picture = GFX_krcw_eu_diplomacy1
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_eng_7.a
+		trigger = {
+			AST = { has_country_flag = krcw_ast_replied_to_london }
+		}
+		ai_chance = {
+			base = 1
+		}
+		add_political_power = 50
+	}
+	option = {
+		name = krcw_eng_7.b
+		trigger = {
+			NOT = { AST = { has_country_flag = krcw_ast_replied_to_london } }
+		}
+		ai_chance = {
+			base = 1
+		}
+		add_political_power = 25
+	}
+}
+
+country_event = {
+	id = krcw_eng.30
+	title = krcw_eng_30_t
+	desc = krcw_eng_30_d
+	picture = GFX_krcw_eu_d12_eng_glasgow
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+		date > 1949.6.1
+		date < 1950.10.12
+		has_government = trotskyism
+		NOT = { has_country_flag = krcw_eng_ulster_question }
+	}
+	mean_time_to_happen = {
+		months = 5
+	}
+	immediate = {
+		set_country_flag = krcw_eng_ulster_question
+	}
+	option = {
+		name = krcw_eng_30.a
+		ai_chance = {
+			factor = 70
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		add_stability = -0.02
+		add_political_power = 50
+		set_country_flag = krcw_eng_ulster_accepted
+	}
+	option = {
+		name = krcw_eng_30.b
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = -0.04
+		add_political_power = -25
+		set_country_flag = krcw_eng_ulster_regret
+	}
+}
+
+country_event = {
+	id = krcw_eng.31
+	title = krcw_eng_31_t
+	desc = krcw_eng_31_d
+	picture = GFX_krcw_eu_d12_eng_rally
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+		date > 1949.12.7
+		date < 1951.8.17
+		has_country_flag = krcw_eng_ulster_question
+		NOT = { has_country_flag = krcw_eng_glasgow_discontent }
+	}
+	mean_time_to_happen = {
+		months = 8
+		modifier = { factor = 0.6 has_country_flag = krcw_eng_ulster_regret }
+	}
+	immediate = {
+		set_country_flag = krcw_eng_glasgow_discontent
+	}
+	option = {
+		name = krcw_eng_31.a
+		ai_chance = {
+			factor = 90
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_ulster_regret }
+		}
+		add_political_power = -25
+		add_stability = 0.02
+		set_country_flag = krcw_eng_scotland_reassured
+		if = { limit = { has_country_flag = krcw_eng_ulster_regret } add_stability = 0.02 }
+	}
+	option = {
+		name = krcw_eng_31.b
+		ai_chance = {
+			factor = 10
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_ulster_accepted }
+		}
+		add_stability = -0.03
+		add_war_support = 0.02
+		set_country_flag = krcw_eng_glasgow_warned
+		if = { limit = { has_country_flag = krcw_eng_ulster_regret } add_stability = -0.02 }
+	}
+}
+
+country_event = {
+	id = krcw_eng.60
+	title = krcw_eng_60_t
+	desc = krcw_eng_60_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_eng_60.a
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.04
+		add_political_power = 50
+		set_country_flag = krcw_eng_heir_veteran
+	}
+	option = {
+		name = krcw_eng_60.b
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 25
+		add_tech_bonus = { name = krcw_eng_technocrat bonus = 0.5 uses = 1 category = industry }
+		set_country_flag = krcw_eng_heir_planner
+	}
+	option = {
+		name = krcw_eng_60.c
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.06
+		add_manpower = 20000
+		set_country_flag = krcw_eng_heir_miner
+	}
+}
+
+country_event = {
+	id = krcw_eng.62
+	title = krcw_eng_62_t
+	desc = krcw_eng_62_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_eng_62.a
+		ai_chance = {
+			base = 70
+		}
+		add_stability = 0.04
+		if = { limit = { country_exists = IRE } IRE = { add_opinion_modifier = { target = ROOT modifier = krcw_eu_ti_solidarity } } }
+		if = { limit = { OR = { has_country_flag = krcw_eng_belfast_guarantee has_country_flag = krcw_eng_belfast_left } } add_political_power = 25 }
+	}
+	option = {
+		name = krcw_eng_62.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+			modifier = { factor = 0.3 has_country_flag = krcw_eng_irish_grievance }
+		}
+		add_political_power = -25
+		add_stability = -0.02
+		if = { limit = { country_exists = IRE } IRE = { add_opinion_modifier = { target = ROOT modifier = krcw_eu_detente_contact } } }
+		if = { limit = { has_country_flag = krcw_eng_irish_grievance } add_stability = -0.02 }
+	}
+}
+
+country_event = {
+	id = krcw_eng.64
+	title = krcw_eng_64_t
+	desc = krcw_eng_64_d
+	picture = GFX_report_event_generic_conference
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_eng_64.a
+		ai_chance = {
+			base = 65
+		}
+		add_political_power = 50
+		every_country = {
+			limit = { has_country_flag = KRCW_minor is_in_faction = no }
+			add_opinion_modifier = { target = ROOT modifier = krcw_eu_ti_solidarity }
+		}
+	}
+	option = {
+		name = krcw_eng_64.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_eng.70
+	title = krcw_eng_70_t
+	desc = krcw_eng_70_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_eng_70.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_heir_planner }
+		}
+		add_political_power = 50
+		add_stability = 0.03
+		set_country_flag = krcw_eng_congress_sovereign
+		if = { limit = { has_country_flag = krcw_eng_heir_miner } add_stability = -0.02 }
+	}
+	option = {
+		name = krcw_eng_70.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_heir_miner }
+		}
+		add_stability = 0.05
+		add_political_power = -25
+		set_country_flag = krcw_eng_federations_sovereign
+		if = { limit = { has_country_flag = krcw_eng_heir_miner } add_manpower = 10000 }
+	}
+	option = {
+		name = krcw_eng_70.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_heir_veteran }
+		}
+		add_political_power = 25
+		add_stability = 0.02
+		set_country_flag = krcw_eng_dual_sovereignty
+	}
+}
+
+country_event = {
+	id = krcw_eng.72
+	title = krcw_eng_72_t
+	desc = krcw_eng_72_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_eng_72.a
+		ai_chance = {
+			base = 45
+		}
+		add_political_power = 25
+		add_stability = 0.03
+		if = { limit = { country_exists = AST } AST = { add_opinion_modifier = { target = ROOT modifier = krcw_eu_republican_claim } } }
+	}
+	option = {
+		name = krcw_eng_72.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 50
+		add_stability = 0.02
+	}
+	option = {
+		name = krcw_eng_72.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.04
+		krcw_tension_up_small = yes
+		add_stability = -0.02
+		if = { limit = { country_exists = AST } AST = { add_opinion_modifier = { target = ROOT modifier = krcw_eu_republican_claim } } }
+		set_global_flag = KRCW_eng_windsor_indicted
+	}
+}
+
+country_event = {
+	id = krcw_eng.74
+	title = krcw_eng_74_t
+	desc = krcw_eng_74_d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_eng_74.a
+		ai_chance = {
+			base = 60
+		}
+		add_stability = 0.06
+		add_political_power = 25
+		random_owned_controlled_state = {
+			limit = { is_core_of = ROOT }
+			add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+		}
+	}
+	option = {
+		name = krcw_eng_74.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.03
+		random_owned_controlled_state = {
+			limit = { is_core_of = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		}
+		add_political_power = -50
+	}
+}
+
+country_event = {
+	id = krcw_eng.76
+	title = krcw_eng_76_t
+	desc = krcw_eng_76_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_eng_76.a
+		ai_chance = {
+			base = 50
+		}
+		add_political_power = 25
+		add_research_slot = 1
+	}
+	option = {
+		name = krcw_eng_76.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		add_stability = 0.04
+		set_country_flag = krcw_eng_bomb_to_congress
+	}
+	option = {
+		name = krcw_eng_76.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		set_country_flag = krcw_eng_bomb_asked_paris
+	}
+}
+
+news_event = {
+	id = krcw_eng.78
+	title = krcw_eng_78_t
+	desc = krcw_eng_78_d
+	picture = GFX_report_event_generic_parliament_n
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_eng_78.a
+		trigger = { tag = ENG }
+		ai_chance = {
+			base = 100
+		}
+		add_political_power = 50
+		add_war_support = 0.04
+		add_stability = 0.02
+	}
+	option = {
+		name = krcw_major_viewer.a
+		trigger = { NOT = { tag = ENG } }
+		ai_chance = { base = 1 }
+	}
+}
+
+country_event = {
+	id = krcw_eng.90
+	title = krcw_eng_90_t
+	desc = krcw_eng_90_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_eng_90.a
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_federations_sovereign }
+		}
+		add_stability = 0.05
+		add_political_power = 25
+		set_country_flag = krcw_eng_seats_by_membership
+	}
+	option = {
+		name = krcw_eng_90.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_congress_sovereign }
+		}
+		add_political_power = 50
+		add_stability = -0.03
+		set_country_flag = krcw_eng_seats_by_population
+	}
+	option = {
+		name = krcw_eng_90.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+			modifier = { factor = 1.5 has_country_flag = krcw_eng_dual_sovereignty }
+		}
+		add_political_power = -25
+		add_stability = 0.06
+		set_country_flag = krcw_eng_two_chambers
+	}
+}
+
+country_event = {
+	id = krcw_eng.92
+	title = krcw_eng_92_t
+	desc = krcw_eng_92_d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_eng_92.a
+		ai_chance = {
+			base = 50
+		}
+		add_stability = 0.06
+		add_political_power = -25
+	}
+	option = {
+		name = krcw_eng_92.b
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = -0.06
+		random_owned_controlled_state = {
+			limit = { is_core_of = ROOT }
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		}
+		set_country_flag = krcw_eng_state_farms
+	}
+	option = {
+		name = krcw_eng_92.c
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 50
+		add_stability = -0.02
+		set_country_flag = krcw_eng_farms_untouched
+	}
+}
+
+country_event = {
+	id = krcw_eng.94
+	title = krcw_eng_94_t
+	desc = krcw_eng_94_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_eng_94.a
+		ai_chance = {
+			base = 55
+		}
+		add_stability = 0.05
+		random_owned_controlled_state = {
+			limit = { is_core_of = ROOT }
+			add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+		}
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_eng_94.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		navy_experience = 25
+		random_owned_controlled_state = {
+			limit = { is_core_of = ROOT }
+			add_building_construction = { type = dockyard level = 1 instant_build = yes }
+		}
+		add_war_support = 0.03
+	}
+}

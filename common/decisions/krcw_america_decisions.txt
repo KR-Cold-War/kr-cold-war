@@ -1,0 +1,737 @@
+krcw_mississippi_line_cat = {
+	krcw_us_line_propaganda = {
+		icon = GFX_decision_generic_political_rally
+		cost = 30
+		allowed = {
+			OR = { original_tag = USA original_tag = WCA }
+		}
+		visible = {
+			has_global_flag = KRCW_active
+			NOT = { has_global_flag = KRCW_american_war_restarted }
+			NOT = { has_global_flag = KRCW_american_war_over }
+		}
+		available = {
+			has_political_power > 29
+		}
+		days_re_enable = 60
+		complete_effect = {
+			krcw_ohio_up_small = yes
+			add_political_power = -10
+			if = { limit = { tag = USA country_exists = WCA } WCA = { add_stability = -0.01 } }
+			if = { limit = { tag = WCA country_exists = USA } USA = { add_stability = -0.015 } }
+		}
+		ai_will_do = {
+			factor = 2
+			modifier = { factor = 0.2 krcw_route_historical = yes }
+			modifier = { factor = 0 check_variable = { global.krcw_ohio_tension > 74 } }
+		}
+	}
+	krcw_us_line_raid = {
+		icon = GFX_decision_generic_operation
+		cost = 60
+		allowed = {
+			OR = { original_tag = USA original_tag = WCA }
+		}
+		visible = {
+			has_global_flag = KRCW_active
+			NOT = { has_global_flag = KRCW_american_war_restarted }
+			NOT = { has_global_flag = KRCW_american_war_over }
+		}
+		available = {
+			has_political_power > 59
+			has_war = no
+		}
+		days_re_enable = 90
+		complete_effect = {
+			krcw_ohio_up_medium = yes
+			krcw_gv_ohio_violation = yes
+			army_experience = 10
+			add_political_power = -25
+			if = { limit = { tag = USA country_exists = WCA } WCA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_river_provocation } } }
+			if = { limit = { tag = WCA country_exists = USA } USA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_river_provocation } } }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = { factor = 0 krcw_route_historical = yes }
+			modifier = { factor = 2 has_war_support > 0.7 }
+			modifier = { factor = 0 check_variable = { global.krcw_ohio_tension > 79 } }
+		}
+	}
+	krcw_us_line_fortify = {
+		icon = GFX_decision_generic_construction
+		cost = 75
+		allowed = {
+			OR = { original_tag = USA original_tag = WCA }
+		}
+		visible = {
+			has_global_flag = KRCW_active
+			NOT = { has_global_flag = KRCW_american_war_restarted }
+			NOT = { has_global_flag = KRCW_american_war_over }
+		}
+		available = {
+			has_political_power > 74
+		}
+		days_re_enable = 180
+		complete_effect = {
+			add_political_power = -50
+			army_experience = 5
+			krcw_ohio_down_small = yes
+			if = { limit = { tag = USA } 371 = { if = { limit = { is_owned_by = ROOT } add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes } } } }
+			if = { limit = { tag = WCA } 1634 = { if = { limit = { is_owned_by = ROOT } add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes } } } }
+		}
+		ai_will_do = {
+			factor = 3
+			modifier = { factor = 2 check_variable = { global.krcw_ohio_tension > 69 } }
+		}
+	}
+	krcw_us_line_reopen_ferries = {
+		icon = GFX_decision_generic_civil_support
+		cost = 80
+		allowed = {
+			OR = { original_tag = USA original_tag = WCA }
+		}
+		visible = {
+			has_global_flag = KRCW_active
+			NOT = { has_global_flag = KRCW_american_war_restarted }
+			NOT = { has_global_flag = KRCW_american_war_over }
+		}
+		available = {
+			has_political_power > 79
+			check_variable = { global.krcw_ohio_tension < 55 }
+			has_war = no
+		}
+		days_re_enable = 365
+		complete_effect = {
+			add_political_power = -50
+			krcw_ohio_down_large = yes
+
+			add_stability = 0.03
+			if = { limit = { tag = USA country_exists = WCA } WCA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_good_neighbour } } }
+			if = { limit = { tag = WCA country_exists = USA } USA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_good_neighbour } } }
+		}
+		ai_will_do = {
+			factor = 3
+			modifier = { factor = 0 check_variable = { global.krcw_ohio_tension > 54 } }
+		}
+	}
+	krcw_us_line_restart_war = {
+		icon = GFX_decision_generic_ignite_civil_war
+		cost = 150
+		allowed = {
+			OR = { original_tag = USA original_tag = WCA }
+		}
+		visible = {
+			has_global_flag = KRCW_active
+			NOT = { has_global_flag = KRCW_american_war_restarted }
+			NOT = { has_global_flag = KRCW_american_war_over }
+			OR = { check_variable = { global.krcw_ohio_tension > 79 } AND = { krcw_gv_ohio_adjourned = yes check_variable = { global.krcw_ohio_tension > 69 } } }
+		}
+		available = {
+			has_political_power > 149
+			has_war = no
+			has_army_manpower = { size = 200000 }
+			has_country_flag = krcw_ww_america_ready
+			if = { limit = { tag = USA } country_exists = WCA }
+			if = { limit = { tag = WCA } country_exists = USA }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			krcw_restart_american_war = yes
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = { add = 1 krcw_route_free = yes has_war_support > 0.8 check_variable = { global.krcw_ohio_tension > 94 } }
+		}
+	}
+}
+krcw_us_foreign_supply = {
+	krcw_usa_veracruz_convoy = {
+		icon = GFX_decision_generic_industry
+		cost = 60
+		allowed = {
+			original_tag = USA
+		}
+		visible = {
+			has_global_flag = KRCW_active
+		}
+		available = {
+			has_political_power > 59
+			country_exists = MEX
+			OR = { is_in_faction_with = SOV NOT = { country_exists = SOV } }
+		}
+		days_re_enable = 270
+		complete_effect = {
+			add_political_power = -40
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_us_accord_partner } } }
+			if = { limit = { country_exists = MEX } MEX = { add_opinion_modifier = { target = ROOT modifier = krcw_us_arms_conduit } } }
+			371 = { if = { limit = { is_owned_by = ROOT } add_extra_state_shared_building_slots = 1 add_building_construction = { type = arms_factory level = 1 instant_build = yes } } }
+			if = { limit = { NOT = { has_idea = krcw_usa_russian_aid } } add_ideas = krcw_usa_russian_aid }
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 0.5 has_political_power < 120 }
+		}
+	}
+	krcw_usa_oil_for_machines = {
+		icon = GFX_decision_oil
+		cost = 50
+		allowed = {
+			original_tag = USA
+		}
+		visible = {
+			has_global_flag = KRCW_active
+		}
+		available = {
+			has_political_power > 49
+		}
+		days_re_enable = 270
+		complete_effect = {
+			add_political_power = -35
+			1640 = { if = { limit = { is_owned_by = ROOT } add_extra_state_shared_building_slots = 1 add_building_construction = { type = industrial_complex level = 1 instant_build = yes } } }
+			if = { limit = { NOT = { has_idea = krcw_usa_texas_oil_boom } } add_ideas = krcw_usa_texas_oil_boom }
+		}
+		ai_will_do = {
+			factor = 4
+		}
+	}
+	krcw_usa_share_the_wealth_drive = {
+		icon = GFX_decision_generic_political_address
+		cost = 70
+		allowed = {
+			original_tag = USA
+		}
+		visible = {
+			has_global_flag = KRCW_active
+		}
+		available = {
+			has_political_power > 69
+			has_stability > 0.4
+		}
+		days_re_enable = 300
+		complete_effect = {
+			add_political_power = -50
+			add_manpower = 40000
+			add_war_support = 0.04
+			if = { limit = { NOT = { has_idea = krcw_usa_sow_mobilization } } add_ideas = krcw_usa_sow_mobilization }
+		}
+		ai_will_do = {
+			factor = 4
+			modifier = { factor = 2 check_variable = { global.krcw_ohio_tension > 69 } }
+		}
+	}
+	krcw_wca_st_lawrence_accord = {
+		icon = GFX_decision_generic_industry
+		cost = 60
+		allowed = {
+			original_tag = WCA
+		}
+		visible = {
+			has_global_flag = KRCW_active
+		}
+		available = {
+			has_political_power > 59
+			country_exists = CAN
+		}
+		days_re_enable = 270
+		complete_effect = {
+			add_political_power = -40
+			if = { limit = { country_exists = CAN } CAN = { add_opinion_modifier = { target = ROOT modifier = krcw_us_good_neighbour } } }
+			1634 = { if = { limit = { is_owned_by = ROOT } add_extra_state_shared_building_slots = 1 add_building_construction = { type = arms_factory level = 1 instant_build = yes } } }
+			if = { limit = { NOT = { has_idea = krcw_wca_canadian_arsenal } } add_ideas = krcw_wca_canadian_arsenal }
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_wca_clearing_union_credits = {
+		icon = GFX_decision_generic_industry
+		cost = 50
+		allowed = {
+			original_tag = WCA
+		}
+		visible = {
+			has_global_flag = KRCW_active
+		}
+		available = {
+			has_political_power > 49
+			OR = { is_in_faction_with = FRA NOT = { country_exists = FRA } }
+		}
+		days_re_enable = 270
+		complete_effect = {
+			add_political_power = -35
+			if = { limit = { country_exists = FRA } FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_us_ti_comrades } } }
+			if = { limit = { NOT = { has_idea = krcw_wca_clearing_union } } add_ideas = krcw_wca_clearing_union }
+		}
+		ai_will_do = {
+			factor = 4
+		}
+	}
+	krcw_wca_underground_railroad = {
+		icon = GFX_decision_generic_intelligence_operation
+		cost = 40
+		allowed = {
+			original_tag = WCA
+		}
+		visible = {
+			has_global_flag = KRCW_active
+		}
+		available = {
+			has_political_power > 39
+			country_exists = USA
+		}
+		days_re_enable = 180
+		complete_effect = {
+			add_political_power = -25
+			add_manpower = 12000
+			krcw_ohio_up_small = yes
+			if = { limit = { country_exists = USA } USA = { add_manpower = -8000 } }
+			if = { limit = { country_exists = USA USA = { has_idea = krcw_usa_hard_segregation } } add_manpower = 8000 }
+		}
+		ai_will_do = {
+			factor = 3
+			modifier = { factor = 2 USA = { has_idea = krcw_usa_hard_segregation } }
+		}
+	}
+	krcw_wca_mexican_railwaymen = {
+		icon = GFX_decision_generic_intelligence_operation
+		cost = 55
+		allowed = {
+			original_tag = WCA
+		}
+		visible = {
+			has_global_flag = KRCW_active
+		}
+		available = {
+			has_political_power > 54
+			country_exists = MEX
+			country_exists = USA
+		}
+		days_re_enable = 240
+		complete_effect = {
+			add_political_power = -40
+			if = { limit = { country_exists = MEX } MEX = { add_popularity = { ideology = trotskyism popularity = 0.03 } } }
+			if = { limit = { country_exists = USA } USA = { add_political_power = -30 } }
+			krcw_ohio_up_small = yes
+		}
+		ai_will_do = {
+			factor = 2
+			modifier = { factor = 0.3 krcw_route_historical = yes }
+		}
+	}
+}
+krcw_psa_fleet_cat = {
+	krcw_psa_show_the_flag = {
+		icon = generic_naval
+		cost = 40
+		days_re_enable = 120
+		complete_effect = {
+			add_war_support = 0.03
+			add_stability = 0.02
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_psa_escort_pacific_trade = {
+		icon = generic_naval
+		cost = 50
+		visible = {
+			has_completed_focus = krcw_psa_the_pacific_rim_trade
+		}
+		days_re_enable = 150
+		complete_effect = {
+			add_political_power = 25
+			add_to_variable = { krcw_psa_lean_ti = 3 }
+			clamp_variable = { var = krcw_psa_lean_ti min = 0 max = 100 }
+			clamp_variable = { var = krcw_psa_lean_ma min = 0 max = 100 }
+			custom_effect_tooltip = krcw_psa_lean_ti_focus_tt
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_psa_alaska_patrol = {
+		icon = generic_naval
+		cost = 45
+		available = {
+			has_completed_focus = krcw_psa_the_silent_service
+		}
+		days_re_enable = 150
+		complete_effect = {
+			add_war_support = 0.03
+			add_to_variable = { krcw_psa_lean_ma = 3 }
+			clamp_variable = { var = krcw_psa_lean_ti min = 0 max = 100 }
+			clamp_variable = { var = krcw_psa_lean_ma min = 0 max = 100 }
+			custom_effect_tooltip = krcw_psa_lean_ma_focus_tt
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+}
+krcw_mex_corridor_cat = {
+	krcw_mex_expand_throughput = {
+		icon = generic_industry
+		cost = 50
+		days_re_enable = 180
+		complete_effect = {
+			add_political_power = 25
+			479 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			krcw_tension_up_small = yes
+			if = { limit = { country_exists = USA } USA = { add_war_support = 0.02 } }
+		}
+		ai_will_do = {
+			factor = 30
+			modifier = { factor = 0 has_country_flag = krcw_mex_left_turn }
+		}
+	}
+	krcw_mex_skim_the_shipments = {
+		icon = generic_infantry_equipment
+		cost = 40
+		days_re_enable = 120
+		complete_effect = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 500 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 40 }
+			army_experience = 5
+		}
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	krcw_mex_toll_revenue = {
+		icon = generic_political_actions
+		cost = 30
+		days_re_enable = 90
+		complete_effect = {
+			add_political_power = 40
+			add_stability = 0.01
+		}
+		ai_will_do = {
+			factor = 30
+		}
+	}
+	krcw_mex_close_the_corridor = {
+		icon = generic_political_actions
+		cost = 75
+		available = {
+			has_country_flag = krcw_mex_left_turn
+			has_war = no
+		}
+		fire_only_once = yes
+		complete_effect = {
+			remove_ideas = krcw_mex_russian_corridor
+			add_stability = 0.05
+
+			krcw_tension_down_small = yes
+			if = { limit = { is_in_faction = yes } leave_faction = yes }
+			if = { limit = { country_exists = USA } USA = { add_war_support = -0.05 } }
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+	}
+}
+krcw_jap_formosa_cat = {
+	krcw_jap_sugar_quota = {
+		icon = generic_industry
+		cost = 40
+		available = {
+			has_completed_focus = krcw_jap_formosa_development
+		}
+		days_re_enable = 120
+		complete_effect = {
+			add_political_power = 25
+			593 = { if = { limit = { is_owned_by = ROOT } add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes } } }
+			add_stability = -0.01
+		}
+		ai_will_do = {
+			factor = 30
+		}
+	}
+	krcw_jap_formosa_amnesty = {
+		icon = generic_political_actions
+		cost = 60
+		fire_only_once = yes
+		complete_effect = {
+			add_stability = 0.03
+
+			if = { limit = { country_exists = CHI CHI = { has_variable = krcw_chi_taiwan_support } } CHI = { subtract_from_variable = { krcw_chi_taiwan_support = 8 } } }
+		}
+		ai_will_do = {
+			factor = 15
+		}
+	}
+	krcw_jap_strait_patrol = {
+		icon = generic_naval
+		cost = 45
+		days_re_enable = 90
+		complete_effect = {
+			navy_experience = 10
+			add_war_support = 0.02
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	krcw_jap_mandate_subsidy = {
+		icon = generic_naval
+		cost = 35
+		available = {
+			has_completed_focus = krcw_jap_micronesia_phosphate
+			NOT = { has_country_flag = krcw_jap_islands_cut }
+		}
+		days_re_enable = 150
+		complete_effect = {
+			navy_experience = 8
+			684 = { if = { limit = { is_owned_by = ROOT } add_building_construction = { type = naval_base level = 1 province = { all_provinces = yes limit_to_naval_base = yes } instant_build = yes } } }
+		}
+		ai_will_do = {
+			factor = 25
+		}
+	}
+}
+krcw_reun_cat = {
+	krcw_reun_reopen = {
+		icon = GFX_decision_generic_speech
+		cost = 50
+		allowed = {
+			OR = { original_tag = USA original_tag = WCA }
+		}
+		visible = {
+			has_country_flag = krcw_reun_winner
+			country_exists = PSA
+			NOT = { has_global_flag = KRCW_reun_done }
+			NOT = { has_global_flag = KRCW_reun_war }
+			NOT = { has_global_flag = KRCW_reun_compact }
+			OR = { has_global_flag = KRCW_reun_cold has_country_flag = krcw_reun_deferred }
+		}
+		available = {
+			NOT = { has_war_with = PSA }
+			OR = { has_country_flag = { flag = krcw_reun_cold_since days > 365 } has_country_flag = { flag = krcw_reun_deferred days > 180 } }
+		}
+		complete_effect = {
+			if = { limit = { has_global_flag = KRCW_reun_cold } set_country_flag = krcw_reun_reopened }
+			clr_global_flag = KRCW_reun_cold
+			clr_country_flag = krcw_reun_deferred
+			country_event = { id = krcw_reun.1 days = 1 }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = { factor = 2 has_war = no }
+		}
+	}
+	krcw_reun_integrate = {
+		icon = GFX_decision_generic_political_discourse
+		cost = 50
+		allowed = {
+			OR = { original_tag = USA original_tag = WCA }
+		}
+		visible = {
+			has_country_flag = krcw_reun_winner
+			country_exists = PSA
+			NOT = { has_global_flag = KRCW_reun_done }
+			has_global_flag = KRCW_reun_compact
+			PSA = { is_subject_of = ROOT }
+		}
+		available = {
+			has_country_flag = { flag = krcw_reun_compact_since days > 365 }
+			NOT = { has_country_flag = krcw_reun_vote_asked }
+		}
+		complete_effect = {
+			clr_country_flag = krcw_reun_compact_since
+			set_country_flag = krcw_reun_compact_since
+			set_country_flag = krcw_reun_vote_asked
+			PSA = { country_event = { id = krcw_reun.30 days = 5 } }
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	krcw_reun_seat_the_west = {
+		icon = GFX_decision_generic_political_rally
+		cost = 75
+		allowed = {
+			OR = { original_tag = USA original_tag = WCA }
+		}
+		visible = {
+			has_country_flag = krcw_reun_winner
+			has_global_flag = KRCW_reun_done
+			NOT = { has_country_flag = krcw_reun_west_seated }
+		}
+		complete_effect = {
+			set_country_flag = krcw_reun_west_seated
+			every_state = {
+				limit = {
+					is_owned_by = ROOT
+					OR = { has_state_flag = krcw_west_coast_state is_core_of = PSA }
+				}
+				add_core_of = ROOT
+			}
+			if = { limit = { has_idea = krcw_reun_west_integrating } remove_ideas = krcw_reun_west_integrating }
+			add_stability = 0.03
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_reun_pacific_fleet = {
+		icon = GFX_decision_generic_naval
+		cost = 50
+		allowed = {
+			OR = { original_tag = USA original_tag = WCA }
+		}
+		visible = {
+			has_country_flag = krcw_reun_winner
+			has_global_flag = KRCW_reun_done
+			NOT = { has_country_flag = krcw_reun_fleet_merged }
+		}
+		available = {
+			378 = { is_owned_by = ROOT }
+		}
+		complete_effect = {
+			set_country_flag = krcw_reun_fleet_merged
+			navy_experience = 25
+			378 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = dockyard level = 1 instant_build = yes }
+			} }
+			add_tech_bonus = { name = krcw_reun_pacific_fleet_tb bonus = 0.5 uses = 1 category = naval_equipment }
+		}
+		ai_will_do = {
+			factor = 3
+		}
+	}
+	krcw_reun_wca_hearings = {
+		icon = GFX_decision_generic_police_action
+		cost = 50
+		allowed = {
+			original_tag = WCA
+		}
+		visible = {
+			tag = WCA
+			has_country_flag = krcw_reun_winner
+			has_global_flag = KRCW_reun_done
+			NOT = { has_country_flag = krcw_reun_presidio_settled }
+		}
+		complete_effect = {
+			set_country_flag = krcw_reun_presidio_settled
+			add_stability = 0.02
+			add_political_power = 25
+		}
+		ai_will_do = {
+			factor = 2
+		}
+	}
+	krcw_reun_wca_amnesty = {
+		icon = GFX_decision_generic_army_support
+		cost = 50
+		allowed = {
+			original_tag = WCA
+		}
+		visible = {
+			tag = WCA
+			has_country_flag = krcw_reun_winner
+			has_global_flag = KRCW_reun_done
+			NOT = { has_country_flag = krcw_reun_presidio_settled }
+		}
+		complete_effect = {
+			set_country_flag = krcw_reun_presidio_settled
+			army_experience = 30
+			add_stability = -0.02
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	krcw_reun_usa_baton = {
+		icon = GFX_decision_generic_military
+		cost = 50
+		allowed = {
+			original_tag = USA
+		}
+		visible = {
+			tag = USA
+			has_country_flag = krcw_reun_winner
+			has_global_flag = KRCW_reun_done
+			NOT = { has_country_flag = krcw_reun_presidio_settled }
+		}
+		complete_effect = {
+			set_country_flag = krcw_reun_presidio_settled
+			army_experience = 20
+			add_stability = 0.02
+		}
+		ai_will_do = {
+			factor = 2
+		}
+	}
+	krcw_reun_usa_scatter = {
+		icon = GFX_decision_generic_police_action
+		cost = 50
+		allowed = {
+			original_tag = USA
+		}
+		visible = {
+			tag = USA
+			has_country_flag = krcw_reun_winner
+			has_global_flag = KRCW_reun_done
+			NOT = { has_country_flag = krcw_reun_presidio_settled }
+		}
+		complete_effect = {
+			set_country_flag = krcw_reun_presidio_settled
+			add_political_power = 40
+			army_experience = 10
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	krcw_reun_psa_overture = {
+		icon = GFX_decision_generic_political_discourse
+		cost = 50
+		allowed = {
+			original_tag = PSA
+		}
+		visible = {
+			tag = PSA
+			has_global_flag = KRCW_reun_cold
+			NOT = { has_global_flag = KRCW_reun_done }
+		}
+		available = {
+			has_country_flag = { flag = krcw_reun_psa_cold_since days > 180 }
+			has_war = no
+		}
+		complete_effect = {
+			clr_country_flag = krcw_reun_psa_cold_since
+			set_country_flag = krcw_reun_overture
+			add_stability = 0.02
+			if = {
+				limit = { has_global_flag = KRCW_reun_by_wca country_exists = WCA }
+				WCA = {
+					clr_global_flag = KRCW_reun_cold
+					clr_country_flag = krcw_reun_deferred
+					country_event = { id = krcw_reun.1 days = 5 }
+				}
+			}
+			else_if = {
+				limit = { has_global_flag = KRCW_reun_by_usa country_exists = USA }
+				USA = {
+					clr_global_flag = KRCW_reun_cold
+					clr_country_flag = krcw_reun_deferred
+					country_event = { id = krcw_reun.1 days = 5 }
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = { factor = 2 has_stability < 0.4 }
+			modifier = { factor = 0 has_country_flag = krcw_psa_presidio_rule }
+		}
+	}
+}

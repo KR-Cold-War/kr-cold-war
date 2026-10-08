@@ -1,0 +1,883 @@
+# KRCW (build/patch_residue.py): 36 OTL events dropped while KRCW_active
+add_namespace = SWE_NUKES
+add_namespace = SWE_NATO
+add_namespace = SWE
+add_namespace = SWE_NUCLEAR
+add_namespace = SWE_USA_NUK
+add_namespace = SWE_ELECTIONS
+add_namespace = SWE_Non_Prolif
+add_namespace = OB_54
+add_namespace = SWE_monarchchange
+add_namespace = worldcup
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_monarchchange.1
+ immediate = { }
+	title = SWE_monarchchange.1.t
+	desc = SWE_monarchchange.1.d
+    #picture = 
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	option = {
+		name = SWE_monarchchange.1.a
+		remove_ideas = Gustaf_V
+		clr_country_flag = SWE_Gustaf_V
+		set_country_flag = SWE_Gustaf_VI
+		news_event = SWE_monarchchange.2
+    }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_monarchchange.3
+	immediate = { }
+	title = SWE_monarchchange.3.t
+	desc = SWE_monarchchange.3.d
+    picture = GFX_Gustaf_V_Funeral
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	option = {
+		trigger = { tag = SWE }
+		name = SWE_monarchchange.3.a
+    }
+	option = {
+		trigger = {
+			OR = {
+				has_government = communism
+				has_government = maoism
+				has_government = trotskyism
+			}
+		}
+		name = SWE_monarchchange.3.b
+    }
+	option = {
+		trigger = {
+			NOT = {
+				has_government = communism
+				has_government = maoism
+				has_government = trotskyism
+				tag = SWE
+			}
+		}
+		name = SWE_monarchchange.3.c
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_monarchchange.3
+ immediate = { }
+	title = SWE_monarchchange.3.t2
+	desc = SWE_monarchchange.3.d
+    #picture = 
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	option = {
+		name = SWE_monarchchange.3.a2
+		clr_country_flag = SWE_Gustaf_VI
+		set_country_flag = SWE_Carl_XVI_Gustaf
+		#news_event = SWE_monarchchange.4
+    }
+	option = {
+		trigger = {
+			OR = {
+				has_government = communism
+				has_government = maoism
+				has_government = trotskyism
+			}
+		}
+		name = SWE_monarchchange.3.b2
+    }
+	option = {
+		trigger = {
+			NOT = {
+				has_government = communism
+				has_government = maoism
+				has_government = trotskyism
+				tag = SWE
+			}
+		}
+		name = SWE_monarchchange.3.c2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_NUKES.1
+ immediate = { }
+	title = SWE_NUKES.1.t2
+	desc = SWE_NUKES.1.d
+    picture = GFX_SWE_NUKES_1
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	option = {
+		name = SWE_NUKES.1.a2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_NATO.1
+ immediate = { }
+	title = SWE_NATO.1.t2
+	desc = SWE_NATO.1.d
+    picture = GFX_SWE_NATO_1
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	option = {
+		name = SWE_NATO.1.a2
+        
+        add_threat = 5
+        hidden_effect = {
+            SOV = {
+                country_event = SWE_NATO.4
+            }
+        }
+        SWE = {
+            country_event = SWE_NATO.2
+            news_event = SWE_NATO.5
+            add_ideas = nato_member
+            capital_scope = {
+                add_building_construction = {
+                    type = nuclear_reactor
+                    level = 1
+                    instant_build = yes
+                }
+            }   
+            set_technology = {
+                atomic_research = 1
+            }
+            set_technology = {
+                atomic_reactor_0 = 1
+            }
+            set_technology = {
+                atomic_reactor_fission_0 = 1
+            }
+            set_technology = {
+                atomic_weapons_armament_0 = 1
+            }	
+            set_technology = {
+                atomic_weapons = 1
+            }	
+
+        }
+    }
+    option = {
+        name = SWE_NATO.1.b2
+        SWE = {
+            country_event = SWE_NATO.3
+        }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_NATO.2
+ immediate = { }
+	title = SWE_NATO.2.t2
+	desc = SWE_NUKES.1.d
+    picture = GFX_SWE_NUKES_1
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	option = {
+		name = SWE_NATO.2.a2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_NATO.3
+ immediate = { }
+	title = SWE_NATO.3.t2
+	desc = SWE_NUKES.3.d
+    picture = GFX_SWE_NUKES_3
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	option = {
+		name = SWE_NATO.3.a2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_NATO.4
+ immediate = { }
+	title = SWE_NATO.4.t2
+	desc = SWE_NUKES.1.d
+    picture = GFX_SWE_NUKES_1
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	option = {
+		name = SWE_NATO.4.a2
+        transfer_state = 1155
+        1155 = {
+            add_core_of = SOV
+            set_demilitarized_zone = no
+        }
+        1331 = {
+            add_core_of = SOV
+            set_demilitarized_zone = no           
+        }
+        news_event = SWE_NATO.6
+        add_threat = 2
+    }
+    option = {
+        name = SWE_NATO.4.b2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE.5
+ immediate = { }
+	title = SWE.5.t2
+	desc = SWE.5.d
+    picture = GFX_SWE_5
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	option = {
+		name = SWE.5.a2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_NUCLEAR.20
+ immediate = { }
+	title = SWE_NUCLEAR.20.t2
+	desc = SWE_NUCLEAR.20.d
+    picture = GFX_SWE_NUCLEAR_20
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	option = {
+		name = SWE_NUCLEAR.20.a2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_NUCLEAR.1
+ immediate = { }
+	title = SWE_NUCLEAR.1.t2
+	desc = SWE_NUCLEAR.1.d
+	picture = GFX_SWE_USA_NUK_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = SWE_NUCLEAR.1.a2
+		add_tech_bonus = {
+			name = nuclear_reactor_bonus
+			category = nuclear_reactor
+			bonus = 1.75
+			uses = 1
+		}
+		SWE = {
+			country_event = SWE_NUCLEAR.2
+ 			add_tech_bonus = {
+ 				name = nuclear_reactor_bonus
+ 				category = nuclear_reactor
+ 				bonus = 1.75
+ 				uses = 2
+ 			}        
+		}
+	}
+	option = {
+		name = SWE_NUCLEAR.1.b2
+		SWE = {
+			country_event = SWE_NUCLEAR.3
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_NUCLEAR.2
+ immediate = { }
+	title = SWE_NUCLEAR.2.t2
+	desc = SWE_NUCLEAR.2.d
+    picture = GFX_SWE_USA_NUK_2
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	option = {
+		name = SWE_NUCLEAR.2.a2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_NUCLEAR.3
+ immediate = { }
+	title = SWE_NUCLEAR.3.t2
+	desc = SWE_NUCLEAR.3.d
+    picture = GFX_SWE_USA_NUK_3 
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	option = {
+		name = SWE_NUCLEAR.3.a2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_USA_NUK.1
+ immediate = { }
+	title = SWE_USA_NUK.1.t2
+	desc = SWE_USA_NUK.1.d
+    picture = GFX_SWE_NUCLEAR_1
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	option = {
+		name = SWE_USA_NUK.1.a2
+        add_to_variable = {
+            currentMoney = 1000
+        }        
+        custom_effect_tooltip = add_1_billion
+        add_threat = 3
+        SWE = {
+            add_to_variable = {
+                currentMoney = -1000
+            }
+            country_event = SWE_USA_NUK.2
+            news_event = SWE_USA_NUK.4
+            capital_scope = {
+                add_building_construction = {
+                    type = nuclear_reactor
+                    level = 1
+                    instant_build = yes
+                }
+            }   
+            set_technology = {
+                atomic_research = 1
+            }
+            set_technology = {
+                atomic_reactor_0 = 1
+            }
+            set_technology = {
+                atomic_reactor_fission_0 = 1
+            }
+            set_technology = {
+                atomic_weapons_armament_0 = 1
+            }	
+            set_technology = {
+                atomic_weapons = 1
+            }	
+        }
+    }
+    option = {
+        name = SWE_USA_NUK.1.b2
+        SWE = {
+            country_event = SWE_USA_NUK.3
+        }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_USA_NUK.2
+ immediate = { }
+	title = SWE_USA_NUK.2.t2
+	desc = SWE_USA_NUK.2.d
+    picture = GFX_SWE_NUCLEAR_2
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	option = {
+		name = SWE_USA_NUK.2.a2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_USA_NUK.3
+ immediate = { }
+	title = SWE_USA_NUK.3.t2
+	desc = SWE_USA_NUK.3.d
+    picture = GFX_SWE_NUCLEAR_3
+
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	option = {
+		name = SWE_USA_NUK.3.a2
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_ELECTIONS.1
+ immediate = { }
+	title = SWE_ELECTIONS.1.t2
+	desc = SWE_ELECTIONS.1.d
+    picture = GFX_Sweden_Election_Local_Generic
+
+	is_triggered_only = yes
+    fire_only_once = yes
+	
+	immediate = {
+		complete_national_focus = SWE_1952_Elections
+	}
+
+	option = {
+		name = SWE_ELECTIONS.1.a2
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = no
+		}
+		complete_national_focus = SWE_Sveriges_Socialdemokratiska_Arbetareparti_Victory
+		news_event = SWE_ELECTIONS.10
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+			modifier = {
+				has_game_rule = {
+					rule = SWE_1952_elections
+					option = SWE_COALITION_VICTORY_1952
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = SWE_ELECTIONS.1.b2
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = no
+		}
+		complete_national_focus = SWE_Borgerliga_Partierna_Coalition
+		news_event = SWE_ELECTIONS.13
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = SWE_1952_elections
+					option = SWE_SOCDEM_VICTORY_1952
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_ELECTIONS.2
+ immediate = { }
+	title = SWE_ELECTIONS.2.t2
+	desc = SWE_ELECTIONS.2.d
+    picture = GFX_Sweden_Election_Local_Generic
+
+	is_triggered_only = yes
+    fire_only_once = yes
+	
+	immediate = {
+		complete_national_focus = SWE_1956_Elections
+	}
+
+	option = {
+		name = SWE_ELECTIONS.2.a2
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = no
+		}
+		complete_national_focus = SWE_Sveriges_Socialdemokratiska_Arbetareparti_Victory_1956
+		news_event = SWE_ELECTIONS.11
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+			modifier = {
+				has_game_rule = {
+					rule = SWE_1956_elections
+					option = SWE_COALITION_VICTORY_1956
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = SWE_ELECTIONS.2.b2
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = no
+		}
+		complete_national_focus = SWE_Borgerliga_Partierna_Coalition_1956
+		news_event = SWE_ELECTIONS.14
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = SWE_1956_elections
+					option = SWE_SOCDEM_VICTORY_1956
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = SWE_ELECTIONS.3
+ immediate = { }
+	title = SWE_ELECTIONS.3.t2
+	desc = SWE_ELECTIONS.3.d
+    picture = GFX_Sweden_Election_Local_Generic
+
+	is_triggered_only = yes
+    fire_only_once = yes
+	
+	immediate = {
+		complete_national_focus = SWE_1958_Elections
+	}
+
+	option = {
+		name = SWE_ELECTIONS.3.a2
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = no
+		}
+		complete_national_focus = SWE_Sveriges_Socialdemokratiska_Arbetareparti_Victory_1958
+		news_event = SWE_ELECTIONS.12
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+			modifier = {
+				has_game_rule = {
+					rule = SWE_1958_elections
+					option = SWE_COALITION_VICTORY_1958
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = SWE_ELECTIONS.3.b2
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = no
+		}
+		complete_national_focus = SWE_Borgerliga_Partierna_Coalition_1958
+		news_event = SWE_ELECTIONS.15
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = SWE_1958_elections
+					option = SWE_SOCDEM_VICTORY_1958
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = SWE_NATO.5
+ immediate = { }
+	title = SWE_NATO.5.t2   
+	desc = SWE_NATO.5.d
+	picture = GFX_SWE_NATO_5
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SWE_NATO.5.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = SWE_NATO.6
+ immediate = { }
+	title = SWE_NATO.6.t2   
+	desc = SWE_NATO.6.d
+	picture = GFX_SWE_NATO_6
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SWE_NATO.6.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = SWE_Non_Prolif.1
+ immediate = { }
+	title = SWE_Non_Prolif.1.t2   
+	desc = SWE_Non_Prolif.1.d
+	picture = GFX_SWE_Non_Prolif_1
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SWE_Non_Prolif.1.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = SWE_Nukes.201
+ immediate = { }
+	title = SWE_Nukes.201.t2   
+	desc = SWE_Nukes.201.d
+	picture = GFX_SWE_Nukes_201
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SWE_Nukes.201.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = OB_54.1
+ immediate = { }
+	title = OB_54.1.t2   
+	desc = OB_54.1.d
+	picture = GFX_OB_54_1
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = OB_54.1.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = SWE_NUCLEAR.10
+ immediate = { }
+	title = SWE_NUCLEAR.10.t2   
+	desc = SWE_NUCLEAR.10.d
+	picture = GFX_SWE_NUCLEAR_10
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SWE_NUCLEAR.10.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = SWE_Nukes.100
+ immediate = { }
+	title = SWE_Nukes.100.t2   
+	desc = SWE_Nukes.100.d
+	picture = GFX_SWE_Nukes_100
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SWE_Nukes.100.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = SWE_Nukes.200
+ immediate = { }
+	title = SWE_Nukes.200.t2   
+	desc = SWE_Nukes.200.d
+	picture = GFX_SWE_Nukes_200
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SWE_Nukes.200.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = SWE_USA_NUK.4
+ immediate = { }
+	title = SWE_USA_NUK.4.t2   
+	desc = SWE_USA_NUK.4.d
+	picture = GFX_SWE_USA_NUK_4
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SWE_USA_NUK.4.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = SWE_ELECTIONS.10
+ immediate = { }
+	title = SWE_ELECTIONS.10.t2   
+	desc = SWE_ELECTIONS.10.d
+	picture = GFX_SWE_ELECTIONS_10
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SWE_ELECTIONS.10.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = SWE_ELECTIONS.11
+ immediate = { }
+	title = SWE_ELECTIONS.11.t2   
+	desc = SWE_ELECTIONS.11.d
+	picture = GFX_SWE_ELECTIONS_11
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SWE_ELECTIONS.11.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = SWE_ELECTIONS.12
+ immediate = { }
+	title = SWE_ELECTIONS.12.t2   
+	desc = SWE_ELECTIONS.12.d
+	picture = GFX_SWE_ELECTIONS_12
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SWE_ELECTIONS.12.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = SWE_ELECTIONS.13
+ immediate = { }
+	title = SWE_ELECTIONS.13.t2   
+	desc = SWE_ELECTIONS.13.d
+	picture = GFX_SWE_ELECTIONS_13
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SWE_ELECTIONS.13.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = SWE_ELECTIONS.14
+ immediate = { }
+	title = SWE_ELECTIONS.14.t2   
+	desc = SWE_ELECTIONS.14.d
+	picture = GFX_SWE_ELECTIONS_14
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SWE_ELECTIONS.14.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = SWE_ELECTIONS.15 
+ immediate = { }
+	title = SWE_ELECTIONS.15.t2   
+	desc = SWE_ELECTIONS.15.d
+	picture = GFX_SWE_ELECTIONS_15
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SWE_ELECTIONS.15.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = SWE_NUCLEAR.5
+ immediate = { }
+	title = SWE_NUCLEAR.5.t2   
+	desc = SWE_NUCLEAR.5.d
+	picture = GFX_SWE_NUCLEAR_5
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = SWE_NUCLEAR.5.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = worldcup.3 
+ immediate = { }
+	title = worldcup.3.t
+	desc = worldcup.3.d
+	picture = GFX_WorldCup3
+	fire_only_once = no
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = worldcup.3.a
+	}
+}

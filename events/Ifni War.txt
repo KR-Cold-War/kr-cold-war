@@ -1,0 +1,135 @@
+# KRCW (build/patch_residue.py): 6 OTL events dropped while KRCW_active
+add_namespace = ifni
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ifni.1 
+ immediate = { }
+	title = ifni.1.t
+	desc = ifni.1.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ifni.1.a
+		start_border_war = {
+			change_state_after_war = no
+			attacker = {
+				state = 462
+				num_provinces = 2
+				on_win = ifni.2
+				on_lose = ifni.3
+			}
+			defender = {
+				state = 1003
+				num_provinces = 1
+				on_win = ifni.4
+				on_lose = ifni.5
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ifni.2 
+ immediate = { }
+	title = ifni.2.t
+	desc = ifni.2.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ifni.2.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ifni.3 
+ immediate = { }
+	title = ifni.3.t
+	desc = ifni.3.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ifni.3.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ifni.4 
+ immediate = { }
+	title = ifni.4.t
+	desc = ifni.4.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ifni.4.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ifni.5 
+ immediate = { }
+	title = ifni.5.t
+	desc = ifni.5.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ifni.5.a
+		ai_chance = {
+			factor = 0
+		}
+		MOR = { transfer_state = 1002 transfer_state = 1003 }
+	}
+
+	option = {
+		name = ifni.5.b
+		ai_chance = {
+			factor = 100
+		}
+		add_political_power = -15
+		MOR = { transfer_state = 1002 }
+		news_event = ifni.6
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ifni.6 
+ immediate = { }
+	title = ifni.6.t
+	desc = ifni.6.d
+	picture = GFX_ifni_war
+
+	major = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = ifni.6.a
+		trigger = {
+			original_tag = SPR
+		}
+	}
+
+	option = {
+		name = ifni.6.b
+		trigger = {
+			original_tag = MOR
+		}
+	}
+
+	option = {
+		name = ifni.6.c
+		trigger = {
+			NOT = { original_tag = MOR original_tag = SPR }
+		}
+	}
+}

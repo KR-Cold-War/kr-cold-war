@@ -1,0 +1,8604 @@
+# KRCW (build/patch_residue.py): 188 OTL decisions hidden while KRCW_active
+VIE_Flag_Change = {
+	VIE_Readopt_Royal_Court_Banner = {
+		ai_will_do = {
+			factor = 0
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_cosmetic_tag = VIE_RCB_FRA_ETAT
+				has_cosmetic_tag = VIE_RCB_ETAT
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = VIE_etat_du_vietnam_tt
+				has_country_flag = VIE_unity_required
+			}
+		}
+		fire_only_once = yes
+		complete_effect = {
+			if = {
+				limit = {
+					has_cosmetic_tag = VIE_FRA_ETAT
+				}
+				set_cosmetic_tag = VIE_RCB_FRA_ETAT
+			}
+			else_if = {
+				limit = {
+					has_cosmetic_tag = VIE_ETAT
+				}
+				set_cosmetic_tag = VIE_RCB_ETAT
+			}
+			else_if = {
+				limit = {
+					has_cosmetic_tag = VIE_CCC_FRA_ETAT
+				}
+				set_cosmetic_tag = VIE_RCB_FRA_ETAT
+			}
+			else_if = {
+				limit = {
+					has_cosmetic_tag = VIE_CCC_ETAT
+				}
+				set_cosmetic_tag = VIE_RCB_ETAT
+			}
+			VIE_sync_faction_name = yes
+		}
+	}
+	VIE_Merge_Two_Flags = {
+		ai_will_do = {
+			factor = 0
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_cosmetic_tag = VIE_CCC_FRA_ETAT
+				has_cosmetic_tag = VIE_CCC_ETAT
+				has_country_flag = VIE_PM_Nguyen_Van_Xuan_Retired
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = VIE_etat_du_vietnam_tt
+				has_country_flag = VIE_unity_required
+			}
+			has_country_leader = {
+				character = CCC_Nguyen_Van_Xuan
+				ruling_only = yes
+			}
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			add_stability = 0.05
+			if = {
+				limit = {
+					has_cosmetic_tag = VIE_FRA_ETAT
+				}
+				set_cosmetic_tag = VIE_CCC_FRA_ETAT
+			}
+			else_if = {
+				limit = {
+					has_cosmetic_tag = VIE_ETAT
+				}
+				set_cosmetic_tag = VIE_CCC_ETAT
+			}
+			else_if = {
+				limit = {
+					has_cosmetic_tag = VIE_RCB_FRA_ETAT
+				}
+				set_cosmetic_tag = VIE_CCC_FRA_ETAT
+			}
+			else_if = {
+				limit = {
+					has_cosmetic_tag = VIE_RCB_ETAT
+				}
+				set_cosmetic_tag = VIE_CCC_ETAT
+			}
+			VIE_sync_faction_name = yes
+		}
+	}
+}
+
+VIE_CrownDomain_Decisions = {
+	VIE_Annex_FUL = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = CrownDomain_Decisions_Unlocked
+			country_exists = FUL
+			NOT = {
+				has_country_flag = VIE_Montagnard_Autonomy_Retained	# Saigon guaranteed the highlands instead of taking them
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_country_leader = {
+					character = VIE_Ngo_Dinh_Diem
+					ruling_only = yes
+				}
+				date > 1955.03.10
+			}
+		}
+		ai_will_do = {
+			base = 999
+		}
+		fire_only_once = yes
+		complete_effect = {
+			custom_effect_tooltip = VIE_FUL_Annexation_Trigger_tt
+			FUL = {
+				set_country_flag = VIE_FUL_Annexation_Trigger
+				country_event = { id = Du_So_21.1 days = 3 }
+			}
+		}
+	}
+	VIE_Annex_CCC = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = CrownDomain_Decisions_Unlocked
+			has_country_flag = VIE_CCC_Failure
+			country_exists = CCC
+		}
+		ai_will_do = {
+			base = 999
+		}
+		fire_only_once = yes
+		complete_effect = {
+			annex_country = {
+				target = CCC
+				transfer_troops = no
+			}
+		}
+	}
+	VIE_Puppet_NUN = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = CrownDomain_Decisions_Unlocked
+			country_exists = NUN
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			country_exists = NUN
+			date > 1950.04.14
+		}
+		ai_will_do = {
+			base = 999
+		}
+		fire_only_once = yes
+		complete_effect = {
+			NUN = {
+				country_event = {
+					id = NUN_Unification.1
+					hours = 12
+				}
+			}
+		}
+	}
+}
+
+VIE_Bao_Dai_Power_Minigame = {
+	# Situation Report
+	VIE_Diem_Situation_Report = {
+		icon = generic_political_discourse
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_PM_Ngo_Dinh_Diem
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = VIE_Diem_Situation_Report_tt
+				always = no
+			}
+		}
+		fire_only_once = no
+		selectable_mission = no
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	CuongDe_NgoDinh_Countdown = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				custom_trigger_tooltip = {
+					tooltip = VIE_CuongDe_NgoDinh_tt
+					has_country_flag = VIE_Diem_Jailed
+					has_country_flag = VIE_Nhu_Jailed
+				}
+			}
+		}
+		cost = 40
+		days_mission_timeout = 14
+		selectable_mission = yes
+		is_good = no
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			country_event = CuongDe_NgoDinh.1
+		 }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			country_event = CuongDe_NgoDinh.2
+		 }
+}
+	}
+	Reinstate_Xuan_CCC = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = CD_Xuan_Yes_tt
+				has_country_flag = CD_Xuan_Yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = VIE_Xuan_CCC_Peace_tt
+				has_war = no
+			}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = CD_Xuan_Yes
+			OR = {
+				has_country_flag = VIE_Main_Cuong_De
+				has_country_flag = VIE_Opposition_Cuong_De
+			}
+		}
+		fire_only_once = yes
+		selectable_mission = no
+		complete_effect = {
+			add_stability = 0.10
+			add_political_power = 100
+			add_timed_idea = {
+				idea = VIE_Cochinchina_Devolution
+				days = 365
+			}
+			set_country_flag = {
+				flag = Released_CCC_CD_temp
+				days = 365
+				value = 1
+			}
+			set_country_flag = {
+				flag = Released_CCC_CD
+				value = 1
+			}
+			release_puppet_on_controlled = CCC
+			set_nationality = {
+				target_country = CCC
+				character = CCC_Nguyen_Van_Xuan
+			}
+			add_country_leader_role = {
+				character = CCC_Nguyen_Van_Xuan
+				promote_leader = yes
+				country_leader = {
+					ideology = progressive
+				}
+			}
+			hidden_effect = {
+				CCC = {
+					set_politics = {
+						ruling_party = democratic
+					}
+					set_cosmetic_tag = CCC_CD
+				}
+			}
+		}
+	}
+	Reintergrate_Xuan_CCC = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Released_CCC_CD_temp
+			}
+			has_country_flag = Released_CCC_CD
+		}
+		fire_only_once = yes
+		selectable_mission = no
+		complete_effect = {
+			annex_country = {
+				target = CCC
+				transfer_troops = yes
+			}
+		}
+	}
+	CuongDe_Weapon_Purchase = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_NH_Welcome_Americans
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Main_Cuong_De
+		}
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.24
+			}
+		}
+		custom_cost_text = VIE_has_250_mil
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 30
+				AND = {
+					check_variable = { currentMoney > 5 }
+					has_political_power > 100
+				}
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					check_variable = { currentMoney < 2 }
+					has_political_power < 75
+				}
+			}
+		}
+		days_re_enable = 10
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			add_political_power = -25
+			set_temp_variable = {
+				money_to_gain = -0.25
+			}
+			add_money_with_tooltip_effect = yes
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1500
+				producer = USA
+			}
+			set_temp_variable = { influence_change = 8 }
+			VIE_Change_Domestic_Influence = yes
+		}
+	}
+	Reach_out_to_Phan_van_Giao = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_CD_Recruit_NgoDinh_Brothers
+			if = {
+				limit = {
+					check_variable = {
+						Alt_Favoritism < 35
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CD_0Less_Recruit_tt
+					check_variable = {
+						CD_Recruits < 0
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						Alt_Favoritism < 70
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CD_1Less_Recruit_tt
+					check_variable = {
+						CD_Recruits < 1
+					}
+				}
+			}
+			else = {
+				custom_trigger_tooltip = {
+					tooltip = CD_2Less_Recruit_tt
+					check_variable = {
+						CD_Recruits < 2
+					}
+				}
+			}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Dealing_with_CuongDe
+			has_country_flag = VIE_Opposition_Cuong_De
+			has_completed_focus = VIE_CD_Recruit_NgoDinh_Brothers
+		}
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.24
+			}
+		}
+		custom_cost_text = VIE_has_250_mil
+		fire_only_once = yes
+		selectable_mission = no
+		complete_effect = {
+			add_political_power = -25
+			set_temp_variable = {
+				money_to_gain = -0.25
+			}
+			add_money_with_tooltip_effect = yes
+			country_event = VIE_CD_Recruit.1
+			add_to_variable = {
+				CD_Recruits = 1
+			}
+		}
+	}
+	Reach_out_to_Nguyen_van_Xuan = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_CD_Recruit_NgoDinh_Brothers
+			if = {
+				limit = {
+					check_variable = {
+						Alt_Favoritism < 50
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CD_1Less_Recruit_tt
+					check_variable = {
+						CD_Recruits < 1
+					}
+				}
+			}
+			else = {
+				custom_trigger_tooltip = {
+					tooltip = CD_2Less_Recruit_tt
+					check_variable = {
+						CD_Recruits < 2
+					}
+				}
+			}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Dealing_with_CuongDe
+			has_country_flag = VIE_Opposition_Cuong_De
+			has_completed_focus = VIE_CD_Recruit_NgoDinh_Brothers
+		}
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.24
+			}
+		}
+		custom_cost_text = VIE_has_250_mil
+		fire_only_once = yes
+		selectable_mission = no
+		complete_effect = {
+			add_political_power = -25
+			set_temp_variable = {
+				money_to_gain = -0.25
+			}
+			add_money_with_tooltip_effect = yes
+			country_event = VIE_CD_Recruit.4
+			add_to_variable = {
+				CD_Recruits = 1
+			}
+		}
+	}
+	Reach_out_to_Le_van_Ty = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_CD_Recruit_NgoDinh_Brothers
+			if = {
+				limit = {
+					check_variable = {
+						Alt_Favoritism < 50
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CD_1Less_Recruit_tt
+					check_variable = {
+						CD_Recruits < 1
+					}
+				}
+			}
+			else = {
+				custom_trigger_tooltip = {
+					tooltip = CD_2Less_Recruit_tt
+					check_variable = {
+						CD_Recruits < 2
+					}
+				}
+			}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_CD_Recruit_NgoDinh_Brothers
+			has_country_flag = VIE_Dealing_with_CuongDe
+			has_country_flag = VIE_Opposition_Cuong_De
+		}
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.24
+			}
+		}
+		custom_cost_text = VIE_has_250_mil
+		fire_only_once = yes
+		selectable_mission = no
+		complete_effect = {
+			add_political_power = -25
+			set_temp_variable = {
+				money_to_gain = -0.25
+			}
+			add_money_with_tooltip_effect = yes
+			country_event = VIE_CD_Recruit.7
+			add_to_variable = {
+				CD_Recruits = 1
+			}
+		}
+	}
+	Dealing_With_CuongDe_Mission = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			hidden_trigger = {
+				always = no
+			}
+		}
+		days_mission_timeout = 4
+		days_re_enable = 1
+		selectable_mission = no
+		is_good = no
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			OR = {
+				NOT = {
+					custom_trigger_tooltip = {
+						tooltip = VIE_Current_Opposition_tt
+						has_country_flag = VIE_Opposition_Cuong_De
+					}
+				}
+				OR = {
+					custom_trigger_tooltip = {
+						tooltip = VIE_CuongDe_Lost_tt
+						has_country_flag = VIE_CuongDe_Lost1
+					}
+					custom_trigger_tooltip = {
+						tooltip = VIE_CuongDe_Victory1_tt
+						has_country_flag = CuongDe_Victory1
+					}
+				}
+			}
+		 } }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			set_temp_variable = { favoritism_change = 5 }
+			VIE_Change_Alt_Favoritism = yes
+			hidden_effect = {
+				activate_mission = Dealing_With_CuongDe_Mission
+			}
+		 }
+}
+	}
+	CuongDe_Countdown = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			hidden_trigger = {
+				always = no
+			}
+		}
+		days_mission_timeout = 45
+		selectable_mission = no
+		is_good = no
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			OR = {
+				NOT = {
+					custom_trigger_tooltip = {
+						tooltip = VIE_Current_Opposition_tt
+						has_country_flag = VIE_Opposition_Cuong_De
+					}
+				}
+				OR = {
+					custom_trigger_tooltip = {
+						tooltip = VIE_CuongDe_Lost_tt
+						has_country_flag = VIE_CuongDe_Lost1
+					}
+					custom_trigger_tooltip = {
+						tooltip = VIE_CuongDe_Victory1_tt
+						has_country_flag = CuongDe_Victory1
+					}
+				}
+			}
+		 } }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			custom_effect_tooltip = VIE_CuongDe_Victory1_Requirement_tt
+			country_event = Initial_CuongDe.5
+			if = {
+				limit = {
+					check_variable = {
+						Alt_Favoritism > 49
+					}
+				}
+				set_country_flag = CuongDe_Victory1
+			}
+		 }
+}
+	}
+	Discredit_the_CuongDe_Faction = {
+		complete_effect = {
+			set_temp_variable = { favoritism_change = -5 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = VIE_Sided_With_BaoDai_tt
+				has_country_flag = VIE_Anti_CuongDe
+			}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Dealing_with_CuongDe
+			has_country_flag = VIE_Opposition_Cuong_De
+		}
+		ai_will_do = {
+			base = 201
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_historical = yes }
+			}
+			modifier = {
+				factor = 0
+				has_political_power < 29
+			}
+			modifier = {
+				factor = 6
+				VIE_ai_pm_pursue_historical = yes
+			}
+		}
+		cost = 25
+		days_re_enable = 15
+		fire_only_once = no
+		selectable_mission = no
+	}
+	Lighten_Propaganda_Against_CuongDe = {
+		complete_effect = {
+			set_temp_variable = { favoritism_change = 5 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = VIE_Sided_With_CuongDe_tt
+				has_country_flag = VIE_Pro_CuongDe
+			}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Dealing_with_CuongDe
+			has_country_flag = VIE_Opposition_Cuong_De
+		}
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_challenger = yes }
+			}
+			modifier = {
+				factor = 0
+				has_political_power < 100
+			}
+			modifier = {
+				factor = 8
+				VIE_ai_pm_pursue_challenger = yes
+			}
+		}
+		cost = 25
+		days_re_enable = 5
+		fire_only_once = no
+		selectable_mission = no
+	}
+	Organize_Rallies_For_CuongDe = {
+		complete_effect = {
+			set_temp_variable = { favoritism_change = 10 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = VIE_Sided_With_CuongDe_tt
+				has_country_flag = VIE_Pro_CuongDe
+			}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Dealing_with_CuongDe
+			has_country_flag = VIE_Opposition_Cuong_De
+		}
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_challenger = yes }
+			}
+			modifier = {
+				factor = 0
+				has_political_power < 100
+			}
+			modifier = {
+				factor = 8
+				VIE_ai_pm_pursue_challenger = yes
+			}
+		}
+		cost = 45
+		days_re_enable = 15
+		fire_only_once = no
+		selectable_mission = no
+	}
+	CuongDe_Our_True_Leader = {
+		complete_effect = {
+			set_temp_variable = { favoritism_change = 25 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = VIE_Sided_With_CuongDe_tt
+				has_country_flag = VIE_Pro_CuongDe
+			}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Dealing_with_CuongDe
+			has_country_flag = VIE_Opposition_Cuong_De
+		}
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_challenger = yes }
+			}
+			modifier = {
+				factor = 0
+				has_political_power < 100
+			}
+			modifier = {
+				factor = 8
+				VIE_ai_pm_pursue_challenger = yes
+			}
+		}
+		cost = 65
+		fire_only_once = yes
+		selectable_mission = no
+	}
+	Discredit_the_Nguyen_Phan_Long_Faction = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Nguyen_Phan_Long
+		}
+		cost = 15
+		days_re_enable = 45
+		fire_only_once = no
+		selectable_mission = no
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_historical = yes }
+			}
+			modifier = {
+				factor = 0
+				has_political_power < 100
+			}
+			modifier = {
+				factor = 6
+				VIE_ai_pm_pursue_historical = yes
+			}
+		}
+		complete_effect = {
+			set_temp_variable = { favoritism_change = -5 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+	}
+	Boost_Long_French_Favoritism = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Nguyen_Phan_Long
+		}
+		cost = 10
+		days_re_enable = 5
+		fire_only_once = no
+		selectable_mission = no
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_challenger = yes }
+			}
+			modifier = {
+				factor = 0
+				has_political_power < 100
+			}
+			modifier = {
+				factor = 8
+				VIE_ai_pm_pursue_challenger = yes
+			}
+		}
+		complete_effect = {
+			set_temp_variable = { favoritism_change = 5 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+	}
+	VIE_USA_Long_Weapon_Shipment = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Long_Friendlier_USA_Ties
+			custom_trigger_tooltip = {
+				tooltip = French_Influence_Above_25_tt
+				check_variable = {
+					FRA_Influence > 25
+				}
+			}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Nguyen_Phan_Long
+		}
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = {
+				currentMoney > 0.09
+			}
+		}
+		custom_cost_text = VIE_has_100_mil
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_challenger = yes }
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					check_variable = { currentMoney < 2 }
+					has_political_power < 100
+				}
+			}
+			modifier = {
+				factor = 8
+				VIE_ai_pm_pursue_challenger = yes
+			}
+		}
+		days_re_enable = 10
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			add_political_power = -15
+			set_temp_variable = {
+				money_to_gain = -0.1
+			}
+			add_money_with_tooltip_effect = yes
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = USA
+			}
+			set_temp_variable = { favoritism_change = 7 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+	}
+	Long_PM_Countdown = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			hidden_trigger = {
+				always = no
+			}
+		}
+		days_mission_timeout = 60
+		selectable_mission = no
+		is_good = no
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			NOT = {
+				custom_trigger_tooltip = {
+					tooltip = VIE_Current_Opposition_tt
+					has_country_flag = VIE_Opposition_Nguyen_Phan_Long
+				}
+			}
+		 } }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			custom_effect_tooltip = Long_PM_tt
+			if = {
+				limit = {
+					check_variable = {
+						Alt_Favoritism > 59
+					}
+				}
+				set_country_flag = Long_Stays_PM
+				else = {
+					set_country_flag = Long_Retires_PM
+				}
+			}
+		 }
+}
+	}
+	Phuong_Mutiny_Timer = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cost = 40
+		days_mission_timeout = 60
+		selectable_mission = yes
+		is_good = no
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			NOT = {
+				custom_trigger_tooltip = {
+					tooltip = VIE_Current_Opposition_tt
+					has_country_flag = VIE_Opposition_Tran_Quang_Vinh
+				}
+			}
+		 } }
+}
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			country_event = VIE_Vinh.2
+		 }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			country_event = VIE_Vinh.3
+		 }
+}
+	}
+	Discredit_the_Tran_Van_Huu_Faction = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		complete_effect = {
+			set_temp_variable = { favoritism_change = -5 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Tran_Van_Huu
+		}
+		cost = 15
+		days_re_enable = 45
+		fire_only_once = no
+		selectable_mission = no
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_historical = yes }
+			}
+			modifier = {
+				factor = 0
+				has_political_power < 100
+			}
+			modifier = {
+				factor = 6
+				VIE_ai_pm_pursue_historical = yes
+			}
+		}
+	}
+	Boost_Huu_French_Favoritism = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Tran_Van_Huu
+		}
+		cost = 10
+		days_re_enable = 5
+		fire_only_once = no
+		selectable_mission = no
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_challenger = yes }
+			}
+			modifier = {
+				factor = 0
+				has_political_power < 100
+			}
+			modifier = {
+				factor = 8
+				VIE_ai_pm_pursue_challenger = yes
+			}
+		}
+		complete_effect = {
+			set_temp_variable = { favoritism_change = 5 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+	}
+	VIE_Huu_Weapon_Shipment_USA = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Huu_Attract_Worldwide_Attention_SV
+			custom_trigger_tooltip = {
+				tooltip = French_Influence_Above_25_tt
+				check_variable = {
+					FRA_Influence > 25
+				}
+			}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Tran_Van_Huu
+		}
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.24
+			}
+		}
+		custom_cost_text = VIE_has_250_mil
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_historical = yes }
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					check_variable = { currentMoney < 2 }
+					has_political_power < 100
+				}
+			}
+			modifier = {
+				factor = 8
+				VIE_ai_pm_pursue_historical = yes
+			}
+		}
+		days_re_enable = 12
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			add_political_power = -25
+			set_temp_variable = {
+				money_to_gain = -0.25
+			}
+			add_money_with_tooltip_effect = yes
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1450
+				producer = USA
+			}
+			set_temp_variable = {
+				percent_change = 5
+			}
+			set_temp_variable = {
+				tag_index = USA.id
+			}
+			set_temp_variable = {
+				influence_target = THIS.id
+			}
+			change_influence_percentage = yes
+			add_opinion_modifier = {
+				target = USA
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = USA
+				modifier = small_increase
+			}
+			set_temp_variable = { influence_change = 8 }
+			VIE_Change_Domestic_Influence = yes
+			set_temp_variable = { favoritism_change =-7 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+	}
+	Huu_PM_Countdown = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			hidden_trigger = {
+				always = no
+			}
+		}
+		days_mission_timeout = 60
+		selectable_mission = no
+		is_good = no
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			NOT = {
+				custom_trigger_tooltip = {
+					tooltip = VIE_Current_Opposition_tt
+					has_country_flag = VIE_Opposition_Tran_Van_Huu
+				}
+			}
+		 } }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			custom_effect_tooltip = Huu_PM_tt
+			if = {
+				limit = {
+					check_variable = {
+						Alt_Favoritism > Main_Favoritism
+					}
+				}
+				set_country_flag = Huu_Wins_Over_French
+			}
+			else = {
+				set_country_flag = Huu_Accepts_French_Disinterest
+			}
+		 }
+}
+	}
+	Boost_Huu_USA_Influence = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Tran_Van_Huu
+		}
+		cost = 18
+		days_re_enable = 5
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			set_temp_variable = { influence_change = 5 }
+			VIE_Change_Domestic_Influence = yes
+			set_temp_variable = { favoritism_change = -3 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_historical = yes }
+			}
+			modifier = {
+				factor = 0
+				has_political_power < 100
+			}
+			modifier = {
+				factor = 6
+				VIE_ai_pm_pursue_historical = yes
+			}
+		}
+	}
+	Boost_Huu_French_Influence = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Tran_Van_Huu
+		}
+		cost = 12
+		days_re_enable = 5
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			set_temp_variable = { influence_change = -5 }
+			VIE_Change_Domestic_Influence = yes
+			set_temp_variable = { favoritism_change = 3 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_challenger = yes }
+			}
+			modifier = {
+				factor = 0
+				has_political_power < 100
+			}
+			modifier = {
+				factor = 8
+				VIE_ai_pm_pursue_challenger = yes
+			}
+		}
+	}
+	Huu_USA_Diplomatic_Mission = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Huu_Open_Viet_VoA_Radio
+			country_exists = USA
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Tran_Van_Huu
+		}
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.19
+			}
+		}
+		custom_cost_text = VIE_has_200_mil
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_historical = yes }
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					check_variable = { currentMoney < 2 }
+					has_political_power < 100
+				}
+			}
+			modifier = {
+				factor = 8
+				VIE_ai_pm_pursue_historical = yes
+			}
+		}
+		days_re_enable = 20
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			add_political_power = -25
+			set_temp_variable = {
+				money_to_gain = -0.2
+			}
+			add_money_with_tooltip_effect = yes
+			set_temp_variable = { influence_change = 10 }
+			VIE_Change_Domestic_Influence = yes
+			set_temp_variable = {
+				percent_change = 5
+			}
+			set_temp_variable = {
+				tag_index = USA.id
+			}
+			set_temp_variable = {
+				influence_target = THIS.id
+			}
+			change_influence_percentage = yes
+			add_opinion_modifier = {
+				target = USA
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = USA
+				modifier = small_increase
+			}
+			set_temp_variable = { favoritism_change = -5 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+	}
+	Huu_French_Cultural_Exchange = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Huu_Maintain_PhapViet_DeHue
+			country_exists = FRA
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Tran_Van_Huu
+		}
+		custom_cost_trigger = {
+			has_political_power > 19
+			check_variable = {
+				currentMoney > 0.14
+			}
+		}
+		custom_cost_text = VIE_has_150_mil
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_challenger = yes }
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					check_variable = { currentMoney < 2 }
+					has_political_power < 100
+				}
+			}
+			modifier = {
+				factor = 8
+				VIE_ai_pm_pursue_challenger = yes
+			}
+		}
+		days_re_enable = 15
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			add_political_power = -20
+			set_temp_variable = {
+				money_to_gain = -0.15
+			}
+			add_money_with_tooltip_effect = yes
+			add_to_variable = {
+				FRA_Influence = 10
+			}
+			add_opinion_modifier = {
+				target = FRA
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = FRA
+				modifier = small_increase
+			}
+			set_temp_variable = { favoritism_change = 5 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+	}
+	Huu_USA_Economic_Agreement = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Huu_Accept_USA_Financial_Aid
+			country_exists = USA
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Tran_Van_Huu
+		}
+		custom_cost_trigger = {
+			has_political_power > 29
+			check_variable = {
+				currentMoney > 0.24
+			}
+		}
+		custom_cost_text = VIE_has_250_mil
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_historical = yes }
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					check_variable = { currentMoney < 2 }
+					has_political_power < 100
+				}
+			}
+			modifier = {
+				factor = 8
+				VIE_ai_pm_pursue_historical = yes
+			}
+		}
+		days_re_enable = 25
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			add_political_power = -30
+			set_temp_variable = {
+				money_to_gain = -0.25
+			}
+			add_money_with_tooltip_effect = yes
+			set_temp_variable = { influence_change = 15 }
+			VIE_Change_Domestic_Influence = yes
+			set_temp_variable = {
+				money_to_gain = 0.3
+			}
+			add_money_with_tooltip_effect = yes
+			set_temp_variable = {
+				percent_change = 8
+			}
+			set_temp_variable = {
+				tag_index = USA.id
+			}
+			set_temp_variable = {
+				influence_target = THIS.id
+			}
+			change_influence_percentage = yes
+			set_temp_variable = { favoritism_change = -3 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+	}
+	Huu_French_Military_Cooperation = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Huu_Request_More_French_Financial_Aid
+			country_exists = FRA
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Tran_Van_Huu
+		}
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.19
+			}
+		}
+		custom_cost_text = VIE_has_200_mil
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_challenger = yes }
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					check_variable = { currentMoney < 2 }
+					has_political_power < 100
+				}
+			}
+			modifier = {
+				factor = 8
+				VIE_ai_pm_pursue_challenger = yes
+			}
+		}
+		days_re_enable = 20
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			add_political_power = -25
+			set_temp_variable = {
+				money_to_gain = -0.2
+			}
+			add_money_with_tooltip_effect = yes
+			add_to_variable = {
+				FRA_Influence = 15
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1300
+				producer = FRA
+			}
+			add_opinion_modifier = {
+				target = FRA
+				modifier = medium_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = FRA
+				modifier = medium_increase
+			}
+			set_temp_variable = { favoritism_change = 10 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+	}
+	VIE_Huu_Weapon_Shipment_FRA = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Huu_Attract_Worldwide_Attention_SV
+			custom_trigger_tooltip = {
+				tooltip = French_Influence_Above_25_tt
+				check_variable = {
+					FRA_Influence > 25
+				}
+			}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Tran_Van_Huu
+		}
+		custom_cost_trigger = {
+			has_political_power > 19
+			check_variable = {
+				currentMoney > 0.19
+			}
+		}
+		custom_cost_text = VIE_has_200_mil
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_challenger = yes }
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					check_variable = { currentMoney < 2 }
+					has_political_power < 100
+				}
+			}
+			modifier = {
+				factor = 8
+				VIE_ai_pm_pursue_challenger = yes
+			}
+		}
+		days_re_enable = 12
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			add_political_power = -20
+			set_temp_variable = {
+				money_to_gain = -0.2
+			}
+			add_money_with_tooltip_effect = yes
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1375
+				producer = FRA
+			}
+			set_temp_variable = {
+				percent_change = 3
+			}
+			set_temp_variable = {
+				tag_index = FRA.id
+			}
+			set_temp_variable = {
+				influence_target = FRA.id
+			}
+			change_influence_percentage = yes
+			add_opinion_modifier = {
+				target = FRA
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = FRA
+				modifier = small_increase
+			}
+			set_temp_variable = { influence_change = -8 }
+			VIE_Change_Domestic_Influence = yes
+			set_temp_variable = { favoritism_change = 7 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+	}
+	VIE_Huu_Weapon_Shipment_ENG = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Huu_Attract_Worldwide_Attention_SV
+			custom_trigger_tooltip = {
+				tooltip = French_Influence_Above_25_tt
+				check_variable = {
+					FRA_Influence > 25
+				}
+			}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Tran_Van_Huu
+		}
+		custom_cost_trigger = {
+			has_political_power > 19
+			check_variable = {
+				currentMoney > 0.19
+			}
+		}
+		custom_cost_text = VIE_has_200_mil
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_historical = yes }
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					check_variable = { currentMoney < 2 }
+					has_political_power < 100
+				}
+			}
+			modifier = {
+				factor = 8
+				VIE_ai_pm_pursue_historical = yes
+			}
+		}
+		days_re_enable = 12
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			add_political_power = -20
+			set_temp_variable = {
+				money_to_gain = -0.2
+			}
+			add_money_with_tooltip_effect = yes
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1375
+				producer = ENG
+			}
+			set_temp_variable = {
+				percent_change = 3
+			}
+			set_temp_variable = {
+				tag_index = FRA.id
+			}
+			set_temp_variable = {
+				influence_target = FRA.id
+			}
+			change_influence_percentage = yes
+			add_opinion_modifier = {
+				target = ENG
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = ENG
+				modifier = small_increase
+			}
+			set_temp_variable = { influence_change = 8 }
+			VIE_Change_Domestic_Influence = yes
+			set_temp_variable = { favoritism_change = -7 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+	}
+	VIE_Huu_Weapon_Shipment_ROC = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Huu_Attract_Worldwide_Attention_SV
+			custom_trigger_tooltip = {
+				tooltip = French_Influence_Above_25_tt
+				check_variable = {
+					FRA_Influence > 25
+				}
+			}
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Tran_Van_Huu
+		}
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = {
+				currentMoney > 0.14
+			}
+		}
+		custom_cost_text = VIE_has_150_mil
+		ai_will_do = {
+			base = 26
+			modifier = {
+				factor = 0
+				NOT = { VIE_ai_pm_pursue_historical = yes }
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					check_variable = { currentMoney < 2 }
+					has_political_power < 100
+				}
+			}
+			modifier = {
+				factor = 8
+				VIE_ai_pm_pursue_historical = yes
+			}
+		}
+		days_re_enable = 12
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			add_political_power = -15
+			set_temp_variable = {
+				money_to_gain = -0.15
+			}
+			add_money_with_tooltip_effect = yes
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1300
+				producer = CHI
+			}
+			set_temp_variable = {
+				percent_change = 2
+			}
+			set_temp_variable = {
+				tag_index = CHI.id
+			}
+			set_temp_variable = {
+				influence_target = CHI.id
+			}
+			change_influence_percentage = yes
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = CHI
+				modifier = small_increase
+			}
+			set_temp_variable = { influence_change = 8 }
+			VIE_Change_Domestic_Influence = yes
+			set_temp_variable = { favoritism_change = -7 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+	}
+	Discredit_the_Ngo_Dinh_Diem_Faction = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		complete_effect = {
+			set_temp_variable = { favoritism_change = -5 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Opposition_Diem
+		}
+		cost = 25
+		days_re_enable = 45
+		fire_only_once = no
+		selectable_mission = no
+	}
+	# Narrative Decisions
+	Dealing_With_Diem_Countdown = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Ambitious_Diem
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Contain_Diem_Socialist_Ambitions
+		}
+		days_mission_timeout = 70
+		selectable_mission = no
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			clr_country_flag = VIE_Ambitious_Diem
+			set_country_flag = VIE_Dealt_With_Diem
+			country_event = BaoDai.6
+		 }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			clr_country_flag = VIE_Ambitious_Diem
+			set_country_flag = VIE_FRA_Dealt_With_Diem
+			FRA = {
+				country_event = BaoDai.5
+			}
+		 }
+}
+	}
+	Uncensor_Bao_Dais_Scandals = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Main_Bao_Dai
+		}
+		complete_effect = {
+			set_temp_variable = { favoritism_change = -15 }
+			VIE_Change_Main_Favoritism = yes
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = Alt_Favoritism_Above_50_tt
+				check_variable = {
+					Alt_Favoritism > 50
+				}
+			}
+		}
+		cost = 25
+		days_re_enable = 45
+		fire_only_once = no
+		selectable_mission = no
+	}
+	Broadcast_Pro_Independence_Speeches = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		complete_effect = {
+			set_temp_variable = { influence_change = 5 }
+			VIE_Change_Domestic_Influence = yes
+		}
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 150
+				AND = {
+					check_variable = {
+						VIE_Influence > 39
+					}
+					check_variable = {
+						FRA_Influence < 61
+					}
+					has_political_power > 134
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						VIE_Influence < 39
+					}
+					check_variable = {
+						FRA_Influence > 61
+					}
+					has_political_power < 89
+				}
+			}
+		}
+		cost = 15
+		days_re_enable = 45
+		fire_only_once = no
+		selectable_mission = no
+	}
+	Attack_French_Loyalists = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		complete_effect = {
+			set_temp_variable = { influence_change = 10 }
+			VIE_Change_Domestic_Influence = yes
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = French_Influence_Above_50_tt
+				check_variable = {
+					FRA_Influence > 50
+				}
+			}
+		}
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 180
+				AND = {
+					check_variable = {
+						VIE_Influence > 19
+					}
+					check_variable = {
+						FRA_Influence < 81
+					}
+					has_political_power > 149
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						VIE_Influence < 39
+					}
+					check_variable = {
+						FRA_Influence > 61
+					}
+					has_political_power < 99
+				}
+			}
+		}
+		cost = 20
+		days_re_enable = 45
+		fire_only_once = no
+		selectable_mission = no
+	}
+	Broadcast_Pro_French_Propaganda = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		complete_effect = {
+			set_temp_variable = { influence_change = -5 }
+			VIE_Change_Domestic_Influence = yes
+		}
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 150
+				AND = {
+					check_variable = {
+						VIE_Influence < 39
+					}
+					check_variable = {
+						FRA_Influence > 61
+					}
+					has_political_power > 134
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						VIE_Influence > 39
+					}
+					check_variable = {
+						FRA_Influence < 61
+					}
+					has_political_power < 89
+				}
+			}
+		}
+		cost = 15
+		days_re_enable = 45
+		fire_only_once = no
+		selectable_mission = no
+	}
+	Assure_Loyalty_to_France = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		complete_effect = {
+			set_temp_variable = { influence_change = -10 }
+			VIE_Change_Domestic_Influence = yes
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = French_Influence_Below_50_tt
+				check_variable = {
+					FRA_Influence < 50
+				}
+			}
+		}
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 180
+				AND = {
+					check_variable = {
+						VIE_Influence < 19
+					}
+					check_variable = {
+						FRA_Influence > 81
+					}
+					has_political_power > 149
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						VIE_Influence > 39
+					}
+					check_variable = {
+						FRA_Influence < 61
+					}
+					has_political_power < 99
+				}
+			}
+		}
+		cost = 25
+		days_re_enable = 45
+		fire_only_once = no
+		selectable_mission = no
+	}
+	Ask_France_for_Money = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		complete_effect = {
+			if = {
+				limit = {
+					check_variable = {
+						FRA_Influence < 75
+					}
+				}
+				set_temp_variable = {
+					money_to_gain = 0.1
+				}
+				add_money_with_tooltip_effect = yes
+				add_stability = -0.05
+				custom_effect_tooltip = Ask_France_for_Money_tt
+				set_temp_variable = { influence_change = -7 }
+				VIE_Change_Domestic_Influence = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						FRA_Influence > 74
+					}
+				}
+				set_temp_variable = {
+					money_to_gain = 0.25
+				}
+				add_money_with_tooltip_effect = yes
+				add_stability = -0.1
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = French_Influence_Above_60_tt
+				check_variable = {
+					FRA_Influence > 59
+				}
+			}
+		}
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 20
+				has_political_power > 159
+			}
+		}
+		cost = 35
+		days_re_enable = 75
+		fire_only_once = no
+		selectable_mission = no
+	}
+	Ask_France_for_Weapons = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		complete_effect = {
+			if = {
+				limit = {
+					check_variable = {
+						FRA_Influence < 90
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 1000
+					producer = FRA
+				}
+				add_equipment_to_stockpile = {
+					type = support_equipment
+					amount = 250
+					producer = FRA
+				}
+				add_equipment_to_stockpile = {
+					type = motorized_equipment_1
+					amount = 50
+					producer = FRA
+				}
+				add_war_support = -0.05
+				custom_effect_tooltip = Ask_France_for_Weapons_tt
+				set_temp_variable = { influence_change = -10 }
+			VIE_Change_Domestic_Influence = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						FRA_Influence > 89
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 2500
+					producer = FRA
+				}
+				add_equipment_to_stockpile = {
+					type = support_equipment
+					amount = 625
+					producer = FRA
+				}
+				add_equipment_to_stockpile = {
+					type = motorized_equipment_1
+					amount = 125
+					producer = FRA
+				}
+				add_war_support = -0.1
+				set_temp_variable = { influence_change = -15 }
+				VIE_Change_Domestic_Influence = yes
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			custom_trigger_tooltip = {
+				tooltip = French_Influence_Above_75_tt
+				check_variable = {
+					FRA_Influence > 74
+				}
+			}
+		}
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 20
+				has_political_power > 249
+			}
+		}
+		cost = 35
+		days_re_enable = 120
+		fire_only_once = no
+		selectable_mission = no
+	}
+	ProFrench_Coup = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = {
+				FRA_Influence < 11
+			}
+			NOT = {
+				has_country_flag = VIE_FRA_Coup
+			}
+			NOT = {
+				has_country_flag = VIE_Hinh_Crisis
+			}
+			NOT = {
+				has_country_flag = VIE_Matignon_Treaty_Signed
+			}
+			OR = {
+				has_character = CCC_Jean_Leroy
+				has_character = VIE_Nguyen_Van_Hinh
+			}
+			OR = {
+				is_ai = no
+				NOT = { has_game_rule = { rule = VIE_ai_french_coup option = VIE_FRENCH_COUP_AI_EXEMPT } }
+			}
+		}
+		days_mission_timeout = 45
+		selectable_mission = no
+		is_good = no
+		available = { NOT = { has_global_flag = KRCW_active } 
+			hidden_trigger = {
+				always = no
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = French_Influence_Above_10_tt
+					check_variable = {
+						FRA_Influence > 10
+					}
+				}
+				has_country_flag = VIE_Matignon_Treaty_Signed
+			}
+		 } }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			set_country_flag = VIE_FRA_Coup
+			country_event = French_Coup.2
+		 }
+}
+	}
+	VIE_Hinh_Coup_Attempt = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Hinh_Crisis
+			has_character = VIE_Nguyen_Van_Hinh
+			NOT = {
+				has_country_flag = VIE_FRA_Coup
+			}
+			NOT = {
+				has_country_flag = VIE_Diem_Controls_Army
+			}
+			NOT = {
+				has_country_flag = VIE_Hinh_Bought_Off
+			}
+			OR = {
+				is_ai = no
+				NOT = { has_game_rule = { rule = VIE_ai_french_coup option = VIE_FRENCH_COUP_AI_EXEMPT } }
+			}
+		}
+		days_mission_timeout = 135	# 7 July 1954 cabinet to Hinh's resignation on 13 November, with a little slack
+		selectable_mission = no
+		is_good = no
+		available = { NOT = { has_global_flag = KRCW_active } 
+			hidden_trigger = {
+				always = no
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = VIE_Diem_Controls_Army_tt
+					has_country_flag = VIE_Diem_Controls_Army
+				}
+				has_country_flag = VIE_Hinh_Bought_Off
+				NOT = { has_character = VIE_Nguyen_Van_Hinh }
+			}
+		 } }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			clr_country_flag = VIE_Hinh_Crisis
+			if = {
+				limit = {
+					is_ai = yes
+					is_historical_focus_on = yes
+					check_variable = { VIE_Hinh_Standoff < 50 }
+				}
+				set_variable = { VIE_Hinh_Standoff = 50 }
+			}
+			if = {
+				limit = { check_variable = { VIE_Hinh_Standoff > 49 } }
+				country_event = Diem.22
+			}
+			else = {
+				set_country_flag = VIE_FRA_Coup
+				country_event = Diem.23
+			}
+		 }
+}
+	}
+	VIE_Hinh_Request_American_Guards = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Hinh_Crisis
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_political_power > 49
+			USA = {
+				OR = {
+					has_completed_focus = USA_50s_Permit_Diem_Regime
+					has_opinion = {
+						target = VIE
+						value > 24
+					}
+				}
+			}
+		}
+		cost = 50
+		fire_only_once = yes
+		selectable_mission = no
+		complete_effect = {
+			country_event = { id = Diem.24 days = 14 }
+		}
+		ai_will_do = {
+			base = 40
+			modifier = {
+				factor = 0
+				has_political_power < 60
+			}
+		}
+	}
+	VIE_Hinh_Buy_the_Officer_Corps = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Hinh_Crisis
+		}
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = { currentMoney > 0.09 }
+		}
+		custom_cost_text = VIE_Hinh_Buy_the_Officer_Corps_cost
+		days_re_enable = 20
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			add_political_power = -25
+			set_temp_variable = { money_to_gain = -0.1 }
+			add_money_with_tooltip_effect = yes
+			set_temp_variable = { hinh_standoff_change = 10 }
+			VIE_hinh_standoff_change = yes
+		}
+		ai_will_do = {
+			base = 30
+			modifier = {
+				factor = 0
+				has_political_power < 60
+			}
+		}
+	}
+	VIE_Hinh_Appeal_to_Bao_Dai = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Hinh_Crisis
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_political_power > 29
+		}
+		cost = 30
+		fire_only_once = yes
+		selectable_mission = no
+		complete_effect = {
+			set_temp_variable = { hinh_standoff_change = 20 }
+			VIE_hinh_standoff_change = yes
+			set_temp_variable = { favoritism_change = 10 }	# the throne does not do favours for nothing
+			VIE_Change_Main_Favoritism = yes
+		}
+		ai_will_do = {
+			base = 25
+			modifier = {
+				factor = 0
+				has_political_power < 60
+			}
+		}
+	}
+	VIE_Hinh_Reform_the_Cabinet = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Hinh_Crisis
+			has_idea = VIE_Caretaker_Cabinet
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_political_power > 39
+		}
+		cost = 40
+		fire_only_once = yes
+		selectable_mission = no
+		complete_effect = {
+			remove_ideas = VIE_Caretaker_Cabinet
+			add_stability = 0.05
+			set_temp_variable = { hinh_standoff_change = 10 }
+			VIE_hinh_standoff_change = yes
+		}
+		ai_will_do = {
+			base = 35
+			modifier = {
+				factor = 0
+				has_political_power < 60
+			}
+		}
+	}
+	VIE_Hinh_Ease_Out_the_Chief = {	# the bought-off path's only route to the army: Le-Van-Ty takes the General Staff on 12 January 1955
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_PM_Ngo_Dinh_Diem
+			has_country_flag = VIE_Hinh_Bought_Off
+			NOT = {
+				has_country_flag = VIE_Diem_Controls_Army
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			date > 1955.01.12
+			has_character = VIE_Le_Van_Ty
+			has_political_power > 74
+		}
+		cost = 75
+		days_remove = 30
+		fire_only_once = yes
+		selectable_mission = no
+		remove_effect = {
+			set_country_flag = VIE_Diem_Controls_Army
+			add_stability = -0.03
+			set_temp_variable = { favoritism_change = -10 }
+			VIE_Change_Main_Favoritism = yes
+			set_temp_variable = { influence_change = 5 }
+			VIE_Change_Domestic_Influence = yes
+			set_temp_variable = { daiviet_threat_change = 10 }	# the chief goes, and the officers who backed him take the grievance to the party
+			VIE_daiviet_threat_change = yes
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	VIE_DaiViet_Plot = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_PM_Ngo_Dinh_Diem
+			NOT = {
+				has_global_flag = VIE_Republic_Proclaimed
+			}
+			NOT = {
+				has_country_flag = VIE_DaiViet_Plot_Running
+			}
+			NOT = {
+				has_country_flag = VIE_Hinh_Coup
+			}
+			check_variable = {
+				VIE_DaiViet_Threat > 49
+			}
+		}
+		days_mission_timeout = 45
+		selectable_mission = no
+		is_good = no
+		available = { NOT = { has_global_flag = KRCW_active } 
+			hidden_trigger = {
+				always = no
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			custom_trigger_tooltip = {
+				tooltip = VIE_DaiViet_Threat_Contained_tt
+				check_variable = {
+					VIE_DaiViet_Threat < 50
+				}
+			}
+		 } }
+}
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			set_country_flag = {
+				flag = VIE_DaiViet_Plot_Running
+				days = 120
+			}
+			if = {
+				limit = { check_variable = { VIE_DaiViet_Threat > 99 } }
+				country_event = DaiViet.3
+			}
+			else_if = {
+				limit = { check_variable = { VIE_DaiViet_Threat > 74 } }
+				country_event = DaiViet.2
+			}
+			else = {
+				country_event = DaiViet.1
+			}
+		 }
+}
+	}
+	VIE_DaiViet_Offer_Cabinet_Seats = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_PM_Ngo_Dinh_Diem
+			NOT = { has_global_flag = VIE_Republic_Proclaimed }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_political_power > 49
+			check_variable = {
+				VIE_DaiViet_Threat > 4
+			}
+		}
+		cost = 50
+		days_re_enable = 90
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			set_temp_variable = { daiviet_threat_change = -25 }
+			VIE_daiviet_threat_change = yes
+			set_temp_variable = { favoritism_change = -5 }	# power shared is standing spent
+			VIE_Change_Alt_Favoritism = yes
+		}
+		ai_will_do = {
+			base = 20
+			modifier = {
+				factor = 0
+				has_political_power < 80
+			}
+			modifier = {
+				factor = 4
+				check_variable = { VIE_DaiViet_Threat > 44 }
+			}
+		}
+	}
+	VIE_DaiViet_Can_Lao_Infiltration = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_Can_Lao_Founded
+			NOT = { has_global_flag = VIE_Republic_Proclaimed }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_political_power > 24
+			check_variable = {
+				VIE_DaiViet_Threat > 4
+			}
+		}
+		cost = 25
+		days_re_enable = 60
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			set_temp_variable = { daiviet_threat_change = -20 }
+			VIE_daiviet_threat_change = yes
+		}
+		ai_will_do = {
+			base = 50
+			modifier = {
+				factor = 0
+				has_political_power < 50
+			}
+			modifier = {
+				factor = 4
+				check_variable = { VIE_DaiViet_Threat > 34 }
+			}
+		}
+	}
+	VIE_DaiViet_Arrest_the_Cadres = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_PM_Ngo_Dinh_Diem
+			NOT = { has_global_flag = VIE_Republic_Proclaimed }
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_political_power > 34
+			has_stability > 0.19
+			check_variable = {
+				VIE_DaiViet_Threat > 4
+			}
+		}
+		cost = 35
+		days_re_enable = 120
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			add_stability = -0.05
+			set_temp_variable = { daiviet_threat_change = -35 }
+			VIE_daiviet_threat_change = yes
+			set_temp_variable = { favoritism_change = -3 }
+			VIE_Change_Alt_Favoritism = yes
+		}
+		ai_will_do = {
+			base = 15
+			modifier = {
+				factor = 0
+				has_political_power < 70
+			}
+			modifier = {
+				factor = 6
+				check_variable = { VIE_DaiViet_Threat > 64 }
+			}
+		}
+	}
+}
+
+VIE_Land_Reform = {
+	VIE_Land_Reform_Measures = {
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_country_leader = {
+				character = VIE_Ngo_Dinh_Diem
+				ruling_only = yes
+			}
+			check_variable = {
+				VIE_Land_Reform_Penalty < 0.6
+			}
+			has_stability > 0.14
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		cost = 20
+		custom_cost_trigger = {
+			has_political_power > 19
+			check_variable = {
+				currentMoney > 0.19
+			}
+		}
+		custom_cost_text = VIE_has_200_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 4
+					}
+					has_political_power > 59
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 2
+					}
+					has_political_power < 39
+				}
+			}
+		}
+		days_re_enable = 365
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			custom_effect_tooltip = Decrease_Land_Reform_Penalty_5
+			add_to_variable = {
+				VIE_Land_Reform_Penalty = 0.05
+			}
+			set_temp_variable = {
+				money_to_gain = -0.2
+			}
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	VIE_Cadre_1804 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1804
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1804 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1752 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1752
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1752 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1285 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1285
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1285 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_983 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 983
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			983 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_286 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 286
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			286 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1754 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1754
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1754 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1755 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1755
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1755 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1289 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1289
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1289 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1757 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1757
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1757 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_982 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 982
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			982 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1286 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1286
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1286 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1287 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1287
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1287 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1756 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1756
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1756 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1288 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1288
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1288 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_757 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 757
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			757 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1758 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1758
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1758 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1759 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1759
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1759 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_838 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 838
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			838 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1763 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1763
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1763 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1762 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1762
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1762 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1766 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1766
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1766 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_786 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 786
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			786 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1760 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1760
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1760 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1281 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1281
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1281 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_671 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 671
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			671 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1761 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 1761
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			1761 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_881 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 881
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			881 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+	VIE_Cadre_1768 = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			owns_state = 881
+			OR = {
+				has_country_flag = VIE_Mimic_Northern_Land_Reforms
+				has_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_stability > 0.14
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = -15
+			add_stability = -0.01
+			881 = {
+				add_dynamic_modifier = {
+					modifier = VIE_Mobilized_Civil_Action_Cadres
+				}
+			}
+		}
+	}
+}
+
+VIE_State_Industrialization = {
+	State_Industrialization_Ready = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		state_target = yes
+		target_trigger = {
+			FROM = {
+				has_state_flag = Not_Industrialized
+			}
+		}
+		cancel_trigger = {
+			FROM = {
+				NOT = {
+					is_owned_and_controlled_by = VIE
+				}
+			}
+		}
+		target_array = VIE.owned_controlled_states
+		on_map_mode = decision_view_only
+		days_remove = 90
+		fixed_random_seed = no
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.49
+			}
+		}
+		custom_cost_text = VIE_has_500_mil
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -25
+				add_to_variable = {
+					currentMoney = -0.5
+				}
+			}
+		}
+		remove_effect = {
+			FROM = {
+				clr_state_flag = Not_Industrialized
+				hidden_effect = {
+					random_list = {
+						10 = {
+							modifier = {
+								factor = 1.5
+								water_infrastructure > 0
+							}
+							add_building_construction = {
+								type = agri_industrial_complex
+								level = 1
+								instant_build = yes
+							}
+						}
+						10 = {
+							add_building_construction = {
+								type = industrial_complex
+								level = 1
+								instant_build = yes
+							}
+						}
+						10 = {
+							add_building_construction = {
+								type = steel_factory
+								level = 1
+								instant_build = yes
+							}
+						}
+					}
+				}
+				custom_effect_tooltip = VIE_State_Industrialization_tt
+			}
+		}
+	}
+}
+
+VIE_State_Integration_Decisions = {
+	NLF_Revolt_1759 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			1759 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			1759 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			1759 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			1759 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1759
+			}
+		}
+	}
+	NLF_Revolt_1758 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			1758 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			1758 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			1758 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			1758 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1758
+			}
+		}
+	}
+	NLF_Revolt_838 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			838 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			838 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			838 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			838 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 838
+			}
+		}
+	}
+	NLF_Revolt_757 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			757 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			757 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			757 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			757 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 757
+			}
+		}
+	}
+	NLF_Revolt_1287 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			1287 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			1287 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			1287 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			1287 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1287
+			}
+		}
+	}
+	NLF_Revolt_1286 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			1286 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			1286 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			1286 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			1286 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1286
+			}
+		}
+	}
+	NLF_Revolt_1756 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			1756 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			1756 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			1756 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			1756 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1756
+			}
+		}
+	}
+	NLF_Revolt_1288 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			1288 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			1288 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			1288 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			1288 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1288
+			}
+		}
+	}
+	NLF_Revolt_1289 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			1289 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			1289 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			1289 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			1289 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1289
+			}
+		}
+	}
+	NLF_Revolt_982 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			982 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			982 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			982 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			982 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 982
+			}
+		}
+	}
+	NLF_Revolt_1757 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			1757 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			1757 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			1757 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			1757 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1757
+			}
+		}
+	}
+	NLF_Revolt_1755 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			1755 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			1755 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			1755 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			1755 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1755
+			}
+		}
+	}
+	NLF_Revolt_1754 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			1754 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			1754 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			1754 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			1754 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1754
+			}
+		}
+	}
+	NLF_Revolt_286 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			286 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			286 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			286 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			286 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 286
+			}
+		}
+	}
+	NLF_Revolt_1285 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			1285 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			1285 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			1285 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 3
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			1285 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1285
+			}
+		}
+	}
+	NLF_Revolt_983 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			983 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			983 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			983 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			983 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 983
+			}
+		}
+	}
+	NLF_Revolt_1752 = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			1752 = {
+				resistance > 75
+				NOT = {
+					is_core_of = VIE
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			1752 = {
+				resistance < 76
+				is_fully_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			1752 = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_and_controlled_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		days_mission_timeout = 24
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			1752 = {
+				hidden_effect = {
+					create_unit = {
+						owner = NLF
+						allow_spawning_on_enemy_provs = yes
+						division = "name = \"Viet-Minh Revolt Militia\" division_template = \"Disorganized Militias\" start_experience_factor = 0.2 start_equipment_factor = 0.3"
+					}
+				}
+				custom_effect_tooltip = NLF_Revolt_tt
+			}
+		 }
+}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 1752
+			}
+		}
+	}
+	State_NLF_Core = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		state_target = yes
+		target_trigger = {
+			FROM = {
+				NOT = {
+					is_core_of = VIE
+				}
+				is_fully_controlled_by = NLF
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			FROM = {
+				is_controlled_by = VIE
+			}
+		}
+		cancel_trigger = { OR = { has_global_flag = KRCW_active AND = {
+			FROM = {
+				OR = {
+					is_core_of = VIE
+					NOT = {
+						is_owned_by = VIE
+					}
+				}
+			}
+		 } }
+}
+		target_array = VIE.owned_states
+		on_map_mode = decision_view_only
+		days_mission_timeout = 45
+		selectable_mission = no
+		days_re_enable = 3
+		is_good = no
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			FROM = {
+				add_core_of = NLF
+			}
+		 }
+}
+	}
+	Drafting_Youth = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_manpower < 5000
+		}
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					has_political_power > 149
+					has_manpower < 5000
+				}
+			}
+			modifier = {
+				factor = 0
+				has_political_power < 99
+			}
+		}
+		cost = 25
+		days_re_enable = 7
+		days_remove = 7
+		fire_only_once = no
+		selectable_mission = no
+		modifier = {
+			political_power_factor = -0.5
+		}
+		complete_effect = {
+			add_stability = -0.02
+		}
+		remove_effect = {
+			add_stability = 0.02
+			add_manpower = 5000
+		}
+	}
+	Buy_Blackmarket_Guns = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_equipment = {
+				infantry_equipment < 500
+			}
+		}
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.49
+			}
+		}
+		custom_cost_text = VIE_has_500_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				has_political_power > 99
+				AND = {
+					check_variable = {
+						currentMoney > 4
+					}
+					has_equipment = {
+						infantry_equipment < -500
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				has_political_power < 99
+				check_variable = {
+					currentMoney < 3
+				}
+			}
+		}
+		days_re_enable = 3
+		days_remove = 7
+		fire_only_once = no
+		selectable_mission = no
+		complete_effect = {
+			add_war_support = -0.02
+			add_political_power = -25
+			add_to_variable = {
+				currentMoney = -0.5
+			}
+			set_variable_to_random = {
+				var = blackmarket_var
+				min = 1
+				max = 3
+				integer = yes
+			}
+		}
+		remove_effect = {
+			add_war_support = 0.02
+			if = {
+				limit = {
+					check_variable = {
+						blackmarket_var = 1
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 500
+					producer = USA
+				}
+				custom_effect_tooltip = Blackmarket_Effect_1_tt
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						blackmarket_var = 2
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 2500
+					producer = USA
+				}
+				custom_effect_tooltip = Blackmarket_Effect_2_tt
+			}
+			else_if = {
+				limit = {
+					check_variable = {
+						blackmarket_var = 3
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 5000
+					producer = USA
+				}
+				custom_effect_tooltip = Blackmarket_Effect_3_tt
+			}
+			else_if = {
+				limit = {
+					OR = {
+						NOT = {
+							has_variable = blackmarket_var
+						}
+					}
+				}
+				custom_effect_tooltip = Blackmarket_Effect_0_tt
+			}
+			clear_variable = blackmarket_var
+		}
+	}
+}
+
+VIE_Development_Scheme = {
+	VIE_Agri_Mechanization = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = {
+				currentMoney > 0.09
+			}
+		}
+		custom_cost_text = VIE_has_100_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 3
+					}
+					has_political_power > 49
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 1
+					}
+					has_political_power < 19
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -15
+			set_temp_variable = {
+				money_to_gain = -0.1
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			add_tech_bonus = {
+				name = agri_tech_bonus
+				bonus = 0.2
+				uses = 2
+				category = agriculture
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Landlord_Possessions = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+		}
+		days_re_enable = 30
+		fixed_random_seed = no
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.24
+			}
+		}
+		custom_cost_text = VIE_has_250_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 5
+					}
+					has_political_power > 74
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 2
+					}
+					has_political_power < 49
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -25
+			set_temp_variable = {
+				money_to_gain = -0.25
+			}
+			add_money_with_tooltip_effect = yes
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_NhaTrang_Fisheries = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1756
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = {
+				currentMoney > 0.14
+			}
+		}
+		custom_cost_text = VIE_has_150_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 4
+					}
+					has_political_power > 59
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 2
+					}
+					has_political_power < 14
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -15
+			set_temp_variable = {
+				money_to_gain = -0.15
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 5
+			}
+			1756 = {
+				add_resource = {
+					type = rubber
+					amount = 5
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_PhanRang_Fisheries = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1289
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = {
+				currentMoney > 0.14
+			}
+		}
+		custom_cost_text = VIE_has_150_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 4
+					}
+					has_political_power > 59
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 2
+					}
+					has_political_power < 14
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -15
+			set_temp_variable = {
+				money_to_gain = -0.15
+			}
+			add_money_with_tooltip_effect = yes
+		}
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 5
+			}
+			1289 = {
+				add_resource = {
+					type = rubber
+					amount = 5
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Hue_Roads = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1758
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = {
+				currentMoney > 0.09
+			}
+		}
+		custom_cost_text = VIE_has_100_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 3
+					}
+					has_political_power > 49
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 1
+					}
+					has_political_power < 19
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -15
+			set_temp_variable = {
+				money_to_gain = -0.1
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			1758 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Hue_Royal_Citadel = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1758
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 49
+			check_variable = {
+				currentMoney > 0.54
+			}
+		}
+		custom_cost_text = VIE_has_550_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 9
+					}
+					has_political_power > 249
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 5
+					}
+					has_political_power < 149
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -50
+			set_temp_variable = {
+				money_to_gain = -0.55
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			1758 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = water_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_to_variable = {
+					tourism_infrastructure = 1
+					tooltip = tourism_infra_tt
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_VinhHao_Soda_Factory = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1759
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 34
+			check_variable = {
+				currentMoney > 0.29
+			}
+		}
+		custom_cost_text = VIE_has_300_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 6
+					}
+					has_political_power > 104
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 3
+					}
+					has_political_power < 69
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -35
+			set_temp_variable = {
+				money_to_gain = -0.3
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			1289 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = water_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_HoiAn_Infrastructure = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1287
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = {
+				currentMoney > 0.14
+			}
+		}
+		custom_cost_text = VIE_has_150_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 4
+					}
+					has_political_power > 59
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 2
+					}
+					has_political_power < 14
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -15
+			set_temp_variable = {
+				money_to_gain = -0.15
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			1287 = {
+				add_victory_points = {
+					province = 4255
+					value = 3
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+					province = 4255
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_PhanRi_Port = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1289
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = {
+				currentMoney > 0.14
+			}
+		}
+		custom_cost_text = VIE_has_150_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 4
+					}
+					has_political_power > 59
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 2
+					}
+					has_political_power < 14
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -15
+			set_temp_variable = {
+				money_to_gain = -0.15
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			1289 = {
+				add_victory_points = {
+					province = 12204
+					value = 3
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+					province = 12204
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_BinhDinh_Silk_Factory = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1756
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 4
+			check_variable = {
+				currentMoney > 0.04
+			}
+		}
+		custom_cost_text = VIE_has_50_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 2
+					}
+					has_political_power > 14
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 1
+					}
+					has_political_power < 9
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -5
+			set_temp_variable = {
+				money_to_gain = -0.05
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			1756 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_SDI_Assets = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1758
+		}
+		fire_only_once = yes
+		days_remove = 120
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+			}
+		}
+		complete_effect = {
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			set_temp_variable = { influence_change = 5 }
+			VIE_Change_Domestic_Influence = yes
+			1758 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Colonize_TruongSa = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1855
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+			}
+		}
+		complete_effect = {
+			set_temp_variable = { influence_change = 5 }
+			VIE_Change_Domestic_Influence = yes
+			1855 = {
+				set_state_name = "Truong-Sa Islands"
+			}
+			country_event = {
+				id = TruongSa_Islands.1
+				hours = 12
+			}
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_CanTho_Rice = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_CCC_Unification
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 983
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 39
+			check_variable = {
+				currentMoney > 0.39
+			}
+		}
+		custom_cost_text = VIE_has_400_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 9
+					}
+					has_political_power > 119
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 6
+					}
+					has_political_power < 79
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -40
+			set_temp_variable = {
+				money_to_gain = -0.4
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			983 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_resource = {
+					type = rubber
+					amount = 30
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_NamPhan_Delta_Rice = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_CCC_Unification
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1285
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 34
+			check_variable = {
+				currentMoney > 0.3
+			}
+		}
+		custom_cost_text = VIE_has_300_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 6
+					}
+					has_political_power > 104
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 3
+					}
+					has_political_power < 69
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -35
+			set_temp_variable = {
+				money_to_gain = -0.3
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			1285 = {
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 2
+					instant_build = yes
+				}
+				add_resource = {
+					type = rubber
+					amount = 25
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Bason_MilPort = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_CCC_Unification
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 286
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 34
+			check_variable = {
+				currentMoney > 0.3
+			}
+		}
+		custom_cost_text = VIE_has_300_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 105
+				AND = {
+					check_variable = {
+						currentMoney > 6
+					}
+					has_political_power > 104
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 3
+					}
+					has_political_power < 69
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -35
+			set_temp_variable = {
+				money_to_gain = -0.3
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 5
+			}
+			286 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Expand_Saigon_Roads = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_CCC_Unification
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 286
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.24
+			}
+		}
+		custom_cost_text = VIE_has_250_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 5
+					}
+					has_political_power > 74
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 2
+					}
+					has_political_power < 49
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -25
+			set_temp_variable = {
+				money_to_gain = -0.25
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 5
+			}
+			286 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = water_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_NamPhan_Delta_Brick_Mounds = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_CCC_Unification
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1285
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = {
+				currentMoney > 0.14
+			}
+		}
+		custom_cost_text = VIE_has_150_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 4
+					}
+					has_political_power > 59
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 2
+					}
+					has_political_power < 14
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -15
+			set_temp_variable = {
+				money_to_gain = -0.15
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			1285 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Baria_Port = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_CCC_Unification
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1754
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.24
+			}
+		}
+		custom_cost_text = VIE_has_250_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 5
+					}
+					has_political_power > 74
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 2
+					}
+					has_political_power < 49
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -25
+			set_temp_variable = {
+				money_to_gain = -0.25
+			}
+			add_money_with_tooltip_effect = yes
+		}
+		remove_effect = {
+			1754 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+					province = 13705
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Bainier_Auto_Workshop = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_CCC_Unification
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 286
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.24
+			}
+		}
+		custom_cost_text = VIE_has_250_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 5
+					}
+					has_political_power > 74
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 2
+					}
+					has_political_power < 49
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -25
+			set_temp_variable = {
+				money_to_gain = -0.25
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_1
+				amount = 250
+				producer = FRA
+			}
+			286 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_PhuQuoc_Pepper_Plantations = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_CCC_Unification
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1753
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = {
+				currentMoney > 0.14
+			}
+		}
+		custom_cost_text = VIE_has_150_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 4
+					}
+					has_political_power > 59
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 2
+					}
+					has_political_power < 14
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -15
+			set_temp_variable = {
+				money_to_gain = -0.15
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			1753 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Saigon_Beer_Distilleries = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_CCC_Unification
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 286
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 4
+			check_variable = {
+				currentMoney > 0.04
+			}
+		}
+		custom_cost_text = VIE_has_50_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 2
+					}
+					has_political_power > 14
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 1
+					}
+					has_political_power < 9
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -5
+			set_temp_variable = {
+				money_to_gain = -0.05
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			286 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = rubber
+					amount = 5
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_AnXuyen_Fisheries = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_CCC_Unification
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1752
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = {
+				currentMoney > 0.14
+			}
+		}
+		custom_cost_text = VIE_has_150_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 4
+					}
+					has_political_power > 59
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 2
+					}
+					has_political_power < 14
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -15
+			set_temp_variable = {
+				money_to_gain = -0.15
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 5
+			}
+			1752 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = rubber
+					amount = 5
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_TanSonNhut_Terminal = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = VIE_CCC_Unification
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 286
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 19
+			check_variable = {
+				currentMoney > 0.19
+			}
+		}
+		custom_cost_text = VIE_has_200_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 4
+					}
+					has_political_power > 59
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 2
+					}
+					has_political_power < 39
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_temp_variable = {
+				money_to_gain = -0.2
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.1
+				uses = 2
+				category = air_equipment
+			}
+			286 = {
+				add_building_construction = {
+					type = air_base
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Expand_ThienLy_Highway = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+		}
+		state_target = yes
+		target_trigger = {
+			FROM = {
+				has_state_flag = Not_Expanded_ThienLy_Highway
+			}
+		}
+		cancel_trigger = {
+			FROM = {
+				NOT = {
+					is_owned_and_controlled_by = VIE
+				}
+			}
+		}
+		target_array = VIE.owned_controlled_states
+		on_map_mode = decision_view_only
+		days_remove = 45
+		custom_cost_trigger = {
+			has_political_power > 4
+			check_variable = {
+				currentMoney > 0.04
+			}
+		}
+		custom_cost_text = VIE_has_50_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 2
+					}
+					has_political_power > 14
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 1
+					}
+					has_political_power < 9
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -5
+			set_temp_variable = {
+				money_to_gain = -0.05
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			FROM = {
+				clr_state_flag = Not_Expanded_ThienLy_Highway
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Michelin_Technical_Experts = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			has_country_flag = Protected_French_Plantation_Owners
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			check_variable = {
+				currentMoney > 0.024
+			}
+		}
+		custom_cost_text = VIE_has_25_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 2
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 0
+					}
+				}
+			}
+		}
+		complete_effect = {
+			set_temp_variable = {
+				money_to_gain = -0.025
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			add_tech_bonus = {
+				name = agri_tech_bonus
+				bonus = 0.2
+				uses = 2
+				category = agriculture
+			}
+			add_tech_bonus = {
+				name = chem_tech_bonus
+				bonus = 0.2
+				uses = 2
+				category = chemistry
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Expand_French_Plantations = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+		}
+		state_target = yes
+		target_trigger = {
+			FROM = {
+				has_state_flag = Not_Expanded_French_Plantations
+			}
+		}
+		cancel_trigger = {
+			FROM = {
+				NOT = {
+					is_owned_and_controlled_by = VIE
+				}
+			}
+		}
+		target_array = VIE.owned_controlled_states
+		on_map_mode = decision_view_only
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.24
+			}
+		}
+		custom_cost_text = VIE_has_250_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 5
+					}
+					has_political_power > 74
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 2
+					}
+					has_political_power < 49
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -25
+			set_temp_variable = {
+				money_to_gain = -0.25
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			FROM = {
+				clr_state_flag = Not_Expanded_French_Plantations
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Upgrade_Rubber_Line = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			has_country_flag = Protected_French_Plantation_Owners
+			has_completed_focus = VIE_Expand_Rubber_Line
+		}
+		fire_only_once = yes
+		days_remove = 120
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = {
+				currentMoney > 0.09
+			}
+		}
+		custom_cost_text = VIE_has_100_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 3
+					}
+					has_political_power > 49
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 1
+					}
+					has_political_power < 19
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -15
+			set_temp_variable = {
+				money_to_gain = -0.1
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			build_railway = {
+				level = 1
+				build_only_on_allied = no
+				fallback = yes
+				path = {
+					13705
+					12232
+					16618
+					4401
+					13715
+				}
+				start_province = 13705
+				target_province = 13715
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Invest_NinhKieuQuay = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_National_Tourism_Office
+				has_completed_focus = VIE_CD_National_Tourism_Office
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 983
+		}
+		fire_only_once = yes
+		days_remove = 90
+		custom_cost_trigger = {
+			has_political_power > 44
+			check_variable = {
+				currentMoney > 0.44
+			}
+		}
+		custom_cost_text = VIE_has_450_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 7
+					}
+					has_political_power > 134
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 4
+					}
+					has_political_power < 89
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -45
+			set_temp_variable = {
+				money_to_gain = -0.45
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			983 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Renovating_BenThanh = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_National_Tourism_Office
+				has_completed_focus = VIE_CD_National_Tourism_Office
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 286
+		}
+		fire_only_once = yes
+		days_remove = 90
+		custom_cost_trigger = {
+			has_political_power > 44
+			check_variable = {
+				currentMoney > 0.44
+			}
+		}
+		custom_cost_text = VIE_has_450_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 7
+					}
+					has_political_power > 134
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 4
+					}
+					has_political_power < 89
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -45
+			set_temp_variable = {
+				money_to_gain = -0.45
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			286 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_7_Holy_Mountains = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_National_Tourism_Office
+				has_completed_focus = VIE_CD_National_Tourism_Office
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1285
+		}
+		fire_only_once = yes
+		days_remove = 90
+		custom_cost_trigger = {
+			has_political_power > 44
+			check_variable = {
+				currentMoney > 0.44
+			}
+		}
+		custom_cost_text = VIE_has_450_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 7
+					}
+					has_political_power > 134
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 4
+					}
+					has_political_power < 89
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -45
+			set_temp_variable = {
+				money_to_gain = -0.45
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			1285 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Renovate_Hoi_Town = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_National_Tourism_Office
+				has_completed_focus = VIE_CD_National_Tourism_Office
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 757
+		}
+		fire_only_once = yes
+		days_remove = 90
+		custom_cost_trigger = {
+			has_political_power > 44
+			check_variable = {
+				currentMoney > 0.44
+			}
+		}
+		custom_cost_text = VIE_has_450_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 7
+					}
+					has_political_power > 134
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 4
+					}
+					has_political_power < 89
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -45
+			set_temp_variable = {
+				money_to_gain = -0.45
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			757 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Forming_NhaTrang_Beach = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_National_Tourism_Office
+				has_completed_focus = VIE_CD_National_Tourism_Office
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1756
+		}
+		fire_only_once = yes
+		days_remove = 90
+		custom_cost_trigger = {
+			has_political_power > 44
+			check_variable = {
+				currentMoney > 0.44
+			}
+		}
+		custom_cost_text = VIE_has_450_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 7
+					}
+					has_political_power > 134
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 4
+					}
+					has_political_power < 89
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -45
+			set_temp_variable = {
+				money_to_gain = -0.45
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			1756 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+	VIE_Baria_Tourism = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_National_Tourism_Office
+				has_completed_focus = VIE_CD_National_Tourism_Office
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = Development_Scheme_Cooldown
+			}
+			owns_state = 1754
+		}
+		fire_only_once = yes
+		days_remove = 90
+		custom_cost_trigger = {
+			has_political_power > 44
+			check_variable = {
+				currentMoney > 0.44
+			}
+		}
+		custom_cost_text = VIE_has_450_mil
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 100
+				AND = {
+					check_variable = {
+						currentMoney > 7
+					}
+					has_political_power > 134
+				}
+			}
+			modifier = {
+				factor = 0
+				AND = {
+					check_variable = {
+						currentMoney < 4
+					}
+					has_political_power < 89
+				}
+			}
+		}
+		complete_effect = {
+			add_political_power = -45
+			set_temp_variable = {
+				money_to_gain = -0.45
+			}
+			add_money_with_tooltip_effect = yes
+			set_country_flag = Development_Scheme_Cooldown
+		}
+		remove_effect = {
+			1754 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+			}
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+		cancel_effect = {
+			clr_country_flag = Development_Scheme_Cooldown
+		}
+	}
+}
+
+VIE_General_Officers_Commission = {
+	VIE_Give_BaoDai_Command = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			original_tag = VIE
+			has_character = VIE_Bao_Dai
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_character = VIE_Bao_Dai
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE_Bao_Dai = {
+				set_portraits = {
+					army = {
+						large = "gfx/leaders/VIE/FIELD_MARSHALS/Bao_Dai.dds"
+					}
+				}
+				add_field_marshal_role = {
+					traits = {
+						incompetent_officer
+						politically_connected
+						media_personality
+					}
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					maneuvering_skill = 1
+					coordination_skill = 1
+				}
+			}
+		}
+	}
+	VIE_Recruit_Lam_Van_Huong = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = VIE_CuongDe_Succeeds
+					}
+				}
+				has_completed_focus = VIE_Recommision_WW_Native_Veterns
+			}
+			else_if = {
+				limit = {
+					has_country_flag = VIE_CuongDe_Succeeds
+				}
+				OR = {
+					has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+					has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = VIE_CuongDe_Succeeds
+					}
+				}
+				has_completed_focus = VIE_Recommision_WW_Native_Veterns
+			}
+			else_if = {
+				limit = {
+					has_country_flag = VIE_CuongDe_Succeeds
+				}
+				OR = {
+					has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+					has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+				}
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Lam_Van_Huong = {
+					add_naval_commander_role = {
+						traits = {
+							old_guard
+							french_trainee_navy
+							ww2_veteran
+							Pro_QuocGia
+							VIE_Pro_France
+							French_Indochina_Member
+						}
+						skill = 3
+						attack_skill = 3
+						defense_skill = 3
+						maneuvering_skill = 2
+						coordination_skill = 1
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Vu_Thiet = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = VIE_CuongDe_Succeeds
+					}
+				}
+				has_completed_focus = VIE_Recommision_WW_Native_Veterns
+			}
+			else_if = {
+				limit = {
+					has_country_flag = VIE_CuongDe_Succeeds
+				}
+				OR = {
+					has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+					has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = VIE_CuongDe_Succeeds
+					}
+				}
+				has_completed_focus = VIE_Recommision_WW_Native_Veterns
+			}
+			else_if = {
+				limit = {
+					has_country_flag = VIE_CuongDe_Succeeds
+				}
+				OR = {
+					has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+					has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+				}
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Vu_Thiet = {
+					add_naval_commander_role = {
+						traits = {
+							old_guard
+							french_trainee_navy
+							ww2_veteran
+							Pro_QuocGia
+							French_Indochina_Member
+						}
+						skill = 2
+						attack_skill = 2
+						defense_skill = 2
+						maneuvering_skill = 1
+						coordination_skill = 2
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Nguyen_Van_Dan = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = VIE_CuongDe_Succeeds
+					}
+				}
+				has_completed_focus = VIE_Recommision_WW_Native_Veterns
+			}
+			else_if = {
+				limit = {
+					has_country_flag = VIE_CuongDe_Succeeds
+				}
+				OR = {
+					has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+					has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = VIE_CuongDe_Succeeds
+					}
+				}
+				has_completed_focus = VIE_Recommision_WW_Native_Veterns
+			}
+			else_if = {
+				limit = {
+					has_country_flag = VIE_CuongDe_Succeeds
+				}
+				OR = {
+					has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+					has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+				}
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Nguyen_Van_Dan = {
+					add_corps_commander_role = {
+						traits = {
+							french_trainee
+							ww1_veteran
+							ww2_veteran
+							infantry_leader
+							infantry_expert
+							Pro_QuocGia
+							French_Indochina_Member
+						}
+						skill = 3
+						attack_skill = 3
+						defense_skill = 2
+						planning_skill = 3
+						logistics_skill = 4
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Nguyen_Van_Tam = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = VIE_CuongDe_Succeeds
+					}
+				}
+				has_completed_focus = VIE_Recommision_WW_Native_Veterns
+			}
+			else_if = {
+				limit = {
+					has_country_flag = VIE_CuongDe_Succeeds
+				}
+				OR = {
+					has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+					has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = VIE_CuongDe_Succeeds
+					}
+				}
+				has_completed_focus = VIE_Recommision_WW_Native_Veterns
+			}
+			else_if = {
+				limit = {
+					has_country_flag = VIE_CuongDe_Succeeds
+				}
+				OR = {
+					has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+					has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+				}
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Nguyen_Van_Tam = {
+					add_corps_commander_role = {
+						traits = {
+							french_trainee
+							ww1_veteran
+							ww2_veteran
+							infantry_leader
+							infantry_expert
+							inflexible_strategist
+							Pro_QuocGia
+							VIE_Pro_France
+							French_Indochina_Member
+						}
+						skill = 4
+						attack_skill = 4
+						defense_skill = 3
+						planning_skill = 4
+						logistics_skill = 3
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Phan_Trong_Vinh = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = VIE_CuongDe_Succeeds
+					}
+				}
+				has_completed_focus = VIE_Recommision_WW_Native_Veterns
+			}
+			else_if = {
+				limit = {
+					has_country_flag = VIE_CuongDe_Succeeds
+				}
+				OR = {
+					has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+					has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = VIE_CuongDe_Succeeds
+					}
+				}
+				has_completed_focus = VIE_Recommision_WW_Native_Veterns
+			}
+			else_if = {
+				limit = {
+					has_country_flag = VIE_CuongDe_Succeeds
+				}
+				OR = {
+					has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+					has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+				}
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Phan_Trong_Vinh = {
+					add_corps_commander_role = {
+						traits = {
+							french_trainee
+							ww2_veteran
+							inflexible_strategist
+							naval_invader
+							Pro_QuocGia
+							French_Indochina_Member
+						}
+						skill = 3
+						attack_skill = 2
+						defense_skill = 2
+						planning_skill = 4
+						logistics_skill = 4
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Trinh_Van_Cu = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = VIE_CuongDe_Succeeds
+					}
+				}
+				has_completed_focus = VIE_Recommision_WW_Native_Veterns
+			}
+			else_if = {
+				limit = {
+					has_country_flag = VIE_CuongDe_Succeeds
+				}
+				OR = {
+					has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+					has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = VIE_CuongDe_Succeeds
+					}
+				}
+				has_completed_focus = VIE_Recommision_WW_Native_Veterns
+			}
+			else_if = {
+				limit = {
+					has_country_flag = VIE_CuongDe_Succeeds
+				}
+				OR = {
+					has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+					has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+				}
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Trinh_Van_Cu = {
+					add_corps_commander_role = {
+						traits = {
+							french_trainee
+							ww1_veteran
+							infantry_leader
+							Pro_QuocGia
+							French_Indochina_Member
+						}
+						skill = 2
+						attack_skill = 1
+						defense_skill = 2
+						planning_skill = 2
+						logistics_skill = 3
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Nguyen_Van_Lai = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = VIE_CuongDe_Succeeds
+					}
+				}
+				has_completed_focus = VIE_Recommision_WW_Native_Veterns
+			}
+			else_if = {
+				limit = {
+					has_country_flag = VIE_CuongDe_Succeeds
+				}
+				OR = {
+					has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+					has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = VIE_CuongDe_Succeeds
+					}
+				}
+				has_completed_focus = VIE_Recommision_WW_Native_Veterns
+			}
+			else_if = {
+				limit = {
+					has_country_flag = VIE_CuongDe_Succeeds
+				}
+				OR = {
+					has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+					has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+				}
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Nguyen_Van_Lai = {
+					add_corps_commander_role = {
+						traits = {
+							french_trainee
+							ww2_veteran
+							infantry_leader
+							Pro_QuocGia
+							French_Indochina_Member
+						}
+						skill = 1
+						attack_skill = 1
+						defense_skill = 2
+						planning_skill = 1
+						logistics_skill = 2
+					}
+				}
+			}
+		}
+	}
+	VIE_Give_Charles_Chanson_Command = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					original_tag = VIE
+					has_completed_focus = VIE_Recall_French_ProFrench_Native_Officers
+				}
+				AND = {
+					original_tag = FRE
+					VIE = {
+						if = {
+							limit = {
+								NOT = {
+									has_country_flag = VIE_CuongDe_Succeeds
+								}
+							}
+							has_completed_focus = VIE_Recommision_WW_Native_Veterns
+						}
+						else_if = {
+							limit = {
+								has_country_flag = VIE_CuongDe_Succeeds
+							}
+							OR = {
+								has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+								has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+							}
+						}
+					}
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			FRE = {
+				has_character = FRE_Charles_Chanson
+			}
+			OR = {
+				AND = {
+					original_tag = VIE
+					has_completed_focus = VIE_Recall_French_ProFrench_Native_Officers
+				}
+				AND = {
+					original_tag = FRE
+					VIE = {
+						if = {
+							limit = {
+								NOT = {
+									has_country_flag = VIE_CuongDe_Succeeds
+								}
+							}
+							has_completed_focus = VIE_Recommision_WW_Native_Veterns
+						}
+						else_if = {
+							limit = {
+								has_country_flag = VIE_CuongDe_Succeeds
+							}
+							OR = {
+								has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+								has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+							}
+						}
+					}
+				}
+			}
+		}
+		fire_only_once = yes
+		complete_effect = {
+			FRE = {
+				FRE_Charles_Chanson = {
+					set_nationality = VIE
+				}
+			}
+		}
+	}
+	VIE_Recruit_Hoang_Co_La = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					original_tag = VIE
+					has_completed_focus = VIE_Recall_French_ProFrench_Native_Officers
+				}
+				AND = {
+					original_tag = FRE
+					VIE = {
+						if = {
+							limit = {
+								NOT = {
+									has_country_flag = VIE_CuongDe_Succeeds
+								}
+							}
+							has_completed_focus = VIE_Recommision_WW_Native_Veterns
+						}
+						else_if = {
+							limit = {
+								has_country_flag = VIE_CuongDe_Succeeds
+							}
+							OR = {
+								has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+								has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+							}
+						}
+					}
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					original_tag = VIE
+					has_completed_focus = VIE_Recall_French_ProFrench_Native_Officers
+				}
+				AND = {
+					original_tag = FRE
+					VIE = {
+						if = {
+							limit = {
+								NOT = {
+									has_country_flag = VIE_CuongDe_Succeeds
+								}
+							}
+							has_completed_focus = VIE_Recommision_WW_Native_Veterns
+						}
+						else_if = {
+							limit = {
+								has_country_flag = VIE_CuongDe_Succeeds
+							}
+							OR = {
+								has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+								has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+							}
+						}
+					}
+				}
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			ROOT = {
+				VIE_Hoang_Co_Lan = {
+					add_corps_commander_role = {
+						traits = {
+							ww2_veteran
+							paratrooper
+							commando
+							VIE_Pro_France
+							Pro_QuocGia
+						}
+						skill = 1
+						attack_skill = 1
+						defense_skill = 2
+						planning_skill = 1
+						logistics_skill = 3
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Tran_Dinh_Vy = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					original_tag = VIE
+					has_completed_focus = VIE_Recall_French_ProFrench_Native_Officers
+				}
+				AND = {
+					original_tag = FRE
+					VIE = {
+						if = {
+							limit = {
+								NOT = {
+									has_country_flag = VIE_CuongDe_Succeeds
+								}
+							}
+							has_completed_focus = VIE_Recommision_WW_Native_Veterns
+						}
+						else_if = {
+							limit = {
+								has_country_flag = VIE_CuongDe_Succeeds
+							}
+							OR = {
+								has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+								has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+							}
+						}
+					}
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					original_tag = VIE
+					has_completed_focus = VIE_Recall_French_ProFrench_Native_Officers
+				}
+				AND = {
+					original_tag = FRE
+					VIE = {
+						if = {
+							limit = {
+								NOT = {
+									has_country_flag = VIE_CuongDe_Succeeds
+								}
+							}
+							has_completed_focus = VIE_Recommision_WW_Native_Veterns
+						}
+						else_if = {
+							limit = {
+								has_country_flag = VIE_CuongDe_Succeeds
+							}
+							OR = {
+								has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+								has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+							}
+						}
+					}
+				}
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			ROOT = {
+				VIE_Tran_Dinh_Vy = {
+					add_corps_commander_role = {
+						traits = {
+							guerilla_fighter
+							ww2_veteran
+							jungle_rat
+							irregular_officer
+							VIE_Pro_France
+						}
+						skill = 1
+						attack_skill = 2
+						defense_skill = 2
+						planning_skill = 1
+						logistics_skill = 1
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Tran_Dinh_Lan = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					original_tag = VIE
+					has_completed_focus = VIE_Recall_French_ProFrench_Native_Officers
+				}
+				AND = {
+					original_tag = FRE
+					VIE = {
+						if = {
+							limit = {
+								NOT = {
+									has_country_flag = VIE_CuongDe_Succeeds
+								}
+							}
+							has_completed_focus = VIE_Recommision_WW_Native_Veterns
+						}
+						else_if = {
+							limit = {
+								has_country_flag = VIE_CuongDe_Succeeds
+							}
+							OR = {
+								has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+								has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+							}
+						}
+					}
+				}
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				AND = {
+					original_tag = VIE
+					has_completed_focus = VIE_Recall_French_ProFrench_Native_Officers
+				}
+				AND = {
+					original_tag = FRE
+					VIE = {
+						if = {
+							limit = {
+								NOT = {
+									has_country_flag = VIE_CuongDe_Succeeds
+								}
+							}
+							has_completed_focus = VIE_Recommision_WW_Native_Veterns
+						}
+						else_if = {
+							limit = {
+								has_country_flag = VIE_CuongDe_Succeeds
+							}
+							OR = {
+								has_completed_focus = VIE_CD_Recommision_WW_Native_Veterns
+								has_completed_focus = VIE_NH_Hung_Pardon_French_Collaborators
+							}
+						}
+					}
+				}
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			ROOT = {
+				VIE_Tran_Dinh_Lan = {
+					add_corps_commander_role = {
+						traits = {
+							commando
+							ww2_veteran
+							jungle_rat
+							irregular_officer
+							VIE_Pro_France
+						}
+						skill = 1
+						attack_skill = 1
+						defense_skill = 1
+						planning_skill = 3
+						logistics_skill = 2
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Anselmo_Tadeo_LeHuuTu = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Rescue_PhatDiem_Catholic_Militias
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Rescue_PhatDiem_Catholic_Militias
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_AnselmoTadeo_LeHuuTu = {
+					add_corps_commander_role = {
+						traits = {
+							self_taught
+							irregular_officer
+							trickster
+							guerilla_fighter
+							Pro_QuocGia
+							VIE_Pro_France
+							PhatDiem_Member
+						}
+						skill = 2
+						attack_skill = 3
+						defense_skill = 3
+						planning_skill = 2
+						logistics_skill = 1
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Guise_DinhNgocVinh = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Rescue_PhatDiem_Catholic_Militias
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Rescue_PhatDiem_Catholic_Militias
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Guise_DinhNgocVinh = {
+					add_corps_commander_role = {
+						traits = {
+							self_taught
+							irregular_officer
+							trickster
+							guerilla_fighter
+							Pro_QuocGia
+							VIE_Pro_France
+							PhatDiem_Member
+						}
+						skill = 2
+						attack_skill = 2
+						defense_skill = 2
+						planning_skill = 4
+						logistics_skill = 2
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Pham_Cao_Hung = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Contact_DaiViet_War_Bases
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Contact_DaiViet_War_Bases
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Pham_Cao_Hung = {
+					add_corps_commander_role = {
+						traits = {
+							roc_trainee
+							infantry_leader
+							trickster
+							guerilla_fighter
+							DaiViet_Party_Member
+						}
+						skill = 2
+						attack_skill = 1
+						defense_skill = 2
+						planning_skill = 2
+						logistics_skill = 2
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Tran_Van_Hai = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Contact_DaiViet_War_Bases
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Contact_DaiViet_War_Bases
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Tran_Van_Hai = {
+					add_corps_commander_role = {
+						traits = {
+							self_taught
+							young_officer
+							DaiViet_Party_Member
+							Pro_QuocGia
+						}
+						skill = 1
+						attack_skill = 1
+						defense_skill = 1
+						planning_skill = 1
+						logistics_skill = 3
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Tran_Van_Chon = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Form_NhaTrang_Training_Center
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Form_NhaTrang_Training_Center
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Tran_Van_Chon = {
+					add_naval_commander_role = {
+						traits = {
+							voBi_trainee_navy
+							media_personality
+							young_officer
+						}
+						skill = 1
+						attack_skill = 1
+						defense_skill = 2
+						maneuvering_skill = 1
+						coordination_skill = 1
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Nguyen_Van_Lich = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Form_NhaTrang_Training_Center
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Form_NhaTrang_Training_Center
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Nguyen_Van_Lich = {
+					add_naval_commander_role = {
+						traits = {
+							voBi_trainee_navy
+							young_officer
+						}
+						skill = 1
+						attack_skill = 2
+						defense_skill = 1
+						maneuvering_skill = 1
+						coordination_skill = 1
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Chung_Tan_Cang = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Form_NhaTrang_Training_Center
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Form_NhaTrang_Training_Center
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Chung_Tan_Cang = {
+					add_naval_commander_role = {
+						traits = {
+							voBi_trainee_navy
+							young_officer
+						}
+						skill = 1
+						attack_skill = 1
+						defense_skill = 2
+						maneuvering_skill = 2
+						coordination_skill = 1
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Lam_Nguon_Tanh = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Form_NhaTrang_Training_Center
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Form_NhaTrang_Training_Center
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Lam_Nguon_Tanh = {
+					add_naval_commander_role = {
+						traits = {
+							voBi_trainee_navy
+							young_officer
+						}
+						skill = 1
+						attack_skill = 1
+						defense_skill = 2
+						maneuvering_skill = 1
+						coordination_skill = 2
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Doan_Ngoc_Bich = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Form_NhaTrang_Training_Center
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Form_NhaTrang_Training_Center
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Doan_Ngoc_Bich = {
+					add_naval_commander_role = {
+						traits = {
+							voBi_trainee_navy
+							young_officer
+						}
+						skill = 1
+						attack_skill = 1
+						defense_skill = 1
+						maneuvering_skill = 1
+						coordination_skill = 3
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_Tran_Van_Phan = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Form_NhaTrang_Training_Center
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Form_NhaTrang_Training_Center
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Tran_Van_Phan = {
+					add_naval_commander_role = {
+						traits = {
+							voBi_trainee_navy
+							young_officer
+						}
+						skill = 1
+						attack_skill = 2
+						defense_skill = 2
+						maneuvering_skill = 1
+						coordination_skill = 1
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_VIE_Pierre_Y_Wo_Mlo = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Organize_ComManDo_Units
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Organize_ComManDo_Units
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Pierre_Y_Wo_Mlo = {
+					add_corps_commander_role = {
+						traits = {
+							irregular_officer
+							french_trainee
+							commando
+							VIE_Pro_France
+						}
+						skill = 1
+						attack_skill = 2
+						defense_skill = 1
+						planning_skill = 1
+						logistics_skill = 3
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_VIE_Y_Wo_Mlo = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Organize_ComManDo_Units
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Organize_ComManDo_Units
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Y_Wo_Mlo = {
+					add_corps_commander_role = {
+						traits = {
+							irregular_officer
+							french_trainee
+							commando
+							VIE_Pro_France
+						}
+						skill = 1
+						attack_skill = 1
+						defense_skill = 1
+						planning_skill = 3
+						logistics_skill = 2
+					}
+				}
+			}
+		}
+	}
+	VIE_Recruit_VIE_Y_Tot_Nai = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Organize_ComManDo_Units
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Organize_ComManDo_Units
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 14
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -15
+			}
+			VIE = {
+				VIE_Y_Tot_Nai = {
+					add_corps_commander_role = {
+						traits = {
+							irregular_officer
+							french_trainee
+							commando
+							VIE_Pro_France
+						}
+						skill = 1
+						attack_skill = 1
+						defense_skill = 1
+						planning_skill = 1
+						logistics_skill = 5
+					}
+				}
+			}
+		}
+	}
+}
+
+VIE_Integrate_Sect_Armies = {
+	VIE_Integrate_Militia_CaoDai = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Incorporate_Religious_Sects_BinhXuyen_Forces
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Incorporate_Religious_Sects_BinhXuyen_Forces
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 49
+		}
+		custom_cost_text = VIE_Recruit_Militia_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -50
+				division_template = {
+					name = "Cao-Dai Militia"
+					division_names_group = VIE_MIL_01
+					priority = 1
+					template_counter = 203
+					is_locked = no
+					regiments = {
+						militia = {
+							x = 0
+							y = 0
+						}
+						militia = {
+							x = 0
+							y = 1
+						}
+						militia = {
+							x = 0
+							y = 2
+						}
+					}
+					support = {
+						light_artillery_support = {
+							x = 0
+							y = 0
+						}
+					}
+				}
+			}
+			add_to_variable = {
+				FRA_Influence = -5
+			}
+			set_temp_variable = { cao_dai_loyalty_change = -10 }
+			cao_dai_loyalty_change_tt = yes
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Cao-Dai Militia\" division_template = \"Cao-Dai Militia\" start_experience_factor = 0.15"
+					owner = VIE
+				}
+			}
+		}
+	}
+	VIE_Integrate_Militia_NguyenTrungTruc = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Incorporate_Religious_Sects_BinhXuyen_Forces
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Incorporate_Religious_Sects_BinhXuyen_Forces
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 49
+		}
+		custom_cost_text = VIE_Recruit_Militia_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -50
+				division_template = {
+					name = "Su Doan Bien"
+					division_names_group = VIE_MIL_01
+					priority = 1
+					template_counter = 208
+					is_locked = yes
+					regiments = {
+						militia = { x = 0 y = 0 }
+						militia = { x = 0 y = 1 }
+						militia = { x = 0 y = 2 }
+					}
+					support = {
+						light_artillery_support = { x = 0 y = 0 }
+					}
+				}
+			}
+			add_to_variable = {
+				FRA_Influence = 5
+			}
+			set_temp_variable = { binh_xuyen_loyalty_change = -10 }
+			binh_xuyen_loyalty_change_tt = yes
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Nguyen-Trung-Truc Militia\" division_template = \"Su Doan Bien\" start_experience_factor = 0.15"
+					owner = VIE
+				}
+			}
+		}
+	}
+	VIE_Integrate_Militia_UMDC = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Incorporate_Religious_Sects_BinhXuyen_Forces
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Incorporate_Religious_Sects_BinhXuyen_Forces
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 49
+		}
+		custom_cost_text = VIE_Recruit_Militia_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -50
+				division_template = {
+					name = "UMDC Militia"
+					division_names_group = VIE_MIL_01
+					priority = 1
+					template_counter = 209
+					is_locked = no
+					regiments = {
+						militia = {
+							x = 0
+							y = 0
+						}
+						militia = {
+							x = 0
+							y = 1
+						}
+						militia = {
+							x = 0
+							y = 2
+						}
+					}
+					support = {
+						light_artillery_support = {
+							x = 0
+							y = 0
+						}
+					}
+				}
+			}
+			add_to_variable = {
+				FRA_Influence = -5
+			}
+			set_temp_variable = { umdc_loyalty_change = -10 }
+			umdc_loyalty_change_tt = yes
+			capital_scope = {
+				create_unit = {
+					division = "name = \"UMDC Militia\" division_template = \"UMDC Militia\" start_experience_factor = 0.15"
+					owner = VIE
+				}
+			}
+		}
+	}
+}
+
+VIE_Recruit_CEFEO_Foreign_Legion_Units = {
+	VIE_Recruit_FFL_Tank = {
+		ai_will_do = {
+			factor = 0
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_Coordinate_with_CEFEO
+				has_completed_focus = VIE_CD_Coordinate_with_CEFEO
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_Coordinate_with_CEFEO
+				has_completed_focus = VIE_CD_Coordinate_with_CEFEO
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 24
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -25
+				VIE_create_CEFEO_FFL_templates = yes
+			}
+			add_to_variable = {
+				FRA_Influence = 5
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Division de Tonkin\" division_template = \"Legion Etrangere Francaise Blindee\" start_experience_factor = 0.1 start_equipment_factor = 1"
+					owner = VIE
+				}
+			}
+		}
+	}
+	VIE_Recruit_FFL_Parachute_1 = {
+		ai_will_do = {
+			factor = 0
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_Coordinate_with_CEFEO
+				has_completed_focus = VIE_CD_Coordinate_with_CEFEO
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_Coordinate_with_CEFEO
+				has_completed_focus = VIE_CD_Coordinate_with_CEFEO
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 24
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -25
+				VIE_create_CEFEO_FFL_templates = yes
+			}
+			add_to_variable = {
+				FRA_Influence = 5
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"1er Regiment Etranger de Parachutistes\" division_template = \"Regiment Etranger Parachutiste\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = VIE
+				}
+			}
+		}
+	}
+	VIE_Recruit_FFL_Parachute_2 = {
+		ai_will_do = {
+			factor = 0
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_Coordinate_with_CEFEO
+				has_completed_focus = VIE_CD_Coordinate_with_CEFEO
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_Coordinate_with_CEFEO
+				has_completed_focus = VIE_CD_Coordinate_with_CEFEO
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 24
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -25
+				VIE_create_CEFEO_FFL_templates = yes
+			}
+			add_to_variable = {
+				FRA_Influence = 5
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"3e Regiment Etranger de Parachutistes\" division_template = \"Regiment Etranger Parachutiste\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = VIE
+				}
+			}
+		}
+	}
+	VIE_Recruit_FFL_Regular_1 = {
+		ai_will_do = {
+			factor = 0
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_Coordinate_with_CEFEO
+				has_completed_focus = VIE_CD_Coordinate_with_CEFEO
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_Coordinate_with_CEFEO
+				has_completed_focus = VIE_CD_Coordinate_with_CEFEO
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 24
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -25
+				VIE_create_CEFEO_FFL_templates = yes
+			}
+			add_to_variable = {
+				FRA_Influence = 5
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Brigade d'Annam-Laos\" division_template = \"Legion Etrangere Francaise\" start_experience_factor = 0.3 start_equipment_factor = 1"
+					owner = VIE
+				}
+			}
+		}
+	}
+	VIE_Recruit_FFL_Regular_2 = {
+		ai_will_do = {
+			factor = 0
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_Coordinate_with_CEFEO
+				has_completed_focus = VIE_CD_Coordinate_with_CEFEO
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				has_completed_focus = VIE_Coordinate_with_CEFEO
+				has_completed_focus = VIE_CD_Coordinate_with_CEFEO
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 49
+			has_political_power > 24
+		}
+		custom_cost_text = VIE_Recruit_General_Cost
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -25
+				VIE_create_CEFEO_FFL_templates = yes
+			}
+			add_to_variable = {
+				FRA_Influence = 5
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"11e Regiment d'Infanterie de Marine\" division_template = \"Legion Etrangere Francaise\" start_experience_factor = 0.3 start_equipment_factor = 1"
+					owner = VIE
+				}
+			}
+		}
+	}
+}
+
+VIE_mil_decisions = {
+	VIE_Demand_French_ships = {
+		ai_will_do = {
+			factor = 1
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Expand_LienDoan_TuanGiang
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_Expand_LienDoan_TuanGiang
+		}
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			add_opinion_modifier = {
+				target = FRA
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = FRA
+				modifier = small_increase
+			}
+			custom_effect_tooltip = VIE_Demand_French_ships_transfer_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						has_dlc = "Man the Guns"
+					}
+					create_ship = {
+						type = battle_hull_light_ww
+						equipment_variant = "PC-461 Class"
+						creator = FRA
+						name = "RVNS Van Don (HQ-06)"
+					}
+					create_ship = {
+						type = battle_hull_light_ww
+						equipment_variant = "PC-461 Class"
+						creator = FRA
+						name = "RVNS No Than (HQ-225)"
+					}
+					create_ship = {
+						type = battle_hull_light_ww
+						equipment_variant = "PC-461 Class"
+						creator = FRA
+						name = "RVNS Linh Kiem (HQ-226)"
+					}
+				}
+				else = {
+					create_ship = {
+						type = frigate_ww
+						creator = FRA
+						name = "RVNS Van Don (HQ-06)"
+					}
+					create_ship = {
+						type = frigate_ww
+						creator = FRA
+						name = "RVNS No Than (HQ-225)"
+					}
+					create_ship = {
+						type = frigate_ww
+						creator = FRA
+						name = "RVNS Linh Kiem (HQ-226)"
+					}
+				}
+			}
+		}
+	}
+}
+
+#French Coup
+VIE_Intensify_Propaganda = {
+	VIE_Denounce_HO = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_French_Propaganda
+		}
+		cost = 25
+		days_remove = 40
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = VIE_Anticommunist_Cooldown
+			}
+		}
+		fire_only_once = yes
+		complete_effect = {
+			VIE = {
+				add_stability = 0.03
+			}
+			VIN = {
+				add_stability = -0.05
+			}
+			set_country_flag = VIE_Anticommunist_Cooldown
+		}
+		remove_effect = {
+			clr_country_flag = VIE_Anticommunist_Cooldown
+		}
+	}
+	VIE_Communist_Failures = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_French_Propaganda
+		}
+		cost = 25
+		days_remove = 40
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = VIE_Anticommunist_Cooldown
+			}
+		}
+		fire_only_once = yes
+		complete_effect = {
+			VIN = {
+				add_stability = -0.05
+				set_country_flag = VIE_Anticommunist_Cooldown
+			}
+		}
+		remove_effect = {
+			clr_country_flag = VIE_Anticommunist_Cooldown
+		}
+	}
+}
+
+VIE_NamKy_Cultures = {
+	VIE_Cochinchina_Industry = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_French_Cultures
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = VIE_Namky_Cooldown
+			}
+		}
+		days_remove = 40
+		cost = 25
+		fire_only_once = yes
+		complete_effect = {
+			VIE = {
+				286 = {
+					add_extra_state_shared_building_slots = 2
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			set_country_flag = VIE_Namky_Cooldown
+			add_timed_idea = {
+				idea = VIE_Cochinchina_Industry_spawnrate
+				days = 50
+			}
+		}
+		remove_effect = {
+			clr_country_flag = VIE_Namky_Cooldown
+		}
+	}
+	VIE_Praise_Cochinchinese = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_French_Cultures
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = VIE_Namky_Cooldown
+			}
+		}
+		days_remove = 40
+		cost = 25
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = VIE_Namky_Cooldown
+			add_timed_idea = {
+				idea = VIE_Cochinchina_Residents_spawnrate
+				days = 50
+			}
+		}
+		remove_effect = {
+			clr_country_flag = VIE_Namky_Cooldown
+		}
+	}
+}
+
+VIE_Phap_Duhe = {
+	VIE_Project_Friendship = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_French_Phap
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = VIE_Phap_Cooldown
+			}
+		}
+		days_remove = 40
+		cost = 25
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = VIE_Phap_Cooldown
+			add_stability = 0.05
+			set_temp_variable = { favoritism_change = 5 }
+			VIE_Change_Main_Favoritism = yes
+		}
+		remove_effect = {
+			clr_country_flag = VIE_Phap_Cooldown
+		}
+	}
+	VIE_Encourage_Investment = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_French_Phap
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = VIE_Phap_Cooldown
+			}
+		}
+		days_remove = 40
+		cost = 25
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = VIE_Phap_Cooldown
+			286 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = VIE_Phap_Cooldown
+		}
+	}
+}
+
+VIE_Francophile_Ideals = {
+	VIE_Praise_French = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_French_Ideals
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = VIE_Francophile_Ideals_Cooldown
+			}
+		}
+		fire_only_once = yes
+		cost = 25
+		days_remove = 40
+		complete_effect = {
+			set_temp_variable = { favoritism_change = 5 }
+			VIE_Change_Main_Favoritism = yes
+			add_stability = 0.05
+			set_country_flag = VIE_Francophile_Ideals_Cooldown
+		}
+		remove_effect = {
+			clr_country_flag = VIE_Francophile_Ideals
+		}
+	}
+	VIE_French_Heroic = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = VIE_French_Ideals
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = VIE_Francophile_Ideals_Cooldown
+			}
+		}
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			set_temp_variable = { favoritism_change = 5 }
+			VIE_Change_Main_Favoritism = yes
+			add_timed_idea = {
+				idea = VIE_FRA_Hero
+				days = 50
+			}
+		}
+	}
+}
+
+FUL_VietMinh_War = {
+	FUL_VietMinh_War_decision = {
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		available = { NOT = { has_global_flag = KRCW_active } 
+			has_completed_focus = FUL_Tribal_Vietminh_Hunts
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_to_war = {
+				targeted_alliance = VIE
+				enemy = NLF
+			}
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+}
+
+VIE_Marxist_Organization = {
+	VIE_Organize_Party_Cells = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_idea = VIE_Democratic_Centralism_1
+				has_idea = VIE_Democratic_Centralism_2
+				has_idea = VIE_Democratic_Centralism_3
+			}
+		}
+		cost = 50
+		days_remove = 90
+		fire_only_once = yes
+		ai_will_do = {
+			base = 5
+			modifier = {
+				factor = 0
+				has_political_power < 60
+			}
+		}
+		remove_effect = {
+			add_ideas = VIE_Democratic_Centralism_1
+		}
+	}
+	VIE_Introduce_Democratic_Centralism = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_idea = VIE_Democratic_Centralism_1
+		}
+		cost = 50
+		days_remove = 100
+		fire_only_once = yes
+		ai_will_do = {
+			base = 5
+			modifier = {
+				factor = 0
+				has_political_power < 60
+			}
+		}
+		remove_effect = {
+			swap_ideas = {
+				remove_idea = VIE_Democratic_Centralism_1
+				add_idea = VIE_Democratic_Centralism_2
+			}
+		}
+	}
+	VIE_Vanguard_NhanVi_Revolution = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_idea = VIE_Democratic_Centralism_2
+		}
+		cost = 50
+		days_remove = 120
+		fire_only_once = yes
+		ai_will_do = {
+			base = 5
+			modifier = {
+				factor = 0
+				has_political_power < 60
+			}
+		}
+		remove_effect = {
+			swap_ideas = {
+				remove_idea = VIE_Democratic_Centralism_2
+				add_idea = VIE_Democratic_Centralism_3
+			}
+		}
+	}
+	VIE_Cadres_To_Barracks = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = {
+				VIE_ChieuHoi_Cadres > 0
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = VIE_Cadre_Deployment_Cooldown
+			}
+		}
+		cost = 25
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.09
+			}
+		}
+		custom_cost_text = VIE_has_100_mil_25pp
+		days_remove = 60
+		fire_only_once = no
+		ai_will_do = {
+			base = 3
+			modifier = {
+				factor = 0
+				OR = {
+					has_political_power < 50
+					check_variable = {
+						currentMoney < 0.5
+					}
+				}
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = {
+				VIE_ChieuHoi_Cadres = 1
+			}
+			set_temp_variable = {
+				money_to_gain = -0.1
+			}
+			add_money_with_tooltip_effect = yes
+			army_experience = 10
+			add_command_power = 5
+			set_country_flag = VIE_Cadre_Deployment_Cooldown
+		}
+		remove_effect = {
+			clr_country_flag = VIE_Cadre_Deployment_Cooldown
+			hidden_effect = {
+				random_list = {
+					20 = {
+						country_event = { id = DiemMarx.1 hours = 6 }
+					}
+					80 = {
+					}
+				}
+			}
+		}
+	}
+	VIE_Cadres_To_Villages = {
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			check_variable = {
+				VIE_ChieuHoi_Cadres > 0
+			}
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			NOT = {
+				has_country_flag = VIE_Cadre_Deployment_Cooldown
+			}
+			check_variable = {
+				VIE_Land_Reform_Penalty < 0.6
+			}
+		}
+		cost = 25
+		custom_cost_trigger = {
+			has_political_power > 24
+			check_variable = {
+				currentMoney > 0.09
+			}
+		}
+		custom_cost_text = VIE_has_100_mil_25pp
+		days_remove = 60
+		fire_only_once = no
+		ai_will_do = {
+			base = 3
+			modifier = {
+				factor = 0
+				OR = {
+					has_political_power < 50
+					check_variable = {
+						currentMoney < 0.5
+					}
+				}
+			}
+		}
+		complete_effect = {
+			subtract_from_variable = {
+				VIE_ChieuHoi_Cadres = 1
+			}
+			set_temp_variable = {
+				money_to_gain = -0.1
+			}
+			add_money_with_tooltip_effect = yes
+			custom_effect_tooltip = Decrease_Land_Reform_Penalty_5
+			add_to_variable = {
+				VIE_Land_Reform_Penalty = 0.05
+			}
+			set_country_flag = VIE_Cadre_Deployment_Cooldown
+		}
+		remove_effect = {
+			clr_country_flag = VIE_Cadre_Deployment_Cooldown
+			hidden_effect = {
+				random_list = {
+					20 = {
+						country_event = { id = DiemMarx.1 hours = 6 }
+					}
+					80 = {
+					}
+				}
+			}
+		}
+	}
+}

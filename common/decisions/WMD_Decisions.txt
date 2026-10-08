@@ -1,0 +1,125 @@
+# KRCW (build/patch_residue.py): 2 OTL decisions hidden while KRCW_active
+variables_calculation_category = {
+	# hidden cooldown for Defcon changes
+	WMD_defcon_cooldown = {
+		icon = generic_decision
+		visible = { always = no }
+		available = { always = no }
+		activation = { always = no }
+		#is_good = yes
+		selectable_mission = yes
+		days_mission_timeout = 4
+		fire_only_once = no
+		fixed_random_seed = no
+		cost = 0
+		timeout_effect = {
+			#set_variable = {influence_confirmed = 0 }
+			#add_to_variable = {refresh_arab_league= 1 }		
+			THIS = {
+				set_variable = { DEFCON_cooldown = 0 }
+				add_to_variable = { refresh_wmd_menu = 1}
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	# hidden cooldown for Strike delay
+	WMD_strike_cooldown = {
+		icon = generic_decision
+		visible = { always = no }
+		available = { always = no }
+		activation = { always = no }
+		#is_good = yes
+		selectable_mission = yes
+		days_mission_timeout = 10
+		fire_only_once = no
+		fixed_random_seed = no
+		cost = 0
+		timeout_effect = {
+			set_variable = { wmd_strike_cooldown_var = 0 }
+			add_to_variable = { refresh_wmd_menu = 1}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	WMD_USA_MAD = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+		icon = generic_decision
+		visible = { NOT = { has_global_flag = KRCW_active } 
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		#is_good = yes
+		selectable_mission = yes
+		days_mission_timeout = 1
+		available = { NOT = { has_global_flag = KRCW_active }  }
+		fire_only_once = no
+		fixed_random_seed = no
+		cost = 0
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			every_country = {
+				if = { limit = { tag = SOV } country_event = WMD.4 }
+				news_event = WMD.6
+			}
+			for_each_loop = {
+				array = SOV.COUNTERATTACK
+				launch_nuke = {
+					state = var:SOV.COUNTERATTACK^i
+					use_nuke = no
+				}
+				wmd_damage_loop_effect = yes
+			}
+		 }
+}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	WMD_SOV_MAD = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+		icon = generic_decision
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			#tag = QAT
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		#is_good = yes
+		selectable_mission = yes
+		days_mission_timeout = 1
+		available = { NOT = { has_global_flag = KRCW_active }  }
+		fire_only_once = no
+		fixed_random_seed = no
+		cost = 0
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			every_country = {
+				if = { limit = { tag = USA } country_event = WMD.5 }
+				news_event = WMD.7
+			}
+			for_each_loop = {
+				array = USA.COUNTERATTACK
+				launch_nuke = {
+					state = var:USA.COUNTERATTACK^i
+					use_nuke = no
+				}
+				wmd_damage_loop_effect = yes
+			}
+		 }
+}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}

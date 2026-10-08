@@ -1,0 +1,96 @@
+# krcw: paced
+add_namespace = krcw_gre
+
+country_event = {
+	id = krcw_gre.1
+	title = krcw_gre_1_t
+	desc = krcw_gre_1_d
+	picture = GFX_krcw_eu_d12_gre_partisans
+	fire_only_once = yes
+	trigger = {
+		tag = GRE
+		date > 1949.12.7
+		date < 1952.1.18
+		is_in_faction_with = SOV
+		NOT = { has_country_flag = krcw_gre_pindus_question }
+	}
+	mean_time_to_happen = {
+		months = 8
+	}
+	immediate = {
+		set_country_flag = krcw_gre_pindus_question
+	}
+	option = {
+		name = krcw_gre_1.a
+		ai_chance = {
+			factor = 60
+		}
+		add_war_support = 0.02
+		add_political_power = -25
+		add_stability = -0.02
+	}
+	option = {
+		name = krcw_gre_1.b
+		ai_chance = {
+			factor = 40
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		add_stability = 0.03
+		add_political_power = -15
+	}
+}
+
+country_event = {
+	id = krcw_gre.2
+	title = krcw_gre_2_t
+	desc = krcw_gre_2_d
+	picture = GFX_krcw_eu_d12_gre_meeting
+	fire_only_once = yes
+	trigger = {
+		tag = GRE
+		date > 1950.5.10
+		date < 1952.6.21
+		country_exists = ITA
+		has_country_flag = krcw_gre_pindus_question
+		NOT = { has_country_flag = krcw_gre_albania_shelter }
+	}
+	mean_time_to_happen = {
+		months = 5
+	}
+	immediate = {
+		set_country_flag = krcw_gre_albania_shelter
+	}
+	option = {
+		name = krcw_gre_2.a
+		ai_chance = {
+			factor = 50
+		}
+		add_political_power = -25
+		if = { limit = { country_exists = ITA } ITA = { country_event = { id = krcw_gre.10 days = 5 } } }
+	}
+	option = {
+		name = krcw_gre_2.b
+		ai_chance = {
+			factor = 50
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		add_stability = -0.02
+		add_political_power = 25
+	}
+}
+
+country_event = {
+	id = krcw_gre.10
+	title = krcw_gre_10_t
+	desc = krcw_gre_10_d
+	picture = GFX_krcw_eu_d12_ita_meeting
+	is_triggered_only = yes
+	option = {
+		name = krcw_gre_10.a
+		ai_chance = {
+			factor = 90
+		}
+		add_political_power = 25
+		if = { limit = { country_exists = GRE } GRE = { add_opinion_modifier = { target = ITA modifier = protectorate_dislikes_overlord } } }
+	}
+}

@@ -1,0 +1,53 @@
+# KRCW (build/patch_residue.py): 3 OTL decisions hidden while KRCW_active
+La_Violencia_Decision_Category = {
+	La_Violencia_GUI_Open = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_decision
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				original_tag = COL
+				original_tag = CLL
+				original_tag = CXL
+				}
+				is_debug = yes
+		}
+		complete_effect = {
+			set_country_flag = COL_PSG_GUI_FLAG
+		}
+		fire_only_once = no
+	}
+	La_Violencia_Trigger = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_decision
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				original_tag = COL
+				original_tag = CLL
+				original_tag = CXL
+				}
+				is_debug = yes
+		}
+		complete_effect = {
+			COL = { country_event = COL_Vio.1 }
+		}
+		fire_only_once = no
+	}
+	Set_Ramdom_Var_For_GUI = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_decision
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			OR = {
+				original_tag = COL
+				original_tag = CLL
+				original_tag = CXL
+				}
+				is_debug = yes
+		}
+		complete_effect = {
+			set_variable = { var = Var_COL_GUI_Conservatives value = 60 }
+			set_variable = { var = Var_COL_GUI_Liberals value = 20 }
+			set_variable = { var = Var_COL_GUI_Communist value = 20 }
+		}
+		fire_only_once = no
+	}
+}

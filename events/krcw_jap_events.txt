@@ -1,0 +1,161 @@
+# krcw: paced
+add_namespace = krcw_jap
+
+country_event = {
+	id = krcw_jap.1
+	title = krcw_jap_1_t
+	desc = krcw_jap_1_d
+	picture = GFX_krcw_eu_d12_jap_diet
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+		date > 1949.12.7
+		date < 1952.1.18
+		NOT = { has_country_flag = krcw_jap_revanchism_question }
+	}
+	mean_time_to_happen = {
+		months = 8
+	}
+	immediate = {
+		set_country_flag = krcw_jap_revanchism_question
+	}
+	option = {
+		name = krcw_jap_1.a
+		ai_chance = {
+			factor = 70
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		add_political_power = 50
+		add_war_support = 0.02
+		set_country_flag = krcw_jap_revanche_nursed
+	}
+	option = {
+		name = krcw_jap_1.b
+		ai_chance = {
+			factor = 10
+		}
+		add_stability = 0.03
+		add_war_support = -0.03
+		set_country_flag = krcw_jap_revanche_renounced
+	}
+}
+
+country_event = {
+	id = krcw_jap.2
+	title = krcw_jap_2_t
+	desc = krcw_jap_2_d
+	picture = GFX_krcw_eu_d12_jap_meeting
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+		date > 1950.5.10
+		date < 1952.6.21
+		NOT = { has_country_flag = krcw_jap_democracy_question }
+	}
+	mean_time_to_happen = {
+		months = 11
+	}
+	immediate = {
+		set_country_flag = krcw_jap_democracy_question
+	}
+	option = {
+		name = krcw_jap_2.a
+		ai_chance = {
+			factor = 60
+		}
+		add_political_power = 25
+		add_stability = -0.02
+		set_country_flag = krcw_jap_no_reform
+	}
+	option = {
+		name = krcw_jap_2.b
+		ai_chance = {
+			factor = 40
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		add_stability = 0.03
+		add_political_power = -25
+		set_country_flag = krcw_jap_limited_reform
+		add_popularity = { ideology = conservative popularity = 0.03 }
+	}
+}
+
+country_event = {
+	id = krcw_jap.3
+	title = krcw_jap_3_t
+	desc = krcw_jap_3_d
+	picture = GFX_krcw_eu_d12_jap_crowd
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+		date > 1950.10.12
+		date < 1952.11.23
+		NOT = { has_country_flag = krcw_jap_taiwan_question }
+	}
+	mean_time_to_happen = {
+		months = 9
+	}
+	immediate = {
+		set_country_flag = krcw_jap_taiwan_question
+	}
+	option = {
+		name = krcw_jap_3.a
+		ai_chance = {
+			factor = 50
+		}
+		add_political_power = -25
+		add_stability = -0.02
+		set_country_flag = krcw_jap_taiwan_imperialised
+		if = { limit = { country_exists = CHI CHI = { has_variable = krcw_chi_taiwan_support } } CHI = { add_to_variable = { krcw_chi_taiwan_support = 5 } } }
+	}
+	option = {
+		name = krcw_jap_3.b
+		ai_chance = {
+			factor = 50
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		add_stability = 0.02
+		add_political_power = -15
+		set_country_flag = krcw_jap_taiwan_autonomy
+		if = { limit = { country_exists = CHI CHI = { has_variable = krcw_chi_taiwan_support } } CHI = { subtract_from_variable = { krcw_chi_taiwan_support = 5 } } }
+	}
+}
+
+country_event = {
+	id = krcw_jap.4
+	title = krcw_jap_4_t
+	desc = krcw_jap_4_d
+	picture = GFX_krcw_eu_d12_jap_soldiers
+	fire_only_once = yes
+	trigger = {
+		tag = JAP
+		date > 1951.3.15
+		date < 1953.4.26
+		NOT = { has_country_flag = krcw_jap_micronesia_question }
+	}
+	mean_time_to_happen = {
+		months = 11
+	}
+	immediate = {
+		set_country_flag = krcw_jap_micronesia_question
+	}
+	option = {
+		name = krcw_jap_4.a
+		ai_chance = {
+			factor = 90
+		}
+		add_political_power = -15
+		add_war_support = 0.02
+		navy_experience = 10
+		set_country_flag = krcw_jap_islands_kept
+	}
+	option = {
+		name = krcw_jap_4.b
+		ai_chance = {
+			factor = 10
+		}
+		add_political_power = 40
+		add_stability = 0.01
+		set_country_flag = krcw_jap_islands_cut
+	}
+}

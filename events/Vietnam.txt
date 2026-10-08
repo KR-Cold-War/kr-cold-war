@@ -1,0 +1,227 @@
+# KRCW (build/patch_residue.py): 9 OTL events dropped while KRCW_active
+ #############################
+# Vietnam events
+#############################
+
+add_namespace = vie
+add_namespace = join_vietnam_war
+add_namespace = vie_peace
+add_namespace = vietnam_exp
+add_namespace = vin_ref
+add_namespace = NLF_Flavor
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NLF_Flavor.1 
+ immediate = { }
+	title = NLF_Flavor.1.t
+	desc = NLF_Flavor.1.d
+	picture = GFX_NLF_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = NLF_Flavor.1.a
+		hidden_effect = {
+			set_global_flag = Vietnam_War
+			set_variable = { VIN.nlf_funding = 5 }
+			set_variable = { SOV.nlf_funding = 20 }
+			set_variable = { PRC.nlf_funding = 5 }
+			
+			set_variable = { NLF.global_nlf_funding = 30 }
+		
+			set_variable = { USA.vie_funding = 20 }
+			
+			set_variable = { VIE.global_vie_funding = 20 }
+			NLF = { 
+				transfer_state = 1286
+				add_ideas = The_Vietnam_War_NLF
+				if = {
+					limit = { NOT = { has_war_with = VIE } }
+					declare_war_on = { target = VIE type = annex_everything }
+				}
+				set_province_controller = 1400
+				load_oob = NLF_1960
+			}
+			VIN = { add_ideas = The_Vietnam_War_VIN }
+			add_ideas = The_Vietnam_War_VIE
+			286 = { set_state_flag = NLF_Crushed }
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = vie.1500 
+ immediate = { }
+	title = vie.1500.t
+	desc = vie.1500.d
+	picture = GFX_vie_1500
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = vie.1500.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NLF_Flavor.10 
+ immediate = { }
+	title = NLF_Flavor.10.t
+	desc = NLF_Flavor.2.d
+	picture = GFX_NLF_2
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = NLF_Flavor.10.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = vietnam_exp.1 
+ immediate = { }
+	title = vietnam_exp.1.t
+	desc = vietnam_exp.1.d
+
+	is_triggered_only = yes
+
+	# Join
+	option = {
+		name = vietnam_exp.1.a
+		VIN = {
+			transfer_state = 599
+			transfer_state = 594
+			transfer_state = 593
+			transfer_state = 592
+			transfer_state = 591
+		}
+	  ai_chance = {
+			factor = 50
+		}
+	}
+
+	# Nope
+	option = {
+		name = vietnam_exp.1.b
+	  ai_chance = {
+		  factor = 50
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = vin_ref.1 
+ immediate = { }
+	title = vin_ref.1.t
+	desc = vin_ref.1.d
+
+	is_triggered_only = yes
+
+	# Join
+	option = {
+		name = vin_ref.1.a
+		VIN = { change_tag_from = VIE }
+		VIN = { annex_country = { target = VIE } }
+		set_global_flag = vietnam_war_over
+	  ai_chance = {
+			factor = 75
+		}
+	}
+
+	# Nope
+	option = {
+		name = vin_ref.1.b
+	  ai_chance = {
+		  factor = 25
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = vie_peace.1 
+ immediate = { }
+	title = vie_peace.1.t
+	desc = vie_peace.1.d
+
+	is_triggered_only = yes
+
+	# Join
+	option = {
+		name = vie_peace.1.a
+		white_peace = VIN
+		set_global_flag = vietnam_war_over
+	  ai_chance = {
+			factor = 75
+		}
+	}
+
+	# Nope
+	option = {
+		name = vie_peace.1.b
+	  ai_chance = {
+		  factor = 25
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+  id = join_vietnam_war.1 
+ immediate = { }
+	title = join_vietnam_war.1.t
+	desc = join_vietnam_war.1.d
+
+	is_triggered_only = yes
+
+	# Join
+	option = {
+		name = join_vietnam_war.1.a
+		add_to_war = { targeted_alliance = VIE enemy = VIN }
+	  ai_chance = {
+			factor = 85
+		}
+	}
+
+	# Nope
+	option = {
+		name = join_vietnam_war.1.b
+	  ai_chance = {
+		  factor = 15
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = vie.6 
+ immediate = { }
+	hidden = yes
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+
+	}
+
+	option = { }
+
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = vie.7 
+ immediate = { }
+	hidden = yes
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		FRA = {
+			white_peace = VIN
+			annex_country = { target = VIN transfer_troops = no }
+		}
+	}
+
+}

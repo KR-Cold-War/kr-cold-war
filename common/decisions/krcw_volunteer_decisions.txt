@@ -1,0 +1,228 @@
+krcw_ti_brigades_cat = {
+	krcw_ti_open_the_enlistment = {
+		icon = GFX_decision_generic_political_discourse
+		cost = 40
+		available = {
+			NOT = { has_idea = krcw_volunteer_mobilisation }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_ideas = krcw_volunteer_mobilisation
+			custom_effect_tooltip = krcw_volunteers_tt
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	krcw_ti_brigade_to_lhasa = {
+		icon = GFX_decision_generic_army_support
+		cost = 50
+		visible = {
+			has_global_flag = KRCW_tibet_revolt_started
+			NOT = { tag = CHI }
+		}
+		available = {
+			country_exists = CHI
+			CHI = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			send_equipment = { type = infantry_equipment amount = 2000 target = CHI }
+			if = { limit = { country_exists = CHI } CHI = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			army_experience = -15
+			if = { limit = { country_exists = CHI } CHI = { army_experience = 15 add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			krcw_tension_up_small = yes
+			add_ideas = krcw_proxy_commitment
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_ti_brigade_to_katanga = {
+		icon = GFX_decision_generic_army_support
+		cost = 45
+		visible = {
+			has_global_flag = krcw_katanga_fired
+		}
+		available = {
+			country_exists = KAG
+			KAG = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			send_equipment = { type = infantry_equipment amount = 2000 target = KAG }
+			if = { limit = { country_exists = KAG } KAG = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+			custom_effect_tooltip = krcw_volunteers_tt
+			if = { limit = { country_exists = KAG } KAG = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_ti_brigade_to_pindus = {
+		icon = GFX_decision_generic_army_support
+		cost = 40
+		visible = {
+			GRE = { has_country_flag = krcw_gre_pindus_question }
+		}
+		available = {
+			country_exists = GRE
+			country_exists = ITA
+		}
+		days_re_enable = 90
+		complete_effect = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = -1000 }
+			GRE = { add_stability = -0.02 add_war_support = -0.01 }
+			krcw_tension_up_small = yes
+			if = { limit = { country_exists = GRE } GRE = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_resentment } } }
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_ti_brigade_to_the_ohio = {
+		icon = GFX_decision_generic_army_support
+		cost = 60
+		visible = {
+			has_global_flag = KRCW_american_war_restarted
+			NOT = { has_global_flag = KRCW_american_war_over }
+			NOT = { tag = WCA }
+		}
+		available = {
+			country_exists = WCA
+			WCA = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			send_equipment = { type = infantry_equipment amount = 3000 target = WCA }
+			if = { limit = { country_exists = WCA } WCA = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+			custom_effect_tooltip = krcw_volunteers_tt
+			if = { limit = { country_exists = WCA } WCA = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			krcw_tension_up_medium = yes
+			add_ideas = krcw_proxy_commitment
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+}
+krcw_ma_advisers_cat = {
+	krcw_ma_open_the_missions = {
+		icon = GFX_decision_generic_political_discourse
+		cost = 40
+		available = {
+			NOT = { has_idea = krcw_volunteer_mobilisation }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_ideas = krcw_volunteer_mobilisation
+			custom_effect_tooltip = krcw_volunteers_tt
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	krcw_ma_advisers_to_lhasa = {
+		icon = GFX_decision_generic_army_support
+		cost = 50
+		visible = {
+			has_global_flag = KRCW_tibet_revolt_started
+			NOT = { tag = CHI }
+		}
+		available = {
+			country_exists = TIB
+			TIB = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			send_equipment = { type = infantry_equipment amount = 1500 target = TIB }
+			if = { limit = { country_exists = TIB } TIB = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			army_experience = -15
+			if = { limit = { country_exists = TIB } TIB = { army_experience = 15 add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			krcw_tension_up_small = yes
+			add_ideas = krcw_proxy_commitment
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_ma_advisers_to_lusaka = {
+		icon = GFX_decision_generic_army_support
+		cost = 45
+		visible = {
+			has_global_flag = krcw_katanga_fired
+		}
+		available = {
+			country_exists = ZAM
+			ZAM = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			send_equipment = { type = infantry_equipment amount = 2000 target = ZAM }
+			if = { limit = { country_exists = ZAM } ZAM = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			army_experience = -10
+			if = { limit = { country_exists = ZAM } ZAM = { army_experience = 10 add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_ma_advisers_to_athens = {
+		icon = GFX_decision_generic_army_support
+		cost = 40
+		visible = {
+			GRE = { has_country_flag = krcw_gre_pindus_question }
+			NOT = { tag = GRE }
+		}
+		available = {
+			country_exists = GRE
+			GRE = { has_war = yes }
+		}
+		days_re_enable = 90
+		complete_effect = {
+			send_equipment = { type = infantry_equipment amount = 1500 target = GRE }
+			if = { limit = { country_exists = GRE } GRE = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			army_experience = -10
+			if = { limit = { country_exists = GRE } GRE = { army_experience = 10 add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+	krcw_ma_advisers_to_new_orleans = {
+		icon = GFX_decision_generic_army_support
+		cost = 60
+		visible = {
+			has_global_flag = KRCW_american_war_restarted
+			NOT = { has_global_flag = KRCW_american_war_over }
+			NOT = { tag = USA }
+		}
+		available = {
+			country_exists = USA
+			USA = { has_war = yes }
+		}
+		days_re_enable = 120
+		complete_effect = {
+			send_equipment = { type = infantry_equipment amount = 3000 target = USA }
+			if = { limit = { country_exists = USA } USA = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+			custom_effect_tooltip = krcw_volunteers_tt
+			if = { limit = { country_exists = USA } USA = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_gratitude } } }
+			krcw_tension_up_medium = yes
+			add_ideas = krcw_proxy_commitment
+		}
+		ai_will_do = {
+			factor = 5
+		}
+	}
+}

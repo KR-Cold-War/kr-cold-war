@@ -1,0 +1,70 @@
+# KRCW (build/patch_residue.py): 2 OTL events dropped while KRCW_active
+add_namespace = lba70
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = lba70.1
+	immediate = {
+	}
+	title = lba70.1.t
+	desc = lba70.1.d
+	immediate = {
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = LBA_1977
+		add_country_leader_role = {
+			character = LBA_Muammar_Gaddafi
+			promote_leader = yes
+			country_leader = {
+				desc = "POLITICS_MUAMMAR_QADDAFI_JAMAHIRIYA_DESC"
+				ideology = jamahiriya
+				traits = {
+					popular_revolutionary
+					supporter_of_freedom_fighters
+					lover_of_the_libyan_people
+					narcissist
+				}
+			}
+		}
+		set_popularities = {
+			socialist = 100
+		}
+		set_politics = {
+			ruling_party = socialist
+		}
+		set_party_name = {
+			ideology = socialist
+			long_name = "Arab Socialist Union"
+			name = "ASU"
+		}
+		news_event = news.1608
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = lba70.1.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = lba70.2
+	immediate = {
+	}
+	title = lba70.2.t
+	desc = lba70.2.d
+	immediate = {
+		declare_war_on = {
+			target = CHA
+			type = annex_everything
+		}
+		LBA = {
+			create_faction_from_template = { template = faction_template_generic name = "Islamic Legion" }
+			add_to_faction = FRO
+		}
+		news_event = news.1609
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = lba70.2.a
+	}
+}

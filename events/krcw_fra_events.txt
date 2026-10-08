@@ -1,0 +1,668 @@
+# krcw: paced
+add_namespace = krcw_fra
+
+country_event = {
+	id = krcw_fra.1
+	title = krcw_fra_1_t
+	desc = krcw_fra_1_d
+	picture = GFX_krcw_eu_councilist_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_fra_1.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = 50
+		add_war_support = 0.02
+		set_country_flag = krcw_fra_congress_discipline
+	}
+	option = {
+		name = krcw_fra_1.b
+		ai_chance = {
+			base = 40
+		}
+		add_stability = 0.02
+		add_popularity = { ideology = trotskyism popularity = 0.02 }
+		set_country_flag = krcw_fra_congress_open
+	}
+}
+
+country_event = {
+	id = krcw_fra.2
+	title = krcw_fra_2_t
+	desc = krcw_fra_2_d
+	picture = GFX_krcw_eu_cabinet
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_fra_2.a
+		ai_chance = {
+			base = 70
+			modifier = { factor = 1.5 has_country_flag = krcw_fra_congress_open }
+		}
+		set_country_flag = krcw_fra_renewal_mood
+		add_political_power = -25
+		add_stability = 0.02
+		if = { limit = { has_country_flag = krcw_fra_congress_open } add_popularity = { ideology = trotskyism popularity = 0.02 } }
+	}
+	option = {
+		name = krcw_fra_2.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 1.5 has_country_flag = krcw_fra_congress_discipline }
+		}
+		set_country_flag = krcw_fra_old_guard
+		add_political_power = 50
+		add_stability = -0.01
+		if = { limit = { has_country_flag = krcw_fra_congress_open } add_stability = -0.02 }
+	}
+}
+
+country_event = {
+	id = krcw_fra.3
+	title = krcw_fra_3_t
+	desc = krcw_fra_3_d
+	picture = GFX_krcw_eu_econ_policy
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_fra_3.a
+		ai_chance = {
+			base = 70
+		}
+		add_stability = 0.03
+		add_political_power = -25
+		set_country_flag = krcw_fra_assembly_decides
+		country_event = { id = krcw_fra.18 days = 54 random_days = 30 }
+	}
+	option = {
+		name = krcw_fra_3.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 75
+		add_stability = -0.03
+		set_country_flag = krcw_fra_machine_rule
+		country_event = { id = krcw_fra.18 days = 54 random_days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_fra.18
+	title = krcw_fra_18_t
+	desc = {
+		text = krcw_fra_18_d0
+		trigger = {
+			has_country_flag = krcw_fra_machine_rule
+		}
+	}
+	desc = {
+		text = krcw_fra_18_d1
+		trigger = {
+			has_country_flag = krcw_fra_assembly_decides
+		}
+	}
+	picture = GFX_krcw_eu_econ_policy
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = FRA
+	}
+	option = {
+		name = krcw_fra_18.a
+		trigger = {
+			has_country_flag = krcw_fra_machine_rule
+		}
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = -50
+		add_stability = 0.02
+		32 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+	}
+	option = {
+		name = krcw_fra_18.b
+		trigger = {
+			has_country_flag = krcw_fra_machine_rule
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		random_list = {
+			55 = {
+				modifier = { factor = 1.3 has_stability > 0.6 }
+				add_tech_bonus = { name = krcw_fra_saclay_plan bonus = 0.5 uses = 1 category = industry }
+				custom_effect_tooltip = krcw_fra_18_quiet_tt
+			}
+			45 = {
+				modifier = { factor = 1.5 has_country_flag = krcw_fra_old_guard }
+				modifier = { factor = 0.7 has_country_flag = krcw_fra_renewal_mood }
+				add_timed_idea = { idea = krcw_fra_loire_strike days = 240 }
+				custom_effect_tooltip = krcw_fra_18_strike_tt
+			}
+		}
+	}
+	option = {
+		name = krcw_fra_18.c
+		trigger = {
+			has_country_flag = krcw_fra_assembly_decides
+		}
+		ai_chance = {
+			base = 55
+		}
+		add_political_power = -25
+		add_stability = 0.03
+	}
+	option = {
+		name = krcw_fra_18.d
+		trigger = {
+			has_country_flag = krcw_fra_assembly_decides
+		}
+		ai_chance = {
+			base = 45
+		}
+		add_stability = 0.01
+		add_tech_bonus = { name = krcw_fra_saclay_plan bonus = 0.25 uses = 1 category = industry }
+		add_popularity = { ideology = trotskyism popularity = 0.02 }
+	}
+}
+
+country_event = {
+	id = krcw_fra.4
+	title = krcw_fra_4_t
+	desc = krcw_fra_4_d
+	picture = GFX_krcw_eu_books
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_fra_4.a
+		ai_chance = {
+			base = 70
+		}
+		krcw_detente_up_small = yes
+		add_stability = 0.02
+		add_political_power = -25
+		set_country_flag = krcw_fra_letter_published
+	}
+	option = {
+		name = krcw_fra_4.b
+		ai_chance = {
+			base = 30
+		}
+		add_political_power = 50
+		add_war_support = 0.02
+		set_country_flag = krcw_fra_letter_filed
+	}
+}
+
+country_event = {
+	id = krcw_fra.5
+	title = krcw_fra_5_t
+	desc = krcw_fra_5_d
+	picture = GFX_krcw_eu_smoke2_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_fra_5.a
+		ai_chance = {
+			base = 75
+			modifier = { factor = 1.5 has_country_flag = krcw_fra_renewal_mood }
+		}
+		add_political_power = -25
+		set_country_flag = krcw_fra_listened
+		if = { limit = { OR = { has_country_flag = krcw_fra_renewal_mood has_country_flag = krcw_fra_rehabilitated } } add_stability = 0.01 }
+		else = { add_stability = -0.02 }
+		country_event = { id = krcw_fra.14 days = 30 random_days = 15 }
+	}
+	option = {
+		name = krcw_fra_5.b
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+			modifier = { factor = 1.5 has_country_flag = krcw_fra_old_guard }
+		}
+		add_stability = 0.02
+		if = { limit = { NOT = { has_idea = krcw_fra_second_commune_pressure } } add_ideas = krcw_fra_second_commune_pressure }
+		set_country_flag = krcw_fra_faculty_closed
+		random_list = {
+			50 = {
+				modifier = { factor = 1.5 has_country_flag = krcw_fra_old_guard }
+				modifier = { factor = 1.3 has_country_flag = krcw_fra_congress_open }
+				modifier = { factor = 1.3 has_country_flag = krcw_fra_archives_resealed }
+				modifier = { factor = 0.6 has_stability > 0.65 }
+				country_event = { id = krcw_fra.15 days = 20 random_days = 10 }
+			}
+			50 = {
+				modifier = { factor = 1.3 has_country_flag = krcw_fra_congress_discipline }
+				country_event = { id = krcw_fra.16 days = 30 random_days = 10 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = krcw_fra.14
+	title = krcw_fra_14_t
+	desc = krcw_fra_14_d
+	picture = GFX_krcw_eu_councilist_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = FRA
+	}
+	option = {
+		name = krcw_fra_14.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = -50
+		add_stability = 0.03
+		add_popularity = { ideology = trotskyism popularity = 0.03 }
+		set_country_flag = krcw_fra_students_seated
+		if = { limit = { has_idea = krcw_fra_second_commune_pressure } remove_ideas = krcw_fra_second_commune_pressure }
+	}
+	option = {
+		name = krcw_fra_14.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = 0.01
+	}
+}
+
+country_event = {
+	id = krcw_fra.15
+	title = krcw_fra_15_t
+	desc = krcw_fra_15_d
+	picture = GFX_krcw_eu_strike
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = FRA
+	}
+	option = {
+		name = krcw_fra_15.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = -50
+		add_stability = -0.01
+		set_country_flag = krcw_fra_listened
+		country_event = { id = krcw_fra.14 days = 20 }
+	}
+	option = {
+		name = krcw_fra_15.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = -0.05
+		add_war_support = 0.02
+		add_popularity = { ideology = trotskyism popularity = -0.02 }
+		set_country_flag = krcw_fra_billancourt_broken
+	}
+}
+
+country_event = {
+	id = krcw_fra.16
+	title = krcw_fra_16_t
+	desc = krcw_fra_16_d
+	picture = GFX_krcw_eu_books
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = FRA
+	}
+	option = {
+		name = krcw_fra_16.a
+		ai_chance = {
+			base = 1
+		}
+		add_political_power = 25
+		add_stability = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_fra.6
+	title = krcw_fra_6_t
+	desc = krcw_fra_6_d
+	picture = GFX_krcw_eu_map_france
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_fra_6.a
+		ai_chance = {
+			base = 65
+		}
+		add_stability = 0.04
+		add_political_power = -25
+		set_country_flag = krcw_fra_algeria_autonomy
+		if = { limit = { NOT = { has_idea = krcw_fra_africa_liberation } } add_ideas = krcw_fra_africa_liberation }
+	}
+	option = {
+		name = krcw_fra_6.b
+		ai_chance = {
+			base = 30
+		}
+		every_owned_state = {
+			limit = { is_core_of = ALG }
+			ALG = { transfer_state = PREV }
+		}
+		ALG = {
+			set_politics = { ruling_party = trotskyism elections_allowed = no }
+			add_opinion_modifier = { target = FRA modifier = krcw_eu_sister_federation }
+		}
+		FRA = { add_to_faction = ALG }
+		if = { limit = { NOT = { has_idea = krcw_fra_africa_liberation } } add_ideas = krcw_fra_africa_liberation }
+		add_political_power = 50
+		krcw_detente_up_small = yes
+		set_country_flag = krcw_fra_algeria_free
+	}
+	option = {
+		name = krcw_fra_6.c
+		ai_chance = {
+			base = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = -0.03
+		set_country_flag = krcw_fra_algeria_deferred
+		country_event = { id = krcw_fra.7 days = 81 random_days = 60 }
+	}
+}
+
+country_event = {
+	id = krcw_fra.7
+	title = krcw_fra_7_t
+	desc = krcw_fra_7_d
+	picture = GFX_krcw_eu_riot1
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		NOT = { country_exists = ALG }
+	}
+	option = {
+		name = krcw_fra_7.a
+		ai_chance = {
+			base = 80
+		}
+		add_stability = -0.02
+		add_political_power = -50
+		set_country_flag = krcw_fra_algeria_autonomy
+		if = { limit = { NOT = { has_idea = krcw_fra_africa_liberation } } add_ideas = krcw_fra_africa_liberation }
+	}
+	option = {
+		name = krcw_fra_7.b
+		ai_chance = {
+			base = 20
+		}
+		add_war_support = 0.03
+		add_stability = -0.05
+		krcw_tension_up_small = yes
+		set_country_flag = krcw_fra_algeria_repressed
+		if = { limit = { NOT = { has_idea = krcw_fra_second_commune_pressure } } add_ideas = krcw_fra_second_commune_pressure }
+	}
+}
+
+country_event = {
+	id = krcw_fra.10
+	title = krcw_fra_10_t
+	desc = krcw_fra_10_d
+	picture = GFX_krcw_eu_conference2
+	is_triggered_only = yes
+	trigger = {
+		NOT = { is_in_faction = yes }
+	}
+	option = {
+		name = krcw_fra_10.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 2 has_government = trotskyism }
+			modifier = { factor = 0.3 krcw_high_detente = yes }
+		}
+		FRA = { add_to_faction = ROOT }
+		add_opinion_modifier = { target = FRA modifier = krcw_eu_sister_federation }
+		if = { limit = { NOT = { has_idea = krcw_ti_industrial_federation_member } } add_ideas = krcw_ti_industrial_federation_member }
+	}
+	option = {
+		name = krcw_fra_10.b
+		ai_chance = {
+			base = 50
+		}
+		add_opinion_modifier = { target = FRA modifier = krcw_eu_ti_solidarity }
+		add_political_power = 25
+	}
+}
+
+country_event = {
+	id = krcw_fra.12
+	title = krcw_fra_12_t
+	desc = krcw_fra_12_d
+	picture = GFX_krcw_eu_paris_commune
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = FRA
+	}
+	option = {
+		name = krcw_fra_12.a
+		ai_chance = {
+			base = 55
+		}
+		add_war_support = 0.03
+		add_political_power = 50
+	}
+	option = {
+		name = krcw_fra_12.b
+		ai_chance = {
+			base = 45
+		}
+		add_stability = 0.03
+		add_political_power = -25
+		set_country_flag = krcw_fra_archives_open
+		country_event = { id = krcw_fra.17 days = 40 random_days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_fra.17
+	title = krcw_fra_17_t
+	desc = krcw_fra_17_d
+	picture = GFX_krcw_eu_books
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = FRA
+	}
+	option = {
+		name = krcw_fra_17.a
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 has_country_flag = krcw_fra_renewal_mood }
+		}
+		add_political_power = -50
+		add_stability = -0.02
+		add_popularity = { ideology = trotskyism popularity = 0.03 }
+		set_country_flag = krcw_fra_rehabilitated
+		krcw_detente_up_small = yes
+	}
+	option = {
+		name = krcw_fra_17.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 has_country_flag = krcw_fra_old_guard }
+		}
+		add_political_power = 25
+		add_stability = -0.01
+		set_country_flag = krcw_fra_archives_resealed
+	}
+}
+
+country_event = {
+	id = krcw_fra.13
+	title = krcw_fra_13_t
+	desc = krcw_fra_13_d
+	picture = GFX_krcw_eu_conference3
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_fra_13.a
+		ai_chance = {
+			base = 70
+		}
+		add_political_power = 25
+		if = { limit = { country_exists = CHI } CHI = { add_opinion_modifier = { target = FRA modifier = krcw_eu_ti_solidarity } } }
+		if = { limit = { country_exists = ENG } ENG = { add_opinion_modifier = { target = FRA modifier = krcw_eu_ti_solidarity } } }
+	}
+	option = {
+		name = krcw_fra_13.b
+		ai_chance = {
+			base = 15
+		}
+		if = { limit = { country_exists = CHI } CHI = { add_opinion_modifier = { target = FRA modifier = krcw_eu_sister_federation } add_political_power = 50 } }
+		if = { limit = { country_exists = ENG } ENG = { add_opinion_modifier = { target = FRA modifier = krcw_eu_secretariat_slight } } }
+	}
+	option = {
+		name = krcw_fra_13.c
+		ai_chance = {
+			base = 15
+		}
+		if = { limit = { country_exists = ENG } ENG = { add_opinion_modifier = { target = FRA modifier = krcw_eu_sister_federation } } }
+		if = { limit = { country_exists = CHI } CHI = { add_opinion_modifier = { target = FRA modifier = krcw_eu_secretariat_slight } } }
+	}
+}
+
+country_event = {
+	id = krcw_fra.60
+	title = krcw_fra_60_t
+	desc = krcw_fra_60_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = FRA
+	}
+	option = {
+		name = krcw_fra_60.a
+		ai_chance = {
+			base = 60
+		}
+		add_stability = 0.05
+		add_political_power = -25
+		add_ideas = krcw_fra_the_cultural_front
+	}
+	option = {
+		name = krcw_fra_60.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_fra.62
+	title = krcw_fra_62_t
+	desc = krcw_fra_62_d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = FRA
+	}
+	option = {
+		name = krcw_fra_62.a
+		ai_chance = {
+			base = 55
+		}
+		add_stability = 0.06
+		add_war_support = -0.04
+		add_tech_bonus = { name = krcw_fra_consumer bonus = 0.5 uses = 1 category = industry }
+	}
+	option = {
+		name = krcw_fra_62.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.05
+		add_stability = -0.03
+		army_experience = 20
+	}
+	option = {
+		name = krcw_fra_62.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -50
+		add_stability = -0.05
+		14 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+	}
+}
+
+country_event = {
+	id = krcw_fra.64
+	title = krcw_fra_64_t
+	desc = krcw_fra_64_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = FRA
+		NOT = { has_country_flag = krcw_fra_algeria_free }
+	}
+	option = {
+		name = krcw_fra_64.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_fra_algeria_autonomy }
+		}
+		add_stability = 0.04
+		add_political_power = -25
+		set_country_flag = krcw_fra_algiers_seats
+		if = { limit = { has_country_flag = krcw_fra_algeria_autonomy } add_political_power = 25 add_stability = 0.02 }
+		if = { limit = { has_country_flag = krcw_fra_algeria_repressed } add_stability = -0.03 }
+	}
+	option = {
+		name = krcw_fra_64.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = -0.02
+		set_country_flag = krcw_fra_algiers_inquiry
+		if = { limit = { has_country_flag = krcw_fra_algeria_repressed } add_stability = -0.03 }
+	}
+	option = {
+		name = krcw_fra_64.c
+		ai_chance = {
+			base = 15
+			modifier = { factor = 0 krcw_route_historical = yes }
+			modifier = { factor = 2 has_country_flag = krcw_fra_algeria_repressed }
+		}
+		add_political_power = 50
+		add_stability = -0.05
+		add_war_support = 0.02
+		set_country_flag = krcw_fra_algiers_refused
+		if = { limit = { has_country_flag = krcw_fra_algeria_autonomy } add_stability = -0.03 }
+	}
+}

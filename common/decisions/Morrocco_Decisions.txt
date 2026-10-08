@@ -1,0 +1,195 @@
+# KRCW (build/patch_residue.py): 2 OTL decisions hidden while KRCW_active
+
+morrocan_faction_decisions = {
+	The_Ifni_War = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+	visible = { NOT = { has_global_flag = KRCW_active } }
+		icon = generic_prepare_civil_war
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+			1056 = { is_controlled_by = SPR } 
+            1002 = { is_controlled_by = SPR } 
+		}
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		cost = 0
+
+		fire_only_once = yes
+		selectable_mission = yes
+
+		days_mission_timeout = 250
+
+		complete_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			#transfer_state = 591
+			news_event = Ifni_War.3
+			white_peace = SPR
+			annex_country = {
+				target = RIF
+				transfer_troops = yes
+			}
+			SPR = {
+                transfer_state = 1056
+                transfer_state = 1002
+            }
+			MOR = {
+				complete_national_focus = MOR_The_Treaty_of_Madrid
+			}
+		 }
+}
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			annex_country = {
+				target = RIF
+				transfer_troops = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+                        SPR = {  
+                            controls_state = 1002 
+                            controls_state = 1003 
+                            controls_state = 699 
+                            controls_state = 1001 
+                            controls_state = 1364 
+                            controls_state = 1363 
+                        }
+                    }
+				}
+				transfer_state = 1002
+                transfer_state = 1003 
+                transfer_state = 699 
+                transfer_state = 1001 
+                transfer_state = 1364 
+                transfer_state = 1363 
+				news_event = Ifni_War.4
+				MOR = {
+					complete_national_focus = MOR_The_Treaty_of_Casablanca
+				}
+			}
+			else = {
+				transfer_state = 1002
+				news_event = Ifni_War.2
+				MOR = {
+					complete_national_focus = MOR_The_Treaty_of_Treaty_of_Angra_de_Cintra
+				}
+			}
+			white_peace = SPR
+		 }
+}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+ 	#TEST_GUI = {
+	#	icon = generic_civil_support
+	#	visible = {
+	#	}        
+	#	allowed = {
+	#		tag = MOR
+	#	} 
+	#	available = {
+	#	}
+	#	ai_will_do = {
+	#		factor = 0                 
+	#	}             
+	#                
+	#	fire_only_once = no 
+	#	days_re_enable = 100
+	#	                 
+	#	fixed_random_seed = no  
+	#	
+	#	cost = 50      
+	#
+	#	complete_effect = {
+	#
+	#	}
+	#	              
+	#}   
+	mor_aliyah = {
+	cancel_trigger = { has_global_flag = KRCW_active }
+		
+		allowed = {
+		  tag = MOR
+		}
+		
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			
+		}
+		available = { NOT = { has_global_flag = KRCW_active } 
+			always = no
+		}
+		
+
+
+		activation = { NOT = { has_global_flag = KRCW_active } 
+			tag = MOR
+			not = {
+				has_country_flag = aliyah_ended
+			}
+		}
+
+		#is_good = yes
+
+		selectable_mission = no
+		days_mission_timeout = 30
+		
+
+		timeout_effect = { if = { limit = { NOT = { has_global_flag = KRCW_active } }
+			 
+			custom_effect_tooltip = aliyah_mission_TT
+			hidden_effect = {
+				set_variable = { MOR.aliyah_monthly_percentage = 0.004 } 
+				set_variable = { Jewish_Total_Pop = Jewish_Population }
+				set_variable = { monthly_pop_growth = modifier@MONTHLY_POPULATION }
+				multiply_variable = { Jewish_Total_Pop = 0.015 }
+				
+				divide_variable = { Jewish_Total_Pop = 100 } 
+				round_variable = Jewish_Total_Pop
+				multiply_variable = { Jewish_Total_Pop = monthly_pop_growth }
+				
+				add_to_variable = { Jewish_Population = Jewish_Total_Pop }
+				set_variable = { Jewish_Total_Pop = Jewish_Population }
+				multiply_variable = { Jewish_Total_Pop = aliyah_monthly_percentage }
+				round_variable = Jewish_Total_Pop
+
+				divide_variable = { Jewish_Total_Pop = 3 }
+				round_variable = Jewish_Total_Pop
+				set_variable = { Jewish_Total_Pop_alt = Jewish_Total_Pop }
+				multiply_variable = { Jewish_Total_Pop_alt = -1 }
+				462 = {
+					add_manpower = var:Jewish_Total_Pop_alt
+				}
+				subtract_from_variable = {
+					Jewish_Population = Jewish_Total_Pop
+				}
+				1468 = {
+					add_manpower = var:Jewish_Total_Pop_alt
+				}
+				subtract_from_variable = {
+					Jewish_Population = Jewish_Total_Pop
+				}
+				1469 = {
+					add_manpower = var:Jewish_Total_Pop_alt
+				}
+				subtract_from_variable = {
+					Jewish_Population = Jewish_Total_Pop
+				}
+				803 = {
+					add_manpower = var:Jewish_Total_Pop
+				}
+				994 = {
+					add_manpower = var:Jewish_Total_Pop
+				}
+				1297 = {
+					add_manpower = var:Jewish_Total_Pop
+				}
+				add_to_variable = { refresh_MOR = 1 }
+
+			}
+		 }
+}
+	}
+}

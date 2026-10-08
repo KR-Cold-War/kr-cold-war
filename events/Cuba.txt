@@ -1,0 +1,1594 @@
+# KRCW (build/patch_residue.py): 61 OTL events dropped while KRCW_active
+###########################
+# Cuba Events
+###########################
+
+add_namespace = cuba
+add_namespace = CubaRepression
+add_namespace = CubaAguero
+add_namespace = CubaSterling
+add_namespace = CubaTourism
+add_namespace = Cuban_Revolution
+add_namespace = cuban_uprising
+add_namespace = CUB_Military_Rearmament
+add_namespace = che_death
+
+# USA Cuban Protection Pact
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.2 
+ immediate = { }
+	title = cuba.2.t
+	desc = cuba.2.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.2.t
+		add_political_power = 50
+		USA = { give_guarantee = CUB }
+	}
+}
+
+# Elect Batista
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.3 
+ immediate = { }
+	title = cuba.3.t
+	desc = cuba.3.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.3.a
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Fulgencio Batista"
+			picture = "gfx/leaders/CUB/fulgencio_batista.dds"
+			ideology = military_junta
+		}
+	    complete_national_focus = CUB_Batistas_Coup
+	}
+}
+
+# Communist Revolution
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.4 
+ immediate = { }
+	title = cuba.4.t
+	desc = cuba.4.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.4.d
+		create_country_leader = {
+			name = "Fidel Castro"
+			picture = "Fidel_Castro_60s.dds"
+			ideology = marxism_leninism
+		}
+		add_popularity = { ideology = communism popularity = 0.65 }
+		set_politics = { ruling_party = communism elections_allowed = no }
+		set_party_name = { ideology = communism long_name = "Partido Comunista de Cuba" name = "Partido Comunista de Cuba" }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.5 
+ immediate = { }
+	title = cuba.5.t
+	desc = cuba.5.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.5.a
+		create_faction_from_template = { template = faction_template_generic name = "Caribbean Alligence" }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.6 
+ immediate = { }
+	title = cuba.6.t
+	desc = cuba.6.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.6.a
+		USA = {
+			add_to_faction = CUB }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.7 
+ immediate = { }
+	title = cuba.7.t
+	desc = cuba.7.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.7.a
+		SOV = {
+			add_to_faction = CUB }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.8 
+ immediate = { }
+	title = cuba.8.t
+	desc = cuba.8.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.8.a
+		SPR = {
+			create_faction_from_template = { template = faction_template_generic name = "Trans-Atlantic Spanish Alliance" }
+		}
+		SPR = {
+			add_to_faction = CUB
+		}
+		remove_ideas = internationalism
+	}
+}
+
+# Soviets Cuban Protection Pact
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.9 
+ immediate = { }
+	title = cuba.9.t
+	desc = cuba.9.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.9.a
+		add_political_power = 50
+		if = {
+			limit = {
+				country_exists = SOV
+				country_exists = USA
+				country_exists = CUB
+			}
+			SOV = { give_guarantee = CUB }
+			USA = { diplomatic_relation = { country = CUB relation = military_access active = no } }
+		}
+	}
+}
+
+# Ban Elections
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.10 
+ immediate = { }
+	title = cuba.10.t
+	desc = cuba.10.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.10.a
+		create_country_leader = { name = "Fulgencio Batista" desc = "" picture = "gfx/leaders/CUB/fulgencio_batista.dds" expire = "1965.1.1" ideology = fascism_ideology traits = { } }
+		set_politics = { ruling_party = fascism elections_allowed = no }
+		hidden_effect = { add_popularity = { ideology = fascism popularity = 0.65 } }
+		hidden_effect = { add_popularity = { ideology = communism popularity = 0.35 } }
+		hidden_effect = { add_popularity = { ideology = communism popularity = -0.10 } }
+	}
+}
+
+# Cuban Missile Crisis
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.11 
+ immediate = { }
+	title = cuba.11.t
+	desc = cuba.11.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.11.a
+		add_political_power = 25
+		add_popularity = { ideology = communism popularity = -0.15 }
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = { id = cubamc.1 days = 2 } 
+		}
+	}
+}
+
+# Cuban Trade Embargo
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.12 
+ immediate = { }
+	title = cuba.12.t
+	desc = cuba.12.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.12.a
+		CUB = {
+			add_political_power = -50
+			add_popularity = { ideology = communism popularity = 0.10 }
+			add_stability = 0.20
+			add_ideas = trade_embargo
+			add_opinion_modifier = { target = USA modifier = embargo }
+		}
+	}
+}
+
+# Invite Caribbean Members
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.13 
+ immediate = { }
+	title = cuba.13.t
+	desc = cuba.13.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.13.a
+		HAI = { country_event = { id = generic.2 hours = 6 } } 
+		DOM = { country_event = { id = generic.2 hours = 6 } } 
+	}
+}
+
+# Invite Mainland Members
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.14 
+ immediate = { }
+	title = cuba.14.t
+	desc = cuba.14.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.14.a
+		GUA = { country_event = { id = generic.2 hours = 6 } } 
+		HON = { country_event = { id = generic.2 hours = 6 } } 
+		NIC = { country_event = { id = generic.2 hours = 6 } } 
+		COS = { country_event = { id = generic.2 hours = 6 } } 
+		"PAN" = { country_event = { id = generic.2 hours = 6 } } 
+	}
+}
+
+# Restrict Communist
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.15 
+ immediate = { }
+	title = cuba.15.t
+	desc = cuba.15.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.15.a
+		add_popularity = { ideology = communism popularity = -0.25 }
+		add_ideas = internationalism
+		remove_ideas = liberty_ethos_focus
+	}
+}
+
+# Anti-Imperialist Propaganda
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.16 
+ immediate = { }
+	title = cuba.16.t
+	desc = cuba.16.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.16.a
+		ENG = {
+			add_opinion_modifier = { target = ROOT modifier = SAF_anti_colonialist_crusaders }
+		}
+		FRA = {
+		 	add_opinion_modifier = { target = ROOT modifier = SAF_anti_colonialist_crusaders }
+		}
+		BEL = {
+		 	add_opinion_modifier = { target = ROOT modifier = SAF_anti_colonialist_crusaders }
+		}
+		POR = {
+		 	add_opinion_modifier = { target = ROOT modifier = SAF_anti_colonialist_crusaders }
+		}
+	}
+}
+
+# Support Congo Uprising
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.17 
+ immediate = { }
+	title = cuba.17.t
+	desc = cuba.17.d
+	picture = GFX_report_event_fascist_gathering
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.17.a
+		COG = { set_state_owner = 353 }
+	}
+}
+
+# Support Angola
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.18 
+ immediate = { }
+	title = cuba.18.t
+	desc = cuba.18.d
+	picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.18.a
+		ANG = { set_state_owner = 353 }
+	}
+}
+
+# Subjugate Caribbean
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.19 
+ immediate = { }
+	title = cuba.19.t
+	desc = cuba.19.d
+	picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.19.a
+		DOM = { country_event = { id = generic.5 hours = 6 } } 
+		HAI = { country_event = { id = generic.5 hours = 6 } } 
+		add_political_power = 75
+	}
+}
+
+# Recover from Sugar Crisis
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.20 
+ immediate = { }
+	title = cuba.20.t
+	desc = cuba.20.d
+	picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.20.a
+		remove_ideas = sugar_crisis
+	}
+}
+
+# Greek Uprising
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cuba.21 
+ immediate = { }
+	title = cuba.21.t
+	desc = cuba.21.d
+	picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.21.a
+		hidden_effect = { GRE = { start_civil_war = { ideology = communism size = 0.1 } } }
+		hidden_effect = { GRE = { add_popularity = { ideology = fascism popularity = 0.5 } } }
+		hidden_effect = { GRE = { set_politics = { ruling_party = fascism elections_allowed = no } } }
+		send_equipment = { target = GRE type = infantry_equipment_1 amount = 1500 }
+		set_rule = { can_send_volunteers = yes }
+	}
+}
+
+# Expand Industry
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.22 
+ immediate = { }
+	title = cuba.22.t
+	desc = cuba.22.d
+	picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+
+		name = cuba.22.a
+		CUB = { set_state_owner = 311 }
+		311 = { add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = industrial_complex
+						level = 2
+						instant_build = yes
+			}
+		}
+		311 = { add_extra_state_shared_building_slots = 3
+					add_building_construction = {
+						type = arms_factory
+						level = 2
+						instant_build = yes
+			}
+		}
+	}
+}
+
+# Peurto Rico Pact
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.23 
+ immediate = { }
+	title = cuba.23.t
+	desc = cuba.23.d
+	picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+
+		name = cuba.23.a
+		CUB = { set_state_owner = 686 }
+		send_equipment = { target = USA type = infantry_equipment_1 amount = 1500 }
+		add_resource = { type = chromium amount = 16 state = 366 }
+	}
+}
+
+# Spread the Revolution
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.24 
+ immediate = { }
+	title = cuba.24.t
+	desc = cuba.24.d
+	picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.24.a
+		hidden_effect = { BOL = { start_civil_war = { ideology = communism size = 0.4 } } }
+		hidden_effect = { BOL = { add_popularity = { ideology = fascism popularity = 0.5 } } }
+		hidden_effect = { BOL = { set_politics = { ruling_party = fascism elections_allowed = no } } }
+		set_rule = { can_send_volunteers = yes }
+	}
+}
+
+country_event = {
+	id = cuba.25 
+ immediate = { }
+	title = cuba.25.t2
+	desc = cuba.25.d2
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = CUB
+		date > 1952.1.1
+		date < 1953.1.1
+	}
+
+	is_triggered_only = yes
+	immediate = {
+		#complete_national_focus = CUB_1952_elections
+	}
+	option = {
+	trigger = {
+			has_country_flag = CUB_agaramonte
+		}
+		name = cuba.25.a2
+
+		set_politics = {
+			ruling_party = socialist
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Roberto Agramonte"
+			picture = "Roberto_Agramonte.dds"
+			ideology = democratic_socialist
+		}
+		add_popularity = { ideology = socialist popularity = 0.1 }
+		#complete_national_focus = CUB_roberto_agramonte
+		ai_chance = {
+			factor = 34
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+	trigger = {
+			has_country_flag = CUB_helia
+		}
+		name = cuba.25.b2
+
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Carlos Hevia"
+			picture = "Carlos_Hevia.dds"
+			ideology = nationalist_ideology
+		}
+		add_popularity = { ideology = nationalist popularity = 0.1 }
+		#complete_national_focus = CUB_hevia
+		ai_chance = {
+			factor = 33
+			
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.1000 
+ immediate = { }
+	title = cuba.1000.t2
+	desc = cuba.1000.d2
+	picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.1000.a2
+		CUB = { transfer_state = 889  }
+	}
+	option = {
+		name = cuba.1000.b2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.1001 
+ immediate = { }
+	title = cuba.1001.t
+	desc = cuba.1001.d
+	picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.1001a
+		ai_chance = {
+			modifier = { is_historical_focus_on = yes factor = 1 }
+			modifier = { is_historical_focus_on = no factor = 0.9 }
+		}
+	}
+	option = {
+		name = cuba.1001.b
+		complete_national_focus = CUB_an_night_to_remember
+		ai_chance = {
+			modifier = { is_historical_focus_on = yes factor = 0 }
+			modifier = { is_historical_focus_on = no factor = 0.1 }		
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.3000 
+ immediate = { }
+	title = cuba.3000.t2
+	desc = "cuba.3000.d"
+	picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.3000.a2
+		news_event = cuba.3001
+		ai_chance = {
+			factor = 0.60
+		}
+	}
+	option = {
+		name = cuba.3000.b2
+		news_event = cuba.3010
+		ai_chance = {
+			factor = 0.40
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.3001 
+ immediate = { }
+	title = cuba.3001.t2
+	desc = "cuba.3001.d"
+	picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.3001.a2
+		news_event = cuba.3002
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.3002 
+ immediate = { }
+	title = cuba.3002.t2
+	desc = "cuba.3002.d"
+	#picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.3002.a2
+		news_event = cuba.3003
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.3004 
+ immediate = { }
+	title = cuba.3004.t2
+	desc = "cuba.3004.d"
+	#picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.3004.a2
+		news_event = cuba.3005
+		ai_chance = {
+			factor = 0.80
+		}
+	}
+	#posadists deserve to be strangled
+	#option = {
+	#	name = "Maybe It's Something Else..."
+	#	news_event = cuba.3006
+	#	ai_chance = {
+	#		factor = 0.20
+	#	}
+	#}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.3005 
+ immediate = { }
+	title = cuba.3005.t2
+	desc = "cuba.3005.d"
+	#picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.3005.a2
+		set_country_flag = focus_tree_60_reset
+		load_focus_tree = Cuba_60s
+		add_popularity = { ideology = communism popularity = 0.35 }
+		set_politics = { ruling_party = communism elections_allowed = no }
+		set_party_name = { ideology = communism long_name = "Partido Comunista de Cuba" name = "Partido Comunista de Cuba" }
+
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.3006 
+ immediate = { }
+	title = cuba.3006.t2
+	desc = "cuba.3006.d"
+	#picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.3006.a2
+		set_country_flag = focus_tree_60_reset
+		load_focus_tree = Cuba_60s
+		complete_national_focus = CUB_an_night_to_remember
+		add_popularity = { ideology = trotskyism popularity = 0.35 }
+		set_politics = { ruling_party = trotskyism elections_allowed = no }
+		create_country_leader = {
+			name = "Juan Posadas"
+			picture = "posadas.dds"
+			ideology = posadism
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.3010 
+ immediate = { }
+	title = cuba.3010.t2
+	desc = "cuba.3010.d"
+	#picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.3010.a2
+		news_event = cuba.3011
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.3011 
+ immediate = { }
+	title = cuba.3011.t2
+	desc = "cuba.3011.d"
+	#picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.3011.a2
+		news_event = cuba.3012
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = cuba.3012 
+ immediate = { }
+	title = cuba.3012.t2
+	desc = "cuba.3012.d"
+	#picture = GFX_report_event_fascist_gathering
+
+	is_triggered_only = yes
+
+	option = {
+		name = cuba.3012.a2
+		set_country_flag = focus_tree_60_reset
+		load_focus_tree = Cuba_60s
+		complete_national_focus = CUB_the_final_revoultion
+		add_popularity = { ideology = conservative popularity = 0.10 }
+		set_politics = { ruling_party = conservative elections_allowed = yes }
+		create_country_leader = {
+			name = "Jose Miró Cardona"
+			picture = "Cardona.dds"
+			ideology = conservatism
+		}
+		ai_chance = {
+			factor = 0.50
+		}
+	}
+	option = {
+		name = cuba.3012.b2
+		set_country_flag = focus_tree_60_reset
+		load_focus_tree = Cuba_60s
+		complete_national_focus = CUB_the_final_revoultion
+		add_popularity = { ideology = neutrality popularity = 0.40 }
+		create_country_leader = {
+			name = "Ramón Barquín"
+			picture = "Barquin.dds"
+			ideology = military_junta
+		}
+		ai_chance = {
+			factor = 0.50
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CubaRepression.1 
+ immediate = { }
+	title = CubaRepression.1.t2
+	desc = CubaRepression.1.d
+	picture = GFX_CubaRepression_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = CubaRepression.1.a2
+		add_political_power = 50
+		capital_scope = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CubaAguero.1 
+ immediate = { }
+	title = CubaAguero.1.t2
+	desc = CubaAguero.1.d
+	picture = GFX_M267_insurgency_options_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = CubaAguero.1.a2
+        CUB = {
+			add_manpower = 5000
+			army_experience	= 50
+		}
+		ai_chance = {
+			factor = 70
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+    option = {
+		name = CubaAguero.1.b2
+		CUB = {
+			country_event = {
+				id = CubaAguero.2 
+				days = 1
+			}
+		}
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CubaRepression.7 
+ immediate = { }
+	title = CubaRepression.7.t2
+	desc = CubaRepression.7.d
+	picture = GFX_Batista_1
+
+	 is_triggered_only = yes
+	 fire_only_once = yes
+
+	 option = {
+		 name = CubaRepression.7.a2
+		 add_political_power = 100
+		 add_stability = 0.05
+	 }
+
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CubaAguero.2 
+ immediate = { }
+	title = CubaAguero.2.t2
+	desc = CubaAguero.2.d2
+	picture = GFX_CIA_Generic
+
+	 is_triggered_only = yes
+	 fire_only_once = yes
+
+	 option = {
+        name = CubaAguero.2.a2
+		 add_political_power = -50
+		 add_stability = -0.01
+	 }
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CubaSterling.2 
+ immediate = { }
+	title = CubaSterling.2.t2
+	desc = CubaSterling.2.d
+	picture = GFX_Generic_Cuba_Courthouse
+
+	 is_triggered_only = yes
+	 fire_only_once = yes
+
+	 option = {
+        name = CubaSterling.2.a2
+		 add_political_power = 150
+		 add_stability = 0.5
+	 }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CubaRepression.2 
+ immediate = { }
+	title = CubaRepression.2.t2
+	desc = CubaRepression.2.d
+	picture = GFX_Meyer_Lansky
+
+	 is_triggered_only = yes
+	 fire_only_once = yes
+
+	 option = {
+        name = CubaRepression.2.a2
+		add_political_power = 10
+	    hidden_effect = {
+			CUB = {
+				country_event = {
+					id = CubaRepression.3 
+					days = 5
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CubaRepression.3 
+ immediate = { }
+	title = CubaRepression.3.t2
+	desc = CubaRepression.3.d
+	picture = GFX_Meyer_Lansky_2
+
+	 is_triggered_only = yes
+	 fire_only_once = yes
+
+	 option = {
+        name = CubaRepression.3.a2
+		 add_political_power = 10
+		 add_stability = 0.1
+	 }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CubaTourism.1 
+ immediate = { }
+	title = CubaTourism.1.t2
+	desc = Cubatourism.1.d
+	picture = GFX_Cuban_Tourism_1
+
+	 is_triggered_only = yes
+	 fire_only_once = yes
+
+	 option = {
+        name = CubaTourism.1.a2
+		 add_political_power = -50
+		 add_stability = -0.03
+	 }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CubaRepression.4 
+ immediate = { }
+	title = CubaRepression.4.t2
+	desc = CubaRepression.4.d
+	picture = GFX_Havana_Riviera
+
+	 is_triggered_only = yes
+	 fire_only_once = yes
+
+	 option = {
+		name = CubaRepression.4.a2
+		capital_scope = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CubaRepression.5 
+ immediate = { }
+	title = CubaRepression.5.t2
+	desc = CubaRepression.5.d
+	picture = GFX_CubaRepression_5
+
+	 is_triggered_only = yes
+	 fire_only_once = yes
+
+	 option = {
+		name = CubaRepression.5.a2
+		add_political_power = 100
+		add_stability = 0.05
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CubaRepression.6 
+ immediate = { }
+	title = CubaRepression.6.t2
+	desc = CubaRepression.6.d
+	picture = GFX_Ramon_Barquin_Oust
+
+	 is_triggered_only = yes
+	 fire_only_once = yes
+
+	 option = {
+		name = CubaRepression.6.a2
+		add_political_power = 30
+		add_stability = 0.03
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cuban_uprising.1 
+ immediate = { }
+	title = cuban_uprising.1.t2
+	desc = cuban_uprising.1.d
+	picture = GFX_Cuban_Revolution_0
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			add_stability = -0.1
+			#higuys insert insurgency mechanic
+			set_country_flag = CUB_uprising
+			activate_mission = The_26th_of_july_movemnt_Uprising
+			1111 = {
+				set_state_flag = CUB_target
+				set_state_flag = insurg_lvl2
+				add_province_modifier = {
+					static_modifiers = { insurgency_tier2 }
+					province = {
+						all_provinces = yes
+					}
+				}
+				add_state_modifier = { modifier = { local_factory_sabotage = 0.15 } }
+			}
+			1112 = {
+				set_state_flag = CUB_target
+				set_state_flag = insurg_lvl2
+				add_province_modifier = {
+					static_modifiers = { insurgency_tier2 }
+					province = {
+						all_provinces = yes
+					}
+				}
+				add_state_modifier = { modifier = { local_factory_sabotage = 0.15 } }
+			}
+
+			1113 = {
+				set_state_flag = CUB_target
+				set_state_flag = insurg_lvl2
+				add_province_modifier = {
+					static_modifiers = { insurgency_tier2 }
+					province = {
+						all_provinces = yes
+					}
+				}
+				add_state_modifier = { modifier = { local_factory_sabotage = 0.15 } }
+			}
+			set_variable = {
+				cuban_insurgency = 30
+			}
+			every_owned_state = {
+				limit = {
+					has_state_flag = CUB_target
+				}
+				add_to_array = { ROOT.cub_target_state_array = THIS }
+			}
+		}
+	}
+	option = {
+		name = cuban_uprising.1.a2
+    }
+}
+add_namespace = M267_insurgency_options
+add_namespace = Cuban_Revolution
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = M267_insurgency_options.1 
+ immediate = { }
+	title = M267_insurgency_options.1.t2
+	desc = M267_insurgency_options.1.d
+	picture = GFX_M267_insurgency_options_1
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = M267_insurgency_options.1.a2
+		add_to_variable = { cuban_insurgency = -5 }
+		var:kna_current_country_state_decision = {
+			set_state_flag = insurgency_infilitrated
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CubaSterling.1 
+ immediate = { }
+	title = CubaSterling.1.t2
+	desc = CubaSterling.1.d
+	picture = GFX_CubaSterling_1
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = CubaSterling.1.a2
+		add_to_variable = { CUB.cuban_insurgency = -85 }
+		
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = CubaRepression.10 
+ immediate = { }
+	title = CubaRepression.10.t2
+	desc = CubaRepression.10.d
+	picture = GFX_CubaRepression_10
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			complete_national_focus = CUB_The_Elections_of_1958
+		}
+	}
+
+	option = {
+		name = CubaRepression.10.a2
+		complete_national_focus = CUB_The_Fall_of_the_Regime
+		complete_national_focus = CUB_The_Cuban_Revolution
+		add_corps_commander_role = { 
+			Character = CUB_Antonio_Nunez_Jimenez
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}  
+		add_corps_commander_role = { 
+			Character = CUB_Augusto_Martinez_Sanchez
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}  
+		add_corps_commander_role = { 
+			Character = CUB_Camilo_Cienfuegos
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}  
+		add_corps_commander_role = { 
+			Character = CUB_Efigenio_Ameijeiras
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}  
+		add_corps_commander_role = { 
+			Character = CUB_Jose_Ramon_Fernandez
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}  
+		add_corps_commander_role = { 
+			Character = CUB_Juan_Almeida_Bosque
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}  
+		add_corps_commander_role = { 
+			Character = CUB_Juan_Vitalio_Acuna_Nunez
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}  
+		add_corps_commander_role = { 
+			Character = CUB_Raul_Menendez_Tomassevich
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}  
+		add_corps_commander_role = { 
+			Character = CUB_Samuel_Rodiles_Planas
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 2
+		}  
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 1
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CUB_1958_elections
+					option = CUB_AGUERO_1958
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CUB_1958_elections
+					option = CUB_STERLING_1958
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = CubaRepression.10.b2
+		complete_national_focus = CUB_President_Aguero
+		create_country_leader = {
+			name = "Andres Rivero Aguero"
+			picture = "Aguero.dds"
+			ideology = despotism
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = CUB_1958_elections
+					option = CUB_REVOLUTION
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CUB_1958_elections
+					option = CUB_STERLING_1958
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = CubaRepression.10.c2
+		complete_national_focus = CUB_President_Sterling
+		set_politics = {
+			ruling_party = Social_Liberalism
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Andres Rivero Aguero"
+			picture = "Aguero.dds"
+			ideology = social_liberal
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = CUB_1958_elections
+					option = CUB_AGUERO_1958
+				}
+				factor = 0
+			}
+			modifier = {
+				has_game_rule = {
+					rule = CUB_1958_elections
+					option = CUB_REVOLUTION
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = M267_insurgency_options.2 
+ immediate = { }
+	title = M267_insurgency_options.2.t2
+	desc = M267_insurgency_options.2.d
+	picture = GFX_M267_insurgency_options_2
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = M267_insurgency_options.2.a2
+		add_to_variable = { cuban_insurgency = 5 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = M267_insurgency_options.3 
+ immediate = { }
+	title = M267_insurgency_options.3.t2
+	desc = M267_insurgency_options.3.d
+	picture = GFX_M267_insurgency_options_3
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = M267_insurgency_options.3.a2
+		add_to_variable = { cuban_insurgency = -5 }
+		army_experience = 5
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = M267_insurgency_options.4 
+ immediate = { }
+	title = M267_insurgency_options.4.t2
+	desc = M267_insurgency_options.4.d
+	picture = GFX_M267_insurgency_options_4
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = M267_insurgency_options.4.a2
+		add_to_variable = { cuban_insurgency = 5 }
+		add_manpower = -100
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = M267_insurgency_options.5 
+ immediate = { }
+	title = M267_insurgency_options.5.t2
+	desc = M267_insurgency_options.5.d
+	picture = GFX_M267_insurgency_options_5
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = M267_insurgency_options.5.a2
+		add_to_variable = { cuban_insurgency = -8 }
+		air_experience = 5
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = M267_insurgency_options.6 
+ immediate = { }
+	title = M267_insurgency_options.6.t2
+	desc = M267_insurgency_options.6.d
+	picture = GFX_M267_insurgency_options_6
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = M267_insurgency_options.6.a2
+		add_to_variable = { cuban_insurgency = 5 }
+		add_equipment_to_stockpile = {
+			type = jet_light_equipment
+			amount = -1
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Cuban_Revolution.1 
+ immediate = { }
+	title = Cuban_Revolution.1.t2
+	desc = Cuban_Revolution.1.d
+	picture = GFX_Cuban_Revolution_1
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = Cuban_Revolution.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Cuban_Revolution.10 
+ immediate = { }
+	title = Cuban_Revolution.10.t2
+	desc = Cuban_Revolution.10.d
+	picture = GFX_Cuban_Revolution_10
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = Cuban_Revolution.10.a2
+	}
+}
+country_event = {
+    id = CUB_Military_Rearmament.1
+immediate = { }
+    title = CUB_Military_Rearmament.1.t2
+    picture = GFX_CUB_Military_Rearmament.1
+    desc = CUB_Military_Rearmament.1.d
+
+    trigger = { NOT = { has_global_flag = KRCW_active } 
+        original_tag = CUB
+        has_government = communism 
+    }
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = CUB_Military_Rearmament.1.a2
+        hidden_effect = {   
+			CUB = {
+				load_oob = CUB_1961		
+			}
+        }
+    }
+}
+
+country_event = {
+    id = cuban_uprising.2
+	immediate = { }
+    title = cuban_uprising.2.t
+    #picture = 
+    desc = cuban_uprising.2.d
+
+    trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = CUB
+		has_government = communism
+	}
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = cuban_uprising.2.a
+		set_country_flag = anti_castro_insurgency
+		set_variable = { crusader_insurgency = 20 }
+		set_country_flag = crusader_insurgency
+		1769 = {
+			set_state_flag = batista_loyalist_hideout
+			set_state_flag = insurg_lvl1
+			add_province_modifier = {
+				static_modifiers = { insurgency_tier1 }
+				province = {
+					all_provinces = yes
+				}
+			}
+			add_state_modifier = { modifier = { local_factory_sabotage = 0.05 } }
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+
+	id = che_death.1 
+ immediate = { }
+	title = che_death.1.t
+	desc = che_death.1.d
+	picture = GFX_report_event_german_speech
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = che_death.1.a
+		news_event = che_death.2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = che_death.2
+ immediate = { }
+	title = che_death.2.t
+	desc = che_death.2.d
+	picture = GFX_che_death
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = che_death.2.a
+	}
+}

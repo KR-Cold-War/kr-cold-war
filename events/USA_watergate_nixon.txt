@@ -1,0 +1,695 @@
+# KRCW (build/patch_residue.py): 25 OTL events dropped while KRCW_active
+add_namespace = watergate
+add_namespace = watergate_alt
+
+######################
+##I'M NOT A CROOK!!!##
+######################
+
+#pictures are to be added later 
+
+#############################
+#PART 1 OF NIXON IMPEACHMENT#
+#############################   
+		country_event = {
+			id = watergate.1   
+ immediate = { }
+			title = watergate.1.t2
+			desc = watergate.1.d
+			picture = GFX_watergate_1
+
+			is_triggered_only = yes
+			fire_only_once = yes
+ 
+	    trigger = { NOT = { has_global_flag = KRCW_active } 
+			has_country_leader = {
+				name = "Richard Nixon"
+				ruling_only = yes
+			}
+		}
+
+			
+			option = {
+				name = watergate.1.a2
+			}
+		}
+
+		country_event = {
+			id = watergate.2 
+ immediate = { }
+			title = watergate.2.t2
+			desc = watergate.2.d
+			picture = GFX_watergate_2
+
+			is_triggered_only = yes
+			fire_only_once = yes
+
+			trigger = { NOT = { has_global_flag = KRCW_active } 
+				has_country_leader = {
+					name = "Richard Nixon"
+					ruling_only = yes
+				}
+			}
+
+			option = {
+				name = watergate.2.a2
+				random_list = {
+					50 = {
+						country_event = {
+							id = watergate.3 
+							days = 80
+						}
+					}
+					50 = {
+						country_event = {
+							id = watergate_alt.1 
+							days = 20
+						}
+					}
+				}
+			}
+		}
+
+	country_event = {
+		id = watergate_alt.1 
+ immediate = { }
+		title = watergate_alt.1.t2
+		desc = watergate_alt.1.d
+		picture = GFX_watergate_alt_1
+	
+		is_triggered_only = yes
+		fire_only_once = yes
+
+		trigger = { NOT = { has_global_flag = KRCW_active } 
+			has_country_leader = {
+				name = "Richard Nixon"
+				ruling_only = yes
+			}
+		}
+		
+		option = {
+			name = watergate_alt.1.a2
+			add_political_power = 250
+			
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.03
+			}
+		}
+
+	}
+
+		country_event = { 
+			id = watergate.3 
+ immediate = { }
+			title = watergate.3.t2
+			desc = watergate.3.d
+			picture = GFX_watergate_3
+
+			is_triggered_only = yes
+			fire_only_once = yes
+			
+			trigger = { NOT = { has_global_flag = KRCW_active } 
+				has_country_leader = {
+					name = "Richard Nixon"
+					ruling_only = yes
+				}
+			}
+
+			option = {
+				name = watergate.3.a2
+				add_political_power = -250
+				country_event = {
+					id = watergate.4  
+					days = 10
+				}
+			}
+		}
+
+		country_event = {
+			id = watergate.4  
+ immediate = { }
+			title = watergate.4.t2
+			desc = watergate.4.d
+			picture = GFX_watergate_4
+
+			is_triggered_only = yes
+			fire_only_once = yes
+
+			trigger = { NOT = { has_global_flag = KRCW_active } 
+				has_country_leader = {
+					name = "Richard Nixon"
+					ruling_only = yes
+				}
+			}
+			
+			option = {
+				name = watergate.4.a2
+				add_political_power = -10
+				country_event = {
+					id = watergate.5 
+					days = 10
+				}
+			}
+			option = {
+				name = watergate.4.b2
+				add_popularity = {
+					ideology = social_liberalism
+					popularity = 0.05
+					}
+				}
+			}
+
+	country_event = {
+		id = watergate.5 
+ immediate = { }
+		title = watergate.5.t2
+		desc = watergate.5.d
+		picture = GFX_watergate_5
+
+		is_triggered_only = yes
+		fire_only_once = yes
+
+		trigger = { NOT = { has_global_flag = KRCW_active } 
+			has_country_leader = {
+				name = "Richard Nixon"
+				ruling_only = yes
+			}
+		}
+
+		option = {
+			name = watergate.5.a2
+			add_political_power = -50
+			country_event = {
+				id = watergate.6 
+				days = 10
+			}
+		}
+		option = {
+			name = watergate.5.b2
+			add_political_power = -10
+				add_popularity = {
+					ideology = social_liberalism
+					popularity = 0.1
+			}
+			country_event = {
+				id = watergate.6 
+				days = 10
+			}
+		}
+	}
+
+		country_event = {
+			id = watergate.6 
+ immediate = { }
+			title = watergate.6.t2
+			desc = watergate.6.d
+			picture = GFX_watergate_6
+
+			is_triggered_only = yes
+			fire_only_once = yes
+
+			trigger = { NOT = { has_global_flag = KRCW_active } 
+				has_country_leader = {
+					name = "Richard Nixon"
+					ruling_only = yes
+				}
+			}
+
+			option = {
+			name = watergate.6.a2
+			add_political_power = 20
+			country_event = {
+				id = watergate.7 
+				days = 10		
+			}
+		}
+	}
+
+		country_event = {
+			id = watergate.7 
+ immediate = { }
+			title = watergate.7.t2
+			desc = watergate.7.d
+			picture = GFX_watergate_7
+
+			is_triggered_only = yes
+			fire_only_once = yes
+
+			trigger = { NOT = { has_global_flag = KRCW_active } 
+				has_country_leader = {
+					name = "Richard Nixon"
+					ruling_only = yes
+				}
+			}
+
+			option = {
+				name = watergate.7.a2
+				add_political_power = -30
+				country_event = {
+					id = watergate.8 
+					days = 10
+				}
+				hidden_effect = {
+					set_country_leader_portrait = {
+						ideology = conservative
+						portrait = "gfx/leaders/USA/Richard_Nixon_Watergate.dds"
+					}
+				}
+			}
+			option = {
+				name = watergate.7.b2
+				add_political_power = -50
+				add_popularity = {
+					ideology = social_liberalism
+					popularity = 0.1
+				}
+				country_event = {
+					id = watergate.8 
+					days = 10
+				}
+				hidden_effect = {
+					set_country_leader_portrait = {
+						ideology = conservative
+						portrait = "gfx/leaders/USA/Richard_Nixon_Watergate.dds"
+					}
+				}
+			}
+		}
+
+		country_event = {
+			id = watergate.8 
+ immediate = { }
+			title = watergate.8.t2
+			desc = watergate.8.d
+			picture = GFX_watergate_8
+
+			is_triggered_only = yes
+			fire_only_once = yes
+ 
+			immediate = {
+				set_country_flag = nixon_impeachment #LOL NIXON IS IN A PEACH!!!!
+			}
+
+			trigger = { NOT = { has_global_flag = KRCW_active } 
+				has_country_leader = {
+					name = "Richard Nixon"
+					ruling_only = yes
+				}
+			}
+			
+			option = {
+				name = watergate.8.a2
+				add_popularity = {
+				ideology = conservative
+				popularity = 0.1
+			}
+		}
+	}
+
+#############################
+#PART 2 OF NIXON IMPEACHMENT#
+#############################
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		#March 1974
+	id = watergate.9 
+ immediate = { }
+	title = watergate.9.t2
+	desc = watergate.9.d
+	picture = GFX_watergate_9
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	
+	option = {
+		name = watergate.9.a2
+		country_event = { id = watergate.10 days = 3 }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		
+	id = watergate.10 
+ immediate = { }
+	title = watergate.10.t2
+	desc = watergate.10.d
+	picture = GFX_watergate_10
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	
+	option = {
+		name = watergate.10.a2
+		country_event = { id = watergate.11 days = 3 } 
+	}
+	option = {
+		name = watergate.10.b2
+		add_stability = -0.20
+		add_popularity = {
+			ideology = Social_Democratic
+			popularity = 0.075
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		
+	id = watergate.11 
+ immediate = { }
+	title = watergate.11.t2
+	desc = watergate.11.d
+	picture = GFX_watergate_11
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	
+	option = {
+		name = watergate.11.a2
+		country_event = { id = watergate.12 days = 90 } 
+	}
+	option = {
+		name = watergate.11.b2
+		add_stability = -0.10
+		add_popularity = {
+			ideology = Social_Democratic
+			popularity = 0.05
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		
+	id = watergate.12 
+ immediate = { }
+	title = watergate.12.t2
+	desc = watergate.12.d
+	picture = GFX_watergate_12
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	
+	option = {
+		name = watergate.12.a2
+		country_event = { id = watergate.13 days = 15 } 
+		add_stability = -0.05
+		add_popularity = {
+			ideology = Social_Democratic
+			popularity = 0.03
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		
+	id = watergate.13 
+ immediate = { }
+	title = watergate.13.t2
+	desc = watergate.13.d
+	picture = GFX_watergate_13
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	
+	option = {
+		name = watergate.13.a2
+		country_event = { id = watergate.14 days = 90 } 
+		add_stability = -0.05
+	}
+}
+######WATERGATE PART 3######
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		
+	id = watergate.14 
+ immediate = { }
+	title = watergate.14.t2
+	desc = watergate.13.d
+	picture = GFX_watergate_14
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	
+	option = {
+		name = watergate.14.a2
+		country_event = { id = watergate.15 days = 5 } 
+		add_stability = -0.05
+		add_popularity = {
+			ideology = Social_Democratic
+			popularity = 0.03
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		
+	id = watergate.15 
+ immediate = { }
+	title = watergate.15.t2
+	desc = watergate.13.d
+	picture = GFX_watergate_15
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	
+	option = {
+		name = watergate.15.a2
+		country_event = { id = watergate.16 days = 5 } 
+		add_stability = -0.25
+	}
+	option = {
+		name = watergate.15.b2
+		nixon_resignation_super_event = yes
+		if = {
+			limit = {
+				has_country_flag = agnew_vp
+			}
+			create_country_leader = {
+				name = "Spiro Agnew"
+				picture = "Spiro_Agnew_70s.dds"
+				ideology = republican
+			}
+			news_event = { id = watergate.17 days = 2 } 
+			load_focus_tree = USA_Agnew_1974
+		}
+		if = {
+			limit = {
+				has_country_flag = ford_vp
+			}
+			create_country_leader = {
+				name = "Gerald Ford"
+				picture = "Gerald_Ford_77.dds"
+				ideology = republican
+			}
+			news_event = { id = watergate.18 days = 2 } 
+			load_focus_tree = USA_Ford_1974
+		}
+		if = {
+			limit = {
+				has_country_flag = no_vp
+			}
+			create_country_leader = {
+				name = "Carl Albert"
+				picture = "Carl_Albert_70s.dds"
+				ideology = democratic_america
+			}
+			set_country_flag = president_albert
+			set_politics = { ruling_party = Social_Democratic elections_allowed = yes }
+			news_event = { id = watergate.19 days = 2 } 
+			load_focus_tree = USA_Albert_1974
+		}
+		news_event = watergate.26
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		
+	id = watergate.16 
+ immediate = { }
+	title = watergate.16.t2
+	desc = watergate.13.d
+	picture = GFX_watergate_16
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = watergate.16.a2
+		nixon_resignation_super_event = yes
+		if = {
+			limit = {
+				has_country_flag = agnew_vp
+			}
+			create_country_leader = {
+				name = "Spiro Agnew"
+				picture = "Spiro_Agnew_70s.dds"
+				ideology = republican
+			}
+			news_event = { id = watergate.17 days = 2 } 
+			load_focus_tree = USA_Agnew_1974
+		}
+		if = {
+			limit = {
+				has_country_flag = ford_vp
+			}
+			create_country_leader = {
+				name = "Gerald Ford"
+				picture = "Gerald_Ford_77.dds"
+				ideology = republican
+			}
+			news_event = { id = watergate.18 days = 2 } 
+			load_focus_tree = USA_Ford_1974
+		}
+		if = {
+			limit = {
+				has_country_flag = no_vp
+			}
+			create_country_leader = {
+				name = "Carl Albert"
+				picture = "Carl_Albert_70s.dds"
+				ideology = democratic_america
+			}
+			set_country_flag = president_albert
+			set_politics = { ruling_party = Social_Democratic elections_allowed = yes }
+			news_event = { id = watergate.19 days = 2 } 
+			load_focus_tree = USA_Albert_1974
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = watergate.26 
+ immediate = { }
+	title = watergate.26.t2
+	desc = watergate.26.d
+	picture = GFX_watergate_26
+
+	major = yes
+
+	is_triggered_only = yes
+	option = {
+		name = watergate.26.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = watergate.17 
+ immediate = { }
+	title = watergate.17.t2
+	desc = watergate.17.d
+	picture = GFX_watergate_17
+
+	major = yes
+
+	is_triggered_only = yes
+	option = {
+		name = watergate.17.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = watergate.18 
+ immediate = { }
+	title = watergate.18.t2
+	desc = watergate.18.d
+	picture = GFX_watergate_18
+
+	major = yes
+
+	is_triggered_only = yes
+	option = {
+		name = watergate.18.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = watergate.19  
+ immediate = { }
+	title = watergate.19.t2
+	desc = watergate.19.d
+	picture = GFX_watergate_19
+
+	major = yes
+
+	is_triggered_only = yes
+	option = {
+		name = watergate.19.a2
+	}
+}
+
+#Agnew Scandal
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		
+	id = watergate.25 
+ immediate = { }
+	title = watergate.25.t2
+	desc = watergate.20.d
+	picture = GFX_watergate_25
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = watergate.25.a2
+		news_event = { id = watergate.21 days = 30 } 
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		
+	id = watergate.20 
+ immediate = { }
+	title = watergate.20.t2
+	desc = watergate.20.d
+	picture = GFX_watergate_20
+
+	is_triggered_only = yes
+	fire_only_once = yes 
+
+	
+	option = {
+		name = watergate.20.a2
+		news_event = { id = watergate.21 days = 1 } 
+		country_event = { id = watergate.22 days = 5 } 
+	}
+	option = {
+		name = watergate.20.b2
+		set_country_flag = agnew_vp
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = watergate.21 
+ immediate = { }
+	title = watergate.21.t2
+	desc = watergate.21.d
+	picture = GFX_watergate_21
+
+	major = yes
+
+	is_triggered_only = yes
+	option = {
+		name = watergate.21.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }		
+	id = watergate.22 
+ immediate = { }
+	title = watergate.22.t2
+	desc = watergate.22.d
+	picture = GFX_watergate_22
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	
+	option = {
+		name = watergate.22.a2
+		set_country_flag = ford_vp 
+	}
+	option = {
+		name = watergate.22.b2
+		set_country_flag = no_vp
+	}
+}

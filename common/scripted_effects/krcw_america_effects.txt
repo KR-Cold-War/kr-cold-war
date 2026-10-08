@@ -1,0 +1,278 @@
+# KRCW America: Mississippi Line tension (global.krcw_ohio_tension, 0-100; name kept from the old "Ohio Line")
+
+krcw_ohio_up_small = {
+	if = { limit = { NOT = { has_variable = global.krcw_ohio_tension } } set_variable = { global.krcw_ohio_tension = 45 } }
+	add_to_variable = { global.krcw_ohio_tension = 5 }
+	clamp_variable = { var = global.krcw_ohio_tension min = 0 max = 100 }
+	custom_effect_tooltip = krcw_ohio_up_small_tt
+}
+
+krcw_ohio_up_medium = {
+	if = { limit = { NOT = { has_variable = global.krcw_ohio_tension } } set_variable = { global.krcw_ohio_tension = 45 } }
+	add_to_variable = { global.krcw_ohio_tension = 10 }
+	clamp_variable = { var = global.krcw_ohio_tension min = 0 max = 100 }
+	custom_effect_tooltip = krcw_ohio_up_medium_tt
+}
+
+krcw_ohio_up_large = {
+	if = { limit = { NOT = { has_variable = global.krcw_ohio_tension } } set_variable = { global.krcw_ohio_tension = 45 } }
+	add_to_variable = { global.krcw_ohio_tension = 20 }
+	clamp_variable = { var = global.krcw_ohio_tension min = 0 max = 100 }
+	custom_effect_tooltip = krcw_ohio_up_large_tt
+}
+
+krcw_ohio_down_small = {
+	if = { limit = { NOT = { has_variable = global.krcw_ohio_tension } } set_variable = { global.krcw_ohio_tension = 45 } }
+	subtract_from_variable = { global.krcw_ohio_tension = 5 }
+	clamp_variable = { var = global.krcw_ohio_tension min = 0 max = 100 }
+	custom_effect_tooltip = krcw_ohio_down_small_tt
+}
+
+krcw_ohio_down_medium = {
+	if = { limit = { NOT = { has_variable = global.krcw_ohio_tension } } set_variable = { global.krcw_ohio_tension = 45 } }
+	subtract_from_variable = { global.krcw_ohio_tension = 10 }
+	clamp_variable = { var = global.krcw_ohio_tension min = 0 max = 100 }
+	custom_effect_tooltip = krcw_ohio_down_medium_tt
+}
+
+krcw_ohio_down_large = {
+	if = { limit = { NOT = { has_variable = global.krcw_ohio_tension } } set_variable = { global.krcw_ohio_tension = 45 } }
+	subtract_from_variable = { global.krcw_ohio_tension = 20 }
+	clamp_variable = { var = global.krcw_ohio_tension min = 0 max = 100 }
+	custom_effect_tooltip = krcw_ohio_down_large_tt
+}
+
+krcw_restart_american_war = {
+	set_global_flag = KRCW_american_war_restarted
+	set_variable = { global.krcw_ohio_tension = 100 }
+	if = { limit = { country_exists = WCA WCA = { is_in_faction = yes } } set_global_flag = KRCW_wca_was_in_faction WCA = { leave_faction = yes } }
+	if = { limit = { country_exists = USA USA = { is_in_faction = yes } } set_global_flag = KRCW_usa_was_in_faction USA = { leave_faction = yes } }
+	every_country = {
+		limit = { OR = { tag = USA tag = WCA } }
+		if = { limit = { has_idea = krcw_mississippi_line } remove_ideas = krcw_mississippi_line }
+		if = { limit = { has_idea = krcw_ohio_line } remove_ideas = krcw_ohio_line }
+		add_ideas = krcw_second_civil_war_phase
+	}
+	if = { limit = { tag = USA } declare_war_on = { target = WCA type = annex_everything } WCA = { country_event = { id = krcw_ohio.52 days = 1 } } }
+	if = { limit = { tag = WCA } declare_war_on = { target = USA type = annex_everything } USA = { country_event = { id = krcw_ohio.52 days = 1 } } }
+	krcw_tension_up_large = yes
+	krcw_detente_down_medium = yes
+	random_country = { news_event = { id = krcw_ohio.53 days = 2 } }
+	if = { limit = { country_exists = FRA } FRA = { country_event = { id = krcw_ohio.54 days = 5 } } }
+	if = { limit = { country_exists = SOV } SOV = { country_event = { id = krcw_ohio.55 days = 5 } } }
+}
+
+krcw_end_american_war = {
+	set_global_flag = KRCW_american_war_over
+	clr_global_flag = KRCW_american_war_restarted
+	every_country = {
+		limit = { OR = { tag = USA tag = WCA } }
+		if = { limit = { has_idea = krcw_second_civil_war_phase } remove_ideas = krcw_second_civil_war_phase }
+	}
+	if = { limit = { has_global_flag = KRCW_wca_was_in_faction country_exists = WCA country_exists = FRA WCA = { is_in_faction = no } } FRA = { add_to_faction = WCA } }
+	if = { limit = { has_global_flag = KRCW_usa_was_in_faction country_exists = USA country_exists = SOV USA = { is_in_faction = no } } SOV = { add_to_faction = USA } }
+	clr_global_flag = KRCW_wca_was_in_faction
+	clr_global_flag = KRCW_usa_was_in_faction
+}
+
+krcw_usa_succession_roll = {
+	custom_effect_tooltip = krcw_usa_succession_roll_tt
+	random_list = {
+		50 = {
+			modifier = { factor = 2 has_country_flag = krcw_usa_succession_by_party }
+			modifier = { factor = 1.5 has_country_flag = krcw_usa_governors_favoured }
+			modifier = { factor = 1.25 has_country_flag = krcw_usa_share_favoured }
+			modifier = { factor = 1.5 has_country_flag = krcw_usa_earl_at_hand }
+			modifier = { factor = 1.25 has_country_flag = krcw_usa_patronage_path }
+			modifier = { factor = 1.25 has_country_flag = krcw_usa_real_election }
+			modifier = { factor = 1.2 has_country_flag = krcw_usa_opposition_seated }
+			modifier = { factor = 1.2 has_country_flag = krcw_usa_barons_bought }
+			modifier = { factor = 1.25 has_global_flag = KRCW_wca_waited_after_long }
+			modifier = { factor = 1.25 has_stability > 0.6 }
+			country_event = { id = krcw_usa.45 days = 3 }
+		}
+		25 = {
+			modifier = { factor = 2 has_country_flag = krcw_usa_succession_by_army }
+			modifier = { factor = 1.5 has_country_flag = krcw_usa_generals_favoured }
+			modifier = { factor = 1.5 has_country_flag = krcw_usa_generals_alerted }
+			modifier = { factor = 1.5 has_country_flag = krcw_usa_no_election }
+			modifier = { factor = 0.75 has_country_flag = krcw_usa_real_election }
+			modifier = { factor = 1.2 has_country_flag = krcw_usa_barons_broken }
+			modifier = { factor = 1.75 has_global_flag = KRCW_wca_mobilised_after_long }
+			modifier = { factor = 1.5 has_stability < 0.35 }
+			country_event = { id = krcw_usa.46 days = 3 }
+		}
+		25 = {
+			modifier = { factor = 2.5 has_country_flag = krcw_usa_succession_by_moscow }
+			modifier = { factor = 1.5 has_idea = krcw_usa_russian_mission }
+			modifier = { factor = 1.25 has_country_flag = krcw_usa_atomic_shared }
+			modifier = { factor = 0.5 has_country_flag = krcw_usa_atomic_independent }
+			country_event = { id = krcw_usa.47 days = 3 }
+		}
+	}
+}
+
+krcw_usa_machine_roll = {
+	custom_effect_tooltip = krcw_usa_machine_roll_tt
+	random_list = {
+		55 = {
+			modifier = { factor = 2 has_country_flag = krcw_usa_audit_prosecuted }
+			modifier = { factor = 1.5 has_idea = krcw_usa_audited_machine }
+			modifier = { factor = 1.3 has_country_flag = krcw_usa_share_favoured }
+			modifier = { factor = 1.3 has_stability > 0.55 }
+			modifier = { factor = 0.5 has_country_flag = krcw_usa_audit_buried }
+			country_event = { id = krcw_usa2.6 days = 4 }
+		}
+		45 = {
+			modifier = { factor = 2 has_country_flag = krcw_usa_audit_buried }
+			modifier = { factor = 1.5 has_country_flag = krcw_usa_patronage_path }
+			modifier = { factor = 1.5 has_country_flag = krcw_usa_governors_favoured }
+			modifier = { factor = 1.3 has_stability < 0.4 }
+			modifier = { factor = 0.6 has_country_flag = krcw_usa_audit_prosecuted }
+			country_event = { id = krcw_usa2.7 days = 4 }
+		}
+	}
+}
+
+krcw_usa_delta_roll = {
+	custom_effect_tooltip = krcw_usa_delta_roll_tt
+	random_list = {
+		50 = {
+			modifier = { factor = 1.6 has_idea = krcw_usa_civil_rights_act }
+			modifier = { factor = 1.4 has_country_flag = krcw_usa_cl_white_boards }
+			modifier = { factor = 1.3 has_country_flag = krcw_usa_machine_cleaned }
+			modifier = { factor = 1.3 has_completed_focus = krcw_usa_integrated_divisions }
+			modifier = { factor = 1.2 has_stability > 0.55 }
+			country_event = { id = krcw_usa2.13 days = 10 }
+		}
+		50 = {
+			modifier = { factor = 1.6 has_idea = krcw_usa_hard_segregation }
+			modifier = { factor = 1.4 has_country_flag = krcw_usa_cl_mixed_boards }
+			modifier = { factor = 1.3 has_country_flag = krcw_usa_governors_favoured }
+			modifier = { factor = 1.3 has_country_flag = krcw_usa_machine_entrenched }
+			modifier = { factor = 1.3 has_stability < 0.4 }
+			country_event = { id = krcw_usa2.14 days = 10 }
+		}
+	}
+}
+
+krcw_usa_hundred_days_roll = {
+	custom_effect_tooltip = krcw_usa_hundred_days_roll_tt
+	random_list = {
+		50 = {
+			modifier = { factor = 2 has_country_flag = krcw_usa_earl_push_reform }
+			modifier = { factor = 1.5 has_country_flag = krcw_usa_honest_mandate }
+			modifier = { factor = 1.4 has_idea = krcw_usa_audited_machine }
+			modifier = { factor = 1.4 has_country_flag = krcw_usa_machine_cleaned }
+			modifier = { factor = 1.3 has_country_flag = krcw_usa_cl_enforced }
+			modifier = { factor = 1.3 has_stability > 0.55 }
+			modifier = { factor = 0.5 has_country_flag = krcw_usa_earl_hold_machine }
+			country_event = { id = krcw_usa2.22 days = 5 }
+		}
+		50 = {
+			modifier = { factor = 2 has_country_flag = krcw_usa_earl_hold_machine }
+			modifier = { factor = 1.5 has_country_flag = krcw_usa_patronage_path }
+			modifier = { factor = 1.4 has_country_flag = krcw_usa_machine_entrenched }
+			modifier = { factor = 1.4 has_country_flag = krcw_usa_governors_favoured }
+			modifier = { factor = 1.3 has_stability < 0.45 }
+			modifier = { factor = 0.5 has_country_flag = krcw_usa_earl_push_reform }
+			country_event = { id = krcw_usa2.23 days = 5 }
+		}
+	}
+}
+
+krcw_usa_junta_roll = {
+	custom_effect_tooltip = krcw_usa_junta_roll_tt
+	random_list = {
+		50 = {
+			modifier = { factor = 2 has_country_flag = krcw_usa_junta_push_permanent }
+			modifier = { factor = 1.5 has_country_flag = krcw_usa_junta_purge }
+			modifier = { factor = 1.4 has_country_flag = krcw_usa_generals_favoured }
+			modifier = { factor = 1.3 check_variable = { global.krcw_ohio_tension > 69 } }
+			modifier = { factor = 1.3 has_war_support > 0.6 }
+			country_event = { id = krcw_usa2.27 days = 25 }
+		}
+		50 = {
+			modifier = { factor = 2 has_country_flag = krcw_usa_junta_push_term }
+			modifier = { factor = 1.5 has_country_flag = krcw_usa_honest_mandate }
+			modifier = { factor = 1.4 has_country_flag = krcw_usa_moscow_installed }
+			modifier = { factor = 1.3 has_stability > 0.5 }
+			modifier = { factor = 0.6 has_country_flag = krcw_usa_junta_purge }
+			country_event = { id = krcw_usa2.28 days = 25 }
+		}
+	}
+}
+
+krcw_wca_turnout_roll = {
+	custom_effect_tooltip = krcw_wca_turnout_roll_tt
+	random_list = {
+		55 = {
+			modifier = { factor = 1.6 has_country_flag = krcw_wca_joint_count }
+			modifier = { factor = 1.3 has_country_flag = krcw_wca_suffrage_broad }
+			modifier = { factor = 1.3 has_country_flag = krcw_wca_arbitration_imposed }
+			modifier = { factor = 1.2 has_idea = krcw_wca_federal_syndicalism }
+			modifier = { factor = 1.2 has_stability > 0.55 }
+			modifier = { factor = 0.7 has_country_flag = krcw_wca_refugees_screened }
+			country_event = { id = krcw_wca2.5 days = 30 }
+		}
+		45 = {
+			modifier = { factor = 1.6 has_country_flag = krcw_wca_office_count }
+			modifier = { factor = 1.3 has_country_flag = krcw_wca_suffrage_narrow }
+			modifier = { factor = 1.3 has_country_flag = krcw_wca_federations_unsettled }
+			modifier = { factor = 1.3 has_idea = krcw_wca_syndicate_factionalism }
+			modifier = { factor = 1.2 has_stability < 0.4 }
+			country_event = { id = krcw_wca2.6 days = 30 }
+		}
+	}
+}
+
+krcw_wca_raid_roll = {
+	custom_effect_tooltip = krcw_wca_raid_roll_tt
+	krcw_ohio_up_small = yes
+	random_list = {
+		55 = {
+			modifier = { factor = 1.4 has_country_flag = krcw_wca_miners_satisfied }
+			modifier = { factor = 1.4 has_country_flag = krcw_wca_reserves_lorries }
+			modifier = { factor = 1.3 has_completed_focus = krcw_wca_river_scouts }
+			modifier = { factor = 1.3 has_idea = krcw_wca_deep_defense }
+			modifier = { factor = 0.7 country_exists = USA USA = { has_idea = krcw_usa_frontier_rangers } }
+			country_event = { id = krcw_wca2.14 days = 3 }
+		}
+		45 = {
+			modifier = { factor = 1.4 has_country_flag = krcw_wca_miners_drafted }
+			modifier = { factor = 1.3 has_country_flag = krcw_wca_reserves_rail }
+			modifier = { factor = 1.4 country_exists = USA USA = { has_idea = krcw_usa_frontier_rangers } }
+			modifier = { factor = 1.3 country_exists = USA USA = { has_completed_focus = krcw_usa_east_bank_agents } }
+			country_event = { id = krcw_wca2.15 days = 3 }
+		}
+	}
+	if = { limit = { country_exists = USA } USA = { army_experience = 5 } }
+}
+
+krcw_wca_currents_roll = {
+	custom_effect_tooltip = krcw_wca_currents_roll_tt
+	random_list = {
+		55 = {
+			modifier = { factor = 1.6 has_country_flag = krcw_wca_road_terms_met }
+			modifier = { factor = 1.3 has_country_flag = krcw_wca_road_shared }
+			modifier = { factor = 1.3 has_country_flag = krcw_wca_election_landmark }
+			modifier = { factor = 1.2 has_idea = krcw_wca_federal_syndicalism }
+			modifier = { factor = 1.2 has_stability > 0.55 }
+			modifier = { factor = 0.5 has_country_flag = krcw_wca_opposition_curbed }
+			modifier = { factor = 1.3 has_completed_focus = krcw_wca_the_model_city_programme }
+			modifier = { factor = 1.2 has_completed_focus = krcw_wca_the_scrutineers }
+			country_event = { id = krcw_wca2.23 days = 25 }
+		}
+		45 = {
+			modifier = { factor = 1.5 has_country_flag = krcw_wca_opposition_curbed }
+			modifier = { factor = 1.3 has_country_flag = krcw_wca_road_alone }
+			modifier = { factor = 1.3 has_country_flag = krcw_wca_election_disputed }
+			modifier = { factor = 1.3 has_idea = krcw_wca_syndicate_factionalism }
+			modifier = { factor = 1.2 has_stability < 0.4 }
+			modifier = { factor = 1.3 has_completed_focus = krcw_wca_the_river_brigades }
+			modifier = { factor = 1.3 has_completed_focus = krcw_wca_merge_the_federations }
+			modifier = { factor = 1.2 has_country_flag = krcw_wca_front_mobile }
+			country_event = { id = krcw_wca2.24 days = 25 }
+		}
+	}
+}

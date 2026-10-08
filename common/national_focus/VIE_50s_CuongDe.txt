@@ -1,0 +1,4483 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = VIE_CuongDe_50
+	country = {
+		factor = 0
+		modifier = {
+			add = 0
+			tag = VIE
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	shared_focus = VIE_Establish_DacPhu_DanTien_Cuoc_Commission_Econ
+	shared_focus = VIE_Second_Elysee_Accords
+	shared_focus = VIE_Northern_Question_CD
+	shared_focus = VIE_ReEstablish_VietKienQuocQuan_Mil
+
+	focus = {
+		id = VIE_CD_Sideline_CuongDe_Ambitions
+		completion_reward = {
+		}
+		icon = GFX_VIE_Sideline_CuongDe_Ambitions
+		cost = 1.4
+		x = 10
+		y = 0
+		offset = {
+			x = 10
+			trigger = {
+				has_country_flag = VIE_CuongDe_Succeeds
+			}
+		}
+		offset = {
+			x = -2
+			trigger = {
+				has_country_flag = VIE_CD_Econ_Available
+			}
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+		}
+	}
+	focus = {
+		id = VIE_CD_CuongDe_Press_Conferences
+		completion_reward = {
+		}
+		icon = GFX_VIE_CuongDe_Press_Conferences
+		cost = 1.4
+		relative_position_id = VIE_CD_Sideline_CuongDe_Ambitions
+		prerequisite = {
+			focus = VIE_CD_Sideline_CuongDe_Ambitions
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+		}
+	}
+	focus = {
+		id = VIE_CD_Intercept_CuongDe_Return_Bangkok
+		completion_reward = {
+		}
+		icon = GFX_VIE_Intercept_CuongDe_Return_Bangkok
+		cost = 1.4
+		relative_position_id = VIE_CD_CuongDe_Press_Conferences
+		prerequisite = {
+			focus = VIE_CD_CuongDe_Press_Conferences
+		}
+		mutually_exclusive = {
+			focus = VIE_CuongDe_Returns
+		}
+		x = -2
+		y = 1
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+		}
+	}
+	focus = {
+		id = VIE_CuongDe_Returns
+		completion_reward = {
+		}
+		icon = GFX_VIE_CuongDe_Returns
+		cost = 1.4
+		relative_position_id = VIE_CD_CuongDe_Press_Conferences
+		prerequisite = {
+			focus = VIE_CD_CuongDe_Press_Conferences
+		}
+		mutually_exclusive = {
+			focus = VIE_CD_Intercept_CuongDe_Return_Bangkok
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			activate_mission = CuongDe_NgoDinh_Countdown
+			country_event = CuongDe.1
+		}
+	}
+	focus = {
+		id = VIE_CD_Request_Japanese_Western_Aid
+		completion_reward = {
+		}
+		icon = GFX_VIE_CD_Request_Japanese_Western_Aid
+		cost = 3
+		relative_position_id = VIE_CuongDe_Returns
+		prerequisite = {
+			focus = VIE_CuongDe_Returns
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = USA
+						original_tag = JAP
+					}
+				}
+				country_event = CuongDe.3
+			}
+		}
+	}
+	focus = {
+		id = VIE_CD_Recruit_NgoDinh_Brothers
+		completion_reward = {
+		}
+		icon = GFX_VIE_CD_Recruit_NgoDinh_Brothers
+		cost = 3
+		relative_position_id = VIE_CuongDe_Returns
+		prerequisite = {
+			focus = VIE_CuongDe_Returns
+		}
+		x = 0
+		y = 1
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = VIE_CuongDe_NgoDinh_Victory_tt
+				has_country_flag = VIE_Diem_Not_Jailed
+				has_country_flag = VIE_Nhu_Not_Jailed
+			}
+		}
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = VIE_CuongDe_NgoDinh_tt
+				has_country_flag = VIE_Diem_Jailed
+				has_country_flag = VIE_Nhu_Jailed
+			}
+		}
+		completion_reward = {
+			country_event = CuongDe_NgoDinh.3
+		}
+	}
+	focus = {
+		id = VIE_CD_Contact_GuangXi_Revolutionaries_CaoDai
+		completion_reward = {
+		}
+		icon = GFX_VIE_CD_Contact_GuangXi_Revolutionaries_CaoDai
+		cost = 3
+		relative_position_id = VIE_CuongDe_Returns
+		prerequisite = {
+			focus = VIE_CuongDe_Returns
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			VIE_Nguyen_Thanh_Danh = {
+				add_corps_commander_role = {
+					traits = { irregular_officer camouflage_expert CuongDe_Comrade Pro_QuocGia CaoDai_Member }
+					skill = 2
+					attack_skill = 3
+					defense_skill = 2
+					planning_skill = 1
+					logistics_skill = 1
+				}
+			}
+			VIE_Vo_Hai_Thu = {
+				add_corps_commander_role = {
+					traits = { roc_trainee guerilla_fighter irregular_officer ww2_veteran CuongDe_Comrade Pro_QuocGia VIE_Pro_ROC }
+					skill = 2
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 1
+					logistics_skill = 2
+				}
+			}
+			hidden_effect = {
+				division_template = {
+					name = "Dan-Quan Cao-Dai"
+					division_names_group = VIE_MIL_01
+					priority = 0
+					is_locked = no
+
+					regiments = {
+						militia = { x = 0 y = 0 }
+						militia = { x = 0 y = 1 }
+						militia = { x = 0 y = 2 }
+					}
+					support = {
+						field_hospital = { x = 0 y = 0 }
+						artillery_support = { x = 1 y = 0 }
+					}
+				}
+				capital_scope = {
+					create_unit = {
+						division = "name = \"1st Cao-Dai Militia\" division_template = \"Dan-Quan Cao-Dai\" start_experience_factor = 0.3"
+						owner = VIE
+					}
+					create_unit = {
+						division = "name = \"2nd Cao-Dai Militia\" division_template = \"Dan-Quan Cao-Dai\" start_experience_factor = 0.3"
+						owner = VIE
+					}
+				}
+			}
+			set_temp_variable = { favoritism_change = 5 }
+			VIE_Change_Main_Favoritism = yes
+			custom_effect_tooltip = VIE_Recruit_CaoDai_Militias_tt
+		}
+	}
+	focus = {
+		id = VIE_CD_Wait_French_Approval
+		completion_reward = {
+		}
+		icon = GFX_VIE_CD_Wait_French_Approval
+		cost = 3
+		relative_position_id = VIE_CuongDe_Returns
+		prerequisite = {
+			focus = VIE_CD_Request_Japanese_Western_Aid
+		}
+		prerequisite = {
+			focus = VIE_CD_Recruit_NgoDinh_Brothers
+		}
+		prerequisite = {
+			focus = VIE_CD_Contact_GuangXi_Revolutionaries_CaoDai
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			custom_effect_tooltip = VIE_CuongDe_Victory2_Warning_tt
+			FRA = {
+				country_event = { id = CuongDe_Coup.1 hours = 12 }
+			}
+		}
+	}
+	focus = {
+		id = VIE_CD_Avenge_148_Year_Fueds
+		completion_reward = {
+		}
+		icon = GFX_VIE_CD_Avenge_148_Year_Fueds
+		cost = 3
+		relative_position_id = VIE_CuongDe_Returns
+		prerequisite = {
+			focus = VIE_CD_Wait_French_Approval
+		}
+		x = 0
+		y = 3
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = VIE_CuongDe_Coup_Ready
+				OR = {
+					has_country_flag = FRA_Accept_CuongDe_Coup
+					has_country_flag = FRA_Refuse_CuongDe_Coup
+				}
+			}
+		}
+		completion_reward = {
+			custom_effect_tooltip = VIE_CuongDe_Final_Victory_Requirement_tt
+			country_event = CuongDe_Coup.4
+		}
+	}
+	focus = {
+		id = VIE_CD_Japan_Escape
+		completion_reward = {
+		}
+		icon = GFX_VIE_CD_Japan_Escape
+		cost = 3
+		relative_position_id = VIE_CD_Avenge_148_Year_Fueds
+		prerequisite = {
+			focus = VIE_CD_Avenge_148_Year_Fueds
+		}
+		mutually_exclusive = {
+			focus = VIE_CD_NamHung_Vietnam_Emperor
+		}
+		x = -2
+		y = 1
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+		}
+	}
+	focus = {
+		id = VIE_CD_NamHung_Vietnam_Emperor
+		completion_reward = {
+		}
+		icon = GFX_VIE_CD_NamHung_Vietnam_Emperor
+		cost = 3
+		relative_position_id = VIE_CD_Avenge_148_Year_Fueds
+		prerequisite = {
+			focus = VIE_CD_Avenge_148_Year_Fueds
+		}
+		mutually_exclusive = {
+			focus = VIE_CD_Japan_Escape
+		}
+		x = 2
+		y = 1
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+		}
+	}
+
+	focus = {
+		id = VIE_NH_NamHung_Vietnam_Emperor
+		completion_reward = {
+		}
+		icon = GFX_VIE_CD_NamHung_Vietnam_Emperor
+		cost = 3
+		relative_position_id = VIE_CD_Avenge_148_Year_Fueds
+		x = 0
+		y = 3
+		available = {
+			always = no
+		}
+		allow_branch = {
+			has_country_flag = VIE_CuongDe_Succeeds
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+		}
+	}
+	focus = {
+		id = VIE_NH_Purge_BaoDai_Loyalists_Incompetent_Bureaucrats
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Purge_BaoDai_Loyalists_Incompetent_Bureaucrats
+		cost = 5
+		relative_position_id = VIE_NH_NamHung_Vietnam_Emperor
+		prerequisite = {
+			focus = VIE_NH_NamHung_Vietnam_Emperor
+		}
+		x = -6
+		y = 2
+		completion_reward = {
+			country_event = CuongDe.6
+		}
+	}
+	focus = {
+		id = VIE_NH_Exile_BaoDai
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Exile_BaoDai
+		cost = 5
+		relative_position_id = VIE_NH_NamHung_Vietnam_Emperor
+		prerequisite = {
+			focus = VIE_NH_NamHung_Vietnam_Emperor
+		}
+		x = -4
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			set_temp_variable = { influence_change = 10 }
+			VIE_Change_Domestic_Influence = yes
+			VIE_Bao_Dai = { set_nationality = FRA }
+			news_event = { id = CuongDe.0 hours = 3 random_hours = 6 }
+			FRA = { country_event = { id = CuongDe.7 hours = 12 } }
+		}
+	}
+	focus = {
+		id = VIE_NH_FRA_Friendship
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_FRA_Friendship
+		cost = 5
+		relative_position_id = VIE_NH_Exile_BaoDai
+		prerequisite = {
+			focus = VIE_NH_Exile_BaoDai
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = { id = CuongDe.10 hours = 12 }
+		}
+	}
+	focus = {
+		id = VIE_NH_Reward_CaoDai_Loyalists
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Reward_CaoDai_Loyalists
+		cost = 5
+		relative_position_id = VIE_NH_NamHung_Vietnam_Emperor
+		prerequisite = {
+			focus = VIE_NH_NamHung_Vietnam_Emperor
+		}
+		x = -2
+		y = 2
+		completion_reward = {
+			add_political_power = -100
+			army_experience = 25
+			add_command_power = 25
+			set_temp_variable = { money_to_gain = -0.5 }
+			add_money_with_tooltip_effect = yes
+			set_temp_variable = { cao_dai_loyalty_change = -100 }
+			cao_dai_loyalty_change_tt = yes
+			custom_effect_tooltip = integrate_cao_dai_TT
+			hidden_effect = {
+				set_country_flag = integrated_cao_dai
+				1755 = {
+					add_to_variable = {
+						tourism_infrastructure = 1
+					}
+					remove_dynamic_modifier = {
+						modifier = Cao_Dai_warlord_modifier
+					}
+				}
+				1285 = {
+					remove_dynamic_modifier = {
+						modifier = Cao_Dai_warlord_modifier
+					}
+				}
+				983 = {
+					remove_dynamic_modifier = {
+						modifier = Cao_Dai_warlord_modifier
+					}
+				}
+				if = {
+					limit = {
+						VIE = {
+							NOT = { has_character = CCC_Nguyen_Van_Thanh }
+						}
+					}
+					CCC = {
+						CCC_Nguyen_Van_Thanh = { set_nationality = VIE }
+					}
+				}
+				else_if = {
+					limit = {
+						VIE = {
+							NOT = { has_character = CCC_Nguyen_Thanh_Phuong }
+						}
+					}
+					CCC = {
+						CCC_Nguyen_Thanh_Phuong = { set_nationality = VIE }
+					}
+				}
+				else_if = {
+					limit = {
+						VIE = {
+							NOT = { has_character = CCC_Trinh_Minh_The }
+						}
+					}
+					CCC = {
+						CCC_Trinh_Minh_The = { set_nationality = VIE }
+					}
+				}
+				else_if = {
+					limit = {
+						VIE = {
+							NOT = { has_character = CCC_Tran_Quang_Vinh }
+						}
+					}
+					CCC = {
+						CCC_Tran_Quang_Vinh = { set_nationality = VIE }
+					}
+				}
+			}
+			CCC_Nguyen_Van_Thanh = {
+				add_corps_commander_role = {
+					traits = { irregular_officer inflexible_strategist self_taught CaoDai_Member CuongDe_Comrade }
+					skill = 2
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 3
+					logistics_skill = 2
+				}
+			}
+			CCC_Nguyen_Thanh_Phuong = {
+				add_corps_commander_role = {
+					traits = { irregular_officer commando camouflage_expert ww2_veteran CaoDai_Member CuongDe_Comrade }
+					skill = 2
+					attack_skill = 1
+					defense_skill = 2
+					planning_skill = 1
+					logistics_skill = 4
+				}
+			}
+			CCC_Trinh_Minh_The = {
+				add_corps_commander_role = {
+					traits = { irregular_officer infantry_leader CaoDai_Member }
+					skill = 3
+					attack_skill = 2
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 2
+				}
+			}
+			hidden_effect = {
+				set_variable = { VIE_Warlord_Status_1 = 4 }
+				set_variable = { VIE_Warlord_Status_8 = 4 }
+				set_variable = { VIE_Region_3_Faction = 1 }
+				set_variable = { VIE_Region_5_Faction = 1 }
+				set_variable = { VIE_Region_14_Faction = 1 }
+				set_variable = { VIE_Region_18_Faction = 1 }
+				set_variable = { VIE_Region_20_Faction = 1 }
+				set_variable = { VIE_Region_24_Faction = 1 }
+				vietnam_faction_ui_update_number = yes
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Welcome_Americans
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Welcome_Americans
+		cost = 5
+		relative_position_id = VIE_NH_FRA_Friendship
+		prerequisite = {
+			focus = VIE_NH_Purge_BaoDai_Loyalists_Incompetent_Bureaucrats
+		}
+		prerequisite = {
+			focus = VIE_NH_FRA_Friendship
+		}
+		prerequisite = {
+			focus = VIE_NH_Reward_CaoDai_Loyalists
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			custom_effect_tooltip = VIE_Enable_American_Companies_tt
+			set_country_flag = American_Companies_Unlocked
+			unlock_decision_tooltip = CuongDe_Weapon_Purchase
+		}
+	}
+	focus = {
+		id = VIE_NH_Reorganize_Incompetent_Government
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Reorganize_Incompetent_Government
+		cost = 5
+		relative_position_id = VIE_NH_Welcome_Americans
+		prerequisite = {
+			focus = VIE_NH_Welcome_Americans
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			every_owned_state = {
+				add_compliance = 5
+			}
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.07
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.03
+			}
+			add_popularity = {
+				ideology = neutrality
+				popularity = -0.10
+			}
+			every_unit_leader = {
+				limit = {
+					has_trait = Pro_QuocGia
+					NOT = { has_trait = CuongDe_Comrade }
+				}
+				retire = yes
+			}
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = USA
+						original_tag = JAP
+					}
+				}
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_increase
+				}
+				reverse_add_opinion_modifier = {
+					target = PREV
+					modifier = small_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = FRA
+				modifier = small_decrease
+			}
+			reverse_add_opinion_modifier = {
+				target = FRA
+				modifier = small_decrease
+			}
+			set_temp_variable = { favoritism_change = 10 }
+			VIE_Change_Main_Favoritism = yes
+			set_temp_variable = { influence_change = 10 }
+			VIE_Change_Domestic_Influence = yes
+			hidden_effect = { set_country_flag = Open_CuongDe_PMs }
+		}
+	}
+	focus = {
+		id = VIE_NH_Maintain_Colonial_Bureaucracy
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Maintain_Colonial_Bureaucracy
+		cost = 5
+		relative_position_id = VIE_NH_Reorganize_Incompetent_Government
+		prerequisite = {
+			focus = VIE_NH_Reorganize_Incompetent_Government
+		}
+		mutually_exclusive = {
+			focus = VIE_NH_Promote_PhuQuoc_Hoi_Comrades
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			add_stability = -0.05
+			set_temp_variable = { influence_change = -10 }
+			VIE_Change_Domestic_Influence = yes
+		}
+	}
+	focus = {
+		id = VIE_NH_Death_Preparations
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Death_Preparations
+		cost = 5
+		relative_position_id = VIE_NH_Reorganize_Incompetent_Government
+		prerequisite = {
+			focus = VIE_NH_Maintain_Colonial_Bureaucracy
+			focus = VIE_NH_Promote_PhuQuoc_Hoi_Comrades
+		}
+		x = -2
+		y = 2
+		available = {
+			has_country_flag = Open_CuongDe_PMs
+		}
+		completion_reward = {
+			country_event = CuongDe_Successor.1
+		}
+	}
+	focus = {
+		id = VIE_NH_Nhiep_Successor
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Nhiep_Successor
+		cost = 5
+		relative_position_id = VIE_NH_Death_Preparations
+		prerequisite = {
+			focus = VIE_NH_Death_Preparations
+		}
+		x = -2
+		y = 1
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Successor
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Diem_Successor
+		cost = 5
+		relative_position_id = VIE_NH_Death_Preparations
+		prerequisite = {
+			focus = VIE_NH_Death_Preparations
+		}
+		x = 0
+		y = 2
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+		}
+	}
+	focus = {
+		id = VIE_NH_CaoDai_Successor
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_CaoDai_Successor
+		cost = 5
+		relative_position_id = VIE_NH_Death_Preparations
+		prerequisite = {
+			focus = VIE_NH_Death_Preparations
+		}
+		x = 2
+		y = 1
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+		}
+	}
+	focus = {
+		id = VIE_NH_Promote_PhuQuoc_Hoi_Comrades
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Maintain_Colonial_Bureaucracy
+		cost = 5
+		relative_position_id = VIE_NH_Reorganize_Incompetent_Government
+		prerequisite = {
+			focus = VIE_NH_Reorganize_Incompetent_Government
+		}
+		mutually_exclusive = {
+			focus = VIE_NH_Maintain_Colonial_Bureaucracy
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			every_unit_leader = {
+				limit = {
+					NOT = { has_trait = CuongDe_Comrade }
+				}
+				add_trait = { trait = CuongDe_Comrade }
+			}
+			VIE_Tran_Huu_Cong = {
+				add_corps_commander_role = {
+					traits = { roc_trainee guerilla_fighter irregular_officer ww2_veteran CuongDe_Comrade Pro_QuocGia }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 3
+					planning_skill = 1
+					logistics_skill = 2
+				}
+			}
+			CCC_Tran_Quang_Vinh = {
+				set_portraits = {
+					army = { large = "gfx/leaders/VIE/FIELD_MARSHALS/Tran_Quang_Vinh.dds" }
+					civilian = { large = "gfx/leaders/VIE/FIELD_MARSHALS/Tran_Quang_Vinh.dds" }
+				}
+				promote_leader = yes
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_ReEstablish_VietKienQuocQuan
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_ReEstablish_VietKienQuocQuan
+		cost = 5
+		relative_position_id = VIE_NH_Reorganize_Incompetent_Government
+		prerequisite = {
+			focus = VIE_NH_Maintain_Colonial_Bureaucracy
+			focus = VIE_NH_Promote_PhuQuoc_Hoi_Comrades
+		}
+		x = 2
+		y = 2
+		completion_reward = {
+			army_experience = 20
+			navy_experience = 20
+			add_war_support = 0.05
+			add_command_power = 50
+			set_country_flag = VIE_CD_Mil_Available
+			custom_effect_tooltip = VIE_CD_Mil_Available_tt
+			hidden_effect = { unlock_national_focus = VIE_ReEstablish_VietKienQuocQuan_Mil }
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+	focus = {
+		id = VIE_NH_Request_Montagnard_Dominion
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Request_Montagnard_Dominion
+		cost = 5
+		relative_position_id = VIE_NH_NamHung_Vietnam_Emperor
+		prerequisite = {
+			focus = VIE_NH_NamHung_Vietnam_Emperor
+		}
+		x = 0
+		y = 1
+		available = {
+			country_exists = FUL
+		}
+		completion_reward = {
+			FRA = { country_event = FUL_Unification.3 }
+			custom_effect_tooltip = if_they_accept
+			effect_tooltip = {
+				add_stability = 0.05
+				set_autonomy = {
+					target = FUL
+					autonomy_state = autonomy_integrated_puppet
+					end_wars = no
+					end_civil_wars = no
+				}
+				FUL = {
+					set_cosmetic_tag = FUL_VIE_FRA
+					set_politics = {
+						ruling_party = democratic
+						elections_allowed = no
+						long_name = VIE_PARTY_HOI_DONG_NGUOI_THUONG_TRUNG_PHAN_long
+						name = VIE_PARTY_HOI_DONG_NGUOI_THUONG_TRUNG_PHAN
+					}
+					create_country_leader = {
+						name = "Autonomous Montagnards Committee"
+						picture = "gfx/leaders/FUL/Montagnard_Chieftains_CD.dds"
+						ideology = DanVuong_Model
+					}
+				}
+				1757 = {
+					transfer_state_to = VIE
+					add_compliance = 5
+				}
+				set_temp_variable = { influence_change = -5 }
+			VIE_Change_Domestic_Influence = yes
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Established_DanVuong_Model
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Established_DanVuong_Model
+		cost = 5
+		relative_position_id = VIE_NH_NamHung_Vietnam_Emperor
+		prerequisite = {
+			focus = VIE_NH_NamHung_Vietnam_Emperor
+		}
+		x = 4
+		y = 1
+		completion_reward = {
+			country_event = CuongDe.8
+		}
+	}
+	focus = {
+		id = VIE_NH_Established_DacPhu_DanTien_Cuoc_Commission
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Established_DacPhu_DanTien_Cuoc_Commission
+		cost = 5
+		relative_position_id = VIE_NH_Established_DanVuong_Model
+		prerequisite = {
+			focus = VIE_NH_Established_DanVuong_Model
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 0.50
+				uses = 3
+				category = industry
+			}
+			add_tech_bonus = {
+				name = electronics_bonus
+				bonus = 0.50
+				uses = 3
+				category = computing_tech
+			}
+			set_country_flag = VIE_CD_Econ_Available
+			custom_effect_tooltip = VIE_Enable_DacPhu_DanTien_Cuoc_Company_tt
+			set_country_flag = DacPhu_DanTien_Cuoc_Company_Unlocked
+			custom_effect_tooltip = VIE_CD_Econ_Available_tt
+			hidden_effect = { unlock_national_focus = VIE_Establish_DacPhu_DanTien_Cuoc_Commission_Econ }
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+	focus = {
+		id = VIE_NH_BuuNhu_Labor_Reforms
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_BuuNhu_Labor_Reforms
+		cost = 5
+		relative_position_id = VIE_NH_Established_DacPhu_DanTien_Cuoc_Commission
+		prerequisite = {
+			focus = VIE_NH_Established_DacPhu_DanTien_Cuoc_Commission
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = { id = CuongDe.12 hours = 12 }
+		}
+	}
+	focus = {
+		id = VIE_NH_Political_Harmony
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Political_Harmony
+		cost = 5
+		relative_position_id = VIE_NH_Established_DanVuong_Model
+		prerequisite = {
+			focus = VIE_NH_Established_DanVuong_Model
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 150
+			set_party_name = {
+				ideology = democratic
+				long_name = VIE_PARTY_DAN_QUOC_QUOC_GIA_long
+				name = VIE_PARTY_DAN_QUOC_QUOC_GIA
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Outlaw_Francophiles
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Outlaw_Francophiles
+		cost = 5
+		relative_position_id = VIE_NH_Political_Harmony
+		prerequisite = {
+			focus = VIE_NH_Political_Harmony
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = { id = CuongDe.13 hours = 12 }
+		}
+	}
+	focus = {
+		id = VIE_NH_Pacifying_NamPhan
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Pacifying_NamPhan
+		cost = 5
+		relative_position_id = VIE_NH_Established_DanVuong_Model
+		prerequisite = {
+			focus = VIE_NH_Established_DanVuong_Model
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					is_core_of = CCC
+					NOT = { is_core_of = VIE }
+				}
+				add_compliance = 30
+				add_resistance_target = {
+					id = 123
+					amount = -50
+					tooltip = VIE_Pacifying_NamPhan_tt
+				}
+			}
+			set_temp_variable = { influence_change = 5 }
+			VIE_Change_Domestic_Influence = yes
+		}
+	}
+	focus = {
+		id = VIE_NH_Destroy_UMDC
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Destroy_UMDC
+		cost = 5
+		relative_position_id = VIE_NH_Pacifying_NamPhan
+		prerequisite = {
+			focus = VIE_NH_Pacifying_NamPhan
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.05
+			}
+			set_temp_variable = { umdc_loyalty_change = 50 }
+			umdc_loyalty_change_tt = yes
+			set_temp_variable = { umdc_annihilation_change = -35 }
+			umdc_annihilation_change_tt = yes
+		}
+	}
+	focus = {
+		id = VIE_NH_Promote_TamDan_Policies
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Promote_TamDan_Policies
+		cost = 5
+		relative_position_id = VIE_NH_Outlaw_Francophiles
+		prerequisite = {
+			focus = VIE_NH_BuuNhu_Labor_Reforms
+		}
+		prerequisite = {
+			focus = VIE_NH_Outlaw_Francophiles
+		}
+		prerequisite = {
+			focus = VIE_NH_Destroy_UMDC
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = -0.10
+			}
+			add_stability = -0.10
+			add_opinion_modifier = {
+				target = CHI
+				modifier = VIE_TamDan_ROC
+			}
+			reverse_add_opinion_modifier = {
+				target = CHI
+				modifier = VIE_TamDan_ROC
+			}
+			add_opinion_modifier = {
+				target = FRA
+				modifier = VIE_TamDan_FRA
+			}
+			reverse_add_opinion_modifier = {
+				target = FRA
+				modifier = VIE_TamDan_FRA
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_DanToc
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_DanToc
+		cost = 5
+		relative_position_id = VIE_NH_Promote_TamDan_Policies
+		prerequisite = {
+			focus = VIE_NH_Promote_TamDan_Policies
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			if = {
+				limit = {
+					1753 = { NOT = { is_owned_by = VIE } }
+				}
+				unlock_national_focus = VIE_PhuQuoc_Launch_Invasion
+				unlock_national_focus = VIE_Focus_on_Other_Matters
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			every_owned_state = {
+				limit = {
+					is_core_of = VIN
+					NOT = { is_core_of = VIE }
+				}
+				add_compliance = 30
+				add_resistance_target = {
+					id = 124
+					amount = -50
+					tooltip = VIE_Pacifying_BacPhan_tt
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_HamBac_HopNhut_Luan
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_HamBac_HopNhut_Luan
+		cost = 5
+		relative_position_id = VIE_NH_DanToc
+		prerequisite = {
+			focus = VIE_NH_DanToc
+		}
+		x = 0
+		y = 1
+		available = {
+			country_exists = VIN
+		}
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = VIE_cuongde_no_north_bypass_tt
+				NOT = { country_exists = VIN }
+			}
+		}
+		completion_reward = {
+			VIN = { country_event = { id = NV_CuongDe.1 hours = 3 } }
+		}
+	}
+	focus = {
+		id = VIE_NH_Using_Diem_Ho_Connections
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Using_Diem_Ho_Connections
+		cost = 5
+		relative_position_id = VIE_NH_HamBac_HopNhut_Luan
+		prerequisite = {
+			focus = VIE_NH_HamBac_HopNhut_Luan
+		}
+		x = 0
+		y = 1
+		available = {
+			country_exists = VIN
+		}
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = VIE_cuongde_no_north_bypass_tt
+				NOT = { country_exists = VIN }
+			}
+		}
+		completion_reward = {
+			VIN = { country_event = { id = NV_CuongDe.2 hours = 3 } }
+		}
+	}
+	focus = {
+		id = VIE_NH_DanQuyen
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_DanQuyen
+		cost = 5
+		relative_position_id = VIE_NH_Promote_TamDan_Policies
+		prerequisite = {
+			focus = VIE_NH_Promote_TamDan_Policies
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = liberal
+				popularity = 0.05
+			}
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = USA
+						original_tag = FRA
+						original_tag = ENG
+						is_ally_with = USA
+						is_ally_with = FRA
+						is_ally_with = ENG
+					}
+				}
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_increase
+				}
+				reverse_add_opinion_modifier = {
+					target = PREV
+					modifier = small_increase
+				}
+			}
+			news_event = { id = CuongDe.100 hours = 3 random_hours = 6 }
+		}
+	}
+	focus = {
+		id = VIE_NH_Spread_Western_Progressive_Values
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Spread_Western_Progressive_Values
+		cost = 5
+		relative_position_id = VIE_NH_DanQuyen
+		prerequisite = {
+			focus = VIE_NH_DanQuyen
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = nationalist
+				popularity = -0.05
+			}
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 0.20
+				uses = 2
+				category = industry
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Fight_Against_BinhXuyen_Criminal_Empire
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Fight_Against_BinhXuyen_Criminal_Empire
+		cost = 5
+		relative_position_id = VIE_NH_Spread_Western_Progressive_Values
+		prerequisite = {
+			focus = VIE_NH_Spread_Western_Progressive_Values
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			every_unit_leader = {
+				limit = {
+					has_trait = BinhXuyen_Member
+				}
+				retire = yes
+			}
+			add_stability = 0.05
+			set_temp_variable = { binh_xuyen_loyalty_change = 50 }
+			binh_xuyen_loyalty_change_tt = yes
+			set_temp_variable = { binh_xuyen_annihilation_change = -35 }
+			binh_xuyen_annihilation_change_tt = yes
+		}
+	}
+	focus = {
+		id = VIE_NH_DanSinh
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_DanSinh
+		cost = 5
+		relative_position_id = VIE_NH_Promote_TamDan_Policies
+		prerequisite = {
+			focus = VIE_NH_Promote_TamDan_Policies
+		}
+		x = 4
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = trotskyism
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = office_park
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Nationwide_Investment_Hamlets_Electrification
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Nationwide_Investment_Hamlets_Electrification
+		cost = 5
+		relative_position_id = VIE_NH_DanSinh
+		prerequisite = {
+			focus = VIE_NH_DanSinh
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 2
+			}
+			capital_scope = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { money_to_gain = -5 }
+			add_money_with_tooltip_effect = yes
+		}
+	}
+	focus = {
+		id = VIE_NH_Welcome_Japanese_Industrialists
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Welcome_Japanese_Industrialists
+		cost = 5
+		relative_position_id = VIE_NH_DanSinh
+		prerequisite = {
+			focus = VIE_NH_DanSinh
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			set_country_flag = Japanese_Companies_Unlocked
+			custom_effect_tooltip = Enable_Japanese_Companies_tt
+			JAP = { country_event = { id = CuongDe.9 hours = 6 } }
+		}
+	}
+	focus = {
+		id = VIE_NH_Promote_KyNghe_Hoa
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Promote_KyNghe_Hoa
+		cost = 5
+		relative_position_id = VIE_NH_DanSinh
+		prerequisite = {
+			focus = VIE_NH_DanSinh
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			hidden_effect = {
+				every_owned_state = {
+					set_state_flag = Not_Industrialized
+				}
+			}
+			unlock_decision_category_tooltip = VIE_State_Industrialization
+		}
+	}
+	focus = {
+		id = VIE_NH_Establish_National_Labor_Union
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Establish_National_Labor_Union
+		cost = 5
+		relative_position_id = VIE_NH_Welcome_Japanese_Industrialists
+		prerequisite = {
+			focus = VIE_NH_Nationwide_Investment_Hamlets_Electrification
+		}
+		prerequisite = {
+			focus = VIE_NH_Welcome_Japanese_Industrialists
+		}
+		prerequisite = {
+			focus = VIE_NH_Promote_KyNghe_Hoa
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = trotskyism
+				popularity = 0.05
+			}
+			add_stability = 0.05
+			custom_effect_tooltip = VIE_Enable_TongLienDoan_LaoCong_VietNam_Company_tt
+			set_country_flag = TongLienDoan_LaoCong_VietNam_Company_Unlocked
+		}
+	}
+	focus = {
+		id = VIE_NH_End_HuynhDe_TuongTan
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_End_HuynhDe_TuongTan
+		cost = 5
+		relative_position_id = VIE_NH_Fight_Against_BinhXuyen_Criminal_Empire
+		prerequisite = {
+			focus = VIE_NH_Using_Diem_Ho_Connections
+		}
+		prerequisite = {
+			focus = VIE_NH_Fight_Against_BinhXuyen_Criminal_Empire
+		}
+		prerequisite = {
+			focus = VIE_NH_Establish_National_Labor_Union
+		}
+		x = 1
+		y = 1
+		available = {
+			country_exists = VIN
+			has_country_leader = {
+				character = VIE_Ngo_Dinh_Diem
+				ruling_only = yes
+			}
+			indochina_dan_quoc_peace_cond_ho_chi_minh = yes
+			NOT = { has_country_flag = VIE_Hung_Formed_Anticommunist_Front }
+			custom_trigger_tooltip = {
+				tooltip = VIE_cuongde_rapprochement_req_tt
+				check_variable = { global.geneva_rapprochement_vie_vin > 99 }
+			}
+		}
+		bypass = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = VIE_cuongde_no_north_bypass_tt
+					NOT = { country_exists = VIN }
+				}
+				AND = {
+					has_completed_focus = VIE_NH_Death_Preparations
+					NOT = { has_country_flag = Diem_Successor }
+				}
+			}
+		}
+		completion_reward = {
+			VIN = { country_event = { id = NV_CuongDe_Unification.1 hours = 6 } }
+			custom_effect_tooltip = if_they_accept
+			custom_effect_tooltip = VIE_cuongde_unification_offer_tt
+		}
+	}
+
+	focus = {
+		id = VIE_NH_A_House_Divided
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_HamBac_HopNhut_Luan
+		cost = 5
+		relative_position_id = VIE_NH_End_HuynhDe_TuongTan
+		prerequisite = {
+			focus = VIE_NH_Using_Diem_Ho_Connections
+		}
+		x = 0
+		y = 1
+		allow_branch = {
+			custom_trigger_tooltip = {
+				tooltip = VIE_cuongde_house_divided_branch_tt
+				OR = {
+					has_country_flag = VIE_CuongDe_Reconciliation_Failed
+					has_country_flag = VIE_Hung_Formed_Anticommunist_Front
+				}
+			}
+		}
+		available = {
+			OR = {
+				has_country_flag = VIE_CuongDe_Reconciliation_Failed
+				has_country_flag = VIE_Hung_Formed_Anticommunist_Front
+			}
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+		}
+	}
+	focus = {
+		id = VIE_NH_Cold_Coexistence
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_FRA_Friendship
+		cost = 5
+		relative_position_id = VIE_NH_A_House_Divided
+		prerequisite = {
+			focus = VIE_NH_A_House_Divided
+		}
+		mutually_exclusive = {
+			focus = VIE_NH_The_Betrayed_Ideal
+		}
+		x = -1
+		y = 1
+		available = {
+			country_exists = VIN
+			NOT = { has_country_flag = VIE_Hung_Formed_Anticommunist_Front }
+			NOT = { has_war_with = VIN }
+		}
+		completion_reward = {
+			add_ideas = VIE_cold_coexistence_1
+			add_opinion_modifier = {
+				target = VIN
+				modifier = medium_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = VIN
+				modifier = medium_increase
+			}
+			VIN = { country_event = { id = NV_CuongDe.3 hours = 6 } }
+		}
+	}
+	focus = {
+		id = VIE_NH_Trade_Across_The_Parallel
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Welcome_Japanese_Industrialists
+		cost = 5
+		relative_position_id = VIE_NH_Cold_Coexistence
+		prerequisite = {
+			focus = VIE_NH_Cold_Coexistence
+		}
+		x = 0
+		y = 1
+		available = {
+			country_exists = VIN
+			NOT = { has_war_with = VIN }
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = VIE_cold_coexistence_1
+				add_idea = VIE_cold_coexistence_2
+			}
+			set_temp_variable = { cuongde_rapprochement_gain = 25 }
+			VIE_cuongde_thaw_effect = yes
+		}
+	}
+	focus = {
+		id = VIE_NH_The_Betrayed_Ideal
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Purge_BaoDai_Loyalists_Incompetent_Bureaucrats
+		cost = 5
+		relative_position_id = VIE_NH_A_House_Divided
+		prerequisite = {
+			focus = VIE_NH_A_House_Divided
+		}
+		mutually_exclusive = {
+			focus = VIE_NH_Cold_Coexistence
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_war_support = 0.05
+			army_experience = 15
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			add_opinion_modifier = {
+				target = VIN
+				modifier = large_decrease
+			}
+			reverse_add_opinion_modifier = {
+				target = VIN
+				modifier = large_decrease
+			}
+			set_temp_variable = { cuongde_rapprochement_loss = -50 }
+			VIE_cuongde_chill_effect = yes
+			indochina_struggle_add_pro_independence_military_points = yes
+		}
+	}
+	focus = {
+		id = VIE_NH_Prepare_Northern_Integration
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_ReEstablish_VietKienQuocQuan
+		cost = 5
+		relative_position_id = VIE_NH_The_Betrayed_Ideal
+		prerequisite = {
+			focus = VIE_NH_The_Betrayed_Ideal
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			army_experience = 25
+			add_command_power = 25
+			indochina_struggle_add_pro_independence_military_points = yes
+			set_temp_variable = { geneva_lev_amount = 25 }
+			geneva_add_proindependence_leverage = yes
+			every_owned_state = {
+				limit = {
+					is_core_of = VIN
+					NOT = { is_core_of = VIE }
+				}
+				add_compliance = 30
+				add_resistance_target = {
+					id = 124
+					amount = -50
+					tooltip = VIE_Pacifying_BacPhan_tt
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = VIE_NH_Nhiep_PM
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Nhiep_Successor
+		cost = 5
+		relative_position_id = VIE_NH_NamHung_Vietnam_Emperor
+		x = 0
+		y = 9
+		allow_branch = {
+			custom_trigger_tooltip = {
+				tooltip = Nhiep_Successor_tt
+				has_country_flag = Nhiep_Successor
+			}
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			}
+			add_opinion_modifier = {
+				target = JAP
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = JAP
+				modifier = small_increase
+			}
+			VIE_Nguyen_Rinh_Nhiep = {
+				promote_leader = yes
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Nhiep_Request_Crownlands
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Nhiep_PM
+		prerequisite = {
+			focus = VIE_NH_Nhiep_PM
+		}
+		x = -2
+		y = 1
+		bypass = {
+			custom_trigger_tooltip = {
+				tooltip = VIE_Crown_Domains_Gone_tt
+				NOT = { country_exists = FUL }
+				NOT = { country_exists = CCC }
+			}
+		}
+		completion_reward = {
+			FRA = { country_event = { id = Crown_Domains.1 days = 1 } }
+			custom_effect_tooltip = if_they_accept
+			effect_tooltip = {
+				VIE = {
+					annex_country = {
+						target = FUL
+						transfer_troops = yes
+					}
+					if = {
+						limit = {
+							CCC = { exists = yes }
+						}
+						annex_country = {
+							target = CCC
+							transfer_troops = yes
+						}
+					}
+				}
+				add_political_power = 50
+				add_opinion_modifier = {
+					target = FRA
+					modifier = VIE_Crown_Domains_Accepted
+				}
+				reverse_add_opinion_modifier = {
+					target = VIE
+					modifier = VIE_Crown_Domains_Accepted
+				}
+			}
+			set_temp_variable = { influence_change = 5 }
+			VIE_Change_Domestic_Influence = yes
+		}
+	}
+	focus = {
+		id = VIE_NH_Nhiep_Repatriate_JAP_Families
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Nhiep_Request_Crownlands
+		prerequisite = {
+			focus = VIE_NH_Nhiep_Request_Crownlands
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			country_event = { id = CD_Nhiep.1 hours = 12 }
+		}
+	}
+	focus = {
+		id = VIE_NH_Nhiep_Establish_VIE_JAP_Friendship
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Nhiep_Request_Crownlands
+		prerequisite = {
+			focus = VIE_NH_Nhiep_Request_Crownlands
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			JAP = {
+				country_event = { id = CD_Nhiep.2 hours = 12 }
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Nhiep_Modernize_PhuXuan
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Nhiep_Request_Crownlands
+		prerequisite = {
+			focus = VIE_NH_Nhiep_Repatriate_JAP_Families
+		}
+		prerequisite = {
+			focus = VIE_NH_Nhiep_Establish_VIE_JAP_Friendship
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			country_event = { id = CD_Nhiep.4 hours = 12 }
+		}
+	}
+	focus = {
+		id = VIE_NH_Nhiep_Build_PhuXuan_Metro
+		completion_reward = {
+		}
+		icon = GFX_Generic_Construction
+		cost = 5
+		relative_position_id = VIE_NH_Nhiep_Modernize_PhuXuan
+		prerequisite = {
+			focus = VIE_NH_Nhiep_Modernize_PhuXuan
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			JAP = {
+				country_event = { id = CD_Nhiep.5 hours = 12 }
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Nhiep_Prepare_Mausoleum
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Nhiep_Modernize_PhuXuan
+		prerequisite = {
+			focus = VIE_NH_Nhiep_Modernize_PhuXuan
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			country_event = { id = CD_Nhiep.9 hours = 12 }
+		}
+	}
+	focus = {
+		id = VIE_NH_Nhiep_Rebuild_Imperial_Citadel
+		completion_reward = {
+		}
+		icon = GFX_Generic_Construction
+		cost = 5
+		relative_position_id = VIE_NH_Nhiep_Modernize_PhuXuan
+		prerequisite = {
+			focus = VIE_NH_Nhiep_Build_PhuXuan_Metro
+		}
+		prerequisite = {
+			focus = VIE_NH_Nhiep_Prepare_Mausoleum
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			1758 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { money_to_gain = -0.1 }
+			add_money_with_tooltip_effect = yes
+			set_country_flag = PhuXuan_Rifles_Unlocked
+			custom_effect_tooltip = Enable_PhuXuan_Rifles_Company_tt
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				unlock_military_industrial_organization_tooltip = mio:VIE_PhuXuan_Rifles_Arsenal_mio
+				every_military_industrial_organization = {
+					limit = {
+						is_military_industrial_organization = VIE_PhuXuan_Rifles_Arsenal_mio
+					}
+					add_mio_funds = 300
+					add_mio_funds_gain_factor = 0.2
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Nhiep_Expand_PQH
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Nhiep_PM
+		prerequisite = {
+			focus = VIE_NH_Nhiep_PM
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			country_event = { id = CD_Nhiep.11 hours = 12 }
+		}
+	}
+	focus = {
+		id = VIE_NH_Nhiep_Contain_Diem
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Nhiep_Expand_PQH
+		prerequisite = {
+			focus = VIE_NH_Nhiep_Expand_PQH
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			if = {
+				limit = {
+					VIE_Ngo_Dinh_Nhu = { is_unit_leader = yes }
+				}
+				retire_character = VIE_Ngo_Dinh_Nhu
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = trotskyism
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Nhiep_Adopt_KMT_Org
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Nhiep_Expand_PQH
+		prerequisite = {
+			focus = VIE_NH_Nhiep_Expand_PQH
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_stability = -0.05
+			add_ideas = chinese_advisors
+			add_opinion_modifier = {
+				target = VIE
+				modifier = small_increase
+			}
+			reverse_add_opinion_modifier = {
+				target = VIE
+				modifier = small_increase
+			}
+			add_opinion_modifier = {
+				target = PRC
+				modifier = small_decrease
+			}
+			reverse_add_opinion_modifier = {
+				target = PRC
+				modifier = small_decrease
+			}
+			set_temp_variable = { favoritism_change = -10 }
+			VIE_Change_Main_Favoritism = yes
+		}
+	}
+	focus = {
+		id = VIE_NH_Nhiep_Disband_XacTe
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Nhiep_Expand_PQH
+		prerequisite = {
+			focus = VIE_NH_Nhiep_Expand_PQH
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			1758 = {
+				create_unit = {
+					division = "name = \"1st Bataillon de Surete de Combat\" division_template = \"Ve-Binh Quoc-Gia\" start_experience_factor = 0.2"
+					owner = VIE
+				}
+				create_unit = {
+					division = "name = \"2nd Bataillon de Surete de Combat\" division_template = \"Ve-Binh Quoc-Gia\" start_experience_factor = 0.2"
+					owner = VIE
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Nhiep_Permit_VNQDD
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Nhiep_Disband_XacTe
+		prerequisite = {
+			focus = VIE_NH_Nhiep_Disband_XacTe
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			set_party_name = {
+				ideology = nationalist
+				long_name = VIE_PARTY_VNQDD_KHANH_long
+				name = VIE_PARTY_VNQDD_KHANH
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			if = {
+				limit = {
+					NOT = { has_character = PQC_Vu_Hong_Khanh }
+					PQC_Vu_Hong_Khanh = { is_unit_leader = no }
+				}
+				PQC_Vu_Hong_Khanh = {
+					set_nationality = VIE
+					set_portraits = { army = { large = "gfx/leaders/VIE/GENERALS/Vu_Hong_Khanh.dds" } }
+					add_corps_commander_role = {
+						traits = { self_taught irregular_officer trickster guerilla_fighter Pro_QuocGia VIE_Pro_America VIE_Pro_France DaiViet_Party_Member }
+						skill = 2
+						attack_skill = 1
+						defense_skill = 2
+						planning_skill = 3
+						logistics_skill = 3
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = { has_character = PQC_Vu_Hong_Khanh }
+					PQC_Vu_Hong_Khanh = { is_unit_leader = yes }
+				}
+				PQC_Vu_Hong_Khanh = {
+					set_nationality = VIE
+					set_portraits = { army = { large = "gfx/leaders/VIE/GENERALS/Vu_Hong_Khanh.dds" } }
+				}
+			}
+			else_if = {
+				limit = {
+					has_character = PQC_Vu_Hong_Khanh
+					PQC_Vu_Hong_Khanh = { is_unit_leader = no }
+				}
+				PQC_Vu_Hong_Khanh = {
+					add_corps_commander_role = {
+						traits = { self_taught irregular_officer trickster guerilla_fighter Pro_QuocGia VIE_Pro_America VIE_Pro_France DaiViet_Party_Member }
+						skill = 2
+						attack_skill = 1
+						defense_skill = 2
+						planning_skill = 3
+						logistics_skill = 3
+					}
+				}
+			}
+			if = {
+				limit = {
+					country_exists = PQC
+					has_country_flag = VIE_PQC_VNQDD
+				}
+				annex_country = {
+					target = PQC
+					transfer_troops = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = VIE_NH_Vinh_PM
+		completion_reward = {
+		}
+		icon = GFX_VIE_PM_Vinh
+		cost = 5
+		relative_position_id = VIE_NH_NamHung_Vietnam_Emperor
+		x = 0
+		y = 15
+		allow_branch = {
+			custom_trigger_tooltip = {
+				tooltip = Vinh_Successor_tt
+				has_country_flag = Vinh_Successor
+			}
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			add_country_leader_role = {
+				character = CCC_Tran_Quang_Vinh
+				promote_leader = yes
+				country_leader = {
+					ideology = DanVuong_Model
+				}
+			}
+			VIE_Nguyen_Van_Hinh = {
+				set_nationality = FRE
+			}
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			}
+			add_political_power = 150
+		}
+	}
+	focus = {
+		id = VIE_NH_Vinh_Bring_other_faiths_together
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Vinh_PM
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = VIE_NH_Vinh_PM
+		}
+		completion_reward = {
+			set_temp_variable = { money_to_gain = -5 }
+			add_money_with_tooltip_effect = yes
+			add_offsite_building = { type = industrial_complex level = 1 }
+			983 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			1755 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			every_controlled_state = {
+				add_compliance = 10
+			}
+
+		}
+	}
+	focus = {
+		id = VIE_NH_Vinh_Purge_Phuong
+		completion_reward = {
+		}
+		icon = GFX_VIE_Vinh_Purge_Phuong_Forces
+		cost = 5
+		relative_position_id = VIE_NH_Vinh_PM
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = VIE_NH_Vinh_PM
+		}
+		completion_reward = {
+			country_event = { id = VIE_Vinh.1 hours = 12 }
+			add_popularity = {
+				ideology = neutrality
+				popularity = -0.05
+			}
+			add_stability = 0.05
+			set_temp_variable = { favoritism_change = 5 }
+			VIE_Change_Main_Favoritism = yes
+			set_temp_variable = { influence_change = 5 }
+			VIE_Change_Domestic_Influence = yes
+		}
+	}
+	focus = {
+		id = VIE_NH_Vinh_Promote_Phuc_quoc_and_Cao_daiism
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Vinh_PM
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = VIE_NH_Vinh_PM
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			}
+			every_controlled_state = {
+				limit = {
+					NOT = {
+						is_core_of = VIE
+					}
+				}
+				add_compliance = 5
+			}
+			add_stability  = 0.05
+			set_temp_variable = { favoritism_change = -10 }
+			VIE_Change_Main_Favoritism = yes
+		}
+	}
+	focus = {
+		id = VIE_NH_Vinh_Expand_the_Holy_See
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Vinh_Promote_Phuc_quoc_and_Cao_daiism
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = VIE_NH_Vinh_Promote_Phuc_quoc_and_Cao_daiism
+		}
+		prerequisite = {
+			focus = VIE_NH_Vinh_Purge_Phuong
+		}
+		completion_reward = {
+			set_temp_variable = { money_to_gain = -0.2 }
+			add_money_with_tooltip_effect = yes
+			1285 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_country_flag = Decision_203_Completed
+			1755 = {
+				add_victory_points = {
+					province = 13711
+					value = 2
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = 13711
+				}
+				add_to_variable = {
+					tourism_infrastructure = 1
+					tooltip = tourism_TT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { cao_dai_loyalty_change = -10 }
+				cao_dai_loyalty_change_tt = yes
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Vinh_Expand_Countryside_Roads
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 5
+		relative_position_id = VIE_NH_Vinh_Expand_the_Holy_See
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = VIE_NH_Vinh_Expand_the_Holy_See
+		}
+		completion_reward = {
+			set_temp_variable = { money_to_gain = -0.25 }
+			add_money_with_tooltip_effect = yes
+			983 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			1755 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			1285 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = state_infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Vinh_Modernize_Education_System
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_scientific_exchange
+		cost = 5
+		relative_position_id = VIE_NH_Vinh_Expand_the_Holy_See
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = VIE_NH_Vinh_Expand_the_Holy_See
+		}
+		completion_reward = {
+			set_temp_variable = { money_to_gain = -0.15 }
+			add_money_with_tooltip_effect = yes
+			286 = {
+				add_building_construction = {
+					type = office_park
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Vinh_Disbanding_Ve_quoc_Paramilitaries
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Vinh_Promote_Phuc_quoc_and_Cao_daiism
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = VIE_NH_Vinh_Promote_Phuc_quoc_and_Cao_daiism
+		}
+		prerequisite = {
+			focus = VIE_NH_Vinh_Bring_other_faiths_together
+		}
+		completion_reward = {
+			delete_units = {
+				division_template = "Bao-Chinh-Doan"
+				disband = yes
+			}
+			delete_units = {
+				division_template = "Nghia-Dung-Doan"
+				disband = yes
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"%dth Tieu-doan Bo-binh Quoc-gia\" division_template = \"Batallion Vietnamien\" start_manpower_factor = 1 start_experience_factor = 0.6"
+					owner = VIE
+					count = 4
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Vinh_Establish_Tuyen_uy_Corp
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Vinh_Disbanding_Ve_quoc_Paramilitaries
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = VIE_NH_Vinh_Disbanding_Ve_quoc_Paramilitaries
+		}
+		completion_reward = {
+			add_ideas = VIE_Field_Chaplain
+		}
+	}
+	focus = {
+		id = VIE_NH_Vinh_Integrate_the_Cao_dai_Army
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 5
+		relative_position_id = VIE_NH_Vinh_Disbanding_Ve_quoc_Paramilitaries
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = VIE_NH_Vinh_Disbanding_Ve_quoc_Paramilitaries
+		}
+		completion_reward = {
+			set_temp_variable = { money_to_gain = -5 }
+			add_money_with_tooltip_effect = yes
+			hidden_effect = {
+				add_command_power = -50
+				add_political_power = -50
+
+				division_template = {
+					name = "Cao-Dai Militia"
+					division_names_group = VIE_MIL_01
+					priority = 1
+					template_counter = 203
+					is_locked = no
+
+					regiments = {
+						militia = { x = 0 y = 0 }
+						militia = { x = 0 y = 1 }
+						militia = { x = 0 y = 2 }
+					}
+					support = {
+						light_artillery_support = { x = 0 y = 0 }
+					}
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"Cao-Dai Militia\" division_template = \"Cao-Dai Militia\" start_experience_factor = 0.15"
+					owner = VIE
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 3000
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_1
+				amount = 200
+			}
+			add_equipment_to_stockpile = {
+				type = light_artillery_equipment_1
+				amount = 500
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_PM
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_NamHung_Vietnam_Emperor
+		x = 0
+		y = 15
+		allow_branch = {
+			custom_trigger_tooltip = {
+				tooltip = Hung_Successor_tt
+				has_country_flag = Hung_Successor
+			}
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+			add_country_leader_role = {
+				character = VIE_Hoang_Nam_Hung
+				promote_leader = yes
+				country_leader = {
+					ideology = nationalist_ideology
+				}
+			}
+			add_political_power = 150
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Stabilize_NamPhan
+		completion_reward = {
+		}
+		prerequisite = {
+			focus = VIE_NH_Hung_PM
+		}
+		icon = GFX_VIE_NH_Pacifying_NamPhan
+		cost = 5
+		relative_position_id = VIE_NH_Hung_PM
+		x = 0
+		y = 1
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					is_core_of = CCC
+					NOT = { is_core_of = VIE }
+				}
+				add_compliance = 30
+				add_resistance_target = {
+					id = 123
+					amount = -50
+					tooltip = VIE_Pacifying_NamPhan_tt
+				}
+			}
+			set_temp_variable = { influence_change = 5 }
+			VIE_Change_Domestic_Influence = yes
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Pardon_French_Collaborators
+		completion_reward = {
+		}
+		prerequisite = {
+			focus = VIE_NH_Hung_Stabilize_NamPhan
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Stabilize_NamPhan
+		x = -1
+		y = 1
+		mutually_exclusive = { focus = VIE_NH_Hung_Form_AntiCommunist_Front }
+		completion_reward = {
+			add_stability = -0.05
+			unlock_decision_tooltip = {
+				decision = VIE_Recruit_Lam_Van_Huong
+				show_effect_tooltip = yes
+			}
+			unlock_decision_tooltip = {
+				decision = VIE_Recruit_Vu_Thiet
+				show_effect_tooltip = yes
+			}
+			unlock_decision_tooltip = {
+				decision = VIE_Recruit_Nguyen_Van_Dan
+				show_effect_tooltip = yes
+			}
+			unlock_decision_tooltip = {
+				decision = VIE_Recruit_Nguyen_Van_Tam
+				show_effect_tooltip = yes
+			}
+			unlock_decision_tooltip = {
+				decision = VIE_Recruit_Phan_Trong_Vinh
+				show_effect_tooltip = yes
+			}
+			unlock_decision_tooltip = {
+				decision = VIE_Recruit_Trinh_Van_Cu
+				show_effect_tooltip = yes
+			}
+			unlock_decision_tooltip = {
+				decision = VIE_Recruit_Nguyen_Van_Lai
+				show_effect_tooltip = yes
+			}
+			unlock_decision_tooltip = {
+				decision = VIE_Give_Charles_Chanson_Command
+				show_effect_tooltip = yes
+			}
+			unlock_decision_tooltip = {
+				decision = VIE_Recruit_Hoang_Co_La
+				show_effect_tooltip = yes
+			}
+			unlock_decision_tooltip = {
+				decision = VIE_Recruit_Tran_Dinh_Vy
+				show_effect_tooltip = yes
+			}
+			unlock_decision_tooltip = {
+				decision = VIE_Recruit_Tran_Dinh_Lan
+				show_effect_tooltip = yes
+			}
+			set_temp_variable = { influence_change = -10 }
+			VIE_Change_Domestic_Influence = yes
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Seek_Closer_ties_to_West
+		completion_reward = {
+		}
+		prerequisite = {
+			focus = VIE_NH_Hung_Pardon_French_Collaborators
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Pardon_French_Collaborators
+		x = -3
+		y = 1
+		completion_reward = {
+			every_country = {
+				limit = {
+					OR = {
+						tag = FRA
+						tag = ENG
+						tag = USA
+						tag = JAP
+					}
+				}
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_increase
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						tag = PRC
+						tag = SOV
+					}
+				}
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_decrease
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Seek_ROC_Support
+		completion_reward = {
+		}
+		prerequisite = {
+			focus = VIE_NH_Hung_Seek_Closer_ties_to_West
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Seek_Closer_ties_to_West
+		x = -1
+		y = 1
+		completion_reward = {
+			add_ideas = VIE_ROC_Advisor
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			add_offsite_building = { type = arms_factory level = 1 }
+			country_event = CD_Hung.1
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Invite_Foreign_Investors
+		completion_reward = {
+		}
+		prerequisite = {
+			focus = VIE_NH_Hung_Seek_Closer_ties_to_West
+		}
+		icon = GFX_bag_of_money
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Seek_Closer_ties_to_West
+		x = 0
+		y = 2
+		completion_reward = {
+			set_temp_variable = { money_to_gain = -0.25 }
+			add_money_with_tooltip_effect = yes
+			983 = {
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Emulate_Japanese_Economic_Policy
+		completion_reward = {
+		}
+		prerequisite = {
+			focus = VIE_NH_Hung_Seek_Closer_ties_to_West
+		}
+		icon = GFX_bag_of_money
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Seek_Closer_ties_to_West
+		x = 1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				bonus = 0.05
+				uses = 1
+				category = industry
+			}
+			every_country = {
+				limit = {
+					OR = {
+						tag = JAP
+						tag = VIE
+					}
+				}
+				add_offsite_building = { type = arms_factory level = 1 }
+			}
+			JAP = {
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Enforce_Military_Professionalism
+		completion_reward = {
+		}
+		prerequisite = {
+			focus = VIE_NH_Hung_Pardon_French_Collaborators
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Pardon_French_Collaborators
+		x = 0
+		y = 2
+		completion_reward = {
+			add_political_power = 100
+			army_experience = 10
+			every_army_leader = {
+				add_skill_level = 1
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Outlaw_Private_Militaries
+		completion_reward = {
+		}
+		prerequisite = {
+			focus = VIE_NH_Hung_Enforce_Military_Professionalism
+		}
+		icon = GFX_goal_generic_political_pressure
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Enforce_Military_Professionalism
+		x = 0
+		y = 1
+		completion_reward = {
+			add_stability = -0.05
+			set_temp_variable = { umdc_annihilation_change = -30 }
+			umdc_annihilation_change_tt = yes
+			every_army_leader = {
+				limit = {
+					OR = {
+						has_trait = UMDC_Member
+						has_trait = HoaHao_Member
+					}
+				}
+				retire = yes
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Form_AntiCommunist_Front
+		completion_reward = {
+		}
+		prerequisite = {
+			focus = VIE_NH_Hung_Stabilize_NamPhan
+		}
+		icon = GFX_goal_support_communism
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Stabilize_NamPhan
+		x = 1
+		y = 1
+		mutually_exclusive =  { focus = VIE_NH_Hung_Pardon_French_Collaborators }
+		completion_reward = {
+			custom_effect_tooltip = VIE_NH_Hung_Form_AntiCommunist_Front_tt
+			every_country = {
+				limit = {
+					OR = {
+						tag = NLF
+						tag = VIN
+					}
+				}
+				add_opinion_modifier = {
+					target = VIE
+					modifier = large_decrease
+				}
+				reverse_add_opinion_modifier = {
+					target = VIE
+					modifier = large_decrease
+				}
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			country_event = CD_Hung.2
+			set_country_flag = VIE_Hung_Formed_Anticommunist_Front
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Unify_KienThiet_Army
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Form_AntiCommunist_Front
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = VIE_NH_Hung_Form_AntiCommunist_Front
+		}
+		completion_reward = {
+			delete_units = {
+				division_template = "Bao-Chinh-Doan"
+				disband = yes
+			}
+			delete_units = {
+				division_template = "Nghia-Dung-Doan"
+				disband = yes
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"%dth Tieu-doan Bo-binh Quoc-gia\" division_template = \"Batallion Vietnamien\" start_manpower_factor = 1 start_experience_factor = 0.6"
+					owner = VIE
+					count = 4
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 1500
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment_1
+				amount = 50
+			}
+			army_experience = 5
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Modernizing_War_Tactics
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_demand_territory
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Unify_KienThiet_Army
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = VIE_NH_Hung_Unify_KienThiet_Army
+		}
+		completion_reward = {
+			set_temp_variable = { money_to_gain = -0.25 }
+			add_money_with_tooltip_effect = yes
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.1
+				uses = 2
+				category = land_doctrine
+			}
+			army_experience = 5
+			custom_effect_tooltip = VIE_NH_Hung_Modernizing_War_Tactics_tt
+			286 = {
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					instant_build = yes
+					province = 13707
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			country_event = CD_Hung.3
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Intensify_AntiCommunist_Activities
+		completion_reward = {
+		}
+		icon = GFX_goal_support_communism
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Form_AntiCommunist_Front
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = VIE_NH_Hung_Form_AntiCommunist_Front
+		}
+		completion_reward = {
+			set_temp_variable = { money_to_gain = -0.2 }
+			add_money_with_tooltip_effect = yes
+			add_manpower = -20000
+			add_popularity = {
+				ideology = communism
+				popularity = -0.1
+			}
+			1287 = {
+				add_core_of = VIE
+			}
+			1752 = {
+				add_core_of = VIE
+			}
+			country_event = { id = CD_Hung.4 hours = 6 }
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Jail_NgoDinh_Brothers
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Intensify_AntiCommunist_Activities
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = VIE_NH_Hung_Intensify_AntiCommunist_Activities
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					VIE_Ngo_Dinh_Nhu = { is_unit_leader = yes }
+				}
+				retire_character = VIE_Ngo_Dinh_Nhu
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = trotskyism
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Pardon_VuHongKhanh
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Intensify_AntiCommunist_Activities
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = VIE_NH_Hung_Intensify_AntiCommunist_Activities
+		}
+		completion_reward = {
+			set_party_name = {
+				ideology = nationalist
+				long_name = VIE_PARTY_VNQDD_KHANH_long
+				name = VIE_PARTY_VNQDD_KHANH
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.05
+			}
+			if = {
+				limit = {
+					NOT = { has_character = PQC_Vu_Hong_Khanh }
+					PQC_Vu_Hong_Khanh = { is_unit_leader = no }
+				}
+				PQC_Vu_Hong_Khanh = {
+					set_nationality = VIE
+					set_portraits = { army = { large = "gfx/leaders/VIE/GENERALS/Vu_Hong_Khanh.dds" } }
+					add_corps_commander_role = {
+						traits = { self_taught irregular_officer trickster guerilla_fighter Pro_QuocGia VIE_Pro_America VIE_Pro_France DaiViet_Party_Member }
+						skill = 2
+						attack_skill = 1
+						defense_skill = 2
+						planning_skill = 3
+						logistics_skill = 3
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = { has_character = PQC_Vu_Hong_Khanh }
+					PQC_Vu_Hong_Khanh = { is_unit_leader = yes }
+				}
+				PQC_Vu_Hong_Khanh = {
+					set_nationality = VIE
+					set_portraits = { army = { large = "gfx/leaders/VIE/GENERALS/Vu_Hong_Khanh.dds" } }
+				}
+			}
+			else_if = {
+				limit = {
+					has_character = PQC_Vu_Hong_Khanh
+					PQC_Vu_Hong_Khanh = { is_unit_leader = no }
+				}
+				PQC_Vu_Hong_Khanh = {
+					add_corps_commander_role = {
+						traits = { self_taught irregular_officer trickster guerilla_fighter Pro_QuocGia VIE_Pro_America VIE_Pro_France DaiViet_Party_Member }
+						skill = 2
+						attack_skill = 1
+						defense_skill = 2
+						planning_skill = 3
+						logistics_skill = 3
+					}
+				}
+			}
+			if = {
+				limit = {
+					country_exists = PQC
+					has_country_flag = VIE_PQC_VNQDD
+				}
+				annex_country = {
+					target = PQC
+					transfer_troops = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Monitor_Buu
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Intensify_AntiCommunist_Activities
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = VIE_NH_Hung_Intensify_AntiCommunist_Activities
+		}
+		completion_reward = {
+			set_temp_variable = { money_to_gain = 0.25 }
+			add_money_with_tooltip_effect = yes
+			add_offsite_building = { type = industrial_complex level = -3 }
+			add_popularity = {
+				ideology = trotskyism
+				popularity = -0.05
+			}
+			set_temp_variable = { favoritism_change = 5 }
+			VIE_Change_Main_Favoritism = yes
+			set_country_flag = moving_toward_limited_state_regulations
+			effect_tooltip = {
+				add_ideas = policy_union_temp_4
+			}
+			hidden_effect = {
+				swap_workers_ideas = yes
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Introduce_Political_Commisars
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_political_pressure
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Stabilize_NamPhan
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = VIE_NH_Hung_Form_AntiCommunist_Front
+			focus = VIE_NH_Hung_Pardon_French_Collaborators
+		}
+		completion_reward = {
+			add_command_power = 25
+			army_experience = 10
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = communism
+				popularity = -0.03
+			}
+			add_popularity = {
+				ideology = trotskyism
+				popularity = -0.02
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Hung_Implement_Armored_Units
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_army_motorized
+		cost = 5
+		relative_position_id = VIE_NH_Hung_Stabilize_NamPhan
+		x = 0
+		y = 5
+		prerequisite = {
+			focus = VIE_NH_Hung_Outlaw_Private_Militaries
+			focus = VIE_NH_Hung_Modernizing_War_Tactics
+		}
+		completion_reward = {
+			set_temp_variable = { money_to_gain = -0.05 }
+			add_money_with_tooltip_effect = yes
+			add_war_support = 0.05
+			hidden_effect = {
+				division_template = {
+					name = "Lien-Doan Tham-Thinh-Xa"
+					division_names_group = VIE_ARM_01
+					template_counter = 241
+					priority = 2
+					is_locked = no
+
+					regiments = {
+						mechanized_infantry = { x = 0 y = 0 }
+						mechanized_infantry = { x = 0 y = 1 }
+						mechanized_infantry = { x = 0 y = 2 }
+						mechanized_infantry = { x = 1 y = 0 }
+						motorized_infantry = { x = 1 y = 1 }
+						motorized_infantry = { x = 1 y = 2 }
+						medium_armor = { x = 2 y = 0 }
+						medium_armor = { x = 2 y = 1 }
+					}
+					support = {
+						military_police = { x = 0 y = 0 }
+						signal_company = { x = 1 y = 0 }
+						field_hospital = { x = 0 y = 1 }
+						recon_mechanized = { x = 1 y = 1 }
+					}
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"%dth Tieu-doan Thiet-ky binh\" division_template = \"Lien-Doan Tham-Thinh-Xa\" start_experience_factor = 0.6"
+					owner = VIE
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_PM
+		completion_reward = {
+		}
+		icon = GFX_VIE_NH_Diem_Successor
+		cost = 5
+		relative_position_id = VIE_NH_NamHung_Vietnam_Emperor
+		x = 0
+		y = 17
+		allow_branch = {
+			custom_trigger_tooltip = {
+				tooltip = Diem_Successor_tt
+				has_country_flag = Diem_Successor
+			}
+		}
+		available = {
+			always = no
+		}
+		completion_reward = {
+			custom_effect_tooltip = autocompleted_by_event
+
+			set_party_name = {
+				ideology = socialist
+				long_name = VIE_DIEM_PARTY_long
+				name = VIE_DIEM_PARTY
+			}
+			set_party_name = {
+				ideology = trotskyism
+				long_name = VIE_DIEM_PARTY_long
+				name = VIE_DIEM_PARTY
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_NhanVinized_CD_Teachings
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_PM
+		prerequisite = {
+			focus = VIE_NH_Diem_PM
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = NH_DIEMa.2
+			add_popularity = {
+				ideology = trotskyism
+				popularity = 0.05
+			}
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Form_NRM
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_NhanVinized_CD_Teachings
+		prerequisite = {
+			focus = VIE_NH_Diem_NhanVinized_CD_Teachings
+		}
+		mutually_exclusive = {
+			focus = VIE_NH_Diem_Incorporate_PQH
+		}
+		x = -6
+		y = 1
+		completion_reward = {
+			set_party_name = {
+				ideology = socialist
+				long_name = VIE_NRM_PARTY_long
+				name = VIE_NRM_PARTY
+			}
+			set_party_name = {
+				ideology = democratic
+				long_name = VIE_NRM_PARTY_long
+				name = VIE_NRM_PARTY
+			}
+			set_party_name = {
+				ideology = nationalist
+				long_name = VIE_NRM_PARTY_long
+				name = VIE_NRM_PARTY
+			}
+			set_party_name = {
+				ideology = monarchism
+				long_name = VIE_NRM_PARTY_long
+				name = VIE_NRM_PARTY
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = VIE_NRM_PARTY_long
+				name = VIE_NRM_PARTY
+			}
+			set_party_name = {
+				ideology = Social_Democratic
+				long_name = VIE_NRM_PARTY_long
+				name = VIE_NRM_PARTY
+			}
+			set_party_name = {
+				ideology = Social_Liberalism
+				long_name = VIE_NRM_PARTY_long
+				name = VIE_NRM_PARTY
+			}
+			set_party_name = {
+				ideology = trotskyism
+				long_name = VIE_NRM_PARTY_long
+				name = VIE_NRM_PARTY
+			}
+
+			retire_character = CCC_Tran_Quang_Vinh
+			retire_character = VIE_Hoang_Nam_Hung
+			VIE_Tran_kim_Tuyen = {
+				add_corps_commander_role = {
+					traits = {  }
+					skill = 2
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 2
+					logistics_skill = 2
+				}
+			}
+			add_stability = -0.05
+			add_popularity = {
+				ideology = democratic
+				popularity = -0.05
+			}
+			country_event = NH_DIEMa.5
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Incorporate_PQH
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_NhanVinized_CD_Teachings
+		prerequisite = {
+			focus = VIE_NH_Diem_NhanVinized_CD_Teachings
+		}
+		mutually_exclusive = {
+			focus = VIE_NH_Diem_Form_NRM
+		}
+		x = -3
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			}
+			country_event = NH_DIEMa.4
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Integrate_Buu_CTVN
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Form_NRM
+		prerequisite = {
+			focus = VIE_NH_Diem_Form_NRM
+			focus = VIE_NH_Diem_Incorporate_PQH
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			VIE_Tran_Quoc_Buu = {
+				add_corps_commander_role = {
+					traits = { irregular_officer commando politically_connected french_trainee  }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 3
+				}
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.05
+			}
+			hidden_effect = {
+				remove_ideas = policy_union_temp_0
+				remove_ideas = policy_union_temp_1
+				remove_ideas = policy_union_temp_2
+				remove_ideas = policy_union_temp_3
+			}
+			add_ideas = policy_union_temp_4
+			country_event = CuongDe_NgoDinh.8
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Begin_Early_Land_Reform
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_political_pressure
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Integrate_Buu_CTVN
+		prerequisite = {
+			focus = VIE_NH_Diem_Integrate_Buu_CTVN
+		}
+		x = -3
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = -0.05
+			}
+			custom_effect_tooltip = Decrease_Land_Reform_Penalty_5
+			add_to_variable = {
+				VIE_Land_Reform_Penalty = 0.05
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Nationalize_Foreign_Factories
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_construct_civ_factory
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Integrate_Buu_CTVN
+		prerequisite = {
+			focus = VIE_NH_Diem_Integrate_Buu_CTVN
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			news_event = DiemLR.1
+			set_country_flag = VIE_kicked_out_foreign_comp
+			set_country_flag = Upgraded_TongLienDoan_LaoCong_VietNam_Company_Unlocked
+			custom_effect_tooltip = VIE_Enable_Upgraded_TongLienDoan_LaoCong_VietNam_Company_tt
+			swap_ideas = {
+				remove_idea = TongLienDoan_LaoCong_VietNam
+				add_idea = Upgraded_TongLienDoan_LaoCong_VietNam
+			}
+			if = {
+				limit = { has_dlc = "Arms Against Tyranny" }
+				unlock_military_industrial_organization_tooltip = mio:VIE_Upgraded_TongLienDoan_LaoCong_VietNam_Material_mio
+				every_military_industrial_organization = {
+					limit = {
+						is_military_industrial_organization = VIE_Upgraded_TongLienDoan_LaoCong_VietNam_Material_mio
+					}
+					add_mio_funds = 300
+					add_mio_funds_gain_factor = 0.2
+				}
+			}
+			add_stability = -0.10
+			add_popularity = {
+				ideology = trotskyism
+				popularity = 0.05
+			}
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			capital_scope = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = office_park
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			for_loop_effect = {
+				end = 5
+				value = temp
+				add = 1
+				random_owned_state = {
+					limit = {
+						industrial_complex > 0
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+			}
+			add_opinion_modifier = {
+				target = CHI
+				modifier = medium_decrease
+			}
+			reverse_add_opinion_modifier = {
+				target = CHI
+				modifier = medium_decrease
+			}
+			add_opinion_modifier = {
+				target = FRA
+				modifier = medium_decrease
+			}
+			reverse_add_opinion_modifier = {
+				target = FRA
+				modifier = medium_decrease
+			}
+			add_opinion_modifier = {
+				target = USA
+				modifier = medium_decrease
+			}
+			reverse_add_opinion_modifier = {
+				target = USA
+				modifier = medium_decrease
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_AgroCredit_Experiment
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Begin_Early_Land_Reform
+		prerequisite = {
+			focus = VIE_NH_Diem_Begin_Early_Land_Reform
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = CuongDe_NgoDinh.33
+			custom_effect_tooltip = Increase_Food_Income_TT
+			add_to_variable = {
+				farm_income_bonus = 0.25
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Begin_Early_Industrialization
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_construct_civ_factory
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Nationalize_Foreign_Factories
+		prerequisite = {
+			focus = VIE_NH_Diem_Nationalize_Foreign_Factories
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = DiemLR.2
+			set_temp_variable = { money_to_gain = -0.5 }
+			add_money_with_tooltip_effect = yes
+			983 = {
+				set_state_category = pop1dev2
+				add_building_construction = {
+					type = industrial_complex
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Appoint_Cung_LandReform_Minister
+		icon = GFX_goal_generic_political_pressure
+		cost = 5
+		relative_position_id = VIE_NH_Diem_AgroCredit_Experiment
+		prerequisite = {
+			focus = VIE_NH_Diem_AgroCredit_Experiment
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = DiemLR.0
+			if = {
+				limit = {
+					has_country_flag = Cung_Defection
+					has_character = NLF_Kieu_Cong_Cung
+				}
+				NLF_Kieu_Cong_Cung = {
+					add_unit_leader_trait = politically_connected
+				}
+				custom_effect_tooltip = VIE_Diem_Cung_Civic_Action_tt
+			}
+			else = {
+				custom_effect_tooltip = VIE_Diem_No_Cung_tt
+			}
+			custom_effect_tooltip = Decrease_Land_Reform_Penalty_5
+			add_to_variable = {
+				VIE_Land_Reform_Penalty = 0.05
+			}
+			set_temp_variable = { money_to_gain = -1 }
+			add_money_with_tooltip_effect = yes
+			every_owned_state = {
+				add_extra_state_shared_building_slots = 1
+			}
+			add_opinion_modifier = {
+				target = VIN
+				modifier = small_increase
+			}
+			VIN = {
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = PRC
+				modifier = small_increase
+			}
+			PRC = {
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = SOV
+				modifier = small_increase
+			}
+			SOV = {
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_increase
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Mobilize_Syndicates
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Begin_Early_Industrialization
+		prerequisite = {
+			focus = VIE_NH_Diem_Begin_Early_Industrialization
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = VIE_National_Reconstruction
+				days = 365
+			}
+			set_variable = { THIS.idea_len_@token:VIE_National_Reconstruction = 900 }
+			set_variable = { THIS.idea_date_@token:VIE_National_Reconstruction = global.num_days }
+
+			set_country_flag = VIE_Mobilized_Civil_Action_Cadres
+			country_event = CuongDe_NgoDinh.32
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Modernize_Countryside
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Appoint_Cung_LandReform_Minister
+		prerequisite = {
+			focus = VIE_NH_Diem_Appoint_Cung_LandReform_Minister
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			set_temp_variable = { money_to_gain = -1 }
+			add_money_with_tooltip_effect = yes
+			every_owned_state = {
+				add_building_construction = {
+					type = water_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_to_variable = {
+					Discounted_Industrialization_Level = 0.2
+					tooltip = Industrialization_Development_Discount_20_tt
+				}
+			}
+			983 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			country_event = CuongDe_NgoDinh.11
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Import_Foreign_Machinery
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_construct_infrastructure
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Mobilize_Syndicates
+		prerequisite = {
+			focus = VIE_NH_Diem_Mobilize_Syndicates
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 2 }
+			add_tech_bonus = {
+				name = agri_tech_bonus
+				bonus = 0.25
+				uses = 3
+				category = agriculture
+			}
+			country_event = CuongDe_NgoDinh.31
+			hidden_effect = {
+				country_event = { id = CuongDe_NgoDinh.30 days = 30 }
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Begin_5YP
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Integrate_Buu_CTVN
+		prerequisite = {
+			focus = VIE_NH_Diem_Modernize_Countryside
+		}
+		prerequisite = {
+			focus = VIE_NH_Diem_Import_Foreign_Machinery
+		}
+		x = 0
+		y = 5
+		completion_reward = {
+			custom_effect_tooltip = VIE_NH_Diem_Begin_5YP_WIP_tt
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Establish_CNP
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_NhanVinized_CD_Teachings
+		prerequisite = {
+			focus = VIE_NH_Diem_NhanVinized_CD_Teachings
+		}
+		x = 0
+		y = 1
+		bypass = {
+			has_completed_focus = VIE_NH_Diem_Form_NRM
+		}
+		completion_reward = {
+			country_event = NH_DIEMa.3
+			set_party_name = {
+				ideology = socialist
+				long_name = VIE_CONG_PARTY_long
+				name = VIE_CONG_PARTY
+			}
+			set_party_name = {
+				ideology = trotskyism
+				long_name = VIE_CONG_PARTY_long
+				name = VIE_CONG_PARTY
+			}
+			set_party_name = {
+				ideology = nationalist
+				long_name = VIE_CONG_PARTY_long
+				name = VIE_CONG_PARTY
+			}
+			set_party_name = {
+				ideology = Social_Democratic
+				long_name = VIE_CONG_PARTY_long
+				name = VIE_CONG_PARTY
+			}
+
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_NhanVinize_Bureaucracy
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Establish_CNP
+		prerequisite = {
+			focus = VIE_NH_Diem_Establish_CNP
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = CuongDe_NgoDinh.12
+			add_popularity = {
+				ideology = trotskyism
+				popularity = 0.03
+			}
+			add_stability = 0.04
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Feminist_Reforms
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_political_pressure
+		cost = 5
+		relative_position_id = VIE_NH_Diem_NhanVinize_Bureaucracy
+		prerequisite = {
+			focus = VIE_NH_Diem_NhanVinize_Bureaucracy
+		}
+		x = -4
+		y = 1
+		completion_reward = {
+			add_popularity = {
+				ideology = communism
+				popularity = 0.01
+			}
+			add_stability = -0.01
+			increase_saga_rights = yes
+			hidden_effect = {
+				increase_saga_rights = yes
+			}
+			increase_women_policy = yes
+			country_event = CuongDe_NgoDinh.5
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_1st_GiaDinh_Law
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Feminist_Reforms
+		prerequisite = {
+			focus = VIE_NH_Diem_Feminist_Reforms
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			increase_women_policy = yes
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_PhuNu_LienDoi_Movement
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_1st_GiaDinh_Law
+		prerequisite = {
+			focus = VIE_NH_Diem_1st_GiaDinh_Law
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			country_event = NH_DIEMa.7
+			VIE_Tran_le_Xuan = {
+				add_corps_commander_role = {
+					traits = { irregular_officer politically_connected  }
+					skill = 2
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 2
+					logistics_skill = 2
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"1st Phu-nu Lien-doi Tu-ve Su-doan\" division_template = \"Su-Doan Hien-Binh Quoc-Gia\" start_experience_factor = 0.5"
+					owner = VIE
+				}
+			}
+			add_popularity = {
+				ideology = neutrality
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = communism
+				popularity = 0.01
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Pardon_Ex_VietMinh
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_NhanVinize_Bureaucracy
+		prerequisite = {
+			focus = VIE_NH_Diem_NhanVinize_Bureaucracy
+		}
+		x = -2
+		y = 2
+		completion_reward = {
+			every_owned_state = {
+				limit = {
+					is_core_of = NLF
+				}
+				add_core_of = VIE
+			}
+			NLF = {
+				every_owned_state = {
+					limit = {
+						is_core_of = NLF
+					}
+					add_core_of = VIE
+				}
+			}
+			add_stability =0.05
+			VIN = {
+				add_popularity = {
+					ideology = trotskyism
+					popularity = 0.05
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = Cung_Defection
+					has_character = NLF_Kieu_Cong_Cung
+				}
+				NLF_Kieu_Cong_Cung = {
+					add_unit_leader_trait = politically_connected
+				}
+				add_to_variable = { VIE_ChieuHoi_Cadres = 2 }
+				custom_effect_tooltip = VIE_Diem_Cung_Civic_Action_tt
+			}
+			country_event = NH_DIEMa.8
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Study_Marxist_Org
+		completion_reward = {
+		}
+		icon = GFX_goal_support_communism
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Pardon_Ex_VietMinh
+		prerequisite = {
+			focus = VIE_NH_Diem_Pardon_Ex_VietMinh
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			set_country_flag = VIE_Diem_Embrace_Marxist_Ways
+			set_variable = { VIE_ChieuHoi_Cadres = 5 }
+			custom_effect_tooltip = Enable_Ideological_Decision_TT
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Expand_CNP
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_NhanVinize_Bureaucracy
+		prerequisite = {
+			focus = VIE_NH_Diem_NhanVinize_Bureaucracy
+		}
+		x = 0
+		y = 3
+		completion_reward = {
+			add_popularity = {
+				ideology = trotskyism
+				popularity = 0.1
+			}
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Promote_Viet_Patriotism
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_national_unity
+		cost = 5
+		relative_position_id = VIE_NH_Diem_NhanVinize_Bureaucracy
+		prerequisite = {
+			focus = VIE_NH_Diem_NhanVinize_Bureaucracy
+		}
+		x = 2
+		y = 2
+		completion_reward = {
+			country_event = CuongDe_NgoDinh.23
+			add_stability = 0.05
+			add_war_support = 0.05
+			add_opinion_modifier = {
+				target = VIN
+				modifier = small_increase
+			}
+			VIN = {
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_increase
+				}
+			}
+
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Mend_Class_Tensions
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Promote_Viet_Patriotism
+		prerequisite = {
+			focus = VIE_NH_Diem_Promote_Viet_Patriotism
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			country_event = CuongDe_NgoDinh.28
+			add_popularity = {
+				ideology = trotskyism
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = communism
+				popularity = 0.01
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Outlaw_Viet_Quoc
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_political_pressure
+		cost = 5
+		relative_position_id = VIE_NH_Diem_NhanVinize_Bureaucracy
+		prerequisite = {
+			focus = VIE_NH_Diem_NhanVinize_Bureaucracy
+		}
+		x = 4
+		y = 1
+		completion_reward = {
+			country_event = CuongDe_NgoDinh.19
+			set_party_name = {
+				ideology = neutrality
+				long_name = VIE_PARTY_BANNED_long
+				name = VIE_PARTY_BANNED
+			}
+			set_party_name = {
+				ideology = fascism
+				long_name = VIE_PARTY_BANNED_long
+				name = VIE_PARTY_BANNED
+			}
+			set_party_name = {
+				ideology = Liberal_Conservatism
+				long_name = VIE_PARTY_BANNED_long
+				name = VIE_PARTY_BANNED
+			}
+			set_party_name = {
+				ideology = conservative
+				long_name = VIE_PARTY_BANNED_long
+				name = VIE_PARTY_BANNED
+			}
+			create_wargoal = {
+				type = annex_everything
+				target = PQC
+			}
+			add_opinion_modifier = {
+				target = CHI
+				modifier = large_decrease
+			}
+			CHI = {
+				add_opinion_modifier = {
+					target = VIE
+					modifier = large_decrease
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Destroy_Org_Crime
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Outlaw_Viet_Quoc
+		prerequisite = {
+			focus = VIE_NH_Diem_Outlaw_Viet_Quoc
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			CCC = {
+				transfer_state = 1754
+			}
+			hidden_effect = {
+				VIE_Le_Van_Vien = {
+					set_nationality = CCC
+				}
+				CCC = {
+					load_oob = CCC_Binh_Xuyen
+					set_cosmetic_tag = CCC_Binh_Xuyen
+					set_politics = {
+						ruling_party = neutrality
+						elections_allowed = no
+					}
+					add_country_leader_role = {
+						character = VIE_Le_Van_Vien
+						promote_leader = yes
+						country_leader = {
+							ideology = stratocracy
+						}
+					}
+				}
+			}
+            declare_war_on = {
+                target = CCC
+                type = annex_everything
+            }
+			country_event = CuongDe_NgoDinh.20
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Disarm_Religious_Private_Armies
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Destroy_Org_Crime
+		prerequisite = {
+			focus = VIE_NH_Diem_Destroy_Org_Crime
+		}
+		x = 0
+		y = 2
+		completion_reward = {
+			country_event = CuongDe_NgoDinh.21
+			set_temp_variable = { cao_dai_annihilation_change = -10 }
+			cao_dai_annihilation_change_tt = yes
+			set_temp_variable = { hoa_hao_annihilation_change = -10 }
+			hoa_hao_annihilation_change_tt = yes
+			set_temp_variable = { umdc_annihilation_change = -10 }
+			umdc_annihilation_change_tt = yes
+
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Form_Rev_Youth_Movements
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Expand_CNP
+		prerequisite = {
+			focus = VIE_NH_Diem_PhuNu_LienDoi_Movement
+		}
+		prerequisite = {
+			focus = VIE_NH_Diem_Study_Marxist_Org
+		}
+		prerequisite = {
+			focus = VIE_NH_Diem_Expand_CNP
+		}
+		prerequisite = {
+			focus = VIE_NH_Diem_Mend_Class_Tensions
+		}
+		prerequisite = {
+			focus = VIE_NH_Diem_Disarm_Religious_Private_Armies
+		}
+		x = 0
+		y = 3
+		completion_reward = {
+			add_stability = 0.01
+			country_event = NH_DIEMa.9
+			add_ideas = Revolutionary_Youth_Movement_Diem
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Promoting_Pan_Asianism
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_national_unity #PLACEHOLDER - Replace with Pan-Asianism dedicated icon
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Expand_CNP
+		prerequisite = {
+			focus = VIE_NH_Diem_Form_Rev_Youth_Movements
+		}
+		mutually_exclusive = {
+			focus = VIE_NH_Diem_Forming_Tay_Ninh_Revolutionary_Training_Base
+		}
+		x = -1
+		y = 4
+		completion_reward = {
+			country_event = NH_DIEMa.10
+			every_country = {
+				limit = {
+					capital_scope = {
+						is_on_continent = asia
+					}
+				}
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_increase
+				}
+				reverse_add_opinion_modifier = {
+					target = PREV
+					modifier = small_increase
+				}
+			}
+			ENG = {
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_decrease
+				}
+				reverse_add_opinion_modifier = {
+					target = PREV
+					modifier = small_decrease
+				}
+			}
+			USA = {
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_decrease
+				}
+				reverse_add_opinion_modifier = {
+					target = PREV
+					modifier = small_decrease
+				}
+			}
+			FRA = {
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_decrease
+				}
+				reverse_add_opinion_modifier = {
+					target = PREV
+					modifier = small_decrease
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Forming_Tay_Ninh_Revolutionary_Training_Base
+		icon = GFX_unknown
+		completion_reward = {
+		}
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Expand_CNP
+		prerequisite = {
+			focus = VIE_NH_Diem_Form_Rev_Youth_Movements
+		}
+		mutually_exclusive = {
+			focus = VIE_NH_Diem_Promoting_Pan_Asianism
+		}
+		x = 1
+		y = 4
+		completion_reward = {
+			country_event = NH_DIEMa.11
+			add_popularity = {
+				ideology = communism
+				popularity = 0.01
+			}
+			add_stability = 0.05
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Begin_Second_Stage_of_Personalist_Revolution
+		icon = GFX_unknown
+		completion_reward = {
+		}
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Expand_CNP
+		prerequisite = {
+			focus = VIE_NH_Diem_Forming_Tay_Ninh_Revolutionary_Training_Base
+			focus = VIE_NH_Diem_Promoting_Pan_Asianism
+		}
+		x = 0
+		y = 5
+		completion_reward = {
+			country_event = CuongDe_NgoDinh.25
+			hidden_effect = {
+				country_event = { id = DiemLR.3 hours = 6 }
+			}
+			add_stability = 0.05
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Rev_Paramilitaries
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_NhanVinized_CD_Teachings
+		prerequisite = {
+			focus = VIE_NH_Diem_NhanVinized_CD_Teachings
+		}
+		mutually_exclusive = {
+			focus = VIE_NH_Diem_Rev_VKQQ
+		}
+		x = 3
+		y = 1
+		completion_reward = {
+			delete_unit_template_and_units = {
+				division_template = "Bao-Chinh-Doan"
+				disband = yes
+			}
+			delete_unit_template_and_units = {
+				division_template = "Nghia-Dung-Doan"
+				disband = yes
+			}
+			delete_unit_template_and_units = {
+				division_template = "Ve-Binh Quoc-Gia"
+				disband = yes
+			}
+			division_template = {
+				name = "Thanh-nu Dan-quoc"
+				division_names_group = VIE_MIL_01
+				template_counter = 236
+				priority = 0
+				is_locked = yes
+
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 0 y = 2 }
+					militia = { x = 0 y = 3 }
+
+					motorized_infantry = { x = 1 y = 0 }
+
+				}
+				support = {
+					field_hospital = { x = 0 y = 0 }
+					maintenance_company = { x = 0 y = 1 }
+					military_police = { x = 0 y = 2 }
+				}
+			}
+			division_template = {
+				name = "Thanh-nien Dan-quoc"
+				division_names_group = VIE_MIL_01
+				template_counter = 236
+				priority = 0
+				is_locked = yes
+
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 0 y = 2 }
+					militia = { x = 0 y = 3 }
+					militia = { x = 0 y = 4 }
+
+					artillery = { x = 1 y = 0 }
+
+				}
+				support = {
+					field_hospital = { x = 0 y = 0 }
+					maintenance_company = { x = 0 y = 1 }
+					military_police = { x = 0 y = 2 }
+				}
+			}
+			division_template = {
+				name = "Thanh-tra Thanh-nien"
+				division_names_group = VIE_MIL_01
+				template_counter = 236
+				priority = 0
+				is_locked = yes
+
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+
+					motorized_infantry = { x = 1 y = 0 }
+
+					artillery = { x = 2 y = 0 }
+				}
+				support = {
+					field_hospital = { x = 0 y = 0 }
+					maintenance_company = { x = 0 y = 1 }
+					military_police = { x = 0 y = 2 }
+					artillery_support = { x = 0 y = 3 }
+				}
+			}
+			country_event = NH_DIEMa.6
+			add_stability = -0.05
+			random_unit_leader = {
+				add_trait = { trait = politically_connected }
+			}
+
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Rev_VKQQ
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_NhanVinized_CD_Teachings
+		prerequisite = {
+			focus = VIE_NH_Diem_NhanVinized_CD_Teachings
+		}
+		mutually_exclusive = {
+			focus = VIE_NH_Diem_Rev_Paramilitaries
+		}
+		x = 6
+		y = 1
+		completion_reward = {
+			delete_unit_template_and_units = {
+				division_template = "Bao-Chinh-Doan"
+				disband = yes
+			}
+			delete_unit_template_and_units = {
+				division_template = "Nghia-Dung-Doan"
+				disband = yes
+			}
+			delete_unit_template_and_units = {
+				division_template = "Ve-Binh Quoc-Gia"
+				disband = yes
+			}
+			division_template = {
+				name = "Kien-quoc Su-doan"
+				division_names_group = VIE_MIL_01
+				template_counter = 236
+				priority = 0
+				is_locked = yes
+
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 0 y = 3 }
+					infantry = { x = 0 y = 4 }
+					militia = { x = 1 y = 0 }
+					artillery = { x = 2 y = 0 }
+					rocket_sp_artillery = { x = 3 y= 0 }
+				}
+				support = {
+					field_hospital = { x = 0 y = 0 }
+					maintenance_company = { x = 0 y = 1}
+				}
+			}
+			division_template = {
+				name = "Dia-phuong Quan"
+				division_names_group = VIE_MIL_01
+				template_counter = 236
+				priority = 0
+				is_locked = yes
+
+				regiments = {
+					militia = { x = 0 y = 0 }
+					militia = { x = 0 y = 1 }
+					militia = { x = 0 y = 2 }
+					militia = { x = 0 y = 3 }
+					militia = { x = 0 y = 4 }
+					motorized_infantry = { x = 1 y = 0 }
+				}
+				support = {
+					field_hospital = { x = 0 y = 0 }
+					signal_company = { x = 0 y = 1}
+				}
+			}
+			country_event = CuongDe_NgoDinh.17
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Promote_NhanVi_Loyalists
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Rev_VKQQ
+		prerequisite = {
+			focus = VIE_NH_Diem_Rev_Paramilitaries
+			focus = VIE_NH_Diem_Rev_VKQQ
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_stability = -0.05
+			add_war_support = 0.05
+			add_popularity = {
+				ideology = trotskyism
+				popularity = 0.02
+			}
+			add_popularity = {
+				ideology = communism
+				popularity = 0.01
+			}
+
+			VIE_Nguyen_Ngoc_Le = {
+				set_portraits = { army = { large = "gfx/leaders/VIE/GENERALS/VIE_Nguyen_Ngoc_Le_Personalist.dds" } }
+				add_trait = { trait = politically_connected }
+			}
+			VIE_Do_Mau = {
+				set_portraits = { army = { large = "gfx/leaders/VIE/GENERALS/VIE_Do_Mau_Personalist.dds" } }
+				add_trait = { trait = politically_connected }
+			}
+			VIE_Ngo_Dinh_Nhu = {
+				set_portraits = { army = { large = "gfx/leaders/VIE/GENERALS/VIE_Ngo_Dinh_Nhu_Personalist.dds" } }
+				add_trait = { trait = politically_connected }
+			}
+
+			VIE_Ton_that_Dinh = {
+				add_corps_commander_role = {
+					traits = { irregular_officer politically_connected commando }
+					skill = 2
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 2
+					logistics_skill = 2
+				}
+			}
+			VIE_Tran_thien_Khiem = {
+				add_corps_commander_role = {
+					traits = { jungle_rat politically_connected infantry_leader }
+					skill = 2
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 2
+					logistics_skill = 2
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_NhanVi_Pol_Commissar
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Promote_NhanVi_Loyalists
+		prerequisite = {
+			focus = VIE_NH_Diem_Promote_NhanVi_Loyalists
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = CuongDe_NgoDinh.26
+			add_ideas = Diem_Pol_Commissar
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Adopt_Jungle_Training
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Promote_NhanVi_Loyalists
+		prerequisite = {
+			focus = VIE_NH_Diem_Promote_NhanVi_Loyalists
+		}
+		x = 3
+		y = 1
+		completion_reward = {
+			add_command_power = 10
+			army_experience = 5
+			add_tech_bonus = {
+				name = special_forces_bonus
+				bonus = 0.15
+				uses = 3
+				category = sf_forces
+			}
+
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_ThuDuc_Army_Academy
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 5
+		relative_position_id = VIE_NH_Diem_NhanVi_Pol_Commissar
+		prerequisite = {
+			focus = VIE_NH_Diem_NhanVi_Pol_Commissar
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = CuongDe_NgoDinh.22
+			add_ideas = VIE_VoBi_Academies
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Armed_Womens_Wing
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Adopt_Jungle_Training
+		prerequisite = {
+			focus = VIE_NH_Diem_Adopt_Jungle_Training
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			VIE_Ho_thi_Que = {
+				add_corps_commander_role = {
+					traits = { irregular_officer politically_connected  }
+					skill = 3
+					attack_skill = 3
+					defense_skill = 3
+					planning_skill = 3
+					logistics_skill = 3
+				}
+			}
+			hidden_effect = {
+				division_template = {
+					name = "Su-doan Nu-quan-nhan Dan-quoc"
+					division_names_group = VIE_MIL_01
+					priority = 0
+					is_locked = no
+
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+
+						motorized_infantry = { x = 2 y = 0 }
+					}
+					support = {
+						field_hospital = { x = 0 y = 0 }
+						artillery_support = { x = 1 y = 0 }
+					}
+				}
+			}
+			capital_scope = {
+				create_unit = {
+					division = "name = \"1st Su-doan Nu-quan-nhan Dan-quoc\" division_template = \"Su-doan Nu-quan-nhan Dan-quoc\" start_experience_factor = 0.5"
+					owner = VIE
+				}
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Rev_Fanaticism
+		completion_reward = {
+		}
+		icon = GFX_unknown
+		cost = 5
+		relative_position_id = VIE_NH_Diem_ThuDuc_Army_Academy
+		prerequisite = {
+			focus = VIE_NH_Diem_ThuDuc_Army_Academy
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = Diem_Pol_Commissar
+				add_idea = Diem_Pol_Commissar2
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Modern_Warfare_Tactics
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_demand_territory
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Armed_Womens_Wing
+		prerequisite = {
+			focus = VIE_NH_Diem_Armed_Womens_Wing
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_command_power = 10
+			army_experience = 20
+			add_doctrine_cost_reduction = {
+				cost_reduction = 0.1
+				uses = 2
+				category = land_doctrine
+			}
+			random_unit_leader = {
+				gain_xp = 50
+			}
+
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_Raise_Soldier_Pay
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_allies_build_infantry
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Rev_Fanaticism
+		prerequisite = {
+			focus = VIE_NH_Diem_Rev_Fanaticism
+		}
+		prerequisite = {
+			focus = VIE_NH_Diem_Modern_Warfare_Tactics
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_ideas = Diem_Soldiers_Pay_Hike
+			add_popularity = {
+				ideology = conservative
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = VIE_NH_Diem_2nd_Mil_Reforms
+		completion_reward = {
+		}
+		icon = GFX_goal_generic_political_pressure
+		cost = 5
+		relative_position_id = VIE_NH_Diem_Raise_Soldier_Pay
+		prerequisite = {
+			focus = VIE_NH_Diem_Raise_Soldier_Pay
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_command_power = 30
+		}
+	}
+}

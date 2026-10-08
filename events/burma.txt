@@ -1,0 +1,61 @@
+# KRCW (build/patch_residue.py): 2 OTL events dropped while KRCW_active
+add_namespace = burma
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = burma.1 
+ immediate = { }
+	title = burma.1.t
+	desc = burma.1.d
+	picture = GFX_Coup_in_Burma
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {  #ne win becomes leader of burma
+	news_event = { days = 1 id = burma.2 } 
+		name = burma.1.a
+		create_country_leader = {
+			name = "Ne Win"
+			picture = "Ne_Win_80s.dds"
+			ideology = military_junta
+		}
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 70
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+		}
+	hidden_effect = {
+		news_event = { days = 1 id = burma.2 } 
+      	}
+	}
+	# U Nu Remains
+	option = {
+		name = burma.1.b
+		ai_chance = {
+			factor = 15
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = burma.2 
+ immediate = { }
+	title = burma.2.t
+	desc = burma_2022.2.d
+	picture = GFX_Coup_in_Burma_news
+	major = yes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = burma.2.a
+	}
+}

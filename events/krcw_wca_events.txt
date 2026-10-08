@@ -1,0 +1,256 @@
+add_namespace = krcw_wca
+
+country_event = {
+	id = krcw_wca.20
+	title = krcw_wca_20_t
+	desc = krcw_wca_20_d
+	picture = GFX_krcw_us_wca_militia
+	is_triggered_only = yes
+	trigger = {
+		tag = WCA
+		has_global_flag = KRCW_long_dead
+	}
+	option = {
+		name = krcw_wca_20.a
+		ai_chance = {
+			base = 70
+		}
+		add_political_power = 25
+		add_stability = 0.02
+		krcw_ohio_down_small = yes
+		set_global_flag = KRCW_wca_waited_after_long
+		custom_effect_tooltip = krcw_wca_long_wait_tt
+	}
+	option = {
+		name = krcw_wca_20.b
+		ai_chance = {
+			base = 20
+		}
+		add_political_power = 15
+		krcw_ohio_up_small = yes
+		if = { limit = { country_exists = USA } USA = { add_stability = -0.03 } }
+	}
+	option = {
+		name = krcw_wca_20.c
+		ai_chance = {
+			base = 15
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		army_experience = 15
+		add_war_support = 0.05
+		krcw_ohio_up_medium = yes
+		set_global_flag = KRCW_wca_mobilised_after_long
+		custom_effect_tooltip = krcw_wca_long_mobilise_tt
+	}
+}
+
+country_event = {
+	id = krcw_wca.5
+	title = krcw_wca_5_t
+	desc = krcw_wca_5_d
+	picture = GFX_krcw_us_congress
+	is_triggered_only = yes
+	trigger = {
+		tag = WCA
+	}
+	option = {
+		name = krcw_wca_5.a
+		ai_chance = {
+			base = 65
+		}
+		add_stability = 0.04
+		add_political_power = 50
+		set_country_flag = krcw_wca_congress_builders
+		krcw_ohio_down_small = yes
+	}
+	option = {
+		name = krcw_wca_5.b
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.08
+		army_experience = 15
+		set_country_flag = krcw_wca_congress_liberators
+		krcw_ohio_up_medium = yes
+	}
+	option = {
+		name = krcw_wca_5.c
+		ai_chance = {
+			base = 25
+		}
+		add_political_power = -25
+		add_stability = 0.02
+		set_country_flag = krcw_wca_congress_deferred
+	}
+}
+
+country_event = {
+	id = krcw_wca.10
+	title = krcw_wca_10_t
+	desc = krcw_wca_10_d
+	picture = GFX_krcw_us_wca_election
+	is_triggered_only = yes
+	trigger = {
+		tag = WCA
+	}
+	option = {
+		name = krcw_wca_10.a
+		ai_chance = {
+			base = 75
+		}
+		add_stability = 0.05
+		add_political_power = 75
+		krcw_ohio_down_medium = yes
+
+		set_global_flag = KRCW_wca_free_election
+		if = { limit = { country_exists = USA } USA = { add_stability = -0.02 } }
+	}
+	option = {
+		name = krcw_wca_10.b
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.05
+		add_political_power = 25
+		krcw_ohio_up_small = yes
+		set_global_flag = KRCW_wca_free_election
+	}
+}
+
+country_event = {
+	id = krcw_wca.14
+	title = krcw_wca_14_t
+	desc = krcw_wca_14_d
+	picture = GFX_krcw_us_wca_election
+	is_triggered_only = yes
+	trigger = {
+		tag = WCA
+	}
+	option = {
+		name = krcw_wca_14.a
+		ai_chance = {
+			base = 60
+		}
+		add_war_support = 0.06
+		army_experience = 15
+		add_political_power = 25
+		krcw_ohio_up_medium = yes
+		set_global_flag = KRCW_wca_free_election
+		if = { limit = { country_exists = USA } USA = { add_war_support = 0.03 } }
+	}
+	option = {
+		name = krcw_wca_14.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -25
+		add_stability = 0.03
+		add_war_support = 0.02
+		krcw_ohio_up_small = yes
+		set_global_flag = KRCW_wca_free_election
+	}
+}
+
+country_event = {
+	id = krcw_wca.11
+	title = krcw_wca_11_t
+	desc = krcw_wca_11_d
+	picture = GFX_krcw_us_nationalisation
+	is_triggered_only = yes
+	trigger = {
+		tag = WCA
+	}
+	option = {
+		name = krcw_wca_11.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = -50
+		add_stability = 0.03
+		set_country_flag = krcw_wca_arbitration_imposed
+		if = { limit = { has_idea = krcw_wca_syndicate_factionalism } add_political_power = 25 }
+	}
+	option = {
+		name = krcw_wca_11.b
+		ai_chance = {
+			base = 30
+		}
+		add_political_power = 25
+		add_stability = -0.03
+		set_country_flag = krcw_wca_federations_unsettled
+	}
+	option = {
+		name = krcw_wca_11.c
+		ai_chance = {
+			base = 20
+		}
+		add_political_power = -15
+		if = { limit = { country_exists = CAN } CAN = { add_opinion_modifier = { target = ROOT modifier = krcw_us_good_neighbour } } }
+	}
+}
+
+country_event = {
+	id = krcw_wca.12
+	title = krcw_wca_12_t
+	desc = krcw_wca_12_d
+	picture = GFX_krcw_us_harlan_c
+	is_triggered_only = yes
+	trigger = {
+		tag = WCA
+	}
+	option = {
+		name = krcw_wca_12.a
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = -50
+		add_stability = 0.04
+		add_manpower = 15000
+		set_country_flag = krcw_wca_appalachia_rebuilt
+		if = { limit = { has_idea = krcw_wca_appalachian_front } add_political_power = 25 }
+	}
+	option = {
+		name = krcw_wca_12.b
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 50
+		add_stability = -0.03
+		add_war_support = -0.02
+		set_country_flag = krcw_wca_detroit_first
+	}
+}
+
+country_event = {
+	id = krcw_wca.13
+	title = krcw_wca_13_t
+	desc = krcw_wca_13_d
+	picture = GFX_krcw_us_wca_women
+	is_triggered_only = yes
+	trigger = {
+		tag = WCA
+	}
+	option = {
+		name = krcw_wca_13.a
+		ai_chance = {
+			base = 70
+		}
+		add_stability = 0.03
+		krcw_ohio_down_medium = yes
+
+		set_country_flag = krcw_wca_peace_letters
+	}
+	option = {
+		name = krcw_wca_13.b
+		ai_chance = {
+			base = 30
+		}
+		add_political_power = 25
+		add_war_support = 0.03
+		add_stability = -0.02
+		set_country_flag = krcw_wca_political_education
+	}
+}

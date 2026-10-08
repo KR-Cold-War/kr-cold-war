@@ -1,0 +1,38 @@
+# KRCW (build/patch_residue.py): 1 OTL events dropped while KRCW_active
+###########################
+#  Operation Power Pack Event
+###########################
+
+add_namespace = kaiser
+add_namespace = hitler
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = kaiser.1 
+ immediate = { }
+	title = kaiser.1.t
+	desc = kaiser.1.d
+	picture = GFX_report_event_cambodia
+
+	is_triggered_only = yes
+
+	option = {
+		name = kaiser.1.a
+		WGR = {
+			annex_country = { target = DDR }
+			set_capital = { state = 742 }
+			remove_ideas = wgr_ddr_refugees
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = kaiser.1.b
+		start_civil_war = {
+			ideology = monarchism
+			size = 0.5
+		}
+	}
+}

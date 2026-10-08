@@ -1,0 +1,6082 @@
+# KRCW (build/patch_residue.py): 192 OTL events dropped while KRCW_active
+#Start of War Events NATO Turkey and Greece
+add_namespace = THIRD_BALKAN_WAR
+
+#Respond to Enosis (Event from TUR_Resond_Enosis) 
+#-Intervene (Turkish part of Cyprus occupied by Turkey, leads to Greece event "Turkish troops occupy parts of Cyprus", global event "Enosis Crisis Begins")
+	#MAKE SOVIET BIT INTEGRATED
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.0
+ immediate = { }
+	title = THIRD_BALKAN_WAR.0.t
+	desc = THIRD_BALKAN_WAR.0.d
+	picture = GFX_THIRD_BALKAN_WAR_0
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.0.a
+		trigger = {
+			OR = {
+				original_tag = GRE
+				original_tag = PDG
+			}
+		}
+		if = {
+			limit = {
+				original_tag = PDG
+			}
+			ENG = {
+				country_event = THIRD_BALKAN_WAR.141
+			}
+		}
+		else = {
+			country_event = THIRD_BALKAN_WAR.1
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.0.b
+		trigger = {
+			NOT = {
+				OR = {
+					original_tag = GRE
+					original_tag = PDG
+				}
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.1
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.1.t
+	desc = THIRD_BALKAN_WAR.1.d
+	picture = GFX_THIRD_BALKAN_WAR_1
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.1.a
+		news_event = THIRD_BALKAN_WAR.2
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.1.b
+		news_event = THIRD_BALKAN_WAR.4
+		trigger = {
+			owns_state = 43
+			has_idea = nato_member
+		
+		}
+		USA = {
+			country_event = {
+				id = THIRD_BALKAN_WAR.5
+				days = 5
+			}
+		}	
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.2
+ immediate = { }
+	title = THIRD_BALKAN_WAR.2.t
+	desc = THIRD_BALKAN_WAR.2.d
+	picture = GFX_THIRD_BALKAN_WAR_2
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.2.a
+        trigger = {
+            NOT = {
+				tag = GRE
+			}
+            NOT = {
+				tag = PDG
+			}
+            NOT = {
+				tag = TUR
+			}
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.2.b
+        trigger = {
+            OR = {
+				tag = GRE 
+				tag = PDG
+			}
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.2.c
+        trigger = {
+            tag = TUR
+        }
+		
+		TUR = {
+			transfer_state = 912
+			country_event = THIRD_BALKAN_WAR.14
+		}
+		if = {
+			limit = {
+				country_exists = PDG
+			}
+			PDG = {
+				transfer_state = 183
+				transfer_state = 915
+				country_event = THIRD_BALKAN_WAR.13
+			}
+		}
+		else = {
+			GRE = {
+				transfer_state = 183
+				transfer_state = 915
+				country_event = THIRD_BALKAN_WAR.13
+			}
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.2.d
+        trigger = {
+            tag = TUR
+        }
+		news_event = THIRD_BALKAN_WAR.3
+		hidden_effect = {
+			news_event = {
+				id = THIRD_BALKAN_WAR.4
+				days = 3
+			}
+			if = {
+				limit = {
+					GRE = {
+						owns_state = 43
+						has_idea = nato_member
+					}
+				}
+				USA = {
+					country_event = {
+						id = THIRD_BALKAN_WAR.5
+						days = 5
+					}
+				}	
+			}
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.3
+ immediate = { }
+	title = THIRD_BALKAN_WAR.3.t
+	desc = THIRD_BALKAN_WAR.3.d
+	picture = GFX_THIRD_BALKAN_WAR_3
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.3.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.4
+ immediate = { }
+	title = THIRD_BALKAN_WAR.4.t
+	desc = THIRD_BALKAN_WAR.4.d
+	picture = GFX_THIRD_BALKAN_WAR_4
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.4.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.5
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.5.t
+	desc = THIRD_BALKAN_WAR.5.d
+	picture = GFX_THIRD_BALKAN_WAR_5
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.5.a
+		GRE = {
+			country_event = THIRD_BALKAN_WAR.6
+		}
+	}
+}#(Greece gets "American Mission Arrives in Athens for Cyprus Talks", then after that, Turkey gets "American Mission Arrives in Ankara for Cyprus Talks"
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.6
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.6.t
+	desc = THIRD_BALKAN_WAR.6.d
+	picture = GFX_THIRD_BALKAN_WAR_6
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.6.a
+		set_country_flag = Rescinded_Ultimatum
+		news_event = THIRD_BALKAN_WAR.7
+		TUR = {
+			country_event = {
+				id = THIRD_BALKAN_WAR.9
+				days = 2
+			}
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.6.b
+		set_country_flag = No_Rescinded_Ultimatum
+		news_event = THIRD_BALKAN_WAR.8
+		TUR = {
+			country_event = {
+				id = THIRD_BALKAN_WAR.9
+				days = 2
+			}
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.7
+ immediate = { }
+	title = THIRD_BALKAN_WAR.7.t
+	desc = THIRD_BALKAN_WAR.7.d
+	picture = GFX_THIRD_BALKAN_WAR_7
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.7.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.8
+ immediate = { }
+	title = THIRD_BALKAN_WAR.8.t
+	desc = THIRD_BALKAN_WAR.8.d
+	picture = GFX_THIRD_BALKAN_WAR_8
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.8.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.9
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.9.t
+	desc = THIRD_BALKAN_WAR.9.d
+	picture = GFX_THIRD_BALKAN_WAR_9
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.9.a
+		set_country_flag = Followed_American_Demands
+		news_event = THIRD_BALKAN_WAR.10
+		if = {
+			limit = {
+				GRE = {
+					has_country_flag = Rescinded_Ultimatum
+				}
+			}
+			news_event = {
+				id = THIRD_BALKAN_WAR.12
+				days = 3
+			}
+			country_event = {
+				id = THIRD_BALKAN_WAR.14
+				days = 5
+			}
+			transfer_state = 912
+			GRE = {
+				transfer_state = 183
+				transfer_state = 915
+				country_event = {
+					id = THIRD_BALKAN_WAR.13
+					days = 5
+				}
+			}
+		}
+		else = {
+			news_event = {
+				id = THIRD_BALKAN_WAR.18
+				days = 5
+			}
+			country_event = {
+				id = THIRD_BALKAN_WAR.19
+				days = 7
+			}
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.9.b
+		set_country_flag = No_Turkish_Backdown
+		news_event = THIRD_BALKAN_WAR.11
+		if = {
+			limit = {
+				GRE = {
+					has_country_flag = No_Rescinded_Ultimatum
+				}
+			}
+			news_event = {
+				id = THIRD_BALKAN_WAR.21
+				days = 5
+			}
+			news_event = {
+				id = THIRD_BALKAN_WAR.17
+				days = 7
+			}
+			country_event = {
+				id = THIRD_BALKAN_WAR.19
+				days = 19
+			}
+		}
+		else = {
+			news_event = {
+				id = THIRD_BALKAN_WAR.15
+				days = 5
+			}
+			news_event = {
+				id = THIRD_BALKAN_WAR.16
+				days = 7
+			}
+			news_event = {
+				id = THIRD_BALKAN_WAR.20
+				days = 19
+			}
+		}		
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.10
+ immediate = { }
+	title = THIRD_BALKAN_WAR.10.t
+	desc = THIRD_BALKAN_WAR.10.d
+	picture = GFX_THIRD_BALKAN_WAR_10
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.10.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.11
+ immediate = { }
+	title = THIRD_BALKAN_WAR.11.t
+	desc = THIRD_BALKAN_WAR.11.d
+	picture = GFX_THIRD_BALKAN_WAR_11
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.11.a
+	}
+}#Different Resulting Events Depending on US Effort
+
+#If Greece Withdraws Ultimatum and Turkey follows US Demands
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.12
+ immediate = { }
+	title = THIRD_BALKAN_WAR.12.t
+	desc = THIRD_BALKAN_WAR.12.d
+	picture = GFX_THIRD_BALKAN_WAR_12
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.12.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.13
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.13.t
+	desc = THIRD_BALKAN_WAR.13.d
+	picture = GFX_THIRD_BALKAN_WAR_13
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.13.a
+		add_ideas = Enosis_Incomplete	#drop in stability, increase in military morale
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.14
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.14.t
+	desc = THIRD_BALKAN_WAR.14.d
+	picture = GFX_THIRD_BALKAN_WAR_14
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.14.a
+		add_ideas = Enosis_Incomplete	#drop in stability, increase in military morale
+	}
+}#American_Sanctions
+#If Greece Withdraws Ultimatum and Turkey Does not Backdown
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.15
+ immediate = { }
+	title = THIRD_BALKAN_WAR.15.t
+	desc = THIRD_BALKAN_WAR.15.d
+	picture = GFX_THIRD_BALKAN_WAR_15
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.15.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.16
+ immediate = { }
+	title = THIRD_BALKAN_WAR.16.t
+	desc = THIRD_BALKAN_WAR.16.d
+	picture = GFX_THIRD_BALKAN_WAR_16
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		if = {
+			limit = {
+				tag = TUR
+			}
+			hidden_effect = {
+				add_ideas = American_Sanctions
+			}
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.16.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.17
+ immediate = { }
+	title = THIRD_BALKAN_WAR.17.t
+	desc = THIRD_BALKAN_WAR.17.d
+	picture = GFX_THIRD_BALKAN_WAR_17
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		if = {
+			limit = {
+				tag = TUR
+			}
+			hidden_effect = {
+				set_country_flag = THIRD_BALKAN_WAR_NATO_DECISIONS_ENABLED_TT
+			}
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.17.a
+	}
+}
+#If Greece Resists US Efforts and Turkey follows US Demands
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.18
+ immediate = { }
+	title = THIRD_BALKAN_WAR.18.t
+	desc = THIRD_BALKAN_WAR.18.d
+	picture = GFX_THIRD_BALKAN_WAR_18
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		if = {
+			limit = {
+				tag = GRE
+			}
+			hidden_effect = {
+				add_ideas = American_Sanctions
+			}
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.18.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.19
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.19.t
+	desc = THIRD_BALKAN_WAR.19.d
+	picture = GFX_THIRD_BALKAN_WAR_19
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.19.a
+		news_event = {
+			id = THIRD_BALKAN_WAR.20
+			days = 4
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.20
+ immediate = { }
+	title = THIRD_BALKAN_WAR.20.t
+	desc = THIRD_BALKAN_WAR.20.d
+	picture = GFX_THIRD_BALKAN_WAR_20
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		if = {
+			limit = {
+				tag = TUR
+				country_exists = GRE
+			}
+			GRE = {
+				remove_ideas = nato_member
+			}
+			remove_ideas = nato_member
+			set_global_flag = Third_Balkan_War_Start
+			diplomatic_relation = { country = GRE relation = war_relation active = yes }
+			add_ideas = nato_member
+			GRE = {
+				add_ideas = nato_member
+			}
+		}
+		else = {
+			remove_ideas = nato_member
+			diplomatic_relation = { country = PDG relation = war_relation active = yes }
+			add_ideas = nato_member
+		}
+		hidden_effect = {
+			TUR = {
+				activate_decision = THIRD_BALKAN_WAR_TIMER
+			}
+			#news_event = {
+			#	id = THIRD_BALKAN_WAR.75
+			#	days = 95
+			#}			
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.20.a
+	}
+}
+#If Greece Resists US Efforts and Turkey Does not Backdown
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.21
+ immediate = { }
+	title = THIRD_BALKAN_WAR.21.t
+	desc = THIRD_BALKAN_WAR.21.d
+	picture = GFX_THIRD_BALKAN_WAR_21
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					tag = GRE
+					tag = TUR
+				}
+			}
+			hidden_effect = {
+				add_ideas = American_Sanctions
+			}
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.21.a
+	}
+}
+#Start of War Anti-Revisionist Greece NATO Turkey
+#Enosis Crisis Begins
+#Turkey Occupies Parts of Cyprus (Greece event)
+#Greece Seeks a Resolution Over Cyprus (Turkish/Global event)
+#Turkey Refuses Cyprus Partition Plan
+#Greece Issues Cyprus Ultimatum
+#(leads to "United States Must Respond to Greek Ultimatum")
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.22
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.22.t
+	desc = THIRD_BALKAN_WAR.22.d
+	picture = GFX_THIRD_BALKAN_WAR_22
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.22.a
+		news_event = THIRD_BALKAN_WAR.23
+		PDG = {
+			country_event = THIRD_BALKAN_WAR.24
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.22.b
+		news_event = THIRD_BALKAN_WAR.30
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.19
+		}
+		set_global_flag = enable_nato_anti_rev_cyprus_decisions_TT
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.23
+ immediate = { }
+	title = THIRD_BALKAN_WAR.23.t
+	desc = THIRD_BALKAN_WAR.23.d
+	picture = GFX_THIRD_BALKAN_WAR_23
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.23.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.24
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.24.t
+	desc = THIRD_BALKAN_WAR.24.d
+	picture = GFX_THIRD_BALKAN_WAR_24
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.24.a
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.25
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.24.b
+		USA = {
+			country_event = THIRD_BALKAN_WAR.31
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.25
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.25.t
+	desc = THIRD_BALKAN_WAR.25.d
+	picture = GFX_THIRD_BALKAN_WAR_25
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.25.a
+		news_event = THIRD_BALKAN_WAR.29
+		TUR = {
+			transfer_state = 912
+			country_event = THIRD_BALKAN_WAR.14
+		}
+		PDG = {
+			transfer_state = 183
+			transfer_state = 915
+			country_event = THIRD_BALKAN_WAR.13
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.25.b
+		PDG = {
+			country_event = THIRD_BALKAN_WAR.26
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.26
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.26.t
+	desc = THIRD_BALKAN_WAR.26.d
+	picture = GFX_THIRD_BALKAN_WAR_26
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.26.a
+		USA = {
+			country_event = THIRD_BALKAN_WAR.27
+		}
+		news_event = {
+			id = THIRD_BALKAN_WAR.20
+			days = 14
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.27
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.27.t
+	desc = THIRD_BALKAN_WAR.27.d
+	picture = GFX_THIRD_BALKAN_WAR_27
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.27.a
+		country_event = {
+			id = THIRD_BALKAN_WAR.35
+			days = 15
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.27.b
+		news_event = THIRD_BALKAN_WAR.28
+		news_event = {
+			id = THIRD_BALKAN_WAR.30
+			days = 15
+		}
+		country_event = {
+			id = THIRD_BALKAN_WAR.36
+			days = 30
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.28
+ immediate = { }
+	title = THIRD_BALKAN_WAR.28.t
+	desc = THIRD_BALKAN_WAR.28.d
+	picture = GFX_THIRD_BALKAN_WAR_28
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.28.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.29
+ immediate = { }
+	title = THIRD_BALKAN_WAR.29.t
+	desc = THIRD_BALKAN_WAR.29.d
+	picture = GFX_THIRD_BALKAN_WAR_29
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.29.a
+		
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.30
+ immediate = { }
+	title = THIRD_BALKAN_WAR.30.t
+	desc = THIRD_BALKAN_WAR.30.d
+	picture = GFX_THIRD_BALKAN_WAR_30
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.30.a
+		
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.31
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.31.t
+	desc = THIRD_BALKAN_WAR.31.d
+	picture = GFX_THIRD_BALKAN_WAR_31
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.31.a
+		news_event = THIRD_BALKAN_WAR.32
+		set_global_flag = enable_nato_anti_rev_cyprus_decisions_TT
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.32
+ immediate = { }
+	title = THIRD_BALKAN_WAR.32.t
+	desc = THIRD_BALKAN_WAR.32.d
+	picture = GFX_THIRD_BALKAN_WAR_32
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.32.a
+		
+	}
+}#Once War Begins
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.33
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.33.t
+	desc = THIRD_BALKAN_WAR.33.d
+	picture = GFX_THIRD_BALKAN_WAR_33
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.33.a
+		ALB = {
+			country_event = THIRD_BALKAN_WAR.34
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.33.b
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.34
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.34.t
+	desc = THIRD_BALKAN_WAR.34.d
+	picture = GFX_THIRD_BALKAN_WAR_34
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.34.a
+		PDG = {
+			create_faction_from_template = { template = faction_template_generic name = "Anti-Turkish Alliance" }
+			add_to_faction = ALB
+		}
+		diplomatic_relation = { country = TUR relation = war_relation active = yes }
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.34.b
+		PDG = {
+			add_equipment_to_stockpile = {
+				type = lt_equipment_2
+				amount = 50
+				producer = CUM
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 7500
+				producer = CUM
+			}
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.34.c
+		ALB = {
+			add_opinion_modifier = {
+				target = PDG
+				modifier = large_decrease
+			}
+		}
+		PDG = {
+			add_opinion_modifier = {
+				target = ALB
+				modifier = large_decrease
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.35
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.35.t
+	desc = THIRD_BALKAN_WAR.35.d
+	picture = GFX_THIRD_BALKAN_WAR_35
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.35.a
+		set_global_flag = enable_nato_anti_rev_cyprus_decisions_TT
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.35.b
+		set_global_flag = enable_nato_pdg_covert_cyprus_TT
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.36
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.36.t
+	desc = THIRD_BALKAN_WAR.36.d
+	picture = GFX_THIRD_BALKAN_WAR_36
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.36.a
+		set_global_flag = enable_nato_pdg_covert_cyprus_TT
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.36.b
+		set_global_flag = enable_nato_pdg_covert_cyprus_TT
+	}
+}#Non-Aligned Greece and NATO Turkey Start of War
+#SAME PATH AS LAST BRANCH, EXCEPT NO EVENTS INVOLVING ALBANIA/CHINA
+
+#Non-Aligned Greece and NATO Turkey War Started
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.37
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.37.t
+	desc = THIRD_BALKAN_WAR.37.d
+	picture = GFX_THIRD_BALKAN_WAR_37
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.37.a
+		YUG = {
+			country_event = THIRD_BALKAN_WAR.38
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.37.b
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.38
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.38.t
+	desc = THIRD_BALKAN_WAR.38.d
+	picture = GFX_THIRD_BALKAN_WAR_38
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.38.a
+		PDG = {
+			create_faction_from_template = { template = faction_template_generic name = "Anti-Turkish Alliance" }
+			add_to_faction = YUG
+		}
+		diplomatic_relation = { country = TUR relation = war_relation active = yes }
+		news_event = THIRD_BALKAN_WAR.40
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.38.b
+		PDG = {
+			add_timed_idea = {
+				idea = yugoslavian_advisors
+				days = 3650
+			}
+			set_variable = { THIS.idea_len_@token:yugoslavian_advisors = 3650 }
+			set_variable = { THIS.idea_date_@token:yugoslavian_advisors = global.num_days }
+			add_equipment_to_stockpile = {
+				type = lt_equipment_2
+				amount = 250
+				producer = CUM
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 10000
+				producer = CUM
+			}
+		}
+		news_event = THIRD_BALKAN_WAR.39
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.38.c
+		news_event = THIRD_BALKAN_WAR.41
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.39
+ immediate = { }
+	title = THIRD_BALKAN_WAR.39.t
+	desc = THIRD_BALKAN_WAR.39.d
+	picture = GFX_THIRD_BALKAN_WAR_39
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.39.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.40
+ immediate = { }
+	title = THIRD_BALKAN_WAR.40.t
+	desc = THIRD_BALKAN_WAR.40.d
+	picture = GFX_THIRD_BALKAN_WAR_40
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.40.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.41
+ immediate = { }
+	title = THIRD_BALKAN_WAR.41.t
+	desc = THIRD_BALKAN_WAR.41.d
+	picture = GFX_THIRD_BALKAN_WAR_41
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.41.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.42
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.42.t
+	desc = THIRD_BALKAN_WAR.42.d
+	picture = GFX_THIRD_BALKAN_WAR_42
+
+	is_triggered_only = yes
+
+	option = {  
+		name = THIRD_BALKAN_WAR.42.a
+		news_event = THIRD_BALKAN_WAR.420
+		USA = {
+			country_event = THIRD_BALKAN_WAR.45
+		}
+	}
+	option = {  
+		name = THIRD_BALKAN_WAR.42.b
+		news_event = THIRD_BALKAN_WAR.43
+	}
+	option = {  
+		name = THIRD_BALKAN_WAR.42.c
+		news_event = THIRD_BALKAN_WAR.44
+		PDG = {
+			add_timed_idea = {
+				idea = egyptian_advisors
+				days = 3650
+			}
+			set_variable = { THIS.idea_len_@token:egyptian_advisors = 3650 }
+			set_variable = { THIS.idea_date_@token:egyptian_advisors = global.num_days }
+			add_equipment_to_stockpile = {
+				type = lt_equipment_2
+				amount = 50
+				producer = CUM
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 7500
+				producer = CUM
+			}
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.420
+ immediate = { }
+	title = THIRD_BALKAN_WAR.420.t
+	desc = THIRD_BALKAN_WAR.420.d
+	picture = 420
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.420.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.43
+ immediate = { }
+	title = THIRD_BALKAN_WAR.43.t
+	desc = THIRD_BALKAN_WAR.43.d
+	picture = GFX_THIRD_BALKAN_WAR_43
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.43.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.44
+ immediate = { }
+	title = THIRD_BALKAN_WAR.44.t
+	desc = THIRD_BALKAN_WAR.44.d
+	picture = GFX_THIRD_BALKAN_WAR_44
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.44.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.45
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.45.t
+	desc = THIRD_BALKAN_WAR.45.d
+	picture = GFX_THIRD_BALKAN_WAR_45
+
+	is_triggered_only = yes
+
+	option = {  
+		name = THIRD_BALKAN_WAR.45.a
+		EGY = {
+			news_event = THIRD_BALKAN_WAR.46
+		}
+	}
+	option = {  
+		name = THIRD_BALKAN_WAR.45.b
+		EGY = {
+			news_event = THIRD_BALKAN_WAR.47
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.46
+ immediate = { }
+	title = THIRD_BALKAN_WAR.46.t
+	desc = THIRD_BALKAN_WAR.46.d
+	picture = GFX_THIRD_BALKAN_WAR_46
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		trigger = {
+			tag = EGY
+		}
+		name = THIRD_BALKAN_WAR.46.a
+		news_event = {
+			id = THIRD_BALKAN_WAR.52
+			days = 7
+		}
+		USA = {
+			country_event = {
+				id = THIRD_BALKAN_WAR.49
+				days = 7
+			}
+		}
+	}
+	option = {
+		trigger = {
+			tag = EGY
+		}
+		name = THIRD_BALKAN_WAR.46.b
+		news_event = {
+			id = THIRD_BALKAN_WAR.48
+			days = 5
+		}
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = EGY
+			}
+		}
+		name = THIRD_BALKAN_WAR.46.c
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.47
+ immediate = { }
+	title = THIRD_BALKAN_WAR.47.t
+	desc = THIRD_BALKAN_WAR.47.d
+	picture = GFX_THIRD_BALKAN_WAR_47
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		trigger = {
+			tag = EGY
+		}
+		name = THIRD_BALKAN_WAR.47.a
+		news_event = {
+			id = THIRD_BALKAN_WAR.52
+			days = 7
+		}
+	}
+	option = {
+		trigger = {
+			tag = EGY
+		}
+		name = THIRD_BALKAN_WAR.47.b
+		news_event = {
+			id = THIRD_BALKAN_WAR.48
+			days = 5
+		}
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = EGY
+			}
+		}
+		name = THIRD_BALKAN_WAR.47.c
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.48
+ immediate = { }
+	title = THIRD_BALKAN_WAR.48.t
+	desc = THIRD_BALKAN_WAR.48.d
+	picture = GFX_THIRD_BALKAN_WAR_48
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.48.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.49
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.49.t
+	desc = THIRD_BALKAN_WAR.49.d
+	picture = GFX_THIRD_BALKAN_WAR_49
+
+	is_triggered_only = yes
+
+	option = {  
+		name = THIRD_BALKAN_WAR.49.a
+		news_event = THIRD_BALKAN_WAR.50
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_2
+			amount = 25000
+			producer = CAP
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment_3
+			amount = 500
+			producer = CAP
+		}		
+		add_equipment_to_stockpile = {
+			type = mbt_equipment_5
+			amount = 250
+			producer = CAP
+		}
+		add_equipment_to_stockpile = {
+			type = jet_multirole_equipment_2
+			amount = 100
+			producer = CAP
+		}		
+	}
+	option = {  
+		name = THIRD_BALKAN_WAR.49.b
+		news_event = THIRD_BALKAN_WAR.51
+		declare_war_on = {
+			target = EGY
+			type = annex_everything
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.50
+ immediate = { }
+	title = THIRD_BALKAN_WAR.50.t
+	desc = THIRD_BALKAN_WAR.50.d
+	picture = GFX_THIRD_BALKAN_WAR_50
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.50.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.51
+ immediate = { }
+	title = THIRD_BALKAN_WAR.51.t
+	desc = THIRD_BALKAN_WAR.51.d
+	picture = GFX_THIRD_BALKAN_WAR_51
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.51.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.52
+ immediate = { }
+	title = THIRD_BALKAN_WAR.52.t
+	desc = THIRD_BALKAN_WAR.52.d
+	picture = GFX_THIRD_BALKAN_WAR_52
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		if = {
+			limit = {
+				tag = TUR
+			}
+			hidden_effect = {
+				diplomatic_relation = { country = TUR relation = war_relation active = yes }
+				set_global_flag = UAR_CYPRUS_TURKEY_WAR
+			}
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.52.a
+	}
+}
+#(If Turkey has pro-Israel focuses completed and UAR declares war)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.53
+ immediate = { }	
+	title = THIRD_BALKAN_WAR.53.t
+	desc = THIRD_BALKAN_WAR.53.d
+	picture = GFX_THIRD_BALKAN_WAR_53
+
+	is_triggered_only = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.53.a
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.55
+		}
+		EGY = {
+			country_event = THIRD_BALKAN_WAR.54
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.53.b
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.55
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.53.c
+		news_event = THIRD_BALKAN_WAR.56
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.54
+ immediate = { }	
+	title = THIRD_BALKAN_WAR.54.t
+	desc = THIRD_BALKAN_WAR.54.d
+	picture = GFX_THIRD_BALKAN_WAR_54
+
+	is_triggered_only = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.54.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.55
+ immediate = { }	
+	title = THIRD_BALKAN_WAR.55.t
+	desc = THIRD_BALKAN_WAR.55.d
+	picture = GFX_THIRD_BALKAN_WAR_55
+
+	is_triggered_only = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.55.a
+		add_timed_idea = {
+			idea = israeli_advisors
+			days = 3650
+		}
+		set_variable = { THIS.idea_len_@token:israeli_advisors = 3650 }
+		set_variable = { THIS.idea_date_@token:israeli_advisors = global.num_days }
+        add_equipment_to_stockpile = {
+            type = infantry_equipment_1
+            amount = 10000
+            producer = CAP
+        }
+        add_equipment_to_stockpile = {
+            type = mbt_equipment_3
+            amount = 150
+            producer = CAP
+        }
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_2
+			amount = 1000
+			producer = CAP
+		}	
+		add_equipment_to_stockpile = {
+			type = mechanized_equipment_4
+			amount = 250
+			producer = CAP
+		}	
+        add_equipment_to_stockpile = {
+            type = artillery_equipment_2
+            amount = 200
+            producer = CAP
+        }	
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.56
+ immediate = { }
+	title = THIRD_BALKAN_WAR.56.t
+	desc = THIRD_BALKAN_WAR.56.d
+	picture = GFX_THIRD_BALKAN_WAR_56
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.56.a
+	}
+}#(If Turkey goes pro-Arab focuses and at war with Greece in any scenario)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.57
+ immediate = { }	
+	title = THIRD_BALKAN_WAR.57.t
+	desc = THIRD_BALKAN_WAR.57.d
+	picture = GFX_THIRD_BALKAN_WAR_57
+
+	is_triggered_only = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.57.a
+		PDG = {
+			country_event = THIRD_BALKAN_WAR.58
+		}
+		GRE = {
+			country_event = THIRD_BALKAN_WAR.58
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.57.b
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.58
+ immediate = { }	
+	title = THIRD_BALKAN_WAR.58.t
+	desc = THIRD_BALKAN_WAR.58.d
+	picture = GFX_THIRD_BALKAN_WAR_58
+
+	is_triggered_only = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.58.a
+		add_timed_idea = {
+			idea = israeli_advisors
+			days = 3650
+		}
+		set_variable = { THIS.idea_len_@token:israeli_advisors = 3650 }
+		set_variable = { THIS.idea_date_@token:israeli_advisors = global.num_days }
+        add_equipment_to_stockpile = {
+            type = infantry_equipment_1
+            amount = 10000
+            producer = CAP
+        }
+        add_equipment_to_stockpile = {
+            type = mbt_equipment_3
+            amount = 150
+            producer = CAP
+        }
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_2
+			amount = 1000
+			producer = CAP
+		}	
+		add_equipment_to_stockpile = {
+			type = mechanized_equipment_4
+			amount = 250
+			producer = CAP
+		}	
+        add_equipment_to_stockpile = {
+            type = artillery_equipment_2
+            amount = 200
+            producer = CAP
+        }	
+		#and one submarine
+	}
+}#Flavor Events
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.59
+ immediate = { }
+	title = THIRD_BALKAN_WAR.59.t
+	desc = THIRD_BALKAN_WAR.59.d
+	picture = GFX_THIRD_BALKAN_WAR_59
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.59.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.60
+ immediate = { }
+	title = THIRD_BALKAN_WAR.60.t
+	desc = THIRD_BALKAN_WAR.60.d
+	picture = GFX_THIRD_BALKAN_WAR_60
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.60.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.61
+ immediate = { }
+	title = THIRD_BALKAN_WAR.61.t
+	desc = THIRD_BALKAN_WAR.61.d
+	picture = GFX_THIRD_BALKAN_WAR_61
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.61.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.62
+ immediate = { }
+	title = THIRD_BALKAN_WAR.62.t
+	desc = THIRD_BALKAN_WAR.62.d
+	picture = GFX_THIRD_BALKAN_WAR_62
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.62.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.63
+ immediate = { }
+	title = THIRD_BALKAN_WAR.63.t
+	desc = THIRD_BALKAN_WAR.63.d
+	picture = GFX_THIRD_BALKAN_WAR_63
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.63.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.64
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.64.t
+	desc = THIRD_BALKAN_WAR.64.d
+	picture = GFX_THIRD_BALKAN_WAR_64
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.64.a
+        news_event = THIRD_BALKAN_WAR.65
+        white_peace = EGY
+        EGY = {
+            country_event = THIRD_BALKAN_WAR.66
+		}
+    }
+	option = {  
+        name = THIRD_BALKAN_WAR.64.b
+    }
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.65
+ immediate = { }
+	title = THIRD_BALKAN_WAR.65.t
+	desc = THIRD_BALKAN_WAR.65.d
+	picture = GFX_THIRD_BALKAN_WAR_65
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.65.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.66
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.66.t
+	desc = THIRD_BALKAN_WAR.66.d
+	picture = GFX_THIRD_BALKAN_WAR_66
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.66.a
+        add_timed_idea = {
+            idea = Humiliating_Defeat # negative economic/military modifiers
+            days = 1825
+        }
+    }
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.67
+ immediate = { }
+	title = THIRD_BALKAN_WAR.67.t
+	desc = THIRD_BALKAN_WAR.67.d
+	picture = GFX_THIRD_BALKAN_WAR_67
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.67.a
+        trigger = {
+            NOT = {
+				tag = GRE
+			}
+            NOT = {
+				tag = PDG
+			}
+            NOT = {
+				tag = TUR
+			}
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.67.b
+        trigger = {
+            OR = {
+				tag = GRE 
+				tag = PDG
+			}
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.67.c
+        trigger = {
+            tag = TUR
+        }
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.68
+ immediate = { }
+	title = THIRD_BALKAN_WAR.68.t
+	desc = THIRD_BALKAN_WAR.68.d
+	picture = GFX_THIRD_BALKAN_WAR_68
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.68.a
+        trigger = {
+            NOT = {
+				tag = GRE
+			}
+            NOT = {
+				tag = PDG
+			}
+            NOT = {
+				tag = TUR
+			}
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.68.b
+        trigger = {
+            OR = {
+				tag = GRE 
+				tag = PDG
+			}
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.68.c
+        trigger = {
+            tag = TUR
+        }
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.69
+ immediate = { }
+	title = THIRD_BALKAN_WAR.69.t
+	desc = THIRD_BALKAN_WAR.69.d
+	picture = GFX_THIRD_BALKAN_WAR_69
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.69.a
+        trigger = {
+            NOT = {
+				tag = GRE
+			}
+            NOT = {
+				tag = PDG
+			}
+            NOT = {
+				tag = TUR
+			}
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.69.b
+        trigger = {
+            OR = {
+				tag = GRE 
+				tag = PDG
+			}
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.69.c
+        trigger = {
+            tag = TUR
+        }
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.70
+ immediate = { }
+	title = THIRD_BALKAN_WAR.70.t
+	desc = THIRD_BALKAN_WAR.70.d
+	picture = GFX_THIRD_BALKAN_WAR_70
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.70.a
+        trigger = {
+            NOT = {
+				tag = GRE
+			}
+            NOT = {
+				tag = PDG
+			}
+            NOT = {
+				tag = TUR
+			}
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.70.b
+        trigger = {
+            OR = {
+				tag = GRE 
+				tag = PDG
+			}
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.70.c
+        trigger = {
+            tag = TUR
+        }
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.71
+ immediate = { }
+	title = THIRD_BALKAN_WAR.71.t
+	desc = THIRD_BALKAN_WAR.71.d
+	picture = GFX_THIRD_BALKAN_WAR_71
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.71.a
+        trigger = {
+            NOT = {
+				tag = GRE
+			}
+            NOT = {
+				tag = PDG
+			}
+            NOT = {
+				tag = TUR
+			}
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.71.b
+        trigger = {
+            tag = TUR
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.71.c
+        trigger = {
+            OR = {
+				tag = GRE 
+				tag = PDG
+			}
+        }
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.72
+ immediate = { }
+	title = THIRD_BALKAN_WAR.72.t
+	desc = THIRD_BALKAN_WAR.72.d
+	picture = GFX_THIRD_BALKAN_WAR_72
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.72.a
+        trigger = {
+            NOT = {
+				tag = GRE
+			}
+            NOT = {
+				tag = PDG
+			}
+            NOT = {
+				tag = TUR
+			}
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.72.b
+        trigger = {
+            tag = TUR
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.72.c
+        trigger = {
+            OR = {
+				tag = GRE 
+				tag = PDG
+			}
+        }
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.73
+ immediate = { }
+	title = THIRD_BALKAN_WAR.73.t
+	desc = THIRD_BALKAN_WAR.73.d
+	picture = GFX_THIRD_BALKAN_WAR_73
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.73.a
+        trigger = {
+            NOT = {
+				tag = GRE
+			}
+            NOT = {
+				tag = PDG
+			}
+            NOT = {
+				tag = TUR
+			}
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.73.b
+        trigger = {
+            tag = TUR
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.73.c
+        trigger = {
+            OR = {
+				tag = GRE 
+				tag = PDG
+			}
+        }
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.74
+ immediate = { }
+	title = THIRD_BALKAN_WAR.74.t
+	desc = THIRD_BALKAN_WAR.74.d
+	picture = GFX_THIRD_BALKAN_WAR_74
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.74.a
+        trigger = {
+            NOT = {
+				tag = GRE
+			}
+            NOT = {
+				tag = PDG
+			}
+            NOT = {
+				tag = TUR
+			}
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.74.b
+        trigger = {
+            tag = TUR
+        }
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.74.c
+        trigger = {
+            OR = {
+				tag = GRE 
+				tag = PDG
+			}
+        }
+	}
+}
+#End of War Events
+#Turkey must capture
+#	Ioannina 		3914
+#	Kozani 			966
+#	Katerini 		3844
+#	Thessaloniki	11818
+#	Kavala			9930
+#	Rhodes			10007
+
+#Greece must capture 
+#	Istanbul		9833
+#	Izmir 			4112
+#	Izmit			11811
+#	Bursa 			947
+#	Denizli 		10041
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.75	#(after the fighting period has ended, Global/Turkey/Greece)
+ immediate = { }
+	title = THIRD_BALKAN_WAR.75.t
+	desc = THIRD_BALKAN_WAR.75.d
+	picture = GFX_THIRD_BALKAN_WAR_75
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		#-6 = Total Turkish Mainland Victory
+		#5 = Total Greek Mainland Victory
+		hidden_effect = {
+			#Cyprus
+			if = {
+				limit = {
+					tag = TUR
+					TUR = {
+						controls_state = 912
+						controls_state = 915
+						controls_state = 183
+					}
+				}
+				news_event = THIRD_BALKAN_WAR.77
+				set_global_flag = Cyprus_Turkish_Occuppied_Greco_Turkish_War
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						TUR = {
+							controls_state = 912
+							controls_state = 915
+							controls_state = 183
+						}					
+					}
+				}
+				news_event = THIRD_BALKAN_WAR.76
+				set_global_flag = Cyprus_Greek_Occuppied_Greco_Turkish_War
+			}
+			else = {
+				news_event = THIRD_BALKAN_WAR.78
+				set_global_flag = Cyprus_Divided_Greco_Turkish_War
+			}
+			#Mainland Section
+			if = {
+				limit = {
+					NOT = {
+						check_variable = {
+							global.province_controllers^3914 = GRE.id
+						}
+					}
+					NOT = {
+						check_variable = {
+							global.province_controllers^3914 = PDG.id
+						}
+					}					
+				}
+				add_to_variable = {
+					Greco_Turkish_War_Ticker = -1
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						check_variable = {
+							global.province_controllers^966 = GRE.id
+						}
+					}
+					NOT = {
+						check_variable = {
+							global.province_controllers^966 = PDG.id
+						}
+					}
+				}
+				add_to_variable = {
+					Greco_Turkish_War_Ticker = -1
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						check_variable = {
+							global.province_controllers^3844 = GRE.id
+						}
+					}
+					NOT = {
+						check_variable = {
+							global.province_controllers^3844 = PDG.id
+						}
+					}
+				}
+				add_to_variable = {
+					Greco_Turkish_War_Ticker = -1
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						check_variable = {
+							global.province_controllers^11818 = GRE.id
+						}
+					}
+					NOT = {
+						check_variable = {
+							global.province_controllers^11818 = PDG.id
+						}
+					}
+				}
+				add_to_variable = {
+					Greco_Turkish_War_Ticker = -1
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						check_variable = {
+							global.province_controllers^9930 = GRE.id
+						}
+					}
+					NOT = {
+						check_variable = {
+							global.province_controllers^9930 = PDG.id
+						}
+					}
+				}
+				add_to_variable = {
+					Greco_Turkish_War_Ticker = -1
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						check_variable = {
+							global.province_controllers^10007 = GRE.id
+						}
+					}
+					NOT = {
+						check_variable = {
+							global.province_controllers^10007 = PDG.id
+						}
+					}
+				}
+				add_to_variable = {
+					Greco_Turkish_War_Ticker = -1
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+                        check_variable = {
+                            global.province_controllers^9833 = TUR.id
+                        }						
+					}
+                }
+				add_to_variable = {
+					Greco_Turkish_War_Ticker = 1
+				}
+            }
+			if = {
+				limit = {
+					NOT = {
+                        check_variable = {
+                            global.province_controllers^4112 = TUR.id
+                        }						
+					}
+                }
+				add_to_variable = {
+					Greco_Turkish_War_Ticker = 1
+				}
+            }
+			if = {
+				limit = {
+					NOT = {
+                        check_variable = {
+                            global.province_controllers^11811 = TUR.id
+                        }						
+					}
+                }
+				add_to_variable = {
+					Greco_Turkish_War_Ticker = 1
+				}
+            }
+			if = {
+				limit = {
+					NOT = {
+                        check_variable = {
+                            global.province_controllers^947 = TUR.id
+                        }						
+					}
+                }
+				add_to_variable = {
+					Greco_Turkish_War_Ticker = 1
+				}
+            }
+			if = {
+				limit = {
+					NOT = {
+                        check_variable = {
+                            global.province_controllers^10041 = TUR.id
+                        }						
+					}
+                }
+				add_to_variable = {
+					Greco_Turkish_War_Ticker = 1
+				}
+            }
+			#Actual Calc
+            if = {
+                limit = {
+                    NOT = {
+                        has_global_flag = Cyprus_WW3
+                    }
+                }
+                #If Greece holds all its victory areas and Turkey has none of its
+                if = {
+                    limit = {
+                        check_variable = {
+                            Greco_Turkish_War_Ticker = 5
+                        }
+                    }
+                    if = {
+                        limit = {
+                            country_exists = PDG
+                        }
+                        PDG = {
+                            country_event = THIRD_BALKAN_WAR.84
+                        }
+                    }
+                    else = {
+                        GRE = {
+                            country_event = THIRD_BALKAN_WAR.84
+                        }
+                    }
+                }
+                #If Greece holds all its victory areas but Turkey controls Cyprus
+                else_if = {
+                    limit = {
+                        check_variable = {
+                            Greco_Turkish_War_Ticker = -6
+                        }
+                        has_global_flag = Cyprus_Turkish_Occuppied_Greco_Turkish_War
+                    }
+                    TUR = {
+                        country_event = THIRD_BALKAN_WAR.79
+                    }
+                }
+                #If Greece controls all its victory positions but Turkey controls at least two of its victory conditions from Greece
+                #Greece Gains Edirne and Istanbul	#THIRD_BALKAN_WAR.85
+                else_if = {
+                    limit = {
+                        check_variable = {
+                            Greco_Turkish_War_Ticker < 5
+                        }
+                        check_variable = {
+                            Greco_Turkish_War_Ticker > 1
+                        }
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^9833 = TUR.id
+                            }						
+                        }
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^4112 = TUR.id
+                            }						
+                        }
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^11811 = TUR.id
+                            }						
+                        }
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^947 = TUR.id
+                            }						
+                        }
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^10041 = TUR.id
+                            }						
+                        }
+                    }
+                    if = {
+                        limit = {
+                            country_exists = PDG
+                        }
+                        news_event = THIRD_BALKAN_WAR.85
+                        PDG = {
+                            transfer_state = 937
+                            transfer_state = 341    
+                        }
+                        341 = {
+                            add_core_of = PDG
+                            add_core_of = GRE
+                        }
+                        937 = {
+                            add_core_of = PDG
+                            add_core_of = GRE
+                        }
+                    }
+                    else = {
+                        news_event = THIRD_BALKAN_WAR.85
+                        GRE = {
+                            transfer_state = 937
+                            transfer_state = 341    
+                        }
+                        341 = {
+                            add_core_of = PDG
+                            add_core_of = GRE
+                        }
+                        937 = {
+                            add_core_of = PDG
+                            add_core_of = GRE
+                        }
+                    }
+                }
+                #If Turkey controls all its Victory areas but Greece controls Cyprus
+                else_if = {
+                    limit = {
+                        check_variable = {
+                            Greco_Turkish_War_Ticker = -6
+                        }
+                        has_global_flag = Cyprus_Greek_Occuppied_Greco_Turkish_War
+                    }
+                    if = {
+                        limit = {
+                            country_exists = PDG
+                        }
+                        PDG = {
+                            country_event = THIRD_BALKAN_WAR.104
+                        }
+                    }
+                    else = {
+                        GRE = {
+                            country_event = THIRD_BALKAN_WAR.104
+                        }
+                    }
+                }
+
+                #If Turkey controls all its Victory areas and Greece has none of its
+                else_if = {
+                    limit = {
+                        check_variable = {
+                            Greco_Turkish_War_Ticker = -6
+                        }
+                    }
+                    TUR = {
+                        country_event = THIRD_BALKAN_WAR.110
+                    }
+                }
+                #If Turkey controls all its victory areas but Greece controls at least two of its victory conditions from Turkey
+                #Turkey Gains Rhodes and Kavala
+                else_if = {
+                    limit = {
+                        check_variable = {
+                            Greco_Turkish_War_Ticker > -6
+                        }
+                        check_variable = {
+                            Greco_Turkish_War_Ticker < -1
+                        }
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^3914 = GRE.id
+                            }
+                        }
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^3914 = PDG.id
+                            }
+                        }					
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^966 = GRE.id
+                            }
+                        }
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^966 = PDG.id
+                            }
+                        }
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^3844 = GRE.id
+                            }
+                        }
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^3844 = PDG.id
+                            }
+                        }
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^11818 = GRE.id
+                            }
+                        }
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^11818 = PDG.id
+                            }
+                        }
+                    
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^9930 = GRE.id
+                            }
+                        }
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^9930 = PDG.id
+                            }
+                        }
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^10007 = GRE.id
+                            }
+                        }
+                        NOT = {
+                            check_variable = {
+                                global.province_controllers^10007 = PDG.id
+                            }
+                        }
+                    }
+                    TUR = {
+                        news_event = THIRD_BALKAN_WAR.111
+                        if = {
+                            limit = {
+                                GRE = {
+                                    has_idea = nato_member
+                                }
+                            }
+                            GRE = {
+                                country_event = THIRD_BALKAN_WAR.112
+                            }
+                        }
+                        transfer_state = 184
+                        transfer_state = 187
+                        transfer_state = 164
+                        164 = {
+                            add_core_of = TUR
+                        }
+                        187 = {
+                            add_core_of = TUR
+                        }
+                        184 = {
+                            add_core_of = TUR
+                        }        
+                    }
+                }
+                #Greece and Turkey control a mix of each others victory positions
+                else = {
+                    news_event = THIRD_BALKAN_WAR.128
+                }
+            }
+            ##If Israel keeps its territory and Aleppo/Damascus are under enemy occupation
+            if = {
+                limit = {
+                    ISR = {
+                        has_war_with = EGY
+                    }
+                    EGY = {
+                        NOT = { controls_state = 677 }
+                        NOT = { controls_state = 554 }
+                        NOT = { controls_state = 800 }
+                        NOT = { controls_state = 454 }
+                    }
+                }
+                news_event = THIRD_BALKAN_WAR.184
+                EGY = {
+                    white_peace = TUR
+                    white_peace = ISR
+                }
+            }
+            else_if = {
+                limit = {
+                    EGY = {
+                        controls_state = 800
+                    }
+                }
+                news_event = THIRD_BALKAN_WAR.186
+                EGY = {
+                    white_peace = ISR
+                }
+            }
+            else = {
+                if = {
+                    limit = {
+                        EGY = {
+                            has_war_with = ISR
+                        }
+                    }
+                    news_event = THIRD_BALKAN_WAR.185
+                    EGY = {
+                        white_peace = ISR
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    NOT = {
+                        country_exists = SYR
+                    }
+                    has_war_with = EGY
+                }
+                #Turkey Controls Aleppo
+                if = {
+                    limit = {
+                        TUR = {
+                            controls_state = 677
+                        }
+                    }
+                    country_event = THIRD_BALKAN_WAR.130
+                }
+                #UAR Controls Hatay
+                else_if = {
+                    limit = {
+                        EGY = {
+                            controls_state = 905
+                        }
+                    }
+                    news_event = {
+                        id = THIRD_BALKAN_WAR.129
+                        days = 1
+                    }
+                }
+                else = {
+                    white_peace = TUR
+                }
+            }
+            if = {
+                limit = {
+                    TUR = {
+                        has_war_with = ALB
+                        controls_state = 44
+                    }
+                }
+                TUR = {
+                    country_event = THIRD_BALKAN_WAR.139
+                    white_peace = ALB
+                }
+            }
+            if = {
+                limit = {
+                    TUR = {
+                        has_war_with = YUG
+                        controls_state = 1483
+                        controls_state = 1484
+                        controls_state = 106
+                    }
+                }
+                TUR = {
+                    country_event = THIRD_BALKAN_WAR.136
+                    white_peace = YUG
+                }
+            }
+            else = {
+                TUR = {
+                    white_peace = YUG
+                }
+            }
+            #CYPRUS TIMED WW3 OUTCOMES
+            if = {
+                limit = {
+                    has_global_flag = Cyprus_WW3
+                }
+                if = {
+                    limit = {
+                        check_variable = {
+                            Greco_Turkish_War_Ticker = 5
+                        }
+                    }
+                    #If WP holds all its victory areas and Turkey has none of its
+                    SOV = {
+                        country_event = THIRD_BALKAN_WAR.161
+                    }
+                }
+                else_if = {
+                    limit = {
+                        check_variable = {
+                            Greco_Turkish_War_Ticker = -6
+                        }
+                    }
+                    #If NATO controls all its Victory areas
+                    USA = {
+                        country_event = THIRD_BALKAN_WAR.174
+                    }
+                }
+                else = {
+                    #If Neither Side Achieves a Complete Victory
+                    #(only Cyprus peace events apply, other than that, everything returns to pre-war borders)
+
+                    news_event = THIRD_BALKAN_WAR.173
+                }
+                every_country = {
+                    limit = {
+                        OR = {
+                            has_idea = nato_member
+                            is_in_faction_with = TUR
+                        }
+                    }
+                    every_enemy_country = {
+                        limit = {
+                            OR = {
+                                is_in_faction_with  = PDG
+                                is_in_faction_with  = SOV
+                            }
+                        }
+                        diplomatic_relation = { country = PREV relation = war_relation active = no }
+                    }
+                }
+                every_country = {
+                    limit = {
+                        OR = {
+                            is_in_faction_with = PDG
+                            is_in_faction_with = SOV
+                        }
+
+                    }
+                    every_enemy_country = {
+                        limit = {
+                            OR = {
+                                has_idea = nato_member
+                                is_in_faction_with = TUR
+                                is_in_faction_with = USA
+                            }
+                        }
+						diplomatic_relation = { country = PREV relation = war_relation active = no }
+                    }
+                }
+            }
+            ALB = {
+                white_peace = TUR
+            }
+            YUG = {
+                white_peace = TUR
+            }
+            EGY = {
+                white_peace = TUR
+            }
+            ISR = {
+                white_peace = TUR
+            }
+            PDG = {
+                white_peace = TUR
+            }
+            GRE = {
+                white_peace = TUR
+            }
+            #House Keeping
+            TUR = {
+                dismantle_faction = yes
+            }
+            GRE = {
+                dismantle_faction = yes
+            }
+            USA = {
+                dismantle_faction = yes
+            }
+            PDG = {
+                dismantle_faction = yes
+            }
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.75.a
+	}
+}
+
+#Cyprus Under Greek Control
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.76
+ immediate = { }
+	title = THIRD_BALKAN_WAR.76.t
+	desc = THIRD_BALKAN_WAR.76.d
+	picture = GFX_THIRD_BALKAN_WAR_76
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.76.a
+	}
+}#Cyprus Under Turkish Control
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.77
+ immediate = { }
+	title = THIRD_BALKAN_WAR.77.t
+	desc = THIRD_BALKAN_WAR.77.d
+	picture = GFX_THIRD_BALKAN_WAR_77
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.77.a
+	}
+}#Cyprus Remains Divided
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.78
+ immediate = { }
+	title = THIRD_BALKAN_WAR.78.t
+	desc = THIRD_BALKAN_WAR.78.d
+	picture = GFX_THIRD_BALKAN_WAR_78
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.78.a
+	}
+}#If Greece holds all its victory areas but Turkey controls Cyprus
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.79
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.79.t
+	desc = THIRD_BALKAN_WAR.79.d
+	picture = GFX_THIRD_BALKAN_WAR_79
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.79.a
+		if = {
+			limit = {
+				country_exists = PDG
+			}
+			PDG = {
+				country_event = THIRD_BALKAN_WAR.80
+			}
+		}
+		else = {
+			GRE = {
+				country_event = THIRD_BALKAN_WAR.80
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.80
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.80.t
+	desc = THIRD_BALKAN_WAR.80.d
+	picture = GFX_THIRD_BALKAN_WAR_80
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.80.a
+		news_event = THIRD_BALKAN_WAR.81
+		transfer_state = 912
+		transfer_state = 915
+		transfer_state = 183
+		country_event = THIRD_BALKAN_WAR.82
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.83
+		}
+	}
+	option = {	#proceed to route for Greece holds all victory areas and Turkey has none of its
+		name = THIRD_BALKAN_WAR.80.b
+		TUR = {
+			transfer_state = 912
+			transfer_state = 915
+			transfer_state = 183			
+		}
+		country_event = THIRD_BALKAN_WAR.84
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.81
+ 	immediate = { }
+	title = THIRD_BALKAN_WAR.81.t
+	desc = THIRD_BALKAN_WAR.81.d
+	picture = GFX_THIRD_BALKAN_WAR_81
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.81.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.82
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.82.t
+	desc = THIRD_BALKAN_WAR.82.d
+	picture = GFX_THIRD_BALKAN_WAR_82
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.82.a
+		add_timed_idea = {
+			idea = Enosis_Achieved
+			days = 1825
+		}
+		set_variable = { THIS.idea_len_@token:Enosis_Achieved = 1825 }
+		set_variable = { THIS.idea_date_@token:Enosis_Achieved = global.num_days }
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.83
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.83.t
+	desc = THIRD_BALKAN_WAR.83.d
+	picture = GFX_THIRD_BALKAN_WAR_83
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.83.a
+		add_timed_idea = {
+			idea = Cyprus_Betrayed
+			days = 1825
+		}
+		set_variable = { THIS.idea_len_@token:Cyprus_Betrayed = 1825 }
+		set_variable = { THIS.idea_date_@token:Cyprus_Betrayed = global.num_days }
+	}
+}
+#If Greece holds all its victory areas and Turkey has none of its
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.84
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.84.t
+	desc = THIRD_BALKAN_WAR.84.d
+	picture = GFX_THIRD_BALKAN_WAR_84
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.84.a
+		USA = {
+			country_event = THIRD_BALKAN_WAR.90
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.84.b
+		news_event = THIRD_BALKAN_WAR.85
+		transfer_state = 341
+		transfer_state = 937
+		341 = {
+			add_core_of = ROOT
+		}
+		937 = {
+			add_core_of = ROOT
+		}
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.86
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.85
+ immediate = { }
+	title = THIRD_BALKAN_WAR.85.t
+	desc = THIRD_BALKAN_WAR.85.d
+	picture = GFX_THIRD_BALKAN_WAR_85
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.85.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.86
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.86.t
+	desc = THIRD_BALKAN_WAR.86.d
+	picture = GFX_THIRD_BALKAN_WAR_86
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.86.a
+		USA = {
+			country_event = THIRD_BALKAN_WAR.87
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.86.b
+	
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.87
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.87.t
+	desc = THIRD_BALKAN_WAR.87.d
+	picture = GFX_THIRD_BALKAN_WAR_87
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.87.a
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.88
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.87.b
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.89
+		}		
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.88
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.88.t
+	desc = THIRD_BALKAN_WAR.88.d
+	picture = GFX_THIRD_BALKAN_WAR_88
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.88.a
+		add_timed_idea = {
+			idea = NATO_Rebuilding_Subsidies
+			days = 3650
+		}
+		set_variable = { THIS.idea_len_@token:NATO_Rebuilding_Subsidies = 3650 }
+		set_variable = { THIS.idea_date_@token:NATO_Rebuilding_Subsidies = global.num_days }
+        add_equipment_to_stockpile = {
+            type = infantry_equipment_2
+            amount = 10000
+            producer = CAP
+        }
+        add_equipment_to_stockpile = {
+            type = mbt_equipment_4
+            amount = 150
+            producer = CAP
+        }
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_2
+			amount = 1000
+			producer = CAP
+		}	
+		add_equipment_to_stockpile = {
+			type = mechanized_equipment_5
+			amount = 250
+			producer = CAP
+		}	
+        add_equipment_to_stockpile = {
+            type = artillery_equipment_3
+            amount = 200
+            producer = CAP
+        }	
+        add_equipment_to_stockpile = {
+            type = high_mach_jet_interceptor_equipment_2
+            amount = 50
+            producer = CAP
+        }					
+        add_equipment_to_stockpile = {
+            type = jet_tac_bomber_equipment_2
+            amount = 25
+            producer = CAP
+        }			
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.88.b
+		country_event = THIRD_BALKAN_WAR.101
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.89
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.89.t
+	desc = THIRD_BALKAN_WAR.89.d
+	picture = GFX_THIRD_BALKAN_WAR_89
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.89.a
+		country_event = THIRD_BALKAN_WAR.101
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.90
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.90.t
+	desc = THIRD_BALKAN_WAR.90.d
+	picture = GFX_THIRD_BALKAN_WAR_90
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.90.a
+		country_event = THIRD_BALKAN_WAR.101
+		news_event = THIRD_BALKAN_WAR.95
+		if = {
+			limit = {
+				country_exists = GRE
+			}
+			GRE = {
+				transfer_state = 937
+				transfer_state = 341
+				transfer_state = 339
+				transfer_state = 340
+			}
+			341 = {
+				add_core_of = GRE
+			}
+			937 = {
+				add_core_of = GRE
+			}
+			339 = {
+				add_core_of = GRE
+			}
+			340 = {
+				add_core_of = GRE
+			}
+		}
+		else = {
+			PDG = {
+				transfer_state = 937
+				transfer_state = 341
+				transfer_state = 339
+				transfer_state = 340
+			}
+			341 = {
+				add_core_of = PDG
+			}
+			937 = {
+				add_core_of = PDG
+			}
+			339 = {
+				add_core_of = PDG
+			}
+			340 = {
+				add_core_of = PDG
+			}
+		}
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.101
+		}
+
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.90.b
+		if = {
+			limit = {
+				country_exists = GRE
+				GRE = {
+					has_idea = nato_member
+				}
+			}
+			GRE = {
+				country_event = THIRD_BALKAN_WAR.91
+			}
+		}
+		else_if = {
+			limit = {
+				country_exists = GRE
+				GRE = {
+					NOT = { has_idea = nato_member }
+				}
+			}
+			GRE = {
+				country_event = THIRD_BALKAN_WAR.94
+			}
+		}
+		else_if = {
+			limit = {
+				country_exists = PDG
+				PDG = {
+					has_idea = nato_member
+				}
+			}
+			PDG = {
+				country_event = THIRD_BALKAN_WAR.91
+			}
+		}
+		else_if = {
+			limit = {
+				country_exists = PDG
+				PDG = {
+					NOT = { has_idea = nato_member }
+				}
+			}
+			PDG = {
+				country_event = THIRD_BALKAN_WAR.94
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.91
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.91.t
+	desc = THIRD_BALKAN_WAR.91.d
+	picture = GFX_THIRD_BALKAN_WAR_91
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.91.a
+		transfer_state = 937
+		transfer_state = 341
+		341 = {
+			add_core_of = ROOT
+		}
+		937 = {
+			add_core_of = ROOT
+		}
+		news_event = THIRD_BALKAN_WAR.85
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.91.b
+		news_event = THIRD_BALKAN_WAR.95
+		341 = {
+			add_core_of = ROOT
+		}
+		937 = {
+			add_core_of = ROOT
+		}
+		339 = {
+			add_core_of = ROOT
+		}
+		340 = {
+			add_core_of = ROOT
+		}
+		transfer_state = 937
+		transfer_state = 341
+		transfer_state = 339
+		transfer_state = 340
+		USA = {
+			country_event = THIRD_BALKAN_WAR.92
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.92
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.92.t
+	desc = THIRD_BALKAN_WAR.92.d
+	picture = GFX_THIRD_BALKAN_WAR_92
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.92.a
+		country_event = THIRD_BALKAN_WAR.93
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.96
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.93
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.93.t
+	desc = THIRD_BALKAN_WAR.93.d
+	picture = GFX_THIRD_BALKAN_WAR_93
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.93.a
+		remove_from_faction = GRE
+		if = {
+			limit = {
+				country_exists = GRE
+			}
+			GRE = {
+				country_event = THIRD_BALKAN_WAR.124
+			}
+		}
+		if = {
+			limit = {
+				country_exists = PDG
+			}
+			PDG = {
+				country_event = THIRD_BALKAN_WAR.124
+			}
+		}
+		
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.93.b
+		remove_from_faction = GRE
+		if = {
+			limit = {
+				country_exists = GRE
+			}
+			GRE = {
+				country_event = THIRD_BALKAN_WAR.124
+			}
+		}
+		if = {
+			limit = {
+				country_exists = PDG
+			}
+			PDG = {
+				country_event = THIRD_BALKAN_WAR.124
+			}
+		}
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.99
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.93.c
+		remove_from_faction = GRE
+		remove_from_faction = PDG
+		if = {
+			limit = {
+				country_exists = GRE
+			}
+			GRE = {
+				country_event = THIRD_BALKAN_WAR.124
+			}
+		}
+		if = {
+			limit = {
+				country_exists = PDG
+			}
+			PDG = {
+				country_event = THIRD_BALKAN_WAR.124
+			}
+		}
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.100
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.94
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.94.t
+	desc = THIRD_BALKAN_WAR.94.d
+	picture = GFX_THIRD_BALKAN_WAR_94
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.94.a
+		transfer_state = 937
+		transfer_state = 341
+		341 = {
+			add_core_of = ROOT
+		}
+		937 = {
+			add_core_of = ROOT
+		}
+		news_event = THIRD_BALKAN_WAR.85
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.96
+			country_event ={
+				id = THIRD_BALKAN_WAR.100
+				days = 5
+			} 
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.94.b
+		news_event = THIRD_BALKAN_WAR.95
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.96
+			country_event ={
+				id = THIRD_BALKAN_WAR.100
+				days = 5
+			} 
+		}
+		add_timed_idea = {
+			idea = NATO_Sanctions
+			days = 7300
+		}
+		set_variable = { THIS.idea_len_@token:NATO_Sanctions = 7300 }
+		set_variable = { THIS.idea_date_@token:NATO_Sanctions = global.num_days }
+		341 = {
+			add_core_of = ROOT
+		}
+		937 = {
+			add_core_of = ROOT
+		}
+		339 = {
+			add_core_of = ROOT
+		}
+		340 = {
+			add_core_of = ROOT
+		}
+		transfer_state = 937
+		transfer_state = 341
+		transfer_state = 339
+		transfer_state = 340
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.95
+ immediate = { }
+	title = THIRD_BALKAN_WAR.95.t
+	desc = THIRD_BALKAN_WAR.95.d
+	picture = GFX_THIRD_BALKAN_WAR_95
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.95.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.96
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.96.t
+	desc = THIRD_BALKAN_WAR.96.d
+	picture = GFX_THIRD_BALKAN_WAR_96
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.96.a
+		add_timed_idea = {
+			idea = National_Humiliation	#negative modifier on stability/economy/military
+			days = 1825
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.97
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.97.t
+	desc = THIRD_BALKAN_WAR.97.d
+	picture = GFX_THIRD_BALKAN_WAR_97
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.97.a
+		if = {
+			limit = {
+				country_exists = PDG
+			}
+			PDG = {
+				country_event = THIRD_BALKAN_WAR.98
+			}
+		}
+		else = {
+			GRE = {
+				country_event = THIRD_BALKAN_WAR.98
+			}
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.97.b
+		if = {
+			limit = {
+				country_exists = PDG
+			}
+			PDG = {
+				country_event = THIRD_BALKAN_WAR.98
+			}
+		}
+		else = {
+			GRE = {
+				country_event = THIRD_BALKAN_WAR.98
+			}
+		}
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.99
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.97.c
+		if = {
+			limit = {
+				country_exists = PDG
+			}
+			PDG = {
+				country_event = THIRD_BALKAN_WAR.98
+			}
+		}
+		else = {
+			GRE = {
+				country_event = THIRD_BALKAN_WAR.98
+			}
+		}
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.100
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.98
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.98.t
+	desc = THIRD_BALKAN_WAR.98.d
+	picture = GFX_THIRD_BALKAN_WAR_98
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.98.a
+		add_timed_idea = {
+			idea = NATO_Sanctions
+			days = 7300
+		}
+		set_variable = { THIS.idea_len_@token:NATO_Sanctions = 7300 }
+		set_variable = { THIS.idea_date_@token:NATO_Sanctions = global.num_days }
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.99
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.99.t
+	desc = THIRD_BALKAN_WAR.99.d
+	picture = GFX_THIRD_BALKAN_WAR_99
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.99.a
+        add_equipment_to_stockpile = {
+            type = infantry_equipment_2
+            amount = 10000
+            producer = CAP
+        }
+        add_equipment_to_stockpile = {
+            type = mbt_equipment_4
+            amount = 150
+            producer = CAP
+        }
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_2
+			amount = 1000
+			producer = CAP
+		}	
+		add_equipment_to_stockpile = {
+			type = mechanized_equipment_5
+			amount = 250
+			producer = CAP
+		}	
+        add_equipment_to_stockpile = {
+            type = artillery_equipment_3
+            amount = 200
+            producer = CAP
+        }	
+        add_equipment_to_stockpile = {
+            type = high_mach_jet_interceptor_equipment_2
+            amount = 50
+            producer = CAP
+        }					
+        add_equipment_to_stockpile = {
+            type = jet_tac_bomber_equipment_2
+            amount = 25
+            producer = CAP
+        }									
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.100
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.100.t
+	desc = THIRD_BALKAN_WAR.100.d
+	picture = GFX_THIRD_BALKAN_WAR_100
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.100.a
+		add_timed_idea = {
+			idea = NATO_Economic_Package
+			days = 1825
+		}
+		set_variable = { THIS.idea_len_@token:NATO_Economic_Package = 1825 }
+		set_variable = { THIS.idea_date_@token:NATO_Economic_Package = global.num_days }
+        add_equipment_to_stockpile = {
+            type = infantry_equipment_2
+            amount = 10000
+            producer = CAP
+        }
+        add_equipment_to_stockpile = {
+            type = mbt_equipment_4
+            amount = 150
+            producer = CAP
+        }
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_2
+			amount = 1000
+			producer = CAP
+		}	
+		add_equipment_to_stockpile = {
+			type = mechanized_equipment_5
+			amount = 250
+			producer = CAP
+		}	
+        add_equipment_to_stockpile = {
+            type = artillery_equipment_3
+            amount = 200
+            producer = CAP
+        }	
+        add_equipment_to_stockpile = {
+            type = high_mach_jet_interceptor_equipment_2
+            amount = 50
+            producer = CAP
+        }					
+        add_equipment_to_stockpile = {
+            type = jet_tac_bomber_equipment_2
+            amount = 25
+            producer = CAP
+        }									
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.101
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.101.t
+	desc = THIRD_BALKAN_WAR.101.d
+	picture = GFX_THIRD_BALKAN_WAR_101
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.101.a
+		remove_ideas = nato_member
+		news_event = THIRD_BALKAN_WAR.102
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.101.b
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.102
+ immediate = { }
+	title = THIRD_BALKAN_WAR.102.t
+	desc = THIRD_BALKAN_WAR.102.d
+	picture = GFX_THIRD_BALKAN_WAR_102
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.102.a
+	}
+}#If Greece controls all its victory positions but Turkey controls at least two of its victory conditions from Greece
+
+#Greece Gains Edirne and Istanbul	#THIRD_BALKAN_WAR.85
+#-Return of Constantinople? 
+
+#If Turkey controls all its Victory areas but Greece controls Cyprus
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.104
+    immediate = { }	
+
+	title = THIRD_BALKAN_WAR.104.t
+	desc = THIRD_BALKAN_WAR.103.d
+	picture = GFX_THIRD_BALKAN_WAR_103
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.104.a
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.105
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.105
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.105.t
+	desc = THIRD_BALKAN_WAR.104.d
+	picture = GFX_THIRD_BALKAN_WAR_105
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.105.a
+		news_event = THIRD_BALKAN_WAR.106
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.107
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.105.b
+		news_event = THIRD_BALKAN_WAR.106
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.107
+		}
+		USA = {
+			country_event = THIRD_BALKAN_WAR.116
+		}
+		FROM = {
+			transfer_state = 915
+			transfer_state = 183
+			transfer_state = 912
+			912 = {
+				add_core_of = NCY
+			}
+			183 = {
+				add_core_of = NCY
+			}
+			915 = {
+				add_core_of = NCY
+			}
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.106
+ 	immediate = { }
+	title = THIRD_BALKAN_WAR.106.t
+	desc = THIRD_BALKAN_WAR.105.d
+	picture = GFX_THIRD_BALKAN_WAR_106
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.106.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.107
+    immediate = { }	
+
+	title = THIRD_BALKAN_WAR.107.t
+	desc = THIRD_BALKAN_WAR.106.d
+	picture = GFX_THIRD_BALKAN_WAR_107
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.107.a
+		NCY = {
+			transfer_state = 915
+			transfer_state = 183
+			transfer_state = 912
+			912 = {
+				add_core_of = NCY
+			}
+			183 = {
+				add_core_of = NCY
+			}
+			915 = {
+				add_core_of = NCY
+			}
+		}
+		news_event = THIRD_BALKAN_WAR.109
+		puppet = NCY
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.107.b
+		news_event = THIRD_BALKAN_WAR.108
+		transfer_state = 915
+		transfer_state = 183
+		transfer_state = 912
+		912 = {
+			add_core_of = TUR
+		}
+		183 = {
+			add_core_of = TUR
+		}
+		915 = {
+			add_core_of = TUR
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.108
+ immediate = { }
+	title = THIRD_BALKAN_WAR.108.t
+	desc = THIRD_BALKAN_WAR.107.d
+	picture = GFX_THIRD_BALKAN_WAR_108
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.108.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.109
+ immediate = { }
+	title = THIRD_BALKAN_WAR.109.t
+	desc = THIRD_BALKAN_WAR.108.d
+	picture = GFX_THIRD_BALKAN_WAR_109
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.109.a
+	}
+}
+#If Turkey controls all its Victory areas and Greece has none of its
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.110
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.110.t
+	desc = THIRD_BALKAN_WAR.109.d
+	picture = GFX_THIRD_BALKAN_WAR_110
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.110.a
+		USA = {
+			country_event = THIRD_BALKAN_WAR.116
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.110.b
+		news_event = THIRD_BALKAN_WAR.111
+		if = {
+			limit = {
+				GRE = {
+					has_idea = nato_member
+				}
+			}
+			GRE = {
+				country_event = THIRD_BALKAN_WAR.112
+			}
+		}
+		transfer_state = 184
+		transfer_state = 187
+		transfer_state = 164
+		164 = {
+			add_core_of = TUR
+		}
+		187 = {
+			add_core_of = TUR
+		}
+		184 = {
+			add_core_of = TUR
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.111
+ immediate = { }
+	title = THIRD_BALKAN_WAR.111.t
+	desc = THIRD_BALKAN_WAR.110.d
+	picture = GFX_THIRD_BALKAN_WAR_111
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.111.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.112
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.112.t
+	desc = THIRD_BALKAN_WAR.111.d
+	picture = GFX_THIRD_BALKAN_WAR_112
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.112.a
+		USA = {
+			country_event = THIRD_BALKAN_WAR.113
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.112.b
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.113
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.113.t
+	desc = THIRD_BALKAN_WAR.112.d
+	picture = GFX_THIRD_BALKAN_WAR_113
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.113.a
+		GRE = {
+			country_event = THIRD_BALKAN_WAR.114
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.113.b
+		GRE = {
+			country_event = THIRD_BALKAN_WAR.115
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.114
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.114.t
+	desc = THIRD_BALKAN_WAR.113.d
+	picture = GFX_THIRD_BALKAN_WAR_114
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.114.a
+		add_timed_idea = {
+			idea = NATO_Rebuilding_Subsidies
+			days = 3650
+		}
+		set_variable = { THIS.idea_len_@token:NATO_Rebuilding_Subsidies = 3650 }
+		set_variable = { THIS.idea_date_@token:NATO_Rebuilding_Subsidies = global.num_days }
+        add_equipment_to_stockpile = {
+            type = infantry_equipment_2
+            amount = 10000
+            producer = CAP
+        }
+        add_equipment_to_stockpile = {
+            type = mbt_equipment_4
+            amount = 150
+            producer = CAP
+        }
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_2
+			amount = 1000
+			producer = CAP
+		}	
+		add_equipment_to_stockpile = {
+			type = mechanized_equipment_5
+			amount = 250
+			producer = CAP
+		}	
+        add_equipment_to_stockpile = {
+            type = artillery_equipment_3
+            amount = 200
+            producer = CAP
+        }	
+        add_equipment_to_stockpile = {
+            type = high_mach_jet_interceptor_equipment_2
+            amount = 50
+            producer = CAP
+        }					
+        add_equipment_to_stockpile = {
+            type = jet_tac_bomber_equipment_2
+            amount = 25
+            producer = CAP
+        }			
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.114.b
+		country_event = THIRD_BALKAN_WAR.134
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.115
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.115.t
+	desc = THIRD_BALKAN_WAR.114.d
+	picture = GFX_THIRD_BALKAN_WAR_115
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.115.a
+		country_event = THIRD_BALKAN_WAR.134
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.116
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.116.t
+	desc = THIRD_BALKAN_WAR.115.d
+	picture = GFX_THIRD_BALKAN_WAR_116
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.116.a
+		GRE = {
+			country_event = THIRD_BALKAN_WAR.134
+		}
+		TUR = {
+			news_event = THIRD_BALKAN_WAR.121
+			transfer_state = 184
+			transfer_state = 187
+			transfer_state = 164
+			transfer_state = 731
+			transfer_state = 185
+			185 = {
+				add_core_of = TUR
+			}
+			731 = {
+				add_core_of = TUR
+			}
+			164 = {
+				add_core_of = TUR
+			}
+			187 = {
+				add_core_of = TUR
+			}
+			184 = {
+				add_core_of = TUR
+			}			
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.116.b
+		if = {
+			limit = {
+				TUR = {
+					NOT = {
+						has_idea = nato_member
+					}
+				}
+			}
+			TUR = {
+				country_event = THIRD_BALKAN_WAR.116
+			}
+		}
+		if = {
+			limit = {
+				TUR = {
+					has_idea = nato_member
+				}
+			}
+			TUR = {
+				country_event = THIRD_BALKAN_WAR.119
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.1171
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.1171.t
+	desc = THIRD_BALKAN_WAR.116.d
+	picture = GFX_THIRD_BALKAN_WAR_1171
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.1171.a
+		news_event = THIRD_BALKAN_WAR.111
+		if = {
+			limit = {
+				GRE = {
+					has_idea = nato_member
+				}
+			}
+			GRE = {
+				country_event = THIRD_BALKAN_WAR.112
+			}
+		}
+		transfer_state = 184
+		transfer_state = 187
+		transfer_state = 164
+		164 = {
+			add_core_of = TUR
+		}
+		187 = {
+			add_core_of = TUR
+		}
+		184 = {
+			add_core_of = TUR
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.1171.b
+		news_event = THIRD_BALKAN_WAR.121
+		if = {
+			limit = {
+				GRE = {
+					has_idea = nato_member
+				}
+			}
+			GRE = {
+				country_event = THIRD_BALKAN_WAR.112
+			}
+		}
+		country_event = THIRD_BALKAN_WAR.117
+		transfer_state = 184
+		transfer_state = 187
+		transfer_state = 164
+		transfer_state = 731
+		transfer_state = 185
+		185 = {
+			add_core_of = TUR
+		}
+		731 = {
+			add_core_of = TUR
+		}
+		164 = {
+			add_core_of = TUR
+		}
+		187 = {
+			add_core_of = TUR
+		}
+		184 = {
+			add_core_of = TUR
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.117
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.117.t
+	desc = THIRD_BALKAN_WAR.117.d
+	picture = GFX_THIRD_BALKAN_WAR_117
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.117.a
+		add_ideas = American_Sanctions
+		hidden_effect = {
+			country_event = {
+				id = THIRD_BALKAN_WAR.118
+				days = 1095
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.118
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.118.t
+	desc = THIRD_BALKAN_WAR.118.d
+	picture = GFX_THIRD_BALKAN_WAR_118
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.118.a
+		remove_ideas = American_Sanctions
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.119
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.119.t
+	desc = THIRD_BALKAN_WAR.119.d
+	picture = GFX_THIRD_BALKAN_WAR_119
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.119.a
+		news_event = THIRD_BALKAN_WAR.111
+		if = {
+			limit = {
+				GRE = {
+					has_idea = nato_member
+				}
+			}
+			GRE = {
+				country_event = THIRD_BALKAN_WAR.112
+			}
+		}
+		transfer_state = 184
+		transfer_state = 187
+		transfer_state = 164
+		164 = {
+			add_core_of = TUR
+		}
+		187 = {
+			add_core_of = TUR
+		}
+		184 = {
+			add_core_of = TUR
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.119.b
+		country_event = THIRD_BALKAN_WAR.120
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.120
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.120.t
+	desc = THIRD_BALKAN_WAR.120.d
+	picture = GFX_THIRD_BALKAN_WAR_120
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.120.a
+		news_event = THIRD_BALKAN_WAR.121
+		transfer_state = 184
+		transfer_state = 187
+		transfer_state = 164
+		transfer_state = 731
+		transfer_state = 185
+		185 = {
+			add_core_of = TUR
+		}
+		731 = {
+			add_core_of = TUR
+		}
+		164 = {
+			add_core_of = TUR
+		}
+		187 = {
+			add_core_of = TUR
+		}
+		184 = {
+			add_core_of = TUR
+		}
+
+		USA = {
+			country_event = THIRD_BALKAN_WAR.121
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.121
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.121.t
+	desc = THIRD_BALKAN_WAR.121.d
+	picture = GFX_THIRD_BALKAN_WAR_121
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.121.a
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.124
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.121.b
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.124
+		}
+		GRE = {
+			country_event = THIRD_BALKAN_WAR.125
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.121.c
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.124
+		}
+		GRE = {
+			country_event = THIRD_BALKAN_WAR.126
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.122
+ immediate = { }
+	title = THIRD_BALKAN_WAR.122.t
+	desc = THIRD_BALKAN_WAR.122.d
+	picture = GFX_THIRD_BALKAN_WAR_122
+
+	is_triggered_only = yes
+	major = yes
+
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					OR = {
+						tag = GRE
+						tag = PDG
+					}
+				}
+				country_event = THIRD_BALKAN_WAR.123
+			}
+		}
+	}
+
+	option = {
+		name = THIRD_BALKAN_WAR.122.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.123
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.123.t
+	desc = THIRD_BALKAN_WAR.123.d
+	picture = GFX_THIRD_BALKAN_WAR_123
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.123.a
+		add_timed_idea = {
+			idea = National_Humiliation	#negative modifier on stability/economy/military
+			days = 1825
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.124
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.124.t
+	desc = THIRD_BALKAN_WAR.124.d
+	picture = GFX_THIRD_BALKAN_WAR_124
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.124.a
+		remove_ideas = nato_member
+		add_timed_idea = {
+			idea = NATO_Sanctions
+			days = 7300
+		}
+		set_variable = { THIS.idea_len_@token:NATO_Sanctions = 7300 }
+		set_variable = { THIS.idea_date_@token:NATO_Sanctions = global.num_days }
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.125
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.125.t
+	desc = THIRD_BALKAN_WAR.125.d
+	picture = GFX_THIRD_BALKAN_WAR_125
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.125.a
+        add_equipment_to_stockpile = {
+            type = infantry_equipment_2
+            amount = 10000
+            producer = CAP
+        }
+        add_equipment_to_stockpile = {
+            type = mbt_equipment_4
+            amount = 150
+            producer = CAP
+        }
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_2
+			amount = 1000
+			producer = CAP
+		}	
+		add_equipment_to_stockpile = {
+			type = mechanized_equipment_5
+			amount = 250
+			producer = CAP
+		}	
+        add_equipment_to_stockpile = {
+            type = artillery_equipment_3
+            amount = 200
+            producer = CAP
+        }	
+        add_equipment_to_stockpile = {
+            type = high_mach_jet_interceptor_equipment_2
+            amount = 50
+            producer = CAP
+        }					
+        add_equipment_to_stockpile = {
+            type = jet_tac_bomber_equipment_2
+            amount = 25
+            producer = CAP
+        }									
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.126
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.126.t
+	desc = THIRD_BALKAN_WAR.126.d
+	picture = GFX_THIRD_BALKAN_WAR_126
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.126.a
+		add_timed_idea = {
+			idea = NATO_Economic_Package
+			days = 1825
+		}
+		set_variable = { THIS.idea_len_@token:NATO_Economic_Package = 1825 }
+		set_variable = { THIS.idea_date_@token:NATO_Economic_Package = global.num_days }
+        add_equipment_to_stockpile = {
+            type = infantry_equipment_2
+            amount = 10000
+            producer = CAP
+        }
+        add_equipment_to_stockpile = {
+            type = mbt_equipment_4
+            amount = 150
+            producer = CAP
+        }
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_2
+			amount = 1000
+			producer = CAP
+		}	
+		add_equipment_to_stockpile = {
+			type = mechanized_equipment_5
+			amount = 250
+			producer = CAP
+		}	
+        add_equipment_to_stockpile = {
+            type = artillery_equipment_3
+            amount = 200
+            producer = CAP
+        }	
+        add_equipment_to_stockpile = {
+            type = high_mach_jet_interceptor_equipment_2
+            amount = 50
+            producer = CAP
+        }					
+        add_equipment_to_stockpile = {
+            type = jet_tac_bomber_equipment_2
+            amount = 25
+            producer = CAP
+        }									
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.127
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.127.t
+	desc = THIRD_BALKAN_WAR.127.d
+	picture = GFX_THIRD_BALKAN_WAR_127
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.127.a
+		remove_ideas = nato_member
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.127.b
+	}
+}#If Turkey controls all its victory areas but Greece controls at least two of its victory conditions from Turkey
+#Turkey Gains Rhodes and Kavala
+
+#Greece and Turkey control a mix of each others victory positions
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.128
+ immediate = { }
+	title = THIRD_BALKAN_WAR.128.t
+	desc = THIRD_BALKAN_WAR.128.d
+	picture = GFX_THIRD_BALKAN_WAR_128
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.128.a
+	}
+}#UAR Controls Hatay
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.129
+ immediate = { }
+	title = THIRD_BALKAN_WAR.129.t
+	desc = THIRD_BALKAN_WAR.129.d
+	picture = GFX_THIRD_BALKAN_WAR_129
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		if = {
+			limit = {
+				tag = EGY
+			}
+			hidden_effect = {
+				transfer_state = 905
+				white_peace = TUR
+			}
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.129.a
+	}
+}#Turkey Controls Aleppo
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.130
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.130.t
+	desc = THIRD_BALKAN_WAR.130.d
+	picture = GFX_THIRD_BALKAN_WAR_130
+
+	is_triggered_only = yes
+
+	option = {  
+		name = THIRD_BALKAN_WAR.130.a
+		news_event = THIRD_BALKAN_WAR.131
+	}
+	option = {  
+		name = THIRD_BALKAN_WAR.130.b
+		news_event = THIRD_BALKAN_WAR.132
+		EGY = {
+			add_timed_idea = {
+				idea = National_Defeat	#negative military/economic modifiers
+				days = 1095
+			}
+		}
+		894 = {
+			add_core_of = TUR
+		}
+		677 = {
+			add_core_of = TUR
+		}
+		810 = {
+			add_core_of = TUR
+		}
+		777 = {
+			add_core_of = TUR
+		}
+		680 = {
+			add_core_of = TUR
+		}
+		transfer_state = 894
+		transfer_state = 677
+		transfer_state = 810
+		transfer_state = 777
+		transfer_state = 680
+	}
+	option = {  
+		name = THIRD_BALKAN_WAR.130.c
+		news_event = THIRD_BALKAN_WAR.133
+		EGY = {
+			add_timed_idea = {
+				idea = National_Defeat
+				days = 1095
+			}
+			set_variable = { THIS.idea_len_@token:National_Defeat = 1095 }
+			set_variable = { THIS.idea_date_@token:National_Defeat = global.num_days }
+		}
+		SYR = {
+			transfer_state = 894
+			transfer_state = 677
+			transfer_state = 810
+			transfer_state = 777
+			transfer_state = 680
+		}
+		puppet = SYR
+		SYR = {
+			set_cosmetic_tag = TUR_SYR
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.131
+ immediate = { }
+	title = THIRD_BALKAN_WAR.131.t
+	desc = THIRD_BALKAN_WAR.131.d
+	picture = GFX_THIRD_BALKAN_WAR_131
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.131.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.132
+ immediate = { }
+	title = THIRD_BALKAN_WAR.132.t
+	desc = THIRD_BALKAN_WAR.132.d
+	picture = GFX_THIRD_BALKAN_WAR_132
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.132.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.133
+ immediate = { }
+	title = THIRD_BALKAN_WAR.133.t
+	desc = THIRD_BALKAN_WAR.133.d
+	picture = GFX_THIRD_BALKAN_WAR_133
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.133.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.134
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.134.t
+	desc = THIRD_BALKAN_WAR.134.d
+	picture = GFX_THIRD_BALKAN_WAR_134
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.134.a
+		remove_ideas = nato_member
+		news_event = THIRD_BALKAN_WAR.135
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.134.b
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.135
+ immediate = { }
+	title = THIRD_BALKAN_WAR.135.t
+	desc = THIRD_BALKAN_WAR.135.d
+	picture = GFX_THIRD_BALKAN_WAR_135
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.135.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.136 #(if Turkey has decisively defeated Greece/occupies Macedonia)
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.136.t
+	desc = THIRD_BALKAN_WAR.136.d
+	picture = GFX_THIRD_BALKAN_WAR_136
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.136.a
+		news_event = THIRD_BALKAN_WAR.138
+		YUG = {
+			release = MAC
+		}
+		puppet = MAC
+		MAC = {
+			set_politics = {
+				ruling_party = nationalist
+				last_election = "1945.1.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Dragan Bogdanovski"
+				picture = "Dragan_Bogdanovski.dds"
+				ideology = national_democrat
+			}			
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.136.b
+		news_event = THIRD_BALKAN_WAR.137
+		YUG = {
+			add_timed_idea = {
+				idea = Turkish_Reperations
+				days = 1825
+			}
+			set_variable = { THIS.idea_len_@token:Turkish_Reperations = 1825 }
+			set_variable = { THIS.idea_date_@token:Turkish_Reperations = global.num_days }
+			every_owned_state = {
+				limit = {
+					is_core_of = MAC
+				}
+				set_demilitarized_zone = yes
+			}
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.137
+ immediate = { }
+	title = THIRD_BALKAN_WAR.137.t
+	desc = THIRD_BALKAN_WAR.137.d
+	picture = GFX_THIRD_BALKAN_WAR_137
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.137.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.138
+ immediate = { }
+	title = THIRD_BALKAN_WAR.138.t
+	desc = THIRD_BALKAN_WAR.138.d
+	picture = GFX_THIRD_BALKAN_WAR_138
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.138.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #(if Turkey has decisively defeated Albania)
+	id = THIRD_BALKAN_WAR.139
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.139.t
+	desc = THIRD_BALKAN_WAR.139.d
+	picture = GFX_THIRD_BALKAN_WAR_139
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.139.a
+		puppet = ALB
+		ALB = {
+			set_politics = {
+				ruling_party = monarchism
+				last_election = "1945.1.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+		}
+		news_event = THIRD_BALKAN_WAR.140
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.140
+ immediate = { }
+	title = THIRD_BALKAN_WAR.140.t
+	desc = THIRD_BALKAN_WAR.140.d
+	picture = GFX_THIRD_BALKAN_WAR_140
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.140.a
+	}
+}#Soviet Greece Version + Israel Expansion
+#Start of War Soviet Greece NATO Turkey
+
+#Respond to Enosis (Event from TUR_Resond_Enosis) 
+
+#Enosis Crisis Begins
+#-(if communist Greece exists, UK gets "Inform US of Our Opinion Regarding Cyprus Crisis")
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.141
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.141.t
+	desc = THIRD_BALKAN_WAR.141.d
+	picture = GFX_THIRD_BALKAN_WAR_141
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.141.a
+		USA = {
+			country_event = THIRD_BALKAN_WAR.142
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.141.b
+		USA = {
+			country_event = THIRD_BALKAN_WAR.143
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.142
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.142.t
+	desc = THIRD_BALKAN_WAR.142.d
+	picture = GFX_THIRD_BALKAN_WAR_142
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.142.a
+		country_event = THIRD_BALKAN_WAR.144
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.143
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.143.t
+	desc = THIRD_BALKAN_WAR.143.d
+	picture = GFX_THIRD_BALKAN_WAR_143
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.143.a
+		country_event = THIRD_BALKAN_WAR.144
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.144
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.144.t
+	desc = THIRD_BALKAN_WAR.144.d
+	picture = GFX_THIRD_BALKAN_WAR_144
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.144.a
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.145
+		}
+		
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.144.b
+		#Continues Events Later
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.145
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.145.t
+	desc = THIRD_BALKAN_WAR.145.d
+	picture = GFX_THIRD_BALKAN_WAR_145
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.145.a
+		news_event = THIRD_BALKAN_WAR.146	
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.145.b
+		USA = {
+			country_event = THIRD_BALKAN_WAR.147
+		}
+	}
+} 
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.146
+ immediate = { }
+	title = THIRD_BALKAN_WAR.146.t
+	desc = THIRD_BALKAN_WAR.146.d
+	picture = GFX_THIRD_BALKAN_WAR_146
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					tag = TUR
+				}
+				PDG = {
+					transfer_state = 915
+					transfer_state = 912
+					transfer_state = 183
+					912 = {
+						add_core_of = PDG
+						add_core_of = GRE
+					}
+					915 = {
+						add_core_of = PDG
+						add_core_of = GRE
+					}
+					183 = {
+						add_core_of = PDG
+						add_core_of = GRE
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = THIRD_BALKAN_WAR.146.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.147
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.147.t
+	desc = THIRD_BALKAN_WAR.147.d
+	picture = GFX_THIRD_BALKAN_WAR_147
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.147.a
+		news_event = THIRD_BALKAN_WAR.148
+		TUR = {
+			remove_ideas = nato_member
+		}
+		PDG = {
+			country_event = THIRD_BALKAN_WAR.152
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.147.b
+		SOV = {
+			country_event = THIRD_BALKAN_WAR.149
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.148
+ immediate = { }
+	title = THIRD_BALKAN_WAR.148.t
+	desc = THIRD_BALKAN_WAR.148.d
+	picture = GFX_THIRD_BALKAN_WAR_148
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.148.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.149
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.149.t
+	desc = THIRD_BALKAN_WAR.149.d
+	picture = GFX_THIRD_BALKAN_WAR_149
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.149.a
+		news_event = THIRD_BALKAN_WAR.150
+		TUR = {
+			country_event = {
+				id = THIRD_BALKAN_WAR.151
+				days = 7
+			}
+		}
+		PDG = {
+			country_event = {
+				id = THIRD_BALKAN_WAR.151
+				days = 7
+			}
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.149.b
+		news_event = THIRD_BALKAN_WAR.148
+		TUR = {
+			remove_ideas = nato_member
+		}
+		PDG = {
+			country_event = THIRD_BALKAN_WAR.152
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.150
+ immediate = { }
+	title = THIRD_BALKAN_WAR.150.t
+	desc = THIRD_BALKAN_WAR.150.d
+	picture = GFX_THIRD_BALKAN_WAR_150
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.150.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.151
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.151.t
+	desc = THIRD_BALKAN_WAR.151.d
+	picture = GFX_THIRD_BALKAN_WAR_151
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.151.a
+		PDG = {
+			transfer_state = 915
+			transfer_state = 183
+			915 = {
+				add_core_of = PDG
+			}
+			183 = {
+				add_core_of = PDG
+			}
+		}
+		TUR = {
+			transfer_state = 912
+			912 = {
+				add_core_of = TUR
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.152
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.152.t
+	desc = THIRD_BALKAN_WAR.152.d
+	picture = GFX_THIRD_BALKAN_WAR_152
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.152.a
+		SOV = {
+			country_event = THIRD_BALKAN_WAR.153
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.152.b
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.153
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.153.t
+	desc = THIRD_BALKAN_WAR.153.d
+	picture = GFX_THIRD_BALKAN_WAR_153
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.153.a
+		news_event = THIRD_BALKAN_WAR.4
+		TUR = {
+			country_event = {
+				id = THIRD_BALKAN_WAR.1540
+				days = 7
+			}
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.153.b
+		PDG = {
+			country_event = THIRD_BALKAN_WAR.154
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.154
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.154.t
+	desc = THIRD_BALKAN_WAR.154.d
+	picture = GFX_THIRD_BALKAN_WAR_154
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.154.a
+	}
+}#Isolated Turkey Path
+
+#Greece Issues Cyprus Ultimatum (in a week, next event fires)
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.1540
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.1540.t
+	desc = THIRD_BALKAN_WAR.1540.d
+	picture = GFX_THIRD_BALKAN_WAR_1540
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.1540.a
+		transfer_state = 912
+		transfer_state = 915
+		transfer_state = 183
+		912 = {
+			add_core_of = PDG
+		}
+		915 = {
+			add_core_of = PDG
+		}
+		183 = {
+			add_core_of = PDG
+		}
+		news_event = THIRD_BALKAN_WAR.155
+		PDG = {
+			country_event = THIRD_BALKAN_WAR.82
+		}
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.83
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.1540.b
+		country_event = {
+			id = THIRD_BALKAN_WAR.156
+			days = 3
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.155
+ immediate = { }
+	title = THIRD_BALKAN_WAR.155.t
+	desc = THIRD_BALKAN_WAR.155.d
+	picture = GFX_THIRD_BALKAN_WAR_155
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.155.a
+
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.156
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.156.t
+	desc = THIRD_BALKAN_WAR.156.d
+	picture = GFX_THIRD_BALKAN_WAR_156
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.156.a
+		PDG = {
+			country_event = THIRD_BALKAN_WAR.82
+		}
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.83
+		}
+		transfer_state = 912
+		transfer_state = 915
+		transfer_state = 183
+		912 = {
+			add_core_of = PDG
+		}
+		915 = {
+			add_core_of = PDG
+		}
+		183 = {
+			add_core_of = PDG
+		}
+		news_event = THIRD_BALKAN_WAR.155
+	}
+}#Continue Regular NATO Path
+#Turkey Occupies Parts of Cyprus (Greece event)
+#Greece Seeks a Resolution Over Cyprus (Turkish/Global event)
+#Turkey Refuses Cyprus Partition Plan
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.157
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.157.t
+	desc = THIRD_BALKAN_WAR.157.d
+	picture = GFX_THIRD_BALKAN_WAR_157
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.157.a
+		SOV = {
+			country_event = THIRD_BALKAN_WAR.158
+		}
+	}
+}#Soviets Refuse Permission for Ultimatum (Greece event)
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.158
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.158.t
+	desc = THIRD_BALKAN_WAR.158.d
+	picture = GFX_THIRD_BALKAN_WAR_158
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.158.a
+		news_event = THIRD_BALKAN_WAR.4
+		USA = {
+			country_event = {
+				id = THIRD_BALKAN_WAR.159
+				days = 7
+			}
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.158.b
+		PDG = {
+			country_event = THIRD_BALKAN_WAR.154
+		}
+	}
+}#Greece Issues Cyprus Ultimatum
+#(leads to "United States Must Respond to Greek Ultimatum", if Turkey still in NATO)
+
+#United States Must Respond to Greek Ultimatum (US event)
+#-Stand with Turkey (route continues, with NATO going to join Turkey if war breaks out)
+#-Reach out to the Soviets (leads to "Americans Have Proposal for Cyprus (Soviet event)")
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.159
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.159.t
+	desc = THIRD_BALKAN_WAR.159.d
+	picture = GFX_THIRD_BALKAN_WAR_159
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.159.a
+		news_event = {
+			id = THIRD_BALKAN_WAR.20
+			days = 7
+		} 
+		news_event = {
+			id = THIRD_BALKAN_WAR.160
+			days = 10
+		} 		
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.159.b
+		SOV = {
+			country_event = THIRD_BALKAN_WAR.149
+		}
+	}
+}
+#Fighting Breaks Out in Cyprus
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.160
+ immediate = { }
+	title = THIRD_BALKAN_WAR.160.t
+	desc = THIRD_BALKAN_WAR.160.d
+	picture = GFX_THIRD_BALKAN_WAR_160
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					tag = PDG
+				}
+				set_global_flag = Cyprus_WW3
+				declare_war_on = {
+					target = USA
+					type = annex_everything
+				}
+			}
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.160.a
+		add_timed_idea = {
+			idea = Disabled_Nuclear_War
+			days = 95
+		}
+		set_variable = { THIS.idea_len_@token:Disabled_Nuclear_War = 95 }
+		set_variable = { THIS.idea_date_@token:Disabled_Nuclear_War = global.num_days }
+	}
+}#END OF WAR EVENTS
+#SAME EVENTS FOR CYPRUS UNDER GREEK CONTROL AND CYPRUS UNDER TURKISH CONTROL AND CYPRUS REMAINS DIVIDED
+#If Greece holds all its victory areas but Turkey controls Cyprus (SAME AS OTHER CHAIN)
+#If Greece holds all its victory areas and Turkey has none of its
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.161
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.161.t
+	desc = THIRD_BALKAN_WAR.161.d
+	picture = GFX_THIRD_BALKAN_WAR_161
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.161.a
+		TUR = {
+			set_country_flag = Event_161_A
+			country_event = THIRD_BALKAN_WAR.164
+		}
+		USA = {
+			country_event = THIRD_BALKAN_WAR.162
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.161.b
+		TUR = {
+			set_country_flag = Event_161_B
+			country_event = THIRD_BALKAN_WAR.164
+		}
+		USA = {
+			country_event = THIRD_BALKAN_WAR.163
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.162
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.162.t
+	desc = THIRD_BALKAN_WAR.162.d
+	picture = GFX_THIRD_BALKAN_WAR_162
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.162.a
+		add_timed_idea = {	#slight negative economic/military modifiers
+			idea = Communist_Advance 
+			days = 1825
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.163
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.163.t
+	desc = THIRD_BALKAN_WAR.163.d
+	picture = GFX_THIRD_BALKAN_WAR_163
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.163.a
+		add_timed_idea = {	#slight negative economic/military modifiers
+			idea = Communist_Advance 
+			days = 1825
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.164
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.164.t
+	desc = THIRD_BALKAN_WAR.164.d
+	picture = GFX_THIRD_BALKAN_WAR_164
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.164.a
+		SOV = {
+			country_event = THIRD_BALKAN_WAR.165
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.164.b
+		if = {
+			limit = {
+				has_country_flag = Event_161_A
+			}
+			news_event = THIRD_BALKAN_WAR.167
+		}
+		else = {
+			news_event = THIRD_BALKAN_WAR.168
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.165
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.165.t
+	desc = THIRD_BALKAN_WAR.165.d
+	picture = GFX_THIRD_BALKAN_WAR_165
+
+	is_triggered_only = yes
+	option = {  
+		name = THIRD_BALKAN_WAR.165.a
+		news_event = THIRD_BALKAN_WAR.168		
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.165.b
+		if = {
+			limit = {
+				TUR = {
+					has_country_flag = Event_161_A
+				}
+			}
+			news_event = THIRD_BALKAN_WAR.167
+		}
+		else = {
+			news_event = THIRD_BALKAN_WAR.168
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.166
+ immediate = { }
+	title = THIRD_BALKAN_WAR.166.t
+	desc = THIRD_BALKAN_WAR.166.d
+	picture = GFX_THIRD_BALKAN_WAR_166
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					tag = TUR
+				}
+				remove_ideas = nato_member
+				SOV = {
+					transfer_state = 793
+					793 = {
+						add_core_of = ARM	#Respective SSR
+						add_core_of = SOV
+					}
+				}
+				PDG = {
+					transfer_state = 915
+					transfer_state = 912
+					transfer_state = 183
+					912 = {
+						add_core_of = PDG
+						add_core_of = GRE
+					}
+					915 = {
+						add_core_of = PDG
+						add_core_of = GRE
+					}
+					183 = {
+						add_core_of = PDG
+						add_core_of = GRE
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = THIRD_BALKAN_WAR.166.a
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.167
+ immediate = { }
+	title = THIRD_BALKAN_WAR.167.t
+	desc = THIRD_BALKAN_WAR.167.d
+	picture = GFX_THIRD_BALKAN_WAR_167
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					tag = TUR
+				}
+				country_event = THIRD_BALKAN_WAR.169
+				PDG = {
+					341 = {
+						add_core_of = PDG
+					}
+					937 = {
+						add_core_of = PDG
+					}
+					339 = {
+						add_core_of = PDG
+					}
+					340 = {
+						add_core_of = PDG
+					}
+					transfer_state = 937
+					transfer_state = 341
+					transfer_state = 339
+					transfer_state = 340
+				}
+				SOV = {
+					transfer_state = 793
+					793 = {
+						add_core_of = SOV
+						add_core_of = ARM
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = THIRD_BALKAN_WAR.167.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.168
+ immediate = { }
+	title = THIRD_BALKAN_WAR.168.t
+	desc = THIRD_BALKAN_WAR.168.d
+	picture = GFX_THIRD_BALKAN_WAR_168
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					tag = TUR
+				}
+				country_event = THIRD_BALKAN_WAR.169
+				PDG = {
+					transfer_state = 341
+					transfer_state = 937
+					937 = {
+						add_core_of = PDG
+					}
+					341 = {
+						add_core_of = PDG
+					}
+				}
+				SOV = {
+					transfer_state = 793
+					793 = {
+						add_core_of = SOV
+						add_core_of = ARM
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = THIRD_BALKAN_WAR.168.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.169
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.169.t
+	desc = THIRD_BALKAN_WAR.169.d
+	picture = GFX_THIRD_BALKAN_WAR_169
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.169.a
+		USA = {
+			country_event = THIRD_BALKAN_WAR.171
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.169.b
+		news_event = THIRD_BALKAN_WAR.170
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.170
+ immediate = { }
+	title = THIRD_BALKAN_WAR.170.t
+	desc = THIRD_BALKAN_WAR.170.d
+	picture = GFX_THIRD_BALKAN_WAR_170
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					tag = TUR
+				}
+				remove_ideas = nato_member
+			}
+		}
+	}
+
+	option = {
+		name = THIRD_BALKAN_WAR.170.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.171
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.171.t
+	desc = THIRD_BALKAN_WAR.171.d
+	picture = GFX_THIRD_BALKAN_WAR_171
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.171.a
+		TUR = {
+			country_event = THIRD_BALKAN_WAR.172
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.171.b
+		news_event = THIRD_BALKAN_WAR.170
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.172
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.172.t
+	desc = THIRD_BALKAN_WAR.172.d
+	picture = GFX_THIRD_BALKAN_WAR_172
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.172.a
+		add_timed_idea = {
+			idea = Heavy_Influx_of_US_Aid	#5 year spirit for economic boost
+			days = 1825
+		}
+        add_equipment_to_stockpile = {
+            type = infantry_equipment_2
+            amount = 10000
+            producer = CAP
+        }
+        add_equipment_to_stockpile = {
+            type = mbt_equipment_4
+            amount = 150
+            producer = CAP
+        }
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_2
+			amount = 1000
+			producer = CAP
+		}	
+		add_equipment_to_stockpile = {
+			type = mechanized_equipment_5
+			amount = 250
+			producer = CAP
+		}	
+        add_equipment_to_stockpile = {
+            type = artillery_equipment_3
+            amount = 200
+            producer = CAP
+        }	
+        add_equipment_to_stockpile = {
+            type = high_mach_jet_interceptor_equipment_2
+            amount = 50
+            producer = CAP
+        }					
+        add_equipment_to_stockpile = {
+            type = jet_tac_bomber_equipment_2
+            amount = 25
+            producer = CAP
+        }			
+	}
+}
+#If Neither Side Achieves a Complete Victory
+#(only Cyprus peace events apply, other than that, everything returns to pre-war borders)
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.173
+ immediate = { }
+	title = THIRD_BALKAN_WAR.173.t
+	desc = THIRD_BALKAN_WAR.173.d
+	picture = GFX_THIRD_BALKAN_WAR_173
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = THIRD_BALKAN_WAR.173.a
+	}
+}#If Turkey controls all its Victory areas
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.174
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.174.t
+	desc = THIRD_BALKAN_WAR.174.d
+	picture = GFX_THIRD_BALKAN_WAR_174
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.174.a
+		news_event = {
+			id = THIRD_BALKAN_WAR.177
+			days = 3
+		}
+		SOV = {
+			country_event = THIRD_BALKAN_WAR.177
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.174.b
+		news_event = {
+			id = THIRD_BALKAN_WAR.178
+			days = 3
+		}
+		SOV = {
+			country_event = THIRD_BALKAN_WAR.176
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.175
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.175.t
+	desc = THIRD_BALKAN_WAR.175.d
+	picture = GFX_THIRD_BALKAN_WAR_175
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.175.a
+		add_timed_idea = {	#slight negative economic/military modifiers
+			idea = Imperialist_Advance 
+			days = 1825
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.176
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.176.t
+	desc = THIRD_BALKAN_WAR.176.d
+	picture = GFX_THIRD_BALKAN_WAR_176
+
+	is_triggered_only = yes
+	option = {  
+        name = THIRD_BALKAN_WAR.176.a
+		add_timed_idea = {	#slight negative economic/military modifiers
+			idea = Imperialist_Advance 
+			days = 1825
+		}
+	}
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.177
+ immediate = { }
+	title = THIRD_BALKAN_WAR.177.t
+	desc = THIRD_BALKAN_WAR.177.d
+	picture = GFX_THIRD_BALKAN_WAR_177
+
+	is_triggered_only = yes
+	major = yes
+
+	immediate = {
+		if = {
+			limit = {
+				tag = TUR
+			}
+			hidden_effect = {
+				GRE = {
+					country_event = THIRD_BALKAN_WAR.179
+				}
+				912 = {
+					add_core_of = TUR
+				}
+				915 = {
+					add_core_of = TUR
+				}
+				183 = {
+					add_core_of = TUR
+				}
+				transfer_state = 731
+				transfer_state = 185
+				185 = {
+					add_core_of = TUR
+				}
+				731 = {
+					add_core_of = TUR
+				}
+				transfer_state = 912
+				transfer_state = 915
+				transfer_state = 183
+				transfer_state = 184
+				transfer_state = 187
+				transfer_state = 164
+				164 = {
+					add_core_of = TUR
+				}
+				187 = {
+					add_core_of = TUR
+				}
+				184 = {
+					add_core_of = TUR
+				}
+			}
+		}
+	}
+
+	option = {
+		name = THIRD_BALKAN_WAR.177.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.178
+ immediate = { }
+	title = THIRD_BALKAN_WAR.178.t
+	desc = THIRD_BALKAN_WAR.178.d
+	picture = GFX_THIRD_BALKAN_WAR_178
+
+	is_triggered_only = yes
+	major = yes
+
+	immediate = {
+		if = {
+			limit = {
+				tag = TUR
+			}
+			hidden_effect = {
+				GRE = {
+					country_event = THIRD_BALKAN_WAR.179
+				}
+				912 = {
+					add_core_of = TUR
+				}
+				915 = {
+					add_core_of = TUR
+				}
+				183 = {
+					add_core_of = TUR
+				}
+				transfer_state = 912
+				transfer_state = 915
+				transfer_state = 183
+				transfer_state = 184
+				transfer_state = 187
+				transfer_state = 164
+				164 = {
+					add_core_of = TUR
+				}
+				187 = {
+					add_core_of = TUR
+				}
+				184 = {
+					add_core_of = TUR
+				}
+			}
+		}
+	}
+
+	option = {
+		name = THIRD_BALKAN_WAR.178.a
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.179
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.179.t
+	desc = THIRD_BALKAN_WAR.179.d
+	picture = GFX_THIRD_BALKAN_WAR_179
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.179.a
+		SOV = {
+			country_event = THIRD_BALKAN_WAR.180
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.180
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.180.t
+	desc = THIRD_BALKAN_WAR.180.d
+	picture = GFX_THIRD_BALKAN_WAR_180
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.180.a
+		PDG = {
+			country_event = THIRD_BALKAN_WAR.181
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.180.b
+		SOV = {
+			add_opinion_modifier = {
+				target = PDG
+				modifier = large_decrease
+			}
+		}
+		PDG = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = large_decrease
+			}
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.181
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.181.t
+	desc = THIRD_BALKAN_WAR.181.d
+	picture = GFX_THIRD_BALKAN_WAR_181
+
+	is_triggered_only = yes
+	option = {  
+		name = THIRD_BALKAN_WAR.181.a
+		add_timed_idea = {
+			idea = Massive_Soviet_Economic_Aid
+			days = 1825
+		}
+		set_variable = { THIS.idea_len_@token:Massive_Soviet_Economic_Aid = 1825 }
+		set_variable = { THIS.idea_date_@token:Massive_Soviet_Economic_Aid = global.num_days }
+		news_event = THIRD_BALKAN_WAR.50
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_2
+			amount = 25000
+			producer = CAP
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment_3
+			amount = 500
+			producer = CAP
+		}		
+		add_equipment_to_stockpile = {
+			type = mbt_equipment_5
+			amount = 250
+			producer = CAP
+		}
+		add_equipment_to_stockpile = {
+			type = jet_multirole_equipment_2
+			amount = 100
+			producer = CAP
+		}		
+	}
+}#ISRAEL INTERVENTION
+#If UAR Invades Turkey
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.182
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.182.t
+	desc = THIRD_BALKAN_WAR.182.d
+	picture = GFX_THIRD_BALKAN_WAR_182
+
+	is_triggered_only = yes
+	option = {  
+		name = THIRD_BALKAN_WAR.182.a
+		EGY = {
+			country_event = THIRD_BALKAN_WAR.54
+		}
+	}
+	option = {  
+		name = THIRD_BALKAN_WAR.182.b
+		EGY = {
+			country_event = THIRD_BALKAN_WAR.54
+		}
+		news_event = {
+			id = THIRD_BALKAN_WAR.183
+			days = 3
+		}
+	}
+}#Israel Forces Mobilizing (UAR event)	THIRD_BALKAN_WAR.54
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.183
+ 	immediate = { }
+	title = THIRD_BALKAN_WAR.183.t
+	desc = THIRD_BALKAN_WAR.183.d
+	picture = GFX_THIRD_BALKAN_WAR_183
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					tag = ISR
+				}
+				set_country_flag = Israel_UAR_Intervention
+				declare_war_on = {
+					target = EGY
+					type = annex_everything
+				}
+			}
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.183.a
+	}
+}#If Israel keeps its territory and Aleppo/Damascus are under enemy occupation
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.184
+ 	immediate = { }
+	title = THIRD_BALKAN_WAR.184.t
+	desc = THIRD_BALKAN_WAR.184.d
+	picture = GFX_THIRD_BALKAN_WAR_184
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					tag = EGY
+				}
+				release = SYR
+			}
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.184.a
+	}
+}#If Fighting is Inconclusive (i.e. neither side has achieved victory)
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.185
+ immediate = { }
+	title = THIRD_BALKAN_WAR.185.t
+	desc = THIRD_BALKAN_WAR.185.d
+	picture = GFX_THIRD_BALKAN_WAR_185
+
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = THIRD_BALKAN_WAR.185.a
+	}
+}
+#If UAR takes Haifa
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = THIRD_BALKAN_WAR.186
+ immediate = { }
+	title = THIRD_BALKAN_WAR.186.t
+	desc = THIRD_BALKAN_WAR.186.d
+	picture = GFX_THIRD_BALKAN_WAR_186
+
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		if = {
+			limit = {
+				tag = ISR
+			}
+			hidden_effect = {
+				country_event = THIRD_BALKAN_WAR.186
+				EGY = {
+					country_event = THIRD_BALKAN_WAR.188
+				}
+			}
+		}
+	}
+	option = {
+		name = THIRD_BALKAN_WAR.186.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.187
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.187.t
+	desc = THIRD_BALKAN_WAR.187.d
+	picture = GFX_THIRD_BALKAN_WAR_187
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.187.a
+		add_timed_idea = {
+			idea = Major_Defeat
+			days = 1825
+		}
+		set_variable = { THIS.idea_len_@token:Major_Defeat = 1825 }
+		set_variable = { THIS.idea_date_@token:Major_Defeat = global.num_days }
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.188
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.188.t
+	desc = THIRD_BALKAN_WAR.188.d
+	picture = GFX_THIRD_BALKAN_WAR_188
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.188.a
+        transfer_state = 801
+        transfer_state = 994
+        transfer_state = 1297
+        transfer_state = 800
+		801 = {
+			add_core_of = EGY
+			add_core_of = PAL
+		}
+		994 = {
+			add_core_of = EGY
+			add_core_of = PAL
+		}
+		1297 = {
+			add_core_of = EGY
+			add_core_of = PAL
+		}
+		800 = {
+			add_core_of = EGY
+			add_core_of = PAL
+		}
+		IRQ = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		SUD = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		EGY = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		LBA = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		TUN = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		MOR = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		BHR = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		QAT = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		YEM = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		DRY = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		OMA = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		SAU = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		KUW = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		SYR = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		JOR = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+	}
+	option = {  
+        name = THIRD_BALKAN_WAR.188.b
+		IRQ = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		SUD = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		EGY = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		LBA = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		TUN = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		MOR = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		BHR = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		QAT = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		YEM = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		DRY = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		OMA = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		SAU = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		KUW = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		SYR = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		JOR = {
+			country_event = THIRD_BALKAN_WAR.189
+		}
+		PAL = {
+			transfer_state = 801
+			transfer_state = 994
+			transfer_state = 1297
+			transfer_state = 800
+			801 = {
+				add_core_of = PAL
+			}
+			994 = {
+				add_core_of = PAL
+			}
+			1297 = {
+				add_core_of = PAL
+			}
+			800 = {
+				add_core_of = PAL
+			}
+		}	
+		puppet = PAL
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = THIRD_BALKAN_WAR.189
+    immediate = { }	
+	title = THIRD_BALKAN_WAR.189.t
+	desc = THIRD_BALKAN_WAR.189.d
+	picture = GFX_THIRD_BALKAN_WAR_189
+
+	is_triggered_only = yes
+
+	option = {  
+        name = THIRD_BALKAN_WAR.189.a
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.15
+		}
+		add_timed_idea = {
+			idea = Arab_Pride	#boost stability, support for Arab nationalist party if possible
+			days = 1095
+		}
+	}
+}
+
+#Decision Stuff
+#NATO Member Decision Descriptions
+#
+#Covertly Aid Greece
+#"Although NATO agreed to remain neutral in the conflict, we know a Greek victory would work in our national interests. We have strong intelligence links and it would not be difficult to transfer arms to aid their effort."
+#-Support them (small arms/supplies or any other arms you think works, boost to Greece relations)
+#
+#Covertly Aid Turkey
+#"Although NATO agreed to remain neutral in the conflict, we know a Turkish victory would work in our national interests. We have strong intelligence links and it would not be difficult to transfer arms to aid their effort."
+#-Support them (small arms/supplies or any other arms you think works, boost to Turkey relations)
+#
+#NATO States get decision: Aid Turkey
+#Aid Turkey (decision)
+#"Turkey is an important NATO ally. Although its conflict with Greece is largely a bilateral dispute, we enjoy strong diplomatic and military links. Many in the government feel it is our duty to provide military equipment to aid Turkey during this difficult time."
+#
+#NATO States get decision: Covertly Aid Turkey"
+#Covertly Aid Turkey (decision)
+#"Turkey is an important NATO ally. Although its conflict with Greece is largely a bilateral dispute, we enjoy strong diplomatic and military links. Many in the government feel it is our duty to provide military equipment to aid Turkey during this difficult time. However, since many in our nation feel Turkey is culpable for starting the conflict, such support will have to be covert."
+#
+#PRC get decision: Aid Greece
+#
+#Aid Greece (decision)
+#"Greece is an important ideological partner internationally. Despite the differences, our peoples have found an ideological harmony. The people of Greece are currently engaged in a war against Turkey, a decadent, western puppet state. Our government has the ability to provide support for the people of Greece as they stand against western arrogance."
+#-leads to global event "PRC Offers Aid to Greece"
+#
+#PRC Offers Aid to Greece
+#"The Chinese government pledged to immediately dispatch vital aid to support the just struggle of Greece against Turkey. The announcement caught many by surprise, and there is little news on what such support would look like on the ground. Analysts believe the support may largely be in the form of economic or military equipment but cannot rule out a role for Chinese volunteers. The Turkish government condemned the Chinese announcement. The Greek government welcomed the decision, claiming it shows there are no boundaries between friends. The United States issued a warning that it would be monitoring the situation and level of Chinese support."

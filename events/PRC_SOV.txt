@@ -1,0 +1,1013 @@
+# KRCW (build/patch_residue.py): 41 OTL events dropped while KRCW_active
+add_namespace = PRC_SOV
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.1
+    immediate = { }   
+	title = PRC_SOV.1.t2   
+	desc = PRC_SOV.1.d
+	picture = GFX_prc_news
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_SOV.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.2
+	immediate = { }   
+	title = PRC_SOV.2.t2   
+	desc = PRC_SOV.2.d
+	picture = GFX_
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.2.a2
+		SOV = {
+			country_event = PRC_SOV.3
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.3
+	immediate = { }   
+	title = PRC_SOV.3.t2   
+	desc = PRC_SOV.3.d
+	picture = GFX_
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.3.a2
+		ai_chance = {
+			factor = 25
+		}
+		PRC = {
+			country_event = PRC_SOV.4
+		}
+	}
+	option = {
+		name = PRC_SOV.3.b2
+		ai_chance = {
+			factor = 94
+		}
+		PRC = {
+			transfer_state = 611
+			transfer_state = 621
+			transfer_state = 612
+			transfer_state = 611
+			transfer_state = 611
+			transfer_state = 611
+		}
+	}
+	
+	option = {
+		ai_chance = {
+			factor = 5
+		}
+		name = PRC_SOV.3.c2
+		PRC = {
+			annex_country = {
+				target = SIK
+				transfer_troops = yes
+			}
+			transfer_state = 611
+			transfer_state = 621
+			transfer_state = 612
+			transfer_state = 611
+			transfer_state = 611
+			transfer_state = 611
+		}
+	}
+	option = {
+		name = PRC_SOV.3.d2
+		ai_chance = {
+			factor = 1
+		}
+		MON = {
+			every_owned_state = {
+				limit = {
+					NOT = {
+						state = 611
+						state = 621
+						state = 612
+						state = 611
+						state = 611
+						state = 611 
+					}
+				}
+				add_core_of = PRC
+			}
+		}
+		PRC = {
+			annex_country = {
+				target = SIK
+				transfer_troops = yes
+			}
+			annex_country = {
+				target = MON
+				transfer_troops = yes
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.4
+	immediate = { }   
+	title = PRC_SOV.4.t2   
+	desc = PRC_SOV.4.d
+	picture = GFX_
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.4.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.5
+	immediate = { }   
+	title = PRC_SOV.5.t2   
+	desc = PRC_SOV.5.d
+	picture = GFX_PRC_Congress
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.5.a2
+		complete_national_focus = PRC_SOV_Clamp_Down_on_Anti-Soviet_Retoric
+	}
+	option = {
+		name = PRC_SOV.5.b2
+		complete_national_focus = PRC_SOV_Mao_Zedong_Returns_to_Power
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.6
+	immediate = { }   
+	title = PRC_SOV.6.t2   
+	desc = PRC_SOV.6.d
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.6.a2
+		TIB = {
+			country_event = PRC_SOV.7
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.7
+	immediate = { }   
+	title = PRC_SOV.7.t2   
+	desc = PRC_SOV.7.d
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.7.a2
+		ai_chance = {
+			factor = 75
+		}
+		news_event = PRC_SOV.13
+		PRC = {
+			annex_country = {
+				target = TIB
+				transfer_troops = yes
+			}
+		}
+	}
+	option = {
+		name = PRC_SOV.7.b2
+		ai_chance = {
+			factor = 25
+		}
+		PRC = {
+			declare_war_on = {
+				target = TIB
+				type = annex_everything
+			}
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.10
+    immediate = { }   
+	title = PRC_SOV.10.t2   
+	desc = PRC_SOV.10.d
+	picture = GFX_Vostok-62_pic
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_SOV.10.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.11
+    immediate = { }   
+	title = PRC_SOV.11.t2   
+	desc = PRC_SOV.11.d
+	picture = GFX_Chinese_Springpic
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_SOV.11.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.12
+    immediate = { }   
+	title = PRC_SOV.12.t2   
+	desc = PRC_SOV.12.d
+	picture = GFX_PRC_Congress
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_SOV.12.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.13
+    immediate = { }   
+	title = PRC_SOV.13.t2   
+	desc = PRC_SOV.13.d
+	picture = GFX_PRC_TIBETAN_6
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_SOV.13.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.14
+    immediate = { }   
+	title = PRC_SOV.14.t2   
+	desc = PRC_SOV.14.d
+	picture = GFX_Beijing_Pact
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_SOV.14.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.15
+    immediate = { }   
+	title = PRC_SOV.15.t2   
+	desc = PRC_SOV.15.d
+	picture = GFX_Chinese_Springpic
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_SOV.15.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.16
+    immediate = { }   
+	title = PRC_SOV.16.t2   
+	desc = PRC_SOV.16.d
+	picture = GFX_Chairman_Kai_Feng
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_SOV.16.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.17
+    immediate = { }   
+	title = PRC_SOV.17.t2   
+	desc = PRC_SOV.17.d
+	picture = GFX_PRC_Korea
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_SOV.17.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.18
+    immediate = { }   
+	title = PRC_SOV.18.t2   
+	desc = PRC_SOV.18.d
+	picture = GFX_PRC_Congress
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_SOV.18.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.20
+    immediate = { }   
+	title = PRC_SOV.20.t2   
+	desc = PRC_SOV.20.d
+	picture = GFX_PRC_Congress_2
+
+	major = yes
+	is_triggered_only = yes
+
+	option = {
+		name = PRC_SOV.20.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.22
+	immediate = { }   
+	title = PRC_SOV.22.t2   
+	desc = PRC_SOV.22.d
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.22.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.23
+	immediate = { }   
+	title = PRC_SOV.23.t2   
+	desc = PRC_SOV.23.d
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.23.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.24
+	immediate = { }   
+	title = PRC_SOV.24.t2   
+	desc = PRC_SOV.24.d
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.24.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.25
+	immediate = { }   
+	title = PRC_SOV.25.t2   
+	desc = PRC_SOV.25.d
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.25.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.26
+	immediate = { }   
+	title = PRC_SOV.26.t2   
+	desc = PRC_SOV.26.d
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.26.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.27
+	immediate = { }   
+	title = PRC_SOV.27.t2   
+	desc = PRC_SOV.27.d
+	picture = GFX_
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.27.a2
+	}
+	option = {
+		name = PRC_SOV.27.b2
+		PRC = {
+			set_autonomy = {
+				target = INO
+				autonomy_state = autonomy_easternbloc
+			}
+		}
+		INO = {
+			set_politics = {
+				ruling_party = socialist
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 1
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.28
+	immediate = { }   
+	title = PRC_SOV.28.t2   
+	desc = PRC_SOV.28.d
+	picture = GFX_
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.28.a2
+	}
+	option = {
+		name = PRC_SOV.28.b2
+		PRC = {
+			set_autonomy = {
+				target = JAP
+				autonomy_state = autonomy_easternbloc
+			}
+		}
+		JAP = {
+			remove_ideas = us_intervention
+			load_focus_tree = generic_focus_60
+			set_politics = {
+				ruling_party = communism
+			}
+			add_popularity = {
+				ideology = communism
+				popularity = 1
+			}
+		}
+	}
+	
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.30
+	immediate = { }   
+	title = PRC_SOV.30.t2   
+	desc = PRC_SOV.30.d
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.30.a2
+		SIK = {
+			set_country_flag = ALW_participant
+		}
+		SOV = {
+			set_autonomy = {
+				target = SIK
+				autonomy_state = autonomy_free
+			}
+		}
+		PRC = {
+			add_to_faction = SIK
+		}
+		ai_chance = {
+			factor = 80
+		}
+	}
+	option = {
+		name = PRC_SOV.30.b2
+		ai_chance = {
+			factor = 20
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.31
+	immediate = { }   
+	title = PRC_SOV.31.t2   
+	desc = PRC_SOV.31.d
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.31.a2
+		MON = {
+			set_country_flag = ALW_participant
+		}
+		SOV = {
+			set_autonomy = {
+				target = MON
+				autonomy_state = autonomy_free
+			}
+		}
+		PRC = {
+			add_to_faction = MON
+		}
+		ai_chance = {
+			factor = 80
+		}
+	}
+	option = {
+		name = PRC_SOV.31.b2
+		ai_chance = {
+			factor = 20
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.32
+	immediate = { }   
+	title = PRC_SOV.32.t2   
+	desc = PRC_SOV.32.d
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.32.a2
+		SOV = {
+			set_autonomy = {
+				target = KPA
+				autonomy_state = autonomy_free
+			}
+		}
+		PRC = {
+			add_to_faction = KPA
+		}
+		ai_chance = {
+			factor = 80
+		}
+	}
+	option = {
+		name = PRC_SOV.32.b2
+		ai_chance = {
+			factor = 20
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.33
+	immediate = { }   
+	title = PRC_SOV.33.t2   
+	desc = PRC_SOV.33.d
+	picture = GFX_Soviet_Xinjiang_Intervention
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.33.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.34
+	immediate = { }   
+	title = PRC_SOV.34.t2   
+	desc = PRC_SOV.34.d
+	picture = GFX_PRC_Tibetan_Uprising
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.34.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.35
+	immediate = { }   
+	title = PRC_SOV.35.t2   
+	desc = PRC_SOV.35.d
+	picture = GFX_PRC_Korea_Two
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.35.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.36
+	immediate = { }   
+	title = PRC_SOV.36.t2   
+	desc = PRC_SOV.36.d
+	picture = GFX_KRD_Soviet_Republic
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.36.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.37
+	immediate = { }   
+	title = PRC_SOV.37.t2   
+	desc = PRC_SOV.37.d
+	picture = GFX_mongol_two
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.37.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.38
+	immediate = { }   
+	title = PRC_SOV.38.t2   
+	desc = PRC_SOV.38.d
+	picture = GFX_early_islamic_revolution
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.38.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.39
+	immediate = { }   
+	title = PRC_SOV.39.t2
+	desc = PRC_SOV.39.d
+	picture = GFX_KMT_VICTORY_TERROR.0
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.39.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.40
+	immediate = { }   
+	title = PRC_SOV.40.t2   
+	desc = PRC_SOV.40.d
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.40.a2
+		news_event = PRC_SOV.43
+		every_country = {
+			limit = {
+				is_in_faction_with = PRC
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 2000
+				producer = SOV
+			}
+			add_equipment_to_stockpile = {
+				type = mechanized_equipment_1
+				amount = 500
+				producer = SOV
+			}
+			add_equipment_to_stockpile = {
+				type = mbt_equipment_1
+				amount = 1000
+				producer = SOV
+			}
+		}
+		SOV = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = PRC
+				value = 4000
+			}
+		}
+		DDR = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = PRC
+				value = 4000
+			}
+		}
+		POL = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = PRC
+				value = 4000
+			}
+		}
+		ROM = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = PRC
+				value = 4000
+			}
+		}
+		PDG = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = PRC
+				value = 4000
+			}
+		}
+		SRT = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = PRC
+				value = 4000
+			}
+		}
+		ai_chance = {
+			factor = 80
+		}
+	}
+	option = {
+		name = PRC_SOV.40.b2
+		ai_chance = {
+			factor = 20
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.41
+	immediate = { }   
+	title = PRC_SOV.41.t2   
+	desc = PRC_SOV.41.d
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.41.a2
+		news_event = PRC_SOV.42
+		CHI = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 1000
+				producer = USA
+			}
+			add_equipment_to_stockpile = {
+				type = mechanized_equipment_1
+				amount = 500
+				producer = USA
+			}
+			add_equipment_to_stockpile = {
+				type = mbt_equipment_1
+				amount = 500
+				producer = USA
+			}
+		}
+		USA = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = CHI
+				value = 4000
+			}
+		}
+		ENG = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = CHI
+				value = 4000
+			}
+		}
+		AST = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = CHI
+				value = 4000
+			}
+		}
+		NZL = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = CHI
+				value = 4000
+			}
+		}
+		FRA = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = CHI
+				value = 4000
+			}
+		}
+		SPR = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = CHI
+				value = 4000
+			}
+		}
+		CAN = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = CHI
+				value = 4000
+			}
+		}
+		BEL = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = CHI
+				value = 4000
+			}
+		}
+		TUR = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = CHI
+				value = 4000
+			}
+		}
+		SAF = {
+			add_timed_idea = {
+				idea = volunteer_corps_focus
+				days = 2500
+			}
+			set_variable = { THIS.idea_len_@token:volunteer_corps_focus = 2500 }
+			set_variable = { THIS.idea_date_@token:volunteer_corps_focus = global.num_days }
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = CHI
+				value = 4000
+			}
+		}
+		ai_chance = {
+			factor = 80
+		}
+	}
+	option = {
+		name = PRC_SOV.41.b2
+		ai_chance = {
+			factor = 20
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.42
+	immediate = { }   
+	title = PRC_SOV.42.t2   
+	desc = PRC_SOV.42.d
+	picture = GFX_USA_Korean_War_10
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.42.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.43
+	immediate = { }   
+	title = PRC_SOV.43.t2   
+	desc = PRC_SOV.43.d
+	picture = GFX_Korean_War_Sov_Entry
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.43.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.44
+	immediate = { }   
+	title = PRC_SOV.44.t2   
+	desc = PRC_SOV.44.d
+	picture = GFX_Shanghai_Campaign_1
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.44.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.45
+	immediate = { }   
+	title = PRC_SOV.45.t2   
+	desc = PRC_SOV.45.d
+	picture = GFX_third_Battle_of_seoul
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.45.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  
+	id = PRC_SOV.46
+	immediate = { }   
+	title = PRC_SOV.46.t2   
+	desc = PRC_SOV.46.d
+	picture = GFX_KMT_Generic_Soldiers
+
+	is_triggered_only = yes
+	option = {
+		name = PRC_SOV.46.a2
+	}
+}

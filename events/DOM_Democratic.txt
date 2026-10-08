@@ -1,0 +1,1220 @@
+# KRCW (build/patch_residue.py): 39 OTL events dropped while KRCW_active
+add_namespace = DOM_Election_1962
+add_namespace = DOM_Election_1966
+add_namespace = DOM_Election_1970
+add_namespace = DOM_Election_1978
+add_namespace = DOM_Election_1968
+add_namespace = DOM_EndDem_Constitutionalist_Civil_War
+add_namespace = DOM_EndDem_Loyalist_Civil_War
+add_namespace = DOM_El_Jefe
+add_namespace = DOM_HD_Clash
+add_namespace = DOM_Execute_MT
+add_namespace = DOM_Exile_MT
+add_namespace = DOM_Exile_Balaguer
+add_namespace = DOM_Faction_Decision
+add_namespace = DOM_ConConvention
+add_namespace = DOM_60s_Triumvirate
+add_namespace = DOM_StartDem_Civil_War
+add_namespace = DOM_SpawnDML_Civil_War
+add_namespace = DOM_SpawnDMC_Civil_War
+add_namespace = DOM_Judge_65_Remnant
+add_namespace = DOM_VF_Constitution_Assembly_Call
+add_namespace = DOM_VF_Constitution_Assembly_Formed
+add_namespace = DOM_VF_1965C_Approved
+add_namespace = DOM_VF_1965C_Failed
+add_namespace = DOM_VF_Independence_Day_Riots
+add_namespace = DOM_VF_April_Revolution
+add_namespace = DOM_JCE_Autonomy
+add_namespace = DOM_Fight_Congress
+add_namespace = DOM_Quota_Loss
+add_namespace = DOM_Outreach_Treaties
+add_namespace = DOM_Power_Struggle_In_The_DRP
+add_namespace = DOM_Bosch_Reinstated
+add_namespace = DOM_Mirabal
+add_namespace = DOM_Betancourt
+add_namespace = DOM_Assassins
+add_namespace = DOM_Siege
+add_namespace = DOM_ExiledLeader
+add_namespace = DOM_CivicLeader
+add_namespace = DOM_DeathLeader
+add_namespace = DOM_Bust_University
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_DeathLeader.1
+ immediate = { }
+	title = DOM_DeathLeader.1.t
+	desc = CIA_60s.1.d
+	picture = GFX_Trujillo_Assasinated
+
+	is_triggered_only = yes
+
+	option = {
+		name = DOM_DeathLeader.1.a
+			DOM = {
+				create_country_leader = {
+					name = "Ramfis Trujillo"
+					picture = "Ramfis_Trujillo_60s.dds"
+					ideology = trujillism
+				}
+				set_politics = {
+					ruling_party = fascism
+					last_election = "1945.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+				complete_national_focus = DOM_60s_Ramfis_1961
+				# DOM_Luis_Homero_Lajara_Burgos  # bare token, no effect specified — likely unfinished retire/promote call
+			}
+		hidden_effect = {
+			USA = {
+				complete_national_focus = USA_60s_Assasinate_Rafael_Trujillo
+			}
+			
+}
+}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_Bust_University.1
+	immediate = {
+	}
+	title = DOM_Bust_University.1.t
+	picture = GFX_DOM_Bust_University.1
+	desc = DOM_Bust_University.1.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_Bust_University.1.a
+			add_war_support = -0.2
+			add_stability = 0.2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_ExiledLeader.1
+	immediate = {
+	}
+	title = DOM_ExiledLeader.1.t
+	picture = GFX_report_event_crowd_in_prague
+	desc = DOM_ExiledLeader.1.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = DOM_ExiledLeader.1.a
+		ai_chance = {
+			factor = 100
+		}
+		hidden_effect = {
+			retire_character = DOM_Fausto_Caamano_Medina
+			create_country_leader = {
+				name = "Joaquín_Balaguer"
+				picture = "Joaquin_Balaguer_60s.dds"
+				ideology = independent
+			}
+			set_politics = {
+				ruling_party = neutrality
+				election_frequency = 48
+				elections_allowed = no
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = "Independent"
+				name = "Independent"
+			}
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.75
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_CivicLeader.1
+	immediate = {
+	}
+	title = DOM_CivicLeader.1.t
+	picture = GFX_report_event_crowd_in_prague
+	desc = DOM_CivicLeader.1.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = DOM_CivicLeader.1.a
+		ai_chance = {
+			factor = 100
+		}
+		hidden_effect = {
+			set_politics = {
+				ruling_party = neutrality
+				election_frequency = 48
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Civic-Military_Junta"
+				picture = "Military_Junta.dds"
+				ideology = military_junta
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = "Dominican Republic - Military Junta"
+				name = "DOM-MJ"
+			}
+			recruit_character = DOM_Elias_Wessin_y_Wessin
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_EndDem_Constitutionalist_Civil_War.1
+	immediate = {
+	}
+	title = DOM_EndDem_Constitutionalist_Civil_War.1.t
+	picture = GFX_DOM_EndDem_Constitutionalist_Civil_War.1
+	desc = DOM_EndDem_Constitutionalist_Civil_War.1.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_EndDem_Constitutionalist_Civil_War.1.a
+		hidden_effect = {
+			add_stability = 0.25
+			country_event = DOM_Bosch_Reinstated.1
+			clr_country_flag = dominican_civil_war
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_EndDem_Loyalist_Civil_War.1
+	immediate = {
+	}
+	title = DOM_EndDem_Loyalist_Civil_War.1.t
+	picture = GFX_DOM_EndDem_Loyalist_Civil_War.1
+	desc = DOM_EndDem_Loyalist_Civil_War.1.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_EndDem_Loyalist_Civil_War.1.a
+		hidden_effect = {
+			add_stability = 0.25
+			set_temp_variable = {
+				USA_Influence_temp = 25
+			}
+			clr_country_flag = dominican_civil_war 
+		}
+	}
+}
+
+country_event = {
+	id = DOM_El_Jefe.1
+	immediate = {
+	}
+	title = DOM_El_Jefe.1.t
+	picture = GFX_DOM_El_Jefe.1
+	desc = DOM_El_Jefe.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_El_Jefe.1.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_HD_Clash.1
+	immediate = {
+	}
+	title = DOM_HD_Clash.1.t
+	picture = GFX_DOM_HD_Clash.1
+	desc = DOM_HD_Clash.1.d
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = {
+		name = DOM_HD_Clash.1.a
+		hidden_effect = {
+			DOM = {
+				add_opinion_modifier = {
+					target = HAI
+					modifier = small_decrease
+				}
+			}
+			HAI = {
+				add_opinion_modifier = {
+					target = DOM
+					modifier = small_decrease
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = DOM_Execute_MT.1
+	immediate = {
+	}
+	title = DOM_Execute_MT.1.t
+	picture = GFX_DOM_Execute_MT.1
+	desc = DOM_Execute_MT.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_Execute_MT.1.a
+		add_war_support = 0.1
+		add_stability = -0.1
+	}
+}
+
+country_event = {
+	id = DOM_Exile_MT.1
+	immediate = {
+	}
+	title = DOM_Exile_MT.1.t
+	picture = GFX_DOM_Exile_MT.1
+	desc = DOM_Exile_MT.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_Exile_MT.1.a
+		hidden_effect = {
+			remove_ideas = repression
+		}
+	}
+}
+
+country_event = {
+	id = DOM_Exile_Balaguer.1
+	immediate = {
+	}
+	title = DOM_Exile_Balaguer.1.t
+	picture = GFX_DOM_Exile_Balaguer.1
+	desc = DOM_Exile_Balaguer.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_Exile_Balaguer.1.a
+		add_stability = 0.1
+	}
+}
+
+country_event = {
+	id = DOM_Faction_Decision.1
+	immediate = {
+	}
+	title = DOM_Faction_Decision.1.t
+	picture = GFX_DOM_Faction_Decision.1
+	desc = DOM_Faction_Decision.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_Faction_Decision.1.a
+		hidden_effect = {
+			complete_national_focus = DOM_60s_Bonnelly_Faction_Friendship
+		}
+	}
+	option = {
+		name = DOM_Faction_Decision.1.b
+		hidden_effect = {
+			complete_national_focus = DOM_60s_Back_The_Central_Romana
+		}
+	}
+}
+
+country_event = {
+	id = DOM_ConConvention.1
+	immediate = {
+	}
+	title = DOM_ConConvention.1.t
+	picture = GFX_DOM_ConConvention.1
+	desc = DOM_DOM_ConConvention.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_ConConvention.1.a
+		hidden_effect = {
+			complete_national_focus = DOM_60s_Reformist_Constitution
+		}
+	}
+	option = {
+		name = DOM_ConConvention.1.b
+		hidden_effect = {
+			complete_national_focus = DOM_60s_Return_to_Trujillo_Constitution
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_60s_Triumvirate.1
+	immediate = {
+	}
+	title = DOM_60s_Triumvirate.1.t
+	picture = GFX_DOM_Triumvirate.1
+	desc = DOM_60s_Triumvirate.1.d
+	is_triggered_only = yes
+
+	fire_only_once = yes
+	option = {
+		name = DOM_60s_Triumvirate.1.a
+		hidden_effect = {
+			complete_national_focus = DOM_60s_The_Triumvirate
+			create_country_leader = {
+				name = "Military Triumvirate"
+				picture = "Military_Triumvirate.dds"
+				ideology = military_junta
+			} 
+			set_politics = {
+				ruling_party = neutrality
+				election_frequency = 48
+				elections_allowed = no
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = "Dominican Republic - Military Junta"
+				name = "DOM-MJ"
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = DOM_60s_Triumvirate.1.b
+		country_event = {
+			id = DOM_StartDem_Civil_War.1
+		}
+		custom_effect_tooltip = Early_Dominican_Civil_War
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_StartDem_Civil_War.1
+	immediate = {
+	}
+	title = DOM_StartDem_Civil_War.1.t
+	picture = GFX_DOM_StartDem_Civil_War.1
+	desc = DOM_StartDem_Civil_War.1.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	immediate = {
+		set_country_flag = dominican_civil_war
+	}
+	option = {
+		name = DOM_StartDem_Civil_War.1.a
+		custom_effect_tooltip = historical
+		hidden_effect = {
+			country_event = {
+				id = DOM_SpawnDMC_Civil_War.1
+				random_days = 60
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = DOM_StartDem_Civil_War.1.b
+		hidden_effect = {
+			country_event = {
+				id = DOM_SpawnDML_Civil_War.1
+				random_days = 60
+			}
+		}
+	}
+}
+
+country_event = {
+	id = DOM_SpawnDMC_Civil_War.1
+	immediate = {
+	}
+	title = DOM_SpawnDMC_Civil_War.1.t
+	picture = GFX_DOM_SpawnDMC_Civil_War.1
+	desc = DOM_SpawnDMC_Civil_War.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_country_flag = dominican_civil_war
+	}
+	option = {
+		name = DOM_SpawnDMC_Civil_War.1.a
+		complete_national_focus = DOM_60s_Ignition_Of_Civil_War
+		complete_national_focus = DOM_60s_Support_The_Loyalist
+		hidden_effect = {
+			DMC = {
+				transfer_state = 1525
+				load_oob = DMC_1965
+			}
+		}
+		declare_war_on = {
+			target = DMC
+			type = annex_everything
+		}
+		if = {
+			limit = {
+				country_exists = USA
+			}
+			USA = {
+				add_ai_strategy = {
+					type = send_volunteers_desire
+					id = DOM
+					value = 200
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = DOM_SpawnDML_Civil_War.1
+	immediate = {
+	}
+	title = DOM_SpawnDML_Civil_War.1.t
+	picture = GFX_DOM_SpawnDML_Civil_War.1
+	desc = DOM_SpawnDML_Civil_War.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_country_flag = dominican_civil_war
+	}
+	option = {
+		name = DOM_SpawnDML_Civil_War.1.a
+		complete_national_focus = DOM_60s_Ignition_Of_Civil_War
+		complete_national_focus = DOM_60s_Support_The_Constitutionalist
+		hidden_effect = {
+			DML = {
+				transfer_state = 1160
+				transfer_state = 1159
+				transfer_state = 1524
+				transfer_state = 319
+				load_oob = DML_1965
+				set_capital = {
+					state = 319
+					remember_old_capital = yes
+				}
+			}
+		}
+		declare_war_on = {
+			target = DML
+			type = annex_everything
+		}
+		if = {
+			limit = {
+				country_exists = USA
+			}
+			USA = {
+				add_ai_strategy = {
+					type = send_volunteers_desire
+					id = DML
+					value = 200
+				}
+			}
+		}
+		DOM = {
+			set_politics = {
+				ruling_party = Social_Democratic
+				last_election = "1962.12.20"
+				election_frequency = 48
+				elections_allowed = yes
+			}
+		}
+		recruit_character = DOM_Fancisco_Caamano
+	}
+}
+
+country_event = {
+	id = DOM_Judge_65_Remnant.1
+	immediate = {
+	}
+	title = DOM_Judge_65_Remnant.1.t
+	picture = GFX_DOM_El_Jefe.1
+	desc = DOM_Judge_65_Remnant.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_Judge_65_Remnant.1.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_VF_Constitution_Assembly_Call.1
+	immediate = {
+	}
+	title = DOM_VF_Constitution_Assembly_Call.1.t
+	picture = GFX_DOM_VF_Constitution_Assembly_Call.1
+	desc = DOM_VF_Constitution_Assembly_Call.1.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = DOM_VF_Constitution_Assembly_Call.1.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_VF_Constitution_Assembly_Formed.1
+	immediate = {
+	}
+	title = DOM_VF_Constitution_Assembly_Formed.1.t
+	desc = DOM_VF_Constitution_Assembly_Formed.1.d
+	picture = GFX_DOM_VF_Constitution_Assembly_Formed.1
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = {
+		name = DOM_VF_Constitution_Assembly_Formed.1.a
+		hidden_effect = {
+			country_event = {
+				id = DOM_VF_1965C_Approved.1
+				days = 200
+				random_days = 10
+			}
+		}
+	}
+	option = {
+		name = DOM_VF_Constitution_Assembly_Formed.1.b
+		hidden_effect = {
+			country_event = {
+				id = DOM_VF_1965C_Failed.1
+				days = 200
+				random_days = 10
+			}
+		}
+	}
+}
+
+country_event = {
+	id = DOM_VF_1965C_Approved.1
+	immediate = {
+	}
+	title = DOM_VF_1965C_Approved.1.t
+	picture = GFX_DOM_VF_1965C_Approved.1
+	desc = DOM_VF_1965C_Approved.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+		has_country_leader = {
+			name = "Viriato Fiallo"
+			ruling_only = yes
+		}
+	}
+	option = {
+		name = DOM_VF_1965C_Approved.1.a
+	}
+}
+
+country_event = {
+	id = DOM_VF_1965C_Failed.1
+	immediate = {
+	}
+	title = DOM_VF_1965C_Failed.1.t
+	picture = GFX_DOM_El_Jefe.1
+	desc = DOM_El_Jefe.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_VF_1965C_Failed.1.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_VF_Independence_Day_Riots.1
+	immediate = {
+	}
+	title = DOM_VF_Independence_Day_Riots.1.t
+	picture = GFX_DOM_VF_Independence_Day_Riots.1
+	desc = DOM_VF_Independence_Day_Riots.1.d
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = {
+		name = DOM_VF_Independence_Day_Riots.1.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_VF_April_Revolution.1
+	immediate = {
+	}
+	title = DOM_VF_April_Revolution.1.t
+	picture = GFX_DOM_VF_April_Revolution.1
+	desc = DOM_VF_April_Revolution.1.d
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = {
+		name = DOM_VF_April_Revolution.1.a
+	}
+}
+
+country_event = {
+	id = DOM_JCE_Autonomy.1
+	immediate = {
+	}
+	title = DOM_JCE_Autonomy.1.t
+	picture = GFX_DOM_JCE_Autonomy.1
+	desc = DOM_JCE_Autonomy.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_JCE_Autonomy.1.a
+		add_stability = 0.1
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_Fight_Congress.1
+	immediate = {
+	}
+	title = DOM_Fight_Congress.1.t
+	picture = GFX_DOM_Fight_Congress.1
+	desc = DOM_Fight_Congress.1.d
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = {
+		name = DOM_Fight_Congress.1.a
+		add_to_variable = {
+			CorruptionLevel = 0.1
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_Quota_Loss.1
+	immediate = {
+	}
+	title = DOM_Quota_Loss.1.t
+	picture = GFX_DOM_Sugar_Quota_Loss.1
+	desc = GFX_DOM_Sugar_Quota_Loss.1.d
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = {
+		name = DOM_Quota_Loss.1.a
+		add_ideas = Sugar_Quota_Loss
+	}
+}
+
+country_event = {
+	id = DOM_Outreach_Treaties.1
+	immediate = {
+	}
+	title = DOM_Outreach_Treaties.1.t
+	picture = GFX_DOM_Outreach_Treaties.1
+	desc = DOM_Outreach_Treaties.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_Outreach_Treaties.1.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_Power_Struggle_In_The_DRP.1
+	immediate = {
+	}
+	title = DOM_Power_Struggle_In_The_DRP.1.t
+	picture = GFX_DOM_Power_Struggle_In_The_DRP.1
+	desc = DOM_DOM_Power_Struggle_In_The_DRP.1
+
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = {
+		name = DOM_Power_Struggle_In_The_DRP.1.a
+	}
+	option = {
+		name = DOM_Power_Struggle_In_The_DRP.1.b
+	}
+}
+
+country_event = {
+	id = DOM_Bosch_Reinstated.1
+	immediate = {
+	}
+	title = DOM_Bosch_Reinstated.1.t
+	picture = GFX_DOM_Bosch_Reinstated.1
+	desc = DOM_Bosch_Reinstated.1.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_Bosch_Reinstated.1.a
+		hidden_effect = {
+			set_country_flag = drp_wins
+			create_country_leader = {
+				name = "Juan Bosch"
+				picture = "Juan_Bosch_60s.dds"
+				ideology = populist_reformist
+				#desc =
+			}
+			set_politics = {
+				ruling_party = Social_Democratic
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = Social_Democratic
+				popularity = 0.25
+			}
+			complete_national_focus = DOM_60s_Juan_Bosch_Reinstated
+		}
+	}
+}
+
+news_event = {
+	id = DOM_Mirabal.1
+	immediate = {
+	}
+	title = DOM_Mirabal.1.t
+	picture = GFX_DOM_Mirabal.1
+	desc = DOM_Mirabal.1
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_Mirabal.1.a
+	}
+}
+
+news_event = {
+	id = DOM_Betancourt.1
+	immediate = {
+	}
+	title = DOM_Betancourt.1.t
+	picture = GFX_DOM_Betancourt.1
+	desc = DOM_Betancourt.1
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_Betancourt.1.a
+	}
+}
+
+country_event = {
+	id = DOM_Assassins.1
+	immediate = {
+	}
+	title = DOM_Assassins.1.t
+	picture = GFX_DOM_Assassins.1
+	desc = DOM_Assassins.1
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = DOM
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_Assassins.1.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_Siege.1
+	immediate = {
+	}
+	title = DOM_Siege.1.t
+	desc = DOM_Siege.1.d
+	picture = GFX_DOM_Siege.1
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = DOM_Siege.1.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_Election_1962.1
+	immediate = {
+	}
+	title = DOM_Election_1962.1.t
+	picture = GFX_DOM_Election_1962.1
+	desc = DOM_Election_1962.1.d
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = {
+		name = DOM_Election_1962.1.a
+		custom_effect_tooltip = historical
+		hidden_effect = {
+			set_country_flag = drp_wins
+			create_country_leader = {
+				name = "Juan Bosch"
+				picture = "Juan_Bosch_60s.dds"
+				ideology = populist_reformist
+			}
+			set_politics = {
+				ruling_party = Social_Democratic
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = Social_Democratic
+				popularity = 0.25
+			}
+			complete_national_focus = DOM_60s_Election_1962
+			complete_national_focus = DOM_60s_Elect_Juan_Bosch_1962
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = DOM_Election_1962.1.b
+		hidden_effect = {
+			set_country_flag = ncu_wins
+			create_country_leader = {
+				name = "Viriato Fiallo"
+				picture = "Viriato_Fiallo_60s.dds"
+				ideology = centrism
+			}
+			set_politics = {
+				ruling_party = centrist
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.25
+			}
+			complete_national_focus = DOM_60s_Election_1962
+			complete_national_focus = DOM_60s_Elect_Viriato_Fiallo_1962
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_Election_1966.1
+	immediate = {
+	}
+	title = DOM_Election_1966.1.t
+	picture = GFX_DOM_Election_1966.1
+	desc = DOM_Election_1966.1.d
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = {
+		name = DOM_Election_1966.1.a
+		custom_effect_tooltip = historical
+		hidden_effect = {
+			set_country_flag = rfp_wins
+			create_country_leader = {
+				name = "Joaquin Balaguer"
+				picture = "Joaquin_Balaguer_60s.dds"
+				ideology = christian_democracy
+			}
+			set_politics = {
+				ruling_party = Christian_Democratic
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = Christian_Democratic
+				popularity = 0.25
+			}
+			complete_national_focus = DOM_60s_Election_1966
+			complete_national_focus = DOM_60s_Jaoquin_Balaguer_1966
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = DOM_Election_1966.1.b
+		hidden_effect = {
+			set_country_flag = drp_wins
+			create_country_leader = {
+				name = "Franscisco Gomez"
+				picture = "Franscisco_Gomez_60s.dds"
+				ideology = populist_reformist
+			}
+			set_politics = {
+				ruling_party = Social_Democratic
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = Social_Democratic
+				popularity = 0.25
+			}
+			complete_national_focus = DOM_60s_Election_1966
+			complete_national_focus = DOM_60s_Elect_Franscisco_Gomez_1966
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_Election_1968.1
+	immediate = {
+	}
+	title = DOM_Election_1968.1.t
+	picture = GFX_DOM_Election_1968.1
+	desc = DOM_Election_1968.1.d
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = {
+		name = DOM_Election_1968.1.a
+		hidden_effect = {
+			set_country_flag = drp_wins
+			create_country_leader = {
+				name = "Juan Bosch"
+				picture = "Juan_Bosch_60s.dds"
+				ideology = populist_reformist
+			}
+			set_politics = {
+				ruling_party = Social_Democratic
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = Social_Democratic
+				popularity = 0.025
+			}
+			complete_national_focus = DOM_60s_Election_1968
+			complete_national_focus = DOM_60s_Juan_Bosch_1968
+		}
+	}
+	option = {
+		name = DOM_Election_1968.1.b
+		hidden_effect = {
+			set_country_flag = rfp_wins
+			create_country_leader = {
+				name = "Joaquin Balaguer"
+				picture = "Joaquin_Balaguer_60s.dds"
+				ideology = christian_democracy
+				#desc =   
+			}
+			set_politics = {
+				ruling_party = Christian_Democratic
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = Christian_Democratic
+				popularity = 0.25
+			}
+			complete_national_focus = DOM_60s_Election_1968
+			complete_national_focus = DOM_60s_Jaoquin_Balaguer_1968
+		}
+	}
+	option = {
+		name = DOM_Election_1968.1.c
+		hidden_effect = {
+			set_country_flag = drp_wins
+			create_country_leader = {
+				name = "Francisco Caamano"
+				picture = "Francisco_Caamano_70s.dds"
+				ideology = populist_reformist
+			}
+			set_politics = {
+				ruling_party = Social_Democratic
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = Social_Democratic
+				popularity = 0.25
+			}
+			complete_national_focus = DOM_60s_Election_1968
+			complete_national_focus = DOM_60s_Caamano_1968
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_Election_1970.1
+	immediate = {
+	}
+	title = DOM_Election_1970.1.t
+	picture = GFX_DOM_Election_1970.1
+	desc = DOM_Election_1970.1.d
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = {
+		name = DOM_Election_1970.1.a
+		hidden_effect = {
+			set_country_flag = mdi_wins
+			create_country_leader = {
+				name = "Francisco Augusto Lora"
+				picture = "Francisco_Augusto_Lora_70s.dds"
+				ideology = christian_democracy
+			}
+			set_politics = {
+				ruling_party = Christian_Democratic
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = Christian_Democratic
+				popularity = 0.25
+			}
+			set_party_name = {
+				ideology = Christian_Democratic
+				long_name = "Movimiento de Integración Democrática"
+				name = "Movimiento de Integración Democrática"
+			}
+			complete_national_focus = DOM_60s_Election_1970
+			complete_national_focus = DOM_60s_Fransisco_Lora_1970
+		}
+	}
+	option = {
+		name = DOM_Election_1970.1.b
+		custom_effect_tooltip = historical
+		hidden_effect = {
+			set_country_flag = rfp_wins
+			create_country_leader = {
+				name = "Joaquin Balaguer"
+				picture = "Joaquin_Balaguer_70s.dds"
+				ideology = christian_democracy
+				#desc =   
+			}
+			set_politics = {
+				ruling_party = Christian_Democratic
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = Christian_Democratic
+				popularity = 0.25
+			}
+			complete_national_focus = DOM_60s_Election_1970
+			complete_national_focus = DOM_60s_Jaoquin_Balaguer_1970
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = DOM_Election_1970.1.c
+		hidden_effect = {
+			set_country_flag = dqp_wins
+			create_country_leader = {
+				name = "Elias Wessin y Wessin"
+				picture = "Elias_Wessin_y_Wessin_60s.dds"
+				ideology = national_conservatism
+			}
+			set_politics = {
+				ruling_party = Conservative
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = Conservative
+				popularity = 0.25
+			}
+			complete_national_focus = DOM_60s_Election_1970
+			complete_national_focus = DOM_60s_Elias_Wessin_y_Wessin_1970
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = DOM_Election_1978.1
+	immediate = {}
+	title = DOM_Election_1978.1.t
+	picture = GFX_DOM_Election_1978.1
+	desc = DOM_Election_1978.1.d
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	option = {
+		name = DOM_Election_1978.1.a
+		custom_effect_tooltip = historical
+		hidden_effect = {
+			set_country_flag = drp_wins
+			create_country_leader = {
+				name = "Antonio Guzman"
+				picture = "Antonio_Guzman_80s.dds"
+				ideology = centrism
+			}
+			set_politics = {
+				ruling_party = centrist
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = centrist
+				popularity = 0.1
+			}
+			complete_national_focus = DOM_Dominican_1978_Elections
+			complete_national_focus = DOM_Antonio_Guzman_78
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = DOM_Election_1978.1.b
+		hidden_effect = {
+			set_country_flag = rfp_wins
+			create_country_leader = {
+				name = "Joaquin Balaguer"
+				picture = "Joaquin_Balaguer_70s.dds"
+				ideology = christian_democracy
+			}
+			set_politics = {
+				ruling_party = Christian_Democratic
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = Christian_Democratic
+				popularity = 0.1
+			}
+			complete_national_focus = DOM_Dominican_1978_Elections
+			complete_national_focus = DOM_Balaguer_78
+		}
+	}
+}

@@ -1,0 +1,169 @@
+# KRCW (build/patch_residue.py): 5 OTL events dropped while KRCW_active
+add_namespace = EU
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EU.0
+	immediate = { }
+	title = EU.0.t
+	desc = EU.0.d
+	picture = GFX_ECSC_1
+	is_triggered_only = yes
+	option = {
+		name = EU.0.a
+	}
+ 	
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EU.3
+	immediate = { }
+	title = EU.3.t
+	desc = EU.3.d
+	picture = GFX_ECSC_2
+	is_triggered_only = yes
+	option = {
+		name = EU.3.a
+		trigger = {tag = BEL}
+	}
+	option = {
+		name = EU.3.a
+		trigger = {tag = HOL}
+	}
+	option = {
+		name = EU.3.a
+		trigger = {tag = LUX}
+	}
+	option = {
+		name = EU.3.a
+		trigger = {tag = ITA}
+	}
+	option = {
+		name = EU.3.a
+		trigger = {tag = WGR}
+	}
+ 	
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EU.4
+	immediate = { }
+	title = EU.4.t
+	desc = EU.4.d
+	picture = GFX_ECSC_3
+	is_triggered_only = yes
+	option = {
+		name = EU.4.b
+		trigger = {
+			OR = {
+				has_government = communism
+				has_government = trotskyism
+				has_government = maoism
+			}
+		}
+	}
+	option = {
+		name = EU.4.c
+		trigger = {
+			AND = {
+				NOT = {
+					OR = {
+						has_government = communism
+						has_government = trotskyism
+						has_government = maoism
+					}
+				}
+				NOT = {
+					OR = {
+						tag = WGR
+						tag = FRA
+						tag = HOL
+						tag = ITA
+						tag = BEL
+						tag = LUX
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = EU.4.a
+		trigger = {
+			OR = {
+				tag = WGR
+				tag = FRA
+				tag = HOL
+				tag = ITA
+				tag = BEL
+				tag = LUX
+			}
+		}
+	}	
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EU.1
+	immediate = { }
+	title = EU.1.t
+	desc = EU.1.d
+	picture = GFX_rome_protocols
+	is_triggered_only = yes
+	option = {
+		name = EU.1.a
+		FRA = {
+			country_event = {
+				id = EU.2 
+				days = 0
+			}
+		}
+		BEL = {
+			country_event = {
+				id = EU.2 
+				days = 0
+			}
+		}
+		WGR = {
+			country_event = {
+				id = EU.2 
+				days = 0
+			}
+		}
+		HOL = {
+			country_event = {
+				id = EU.2 
+				days = 0
+			}
+		}
+		LUX = {
+			country_event = {
+				id = EU.2 
+				days = 0
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = EU.2
+	immediate = { }
+	title = EU.2.t
+	desc = EU.1.d
+	picture = GFX_rome_protocols
+	is_triggered_only = yes
+	option = {
+		name = EU.2.a
+		country_event = {
+			id = EU.3 
+			days = 5
+		}
+	}
+	option = {
+		name = EU.2.b
+		add_political_power = -50
+		add_stability = -0.05
+	}
+}

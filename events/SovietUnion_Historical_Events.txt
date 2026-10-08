@@ -1,0 +1,1168 @@
+# KRCW (build/patch_residue.py): 14 OTL events dropped while KRCW_active
+add_namespace = soviet_leader_change
+add_namespace = Tblisi
+add_namespace = ARM_SOV
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Death of Stalin
+	id = soviet_leader_change.1
+	immediate = { }
+	title = {
+		text = soviet_leader_change.1.t.A
+		trigger = { NOT = { has_completed_focus = SOV_Stalin_Arrest_The_Beria_Clique_For_Treason } }
+	} 
+	title = {
+		text = soviet_leader_change.1.t.B
+		trigger = { has_completed_focus = SOV_Stalin_Arrest_The_Beria_Clique_For_Treason }
+	}
+	desc = {
+		text = soviet_leader_change.1.d.A
+		trigger = { NOT = { has_completed_focus = SOV_Stalin_Arrest_The_Beria_Clique_For_Treason } }
+	}
+	desc = {
+		text = soviet_leader_change.1.d.B
+		trigger = { has_completed_focus = SOV_Stalin_Arrest_The_Beria_Clique_For_Treason }
+	}
+	picture = GFX_report_stalin_death
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	immediate = {
+		set_global_flag = stalin_dead
+		hidden_effect = {
+			DDR = {
+				country_event = {
+					id = cwu.1
+					days = 125
+				}
+			}
+		}
+	}
+	option = {
+		name = soviet_leader_change.1.o.A
+		trigger = {
+			NOT = { has_completed_focus = SOV_Stalin_Arrest_The_Beria_Clique_For_Treason }
+		}
+		retire_country_leader = yes
+		death_of_stalin_super_event = yes
+		mark_focus_tree_layout_dirty = yes
+		set_country_flag = SOV_Troika_Path
+		complete_national_focus = SOV_Stalin_Establish_the_Malenkov_Khrushchev_and_Beria_Troika
+		ai_chance = {
+			factor = 1
+			modifier = {
+                has_game_rule = {
+			        rule = SOV_internal_ai_behavior
+			        option = STALIN
+		        }
+                factor = 0
+            }
+		}
+		hidden_effect = {
+			VIN = {
+				complete_national_focus = VIN_The_Death_of_Stalin
+			}
+		}
+	}
+	option = {
+		name = soviet_leader_change.1.o.B
+		trigger = {
+			has_completed_focus = SOV_Stalin_Arrest_The_Beria_Clique_For_Treason
+		}
+		mark_focus_tree_layout_dirty = yes
+		set_country_flag = SOV_Stalin_Path
+		complete_national_focus = SOV_Stalin_Establish_the_Malenkov_Pervukhinn_and_Saburov_Advisory_Body
+		hidden_effect = {
+			retire_country_leader = yes
+			PRC = {
+				complete_national_focus = PRC_50s-Soviet_Upheaval
+				mark_focus_tree_layout_dirty = yes
+			}
+		}
+		create_country_leader = {
+			name = "Joseph Stalin"
+			desc = "pol_desc_stalin"
+			picture = "Joseph_Stalin_50sEarly.dds"
+			id = 1953
+			ideology = SOV_stalinism
+			traits = {
+				Lenin_Successor
+				Uncontested_leader
+				Terrifying_Paranoiac
+			}
+		}
+		hidden_effect = {
+			VIN = {
+				complete_national_focus = VIN_Reign_of_Stalin
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #KhrushchevRemoval
+	id = soviet_leader_change.2
+	immediate = { }
+	title = soviet_leader_change.2.t
+	desc = soviet_leader_change.2.desc
+	picture = GFX_KhruschevRel_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		complete_national_focus = SOV_special_presidium_meeting
+	}
+	option = {
+		name = soviet_leader_change.2.o.A
+		trigger = {
+			OR = {
+				has_country_flag = SOV_KHR_Loss
+				has_country_flag = SOV_KHR_Successful_Plan
+			}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 1000
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_1964_presidium option = DEFAULT }
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_1964_presidium option = SOV_BREZHNEV_1964 }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_1964_presidium option = SOV_KHRUSHCHEV_1964 }
+			}
+		}
+		DDR = {
+			country_event = SOV_GDR.1
+		}
+		load_focus_tree = {
+			tree = SOV_Brezhnevite
+			keep_completed = yes
+		}
+		add_country_leader_role = {
+			character = SOV_Leonid_Brezhnev
+			promote_leader = yes
+			country_leader = {
+				ideology = SOV_marxism_lenninism
+				#traits = {  }
+			}
+		}
+		gensec_brezhnev_super_event = yes
+	}
+	option = {
+		name = soviet_leader_change.2.o.C
+		trigger = {
+			OR = {
+				has_country_flag = SOV_KHR_Successful_Plan_even_better
+				has_country_flag = SOV_KHR_Successful_Plan
+			}
+		}
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_1964_presidium option = DEFAULT }
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_1964_presidium option = SOV_KHRUSHCHEV_1964 }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_1964_presidium option = SOV_BREZHNEV_1964 }
+			}
+		}
+		load_focus_tree = {
+			tree = SOV_Khruschev_Extended
+			keep_completed = yes
+		}
+		create_country_leader = {
+			name = "Nikita Khrushchev"
+			desc = "pol_desc_khrushchev"
+			picture = "Nikita_Khrushchev_60s.dds"
+			ideology = SOV_marxism_lenninism
+			traits = {
+				Popular_Premier
+				Ingenuous_Reformer
+				Eccentric_Research_Enthusiast
+				Affable_Diplomat
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Brezhaccident
+	id = soviet_leader_change.3
+	immediate = { }
+	title = soviet_leader_change.3.t
+	desc = soviet_leader_change.3.desc
+	picture = GFX_KhruschevRel_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = soviet_leader_change.3.o.A
+		hidden_effect = {
+			country_event = {
+				id = soviet_leader_change.4
+				days = 231
+				random_hours = 5
+			}
+		}
+	}
+	option = {
+		name = soviet_leader_change.3.o.B
+#		trigger = {
+#			always = no
+#		}
+		hidden_effect = {
+			country_event = {
+				id = brezhnev_last_year.1
+				days = 231
+				random_hours = 5
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Brezhdeath
+	id = soviet_leader_change.4
+	immediate = { }
+	title = soviet_leader_change.4.t
+	desc = soviet_leader_change.4.desc
+	picture = GFX_KhruschevRel_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = soviet_leader_change.4.o.A
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "Yuri Andropov"
+			picture = "Yuri_Andropov_80s.dds"
+			ideology = SOV_stalinism
+			traits = {
+				Unifying_Figure
+				Corruption_Buster
+				Ingenuous_Reformer
+			}
+		}
+        complete_national_focus = SOV_Andropov_Elected_GenSec
+		load_focus_tree = {
+			tree = SOV_Andropov
+			keep_completed = yes
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #APG
+	id = soviet_leader_change.5
+	immediate = { }
+	title = soviet_leader_change.5.t
+	desc = soviet_leader_change.5.desc
+	picture = GFX_KhruschevRel_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = soviet_leader_change.5.o.A
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 1000
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_1957_anti_party_group option = DEFAULT }
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_1957_anti_party_group option = SOV_APG_KHRUSHCHEV }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_1957_anti_party_group option = SOV_APG_OLD_GUARD }
+			}
+		}
+		complete_national_focus = SOV_anti_party_group_coup
+		complete_national_focus = SOV_khrushchevs_union
+		hidden_effect = {
+			country_event = { id = soviet_leader_change.2 days = 2672 }
+		}
+	}
+
+	option = {
+#		trigger = {
+#			always = no
+#		}
+		name = soviet_leader_change.5.o.B
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+				has_game_rule = { rule = SOV_1957_anti_party_group option = DEFAULT }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_1957_anti_party_group option = SOV_APG_KHRUSHCHEV }
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_1957_anti_party_group option = SOV_APG_OLD_GUARD }
+			}
+		}
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "Nikolai Bulganin"
+			picture = "Nikolai_Bulganin_50s.dds"
+			ideology = SOV_stalinism
+			traits = {
+			}
+		}
+		swap_ideas = {
+			remove_idea = SOV_Khrushchev_Politiburo
+			add_idea = SOV_Anti_Party_Group_Coup
+		}
+		complete_national_focus = SOV_APG_takeover
+		load_focus_tree = {
+			tree = SOV_Bulganin
+			keep_completed = yes
+		}
+		APG_coup_super_event = yes
+		
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Andropov Death
+	id = soviet_leader_change.6
+	immediate = { }
+	title = soviet_leader_change.6.t2
+	desc = sov_death.3.d
+	picture = GFX_politics
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = soviet_leader_change.6.a2
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Konstantin Chernenko"
+			picture = "Konstantin_Chernenko_80s.dds"
+			ideology = SOV_marxism_lenninism
+			traits = {
+			}
+		}
+		set_country_flag = Chernenko
+		ai_chance = {
+			factor = 95
+		}
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Chernenko Death
+	id = soviet_leader_change.7
+	immediate = { }
+	title = soviet_leader_change.7.t2
+	desc = sov_death.4.d
+	picture = GFX_Chernenko_funeral
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = soviet_leader_change.7.a2
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Mikhail Gorbachev"
+			picture = "Mikhail_Gorbachev_80s_Lib.dds"
+			ideology = liberal_communism
+			traits = {
+			}
+		}
+		ai_chance = {
+			factor = 90
+		}
+
+	}
+	option = {
+		name = soviet_leader_change.7.b2
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Grigory Romanov"
+			picture = "Grigory_Romanov_80s.dds"
+			ideology = SOV_marxism_lenninism
+			traits = {
+			}
+		}
+		ai_chance = {
+			factor = 10
+		}
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = soviet_leader_change.8
+	immediate = { }
+	title = soviet_leader_change.8.t
+	desc = soviet_leader_change.8.d
+	picture = GFX_KhruschevRel_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		load_focus_tree = {
+			tree = SOV_Molotov
+			keep_completed = yes
+		}
+		complete_national_focus = SOV_molotov_union
+		name = soviet_leader_change.8.A
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Vyacheslav Molotov"
+			picture = "Vyacheslav_Molotov_50s.dds"
+			ideology = SOV_stalinism
+			traits = {
+			}
+		}
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } 
+	id = soviet_leader_change.9
+	immediate = { }
+	title = soviet_leader_change.9.t
+	desc = soviet_leader_change.9.d
+	picture = GFX_KhruschevRel_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+	    load_focus_tree = SOV_Ustinov
+		complete_national_focus = SOV_ustinovs_union
+		name = soviet_leader_change.9.A
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_kaganovich_succession option = SOV_KAG_USTINOV }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_kaganovich_succession option = SOV_KAG_SHELEPIN }
+			}
+		}
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Dmitriy Ustinov"
+			picture = "Dmitry_Ustinov_70s.dds"
+			ideology = SOV_stalinism
+			traits = {
+			}
+		}
+
+	}
+	option = {
+		load_focus_tree = SOV_Shelepin
+		name = soviet_leader_change.9.B
+		ai_chance = {
+			factor = 50
+			modifier = {
+				factor = 1000
+				has_game_rule = { rule = SOV_kaganovich_succession option = SOV_KAG_SHELEPIN }
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = { rule = SOV_kaganovich_succession option = SOV_KAG_USTINOV }
+			}
+		}
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Alexandr Shelepin"
+			picture = "Alexander_Shelepin_70s.dds"
+			ideology = SOV_stalinism
+			traits = {
+			}		
+		}	
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Tblisi
+	id = Tblisi.1
+	immediate = { }
+	title = Tblisi.1.t
+	desc = Tblisi.1.d
+	picture = GFX_Tblisi_Riots
+	is_triggered_only = yes
+
+	option = {
+		name = Tblisi.1.a2
+		country_event = {
+			id = Tblisi.2
+			days = 20
+		}
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #Tblisi 2
+	id = Tblisi.2
+	immediate = { }
+	title = Tblisi.2.t
+	desc = Tblisi.2.d
+	picture = GFX_Tblisi_Riots_2
+
+	is_triggered_only = yes
+
+	option = {
+		name = Tblisi.2.a2
+	}
+}
+add_namespace = Soviet_End
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Soviet_End.1 
+ immediate = { }
+	title = Soviet_End.1.t
+	desc = Soviet_End.1.d
+	picture = GFX_Soviet_End
+	major = yes
+
+	is_triggered_only = yes
+	option = {
+		name = Soviet_End.1.a
+        if = {
+            limit = {
+                is_ai = no
+            }
+            Super_Event_Fall_of_Soviet_Union_Play = yes
+			SOV = {
+				release = EST
+				release = LAT
+				release = LIT
+				release = UKR
+				release = UIA
+				UKR = {
+					annex_country = {
+						target = UIA
+						transfer_troops = yes
+					}
+					transfer_state = 137
+					transfer_state = 1037
+				}
+				release = ABK
+				release = SOS
+				release = NGK
+				release = CHE
+				release = PMR
+				release = MOL
+				release = ARM
+				release = GEO
+				release = TAJ
+				release = BLR
+				release = KYR
+				release = ARM
+				release = AZR
+				release = KAZ
+				release = TMS
+				release = UZB
+
+				capital_scope = {
+					transfer_state_to = RUS
+				}
+			}
+			RUS = {
+				annex_country = {
+					target = SOV
+					transfer_troops = yes
+				}
+				329 = {
+					set_demilitarized_zone = yes
+				}
+				set_capital = {state = 219}
+			}
+			EST = {
+				set_politics = {
+					ruling_party = conservative
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			LAT = {
+				set_politics = {
+					ruling_party = conservative
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			LIT = {
+				set_politics = {
+					ruling_party = Social_Democratic
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			UKR = {
+				set_politics = {
+					ruling_party = Social_Liberalism
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			RUS = {
+				set_politics = {
+					ruling_party = conservative
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			ABK = {
+				set_politics = {
+					ruling_party = conservative
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			SOS = {
+				set_politics = {
+					ruling_party = neutrality
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			NGK = {
+				set_politics = {
+					ruling_party = conservative
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			CHE = {
+				set_politics = {
+					ruling_party = neutrality
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			PMR = {
+				set_politics = {
+					ruling_party = neutrality
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			MOL = {
+				set_politics = {
+					ruling_party = conservative
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			ARM = {
+				set_politics = {
+					ruling_party = Social_Liberalism
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			GEO = {
+				set_politics = {
+					ruling_party = conservative
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			TAJ = {
+				set_politics = {
+					ruling_party = communism
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			BLR = {
+				set_politics = {
+					ruling_party = Social_Democratic
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			KYR = {
+				set_politics = {
+					ruling_party = neutrality
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			ARM = {
+				set_politics = {
+					ruling_party = Social_Liberalism
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			AZR = {
+				set_politics = {
+					ruling_party = conservative
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			KAZ = {
+				set_politics = {
+					ruling_party = neutrality
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			TMS = {
+				set_politics = {
+					ruling_party = neutrality
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			UZB = {
+				set_politics = {
+					ruling_party = conservative
+					last_election = "1949.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+			}
+			if = {
+				limit = {
+					original_tag = SOV
+				}   
+				RUS = { change_tag_from = SOV }
+			}
+        }
+	}
+	option = {
+		name = Soviet_End.1.b
+        if = {
+            limit = {
+                is_ai = no
+            }
+			RNU = {
+				transfer_state = 208
+			}
+			CPS = {
+				transfer_state = 195
+			}
+			IRF = {
+				transfer_state = 652
+				transfer_state = 651
+				transfer_state = 249
+				transfer_state = 572
+			}
+			CHE = {
+				transfer_state = 265
+				transfer_state = 245
+			}
+			LBR = {
+				transfer_state = 254
+				transfer_state = 257
+			}
+			RLG = {
+				transfer_state = 258
+			}
+			RNC = {
+				transfer_state = 218
+			}
+			ECR = {
+				transfer_state = 236
+				transfer_state = 237
+				transfer_state = 235
+				transfer_state = 238
+				transfer_state = 234
+			}
+			RFE = {
+				transfer_state = 563
+				transfer_state = 561
+				transfer_state = 574
+				transfer_state = 568
+				transfer_state = 566
+				transfer_state = 329
+			}
+			USO = {
+				transfer_state = 217
+				transfer_state = 260
+				transfer_state = 220
+				transfer_state = 240
+				transfer_state = 565
+				transfer_state = 569
+			}
+			SKU = {
+				transfer_state = 655
+				transfer_state = 537
+				transfer_state = 555
+			}
+			MRP = {
+				transfer_state = 264
+				transfer_state = 233
+			}
+			RUS = {
+				set_cosmetic_tag = RUS_CW
+				create_faction_from_template = { template = faction_template_generic name = "White Movement" }
+				add_to_faction = RNU
+				add_to_faction = RFE
+				add_to_faction = RLG
+
+				transfer_state = 571
+				transfer_state = 579
+				transfer_state = 397
+				transfer_state = 399
+				transfer_state = 250
+				transfer_state = 213
+				transfer_state = 216
+				transfer_state = 214
+				transfer_state = 351
+				transfer_state = 248
+				transfer_state = 1815
+				transfer_state = 252
+				transfer_state = 401
+				transfer_state = 255
+				transfer_state = 239
+				transfer_state = 251
+				transfer_state = 256
+				transfer_state = 580
+				transfer_state = 400
+				transfer_state = 1814
+				transfer_state = 253
+				transfer_state = 262
+				transfer_state = 597
+				transfer_state = 577
+				transfer_state = 653
+				transfer_state = 398
+				transfer_state = 582
+				transfer_state = 403
+				transfer_state = 572
+				transfer_state = 570
+				transfer_state = 40
+				transfer_state = 654
+				transfer_state = 578
+
+				set_popularities = { 
+					democratic = 0
+					communism = 0
+					fascism = 0
+					nationalist = 0
+					monarchism = 0
+					neutrality = 100
+					islamism = 0
+					radical_shiaism = 0
+					
+					Social_Democratic = 0
+					Social_Liberalism = 0
+					Salafism = 0		
+					Liberal_Conservatism = 0
+					
+					conservative = 0
+					Christian_Democratic = 0
+					socialist = 0
+					centrist = 0
+					liberal = 0
+					trotskyism = 0
+					maoism = 0
+				}
+				
+				set_politics = {
+					ruling_party = neutrality
+					last_election = "1945.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+
+				set_party_name = {
+					ideology = neutrality
+					long_name = "Voruzhenniye Sily Rossiyskoy Federatsii"
+					name = "VSRF"
+				}
+
+				RUS_Pavel_Grachev = {
+					add_country_leader_role = {
+						promote_leader = yes
+						country_leader = {
+							ideology = military_junta
+						}
+					}
+				}
+			}
+			SOV = {
+				set_cosmetic_tag = SOV_RSFSR
+				create_faction_from_template = { template = faction_template_generic name = "Red Movement" }
+				add_to_faction = USO
+
+				release = LIT
+				release = EST
+				release = LAT
+				release = BLR
+				release = UKR
+				release = MOL
+				release = GEO
+				release = ARM
+				release = AZR
+				release = KAZ
+				release = UZB
+				release = TMS
+				release = TAJ
+				release = KYR
+
+				every_owned_state = {
+					limit = {
+						is_core_of = UIA
+					}
+					transfer_state_to = UKR
+				}
+
+				# transfer_state = 657
+				# transfer_state = 564
+				# transfer_state = 224
+				# transfer_state = 222
+				# transfer_state = 205
+				# transfer_state = 223
+				# transfer_state = 232
+				# transfer_state = 263
+				# transfer_state = 209
+				# transfer_state = 247
+				# transfer_state = 242
+				# transfer_state = 244
+				# transfer_state = 408
+				# transfer_state = 409
+				# transfer_state = 562
+				# transfer_state = 644
+				# transfer_state = 637
+
+				set_province_controller = 312
+				set_province_controller = 6102
+				set_province_controller = 3168
+				set_province_controller = 11038
+				set_province_controller = 3092
+				set_province_controller = 140
+
+				set_province_controller = 4797
+				set_province_controller = 1762
+				set_province_controller = 12525
+				set_province_controller = 1727
+				set_province_controller = 10543
+				set_province_controller = 7838
+				set_province_controller = 12540
+
+				set_party_name = {
+					ideology = communism
+					long_name = "Kommunisticheskaya Partiya Rossiyskoy Sovetskoy Federativnoy Sotsialisticheskoy Respubliki"
+					name = "KPRSFSR"
+				}
+
+				SOV_Gennady_Zyuganov = {
+					add_country_leader_role = {
+						promote_leader = yes
+						country_leader = {
+							ideology = SOV_marxism_lenninism
+						}
+					}
+				}
+			}
+			KLY = {
+				set_province_controller = 11579
+				set_province_controller = 3435
+				set_province_controller = 9592
+				set_province_controller = 11736
+				set_province_controller = 757
+				set_province_controller = 9753
+				set_province_controller = 9792
+				set_province_controller = 618
+				set_province_controller = 6620
+				set_province_controller = 9735
+				set_province_controller = 11706
+				set_province_controller = 6758
+				set_province_controller = 6760
+				set_province_controller = 9720
+				set_province_controller = 6791
+				set_province_controller = 11429
+				set_province_controller = 11597
+				set_province_controller = 3597
+			}
+			CPS = {
+				set_province_controller = 149 
+				set_province_controller = 11162
+				set_province_controller = 9206
+				set_province_controller = 9100
+				set_province_controller = 3060
+				set_province_controller = 9105
+			}
+			ECR = {
+				set_province_controller = 11559
+				set_province_controller = 586
+				set_province_controller = 426
+				set_province_controller = 3587
+				set_province_controller = 11403
+				set_province_controller = 6417
+				set_province_controller = 775
+				set_province_controller = 3779
+				set_province_controller = 6796
+				set_province_controller = 9415
+				set_province_controller = 6468
+				set_province_controller = 9581
+				set_province_controller = 3777
+				set_province_controller = 585
+				set_province_controller = 3417
+				set_province_controller = 11416
+				set_province_controller = 11400
+				set_province_controller = 6490
+				set_province_controller = 3443
+				set_province_controller = 3464
+			}
+			USO = {
+				set_province_controller = 11047
+				set_province_controller = 198
+				set_province_controller = 13076
+				set_province_controller = 4669
+				set_province_controller = 8461
+				set_province_controller = 6040
+				set_province_controller = 3431
+			}
+			RFE = {
+				set_province_controller = 4716
+				set_province_controller = 4835
+				set_province_controller = 12506
+				set_province_controller = 12575
+			}
+			MRP = {
+				set_province_controller = 9663	#Sochi
+				#934 Abkhazia?
+			}
+			LIT = {
+				transfer_state = 892
+			}
+			UKR = {
+				transfer_state = 137
+				transfer_state = 1037
+				set_province_controller = 6445
+				set_province_controller = 6446
+				set_province_controller = 9430
+				set_province_controller = 9417
+				set_province_controller = 11559
+				set_province_controller = 6783
+				set_province_controller = 9744
+				set_province_controller = 765
+				set_province_controller = 6755
+				set_province_controller = 750
+				set_province_controller = 11729
+				set_province_controller = 3760
+				set_province_controller = 11668
+				set_province_controller = 6741
+				set_province_controller = 719
+			}
+			RNU = {
+				set_province_controller = 3050
+				set_province_controller = 6150
+				set_province_controller = 3187
+				set_province_controller = 155
+				set_province_controller = 11092
+				set_province_controller = 92
+				set_province_controller = 3144
+				set_province_controller = 3033
+				set_province_controller = 11159
+				set_province_controller = 90
+				set_province_controller = 6106
+				set_province_controller = 6057
+				set_province_controller = 11153
+				set_province_controller = 11150
+				set_province_controller = 6172
+				set_province_controller = 3084
+				set_province_controller = 11156
+				set_province_controller = 9231
+				set_province_controller = 6094
+				set_province_controller = 9118
+				set_province_controller = 2994
+				set_province_controller = 9078
+				set_province_controller = 6052
+				set_province_controller = 3133
+				set_province_controller = 11046
+				set_province_controller = 6153
+				set_province_controller = 40
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ARM_SOV.1
+    title = ARM_SOV.1.t
+    desc = ARM_SOV.1.d
+    picture = GFX_ARM_SOV_1
+    fire_only_once = yes
+    is_triggered_only = yes
+
+    option = {
+        name = ARM_SOV.1.a
+        country_event = {
+            id = ARM_SOV.2
+            days = 1825
+        }
+    }
+    option = {
+        name = ARM_SOV.1.b
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ARM_SOV.2
+    title = ARM_SOV.2.t
+    desc = ARM_SOV.2.d
+    picture = GFX_ARM_SOV_2
+    fire_only_once = yes
+    is_triggered_only = yes
+
+    option = {
+        name = ARM_SOV.2.a
+        230 = {
+            add_to_variable = {
+                tourism_infrastructure = 2
+                tooltip = tourism_infra_tt
+            }
+        }
+    }
+}

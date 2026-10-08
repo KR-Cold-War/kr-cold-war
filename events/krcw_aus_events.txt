@@ -1,0 +1,337 @@
+add_namespace = krcw_aus
+
+country_event = {
+	id = krcw_aus.10
+	title = krcw_aus_10_t
+	desc = {
+		text = krcw_aus_10_d0
+		trigger = {
+			has_country_flag = krcw_aus_referendum_ready
+		}
+	}
+	desc = {
+		text = krcw_aus_10_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_p16_vote_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = AUS
+	}
+	option = {
+		name = krcw_aus_10.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 2 has_country_flag = krcw_aus_union_road }
+			modifier = { factor = 0 has_completed_focus = krcw_aus_the_council_republic }
+		}
+		add_political_power = -25
+		random_list = {
+			50 = {
+				modifier = { factor = 1.4 has_country_flag = krcw_aus_union_road }
+				modifier = { factor = 1.3 WGR = { has_country_flag = krcw_wgr_pushed_union } }
+				modifier = { factor = 0.7 has_completed_focus = krcw_aus_adlers_coalition }
+				set_country_flag = krcw_aus_voted_union
+				if = { limit = { country_exists = WGR } WGR = { set_country_flag = krcw_wgr_austria_voted_union } }
+			}
+			50 = {
+				modifier = { factor = 1.3 WGR = { has_country_flag = krcw_wgr_austria_govt } }
+				modifier = { factor = 1.4 has_completed_focus = krcw_aus_salzburg_is_enough }
+				set_country_flag = krcw_aus_voted_apart
+				if = { limit = { country_exists = WGR } WGR = { set_country_flag = krcw_wgr_austria_voted_apart } }
+			}
+		}
+		country_event = { id = krcw_aus.11 days = 30 }
+	}
+	option = {
+		name = krcw_aus_10.b
+		ai_chance = {
+			base = 50
+			modifier = { factor = 3 has_completed_focus = krcw_aus_the_council_republic }
+		}
+		add_political_power = 50
+		add_stability = -0.02
+		set_country_flag = krcw_aus_no_referendum
+	}
+}
+
+country_event = {
+	id = krcw_aus.11
+	title = krcw_aus_11_t
+	desc = {
+		text = krcw_aus_11_d0
+		trigger = {
+			has_country_flag = krcw_aus_voted_union
+		}
+	}
+	desc = {
+		text = krcw_aus_11_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_p16_vote_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = AUS
+	}
+	option = {
+		name = krcw_aus_11.a
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { has_country_flag = krcw_aus_voted_union } add_political_power = 50 }
+		else = { add_stability = 0.05 krcw_detente_up_small = yes }
+	}
+}
+
+country_event = {
+	id = krcw_aus.20
+	title = krcw_aus_20_t
+	desc = {
+		text = krcw_aus_20_d0
+		trigger = {
+			has_country_flag = krcw_aus_voted_union
+		}
+	}
+	desc = {
+		text = krcw_aus_20_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_p16_hofburg
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = AUS
+		country_exists = WGR
+	}
+	option = {
+		name = krcw_aus_20.a
+		ai_chance = {
+			base = 5
+			modifier = { factor = 12 has_country_flag = krcw_aus_voted_union }
+			modifier = { factor = 3 has_country_flag = krcw_aus_union_road }
+			modifier = { factor = 0.2 has_country_flag = krcw_aus_voted_apart }
+			modifier = { factor = 0 has_completed_focus = krcw_aus_the_council_republic }
+		}
+		set_country_flag = krcw_aus_accepted_union
+		WGR = { country_event = { id = krcw_aus.21 days = 3 } }
+	}
+	option = {
+		name = krcw_aus_20.b
+		ai_chance = {
+			base = 60
+		}
+		add_stability = 0.03
+		add_political_power = 25
+		WGR = { add_political_power = -25 set_country_flag = krcw_wgr_austria_declined }
+	}
+}
+
+country_event = {
+	id = krcw_aus.21
+	title = krcw_aus_21_t
+	desc = krcw_aus_21_d
+	picture = GFX_krcw_eu_p16_hofburg
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = WGR
+		country_exists = AUS
+	}
+	option = {
+		name = krcw_aus_21.a
+		ai_chance = {
+			base = 1
+		}
+		annex_country = { target = AUS transfer_troops = yes }
+		4 = { add_core_of = ROOT }
+		153 = { add_core_of = ROOT }
+		758 = { add_core_of = ROOT }
+		999 = { add_core_of = ROOT }
+		1075 = { add_core_of = ROOT }
+		1192 = { add_core_of = ROOT }
+		152 = { add_core_of = ROOT }
+		1253 = { add_core_of = ROOT }
+		1119 = { add_core_of = ROOT }
+		1150 = { add_core_of = ROOT }
+		set_country_flag = krcw_wgr_austria_annexed
+		if = { limit = { has_idea = krcw_wgr_austrian_provinces } remove_ideas = krcw_wgr_austrian_provinces }
+		if = { limit = { has_country_flag = krcw_wgr_austria_voted_union } add_stability = 0.04 krcw_tension_down_small = yes }
+		else = { add_stability = -0.03 }
+		add_war_support = 0.04
+		krcw_tension_up_small = yes
+		news_event = { id = krcw_aus.22 days = 1 }
+	}
+}
+
+news_event = {
+	id = krcw_aus.22
+	title = krcw_aus_22_t
+	desc = krcw_aus_22_d
+	picture = GFX_krcw_eu_p16_hofburg_n
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_aus_22.a
+		trigger = {
+			OR = { tag = WGR tag = FRA }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = krcw_aus_22.b
+		trigger = {
+			NOT = { OR = { tag = WGR tag = FRA } }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = krcw_aus.30
+	title = krcw_aus_30_t
+	desc = krcw_aus_30_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+		country_exists = AUS
+	}
+	option = {
+		name = krcw_aus_30.a
+		ai_chance = {
+			base = 10
+			modifier = { factor = 4 has_global_flag = KRCW_world_war }
+			modifier = { factor = 3 check_variable = { global.krcw_ma_crisis > 69 } }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		krcw_detente_up_medium = yes
+		add_stability = -0.03
+		AUS = { country_event = { id = krcw_aus.31 days = 2 } }
+	}
+	option = {
+		name = krcw_aus_30.b
+		ai_chance = {
+			base = 90
+		}
+		krcw_tension_up_medium = yes
+		add_war_support = 0.02
+		AUS = { country_event = { id = krcw_aus.32 days = 2 } }
+	}
+}
+
+country_event = {
+	id = krcw_aus.31
+	title = krcw_aus_31_t
+	desc = krcw_aus_31_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = AUS
+	}
+	option = {
+		name = krcw_aus_31.a
+		ai_chance = {
+			base = 1
+		}
+		if = { limit = { 152 = { OR = { is_owned_by = SOV is_owned_by = ADR } } } AUS = { transfer_state = 152 } }
+		if = { limit = { 1253 = { OR = { is_owned_by = SOV is_owned_by = ADR } } } AUS = { transfer_state = 1253 } }
+		if = { limit = { 1119 = { OR = { is_owned_by = SOV is_owned_by = ADR } } } AUS = { transfer_state = 1119 } }
+		if = { limit = { 1150 = { OR = { is_owned_by = SOV is_owned_by = ADR } } } AUS = { transfer_state = 1150 } }
+		set_capital = { state = 152 }
+		if = { limit = { has_idea = krcw_aus_divided_country } remove_ideas = krcw_aus_divided_country }
+		add_stability = 0.08
+		add_political_power = 100
+		set_country_flag = krcw_aus_vienna_free
+		news_event = { id = krcw_aus.33 days = 1 }
+	}
+}
+
+country_event = {
+	id = krcw_aus.32
+	title = krcw_aus_32_t
+	desc = krcw_aus_32_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = AUS
+	}
+	option = {
+		name = krcw_aus_32.a
+		ai_chance = {
+			base = 1
+		}
+		add_war_support = 0.06
+		add_stability = -0.02
+		set_country_flag = krcw_aus_strike_crushed
+		krcw_tension_up_small = yes
+	}
+}
+
+news_event = {
+	id = krcw_aus.33
+	title = krcw_aus_33_t
+	desc = krcw_aus_33_d
+	picture = GFX_report_event_generic_rally_n
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_aus_33.a
+		trigger = {
+			krcw_is_ti = yes
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = krcw_aus_33.b
+		trigger = {
+			NOT = { krcw_is_ti = yes }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+news_event = {
+	id = krcw_aus.40
+	title = krcw_aus_40_t
+	desc = krcw_aus_40_d
+	picture = GFX_report_event_generic_parliament_n
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_aus_40.a
+		trigger = {
+			tag = AUS
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = krcw_aus_40.b
+		trigger = {
+			NOT = { tag = AUS }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}

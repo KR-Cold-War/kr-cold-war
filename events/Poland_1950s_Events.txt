@@ -1,0 +1,279 @@
+# KRCW (build/patch_residue.py): 13 OTL events dropped while KRCW_active
+add_namespace = ZSL
+add_namespace = Wyszynski
+add_namespace = Gomulka
+add_namespace = POL_NATOLIN
+add_namespace = Polish_October
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Wyszynski.1 
+ immediate = { }
+	title = Wyszynski.1.t2
+	desc = Wyszynski.1.d
+	picture = GFX_Wyszynski_1
+	is_triggered_only = yes
+
+	option = {
+		name = Wyszynski.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Polish_October.0 
+ immediate = { }
+	title = Polish_October.0.t2
+	desc = Polish_October.0.d
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Polish_October.0.a2
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Edward Ochab"
+			picture = "Edward_Ochab.dds"
+			ideology = marxism_leninism
+		}
+		hidden_effect = {
+			complete_national_focus = POL_Secretary_Ochab
+			set_global_flag = secretary_ochab
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Polish_October.10
+ immediate = { }
+	title = Polish_October.10.t
+	desc = Polish_October.1.d
+	picture = GFX_Polish_October_1
+	is_triggered_only = yes
+
+	option = {
+		ai_chance = {
+			factor = 50
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+			modifier = {
+				has_game_rule = {
+					rule = POL_polish_october
+					option = POL_APPOINT_ZAWADZKI
+				}
+				factor = 0
+			}
+		}
+		name = Polish_October.10.a
+		POL = { 
+			set_country_flag = gomulka_in_power
+			news_event = { id = Polish_October.1 days = 1 }
+		}
+	}
+	option = {
+		ai_chance = {
+			factor = 50
+			modifier = {
+				has_game_rule = {
+					rule = POL_polish_october
+					option = POL_APPOINT_GOMULKA
+				}
+				factor = 0
+			}
+		}
+		name = Polish_October.10.b
+		POL = { 
+			set_country_flag = Zawadzki_in_power
+			news_event = { id = Polish_October.1 days = 1 }
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Polish_October.1 
+ immediate = { }
+	title = Polish_October.1.t2
+	desc = Polish_October.1.d
+	picture = GFX_Polish_October_1
+	is_triggered_only = yes
+
+	option = {
+		ai_chance = {
+			base = 1
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+			modifier = {
+				has_country_flag = Zawadzki_in_power
+				factor = 0.1
+			}
+			modifier = {
+				has_game_rule = {
+					rule = POL_polish_october
+					option = POL_APPOINT_ZAWADZKI
+				}
+				factor = 0
+			}
+		}
+		name = Polish_October.1.a2
+		create_country_leader = {
+			name = "Wladyslaw Gomulka"
+			picture = "Wladyslaw_Gomulka.dds"
+			ideology = marxism_leninism
+		}
+		complete_national_focus = POL_Polish_October
+		complete_national_focus = POL_The_Gomulka_Thaw
+		news_event = Polish_October.2
+	}
+	option = {
+		ai_chance = {
+			base = 1
+			modifier = {
+				has_country_flag = gomulka_in_power
+				factor = 0.1
+			}
+			modifier = {
+				has_game_rule = {
+					rule = POL_polish_october
+					option = POL_APPOINT_GOMULKA
+				}
+				factor = 0
+			}
+		}
+		name = Polish_October.1.b2
+		create_country_leader = {
+			name = "Aleksander Zawadzki"
+			picture = "Alexander_Zawadzki.dds"
+			ideology = marxism_leninism
+		}
+		complete_national_focus = POL_Polish_October
+		complete_national_focus = POL_First_Secretary_Zawadzki
+		news_event = Polish_October.3
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Polish_October.2 
+ immediate = { }
+	title = Polish_October.2.t2
+	desc = Polish_October.2.d
+	picture = GFX_Polish_October_2
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Polish_October.2.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Polish_October.3 
+ immediate = { }
+	title = Polish_October.3.t2
+	desc = Polish_October.3.d
+	picture = GFX_Polish_October_3
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+
+		name = Polish_October.3.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = POL_NATOLIN.1 
+ immediate = { }
+	title = POL_NATOLIN.1.t2
+	desc = POL_NATOLIN.1.d
+	picture = GFX_POL_NATOLIN_1
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = POL_NATOLIN.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = POL_NATOLIN.2 
+ immediate = { }
+	title = POL_NATOLIN.2.t2
+	desc = POL_NATOLIN.2.d
+	picture = GFX_POL_NATOLIN_1
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = POL_NATOLIN.2.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Gomulka.1 
+ immediate = { }
+	title = Gomulka.1.t2
+	desc = Gomulka.1.d
+	picture = GFX_Gomulka_1
+	is_triggered_only = yes
+
+	option = {
+		name = Gomulka.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Gomulka.2 
+ immediate = { }
+	title = Gomulka.2.t2
+	desc = Gomulka.2.d
+	picture = GFX_Gomulka_2
+	is_triggered_only = yes
+
+	option = {
+		name = Gomulka.2.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Gomulka.3 
+ immediate = { }
+	title = Gomulka.3.t2
+	desc = Gomulka.3.d
+	picture = GFX_Gomulka_3
+	is_triggered_only = yes
+
+	option = {
+		name = Gomulka.3.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ZSL.1 
+ immediate = { }
+	title = ZSL.1.t2
+	desc = ZSL.1.d
+	picture = GFX_ZSL_1
+	is_triggered_only = yes
+
+	option = {
+		name = ZSL.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ZSL.2 
+ immediate = { }
+	title = ZSL.2.t2
+	desc = ZSL.2.d
+	picture = GFX_ZSL_2
+	is_triggered_only = yes
+
+	option = {
+		name = ZSL.2.a2
+	}
+}

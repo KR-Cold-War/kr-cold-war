@@ -1,0 +1,1956 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = SOV_Khruschev
+	country = {
+		factor = 0
+		modifier = {
+			add = 0
+			tag = SOV
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	focus = {
+		id = SOV_khrushchevs_struggle_for_power
+		icon = GFX_SOV_khrushchevs_struggle_for_power
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 3
+		y = 0
+		completion_reward = {
+			set_country_flag = Khruschev_Reign
+			hidden_effect = {
+				country_event = {
+					id = Tblisi.1
+					days = 20
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SOV_remove_monuments_to_stalin
+		icon = GFX_SOV_remove_monuments_to_stalin
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = SOV_KHR.1 #news event about tearing down statues (Khrushchev Victory)
+			add_political_power = 50
+			add_to_variable = {
+				stalinism = -0.05
+				tooltip = stalinism_influence_tt
+			}
+			#liberalism
+
+		}
+		relative_position_id = SOV_khrushchevs_struggle_for_power
+		prerequisite = { focus = SOV_khrushchevs_struggle_for_power }
+	}
+
+	focus = {
+		id = SOV_dissolve_the_cominform
+		icon = GFX_SOV_dissolve_the_cominform
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = -2
+		y = 1
+		completion_reward = {
+			set_faction_name = "Warsaw Treaty Organization"
+			#country_event = SOV_KAG.3
+			add_to_variable = {
+				stalinism = -0.05
+				tooltip = stalinism_influence_tt
+			}
+		}
+		relative_position_id = SOV_remove_monuments_to_stalin
+		prerequisite = { focus = SOV_remove_monuments_to_stalin }
+	}
+
+	focus = {
+		id = SOV_decree_lifting_restrictions_of_deported_caucasus_people
+		icon = GFX_SOV_decree_lifting_restrictions_of_deported_caucasus_people
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 1
+		y = 1
+		completion_reward = {
+			add_to_variable = {
+				liberalism = 0.05
+				tooltip = liberalism_influence_tt
+			}
+			country_event = SOV_KHR.2 #Event 1 return of exiled
+			#Event 2 return of more exiled
+			#Event 3 conflicts between exiled and settled people CHOICE to favour one
+			#Event 4 if sided with exiled change caucasus demographic a bit (Khrushchev Victory)
+			#Event 5 if sided with settled choice to move Chechen ASSR to Kazakhstan (APG Victory)
+		}
+		relative_position_id = SOV_dissolve_the_cominform
+		prerequisite = { focus = SOV_dissolve_the_cominform }
+		prerequisite = { focus = SOV_cancel_criminal_registration_for_not_showing_up_for_work }
+	}
+
+	focus = {
+		id = SOV_replace_molotov_as_foreign_minister
+		icon = GFX_SOV_replace_molotov_as_foreign_minister
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 2
+		y = 1
+		completion_reward = {
+			add_to_variable = {
+				liberalism = 0.05
+				tooltip = liberalism_influence_tt
+			}
+			add_to_variable = {
+				liberalism = -0.05
+				tooltip = stalinism_influence_tt
+			}
+			#Remove molotov from custom soviet gui
+			country_event = SOV_KHR.8 #Event for the politiburo to accept or refuse (APG or KHR Victory)
+		}
+		relative_position_id = SOV_remove_monuments_to_stalin
+		prerequisite = { focus = SOV_remove_monuments_to_stalin }
+	}
+	
+	focus = {
+		id = SOV_hold_the_first_spartakiad
+		icon = GFX_SOV_hold_the_first_spartakiad
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = -1
+		y = 1
+		completion_reward = {
+			country_event = SOV_KHR.7#start Spartakiad events until 1991
+		}
+		relative_position_id = SOV_replace_molotov_as_foreign_minister
+		prerequisite = { focus = SOV_replace_molotov_as_foreign_minister }
+		prerequisite = { focus = SOV_cancel_criminal_registration_for_not_showing_up_for_work }
+	}
+
+	focus = {
+		id = SOV_cancel_criminal_registration_for_not_showing_up_for_work
+		icon = GFX_SOV_cancel_criminal_registration_for_not_showing_up_for_work
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 0
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+			add_to_variable = {
+				liberalism = -0.05
+				tooltip = stalinism_influence_tt
+			}
+		}
+		relative_position_id = SOV_remove_monuments_to_stalin
+		prerequisite = { focus = SOV_remove_monuments_to_stalin }
+	}
+
+	focus = {
+		id = SOV_sixth_five_year_plan
+		icon = GFX_SOV_sixth_five_year_plan
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 15
+		y = 2
+		completion_reward = {
+			add_timed_idea = {
+				idea = five_year_plan
+				days = 1825
+			}
+			custom_effect_tooltip = check_khr_tt
+			set_variable = {
+				num_food_after_goal_1 = synthetic_refinery_quantity
+			}
+			set_variable = {
+				num_food_after_goal_2 = USA.industrial_complex_quantity
+			}
+			set_variable = {
+				num_food_after_goal_3 = office_park_quantity
+			}
+			multiply_variable = {
+				var = num_food_after_goal_1
+				value = 1.2
+			}
+			multiply_variable = {
+				var = num_food_after_goal_2
+				value = 0.8
+			}
+			multiply_variable = {
+				var = num_food_after_goal_3
+				value = 2
+			}
+			round_variable = num_food_after_goal_1
+			round_variable = num_food_after_goal_2
+			round_variable = num_food_after_goal_3
+		}
+	}
+
+	focus = {
+		id = SOV_development_of_virgin_and_fallow_lands
+		icon = GFX_SOV_development_of_virgin_and_fallow_lands
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 0
+		y = 1
+		completion_reward = {
+			651 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			573 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			571 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			570 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			569 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = agri_industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = SOV_sixth_five_year_plan
+		prerequisite = { focus = SOV_sixth_five_year_plan }
+	}
+
+	focus = {
+		id = SOV_open_the_serov_ferroalloy_plant
+		icon = GFX_SOV_open_the_serov_ferroalloy_plant
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = -1
+		y = 1
+		completion_reward = {
+			653 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = steel_factory
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = SOV_development_of_virgin_and_fallow_lands
+		prerequisite = { focus = SOV_development_of_virgin_and_fallow_lands }
+		prerequisite = { focus = SOV_sponsor_radio_engineering_and_electronic_industry }
+	}
+
+	focus = {
+		id = SOV_emphasis_on_expansion_of_heavy_industry
+		icon = GFX_SOV_emphasis_on_expansion_of_heavy_industry
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 2
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = material_sciences_materials_bonus
+				bonus = 2
+				uses = 1
+				category = material_sciences_materials
+			}
+		}
+		relative_position_id = SOV_sixth_five_year_plan
+		prerequisite = { focus = SOV_sixth_five_year_plan }
+	}
+
+	focus = {
+		id = SOV_saratov_chemical_combine
+		icon = GFX_SOV_saratov_chemical_combine
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = -2
+		y = 1
+		completion_reward = {
+			239 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = SOV_open_the_serov_ferroalloy_plant
+		prerequisite = { focus = SOV_open_the_serov_ferroalloy_plant }
+	}
+
+	focus = {
+		id = SOV_sponsor_radio_engineering_and_electronic_industry
+		icon = GFX_SOV_sponsor_radio_engineering_and_electronic_industry
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = -2
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = electronics_bonus
+				bonus = 2
+				uses = 1
+				category = electronics
+			}
+		}
+		relative_position_id = SOV_sixth_five_year_plan
+		prerequisite = { focus = SOV_sixth_five_year_plan }
+	}
+
+	focus = {
+		id = SOV_finish_the_volzhskaya_hydroelectric_power_station
+		icon = GFX_SOV_finish_the_volzhskaya_hydroelectric_power_station
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 1
+		y = 1
+		completion_reward = {
+			253 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = water_infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = renewable_powerplant
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = SOV_development_of_virgin_and_fallow_lands
+		prerequisite = { focus = SOV_development_of_virgin_and_fallow_lands }
+		prerequisite = { focus = SOV_emphasis_on_expansion_of_heavy_industry }
+	}
+
+	focus = {
+		id = SOV_construction_of_verkhnetagilskaya_regional_thermal_power_plants
+		icon = GFX_SOV_construction_of_verkhnetagilskaya_regional_thermal_power_plants
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 2
+		y = 1
+		completion_reward = {
+			653 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = SOV_finish_the_volzhskaya_hydroelectric_power_station
+		prerequisite = { focus = SOV_finish_the_volzhskaya_hydroelectric_power_station }
+	}
+
+	focus = {
+		id = SOV_commission_more_hydroelectric_power_plants
+		icon = GFX_SOV_commission_more_hydroelectric_power_plants
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = SOV_KHR.9 #Event give choices where to build them
+		}
+		relative_position_id = SOV_finish_the_volzhskaya_hydroelectric_power_station
+		prerequisite = { focus = SOV_finish_the_volzhskaya_hydroelectric_power_station }
+	}
+
+	focus = {
+		id = SOV_build_the_novogorkovsky_and_volgograd_oil_refineries
+		icon = GFX_SOV_build_the_novogorkovsky_and_volgograd_oil_refineries
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 0
+		y = 1
+		completion_reward = {
+			217 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 2
+					instant_build = yes
+				}
+			}
+			252 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = SOV_open_the_serov_ferroalloy_plant
+		prerequisite = { focus = SOV_open_the_serov_ferroalloy_plant }
+	}
+
+	focus = {
+		id = SOV_encourage_production_of_cultural_and_household_goods
+		icon = GFX_SOV_encourage_production_of_cultural_and_household_goods
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 2
+		y = 1
+		completion_reward = {
+			217 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			251 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			219 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+			572 = {
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = SOV_saratov_chemical_combine
+		prerequisite = { focus = SOV_saratov_chemical_combine }
+		prerequisite = { focus = SOV_build_the_novogorkovsky_and_volgograd_oil_refineries }
+	}
+
+	focus = {
+		id = SOV_development_of_nuclear_powerplants
+		icon = GFX_SOV_development_of_nuclear_powerplants
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = -2
+		y = 1
+		completion_reward = {
+			653 = {
+				add_building_construction = {
+					type = nuclear_powerplant
+					level = 2
+					instant_build = yes
+				}
+			}
+			260 = {
+				add_building_construction = {
+					type = nuclear_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = SOV_construction_of_verkhnetagilskaya_regional_thermal_power_plants
+		prerequisite = { focus = SOV_construction_of_verkhnetagilskaya_regional_thermal_power_plants }
+		prerequisite = { focus = SOV_commission_more_hydroelectric_power_plants }
+	}
+
+	focus = {
+		id = SOV_atomic_powered_icebreaker
+		icon = GFX_SOV_atomic_powered_icebreaker
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = -1
+		y = 1
+		completion_reward = {
+			add_ideas = nuclear_powered_icebreakers
+		}
+		relative_position_id = SOV_development_of_nuclear_powerplants
+		prerequisite = { focus = SOV_development_of_nuclear_powerplants }
+		prerequisite = { focus = SOV_encourage_production_of_cultural_and_household_goods }
+	}
+
+	focus = {
+		id = SOV_anti_party_group_coup
+		icon = GFX_SOV_anti_party_group_coup
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 1
+		y = 1
+		completion_reward = {
+		}
+		available = {
+			has_country_flag = anti_party_group_coup
+		}
+		relative_position_id = SOV_decree_lifting_restrictions_of_deported_caucasus_people
+		prerequisite = { focus = SOV_decree_lifting_restrictions_of_deported_caucasus_people }
+		prerequisite = { focus = SOV_hold_the_first_spartakiad }
+	}
+
+	focus = {
+		id = SOV_khrushchevs_union
+		icon = GFX_SOV_khrushchevs_union
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 0
+		y = 1
+		completion_reward = {
+		}
+		relative_position_id = SOV_anti_party_group_coup
+		prerequisite = { focus = SOV_anti_party_group_coup }
+	}
+
+	focus = {
+		id = SOV_abolish_special_tribunals
+		icon = GFX_SOV_abolish_special_tribunals
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = 1
+		y = 1
+		completion_reward = {
+			add_to_variable = {
+				stalinism = 0.05
+				tooltip = stalinism_influence_tt
+			}
+		}
+		relative_position_id = SOV_khrushchevs_union
+		prerequisite = { focus = SOV_khrushchevs_union }
+	}
+	
+	focus = {
+		id = SOV_clean_up_khrushchevs_repressions_involvement
+		icon = GFX_SOV_clean_up_khrushchevs_repressions_involvement
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = 0
+		y = 1
+		completion_reward = {
+			add_to_variable = {
+				liberalism = 0.05
+				tooltip = liberalism_influence_tt
+			}
+		}
+		relative_position_id = SOV_abolish_special_tribunals
+		prerequisite = { focus = SOV_abolish_special_tribunals }
+	}
+	
+	focus = {
+		id = SOV_xxith_cpsu_congress
+		icon = GFX_SOV_xxith_cpsu_congress
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = -1
+		y = 1 
+		available = {
+			date > 1958.12.25
+		}
+		completion_reward = {
+			country_event = SOV_KHR.19 #Event XXI CPSU Congress
+		}
+		relative_position_id = SOV_clean_up_khrushchevs_repressions_involvement
+		prerequisite = { focus = SOV_clean_up_khrushchevs_repressions_involvement }
+		prerequisite = { focus = SOV_appoint_khrushchev_chairman_of_the_council_of_ministers_of_the_ussr }
+		prerequisite = { focus = SOV_exclude_zhukov_from_presidium_amp_remove_from_minister_of_defence_position }
+		prerequisite = { focus = SOV_authorize_the_6th_world_festival_of_youth_and_students }
+	}
+	
+	focus = {
+		id = SOV_accelerate_the_space_race
+		icon = GFX_SOV_accelerate_the_space_race
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = 1
+		y = 1
+		completion_reward = {
+			#add space research bonuses
+			#give a mission to reach the moon before the US
+		}
+		relative_position_id = SOV_xxith_cpsu_congress
+		prerequisite = { focus = SOV_xxith_cpsu_congress }
+	}
+
+	focus = {
+		id = SOV_the_ryazan_miracle
+		icon = GFX_SOV_the_ryazan_miracle
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = -1
+		y = 1
+		completion_reward = {
+			country_event = SOV_KHR.10 #Ryazan Miracle event chain
+		}
+		relative_position_id = SOV_accelerate_the_space_race
+		prerequisite = { focus = SOV_accelerate_the_space_race }
+		prerequisite = { focus = SOV_limited_thaw_on_arts }
+	}
+	
+	focus = {
+		id = SOV_elect_new_presidium_members
+		icon = GFX_SOV_elect_new_presidium_members
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = 3
+		y = 1
+		completion_reward = {
+			add_to_variable = {
+				liberalism = 0.05
+				tooltip = liberalism_influence_tt
+			}
+		}
+		relative_position_id = SOV_khrushchevs_union
+		prerequisite = { focus = SOV_khrushchevs_union }
+	}
+
+	focus = {
+		id = SOV_appoint_khrushchev_chairman_of_the_council_of_ministers_of_the_ussr
+		icon = GFX_SOV_appoint_khrushchev_chairman_of_the_council_of_ministers_of_the_ussr
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = 0
+		y = 1
+		completion_reward = {
+			add_to_variable = {
+				liberalism = 0.05
+				tooltip = liberalism_influence_tt
+			}
+		}
+		relative_position_id = SOV_elect_new_presidium_members
+		prerequisite = { focus = SOV_elect_new_presidium_members }
+	}
+
+	focus = {
+		id = SOV_allow_soviet_citizens_to_travel_aboards
+		icon = GFX_SOV_allow_soviet_citizens_to_travel_aboards
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = -1
+		y = 1
+		completion_reward = {
+			add_stability = -0.1
+			add_to_variable = {
+				liberalism = 0.05
+				tooltip = liberalism_influence_tt
+			}
+			85 = {
+				add_to_variable = {
+					tourism_infrastructure = 5
+				}
+				custom_effect_tooltip = Large_Tourism_Boost_TT
+			}
+			892 = {
+				add_to_variable = {
+					tourism_infrastructure = 2
+				}
+				custom_effect_tooltip = Minor_Tourism_Boost_TT
+			}
+			927 = {
+				add_to_variable = {
+					tourism_infrastructure = 2
+				}
+				custom_effect_tooltip = Minor_Tourism_Boost_TT
+			}
+			61 = {
+				add_to_variable = {
+					tourism_infrastructure = 2
+				}
+				custom_effect_tooltip = Minor_Tourism_Boost_TT
+			}
+			44 = {
+				add_to_variable = {
+					tourism_infrastructure = 2
+				}
+				custom_effect_tooltip = Minor_Tourism_Boost_TT
+			}
+			77 = {
+				add_to_variable = {
+					tourism_infrastructure = 2
+				}
+				custom_effect_tooltip = Minor_Tourism_Boost_TT
+			}
+			211 = {
+				add_to_variable = {
+					tourism_infrastructure = 2
+				}
+				custom_effect_tooltip = Minor_Tourism_Boost_TT
+			}
+		}
+		relative_position_id = SOV_khrushchevs_union
+		prerequisite = { focus = SOV_khrushchevs_union }
+	}
+
+	focus = {
+		id = SOV_exclude_antiparty_group_members_from_presidium
+		icon = GFX_SOV_exclude_antiparty_group_members_from_presidium
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = -3
+		y = 1
+		completion_reward = {
+			add_to_variable = {
+				stalinism = -0.10
+				tooltip = stalinism_influence_tt
+			}
+		}
+		relative_position_id = SOV_khrushchevs_union
+		prerequisite = { focus = SOV_khrushchevs_union }
+	}
+
+	focus = {
+		id = SOV_exclude_zhukov_from_presidium_amp_remove_from_minister_of_defence_position
+		icon = GFX_SOV_exclude_zhukov_from_presidium_amp_remove_from_minister_of_defence_position
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = 0
+		y = 1
+		completion_reward = {
+			add_to_variable = {
+				liberalism = 0.10
+				tooltip = liberalism_influence_tt
+			}
+		}
+		relative_position_id = SOV_exclude_antiparty_group_members_from_presidium
+		prerequisite = { focus = SOV_exclude_antiparty_group_members_from_presidium }
+	}
+
+	focus = {
+		id = SOV_authorize_the_6th_world_festival_of_youth_and_students
+		icon = GFX_SOV_authorize_the_6th_world_festival_of_youth_and_students
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = SOV_KHR.16#Event 6th World Festival
+			hidden_effect = {
+				every_owned_state = {
+					add_to_variable = {
+						ReligionAtheistMission = 3
+					}
+				}
+			}
+		}
+		relative_position_id = SOV_allow_soviet_citizens_to_travel_aboards
+		prerequisite = { focus = SOV_allow_soviet_citizens_to_travel_aboards }
+	}
+
+
+	focus = {
+		id = SOV_force_hospitalization_for_the_socially_dangerous
+		icon = GFX_SOV_force_hospitalization_for_the_socially_dangerous
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = 3
+		y = 1
+		completion_reward = {
+			country_event = SOV_KHR.17 #event forced hospitalization
+			hidden_effect = {
+				every_owned_state = {
+					add_to_variable = {
+						ReligionAtheistMission = 3
+					}
+				}
+			}
+		}
+		relative_position_id = SOV_xxith_cpsu_congress
+		prerequisite = { focus = SOV_xxith_cpsu_congress }
+	}
+
+	focus = {
+		id = SOV_limited_thaw_on_arts
+		icon = GFX_SOV_limited_thaw_on_arts
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = -1
+		y = 1
+		completion_reward = {
+			add_to_variable = {
+				liberalism = 0.05
+				tooltip = liberalism_influence_tt
+			}
+			hidden_effect = {
+				every_owned_state = {
+					add_to_variable = {
+						ReligionAtheistMission = 12
+					}
+				}
+			}
+		}
+		relative_position_id = SOV_xxith_cpsu_congress
+		prerequisite = { focus = SOV_xxith_cpsu_congress }
+	}
+
+	focus = {
+		id = SOV_xxii_cpsu_congress
+		icon = GFX_SOV_xxii_cpsu_congress
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 0
+		y = 1
+		available = {
+			date > 1961.09.21
+		}
+		completion_reward = {
+			country_event = SOV_KHR.18 #Event XXII CPSU Congress
+		}
+		relative_position_id = SOV_the_ryazan_miracle
+		prerequisite = { focus = SOV_the_ryazan_miracle }
+		prerequisite = { focus = SOV_imprison_religious_heads }
+		prerequisite = { focus = SOV_demolish_churches }
+	}
+
+
+	focus = {
+		id = SOV_close_gulags_institution
+		icon = GFX_SOV_close_gulags_institution
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = -3
+		y = 1
+		completion_reward = {
+			add_to_variable = {
+				liberalism = 0.05
+				tooltip = liberalism_influence_tt
+			}
+			add_to_variable = {
+				stalinism = -0.05
+				tooltip = stalinism_influence_tt
+			}
+		}
+		relative_position_id = SOV_xxith_cpsu_congress
+		prerequisite = { focus = SOV_xxith_cpsu_congress }
+	}
+
+	focus = {
+		id = SOV_imprison_religious_heads
+		icon = GFX_SOV_imprison_religious_heads
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = SOV_KHR.20 #Religious Head Imprisoned event
+			hidden_effect = {
+				every_owned_state = {
+					add_to_variable = {
+						ReligionAtheistMission = 12
+					}
+				}
+			}
+		}
+		relative_position_id = SOV_force_hospitalization_for_the_socially_dangerous
+		prerequisite = { focus = SOV_force_hospitalization_for_the_socially_dangerous }
+	}
+
+	focus = {
+		id = SOV_demolish_churches
+		icon = GFX_SOV_demolish_churches
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = SOV_KHR.21 #Church Demolition Event
+			hidden_effect = {
+				every_owned_state = {
+					add_to_variable = {
+						ReligionAtheistMission = 12
+					}
+				}
+			}
+		}
+		relative_position_id = SOV_close_gulags_institution
+		prerequisite = { focus = SOV_close_gulags_institution }
+	}
+
+	focus = {
+		id = SOV_rename_cities_named_after_stalin
+		icon = GFX_SOV_rename_cities_named_after_stalin
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = -1
+		y = 1
+		completion_reward = {
+			country_event = SOV_KHR.22 #Rename Cities Event(TO BE DONE AFTER SLIME REWORKED VICTORY POINTS AND STATES
+		}
+		relative_position_id = SOV_xxii_cpsu_congress
+		prerequisite = { focus = SOV_xxii_cpsu_congress }
+	}
+
+	focus = {
+		id = SOV_devaluation_of_the_rubles
+		icon = GFX_SOV_devaluation_of_the_rubles
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = 1
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = Currency_Devaluation
+				days = 365
+			}
+		}
+		relative_position_id = SOV_xxii_cpsu_congress
+		prerequisite = { focus = SOV_xxii_cpsu_congress }
+	}
+
+	focus = {
+		id = SOV_divide_oblast_level_party_committees_into_parallel_structures
+		icon = GFX_SOV_divide_oblast_level_party_committees_into_parallel_structures
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = -1
+		y = 1
+		completion_reward = {
+			add_political_power = 100
+			hidden_effect = {
+				add_stability = -0.05
+			}
+		}
+		relative_position_id = SOV_rename_cities_named_after_stalin
+		prerequisite = { focus = SOV_rename_cities_named_after_stalin }
+	}
+
+	focus = {
+		id = SOV_establishment_of_specialized_high_schools_for_gifted_students
+		icon = GFX_SOV_establishment_of_specialized_high_schools_for_gifted_students
+		#icon = GFX_goal_generic_political_pressure
+		cost = 4
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = soviet_free_specialized_education
+		}
+		relative_position_id = SOV_devaluation_of_the_rubles
+		prerequisite = { focus = SOV_devaluation_of_the_rubles }
+	}
+	
+	focus = {
+		id = SOV_special_presidium_meeting
+		icon = GFX_SOV_special_presidium_meeting
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 2
+		y = 1
+		available = {
+			has_country_flag = special_presidium_meeting_happened
+			has_completed_focus = SOV_review_khrushchev_plans
+		}
+		completion_reward = {
+		}
+		relative_position_id = SOV_divide_oblast_level_party_committees_into_parallel_structures
+		prerequisite = { focus = SOV_divide_oblast_level_party_committees_into_parallel_structures }
+		prerequisite = { focus = SOV_establishment_of_specialized_high_schools_for_gifted_students }
+	}
+
+	focus = {
+		id = SOV_seventh_five_year_plan
+		icon = GFX_SOV_seventh_five_year_plan
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 24
+		y = 2
+		available = {
+			has_completed_focus = SOV_xxith_cpsu_congress
+		}
+		completion_reward = {
+			modify_timed_idea = {
+				idea = five_year_plan
+				days = 1825
+			}
+		}
+	}
+
+	focus = {
+		id = SOV_push_for_increase_in_meat_production
+		icon = GFX_SOV_push_for_increase_in_meat_production
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = -2
+		y = 1
+		completion_reward = {
+			add_to_variable = {
+				Soviet_Agriculture_farmBonus =  0.025
+				tooltip = Soviet_Agriculture_farmBonus_tt
+			}
+		}
+		relative_position_id = SOV_seventh_five_year_plan
+		prerequisite = { focus = SOV_seventh_five_year_plan }
+	}
+
+	focus = {
+		id = SOV_reorganise_sovnarkhoz
+		icon = GFX_SOV_reorganise_sovnarkhoz
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = -1
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+		}
+		relative_position_id = SOV_push_for_increase_in_meat_production
+		prerequisite = { focus = SOV_push_for_increase_in_meat_production }
+	}
+
+	focus = {
+		id = SOV_develop_residential_buildings
+		icon = GFX_SOV_develop_residential_buildings
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 1
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = invested_in_housing
+				days = 1825
+			}
+		}
+		relative_position_id = SOV_push_for_increase_in_meat_production
+		prerequisite = { focus = SOV_push_for_increase_in_meat_production }
+	}
+
+	focus = {
+		id = SOV_establish_soviet_weekends
+		icon = GFX_SOV_establish_soviet_weekends
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 0
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+		}
+		relative_position_id = SOV_reorganise_sovnarkhoz
+		prerequisite = { focus = SOV_reorganise_sovnarkhoz }
+	}
+	
+	focus = {
+		id = SOV_search_for_effective_deposits_of_minerals
+		icon = GFX_SOV_search_for_effective_deposits_of_minerals
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 2
+		y = 1
+		completion_reward = {
+			#RGO Decision Chain
+		}
+		relative_position_id = SOV_seventh_five_year_plan
+		prerequisite = { focus = SOV_seventh_five_year_plan }
+	}
+
+	focus = {
+		id = SOV_build_regional_thermal_power_plants
+		icon = GFX_SOV_build_regional_thermal_power_plants
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 2
+		y = 1
+		completion_reward = {
+			566 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			208 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			408 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			1042 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = fossil_fuel_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = SOV_search_for_effective_deposits_of_minerals
+		prerequisite = { focus = SOV_search_for_effective_deposits_of_minerals }
+	}
+
+	focus = {
+		id = SOV_commission_novovoronezh_and_beloyarsk_nuclear_power_plants
+		icon = GFX_SOV_commission_novovoronezh_and_beloyarsk_nuclear_power_plants
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 0
+		y = 1
+		completion_reward = {
+			260 = {
+				add_building_construction = {
+					type = nuclear_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+			653 = {
+				add_building_construction = {
+					type = nuclear_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = SOV_search_for_effective_deposits_of_minerals
+		prerequisite = { focus = SOV_search_for_effective_deposits_of_minerals }
+	}
+
+	focus = {
+		id = SOV_reduce_working_time_to_8_hours_a_day
+		icon = GFX_SOV_reduce_working_time_to_8_hours_a_day
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 0
+		y = 1
+		completion_reward = {
+			add_stability = 0.05
+		}
+		relative_position_id = SOV_develop_residential_buildings
+		prerequisite = { focus = SOV_develop_residential_buildings }
+	}
+
+	focus = {
+		id = SOV_increase_the_minimum_wages_of_workers_and_employees
+		icon = GFX_SOV_increase_the_minimum_wages_of_workers_and_employees
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = -1
+		y = 1
+		completion_reward = {
+			increase_service_policy = yes
+		}
+		relative_position_id = SOV_establish_soviet_weekends
+		prerequisite = { focus = SOV_establish_soviet_weekends }
+		prerequisite = { focus = SOV_reduce_working_time_to_8_hours_a_day }
+	}
+
+	focus = {
+		id = SOV_focus_on_the_chemical_industry
+		icon = GFX_SOV_focus_on_the_chemical_industry
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 1
+		y = 1
+		completion_reward = {
+			country_event = SOV_KHR.26 #Event to Decide which regions to give CHemical Industry
+		}
+		relative_position_id = SOV_reduce_working_time_to_8_hours_a_day
+		prerequisite = { focus = SOV_reduce_working_time_to_8_hours_a_day }
+		prerequisite = { focus = SOV_kachkanar_mining_and_processing_plant_in_the_urals }
+	}
+
+	focus = {
+		id = SOV_establish_pensions_for_collective_farmers
+		icon = GFX_SOV_establish_pensions_for_collective_farmers
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 1
+		y = 1
+		completion_reward = {
+			increase_service_policy = yes
+		}
+		relative_position_id = SOV_increase_the_minimum_wages_of_workers_and_employees
+		prerequisite = { focus = SOV_increase_the_minimum_wages_of_workers_and_employees }
+		prerequisite = { focus = SOV_establish_new_institutes_for_the_ukrainian_academy_cf_sciences }
+	}
+
+	focus = {
+		id = SOV_establish_new_institutes_for_the_ukrainian_academy_cf_sciences
+		icon = GFX_SOV_establish_new_institutes_for_the_ukrainian_academy_cf_sciences
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 1
+		y = 1
+		completion_reward = {
+			add_ideas = Ukrainian_Academy_of_sciences
+		}
+		relative_position_id = SOV_establish_soviet_weekends
+		prerequisite = { focus = SOV_establish_soviet_weekends }
+		prerequisite = { focus = SOV_reduce_working_time_to_8_hours_a_day }
+	}
+
+	focus = {
+		id = SOV_karaganda_metallurgical_plants
+		icon = GFX_SOV_karaganda_metallurgical_plants
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 0
+		y = 1
+		completion_reward = {
+			404 = {
+				add_building_construction = {
+					type = steel_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = SOV_build_regional_thermal_power_plants
+		prerequisite = { focus = SOV_build_regional_thermal_power_plants }
+	}
+	
+	focus = {
+		id = SOV_extend_heavy_industry_around_the_union
+		icon = GFX_SOV_extend_heavy_industry_around_the_union
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 0
+		y = 1
+		completion_reward = {
+			country_event = SOV_KHR.27 #Events to decide who to give heavy industry to
+		}
+		relative_position_id = SOV_karaganda_metallurgical_plants
+		prerequisite = { focus = SOV_karaganda_metallurgical_plants }
+		prerequisite = { focus = SOV_expand_hydroelectric_power_grid }
+	}
+
+	focus = {
+		id = SOV_kachkanar_mining_and_processing_plant_in_the_urals
+		icon = GFX_SOV_kachkanar_mining_and_processing_plant_in_the_urals
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 0
+		y = 1
+		completion_reward = {
+			653 = {
+				add_building_construction = {
+					type = tungsten_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = SOV_commission_novovoronezh_and_beloyarsk_nuclear_power_plants
+		prerequisite = { focus = SOV_commission_novovoronezh_and_beloyarsk_nuclear_power_plants }
+	}
+
+	focus = {
+		id = SOV_expand_hydroelectric_power_grid
+		icon = GFX_SOV_expand_hydroelectric_power_grid
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 2
+		y = 1
+		completion_reward = {
+			571 = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = renewable_powerplant
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = SOV_build_regional_thermal_power_plants
+		prerequisite = { focus = SOV_build_regional_thermal_power_plants }
+	}
+
+	focus = {
+		id = SOV_increase_natural_gas_production_in_ukraine
+		icon = GFX_SOV_increase_natural_gas_production_in_ukraine
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 0
+		y = 1
+		completion_reward = {
+			202 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = SOV_extend_heavy_industry_around_the_union
+		prerequisite = { focus = SOV_extend_heavy_industry_around_the_union }
+	}
+
+	focus = {
+		id = SOV_expand_fertilizer_production
+		icon = GFX_SOV_expand_fertilizer_production
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = -1
+		y = 1
+		completion_reward = {
+			add_to_variable = {
+				Soviet_Agriculture_farmBonus =  0.025
+				tooltip = Soviet_Agriculture_farmBonus_tt
+			}
+		}
+		relative_position_id = SOV_focus_on_the_chemical_industry
+		prerequisite = { focus = SOV_focus_on_the_chemical_industry }
+		prerequisite = { focus = SOV_establish_new_institutes_for_the_ukrainian_academy_cf_sciences }
+	}
+
+	focus = {
+		id = SOV_commission_the_kiev_metro
+		icon = GFX_SOV_commission_the_kiev_metro
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 0
+		y = 2
+		completion_reward = {
+			202 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		relative_position_id = SOV_kachkanar_mining_and_processing_plant_in_the_urals
+		prerequisite = { focus = SOV_kachkanar_mining_and_processing_plant_in_the_urals }
+	}
+
+	focus = {
+		id = SOV_review_khrushchev_plans
+		icon = GFX_SOV_review_khrushchev_plans
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 3
+		y = 1
+		available = {
+			date > 1964.07.26
+		}
+		completion_reward = {
+			custom_effect_tooltip = check_khr_tt
+			set_variable = {
+				validation_variable = 0
+			}
+			if = {
+				limit = {
+					check_variable = { synthetic_refinery_quantity > num_food_after_goal_1}
+				}
+				add_to_variable = {
+					validation_variable = 1
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { industrial_complex_quantity > num_food_after_goal_2 }
+				}
+				add_to_variable = {
+					validation_variable = 1
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { office_park_quantity > num_food_after_goal_3 }
+				}
+				add_to_variable = {
+					validation_variable = 1
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { validation_variable = 3 }
+				}
+				set_country_flag = SOV_KHR_Successful_Plan_even_better
+			}
+			else_if = {
+				limit = {
+					check_variable = { validation_variable = 2 }
+				}
+				set_country_flag = SOV_KHR_Successful_Plan
+			}
+			else = {
+				# country_event = SOV_KAG.15 #Event about the Seventh Five Year plan failing
+				set_country_flag = SOV_KHR_Loss
+			}
+			custom_effect_tooltip = result_fypkhr_tt
+			hidden_effect = {
+				country_event = {
+					id = soviet_leader_change.2
+					days = 10
+				}
+			}
+		}
+		relative_position_id = SOV_establish_pensions_for_collective_farmers
+		prerequisite = { focus = SOV_establish_pensions_for_collective_farmers }
+		prerequisite = { focus = SOV_increase_natural_gas_production_in_ukraine }
+		prerequisite = { focus = SOV_expand_fertilizer_production }
+		prerequisite = { focus = SOV_commission_the_kiev_metro }
+	}
+
+	focus = {
+		id = SOV_the_soviet_armed_forces
+		icon = GFX_SOV_the_soviet_armed_forces
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = 18
+		y = 11
+		ai_will_do = {
+			base = 1
+			modifier = {
+				factor = 0
+				NOT = {
+					has_completed_focus = SOV_xxii_cpsu_congress
+				}
+			}
+		}
+		completion_reward = {
+			army_experience = 25
+			navy_experience = 25
+			air_experience = 25
+		}
+	}
+
+	focus = {
+		id = SOV_the_soviet_air_force
+		icon = GFX_SOV_the_soviet_air_force
+		#icon = GFX_goal_generic_political_pressure
+		available = {
+			#air_has_atleast_5_percent = yes
+		}
+		cost = 8
+		x = -7
+		y = 1
+		completion_reward = {
+			air_experience = 25
+		}
+		relative_position_id = SOV_the_soviet_armed_forces
+		prerequisite = { focus = SOV_the_soviet_armed_forces }
+	}
+
+	focus = {
+		id = SOV_research_high_speed_bombers
+		icon = GFX_SOV_research_high_speed_bombers
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#air_has_atleast_10_percent = yes
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.25
+				uses = 1
+				category = bomber_high_mach
+			}
+		}
+		relative_position_id = SOV_the_soviet_air_force
+		prerequisite = { focus = SOV_the_soviet_air_force }
+	}
+
+	focus = {
+		id = SOV_increase_aircraft_production
+		icon = GFX_SOV_increase_aircraft_production
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#air_has_atleast_10_percent = yes
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			#Need an idea
+		}
+		relative_position_id = SOV_the_soviet_air_force
+		prerequisite = { focus = SOV_the_soviet_air_force }
+	}
+
+	focus = {
+		id = SOV_invest_in_traditional_aircraft
+		icon = GFX_SOV_invest_in_traditional_aircraft
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#air_has_atleast_15_percent = yes
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.25
+				uses = 1
+				category = air_single_engine
+			}
+		}
+		relative_position_id = SOV_research_high_speed_bombers
+		prerequisite = { focus = SOV_research_high_speed_bombers }
+		mutually_exclusive = { focus = SOV_restart_the_flying_submarine_program }
+	}
+
+	focus = {
+		id = SOV_restart_the_flying_submarine_program
+		icon = GFX_SOV_restart_the_flying_submarine_program
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		x = -1
+		y = 1
+		available = {
+			#air_has_atleast_25_percent = yes
+		}
+		completion_reward = {
+		}
+		relative_position_id = SOV_research_high_speed_bombers
+		prerequisite = { focus = SOV_research_high_speed_bombers }
+		mutually_exclusive = { focus = SOV_invest_in_traditional_aircraft }
+	}
+
+	focus = {
+		id = SOV_the_tu_114_propaganda_campaign
+		icon = GFX_SOV_the_tu_114_propaganda_campaign
+		#icon = GFX_goal_generic_political_pressure
+		available = {
+			#air_has_atleast_15_percent = yes
+		}
+		cost = 8
+		x = -1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.25
+				uses = 1
+				category = air_quad_engine
+			}
+		}
+		relative_position_id = SOV_increase_aircraft_production
+		prerequisite = { focus = SOV_increase_aircraft_production }
+		mutually_exclusive = { focus = SOV_adopt_the_mig_15 }
+	}
+
+	focus = {
+		id = SOV_adopt_the_mig_15
+		icon = GFX_SOV_adopt_the_mig_15
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#air_has_atleast_20_percent = yes
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.5
+				uses = 1
+				category = air_single_engine
+			}
+		}
+		relative_position_id = SOV_increase_aircraft_production
+		prerequisite = { focus = SOV_increase_aircraft_production }
+		mutually_exclusive = { focus = SOV_the_tu_114_propaganda_campaign }
+	}
+
+	focus = {
+		id = SOV_the_soviet_army
+		icon = GFX_SOV_the_soviet_army
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#military_has_atleast_5_percent = yes
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			army_experience = 25
+		}
+		relative_position_id = SOV_the_soviet_armed_forces
+		prerequisite = { focus = SOV_the_soviet_armed_forces }
+	}
+
+	focus = {
+		id = SOV_adopt_the_akm
+		icon = GFX_SOV_adopt_the_akm
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#military_has_atleast_10_percent = yes
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.5
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+		relative_position_id = SOV_the_soviet_army
+		prerequisite = { focus = SOV_the_soviet_army }
+	}
+
+	focus = {
+		id = SOV_modernize_surface_to_air_missiles
+		icon = GFX_SOV_modernize_surface_to_air_missiles
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#military_has_atleast_15_percent = yes
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.5
+				uses = 1
+				category = rocketry_asm
+			}
+		}
+		relative_position_id = SOV_adopt_the_akm
+		prerequisite = { focus = SOV_adopt_the_akm }
+	}
+
+	focus = {
+		id = SOV_invest_in_the_t55
+		icon = GFX_SOV_invest_in_the_t55
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#military_has_atleast_10_percent = yes
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.5
+				uses = 1
+				category = armor_medium
+			}
+		}
+		relative_position_id = SOV_the_soviet_army
+		prerequisite = { focus = SOV_the_soviet_army }
+	}
+
+	focus = {
+		id = SOV_advanced_atgm_designs
+		icon = GFX_SOV_advanced_atgm_designs
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#military_has_atleast_15_percent = yes
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.5
+				uses = 1
+				category = rocketry_atgm
+			}
+		}
+		relative_position_id = SOV_invest_in_the_t55
+		prerequisite = { focus = SOV_invest_in_the_t55 }
+	}
+
+
+	focus = {
+		id = SOV_the_bmp
+		icon = GFX_SOV_the_bmp
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#military_has_atleast_20_percent = yes
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.5
+				uses = 1
+				category = infantry_vehicles
+			}
+		}
+		relative_position_id = SOV_modernize_surface_to_air_missiles
+		prerequisite = { focus = SOV_modernize_surface_to_air_missiles }
+		prerequisite = { focus = SOV_advanced_atgm_designs }
+	}
+	
+	focus = {
+		id = SOV_improve_mobile_aa
+		icon = GFX_SOV_improve_mobile_aa
+		#icon = GFX_goal_generic_political_pressure
+		available = {
+			#military_has_atleast_50_percent = yes
+		}
+		cost = 8
+		x = 0
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.5
+				uses = 1
+				category = support_anti_air
+			}
+		}
+		relative_position_id = SOV_the_bmp
+		prerequisite = { focus = SOV_the_bmp }
+	}
+
+	focus = {
+		id = SOV_the_soviet_navy
+		icon = GFX_SOV_the_soviet_navy
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#navy_has_atleast_5_percent = yes
+		}
+		x = 6
+		y = 1
+		completion_reward = {
+			navy_experience = 25
+		}
+		relative_position_id = SOV_the_soviet_armed_forces
+		prerequisite = { focus = SOV_the_soviet_armed_forces }
+	}
+	
+	focus = {
+		id = SOV_project_627_kit
+		icon = GFX_SOV_project_627_kit
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#navy_has_atleast_10_percent = yes
+		}
+		x = -2
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.25
+				uses = 1
+				category = submarine_tech
+			}
+		}
+		relative_position_id = SOV_the_soviet_navy
+		prerequisite = { focus = SOV_the_soviet_navy }
+	}
+	
+	focus = {
+		id = SOV_project_672
+		icon = GFX_SOV_project_672
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#navy_has_atleast_15_percent = yes
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.25
+				uses = 1
+				category = submarine_tech
+			}
+		}
+		relative_position_id = SOV_project_627_kit
+		prerequisite = { focus = SOV_project_627_kit }
+	}
+	
+	focus = {
+		id = SOV_groznykynda_class_cruiser
+		icon = GFX_SOV_groznykynda_class_cruiser
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#navy_has_atleast_20_percent = yes
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.25
+				uses = 1
+				category = screen_hull_medium
+			}
+		}
+		relative_position_id = SOV_project_672
+		prerequisite = { focus = SOV_project_672 }
+		prerequisite = { focus = SOV_ka_25_naval_helicopter }
+	}
+	
+	focus = {
+		id = SOV_project_659
+		icon = GFX_SOV_project_659
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#navy_has_atleast_30_percent = yes
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.5
+				uses = 1
+				category = submarine_tech
+			}
+		}
+		relative_position_id = SOV_groznykynda_class_cruiser
+		prerequisite = { focus = SOV_groznykynda_class_cruiser }
+	}
+
+
+	focus = {
+		id = SOV_kolin_class_destroyer
+		icon = GFX_SOV_kolin_class_destroyer
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#navy_has_atleast_10_percent = yes
+		}
+		x = 2
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.25
+				uses = 1
+				category = battle_hull_light
+			}
+		}
+		relative_position_id = SOV_the_soviet_navy
+		prerequisite = { focus = SOV_the_soviet_navy }
+	}
+	
+	focus = {
+		id = SOV_ka_25_naval_helicopter
+		icon = GFX_SOV_ka_25_naval_helicopter
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#navy_has_atleast_15_percent = yes
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.25
+				uses = 1
+				category = helicopter_naval
+			}
+		}
+		relative_position_id = SOV_kolin_class_destroyer
+		prerequisite = { focus = SOV_kolin_class_destroyer }
+	}
+
+	focus = {
+		id = SOV_invest_in_recon_drone_initiative
+		icon = GFX_SOV_invest_in_recon_drone_initiative
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#air_has_atleast_20_percent = yes
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.25
+				uses = 1
+				category = drone_uav
+			}
+		}
+		relative_position_id = SOV_invest_in_traditional_aircraft
+		prerequisite = {
+			focus = SOV_invest_in_traditional_aircraft
+			focus = SOV_restart_the_flying_submarine_program
+			focus = SOV_the_tu_114_propaganda_campaign
+			focus = SOV_adopt_the_mig_15
+		}
+	}
+
+	focus = {
+		id = SOV_focus_on_jet_interceptors
+		icon = GFX_SOV_focus_on_jet_interceptors
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#air_has_atleast_25_percent = yes
+		}
+		x = -1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.25
+				uses = 1
+				category = fighter_multirole
+			}
+		}
+		relative_position_id = SOV_invest_in_recon_drone_initiative
+		prerequisite = { focus = SOV_invest_in_recon_drone_initiative }
+		mutually_exclusive = { focus = SOV_prioritize_high_speed_interceptors }
+	}
+
+	focus = {
+		id = SOV_prioritize_high_speed_interceptors
+		icon = GFX_SOV_prioritize_high_speed_interceptors
+		#icon = GFX_goal_generic_political_pressure
+		cost = 8
+		available = {
+			#air_has_atleast_30_percent = yes
+		}
+		x = 1
+		y = 1
+		completion_reward = {
+			add_tech_bonus = {
+				name = air_equipment_bonus
+				bonus = 0.5
+				uses = 1
+				category = fighter_vtol
+			}
+		}
+		relative_position_id = SOV_invest_in_recon_drone_initiative
+		prerequisite = { focus = SOV_invest_in_recon_drone_initiative }
+		mutually_exclusive = { focus = SOV_focus_on_jet_interceptors }
+	}
+}

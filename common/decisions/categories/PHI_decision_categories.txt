@@ -1,0 +1,41 @@
+# KRCW (build/patch_residue.py): 3 OTL decision categories hidden while KRCW_active
+Huks_Insurgency_Decisions = {
+	priority = 100
+	icon = GFX_generic_communism_decision
+	scripted_gui = huk_insurgency_gui
+	allowed = {
+		OR = {
+			tag = PHI
+			tag = HUK
+		}
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_global_flag = huks_insurgency
+	}
+	visible_when_empty = yes
+}
+Kamlon_Rebellion_Decisions = {
+	priority = 99
+	icon = generic_propaganda
+	allowed = {
+		OR = {
+			tag = PHI
+		}
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		country_exists = SLU
+	}
+	visible_when_empty = no
+}
+PHI_Development_Decisions = {
+	priority = 98
+	icon = generic_propaganda
+	allowed = {
+		OR = {
+			tag = PHI
+		}
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+	}
+	visible_when_empty = yes
+}

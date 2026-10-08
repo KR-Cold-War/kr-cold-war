@@ -1,0 +1,1476 @@
+# KRCW (build/patch_residue.py): 13 OTL events dropped while KRCW_active
+add_namespace = rho
+
+country_event = {
+	id = rho.1 
+ immediate = { }
+	title = rho.1.t2
+	desc = rho.1.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = ZIM
+		date > 1953.1.1
+		date < 1954.1.1
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		complete_national_focus = ZIM_Elections_of_1953
+		complete_national_focus = ZIM_Federal_Election_Results
+		set_country_flag = rho_election_53
+	}
+
+	option = {
+		name = rho.1.a2
+		
+		add_popularity = { ideology = conservative popularity = 0.1 }
+		complete_national_focus = ZIM_Roy_Welensky
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = ZIM_1953_federal_elections
+					option = ZIM_CONFEDERATE
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = rho.1.b2
+		
+		complete_national_focus = ZIM_Confederate_Victory_large
+		complete_national_focus = ZIM_Elections_of_1953
+		add_popularity = { ideology = neutrality popularity = 0.1 }
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = ZIM_1953_federal_elections
+					option = ZIM_WELENSKY
+				}
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = rho.100 
+ immediate = { }
+	title = rho.100.t2
+	desc = rho.100.d2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = rho.100.a2
+		
+		set_politics = {
+			ruling_party = Social_Liberalism
+			elections_allowed = yes
+		}
+		add_popularity = { ideology = Social_Liberalism popularity = 0.1 }
+		complete_national_focus = ZIM_Garfield_Todd_54
+		hidden_effect = {
+			set_popularities = { 
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 0
+				Social_Democratic = 6
+				
+				democratic = 0
+				Social_Liberalism = 57
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 10
+				Christian_Democratic = 0
+				conservative = 0
+				
+				neutrality = 27
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = ZIM_1954_south_rhodesia_elections
+					option = ZIM_CONFEDERATE
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = rho.100.b2
+
+		complete_national_focus = ZIM_Confederate_Victory_in_Southern_Rhodesia
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = ZIM_1954_south_rhodesia_elections
+					option = ZIM_GARFIELD_TODD
+				}
+				factor = 0
+			}
+		}
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = yes
+		}
+		hidden_effect = {
+			set_popularities = { 
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 0
+				Social_Democratic = 7
+				
+				democratic = 0
+				Social_Liberalism = 33
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 10
+				Christian_Democratic = 0
+				conservative = 0
+				
+				neutrality = 50
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = rho.101 
+ immediate = { }
+	title = rho.101.t2
+	desc = rho.101.d2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = rho.101.a2
+
+		add_popularity = { ideology = conservative popularity = 0.1 }
+		complete_national_focus = ZIM_Federal_Victory
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = ZIM_1954_north_rhodesia_elections
+					option = ZIM_CONFEDERATE
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = rho.101.b2
+
+		complete_national_focus = ZIM_Confederate_Victory_n
+		add_popularity = { ideology = neutrality popularity = 0.1 }
+		ai_chance = {
+			factor = 10
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = ZIM_1954_north_rhodesia_elections
+						option = ZIM_FEDERAL_SUPRESSION
+					}
+					has_game_rule = {
+						rule = ZIM_1954_north_rhodesia_elections
+						option = ZIM_FEDERAL_STATUS_QUO
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = rho.102 
+ immediate = { }
+	title = rho.102.t2
+	desc = rho.102.d2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = rho.102.a2
+
+		add_popularity = { ideology = conservative popularity = 0.1 }
+		complete_national_focus = ZIM_Nyasaland_Association_Victory
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = ZIM_1956_nyasaland_elections
+					option = NYASALAND_CONGRESS
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = rho.102.b2
+
+		complete_national_focus = ZIM_Empower_the_NAC
+		add_popularity = { ideology = neutrality popularity = 0.1 }
+		ai_chance = {
+			factor = 10
+			modifier = {
+				has_game_rule = {
+					rule = ZIM_1956_nyasaland_elections
+					option = NYASALAND_ASSOCIATION
+				}
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	id = rho.103 
+ immediate = { }
+	title = rho.103.t2
+	desc = rho.103.d2
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = ZIM
+		date > 1958.1.1
+		date < 1959.1.1
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = rho.103.a2
+
+		add_popularity = { ideology = conservative popularity = 0.1 }
+		complete_national_focus = ZIM_United_Federal_Victory
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = ZIM_1958_south_rhodesia_elections
+						option = ZIM_DOMINION_SR
+					}
+					has_game_rule = {
+						rule = ZIM_1958_south_rhodesia_elections
+						option = ZIM_UNITED_RHODESIA
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = rho.103.b2
+
+		complete_national_focus = ZIM_Dominion_Victory
+		add_popularity = { ideology = neutrality popularity = 0.1 }
+		ai_chance = {
+			factor = 10
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = ZIM_1958_south_rhodesia_elections
+						option = ZIM_UNITED_FEDERAL_SR
+					}
+					has_game_rule = {
+						rule = ZIM_1958_south_rhodesia_elections
+						option = ZIM_UNITED_RHODESIA
+					}
+				}
+			}
+		}
+	}
+	#option = {
+	#	name = "United Rhodesia Party"
+	#
+	#	complete_national_focus = ZIM_United_Rhodesia_Party
+	#	add_popularity = { ideology = Social_Liberalism popularity = 0.1 }
+	#	ai_chance = {
+	#		factor = 10
+	#		modifier = {
+	#			OR = {
+	#				has_game_rule = {
+	#					rule = ZIM_1958_south_rhodesia_elections
+	#					option = ZIM_UNITED_FEDERAL_SR
+	#				}
+	#				has_game_rule = {
+	#					rule = ZIM_1958_south_rhodesia_elections
+	#					option = ZIM_DOMINION_SR
+	#				}
+	#			}
+	#			factor = 0
+	#		}
+	#	}
+	#}
+}
+country_event = {
+	id = rho.104 
+ immediate = { }
+	title = rho.104.t2
+	desc = rho.104.d2
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = ZIM
+		date > 1958.1.1
+		date < 1959.1.1
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		complete_national_focus = ZIM_Federal_elections_of_1958
+		complete_national_focus = ZIM_Federal_58_Results
+		set_country_flag = rho_election_58
+	}
+
+
+	option = {
+		name = rho.104.a2
+		
+		complete_national_focus = ZIM_United_Federal
+		add_popularity = { ideology = conservative popularity = 0.1 }
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Edgar Whitehead"
+			picture = "Edgar_Whitehead_60s.dds"
+			ideology = liberal_nationalism
+		}
+		set_party_name = {
+			ideology = conservative
+			long_name = "United Federal Victory"
+			name = "United Federal Victory"
+		}
+		hidden_effect = {
+			set_party_name = {
+				ideology = Social_Liberalism
+				long_name = "United Rhodesia Party"
+				name = "United Rhodesia Party"
+			}
+			create_country_leader = {
+				name = "Winston Field"
+				picture = "Winston_Field_50s.dds"
+				ideology = reactionary
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = "Dominion Party"
+				name = "Dominion Party"
+			}
+			set_popularities = { 
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 0
+				Social_Democratic = 0
+				
+				democratic = 0
+				Social_Liberalism = 12
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 0
+				Christian_Democratic = 0
+				conservative = 42
+				
+				neutrality = 46
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+		}
+		ai_chance = {
+			base = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = ZIM_1958_federal_elections
+					option = ZIM_WINSTON_FIELD
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = rho.104.b2
+
+		complete_national_focus = ZIM_Winston_Field
+		add_popularity = { ideology = neutrality popularity = 0.1 }
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Winston Field"
+			picture = "Winston_Field_50s.dds"
+			ideology = reactionary
+		}
+		set_party_name = {
+			ideology = neutrality
+			long_name = "Dominion Party"
+			name = "Dominion Party"
+		}
+		hidden_effect = {
+			set_party_name = {
+				ideology = Social_Liberalism
+				long_name = "United Rhodesia Party"
+				name = "United Rhodesia Party"
+			}
+			create_country_leader = {
+				name = "Edgar Whitehead"
+				picture = "Edgar_Whitehead_60s.dds"
+				ideology = liberal_nationalism
+			}
+			set_party_name = {
+				ideology = conservative
+				long_name = "United Federal Victory"
+				name = "United Federal Victory"
+			}
+			set_popularities = { 
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 0
+				Social_Democratic = 0
+				
+				democratic = 0
+				Social_Liberalism = 11
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 0
+				Christian_Democratic = 0
+				conservative = 40
+				
+				neutrality = 49
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+		}
+		ai_chance = {
+			base = 10
+			modifier = {
+				has_game_rule = {
+					rule = ZIM_1958_federal_elections
+					option = ZIM_UNITED_FEDERAL_FED
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = rho.2 
+ immediate = { }
+	title = rho.2.t2
+	desc = rho.2.d
+	picture = news_event_rhodesia_udi
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+
+		option = {
+		name = rho.2.a2
+		trigger = {
+			OR = {
+				tag = ZIM
+			}
+		}
+	}
+	option = {
+		name = rho.2.b2
+		trigger = {
+			OR = {
+				tag = ENG
+			}
+
+		}
+	}
+	option = {
+		name = rho.2.c2
+		trigger = {
+			NOT = {
+				tag = ZIM
+				tag = ENG
+			}
+		}
+	}
+
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = rho.3 
+ immediate = { }
+	title = rho.3.t2
+	desc = rho.3.d
+	picture = GFX_frn
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+
+		option = {
+		name = rho.3.a2
+		trigger = {
+			OR = {
+				tag = ZIM
+			}
+
+		}
+	}
+	option = {
+		name = rho.3.b2
+		trigger = {
+			NOT = {
+				tag = ZIM
+			}
+		}
+	}
+
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = rho.4 
+ immediate = { }
+	title = rho.4.t2
+	desc = rho.4.d
+	picture = GFX_news_event_un_sanctions_rhodies
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+
+
+		option = {
+		name = rho.4.a2
+		add_ideas = UN_Sanctions
+		trigger = {
+			OR = {
+				tag = ZIM
+			}
+
+		}
+	}
+	option = {
+		name = rho.4.b2
+		trigger = {
+			NOT = {
+				tag = ZIM
+			}
+		}
+	}
+
+}
+
+
+country_event = {
+	id = rho.126 
+ immediate = { }
+	title = rho.126.t2
+	desc = rho.126.d2
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = ZIM
+		date > 1962.1.1
+		date < 1963.1.1
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		complete_national_focus = ZIM_60s_Election_of_1962
+	}
+	option = {
+		name = rho.126.a2
+		set_politics = {
+			ruling_party = Social_Liberalism
+			elections_allowed = yes
+			last_election = "1962.3.7"
+			election_frequency = 36
+		}
+		create_country_leader = {
+			name = "Garfield Todd"
+			desc = ""
+			picture = "Garfield_Todd_60s.dds"
+			ideology = social_liberal
+			traits = {
+			}
+		}
+		hidden_effect = {
+			create_country_leader = {
+				name = "Winston Field"
+				picture = "Winston_Field_60s.dds"
+				ideology = conservatism
+			}
+			set_party_name = {
+				ideology = conservative
+				long_name = "Rhodesia Front"
+				name = "Rhodesia Front"
+			}
+			create_country_leader = {
+				name = "Edgar Whitehead"
+				picture = "Edgar_Whitehead_60s.dds"
+				ideology = liberal_conservatives
+			}
+			set_party_name = {
+				ideology = Liberal_Conservatism
+				long_name = "United Federal Party"
+				name = "United Federal Party"
+			}
+			create_country_leader = {
+				name = "Independents"
+				picture = "Zimbabwe_Placeholder.dds"
+				ideology = indepenent
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = "Independent"
+				name = "Independent"
+			}
+			set_party_name = {
+				ideology = Social_Democratic
+				long_name = "United People's Party"
+				name = "United People's Party"
+			}
+			create_country_leader = {
+				name = "Josiah Gondo"
+				picture = "Josiah_Gondo_60s.dds"
+				ideology = social_democrat
+			}
+			set_popularities = { 
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 0
+				Social_Democratic = 0
+				
+				democratic = 0
+				Social_Liberalism = 47
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 19
+				Christian_Democratic = 0
+				conservative = 32
+				
+				neutrality = 2
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+		}
+		complete_national_focus = ZIM_60s_Garfield_Todd_63
+		ai_chance = {
+			factor = 90
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = rho.126.b2
+
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = yes
+			last_election = "1962.3.7"
+			election_frequency = 36
+		}
+		add_popularity = { ideology = conservative popularity = 0.1 }
+		complete_national_focus = ZIM_60s_Winston_Field
+		create_country_leader = {
+			name = "Winston Field"
+			picture = "Winston_Field_60s.dds"
+			ideology = conservatism
+		}
+		set_party_name = {
+			ideology = conservative
+			long_name = "Rhodesia Front"
+			name = "Rhodesia Front"
+		}
+		hidden_effect = {
+			set_country_leader_portrait = {
+				ideology = Social_Liberalism
+				portrait = "gfx/leaders/ZIM/Garfield_Todd_60s.dds"
+			}
+			create_country_leader = {
+				name = "Edgar Whitehead"
+				picture = "Edgar_Whitehead_60s.dds"
+				ideology = liberal_conservatives
+			}
+			set_party_name = {
+				ideology = Liberal_Conservatism
+				long_name = "United Federal Party"
+				name = "United Federal Party"
+			}
+			create_country_leader = {
+				name = "Independents"
+				picture = "Zimbabwe_Placeholder.dds"
+				ideology = indepenent
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = "Independent"
+				name = "Independent"
+			}
+			set_party_name = {
+				ideology = Social_Democratic
+				long_name = "United People's Party"
+				name = "United People's Party"
+			}
+			create_country_leader = {
+				name = "Josiah Gondo"
+				picture = "Josiah_Gondo_60s.dds"
+				ideology = social_democrat
+			}
+			set_popularities = { 
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 0
+				Social_Democratic = 0
+				
+				democratic = 0
+				Social_Liberalism = 12
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 36
+				Christian_Democratic = 0
+				conservative = 50
+				
+				neutrality = 2
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+		}
+		ai_chance = {
+			factor = 90
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+		name = rho.126.c2
+
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = yes
+			last_election = "1962.3.7"
+			election_frequency = 36
+		}
+
+		create_country_leader = {
+			name = "Edgar Whitehead"
+			picture = "Edgar_Whitehead_60s.dds"
+			ideology = liberal_conservatives
+		}
+		set_party_name = {
+			ideology = Liberal_Conservatism
+			long_name = "United Federal Party"
+			name = "United Federal Party"
+		}
+		hidden_effect = {
+			set_country_leader_portrait = {
+				ideology = Social_Liberalism
+				portrait = "gfx/leaders/ZIM/Garfield_Todd_60s.dds"
+			}
+			create_country_leader = {
+				name = "Winston Field"
+				picture = "Winston_Field_60s.dds"
+				ideology = conservatism
+			}
+			set_party_name = {
+				ideology = conservative
+				long_name = "Rhodesia Front"
+				name = "Rhodesia Front"
+			}
+			create_country_leader = {
+				name = "Independents"
+				picture = "Zimbabwe_Placeholder.dds"
+				ideology = indepenent
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = "Independent"
+				name = "Independent"
+			}
+			set_party_name = {
+				ideology = Social_Democratic
+				long_name = "United People's Party"
+				name = "United People's Party"
+			}
+			create_country_leader = {
+				name = "Josiah Gondo"
+				picture = "Josiah_Gondo_60s.dds"
+				ideology = social_democrat
+			}
+			set_popularities = { 
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 0
+				Social_Democratic = 0
+				
+				democratic = 0
+				Social_Liberalism = 15
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 50
+				Christian_Democratic = 0
+				conservative = 33
+				
+				neutrality = 2
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+		}
+		complete_national_focus = ZIM_60s_Whitehead
+		add_popularity = { ideology = Liberal_Conservatism popularity = 0.1 }
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	id = rho.127 
+ immediate = { }
+	title = rho.127.t2
+	desc = rho.127.d2
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = ZIM
+		date > 1965.1.1
+		date < 1966.1.1
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		complete_national_focus = ZIM_60s_1965_Election_alt
+	}
+	option = {
+		name = rho.127.a2
+		set_politics = {
+			ruling_party = Social_Liberalism
+			elections_allowed = yes
+			election_frequency = 60
+		}
+		hidden_effect = {
+			set_popularities = { 
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 0
+				Social_Democratic = 5
+				
+				democratic = 0
+				Social_Liberalism = 47
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 15
+				Christian_Democratic = 0
+				conservative = 31
+				
+				neutrality = 2
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+			create_country_leader = {
+				name = "Ian Smith"
+				desc = "POLITICS_IAN_SMITH_DESC"
+				picture = "Ian_Smith_60s.dds"
+				ideology = conservatism
+				traits = {
+					paternal_figure
+					hatred_of_communism
+					totally_composed
+					inflexible_white_supremacist
+				}
+			}
+			create_country_leader = {
+				name = "Roy Welensky"
+				picture = "Roy_Welensky_60s.dds"
+				ideology = liberal_conservatives
+			}
+		}
+		complete_national_focus = ZIM_60s_Garfield_Todd_65
+		ai_chance = {
+			factor = 90
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = rho.127.b2
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = yes
+			election_frequency = 60
+		}
+		hidden_effect = {
+			set_popularities = { 
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 0
+				Social_Democratic = 43
+				
+				democratic = 0
+				Social_Liberalism = 10
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 3
+				Christian_Democratic = 0
+				conservative = 39
+				
+				neutrality = 5
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+			create_country_leader = {
+				name = "Ian Smith"
+				desc = "POLITICS_IAN_SMITH_DESC"
+				picture = "Ian_Smith_60s.dds"
+				ideology = conservatism
+				traits = {
+					paternal_figure
+					hatred_of_communism
+					totally_composed
+					inflexible_white_supremacist
+				}
+			}
+			create_country_leader = {
+				name = "Roy Welensky"
+				picture = "Roy_Welensky_60s.dds"
+				ideology = liberal_conservatives
+			}
+		}
+		complete_national_focus = ZIM_60s_Josiah_Gondo
+		ai_chance = {
+			factor = 90
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = rho.127.c2
+
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = yes
+			election_frequency = 60
+		}
+		hidden_effect = {
+			set_popularities = { 
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 0
+				Social_Democratic = 16
+				
+				democratic = 0
+				Social_Liberalism = 2
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 1
+				Christian_Democratic = 0
+				conservative = 78
+				
+				neutrality = 3
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+			create_country_leader = {
+				name = "Roy Welensky"
+				picture = "Roy_Welensky_60s.dds"
+				ideology = liberal_conservatives
+			}
+		}
+		complete_national_focus = ZIM_60s_an_ace
+		create_country_leader = {
+			name = "Ian Smith"
+			desc = "POLITICS_IAN_SMITH_DESC"
+			picture = "Ian_Smith_60s.dds"
+			ideology = conservatism
+			traits = {
+				paternal_figure
+				hatred_of_communism
+				totally_composed
+				inflexible_white_supremacist
+			}
+		}
+		ai_chance = {
+			factor = 90
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+		name = rho.127.d3
+
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = yes
+			election_frequency = 60
+		}
+		create_country_leader = {
+			name = "Roy Welensky"
+			picture = "Roy_Welensky_60s.dds"
+			ideology = liberal_conservatives
+		}
+		hidden_effect = {
+			set_popularities = { 
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 0
+				Social_Democratic = 13
+				
+				democratic = 0
+				Social_Liberalism = 0
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 48
+				Christian_Democratic = 0
+				conservative = 37
+				
+				neutrality = 2
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+			create_country_leader = {
+				name = "Ian Smith"
+				desc = "POLITICS_IAN_SMITH_DESC"
+				picture = "Ian_Smith_60s.dds"
+				ideology = conservatism
+				traits = {
+					paternal_figure
+					hatred_of_communism
+					totally_composed
+					inflexible_white_supremacist
+				}
+			}
+		}
+		complete_national_focus = ZIM_60s_Welensky
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = rho.128 
+ immediate = { }
+	title = rho.128.t2
+	desc = rho.128.d2
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = ZIM
+		date > 1970.1.1
+		date < 1971.1.1
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	immediate = {
+		complete_national_focus = ZIM_60s_Election_of_1970
+	}
+	option = {
+		name = rho.128.a2
+		set_politics = {
+			ruling_party = Social_Liberalism
+			elections_allowed = yes
+		}
+		hidden_effect = {
+			set_party_name = {
+				ideology = communism
+				long_name = "Zimbabwe African National Union"
+				name = "Zimbabwe African National Union"
+			}
+			set_party_name = {
+				ideology = Liberal_Conservatism
+				long_name = "Centre Party"
+				name = "Centre Party"
+			}
+			create_country_leader = {
+				name = "Pat Bashford"
+				picture = "Pat_Bashford_70s.dds"
+				ideology = liberal_conservatives
+			}
+			set_popularities = { 
+				maoism = 0
+				communism = 5
+				trotskyism = 4
+				socialist = 0
+				Social_Democratic = 0
+				
+				democratic = 0
+				Social_Liberalism = 51
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 16
+				Christian_Democratic = 0
+				conservative = 21
+				
+				neutrality = 3
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+		}
+		complete_national_focus = ZIM_60s_Garfield_Todd_70
+		ai_chance = {
+			factor = 90
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = rho.128.b2
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Josiah Gondo"
+			picture = "Josiah_Gondo_60s.dds"
+			ideology = social_democrat
+		}
+		hidden_effect = {
+			set_party_name = {
+				ideology = communism
+				long_name = "Zimbabwe African National Union"
+				name = "Zimbabwe African National Union"
+			}
+			set_party_name = {
+				ideology = Liberal_Conservatism
+				long_name = "Centre Party"
+				name = "Centre Party"
+			}
+			create_country_leader = {
+				name = "Pat Bashford"
+				picture = "Pat_Bashford_70s.dds"
+				ideology = liberal_conservatives
+			}
+			set_popularities = { 
+				maoism = 0
+				communism = 10
+				trotskyism = 9
+				socialist = 0
+				Social_Democratic = 46
+				
+				democratic = 0
+				Social_Liberalism = 5
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 15
+				Christian_Democratic = 0
+				conservative = 19
+				
+				neutrality = 1
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+		}
+		complete_national_focus = ZIM_60s_Josiah_Gondo_70
+		ai_chance = {
+			factor = 90
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = rho.128.c2
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = yes
+		}
+		complete_national_focus = ZIM_60s_Ian_Smith_70
+		create_country_leader = {
+			name = "Ian Smith"
+			desc = "POLITICS_IAN_SMITH_DESC"
+			picture = "Ian_Smith_70s.dds"
+			ideology = conservatism
+			traits = {
+				paternal_figure
+				hatred_of_communism
+				totally_composed
+				inflexible_white_supremacist
+			}
+		}
+		hidden_effect = {
+			set_party_name = {
+				ideology = communism
+				long_name = "Zimbabwe African National Union"
+				name = "Zimbabwe African National Union"
+			}
+			set_party_name = {
+				ideology = Liberal_Conservatism
+				long_name = "Centre Party"
+				name = "Centre Party"
+			}
+			create_country_leader = {
+				name = "Pat Bashford"
+				picture = "Pat_Bashford_70s.dds"
+				ideology = liberal_conservatives
+			}
+			set_popularities = { 
+				maoism = 0
+				communism = 15
+				trotskyism = 10
+				socialist = 0
+				Social_Democratic = 0
+				
+				democratic = 0
+				Social_Liberalism = 0
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 16
+				Christian_Democratic = 0
+				conservative = 58
+				
+				neutrality = 1
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+		}
+		ai_chance = {
+			factor = 90
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+		}
+	}
+	option = {
+		name = rho.128.d3
+
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = yes
+		}
+		set_party_name = {
+			ideology = Liberal_Conservatism
+			long_name = "Centre Party"
+			name = "Centre Party"
+		}
+		create_country_leader = {
+			name = "Pat Bashford"
+			picture = "Pat_Bashford_70s.dds"
+			ideology = liberal_conservatives
+		}
+		hidden_effect = {
+			set_party_name = {
+				ideology = communism
+				long_name = "Zimbabwe African National Union"
+				name = "Zimbabwe African National Union"
+			}
+			set_popularities = { 
+				maoism = 0
+				communism = 5
+				trotskyism = 4
+				socialist = 0
+				Social_Democratic = 0
+				
+				democratic = 0
+				Social_Liberalism = 0
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 46
+				Christian_Democratic = 0
+				conservative = 43
+				
+				neutrality = 2
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+		}
+		
+		complete_national_focus = ZIM_60s_The_Centre_Party
+		ai_chance = {
+			factor = 5
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+id = rho.129 
+ immediate = { }
+title = rho.129.t2
+desc = rho.129.d
+picture = GFX_report_event_air_rhodesia
+
+fire_only_once = yes
+is_triggered_only = yes
+
+option = {
+	   name = rho.129.a2
+
+		}
+	}
+

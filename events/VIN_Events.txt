@@ -1,0 +1,1793 @@
+# KRCW (build/patch_residue.py): 85 OTL events dropped while KRCW_active
+add_namespace = VIN_Intro
+country_event = {
+	id = VIN_Intro.1
+	immediate = { }
+	title = VIN_Intro.1.t
+	desc = VIN_Intro.1.d
+	picture = GFX_VIN_Intro_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Intro.1.a
+		country_event = VIN_Intro.2
+	}
+}
+country_event = {
+	id = VIN_Intro.2
+	immediate = { }
+	title = VIN_Intro.2.t
+	desc = VIN_Intro.2.d
+	picture = GFX_VIN_Intro_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Intro.2.a
+	}
+}
+add_namespace = Binh_Cung_Leadership
+
+# Hanoi's 1951 verdict on Nam Bo, the recall route, and the Stung Treng ambush.
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Binh_Cung_Leadership.10
+	title = Binh_Cung_Leadership.10.t
+	desc = Binh_Cung_Leadership.10.d
+	picture = GFX_Binh_Cung_Leadership.3
+
+	is_triggered_only = yes
+
+	option = {
+		name = Binh_Cung_Leadership.10.a
+		ai_chance = {
+			base = 30
+			modifier = {
+				factor = 4
+				is_historical_focus_on = yes
+			}
+		}
+		set_country_flag = VIN_Binh_Censured
+		add_political_power = 50
+		if = {
+			limit = { country_exists = NLF }
+			NLF = { add_war_support = -0.05 }
+		}
+	}
+
+	option = {
+		name = Binh_Cung_Leadership.10.b
+		ai_chance = {
+			base = 20
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+		set_country_flag = VIN_Binh_Defended
+		add_political_power = -50
+		if = {
+			limit = { country_exists = NLF }
+			NLF = { add_war_support = 0.05 }
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Binh_Cung_Leadership.11
+	title = Binh_Cung_Leadership.11.t
+	desc = Binh_Cung_Leadership.11.d
+	picture = GFX_Binh_Cung_Leadership.3
+
+	is_triggered_only = yes
+
+	option = {
+		name = Binh_Cung_Leadership.11.a
+		ai_chance = {
+			base = 40
+			modifier = {
+				factor = 4
+				is_historical_focus_on = yes
+			}
+		}
+		set_variable = { VIN_Binh_Route = 1 }
+		set_country_flag = VIN_Binh_Route_Set
+		vin_binh_offer_corridor_to_france = yes
+	}
+
+	option = {
+		name = Binh_Cung_Leadership.11.b
+		trigger = {
+			has_completed_focus = VIN_Raise_the_Smuggling_Fleet
+		}
+		ai_chance = {
+			base = 20
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+		set_variable = { VIN_Binh_Route = 2 }
+		set_country_flag = VIN_Binh_Route_Set
+		add_political_power = -50
+		if = {
+			limit = { country_exists = NLF }
+			NLF = {
+				add_equipment_to_stockpile = {
+					type = convoy
+					amount = -25
+				}
+			}
+		}
+		vin_binh_offer_corridor_to_france = yes
+	}
+
+	option = {
+		name = Binh_Cung_Leadership.11.c
+		ai_chance = {
+			base = 20
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+		set_variable = { VIN_Binh_Route = 1 }
+		set_country_flag = VIN_Binh_Route_Set
+		set_country_flag = VIN_Binh_Escort_Committed
+		add_command_power = -50
+		if = {
+			limit = { country_exists = NLF }
+			NLF = {
+				add_manpower = -10000
+				add_equipment_to_stockpile = {
+					type = infantry_equipment_1
+					amount = -500
+					producer = VIN
+				}
+			}
+		}
+		vin_binh_offer_corridor_to_france = yes
+	}
+
+	option = {
+		name = Binh_Cung_Leadership.11.e
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+		vin_binh_keep_in_nam_bo = yes
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Binh_Cung_Leadership.12
+	title = Binh_Cung_Leadership.12.t
+	desc = Binh_Cung_Leadership.12.d
+	picture = GFX_Binh_Cung_Leadership.3
+
+	is_triggered_only = yes
+
+	option = {
+		name = Binh_Cung_Leadership.12.a
+		add_war_support = 0.05
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Binh_Cung_Leadership.13
+	title = Binh_Cung_Leadership.13.t
+	desc = Binh_Cung_Leadership.13.d
+	picture = GFX_Binh_Cung_Leadership.2
+
+	is_triggered_only = yes
+
+	option = {
+		name = Binh_Cung_Leadership.13.a
+		ai_chance = {
+			base = 40
+			modifier = {
+				factor = 3
+				is_historical_focus_on = yes
+			}
+		}
+		add_command_power = -50
+		add_political_power = -25
+		fre_binh_commit_corridor_interdiction = yes
+	}
+
+	option = {
+		name = Binh_Cung_Leadership.13.b
+		ai_chance = {
+			base = 20
+		}
+		add_political_power = 25
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Binh_Cung_Leadership.1
+	title = Binh_Cung_Leadership.1.t
+	desc = Binh_Cung_Leadership.1.d
+	picture = GFX_Binh_Cung_Leadership.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = Binh_Cung_Leadership.1.a
+		add_war_support = 0.05
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Binh_Cung_Leadership.2
+	title = Binh_Cung_Leadership.2.t
+	desc = Binh_Cung_Leadership.2.d
+	picture = GFX_Binh_Cung_Leadership.2
+
+	is_triggered_only = yes
+
+	option = {
+		name = Binh_Cung_Leadership.2.a
+		add_war_support = 0.05
+		add_stability = 0.05
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Binh_Cung_Leadership.3
+	title = Binh_Cung_Leadership.3.t
+	desc = Binh_Cung_Leadership.3.d
+	picture = GFX_Binh_Cung_Leadership.3
+
+	is_triggered_only = yes
+
+	option = {
+		name = Binh_Cung_Leadership.3.a
+		add_war_support = 0.05
+		add_stability = 0.05
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Binh_Cung_Leadership.4
+	title = Binh_Cung_Leadership.4.t
+	desc = Binh_Cung_Leadership.4.d
+	picture = GFX_Binh_Cung_Leadership.4
+
+	is_triggered_only = yes
+
+	option = {
+		name = Binh_Cung_Leadership.4.a
+		add_war_support = -0.05
+		add_stability = -0.05
+	}
+}
+
+# Cadres displaced by the succession: Cung rallies to Saigon, Buu leaves for Paris.
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Binh_Cung_Leadership.5
+	title = Binh_Cung_Leadership.5.t
+	desc = Binh_Cung_Leadership.5.d
+	picture = GFX_Binh_Cung_Leadership_5
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Binh_Cung_Leadership.5.a
+		ai_chance = {
+			base = 70
+		}
+		add_stability = -0.05
+		set_country_flag = Cung_Defection
+		if = {
+			limit = { has_character = NLF_Kieu_Cong_Cung }
+			NLF_Kieu_Cong_Cung = {
+				set_nationality = VIE
+				remove_country_leader_role = { ideology = syndicalism }
+				set_portraits = {
+					army = { large = "GFX_Kieu_Cong_Cung_ARVN" }
+				}
+			}
+		}
+		if = {
+			limit = { country_exists = NLF }
+			add_opinion_modifier = {
+				target = NLF
+				modifier = small_decrease
+			}
+			NLF = {
+				add_opinion_modifier = {
+					target = VIE
+					modifier = small_decrease
+				}
+				if = {
+					limit = { has_country_flag = Kieu_Cong_Cung_Leader }
+					set_temp_variable = { nlf_command_choice = 2 }
+					if = {
+						limit = { date > 1953.3.01 }
+						set_temp_variable = { nlf_command_choice = 3 }
+					}
+					nlf_set_southern_command = yes
+				}
+				country_event = Binh_Cung_Leadership.6
+			}
+		}
+		if = {
+			limit = { country_exists = VIN }
+			VIN = { country_event = Binh_Cung_Leadership.6 }
+		}
+	}
+
+	option = {
+		name = Binh_Cung_Leadership.5.b
+		ai_chance = {
+			base = 30
+		}
+		add_stability = 0.05
+		add_political_power = 25
+		if = {
+			limit = { country_exists = NLF }
+			NLF = {
+				if = {
+					limit = { has_country_flag = Kieu_Cong_Cung_Leader }
+					set_temp_variable = { nlf_command_choice = 2 }
+					if = {
+						limit = { date > 1953.3.01 }
+						set_temp_variable = { nlf_command_choice = 3 }
+					}
+					nlf_set_southern_command = yes
+				}
+				if = {
+					limit = { has_character = NLF_Kieu_Cong_Cung }
+					NLF_Kieu_Cong_Cung = { retire = yes }
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Binh_Cung_Leadership.6
+	title = Binh_Cung_Leadership.6.t
+	desc = Binh_Cung_Leadership.6.d
+	picture = GFX_Binh_Cung_Leadership_5
+
+	is_triggered_only = yes
+
+	option = {
+		name = Binh_Cung_Leadership.6.a
+		add_popularity = {
+			ideology = communism
+			popularity = -0.05
+		}
+		add_stability = -0.05
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Binh_Cung_Leadership.7
+	title = Binh_Cung_Leadership.7.t
+	desc = Binh_Cung_Leadership.7.d
+	picture = GFX_Binh_Cung_Leadership_7
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Binh_Cung_Leadership.7.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Binh_Cung_Leadership.8
+	title = Binh_Cung_Leadership.8.t
+	desc = Binh_Cung_Leadership.8.d
+	picture = GFX_Binh_Cung_Leadership_8
+
+	is_triggered_only = yes
+
+	option = {
+		name = Binh_Cung_Leadership.8.a
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.05
+		}
+		add_stability = -0.02
+		if = {
+			limit = {
+				country_exists = NLF
+				NLF = { has_character = NLF_Tran_Quoc_Buu }
+			}
+			NLF = {
+				NLF_Tran_Quoc_Buu = { retire = yes }
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Binh_Cung_Leadership.9
+	title = Binh_Cung_Leadership.9.t
+	desc = Binh_Cung_Leadership.9.d
+	picture = GFX_Binh_Cung_Leadership_9
+
+	is_triggered_only = yes
+
+	option = {
+		name = Binh_Cung_Leadership.9.a
+	}
+}
+
+# March 1953: Le Duan is recalled to Hanoi and his deputy Le Duc Tho takes COSVN.
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Binh_Cung_Leadership.20
+	title = Binh_Cung_Leadership.20.t
+	desc = Binh_Cung_Leadership.20.d
+	picture = GFX_Binh_Cung_Leadership_5
+
+	is_triggered_only = yes
+
+	option = {
+		name = Binh_Cung_Leadership.20.a
+		add_political_power = 25
+		if = {
+			limit = { country_exists = NLF }
+			NLF = {
+				set_temp_variable = { nlf_command_choice = 3 }
+				nlf_set_southern_command = yes
+				country_event = Binh_Cung_Leadership.21
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Binh_Cung_Leadership.21
+	title = Binh_Cung_Leadership.21.t
+	desc = Binh_Cung_Leadership.21.d
+	picture = GFX_Binh_Cung_Leadership_5
+
+	is_triggered_only = yes
+
+	option = {
+		name = Binh_Cung_Leadership.21.a
+		add_stability = -0.02
+	}
+}
+
+add_namespace = NonVunSluTen_Published
+add_namespace = Nung_Supreme_Court
+add_namespace = Nung_Future
+add_namespace = NUN_VIN
+add_namespace = NUN_VIE
+add_namespace = Nung_Independence
+add_namespace = NUN_Vong
+add_namespace = NUN_Vien
+add_namespace = Chinese_Resettlement
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NonVunSluTen_Published.1
+	immediate = { }
+	title = NonVunSluTen_Published.1.t
+	desc = NonVunSluTen_Published.1.d
+	picture = GFX_NonVunSluTen_Published.1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = NonVunSluTen_Published.1.a
+
+		add_opinion_modifier = {
+			target = VIE
+			modifier = medium_increase
+		}
+		reverse_add_opinion_modifier = {
+			target = VIE
+			modifier = medium_increase
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Nung_Supreme_Court.1
+	immediate = { }
+	title = Nung_Supreme_Court.1.t
+	desc = Nung_Supreme_Court.1.d
+	picture = GFX_Nung_Supreme_Court.1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Nung_Supreme_Court.1.a
+
+		add_stability = 0.05
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Nung_Future.1
+	immediate = { }
+	title = Nung_Future.1.t
+	desc = Nung_Future.1.d
+	picture = GFX_Nung_Future.1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Nung_Future.1.a
+
+		set_country_flag = NUN_VIN_trigger
+		add_popularity = {
+			ideology = communism
+			popularity = 0.05
+		}
+
+		trigger = {
+			has_country_flag = NUN_Alt_Trigger
+		}
+	}
+
+	option = {
+		name = Nung_Future.1.b
+
+		add_opinion_modifier = {
+			target = VIE
+			modifier = small_increase
+		}
+		reverse_add_opinion_modifier = {
+			target = VIE
+			modifier = small_increase
+		}
+		complete_national_focus = NUN_DuSo_6a
+
+		trigger = {
+			has_country_flag = NUN_Hist_Trigger
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUN_VIN.1
+	immediate = { }
+	title = NUN_VIN.1.t
+	desc = NUN_VIN.1.d
+	picture = GFX_NUN_VIN.1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = NUN_VIN.1.a
+
+		add_stability = 0.05
+		add_opinion_modifier = {
+			target = NUN
+			modifier = medium_increase
+		}
+		reverse_add_opinion_modifier = {
+			target = NUN
+			modifier = medium_increase
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUN_VIN.2
+	immediate = { }
+	title = NUN_VIN.2.t
+	desc = NUN_VIN.2.d
+	picture = GFX_NUN_VIN.2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = NUN_VIN.2.a
+
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUN_VIN.3
+	immediate = { }
+	title = NUN_VIN.3.t
+	desc = NUN_VIN.3.d
+	picture = GFX_NUN_VIN.3
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = NUN_VIN.3.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUN_VIE.1
+	immediate = { }
+	title = NUN_VIE.1.t
+	desc = NUN_VIE.1.d
+	picture = GFX_NUN_VIE.1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = NUN_VIE.1.a
+
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Nung_Independence.1
+	immediate = { }
+	title = Nung_Independence.1.t
+	desc = Nung_Independence.1.d
+	picture = GFX_Nung_Independence.1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Nung_Independence.1.a
+
+		complete_national_focus = NUN_President_VongASang
+		promote_character = {
+			character = NUN_Vong_A_Sang
+			ideology = national_democrat
+		}
+	}
+
+	option = {
+		name = Nung_Independence.1.a
+
+		complete_national_focus = NUN_President_LinhQuangVien
+		NUN_Linh_Quang_Vien = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = national_democrat
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Nung_Independence.2
+	immediate = { }
+	title = Nung_Independence.2.t
+	desc = Nung_Independence.2.d
+	picture = GFX_Nung_Independence.2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Nung_Independence.2.a
+
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Chinese_Resettlement.1
+	immediate = { }
+	title = Chinese_Resettlement.1.t
+	desc = Chinese_Resettlement.1.d
+	picture = GFX_Chinese_Resettlement.1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = Chinese_Resettlement.1.a
+
+		add_manpower = 10000
+		every_owned_state = {
+			set_variable = {
+				culture^3 = 105
+				tooltip = NUN_Chinese_Settlers_tt
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUN_Vong.1
+	immediate = { }
+	title = NUN_Vong.1.t
+	desc = NUN_Vong.1.d
+	picture = GFX_NUN_Vong.1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = NUN_Vong.1.a
+
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUN_Vong.2
+	immediate = { }
+	title = NUN_Vong.2.t
+	desc = NUN_Vong.2.d
+	picture = GFX_NUN_Vong.2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = NUN_Vong.2.a
+
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUN_Vong.3
+	immediate = { }
+	title = NUN_Vong.3.t
+	desc = NUN_Vong.3.d
+	picture = GFX_NUN_Vong.3
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = NUN_Vong.3.a
+
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUN_Vien.1
+	immediate = { }
+	title = NUN_Vien.1.t
+	desc = NUN_Vien.1.d
+	picture = GFX_NUN_Vien.1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = NUN_Vien.1.a
+
+
+	}
+}
+
+#END
+
+### NEWS EVENTS ###
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = NUN_VIN.0
+	immediate = { }
+	title = NUN_VIN.0.t
+	desc = NUN_VIN.0.d
+	picture = GFX_NUN_VIN.0
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = NUN_VIN.0.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Nung_Independence.0
+	immediate = { }
+	title = Nung_Independence.0.t
+	desc = Nung_Independence.0.d
+	picture = GFX_Nung_Independence.0
+
+	is_triggered_only = yes
+	major = yes
+
+	option = {
+		name = Nung_Independence.0.a
+	}
+}
+
+add_namespace = VIN_SOV
+
+news_event = {
+	id = VIN_SOV.0
+	immediate = { }
+	title = VIN_SOV.0.t
+	desc = VIN_SOV.0.d
+	picture = GFX_VIN_SOV
+
+	is_triggered_only = yes
+	major = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = VIN
+		date > 1950.1.30
+	}
+
+	option = {
+		name = VIN_SOV.0.a
+	}
+}
+
+add_namespace = VIN_PRC
+news_event = {
+	id = VIN_PRC.0
+	immediate = { }
+	title = VIN_PRC.0.t
+	desc = VIN_PRC.0.d
+	picture = GFX_VIN_PRC
+
+	is_triggered_only = yes
+	major = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = VIN
+		date > 1950.1.18
+	}
+
+	option = {
+		name = VIN_PRC.0.a
+	}
+}
+add_namespace = VIN_Napalm
+news_event = {
+	id = VIN_Napalm.0
+	immediate = { }
+	title = VIN_Napalm.0.t
+	desc = VIN_Napalm.0.d
+	picture = GFX_VIN_Napalm
+
+	is_triggered_only = yes
+	major = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = VIN
+		date > 1950.12.20
+	}
+
+	option = {
+		name = VIN_Napalm.0.a
+	}
+}
+add_namespace = VIN_Secret_Army
+news_event = {
+	id = VIN_Secret_Army.0
+	immediate = { }
+	title = VIN_Secret_Army.0.t
+	desc = VIN_Secret_Army.0.d
+	picture = GFX_VIN_Secret_Army
+
+	is_triggered_only = yes
+	major = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = VIN
+		date > 1968.1.12
+	}
+
+	option = {
+		name = VIN_Secret_Army.0.a
+	}
+}
+add_namespace = VIN_Liberation
+news_event = {
+	id = VIN_Liberation.0
+	immediate = { }
+	title = VIN_Liberation.0.t
+	desc = VIN_Liberation.0.d
+	picture = GFX_VIN_Liberation
+
+	is_triggered_only = yes
+	major = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = VIN
+		date > 1975.1.6
+	}
+
+	option = {
+		name = VIN_Liberation.0.a
+	}
+}
+add_namespace = VIN_Battle
+news_event = {
+	id = VIN_Battle.0
+	immediate = { }
+	title = VIN_Battle.0.t
+	desc = VIN_Battle.0.d
+	picture = GFX_VIN_Battle
+
+	is_triggered_only = yes
+	major = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = VIN
+		date > 1965.11.18
+	}
+
+	option = {
+		name = VIN_Battle.0.a
+	}
+}
+
+add_namespace = VIN_Econ
+country_event = {
+	id = VIN_Econ.1
+	immediate = { }
+	title = VIN_Econ.1.t
+	desc = VIN_Econ.1.d
+	picture = GFX_VIN_Econ_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.1.a
+	}
+}
+country_event = {
+	id = VIN_Econ.2
+	immediate = { }
+	title = VIN_Econ.2.t
+	desc = VIN_Econ.2.d
+	picture = GFX_VIN_Econ_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.2.a
+	}
+}
+country_event = {
+	id = VIN_Econ.3
+	immediate = { }
+	title = VIN_Econ.3.t
+	desc = VIN_Econ.3.d
+	picture = GFX_VIN_Econ_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.3.a
+	}
+}
+country_event = {
+	id = VIN_Econ.4
+	immediate = { }
+	title = VIN_Econ.4.t
+	desc = VIN_Econ.4.d
+	picture = GFX_VIN_Econ_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.4.a
+	}
+}
+country_event = {
+	id = VIN_Econ.5
+	immediate = { }
+	title = VIN_Econ.5.t
+	desc = VIN_Econ.5.d
+	picture = GFX_VIN_Econ_5
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.5.a
+	}
+}
+country_event = {
+	id = VIN_Econ.6
+	immediate = { }
+	title = VIN_Econ.6.t
+	desc = VIN_Econ.6.d
+	picture = GFX_VIN_Econ_6
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.6.a
+	}
+}
+country_event = {
+	id = VIN_Econ.7
+	immediate = { }
+	title = VIN_Econ.7.t
+	desc = VIN_Econ.7.d
+	picture = GFX_VIN_Econ_7
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.7.a
+	}
+}
+country_event = {
+	id = VIN_Econ.8
+	immediate = { }
+	title = VIN_Econ.8.t
+	desc = VIN_Econ.8.d
+	picture = GFX_VIN_Econ_8
+
+	is_triggered_only = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.8.a
+	}
+}
+country_event = {
+	id = VIN_Econ.9
+	immediate = { }
+	title = VIN_Econ.9.t
+	desc = VIN_Econ.9.d
+	picture = GFX_VIN_Econ_9
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.9.a
+	}
+}
+country_event = {
+	id = VIN_Econ.10
+	immediate = { }
+	title = VIN_Econ.10.t
+	desc = VIN_Econ.10.d
+	picture = GFX_VIN_Econ_10
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.10.a
+	}
+}
+country_event = {
+	id = VIN_Econ.11
+	immediate = { }
+	title = VIN_Econ.11.t
+	desc = VIN_Econ.11.d
+	picture = GFX_VIN_Econ_11
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.11.a
+	}
+}
+country_event = {
+	id = VIN_Econ.12
+	immediate = { }
+	title = VIN_Econ.12.t
+	desc = VIN_Econ.12.d
+	picture = GFX_VIN_Econ_12
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.12.a
+	}
+}
+country_event = {
+	id = VIN_Econ.13
+	immediate = { }
+	title = VIN_Econ.13.t
+	desc = VIN_Econ.13.d
+	picture = GFX_VIN_Econ_13
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.13.a
+	}
+}
+country_event = {
+	id = VIN_Econ.14
+	immediate = { }
+	title = VIN_Econ.14.t
+	desc = VIN_Econ.14.d
+	picture = GFX_VIN_Econ_14
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.14.a
+	}
+}
+country_event = {
+	id = VIN_Econ.15
+	immediate = { }
+	title = VIN_Econ.15.t
+	desc = VIN_Econ.15.d
+	picture = GFX_VIN_Econ_15
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.15.a
+	}
+}
+country_event = {
+	id = VIN_Econ.16
+	immediate = { }
+	title = VIN_Econ.16.t
+	desc = VIN_Econ.16.d
+	picture = GFX_VIN_Econ_16
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.16.a
+	}
+}
+country_event = {
+	id = VIN_Econ.17
+	immediate = { }
+	title = VIN_Econ.17.t
+	desc = VIN_Econ.17.d
+	picture = GFX_VIN_Econ_17
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.17.a
+	}
+}
+country_event = {
+	id = VIN_Econ.18
+	immediate = { }
+	title = VIN_Econ.18.t
+	desc = VIN_Econ.18.d
+	picture = GFX_VIN_Econ_18
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.18.a
+	}
+}
+country_event = {
+	id = VIN_Econ.19
+	immediate = { }
+	title = VIN_Econ.19.t
+	desc = VIN_Econ.19.d
+	picture = GFX_VIN_Econ_19
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.19.a
+	}
+}
+country_event = {
+	id = VIN_Econ.20
+	immediate = { }
+	title = VIN_Econ.20.t
+	desc = VIN_Econ.20.d
+	picture = GFX_VIN_Econ_20
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.20.a
+	}
+}
+country_event = {
+	id = VIN_Econ.21
+	immediate = { }
+	title = VIN_Econ.21.t
+	desc = VIN_Econ.21.d
+	picture = GFX_VIN_Econ_21
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.21.a
+	}
+}
+country_event = {
+	id = VIN_Econ.22
+	immediate = { }
+	title = VIN_Econ.22.t
+	desc = VIN_Econ.22.d
+	picture = GFX_VIN_Econ_22
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.22.a
+	}
+}
+country_event = {
+	id = VIN_Econ.23
+	immediate = { }
+	title = VIN_Econ.23.t
+	desc = VIN_Econ.23.d
+	picture = GFX_VIN_Econ_23
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.23.a
+	}
+}
+country_event = {
+	id = VIN_Econ.24
+	immediate = { }
+	title = VIN_Econ.24.t
+	desc = VIN_Econ.24.d
+	picture = GFX_VIN_Econ_24
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.24.a
+	}
+}
+country_event = {
+	id = VIN_Econ.25
+	immediate = { }
+	title = VIN_Econ.25.t
+	desc = VIN_Econ.25.d
+	picture = GFX_VIN_Econ_25
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.25.a
+	}
+}
+country_event = {
+	id = VIN_Econ.26
+	immediate = { }
+	title = VIN_Econ.26.t
+	desc = VIN_Econ.26.d
+	picture = GFX_VIN_Econ_26
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Econ.26.a
+	}
+}
+add_namespace = VIN_Nhan_Van_Giai_Pham
+country_event = {
+	id = VIN_Nhan_Van_Giai_Pham.1
+	immediate = { }
+	title = VIN_Nhan_Van_Giai_Pham.1.t
+	desc = VIN_Nhan_Van_Giai_Pham.1.d
+	picture = GFX_VIN_Nhan_Van_Giai_Pham_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		date > 1955.1.1
+	}
+
+	option = {
+		name = VIN_Nhan_Van_Giai_Pham.1.a
+		complete_national_focus = VIN_Nhan_Van_Giai_Pham_Affairs
+		set_variable = {
+			VIN_Reformist_Minigame = 1
+		}
+	}
+}
+country_event = {
+	id = VIN_Nhan_Van_Giai_Pham.2
+	immediate = { }
+	title = VIN_Nhan_Van_Giai_Pham.2.t
+	desc = VIN_Nhan_Van_Giai_Pham.2.d
+	picture = GFX_VIN_Nhan_Van_Giai_Pham_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Nhan_Van_Giai_Pham.2.a
+	}
+}
+country_event = {
+	id = VIN_Nhan_Van_Giai_Pham.3
+	immediate = { }
+	title = VIN_Nhan_Van_Giai_Pham.3.t
+	desc = VIN_Nhan_Van_Giai_Pham.3.d
+	picture = GFX_VIN_Nhan_Van_Giai_Pham_3
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Nhan_Van_Giai_Pham.3.a
+	}
+}
+country_event = {
+	id = VIN_Nhan_Van_Giai_Pham.4
+	immediate = { }
+	title = VIN_Nhan_Van_Giai_Pham.4.t
+	desc = VIN_Nhan_Van_Giai_Pham.4.d
+	picture = GFX_VIN_Nhan_Van_Giai_Pham_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Nhan_Van_Giai_Pham.4.a
+	}
+}
+country_event = {
+	id = VIN_Nhan_Van_Giai_Pham.5
+	immediate = { }
+	title = VIN_Nhan_Van_Giai_Pham.5.t
+	desc = VIN_Nhan_Van_Giai_Pham.5.d
+	picture = GFX_VIN_Nhan_Van_Giai_Pham_5
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Nhan_Van_Giai_Pham.5.a
+	}
+}
+country_event = {
+	id = VIN_Nhan_Van_Giai_Pham.6
+	immediate = { }
+	title = VIN_Nhan_Van_Giai_Pham.6.t
+	desc = VIN_Nhan_Van_Giai_Pham.6.d
+	picture = GFX_VIN_Nhan_Van_Giai_Pham_6
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Nhan_Van_Giai_Pham.6.a
+		set_global_flag = VIN_Budapest_Model
+	}
+	option = {
+		name = VIN_Nhan_Van_Giai_Pham.6.b
+		set_global_flag = VIN_HCM_Model
+	}
+}
+country_event = {
+	id = VIN_Nhan_Van_Giai_Pham.7
+	immediate = { }
+	title = VIN_Nhan_Van_Giai_Pham.7.t
+	desc = VIN_Nhan_Van_Giai_Pham.7.d
+	picture = GFX_VIN_Nhan_Van_Giai_Pham_7
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Nhan_Van_Giai_Pham.7.a
+	}
+}
+country_event = {
+	id = VIN_Nhan_Van_Giai_Pham.8
+	immediate = { }
+	title = VIN_Nhan_Van_Giai_Pham.8.t
+	desc = VIN_Nhan_Van_Giai_Pham.8.d
+	picture = GFX_VIN_Nhan_Van_Giai_Pham_8
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Nhan_Van_Giai_Pham.8.a
+	}
+}
+country_event = {
+	id = VIN_Nhan_Van_Giai_Pham.9
+	immediate = { }
+	title = VIN_Nhan_Van_Giai_Pham.9.t
+	desc = VIN_Nhan_Van_Giai_Pham.9.d
+	picture = GFX_VIN_Nhan_Van_Giai_Pham_9
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Nhan_Van_Giai_Pham.9.a
+	}
+}
+news_event = {
+	id = VIN_Nhan_Van_Giai_Pham.100
+	immediate = { }
+	title = VIN_Nhan_Van_Giai_Pham.100.t
+	desc = VIN_Nhan_Van_Giai_Pham.100.d
+	picture = GFX_VIN_Nhan_Van_Giai_Pham_100
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Nhan_Van_Giai_Pham.100.a
+	}
+}
+news_event = {
+	id = VIN_Nhan_Van_Giai_Pham.101
+	immediate = { }
+	title = VIN_Nhan_Van_Giai_Pham.101.t
+	desc = VIN_Nhan_Van_Giai_Pham.101.d
+	picture = GFX_VIN_Nhan_Van_Giai_Pham_101
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Nhan_Van_Giai_Pham.101.a
+	}
+}
+
+add_namespace = VIN_Land_Reform
+
+country_event = {
+	id = VIN_Land_Reform.1
+	immediate = { }
+	title = VIN_Land_Reform.1.t
+	desc = VIN_Land_Reform.1.d
+	picture = GFX_VIN_Land_Reform_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Land_Reform.1.a
+	}
+}
+country_event = {
+	id = VIN_Land_Reform.2
+	immediate = { }
+	title = VIN_Land_Reform.2.t
+	desc = VIN_Land_Reform.2.d
+	picture = GFX_VIN_Land_Reform_2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Land_Reform.2.a
+	}
+}
+country_event = {
+	id = VIN_Land_Reform.3
+	immediate = { }
+	title = VIN_Land_Reform.3.t
+	desc = VIN_Land_Reform.3.d
+	picture = GFX_VIN_Land_Reform_3
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Land_Reform.3.a
+	}
+}
+country_event = {
+	id = VIN_Land_Reform.4
+	immediate = { }
+	title = VIN_Land_Reform.4.t
+	desc = VIN_Land_Reform.4.d
+	picture = GFX_VIN_Land_Reform_4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Land_Reform.4.a
+	}
+}
+country_event = {
+	id = VIN_Land_Reform.5
+	immediate = { }
+	title = VIN_Land_Reform.5.t
+	desc = VIN_Land_Reform.5.d
+	picture = GFX_VIN_Land_Reform_5
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Land_Reform.5.a
+
+		complete_national_focus = VIN_The_Commissar
+	}
+	option = {
+		name = VIN_Land_Reform.5.b
+
+		complete_national_focus = VIN_Our_Southern_Comrade
+	}
+	option = {
+		name = VIN_Land_Reform.5.c
+
+		complete_national_focus = VIN_The_Peoples_General
+	}
+	option = {
+		name = VIN_Land_Reform.5.e
+
+		complete_national_focus = VIN_The_Face_of_the_Party
+	}
+	option = {
+		name = VIN_Land_Reform.5.f
+
+		complete_national_focus = VIN_A_Radical_Choice
+	}
+}
+news_event = {
+	id = VIN_Land_Reform.100
+	immediate = { }
+	title = VIN_Land_Reform.100.t
+	desc = VIN_Land_Reform.100.d
+	picture = GFX_VIN_Land_Reform_100
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Land_Reform.100.a
+	}
+}
+add_namespace = VIN_Geneva_Conference
+country_event = {
+	id = VIN_Geneva_Conference.1
+	immediate = { }
+	title = VIN_Geneva_Conference.1.t
+	desc = VIN_Geneva_Conference.1.d
+	picture = GFX_VIN_Geneva_Conference.1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Geneva_Conference.1.a
+	}
+}
+news_event = {
+	id = VIN_Geneva_Conference.100
+	immediate = { }
+	title = VIN_Geneva_Conference.100.t
+	desc = VIN_Geneva_Conference.100.d
+	picture = GFX_VIN_Geneva_Conference.100
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Geneva_Conference.100.a
+	}
+}
+news_event = {
+	id = VIN_Geneva_Conference.200
+	immediate = { }
+	title = VIN_Geneva_Conference.200.t
+	desc = VIN_Geneva_Conference.200.d
+	picture = GFX_VIN_Geneva_Conference.200
+
+	is_triggered_only = yes
+	major = yes
+	fire_only_once = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+	}
+
+	option = {
+		name = VIN_Geneva_Conference.200.a
+	}
+}

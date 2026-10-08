@@ -1,0 +1,45 @@
+krcw_raj_himalayan_game_cat = {
+	icon = GFX_decision_category_infiltration
+	priority = 100
+	visible = {
+		tag = RAJ
+		NOT = { has_global_flag = KRCW_tibet_revolt_started }
+		TIB = { exists = yes }
+	}
+}
+krcw_sov_tibet_cat = {
+	icon = GFX_decision_category_generic_foreign_policy
+	priority = 100
+	visible = {
+		tag = SOV
+		NOT = { has_global_flag = KRCW_tibet_revolt_over }
+		RAJ = { has_country_flag = krcw_raj_game_on }
+	}
+}
+krcw_chi_tibet_policy_cat = {
+	icon = GFX_decision_category_generic_political_actions
+	priority = 100
+	visible = {
+		tag = CHI
+		NOT = { has_global_flag = KRCW_tibet_revolt_started }
+		TIB = { is_subject_of = CHI }
+	}
+}
+krcw_tibet_war_cat = {
+	icon = GFX_decision_category_border_war
+	priority = 100
+	visible = {
+		has_global_flag = KRCW_tibet_revolt_started
+		NOT = { has_global_flag = KRCW_tibet_revolt_over }
+		OR = { tag = RAJ tag = CHI tag = SOV tag = FRA tag = TIB }
+	}
+}
+krcw_raj_princely_crisis_cat = {
+	icon = GFX_decision_category_generic_crisis
+	priority = 100
+	visible = {
+		tag = RAJ
+		has_global_flag = KRCW_princely_revolts
+		NOT = { has_global_flag = KRCW_princely_revolts_over }
+	}
+}

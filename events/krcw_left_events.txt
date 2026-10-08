@@ -1,0 +1,197 @@
+add_namespace = krcw_left
+
+country_event = {
+	id = krcw_left.1
+	title = krcw_left_1_t
+	desc = krcw_left_1_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = FRA
+	}
+	option = {
+		name = krcw_left_1.a
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 25
+		set_country_flag = krcw_fra_leaning_centre
+	}
+	option = {
+		name = krcw_left_1.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.04
+		set_country_flag = krcw_fra_leaning_communes
+	}
+	option = {
+		name = krcw_left_1.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -15
+		add_stability = 0.03
+		set_country_flag = krcw_fra_leaning_unions
+	}
+}
+
+country_event = {
+	id = krcw_left.3
+	title = krcw_left_3_t
+	desc = krcw_left_3_d
+	picture = GFX_report_event_german_reichstag_gathering
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = FRA
+	}
+	option = {
+		name = krcw_left_3.a
+		ai_chance = {
+			base = 50
+		}
+		add_stability = 0.05
+		krcw_detente_up_small = yes
+		set_country_flag = krcw_fra_leaning_one_country
+	}
+	option = {
+		name = krcw_left_3.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.05
+		krcw_tension_up_small = yes
+		set_country_flag = krcw_fra_leaning_world_rev
+	}
+	option = {
+		name = krcw_left_3.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = 0.03
+		set_global_flag = KRCW_ti_road_deferred
+	}
+}
+
+country_event = {
+	id = krcw_left.5
+	title = krcw_left_5_t
+	desc = krcw_left_5_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = FRA
+	}
+	option = {
+		name = krcw_left_5.a
+		ai_chance = {
+			base = 45
+		}
+		add_war_support = 0.03
+		krcw_tension_up_small = yes
+		add_stability = 0.02
+		if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ti_doctrinal_dispute } } }
+	}
+	option = {
+		name = krcw_left_5.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = -0.03
+		krcw_tension_up_small = yes
+	}
+	option = {
+		name = krcw_left_5.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.05
+		krcw_detente_up_medium = yes
+		if = { limit = { has_idea = krcw_ti_world_revolution } remove_ideas = krcw_ti_world_revolution add_ideas = krcw_ti_one_country_first }
+		set_global_flag = KRCW_ti_cadres_recalled
+	}
+}
+
+country_event = {
+	id = krcw_left.7
+	title = krcw_left_7_t
+	desc = krcw_left_7_d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_left_7.a
+		ai_chance = {
+			base = 35
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_stability = 0.06
+		add_political_power = -25
+		set_country_flag = krcw_eng_leaning_stewards
+	}
+	option = {
+		name = krcw_left_7.b
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 50
+		add_stability = -0.02
+		set_country_flag = krcw_eng_leaning_fabian
+	}
+	option = {
+		name = krcw_left_7.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		add_stability = 0.04
+		set_country_flag = krcw_eng_leaning_guild
+	}
+}
+
+country_event = {
+	id = krcw_left.9
+	title = krcw_left_9_t
+	desc = krcw_left_9_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+	}
+	option = {
+		name = krcw_left_9.a
+		ai_chance = {
+			base = 55
+		}
+		add_political_power = 25
+		add_stability = 0.05
+		navy_experience = 15
+		set_global_flag = KRCW_ti_seamen_seated
+	}
+	option = {
+		name = krcw_left_9.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 50
+		add_stability = -0.04
+		add_war_support = 0.03
+	}
+}

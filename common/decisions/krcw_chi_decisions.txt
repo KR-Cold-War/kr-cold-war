@@ -1,0 +1,626 @@
+krcw_kor_strait_category = {
+	krcw_kor_strait_patrol = {
+		icon = GFX_decision_category_generic_naval
+		cost = 40
+		days_re_enable = 90
+		complete_effect = {
+			add_war_support = 0.02
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 3
+		}
+	}
+	krcw_kor_fisheries_deal = {
+		icon = GFX_decision_category_generic_naval
+		cost = 40
+		days_re_enable = 180
+		complete_effect = {
+			navy_experience = 5
+			add_stability = 0.01
+			add_to_variable = { global.krcw_ti_crisis = -1 }
+			clamp_variable = { var = global.krcw_ti_crisis min = 0 max = 100 }
+		}
+		ai_will_do = {
+			factor = 2
+		}
+	}
+	krcw_kor_request_chinese_fleet = {
+		icon = GFX_decision_category_generic_naval
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			CHI = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+			add_war_support = 0.03
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 2
+		}
+	}
+}
+krcw_vin_mekong_category = {
+	krcw_vin_mekong_survey = {
+		icon = GFX_decision_category_generic_foreign_policy
+		cost = 40
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = 25
+		}
+		ai_will_do = {
+			factor = 3
+		}
+	}
+	krcw_vin_aid_the_brothers = {
+		icon = GFX_goal_generic_construct_civ_factory
+		cost = 60
+		fire_only_once = yes
+		complete_effect = {
+			every_country = { limit = { OR = { tag = CAM tag = LOS } exists = yes } add_opinion_modifier = { target = ROOT modifier = krcw_chi_trade_partner } }
+			add_political_power = 25
+		}
+		ai_will_do = {
+			factor = 2
+		}
+	}
+	krcw_vin_delta_dams = {
+		icon = GFX_focus_focus_generic_build_dam
+		cost = 80
+		fire_only_once = yes
+		complete_effect = {
+			983 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_stability = 0.03
+		}
+		ai_will_do = {
+			factor = 2
+		}
+	}
+}
+krcw_br_diplomacy_category = {
+	krcw_br_attend_conference = {
+		icon = GFX_decision_category_generic_foreign_policy
+		cost = 50
+		fire_only_once = yes
+		complete_effect = {
+			add_political_power = 50
+		}
+		ai_will_do = {
+			factor = 3
+		}
+	}
+	krcw_br_siam_detente = {
+		icon = GFX_goal_generic_trade
+		cost = 60
+		days_re_enable = 365
+		complete_effect = {
+			add_political_power = 25
+			add_stability = 0.02
+		}
+		ai_will_do = {
+			factor = 2
+		}
+	}
+}
+krcw_chi_warlord_category = {
+	krcw_chi_negotiate_yan = {
+		icon = generic_political_discourse
+		cost = 75
+		visible = {
+			has_country_flag = krcw_chi_warlord_buyout_path
+		}
+		available = {
+			NOT = { has_country_flag = krcw_chi_warlord_yan_done }
+			has_stability > 0.35
+		}
+		days_re_enable = 120
+		complete_effect = {
+			custom_effect_tooltip = krcw_chi_warlord_negotiate_tt
+			country_event = { id = krcw_chi.40 days = 7 }
+		}
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 has_country_flag = krcw_chi_warlord_yan_done }
+		}
+	}
+	krcw_chi_disarm_yan = {
+		icon = generic_army_support
+		cost = 50
+		visible = {
+			has_country_flag = krcw_chi_warlord_force_path
+		}
+		available = {
+			NOT = { has_country_flag = krcw_chi_warlord_yan_done }
+			has_army_manpower = { size > 100000 }
+			has_war = no
+		}
+		days_re_enable = 90
+		complete_effect = {
+			add_war_support = -0.02
+			add_stability = -0.02
+			army_experience = 5
+			country_event = { id = krcw_chi.40 days = 7 }
+		}
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 has_country_flag = krcw_chi_warlord_yan_done }
+		}
+	}
+	krcw_chi_negotiate_bai = {
+		icon = generic_political_discourse
+		cost = 75
+		visible = {
+			has_country_flag = krcw_chi_warlord_buyout_path
+		}
+		available = {
+			NOT = { has_country_flag = krcw_chi_warlord_bai_done }
+			has_stability > 0.35
+		}
+		days_re_enable = 120
+		complete_effect = {
+			custom_effect_tooltip = krcw_chi_warlord_negotiate_tt
+			country_event = { id = krcw_chi.41 days = 7 }
+		}
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 has_country_flag = krcw_chi_warlord_bai_done }
+		}
+	}
+	krcw_chi_disarm_bai = {
+		icon = generic_army_support
+		cost = 50
+		visible = {
+			has_country_flag = krcw_chi_warlord_force_path
+		}
+		available = {
+			NOT = { has_country_flag = krcw_chi_warlord_bai_done }
+			has_army_manpower = { size > 100000 }
+			has_war = no
+		}
+		days_re_enable = 90
+		complete_effect = {
+			add_war_support = -0.02
+			add_stability = -0.02
+			army_experience = 5
+			country_event = { id = krcw_chi.41 days = 7 }
+		}
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 has_country_flag = krcw_chi_warlord_bai_done }
+		}
+	}
+	krcw_chi_negotiate_hu = {
+		icon = generic_political_discourse
+		cost = 75
+		visible = {
+			has_country_flag = krcw_chi_warlord_buyout_path
+		}
+		available = {
+			NOT = { has_country_flag = krcw_chi_warlord_hu_done }
+			has_stability > 0.35
+		}
+		days_re_enable = 120
+		complete_effect = {
+			custom_effect_tooltip = krcw_chi_warlord_negotiate_tt
+			country_event = { id = krcw_chi.42 days = 7 }
+		}
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 has_country_flag = krcw_chi_warlord_hu_done }
+		}
+	}
+	krcw_chi_disarm_hu = {
+		icon = generic_army_support
+		cost = 50
+		visible = {
+			has_country_flag = krcw_chi_warlord_force_path
+		}
+		available = {
+			NOT = { has_country_flag = krcw_chi_warlord_hu_done }
+			has_army_manpower = { size > 100000 }
+			has_war = no
+		}
+		days_re_enable = 90
+		complete_effect = {
+			add_war_support = -0.02
+			add_stability = -0.02
+			army_experience = 5
+			country_event = { id = krcw_chi.42 days = 7 }
+		}
+		ai_will_do = {
+			factor = 10
+			modifier = { factor = 0 has_country_flag = krcw_chi_warlord_hu_done }
+		}
+	}
+}
+krcw_chi_strait_category = {
+	krcw_chi_strait_show_of_force = {
+		icon = generic_naval
+		cost = 50
+		available = {
+			has_war = no
+			has_navy_size = { size > 5 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			add_war_support = 0.05
+			navy_experience = 10
+			krcw_tension_up_small = yes
+			JAP = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_rival } }
+			add_to_variable = { global.krcw_strait_tension = 10 }
+			clamp_variable = { var = global.krcw_strait_tension min = 0 max = 100 }
+			krcw_gv_qd_violation = yes
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = { factor = 0 krcw_route_historical = yes }
+			modifier = { factor = 0 krcw_high_tension = yes }
+		}
+	}
+	krcw_chi_strait_fisheries_talks = {
+		icon = generic_political_discourse
+		cost = 75
+		available = {
+			has_war = no
+			NOT = { has_country_flag = krcw_chi_taiwan_war_prep }
+		}
+		days_re_enable = 365
+		complete_effect = {
+			krcw_tension_down_small = yes
+			add_war_support = -0.02
+			add_stability = 0.02
+			if = { limit = { has_idea = krcw_chi_strait_tension } remove_ideas = krcw_chi_strait_tension }
+			subtract_from_variable = { global.krcw_strait_tension = 10 }
+			clamp_variable = { var = global.krcw_strait_tension min = 0 max = 100 }
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 2 krcw_high_tension = yes }
+		}
+	}
+	krcw_chi_fund_taiwanese_autonomists = {
+		icon = generic_political_rally
+		cost = 50
+		visible = {
+			has_completed_focus = krcw_chi_taiwan_self_determination
+		}
+		available = {
+			has_war = no
+		}
+		days_re_enable = 180
+		complete_effect = {
+			add_to_variable = { krcw_chi_taiwan_support = 10 }
+			clamp_variable = { var = krcw_chi_taiwan_support min = 0 max = 100 }
+			custom_effect_tooltip = krcw_chi_taiwan_support_tt
+			krcw_tension_up_small = yes
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+	}
+	krcw_chi_mine_the_strait = {
+		icon = generic_naval
+		cost = 50
+		visible = {
+			has_country_flag = krcw_chi_taiwan_war_prep
+		}
+		available = {
+			has_war = no
+		}
+		fire_only_once = yes
+		complete_effect = {
+			navy_experience = 15
+			add_tech_bonus = { name = krcw_chi_mines bonus = 0.5 uses = 1 category = naval_equipment }
+			krcw_tension_up_small = yes
+			add_to_variable = { global.krcw_strait_tension = 10 }
+			clamp_variable = { var = global.krcw_strait_tension min = 0 max = 100 }
+			krcw_gv_qd_violation = yes
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+	}
+}
+krcw_chi_brother_category = {
+	krcw_chi_aid_kor_industry = {
+		icon = generic_industry
+		cost = 75
+		visible = {
+			KOR = { exists = yes }
+		}
+		available = {
+			KOR = { exists = yes }
+			has_war = no
+		}
+		days_re_enable = 365
+		complete_effect = {
+			KOR = { random_owned_controlled_state = { limit = { is_core_of = PREV free_building_slots = { building = industrial_complex size > 0 include_locked = no } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } } add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+		}
+		ai_will_do = {
+			factor = 3
+			modifier = { factor = 0 has_political_power < 150 }
+		}
+	}
+	krcw_chi_aid_kor_arms = {
+		icon = generic_army_support
+		cost = 25
+		visible = {
+			KOR = { exists = yes }
+		}
+		available = {
+			KOR = { exists = yes }
+			stockpile_ratio = { archetype = infantry_equipment ratio > 0.1 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = KOR type = infantry_equipment amount = 1000 }
+			KOR = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = { factor = 3 KOR = { has_war = yes } }
+			modifier = { factor = 0 KOR = { has_war = no } }
+		}
+	}
+	krcw_chi_aid_vin_industry = {
+		icon = generic_industry
+		cost = 75
+		visible = {
+			VIN = { exists = yes }
+		}
+		available = {
+			VIN = { exists = yes }
+			has_war = no
+		}
+		days_re_enable = 365
+		complete_effect = {
+			VIN = { random_owned_controlled_state = { limit = { is_core_of = PREV free_building_slots = { building = industrial_complex size > 0 include_locked = no } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } } add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+		}
+		ai_will_do = {
+			factor = 3
+			modifier = { factor = 0 has_political_power < 150 }
+		}
+	}
+	krcw_chi_aid_vin_arms = {
+		icon = generic_army_support
+		cost = 25
+		visible = {
+			VIN = { exists = yes }
+		}
+		available = {
+			VIN = { exists = yes }
+			stockpile_ratio = { archetype = infantry_equipment ratio > 0.1 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = VIN type = infantry_equipment amount = 1000 }
+			VIN = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = { factor = 3 VIN = { has_war = yes } }
+			modifier = { factor = 0 VIN = { has_war = no } }
+		}
+	}
+	krcw_chi_aid_cam_industry = {
+		icon = generic_industry
+		cost = 75
+		visible = {
+			CAM = { exists = yes }
+		}
+		available = {
+			CAM = { exists = yes }
+			has_war = no
+		}
+		days_re_enable = 365
+		complete_effect = {
+			CAM = { random_owned_controlled_state = { limit = { is_core_of = PREV free_building_slots = { building = industrial_complex size > 0 include_locked = no } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } } add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+		}
+		ai_will_do = {
+			factor = 3
+			modifier = { factor = 0 has_political_power < 150 }
+		}
+	}
+	krcw_chi_aid_cam_arms = {
+		icon = generic_army_support
+		cost = 25
+		visible = {
+			CAM = { exists = yes }
+		}
+		available = {
+			CAM = { exists = yes }
+			stockpile_ratio = { archetype = infantry_equipment ratio > 0.1 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = CAM type = infantry_equipment amount = 1000 }
+			CAM = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = { factor = 3 CAM = { has_war = yes } }
+			modifier = { factor = 0 CAM = { has_war = no } }
+		}
+	}
+	krcw_chi_aid_los_industry = {
+		icon = generic_industry
+		cost = 75
+		visible = {
+			LOS = { exists = yes }
+		}
+		available = {
+			LOS = { exists = yes }
+			has_war = no
+		}
+		days_re_enable = 365
+		complete_effect = {
+			LOS = { random_owned_controlled_state = { limit = { is_core_of = PREV free_building_slots = { building = industrial_complex size > 0 include_locked = no } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } } add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+		}
+		ai_will_do = {
+			factor = 3
+			modifier = { factor = 0 has_political_power < 150 }
+		}
+	}
+	krcw_chi_aid_los_arms = {
+		icon = generic_army_support
+		cost = 25
+		visible = {
+			LOS = { exists = yes }
+		}
+		available = {
+			LOS = { exists = yes }
+			stockpile_ratio = { archetype = infantry_equipment ratio > 0.1 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = LOS type = infantry_equipment amount = 1000 }
+			LOS = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = { factor = 3 LOS = { has_war = yes } }
+			modifier = { factor = 0 LOS = { has_war = no } }
+		}
+	}
+	krcw_chi_aid_brm_industry = {
+		icon = generic_industry
+		cost = 75
+		visible = {
+			BRM = { exists = yes }
+		}
+		available = {
+			BRM = { exists = yes }
+			has_war = no
+		}
+		days_re_enable = 365
+		complete_effect = {
+			BRM = { random_owned_controlled_state = { limit = { is_core_of = PREV free_building_slots = { building = industrial_complex size > 0 include_locked = no } } add_building_construction = { type = industrial_complex level = 1 instant_build = yes } } add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+		}
+		ai_will_do = {
+			factor = 3
+			modifier = { factor = 0 has_political_power < 150 }
+		}
+	}
+	krcw_chi_aid_brm_arms = {
+		icon = generic_army_support
+		cost = 25
+		visible = {
+			BRM = { exists = yes }
+		}
+		available = {
+			BRM = { exists = yes }
+			stockpile_ratio = { archetype = infantry_equipment ratio > 0.1 }
+		}
+		days_re_enable = 180
+		complete_effect = {
+			send_equipment = { target = BRM type = infantry_equipment amount = 1000 }
+			BRM = { add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = { factor = 3 BRM = { has_war = yes } }
+			modifier = { factor = 0 BRM = { has_war = no } }
+		}
+	}
+	krcw_chi_asian_bureau_summit = {
+		icon = generic_political_discourse
+		cost = 100
+		visible = {
+			has_country_flag = krcw_chi_asian_bureau
+		}
+		available = {
+			has_war = no
+		}
+		days_re_enable = 730
+		complete_effect = {
+			every_country = { limit = { is_subject_of = ROOT NOT = { tag = TIB } } add_stability = 0.03 add_political_power = 25 add_opinion_modifier = { target = ROOT modifier = krcw_chi_brotherhood } }
+		}
+		ai_will_do = {
+			factor = 2
+		}
+	}
+}
+krcw_chi_factions_cat = {
+	krcw_chi_court_revcom = {
+		icon = generic_political_discourse
+		cost = 50
+		days_re_enable = 180
+		complete_effect = {
+			add_to_variable = { krcw_chi_f_revcom = 8 }
+			clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+			add_to_variable = { krcw_chi_f_moderate = -5 }
+			clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+			custom_effect_tooltip = krcw_chi_factions_tt
+		}
+		ai_will_do = {
+			factor = 3
+		}
+	}
+	krcw_chi_court_moderates = {
+		icon = generic_political_discourse
+		cost = 50
+		days_re_enable = 180
+		complete_effect = {
+			add_to_variable = { krcw_chi_f_moderate = 8 }
+			clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+			add_to_variable = { krcw_chi_f_revcom = -4 }
+			clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+			add_stability = 0.02
+			custom_effect_tooltip = krcw_chi_factions_tt
+		}
+		ai_will_do = {
+			factor = 3
+		}
+	}
+	krcw_chi_court_left = {
+		icon = generic_political_discourse
+		cost = 40
+		days_re_enable = 180
+		complete_effect = {
+			add_to_variable = { krcw_chi_f_left = 8 }
+			clamp_variable = { var = krcw_chi_f_left min = 0 max = 100 }
+			add_stability = 0.02
+			custom_effect_tooltip = krcw_chi_factions_tt
+		}
+		ai_will_do = {
+			factor = 3
+		}
+	}
+	krcw_chi_court_whampoa = {
+		icon = generic_political_discourse
+		cost = 50
+		days_re_enable = 180
+		complete_effect = {
+			add_to_variable = { krcw_chi_f_whampoa = 8 }
+			clamp_variable = { var = krcw_chi_f_whampoa min = 0 max = 100 }
+			army_experience = 10
+			add_to_variable = { krcw_chi_f_revcom = -3 }
+			clamp_variable = { var = krcw_chi_f_revcom min = 0 max = 100 }
+			custom_effect_tooltip = krcw_chi_factions_tt
+		}
+		ai_will_do = {
+			factor = 3
+		}
+	}
+	krcw_chi_court_csp = {
+		icon = generic_political_discourse
+		cost = 60
+		days_re_enable = 180
+		complete_effect = {
+			add_to_variable = { krcw_chi_f_csp = 10 }
+			clamp_variable = { var = krcw_chi_f_csp min = 0 max = 100 }
+			add_to_variable = { krcw_chi_f_moderate = -5 }
+			clamp_variable = { var = krcw_chi_f_moderate min = 0 max = 100 }
+			add_stability = 0.03
+			custom_effect_tooltip = krcw_chi_factions_tt
+		}
+		ai_will_do = {
+			factor = 3
+		}
+	}
+}

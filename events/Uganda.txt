@@ -1,0 +1,1321 @@
+# KRCW (build/patch_residue.py): 34 OTL events dropped while KRCW_active
+add_namespace = Uganda
+add_namespace = UGA_TAN_war
+add_namespace = UGA_TAN_war_news
+add_namespace = uga
+
+
+#Uganda.1 Kabaka Crisis
+#Uganda.2 Mutesa II Exiled
+#Uganda.3 Return of Mutesa II
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Uganda.1 
+ immediate = { }
+	title = Uganda.1.t2
+	desc = Uganda.1.d
+	picture = GFX_kebaka_crisis
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = Uganda.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Uganda.2 
+ immediate = { }
+	title = Uganda.2.t2
+	desc = Uganda.2.d
+	picture = GFX_kebaka_exile
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = Uganda.2.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Uganda.3 
+ immediate = { }
+	title = Uganda.3.t2
+	desc = Uganda.3.d
+	picture = GFX_Return_of_Kebaka
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = Uganda.3.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Uganda.10 
+ immediate = { }
+	title = Uganda.10.t2
+	desc = Uganda.10.d
+	picture = GFX_later_exile_mutesa
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = Uganda.10.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Uganda.11 
+ immediate = { }
+	title = Uganda.11.t2
+	desc = Uganda.11.d
+	picture = GFX_bunyuro_crisis
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = Uganda.11.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Uganda.12 
+ immediate = { }
+	title = Uganda.12.t2
+	desc = Uganda.12.d
+	picture = GFX_later_kebaka_crisis
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = Uganda.12.a2
+	}
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Uganda.100 
+	immediate = { }
+	title = Uganda.100.t2
+	desc = Uganda.100.d2
+	picture = GFX_report_event_usa_election_generic
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = Uganda.100.a2
+		ai_chance = {
+			factor = 10
+			modifier = {
+                is_historical_focus_on = yes
+                factor = 10
+            }
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = UGA_legislative_elections
+						option = UGA_DEMOCRATIC_PARTY_1950
+					}
+					has_game_rule = {
+						rule = UGA_legislative_elections
+						option = UGA_KABAKA_YEKKA_1950
+					}
+				}
+				factor = 0
+			}
+		}
+		set_country_flag = UNC_victory
+		set_politics = {
+			ruling_party = socialist
+			elections_allowed = yes
+		}
+	}
+	option = {
+		name = Uganda.100.b2
+		set_politics = {
+			ruling_party = Christian_Democratic
+			elections_allowed = no
+		}
+		set_country_flag = DPV_victory
+		ai_chance = {
+			factor = 10
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = UGA_legislative_elections
+						option = UGA_NATIONAL_CONGRESS_1950
+					}
+					has_game_rule = {
+						rule = UGA_legislative_elections
+						option = UGA_KABAKA_YEKKA_1950
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Uganda.100.c2
+		ai_chance = {
+			factor = 10
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = UGA_legislative_elections
+						option = UGA_NATIONAL_CONGRESS_1950
+					}
+					has_game_rule = {
+						rule = UGA_legislative_elections
+						option = UGA_DEMOCRATIC_PARTY_1950
+					}
+				}
+				factor = 0
+			}
+		}
+		set_country_flag = KY_victory
+		set_politics = {
+			ruling_party = monarchism
+			elections_allowed = yes
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Uganda.61 
+	immediate = { }
+	title = Uganda.61.t2
+	desc = Uganda.61.d2
+	picture = GFX_report_event_usa_election_generic
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		complete_national_focus = UGA_60s_Elections_of_1961
+		set_country_flag = uga_elect_61
+	}
+
+	option = {
+		name = Uganda.61.a2
+		ai_chance = {
+			factor = 10
+			modifier = {
+                is_historical_focus_on = yes
+                factor = 2
+            }
+		}
+		set_country_flag = MO61_victory
+		set_popularities = {
+			maoism = 0
+			communism = 0
+			trotskyism = 0
+			socialist = 55
+			Social_Democratic = 0
+			
+			democratic = 0
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 45
+			Christian_Democratic = 0
+			conservative = 0
+			
+			neutrality = 0
+			nationalist = 0
+			monarchism = 80
+			fascism = 0
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		set_politics = {
+			ruling_party = socialist
+			elections_allowed = yes
+		}
+	}
+	option = {
+		name = Uganda.61.b2
+		set_country_flag = DPV61_victory
+		set_popularities = {
+			maoism = 0
+			communism = 0
+			trotskyism = 0
+			socialist = 45
+			Social_Democratic = 0
+			
+			democratic = 0
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 55
+			Christian_Democratic = 0
+			conservative = 0
+			
+			neutrality = 0
+			nationalist = 0
+			monarchism = 80
+			fascism = 0
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = Uganda.61.c2
+		ai_chance = {
+			factor = 10
+		}
+		set_country_flag = KY61_victory
+		set_popularities = {
+			maoism = 0
+			communism = 0
+			trotskyism = 0
+			socialist = 23
+			Social_Democratic = 0
+			
+			democratic = 0
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 17
+			Christian_Democratic = 0
+			conservative = 0
+			
+			neutrality = 0
+			nationalist = 0
+			monarchism = 60
+			fascism = 0
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		set_politics = {
+			ruling_party = monarchism
+			elections_allowed = yes
+		}
+	}
+}
+
+#Not used anymore
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = UGA_TAN_war.1
+	
+	immediate = {
+	}
+	
+	title = UGA_TAN_war.1.t
+	
+	desc = UGA_TAN_war.1.d
+	
+	#picture = 
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		
+		name = UGA_TAN_war.1.a	
+		
+		UGA = {	
+			transfer_state = 1882
+		}	
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = UGA_TAN_war.2 
+	
+	immediate = {
+	}
+	
+	title = UGA_TAN_war.2.t
+	
+	desc = UGA_TAN_war.2.d
+	
+	#picture = 
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {		
+		name = UGA_TAN_war.2.a
+		set_global_flag = Kagera_war
+		TZN = {
+			declare_war_on = {
+				target = UGA
+				type = annex_everything
+			}
+		}
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = UGA_TAN_war.3 #not used
+	
+	immediate = {
+	}
+	
+	title = UGA_TAN_war.3.t
+	
+	desc = UGA_TAN_war.1.d
+	
+	#picture = 
+	
+	is_triggered_only = yes
+	
+	fire_only_once = yes
+	
+	option = {
+		
+		name = UGA_TAN_war.3.a	
+
+		white_peace = UGA
+
+		UGA = {
+			set_popularities = {
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 45
+				Social_Democratic = 0
+				
+				democratic = 0
+				Social_Liberalism = 0
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 55
+				Christian_Democratic = 0
+				conservative = 0
+				
+				neutrality = 0
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+				
+			set_politics = {
+				ruling_party = Liberal_Conservatism
+				election_frequency = 48
+				elections_allowed = no
+			}
+			
+			create_country_leader = {
+				name = "Godfrey Binaisa"
+				picture = "Godfrey_Binaisa_80s.dds"
+				ideology = african_socialism
+			}
+			
+			set_party_name = {
+				ideology = neutrality
+				long_name = "Interim Government of Presidential Commission of Uganda" 
+				name = "UGA-PC"
+			}
+				
+			create_country_leader = {
+				name = "Presidential Commission of Uganda"
+				picture = "Presidential_Commission_80s.dds"
+				ideology = directorial_regime
+			}
+		}
+	}
+}
+
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = UGA_TAN_war_news.1 
+    immediate = { }
+	title = UGA_TAN_war_news.1.t
+	desc = UGA_TAN_war_news.1.d
+	picture = GFX_kagera_starts
+
+	major = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = UGA_TAN_war_news.1.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = UGA_TAN_war_news.2 
+ immediate = { }
+	title = UGA_TAN_war_news.2.t
+	desc = UGA_TAN_war_news.2.d
+	picture = GFX_tanzania_wins_kagera
+
+	major = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = UGA_TAN_war_news.2.a
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = UGA_TAN_war_news.3 
+ immediate = { }
+	title = UGA_TAN_war_news.3.t
+	desc = UGA_TAN_war_news.3.d
+	picture = GFX_Uganda_wins_kagera
+
+	major = yes
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	option = {
+		name = UGA_TAN_war_news.3.a
+	}
+}
+
+#Actual Uganda Skeleton Content
+
+#1952.1.1
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.1
+ 	immediate = { }
+	title = uga.1.t
+	desc = uga.1.d
+
+	immediate = {
+		add_popularity = { ideology = nationalist popularity = 0.2 }
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.1.a
+	}
+}
+
+#1952.1.17
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.2
+ 	immediate = { }
+	title = uga.2.t
+	desc = uga.2.d
+
+	immediate = {
+		create_country_leader = {
+			name = "Andrew Cohen"
+			picture = "Andrew_Cohen_50s.dds"
+			desc = POLITICS_ANDREW_COHEN_DESC
+			ideology = colonial_regime
+			traits = {
+				colonial_governor
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.2.a
+	}
+}
+
+#1954.1.1
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.3
+ 	immediate = { }
+	title = uga.3.t
+	desc = uga.2.d
+
+	immediate = {
+		add_popularity = { ideology = Christian_Democratic popularity = 0.2 }
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.3.a
+	}
+}
+
+#1955.1.1
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.4
+ 	immediate = { }
+	title = uga.4.t
+	desc = uga.4.d
+
+	immediate = {
+		add_popularity = { ideology = Social_Liberalism popularity = 0.2 }
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.4.a
+	}
+}
+
+#1957.2.26
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.5
+ 	immediate = { }
+	title = uga.5.t
+	desc = uga.5.d
+
+	immediate = {
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Frederick Crawford"
+			picture = "Frederick_Crawford_60s.dds"
+			desc = POLITICS_FREDERICK_CRAWFORD_DESC
+			ideology = colonial_regime
+			traits = {
+				colonial_governor
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.5.a
+	}
+}
+
+#1961.11.18
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.6
+ 	immediate = { }
+	title = uga.6.t
+	desc = uga.6.d
+
+	immediate = {
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Walter Coutts"
+			picture = "Walter_Coutts_60s.dds"
+			desc = POLITICS_WALTER_COUTTS_DESC
+			ideology = colonial_regime
+			traits = {
+				colonial_governor
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.6.a
+	}
+}
+
+
+#1972.8.10
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.7
+ 	immediate = { }
+	title = uga.7.t
+	desc = uga.7.d
+
+	immediate = {
+		news_event = news.1925
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.7.a
+	}
+}
+
+#1978.10.25
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.8
+ 	immediate = { }
+	title = uga.8.t
+	desc = uga.8.d
+
+	immediate = {
+		declare_war_on = {
+			target = TZN
+			type = annex_everything	
+		}
+		548 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}	
+		1242 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = arms_factory
+				level = 2
+				instant_build = yes
+			}
+		}
+		set_global_flag = Kagera_war
+		load_oob = "generic_insurgency"
+		random_owned_state = { 
+			create_unit = { division = "name = \"1st Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = UGA } 
+			create_unit = { division = "name = \"2nd Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = UGA }  
+			create_unit = { division = "name = \"3rd Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = UGA }  
+			create_unit = { division = "name = \"4th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = UGA }  
+			create_unit = { division = "name = \"5th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = UGA } 
+			create_unit = { division = "name = \"6th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = UGA }  
+			create_unit = { division = "name = \"7th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = UGA } 
+			create_unit = { division = "name = \"9th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = UGA } 
+			create_unit = { division = "name = \"10th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = UGA }  
+			create_unit = { division = "name = \"11th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = UGA }
+			create_unit = { division = "name = \"1st Armored Division\" division_template = \"Armored Brigade\" start_experience_factor = 1.0" owner = UGA }
+		}
+		TZN = {
+			546 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}	
+			1435 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+			load_oob = "generic_insurgency"
+			random_owned_state = { 
+				create_unit = { division = "name = \"1st Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TZN } 
+				create_unit = { division = "name = \"2nd Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TZN }  
+				create_unit = { division = "name = \"3rd Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TZN }  
+				create_unit = { division = "name = \"4th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TZN }  
+				create_unit = { division = "name = \"5th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TZN } 
+				create_unit = { division = "name = \"6th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TZN }  
+				create_unit = { division = "name = \"7th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TZN } 
+				create_unit = { division = "name = \"8th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TZN }  
+				create_unit = { division = "name = \"9th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TZN } 
+				create_unit = { division = "name = \"10th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TZN }  
+				create_unit = { division = "name = \"11th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = TZN }
+				create_unit = { division = "name = \"1st Armored Division\" division_template = \"Armored Brigade\" start_experience_factor = 1.0" owner = TZN }
+				create_unit = { division = "name = \"2nd Armored Division\" division_template = \"Armored Brigade\" start_experience_factor = 1.0" owner = TZN }
+				create_unit = { division = "name = \"2nd Armored Division\" division_template = \"Armored Brigade\" start_experience_factor = 1.0" owner = TZN }
+			}
+			create_faction_from_template = { template = faction_template_generic name = "East African Defense Community" }
+			add_to_faction = MZB
+			MZB = {
+				load_oob = "generic_insurgency"
+				random_owned_state = { 
+					create_unit = { division = "name = \"1st Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = MZB } 
+					create_unit = { division = "name = \"2nd Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = MZB }  
+					create_unit = { division = "name = \"3rd Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = MZB }  
+					create_unit = { division = "name = \"2nd Armored Division\" division_template = \"Armored Brigade\" start_experience_factor = 1.0" owner = MZB }
+				}
+			}
+		}
+		LBA = {
+			add_ai_strategy = {
+				type = support
+				id = "UGA" 
+				value = 200
+			}
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = "UGA" 
+				value = 200
+			}
+		}
+		PAL = {
+			add_ai_strategy = {
+				type = support
+				id = "UGA" 
+				value = 200
+			}
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = "UGA" 
+				value = 200
+			}
+		}
+		SAU = {
+			add_ai_strategy = {
+				type = support
+				id = "UGA" 
+				value = 200
+			}
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = "UGA" 
+				value = 200
+			}
+		}
+		PAK = {
+			add_ai_strategy = {
+				type = support
+				id = "UGA" 
+				value = 200
+			}
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = "UGA" 
+				value = 200
+			}
+		}
+		ANG = {
+			add_ai_strategy = {
+				type = support
+				id = "TZN" 
+				value = 200
+			}
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = "TZN" 
+				value = 200
+			}
+		}
+		ETH = {
+			add_ai_strategy = {
+				type = support
+				id = "TZN" 
+				value = 200
+			}
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = "TZN" 
+				value = 200
+			}
+		}
+		ALG = {
+			add_ai_strategy = {
+				type = support
+				id = "TZN" 
+				value = 200
+			}
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = "TZN" 
+				value = 200
+			}
+		}
+		ZAM = {
+			random_owned_state = {
+				create_unit = { division = "name = \"1st Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = UGA }  
+				create_unit = { division = "name = \"2nd Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = UGA } 
+			}
+			add_ai_strategy = {
+				type = support
+				id = "TZN" 
+				value = 200
+			}
+			add_ai_strategy = {
+				type = send_volunteers_desire
+				id = "TZN" 
+				value = 200
+			}
+		}
+		news_event = news.1926
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.8.a
+	}
+}
+
+#1979.6.3
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.9
+ 	immediate = { }
+	title = uga.9.t
+	desc = uga.9.d
+
+	immediate = {
+		clr_global_flag = Kagera_war
+		white_peace = TZN
+		set_popularities = {
+			socialist = 30
+			Social_Liberalism = 10
+			Liberal_Conservatism = 30
+			Christian_Democratic = 10
+			nationalist = 10
+			monarchism = 10
+		}
+		set_politics = {
+			ruling_party = Liberal_Conservatism
+			elections_allowed = no
+		}
+		set_party_name = {
+			ideology = Liberal_Conservatism
+			long_name = "Uganda National Liberation Front"
+			name = "UNLF"
+		}
+		create_country_leader = {
+			name = "Yusuf Lule"
+			picture = "Yusuf_Lule_70s.dds"
+			desc = POLITICS_YUSUF_LULE_DESC
+			ideology = liberal_conservatives
+		}
+		create_country_leader = {
+			name = "Godfrey Binaisa"
+			picture = "Godfrey_Binaisa_80s.dds"
+			desc = POLITICS_GODFREY_BINAISA_DESC
+			ideology = african_socialism
+		}
+		1882 = {
+			remove_core_of = UGA
+		}
+		TZN = {
+			white_peace = UGA
+			dismantle_faction = yes
+		}
+
+		news_event = news.1927
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.9.a
+	}
+}
+
+#1979.6.3
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.10
+ 	immediate = { }
+	title = uga.10.t
+	desc = uga.10.d
+
+	immediate = {
+		clr_global_flag = Kagera_war
+		white_peace = TZN
+		transfer_state = 1882
+		set_country_flag = idi_amin_secured
+		TZN = {
+			white_peace = UGA
+			dismantle_faction = yes
+		}
+
+		news_event = news.1928
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.9.a
+	}
+}
+
+#1979.6.20
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.11
+ 	immediate = { }
+	title = uga.11.t
+	desc = uga.11.d
+
+	immediate = {
+		set_politics = {
+			ruling_party = socialist
+			elections_allowed = no
+		}
+		news_event = news.1929
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.11.a
+	}
+}
+
+#1980.5.12
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.12
+ 	immediate = { }
+	title = uga.12.t
+	desc = uga.12.d
+
+	immediate = {
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Paulo Muwanga"
+			picture = "Paulo_Muwanga_80s.dds"
+			desc = POLITICS_PAULO_MUWANGA_DESC
+			ideology = african_socialism
+		}
+		news_event = news.1930
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.12.a
+	}
+}
+
+#1980.5.22
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.13
+ 	immediate = { }
+	title = uga.13.t
+	desc = uga.13.d
+
+	immediate = {
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Interim Government of Presidential Commission of Uganda"
+			picture = "Presidential_Commission_of_Uganda_80s.dds"
+			ideology = african_socialism
+		}
+		news_event = news.1931
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.13.a
+	}
+}
+
+#1980.10.6
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.14
+ 	immediate = { }
+	title = uga.14.t
+	desc = uga.14.d
+
+	immediate = {
+		1242 = {
+			set_demilitarized_zone = yes
+		}
+		news_event = news.1932
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.14.a
+	}
+}
+
+#1980.12.17
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.15
+ 	immediate = { }
+	title = uga.15.t
+	desc = uga.15.d
+
+	immediate = {
+		set_popularities = {
+			maoism = 0
+			communism = 0
+			trotskyism = 0
+			socialist = 40
+			Social_Democratic = 0
+			
+			democratic = 0
+			Social_Liberalism = 10
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 20
+			Christian_Democratic = 10
+			conservative = 0
+			
+			neutrality = 0
+			nationalist = 10
+			monarchism = 10
+			fascism = 0
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		set_politics = {
+			ruling_party = socialist
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Milton Obote"
+			picture = "Milton_Obote_80s.dds"
+			desc = POLITICS_MILTON_OBOTE_DESC
+			ideology = african_socialism
+		}
+		news_event = news.1933
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.15.a
+	}
+}
+
+#1985.7.27
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.16
+ 	immediate = { }
+	title = uga.16.t
+	desc = uga.16.d
+
+	immediate = {
+		set_popularities = {
+			socialist = 20
+			Social_Liberalism = 10
+			Liberal_Conservatism = 10
+			Christian_Democratic = 10
+			neutrality = 30
+			nationalist = 10
+			monarchism = 10
+		}
+		set_party_name = { 
+			ideology = maoism
+			long_name = "National Resistance Movement" 
+			name = "NRM"
+		}
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = no
+		}
+		set_party_name = { 
+			ideology = neutrality
+			long_name = "Ugandan National Liberation Front" 
+			name = "UNLF"
+		}
+		create_country_leader = {
+			name = "Bazilio Olara-Okello"
+			picture = "Bazilio_Olara_Okello_80s.dds"
+			desc = POLITICS_BRAZILIO_OLARA_OKELLO_DESC
+			ideology = military_junta
+		}
+		news_event = news.1934
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.16.a
+	}
+}
+
+#1985.7.29
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.17
+ 	immediate = { }
+	title = uga.17.t
+	desc = uga.17.d
+
+	immediate = {
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Tito Okello"
+			picture = "Tito_Okello_80s.dds"
+			desc = POLITICS_TITO_OKELLO_DESC
+			ideology = military_junta
+		}
+		news_event = news.1935
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.17.a
+	}
+}
+
+#1986.1.26
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.18
+ 	immediate = { }
+	title = uga.18.t
+	desc = uga.18.d
+
+	immediate = {
+		set_popularities = {
+			socialist = 20
+			Social_Liberalism = 10
+			Christian_Democratic = 10
+			conservative = 40
+			nationalist = 10
+			monarchism = 10
+		}
+		set_politics = {
+			ruling_party = conservative
+			elections_allowed = no
+		}
+		set_party_name = { 
+			ideology = conservative
+			long_name = "National Resistance Movement" 
+			name = "NRM"
+		}
+		create_country_leader = {
+			name = "Yoweri Museveni"
+			picture = "Yoweri_Museveni_80s.dds"
+			desc = POLITICS_YOWERI_MUSEVENI_DESC
+			ideology = right_wing_populism
+		}
+		1242 = {
+			set_demilitarized_zone = no
+		}
+		news_event = news.1936
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.18.a
+	}
+}
+
+#1986.3.11
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.19
+ 	immediate = { }
+	title = uga.19.t
+	desc = uga.19.d
+
+	immediate = {
+		1242 = {
+			set_demilitarized_zone = yes
+		}
+		1305 = {
+			set_demilitarized_zone = yes
+		}
+		1306 = {
+			set_demilitarized_zone = yes
+		}
+		1309 = {
+			set_demilitarized_zone = yes
+		}
+		news_event = news.1937
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.19.a
+	}
+}
+
+#1994.2.8
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = uga.20
+ 	immediate = { }
+	title = uga.20.t
+	desc = uga.20.d
+
+	immediate = {
+		1242 = {
+			set_demilitarized_zone = no
+		}
+		1305 = {
+			set_demilitarized_zone = no
+		}
+		1306 = {
+			set_demilitarized_zone = no
+		}
+		1309 = {
+			set_demilitarized_zone = no
+		}
+		news_event = news.1938
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = uga.20.a
+	}
+}

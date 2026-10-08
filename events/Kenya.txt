@@ -1,0 +1,1745 @@
+# KRCW (build/patch_residue.py): 52 OTL events dropped while KRCW_active
+#Kenya Events
+add_namespace = kenya
+add_namespace = kenyacom
+#Kenya Civil War Events - WIP SWF
+add_namespace = kenya_bw
+add_namespace = newskenya
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = kenya_bw.1 
+ immediate = { }
+	title = kenya_bw.1.t2 #
+	desc = kenya_bw.1.d # needs loc
+	picture = "" # needs pic
+	is_triggered_only = yes
+
+	option = {
+		name = kenya_bw.1.a2
+		#
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = kenya_bw.2 
+ immediate = { }
+	title = kenya_bw.2.t2 #
+	desc = kenya_bw.2.d # needs loc
+	picture = "" # needs pic
+	is_triggered_only = yes
+
+	option = {
+		name = kenya_bw.2.a2
+		#
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = kenya.1 
+ immediate = { }
+	title = kenya.1.t2
+	desc = kenya.1.d
+	picture = GFX_KENYA_1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			complete_national_focus = KEN_50s_assassination_of_cheif_waruhiu
+			add_stability = -0.1
+			#swf insert insurgency mechanic
+			set_country_flag = KLFA_uprising
+			activate_mission = The_Kenyan_Land_and_Freedom_Army_Uprising
+			966 = {
+				set_state_flag = KLFA_target
+				set_state_flag = insurg_lvl2
+				add_province_modifier = {
+					static_modifiers = { insurgency_tier2 }
+					province = {
+						all_provinces = yes
+					}
+				}
+				add_state_modifier = { modifier = { local_factory_sabotage = 0.15 } }
+			}
+			1061 = {
+				set_state_flag = KLFA_target
+				set_state_flag = insurg_lvl2
+				add_province_modifier = {
+					static_modifiers = { insurgency_tier2 }
+					province = {
+						all_provinces = yes
+					}
+				}
+				add_state_modifier = { modifier = { local_factory_sabotage = 0.15 } }
+			}
+
+			1292 = {
+				set_state_flag = KLFA_target
+				set_state_flag = insurg_lvl2
+				add_province_modifier = {
+					static_modifiers = { insurgency_tier2 }
+					province = {
+						all_provinces = yes
+					}
+				}
+				add_state_modifier = { modifier = { local_factory_sabotage = 0.15 } }
+			}
+			set_variable = {
+				kenyan_insurgency = 30
+			}
+			every_owned_state = {
+				limit = {
+					has_state_flag = KLFA_target
+				}
+				add_to_array = { ROOT.kna_target_state_array = THIS }
+			}
+		}
+	}
+	option = {
+		name = kenya.1.a2
+	}
+}
+country_event = {
+	id = kenya.2 
+ immediate = { }
+	title = kenya.2.t2
+	desc = kenya.2.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.2.a2
+		add_political_power = 50
+
+	}
+}
+country_event = {
+	id = kenya.3 
+ immediate = { }
+	title = kenya.3.t2
+	desc = "kenya.3.d"
+	picture = GFX_Queen_Elizabeth_Kenya
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.3.a2
+
+	}
+}
+country_event = {
+	id = kenya.4 
+ immediate = { }
+	title = kenya.4.t2
+	desc = kenya.4.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		add_stability = -0.15
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.4.a2
+
+	}
+}
+country_event = {
+	id = kenya.5 
+ immediate = { }
+	title = kenya.5.t2
+	desc = kenya.5.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.5.a2
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Evelyn Baring"
+			picture = "Evelyn_Baring_50s.dds"
+			ideology = colonial_regime
+			traits = {
+				colonial_governor
+			}
+		}
+	}
+}
+country_event = {
+	id = kenya.6 
+ immediate = { }
+	title = kenya.6.t2
+	desc = kenya.6.d
+	picture = GFX_Kolloa_Affray
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		hidden_effect = {
+			complete_national_focus = KEN_50s_the_kolloa_affray
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.6.a2
+
+	}
+}
+country_event = {
+	id = kenya.7 
+ immediate = { }
+	title = kenya.7.t2
+	desc = kenya.7.d2
+	picture = GFX_White_Highland_Rule_Kenya
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		hidden_effect = {
+			add_stability = -0.5
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.7.a2
+
+	}
+}
+country_event = {
+	id = kenya.8 
+ immediate = { }
+	title = kenya.8.t2
+	desc = "kenya.8.d"
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		add_stability = -0.5
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.8.a2
+	}
+}
+country_event = {
+	id = kenya.9 
+ immediate = { }
+	title = kenya.9.t2
+	desc = "kenya.9.d"
+	picture = GFX_Nairobi_Riots
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		hidden_effect = {
+			capital_scope = {
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+			}
+		}
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.9.a2
+
+	}
+}
+country_event = {
+	id = kenya.10 
+ immediate = { }
+	title = kenya.10.t2
+	desc = "kenya.10.d"
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.10.a2
+		add_political_power = 100
+	}
+}
+country_event = {
+	id = kenya.11 
+ immediate = { }
+	title = kenya.11.t2
+	desc = kenya.11.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.11.a2
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.05
+		}
+	}
+}
+country_event = {
+	id = kenya.12 
+ immediate = { }
+	title = kenya.12.t2
+	desc = kenya.12.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.12.a2
+		add_stability = 0.1
+		add_opinion_modifier = {
+			target = ENG
+			modifier = medium_increase
+		}
+	}
+}
+country_event = {
+	id = kenya.13 
+ immediate = { }
+	title = kenya.13.t2
+	desc = kenya.13.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.13.a2
+		add_stability = 0.15
+	}
+}
+
+country_event = {
+	id = kenya.14 
+	immediate = { }
+	title = kenya.14.t2
+	desc = kenya.14.d2
+	immediate = {
+		hidden_effect = {
+			set_politics = {
+				ruling_party = conservative
+				elections_allowed = no
+			}
+			add_popularity = { ideology = conservative popularity = 0.35 }
+			add_popularity = { ideology = nationalist popularity = 0.05 }
+			add_popularity = { ideology = socialist popularity = 0.05 }
+			add_popularity = { ideology = neutrality popularity = -0.5 }
+			set_party_name = {
+				ideology = neutrality
+				long_name = "Kenya - Military Junta"
+				name = "KEN-MJ"
+			}
+		}
+	}
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.14.a2
+
+	}
+}
+
+country_event = {
+	id = kenya.15 
+ immediate = { }
+	title = kenya.15.t2
+	desc = kenya.15.d2
+	picture = GFX_Kenya_State_of_Emergency_event
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.15.a2
+		add_political_power = 100
+		add_ideas = more_mil_staff
+	}
+}
+
+country_event = {
+	id = kenya.16 
+ immediate = { }
+	title = kenya.16.t2
+	desc = kenya.16.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		create_country_leader = {
+			name = "Patrick Muir Renison"
+			picture = "Patrick_Muir_Renison_60s.dds"
+			ideology = colonial_regime
+			traits = {
+				colonial_governor
+			}
+		}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.16.a2
+	}
+}
+country_event = {
+	id = kenya.17 
+ immediate = { }
+	title = kenya.17.t2
+	desc = kenya.17.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.17.a2
+		add_political_power = 50
+	}
+}
+country_event = {
+	id = kenya.18 
+ immediate = { }
+	title = kenya.18.t2
+	desc = kenya.18.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		add_ideas = FRA_Reconstruction
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.18.a2
+
+	}
+}
+country_event = {
+	id = kenya.19 
+ immediate = { }
+	title = kenya.19.t2
+	desc = kenya.19.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		create_country_leader = {
+			name = "Eric Griffith Jones"
+			picture = "Eric_Griffith-Jones_60s.dds"
+			ideology = colonial_regime
+			traits = {
+				colonial_governor
+			}
+		}
+	}
+	option = {
+		name = kenya.19.a2
+	}
+}
+country_event = {
+	id = kenya.20 
+ immediate = { }
+	title = kenya.20.t2
+	desc = kenya.20.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		retire_country_leader = yes
+	}
+	option = {
+		name = kenya.20.a2
+		create_country_leader = {
+			name = "Malcolm MacDonald"
+			picture = "Malcolm_MacDonald_60s.dds"
+			ideology = colonial_regime
+			traits = {
+				reformist_colonial_governor
+			}
+		}
+	}
+}
+country_event = {
+	id = kenya.21 
+	immediate = { }
+	title = kenya.21.t2
+	desc = kenya.21.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_politics = {
+			ruling_party = nationalist
+			last_election = "1962.1.1"
+			election_frequency = 48
+			elections_allowed = no
+		}
+	}
+	option = {
+		name = kenya.21.a2
+	}
+}
+country_event = {
+	id = kenya.22 
+	immediate = { }
+	title = kenya.22.t2
+	desc = kenya.22.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #ahistoric
+		name = kenya.22.a2
+		set_politics = {
+			ruling_party = Social_Democratic
+			elections_allowed = yes
+		}
+		add_popularity = {
+			ideology = Social_Democratic
+			popularity = 0.3
+		}
+		set_country_flag = mboya_63
+		ai_chance = {
+			factor = 10
+		}
+
+	}
+	option = { #historic
+		name = kenya.22.b2
+
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.1
+		}
+		set_country_flag = kenyatta_63
+
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 2
+			}
+		}
+	}
+}
+country_event = {
+	id = kenya.23 
+	immediate = { }
+	title = kenya.23.t2
+	desc = kenya.23.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.23.a2
+		add_stability = 0.1
+		add_political_power = 50
+	}
+}
+country_event = {
+	id = kenya.24 
+	immediate = { }
+	title = kenya.24.t2
+	desc = kenya.24.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.24.a2
+		add_stability = 0.05
+	}
+}
+country_event = {
+	id = kenya.25 
+immediate = { }
+	title = kenya.25.t2
+	desc = kenya.25.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		set_party_name = {
+			ideology = centrist
+			long_name = "Kenyan African National Union - Majimboist"
+			name = "KANU - Majimboist"
+		}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.25.a2
+	}
+}
+country_event = {
+	id = kenya.26 
+	immediate = { }
+	title = kenya.26.t2
+	desc = kenya.26.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.26.a2
+	}
+}
+country_event = {
+	id = kenya.27 
+	immediate = { }
+	title = kenya.27.t2
+	desc = kenya.10.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		hidden_effect = {
+			annex_country = { target = UGA transfer_troops = yes }
+			annex_country = { target = TZN transfer_troops = yes }
+			annex_country = { target = ZAZ transfer_troops = yes }
+			annex_country = { target = RWA transfer_troops = yes }
+			annex_country = { target = BRU transfer_troops = yes }
+			transfer_state = 907
+			transfer_state = 825
+			add_state_core = 546
+			add_state_core = 1197
+			add_state_core = 953
+			add_state_core = 548
+			add_state_core = 546
+			add_state_core = 1242
+			add_state_core = 1435
+			add_state_core = 1438
+			add_state_core = 907
+			add_state_core = 825
+			add_state_core = 1201
+			add_state_core = 1306
+			add_state_core = 1305
+			add_state_core = 1309
+			add_state_core = 1368
+			add_state_core = 1367
+			add_state_core = 1365
+			add_state_core = 1366
+			add_state_core = 1436
+			add_state_core = 1438
+			add_state_core = 1439
+			add_state_core = 1066
+			add_state_core = 1437
+			add_state_core = 1055
+			add_state_core = 1433
+			set_capital = { state = 547 }
+			set_province_name = { id = 13785 name = "New Mombasa" } 
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = EAF
+		}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.27.a2
+	}
+}
+country_event = {
+	id = kenya.28 
+ immediate = { }
+	title = kenya.28.t2
+	desc = kenya.11.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		give_guarantee = TZN
+		TZN = {
+			give_guarantee = KEN
+		}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.28.a2
+	}
+}
+country_event = {
+	id = kenya.29 
+ immediate = { }
+	title = kenya.29.t2
+	desc = kenya.29.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		load_oob = KEN_UGA_MERCS
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.29.a2
+	}
+}
+country_event = {
+	id = kenya.30 
+ immediate = { }
+	title = kenya.30.t2
+	desc = kenya.30.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+ 953 = {
+	add_building_construction = {
+			type = bunker
+			province = 10988
+			level = 8
+			instant_build = yes
+		}
+	}
+}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.30.a2
+	}
+}
+country_event = {
+	id = kenya.31 
+ immediate = { }
+	title = kenya.31.t2
+	desc = kenya.31.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		transfer_state = 709
+		add_state_core = 709
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.31.a2
+	}
+}
+country_event = {
+	id = kenya.32 
+ immediate = { }
+	title = kenya.32.t2
+	desc = kenya.32.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		create_faction_from_template = { template = faction_template_generic name = "South Africa-Rhodesia Defensive Pact" }
+		ZIM = {add_to_faction = SAF}
+		ZIM = {add_to_faction = POR}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.32.a2
+	}
+}
+country_event = {
+	id = kenya.33 
+ immediate = { }
+	title = kenya.33.t2
+	desc = kenya.33.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		hidden_effect = {
+			KEN = {
+				give_guarantee = MLI
+				diplomatic_relation = {
+				country = MLI
+				relation = non_aggression_pact
+				}
+			}
+			MLI = {
+				give_guarantee = KEN
+				diplomatic_relation = {
+					country = KEN
+					relation = non_aggression_pact
+				}
+			}
+			KEN = {
+				give_guarantee = GHA
+				diplomatic_relation = {
+					country = GHA
+					relation = non_aggression_pact
+				}
+			}
+			GHA = {
+				give_guarantee = KEN
+				diplomatic_relation = {
+					country = KEN
+					relation = non_aggression_pact
+				}
+			}
+			KEN = {
+				give_guarantee = CMR
+				diplomatic_relation = {
+					country = CMR
+					relation = non_aggression_pact
+				}
+			}
+			CMR = {
+				give_guarantee = KEN
+				diplomatic_relation = {
+					country = KEN
+					relation = non_aggression_pact
+				}
+			}
+			KEN = {
+				give_guarantee = NGR
+				diplomatic_relation = {
+					country = NGR
+					relation = non_aggression_pact
+				}
+			}
+			KEN = {
+				give_guarantee = TOG
+				diplomatic_relation = {
+					country = TOG
+					relation = non_aggression_pact
+				}
+			}
+			NGR = {
+				give_guarantee = KEN
+				diplomatic_relation = {
+					country = NGR
+					relation = non_aggression_pact
+				}
+			}
+			VOL = {
+				give_guarantee = KEN
+				diplomatic_relation = {
+					country = KEN
+					relation = non_aggression_pact
+				}
+			}
+			KEN = {
+				give_guarantee = VOL
+				diplomatic_relation = {
+					country = VOL
+					relation = non_aggression_pact
+				}
+			}
+			KEN = {
+				give_guarantee = CHA
+				diplomatic_relation = {
+					country = CHA
+					relation = non_aggression_pact
+				}
+			}
+			CHA = {
+				give_guarantee = KEN
+				diplomatic_relation = {
+					country = KEN
+					relation = non_aggression_pact
+				}
+			}
+			KEN = {
+				 give_guarantee = IVO
+				 diplomatic_relation = {
+					country = IVO
+					relation = non_aggression_pact
+				}
+			}
+			IVO = { give_guarantee = KEN }
+			GHA = { give_guarantee = CMR }
+			GHA = { give_guarantee = VOL }
+			GHA = { give_guarantee = MLI }
+			GHA = { give_guarantee = CHA }
+			GHA = { give_guarantee = IVO }
+			GHA = { give_guarantee = NGR }
+			GHA = { give_guarantee = TOG }
+			IVO = { give_guarantee = CMR }
+			IVO = { give_guarantee = VOL }
+			IVO = { give_guarantee = MLI }
+			IVO = { give_guarantee = CHA }
+			IVO = { give_guarantee = GHA }
+			IVO = { give_guarantee = NGR }
+			IVO = { give_guarantee = TOG }
+			MLI = { give_guarantee = CMR }
+			MLI = { give_guarantee = VOL }
+			MLI = { give_guarantee = IVO }
+			MLI = { give_guarantee = CHA }
+			MLI = { give_guarantee = GHA }
+			MLI = { give_guarantee = NGR }
+			MLI = { give_guarantee = TOG }
+			NGR = { give_guarantee = CMR }
+			NGR = { give_guarantee = VOL }
+			NGR = { give_guarantee = IVO }
+			NGR = { give_guarantee = CHA }
+			NGR = { give_guarantee = GHA }
+			NGR = { give_guarantee = MLI }
+			NGR = { give_guarantee = TOG }
+			VOL = { give_guarantee = MLI }
+			VOL = { give_guarantee = NGR }
+			VOL = { give_guarantee = CMR }
+			VOL = { give_guarantee = VOL }
+			VOL = { give_guarantee = IVO }
+			VOL = { give_guarantee = CHA }
+			VOL = { give_guarantee = GHA }
+			VOL = { give_guarantee = TOG }
+			TOG = { give_guarantee = MLI }
+			TOG = { give_guarantee = NGR }
+			TOG = { give_guarantee = CMR }
+			TOG = { give_guarantee = VOL }
+			TOG = { give_guarantee = IVO }
+			TOG = { give_guarantee = CHA }
+			TOG = { give_guarantee = GHA }
+			TOG = { give_guarantee = KEN }
+		}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.33.a2
+	}
+}
+country_event = {
+	id = kenya.34 
+ immediate = { }
+	title = kenya.34.t2
+	desc = kenya.34.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.34.a2
+		GHA = {create_faction_from_template = { template = faction_template_generic name = "TTWO" }}
+		GHA = {add_to_faction = MLI}
+		GHA = {add_to_faction = TOG}
+		GHA = {add_to_faction = NGR}
+		GHA = {add_to_faction = VOL}
+		GHA = {add_to_faction = IVO}
+		GHA = {add_to_faction = KEN}
+		GHA = {add_to_faction = CMR}
+		GHA = {add_to_faction = CHA}
+	}
+}
+country_event = {
+	id = kenya.35 
+ immediate = { }
+	title = kenya.35.t2
+	desc = kenya.35.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		complete_national_focus = KEN_60s_general_election_of_1966
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = { #ahistoric
+		name = kenya.35.a2
+		set_popularities = {
+			maoism = 0
+			communism = 0
+			trotskyism = 0
+			socialist = 60
+			Social_Democratic = 0
+			
+			democratic = 0
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 0
+			Christian_Democratic = 0
+			conservative = 0
+			
+			neutrality = 0
+			nationalist = 40
+			monarchism = 0
+			fascism = 0
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		set_politics = {
+			ruling_party = socialist
+			elections_allowed = yes
+		}
+		set_country_flag = kpu_66
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = { #historic
+		name = kenya.35.b2
+		set_country_flag = kanu_66
+		set_popularities = {
+			maoism = 0
+			communism = 0
+			trotskyism = 0
+			socialist = 40
+			Social_Democratic = 0
+			
+			democratic = 0
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 0
+			Christian_Democratic = 0
+			conservative = 0
+			
+			neutrality = 0
+			nationalist = 60
+			monarchism = 0
+			fascism = 0
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = yes
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 2
+			}
+		}
+
+	}
+}
+country_event = {
+	id = kenya.36 
+	immediate = { }
+	title = kenya.36.t2
+	desc = kenya.36.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		1292 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+			damage_building = {
+				type = industrial_complex
+				damage = 1
+			}
+		}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.36.a2
+		add_political_power = 100
+		add_popularity = {
+			ideology = nationalist
+			popularity = -0.15
+		}
+	}
+	option = {
+		name = kenya.36.b2
+		add_political_power = 100
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.15
+		}
+	}
+}
+country_event = {
+	id = kenya.37 
+ immediate = { }
+	title = kenya.37.t2
+	desc = kenya.12.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		retire_country_leader = yes
+		complete_national_focus = KEN_60s_the_assassination_of_tom_mboya
+		create_country_leader = {
+			name = "Parliament of the Republic of Kenya"
+			desc = "POLITICS_PARLIMENT_DESC"
+			picture = "Kenya_Coat_Arms.dds"
+			ideology = social_democrat
+		}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.37.a2
+		add_political_power = 100
+	}
+}
+country_event = {
+	id = kenya.38 
+ immediate = { }
+	title = kenya.38.t2
+	desc = kenya.38.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.38.a2
+		add_political_power = 100
+		add_stability = -0.05
+		set_politics = {
+			ruling_party = conservative
+			last_election = "1978.1.1"
+			election_frequency = 48
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.30
+		}
+	}
+}
+country_event = {
+	id = kenya.39 
+ immediate = { }
+	title = kenya.39.t2
+	desc = kenya.13.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = kenya.39.a2
+		set_province_name = { id = 1939 name = "Coldbrook" } 
+
+		966 = { set_state_name = "Coldbrook" }
+		set_politics = {
+			ruling_party = conservative
+			last_election = "1978.1.1"
+			election_frequency = 48
+			elections_allowed = no
+		}
+		hidden_effect = {
+			capital_scope = { 
+				create_unit = { division = "name = \"1st National Milita\" division_template = \"National Militia Brigade\" start_experience_factor = 0.5" owner = KEN } 
+				create_unit = { division = "name = \"2nd National Milita\" division_template = \"National Militia Brigade\" start_experience_factor = 0.5" owner = KEN } 
+				create_unit = { division = "name = \"3rd National Milita\" division_template = \"National Militia Brigade\" start_experience_factor = 0.5" owner = KEN } 
+				create_unit = { division = "name = \"4th National Milita\" division_template = \"National Militia Brigade\" start_experience_factor = 0.5" owner = KEN }
+				create_unit = { division = "name = \"5th National Milita\" division_template = \"National Militia Brigade\" start_experience_factor = 0.5" owner = KEN }
+			}
+		}
+		start_civil_war = {
+			ideology = trotskyism
+			size = 0.5
+			capital = 547
+			states = { 547 1292 1291}
+		}
+
+	}
+	option = {
+		name = kenya.39.b2
+		set_capital = { state = 547 }
+		set_cosmetic_tag = KEN_NLF
+		set_politics = {
+			ruling_party = trotskyism
+			last_election = "1978.1.1"
+			election_frequency = 48
+			elections_allowed = no
+		}
+		hidden_effect = {
+			capital_scope = { 
+				create_unit = { division = "name = \"1st Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = KEN } 
+				create_unit = { division = "name = \"2nd Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = KEN }  
+				create_unit = { division = "name = \"3rd Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = KEN }  
+				create_unit = { division = "name = \"4th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = KEN }  
+				create_unit = { division = "name = \"5th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = KEN }  
+				create_unit = { division = "name = \"6th Revolutionary Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1.0" owner = KEN }  
+			}
+		}
+		add_popularity = {
+			ideology = trotskyism
+			popularity = 0.45
+		}
+		start_civil_war = {
+			ideology = conservative
+			size = 0.5
+			capital = 966
+			states = { 966 1061 547}
+		}
+		hidden_effect = {
+			KEN_archibald_j_a_wavell = {
+				set_nationality = RKN
+			}
+			KEN_frank_kitson = {
+				set_nationality = RKN
+			}
+			KEN_george_erskine = {
+				set_nationality = RKN
+			}
+			KEN_robert_hinde = {
+				set_nationality = RKN
+			}
+		}
+	}
+	option = {
+		name = kenya.39.c2
+		set_politics = {
+			ruling_party = fascism
+			last_election = "1978.1.1"
+			election_frequency = 48
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = fascism
+			popularity = 1.0
+		}
+		hidden_effect = {
+			retire_character = KEN_archibald_j_a_wavell
+			retire_character = KEN_frank_kitson
+			retire_character = KEN_george_erskine
+			retire_character = KEN_robert_hinde
+			KIK_Stanley_Mathenge = {
+				set_nationality = KEN
+			}
+			KIK_Musa_Mwariama = {
+				set_nationality = KEN
+			}
+			KIK_Waruhiu_Itote = {
+				set_nationality = KEN
+			}
+		}
+	}
+}
+country_event = {
+	id = kenya.40 
+	immediate = { }
+	title = kenya.40.t2
+	desc = kenya.40.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		ENG = {
+			end_puppet = KEN
+		}
+		add_ideas = un_member
+		drop_cosmetic_tag = yes
+		clr_country_flag = kenya_dominion
+		set_country_flag = kenya_free
+		if = {
+			limit = {
+				NOT = {
+					has_government = conservative
+				}
+			}
+			retire_character = KEN_archibald_j_a_wavell
+			retire_character = KEN_frank_kitson
+			retire_character = KEN_george_erskine
+			retire_character = KEN_robert_hinde
+		}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.40.a2
+		add_political_power = 100
+		add_stability = -0.05
+	}
+}
+country_event = {
+	id = kenya.41 
+	immediate = { }
+	title = kenya.41.t2
+	desc = kenya.41.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.41.a2
+		add_political_power = 50
+	}
+}
+country_event = {
+	id = kenya.42 
+	immediate = { }
+	title = kenya.42.t2
+	desc = kenya.42.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		add_political_power = 50
+		add_stability = 0.01
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.42.a2
+		add_political_power = 50
+	}
+}
+country_event = {
+	id = kenya.43 
+ immediate = { }
+	title = kenya.43.t2
+	desc = kenya.43.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		transfer_state = 709
+		add_state_core = 709
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.43.a2
+		add_political_power = 50
+	}
+}
+
+country_event = {
+	id = kenya.45 
+ immediate = { }
+	title = kenya.45.t2
+	desc = kenya.45.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		complete_national_focus = KEN_60s_1966_general_election2
+	}
+	option = {
+		name = kenya.45.a2
+		add_political_power = +50
+		set_politics = {
+			ruling_party = centrist
+			last_election = "1966.1.1"
+			election_frequency = 48
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = centrist
+			popularity = 0.3
+		}
+		set_country_flag = kadu_66
+	}
+	option = {
+		name = kenya.45.b2
+		add_political_power = +50
+		set_politics = {
+			ruling_party = conservative
+			last_election = "1966.1.1"
+			election_frequency = 48
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.1
+		}
+		set_country_flag = nkp_66
+	}
+}
+country_event = {
+	id = kenya.46 
+	immediate = { }
+	title = kenya.46.t2
+	desc = kenya.46.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		KEN = {create_faction_from_template = { template = faction_template_generic name = "African Defensive Bloc" }}
+		KEN = {add_to_faction = ZIM}
+		KEN = {add_to_faction = SAF}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.46.a2
+	}
+}
+country_event = {
+	id = kenya.47 
+	immediate = { }
+	title = kenya.47.t2
+	desc = kenya.47.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_cosmetic_tag = KEN_PR
+	}
+	option = {
+		name = kenya.47.a2
+		complete_national_focus = KEN_60s_orthodox_marxist_leninism
+		set_politics = {
+			ruling_party = communism
+			last_election = "1966.1.1"
+			election_frequency = 48
+			elections_allowed = no
+		}
+		set_popularities = {
+			maoism = 0
+			communism = 80
+			trotskyism = 0
+			socialist = 8
+			Social_Democratic = 0
+			
+			democratic = 0
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 0
+			Christian_Democratic = 0
+			conservative = 0
+			
+			neutrality = 0
+			nationalist = 12
+			monarchism = 0
+			fascism = 0
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+	}
+	option = {
+		name = kenya.47.b2
+		complete_national_focus = KEN_60s_chinese_socialism
+		set_politics = {
+			ruling_party = maoism
+			last_election = "1966.1.1"
+			election_frequency = 48
+			elections_allowed = no
+		}
+		set_popularities = {
+			maoism = 80
+			communism = 0
+			trotskyism = 0
+			socialist = 8
+			Social_Democratic = 0
+			
+			democratic = 0
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 0
+			Christian_Democratic = 0
+			conservative = 0
+			
+			neutrality = 0
+			nationalist = 12
+			monarchism = 0
+			fascism = 0
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+	}
+	option = {
+		name = kenya.47.c2
+		complete_national_focus = KEN_60s_independent_socialism
+		set_politics = {
+			ruling_party = trotskyism
+			last_election = "1966.1.1"
+			election_frequency = 48
+			elections_allowed = no
+		}
+		set_popularities = {
+			maoism = 0
+			communism = 18
+			trotskyism = 51
+			socialist = 14
+			Social_Democratic = 0
+			
+			democratic = 0
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 0
+			Christian_Democratic = 0
+			conservative = 0
+			
+			neutrality = 0
+			nationalist = 17
+			monarchism = 0
+			fascism = 0
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+	}
+}
+country_event = {
+	id = kenya.48 
+	immediate = { }
+	title = kenya.48.t2
+	desc = kenya.48.d2
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		news_event = newskenya.3
+	}
+	option = {
+		name = kenya.48.a2
+		ai_chance = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 2
+			}
+		}
+		hidden_effect = {
+			set_popularities = {
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 0
+				Social_Democratic = 0
+				
+				democratic = 0
+				Social_Liberalism = 0
+				liberal = 0
+				centrist = 100
+				
+				Liberal_Conservatism = 0
+				Christian_Democratic = 0
+				conservative = 0
+				
+				neutrality = 0
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+			
+			set_politics = {
+				ruling_party = centrist
+				last_election = "1978.1.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			
+			set_party_name = {
+				ideology = centrist
+				long_name = "Kenyan African National Union - Majimboist"
+				name = "KANU - Majimboist"
+			}
+			
+			create_country_leader = {
+				name = "Daniel arap Moi"
+				picture = "Daniel_arap_Moi_80s.dds"
+				ideology = majimboism
+			}
+			
+			hidden_effect = {
+				create_country_leader = {
+					name = "Jaramogi Oginga Odinga"
+					picture = "Jaramogi_Oginga_Odinga_80s.dds"
+					ideology = african_socialism
+					traits = {
+						kenyattas_greatest_rival
+						former_lua_chief
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = kenya.48.b2
+		ai_chance = {
+			factor = 10
+		}
+		hidden_effect = {
+			set_popularities = {
+				maoism = 0
+				communism = 12
+				trotskyism = 0
+				socialist = 52
+				Social_Democratic = 0
+				
+				democratic = 0
+				Social_Liberalism = 0
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 0
+				Christian_Democratic = 0
+				conservative = 0
+				
+				neutrality = 0
+				nationalist = 36
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+			
+			set_politics = {
+				ruling_party = socialist
+				last_election = "1978.1.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			
+			create_country_leader = {
+				name = "Jaramogi Oginga Odinga"
+				picture = "Jaramogi_Oginga_Odinga_80s.dds"
+				ideology = african_socialism
+				traits = {
+					kenyattas_greatest_rival
+					former_lua_chief
+				}
+			}
+			
+			hidden_effect = {
+				create_country_leader = {
+					name = "Daniel arap Moi"
+					picture = "Daniel_arap_Moi_80s.dds"
+					ideology = pan_africanism
+				}
+			}
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newskenya.3 
+	immediate = { }
+	title = newskenya.3.t2
+	desc = newskenya.3.d2
+	major = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = newskenya.3.a2
+	}
+}
+
+country_event = {
+	id = kenya.52
+ immediate = { }
+	title = kenya.52.t2
+	desc = "kenya.52.d"
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		retire_character = KEN_archibald_j_a_wavell
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.52.a2
+	}
+}
+country_event = {
+	id = kenya.53
+	immediate = { }
+	title = kenya.53.t2
+	desc = "kenya.53.d"
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = KEN
+	}
+	immediate = {
+		UGA_idi_amin = {
+			set_nationality = KEN
+		}
+	}
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kenya.53.a2
+	}
+}

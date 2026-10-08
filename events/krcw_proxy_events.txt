@@ -1,0 +1,1744 @@
+# krcw: paced
+add_namespace = krcw_proxy
+
+country_event = {
+	id = krcw_proxy.311
+	title = krcw_proxy_311_t
+	desc = krcw_proxy_311_d
+	picture = GFX_report_event_generic_parliament
+	trigger = {
+		tag = GRE
+		has_war = no
+		date > 1949.1.1
+		NOT = { has_global_flag = krcw_proxy_gre_stage1 }
+		NOT = { has_global_flag = krcw_proxy_gre_done }
+		check_variable = { global.krcw_proxy_active < 2 }
+		NOT = { has_global_flag = krcw_proxy_cooldown }
+		OR = { NOT = { has_variable = global.krcw_tension } check_variable = { global.krcw_tension > 45 } }
+	}
+	mean_time_to_happen = { days = 54 }
+	fire_only_once = yes
+	option = {
+		name = krcw_proxy_311_a
+		ai_chance = { base = 70 }
+		set_global_flag = krcw_proxy_gre_stage1
+		add_political_power = 25
+		add_stability = -0.03
+		custom_effect_tooltip = krcw_proxy_stage_tt
+		country_event = { id = krcw_proxy.312 days = 30 random_days = 20 }
+	}
+	option = {
+		name = krcw_proxy_311_b
+		ai_chance = { base = 30 }
+		set_global_flag = krcw_proxy_gre_stage1
+		add_political_power = -40
+		custom_effect_tooltip = krcw_proxy_stage_tt
+		country_event = { id = krcw_proxy.312 days = 67 random_days = 40 }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.312
+	title = krcw_proxy_312_t
+	desc = krcw_proxy_312_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	option = {
+		name = krcw_proxy_312_a
+		set_global_flag = krcw_proxy_gre_stage2
+		add_stability = -0.03
+		krcw_tension_up_small = yes
+	}
+}
+
+country_event = {
+	id = krcw_proxy.313
+	title = krcw_proxy_313_t
+	desc = krcw_proxy_313_d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_gre }
+	option = {
+		name = krcw_proxy_313_a
+		ai_chance = { base = 90 }
+		add_equipment_to_stockpile = { type = infantry_equipment amount = -2500 }
+		add_equipment_to_stockpile = { type = artillery_equipment amount = -120 }
+		add_equipment_to_stockpile = { type = support_equipment amount = -150 }
+		GRE = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 2500 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 120 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 150 }
+		}
+		GRE = { add_timed_idea = { idea = krcw_proxy_mission_sov days = 365 } army_experience = 10 }
+		custom_effect_tooltip = krcw_proxy_arms_tt
+		krcw_tension_up_small = yes
+	}
+	option = {
+		name = krcw_proxy_313_b
+		ai_chance = { base = 0 }
+		if = {
+			limit = { is_in_faction_with = GRE }
+			add_to_war = { targeted_alliance = GRE enemy = event_target:krcw_proxy_gre_rebels hostility_reason = asked_to_join }
+		}
+		krcw_tension_up_large = yes
+		add_war_support = -0.05
+	}
+}
+
+country_event = {
+	id = krcw_proxy.314
+	title = krcw_proxy_314_t
+	desc = krcw_proxy_314_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_gre }
+	option = {
+		name = krcw_proxy_314_a
+		ai_chance = { base = 90 }
+		if = { limit = { country_exists = FRA FRA = { has_war = no } } FRA = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		if = { limit = { country_exists = ENG ENG = { has_war = no } } ENG = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		if = { limit = { country_exists = WCA WCA = { has_war = no } } WCA = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		if = { limit = { country_exists = CHI CHI = { has_war = no } } CHI = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		event_target:krcw_proxy_gre_rebels = {
+			if = { limit = { country_exists = FRA } FRA = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 400 } } }
+			if = { limit = { country_exists = ENG } ENG = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+			if = { limit = { country_exists = WCA } WCA = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+			if = { limit = { country_exists = CHI } CHI = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+		}
+		add_equipment_to_stockpile = { type = infantry_equipment amount = -2500 }
+		add_equipment_to_stockpile = { type = artillery_equipment amount = -120 }
+		add_equipment_to_stockpile = { type = support_equipment amount = -150 }
+		event_target:krcw_proxy_gre_rebels = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 2500 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 120 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 150 }
+		}
+		custom_effect_tooltip = krcw_proxy_brigade_tt
+		custom_effect_tooltip = krcw_proxy_arms_tt
+		krcw_tension_up_small = yes
+	}
+	option = {
+		name = krcw_proxy_314_b
+		ai_chance = { base = 10 }
+		add_equipment_to_stockpile = { type = infantry_equipment amount = -2500 }
+		add_equipment_to_stockpile = { type = artillery_equipment amount = -120 }
+		add_equipment_to_stockpile = { type = support_equipment amount = -150 }
+		event_target:krcw_proxy_gre_rebels = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 2500 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 120 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 150 }
+		}
+		custom_effect_tooltip = krcw_proxy_arms_tt
+	}
+}
+
+country_event = {
+	id = krcw_proxy.1
+	title = krcw_proxy_1_t
+	desc = krcw_proxy_1_d
+	picture = GFX_report_event_generic_rally
+	trigger = {
+		tag = GRE
+		has_war = no
+		has_global_flag = krcw_proxy_gre_stage2
+		NOT = { has_global_flag = krcw_proxy_gre_done }
+	}
+	mean_time_to_happen = { days = 20 }
+	fire_only_once = yes
+	option = {
+		name = krcw_proxy_1_a
+		ai_chance = { base = 100 }
+		set_global_flag = krcw_proxy_gre_done
+		set_global_flag = krcw_proxy_gre
+		add_to_variable = { global.krcw_proxy_active = 1 }
+		set_global_flag = { flag = krcw_proxy_cooldown days = 300 value = 1 }
+		add_popularity = { ideology = trotskyism popularity = 0.15 }
+		start_civil_war = {
+			ideology = trotskyism
+			# 0.35 rebels were crushed before any bloc could intervene; KR uses 0.5 for its Greek rising
+			size = 0.45
+			# no fleet: a rebel navy let the losing side hold out on islands and the war never ended
+			navy_ratio = 0
+			# a fixed, contiguous mainland block the rebels' patron can reach (proxy_prelude.REBELS)
+			capital = 185
+			states = { 185 977 790 }
+			save_global_event_target_as = krcw_proxy_gre_rebels
+			# CWIC sets CIVIL_WAR_INVOLVEMENT_MIN_TENSION = 0 (IC_Defines.lua), so the engine may pull
+			# other powers into any civil war, and the revolter could be offered a faction seat. Keep the
+			# rebels out of every faction so the war stays a proxy war (and can receive volunteers).
+			set_rule = { can_join_factions = no }
+			# the rebels' own name and flag: the revolter copies the host's cosmetic tag otherwise, and
+			# both sides of the Persian war were called the Imperial State of Iran
+			set_cosmetic_tag = KRCW_GRE_REB
+		}
+		# two years before the war is settled one way or the other (krcw_proxy.7xx)
+		set_global_flag = { flag = krcw_proxy_gre_clock days = 730 value = 1 }
+		# a year of guerrilla resilience so the war lasts long enough for outside help to matter
+		# (TFR gives a losing civil-war side a defence buff for the same reason)
+		event_target:krcw_proxy_gre_rebels = { add_timed_idea = { idea = krcw_proxy_insurgency days = 365 } }
+		# a belligerent movement in the ceasefire regime (patch_un.py / geneva.py), not an ordinary state
+		event_target:krcw_proxy_gre_rebels = { add_ideas = unrecognized_state }
+		# the rebels' own leader and portrait (proxy_prelude.LEADERS); without one the engine invents a nameless leader
+		event_target:krcw_proxy_gre_rebels = {
+			set_politics = { ruling_party = trotskyism elections_allowed = no }
+			if = { limit = { NOT = { has_character = GRE_krcw_velouchiotis } } recruit_character = GRE_krcw_velouchiotis }
+			promote_character = GRE_krcw_velouchiotis
+		}
+		# each side asks its patron for troops
+		if = { limit = { country_exists = SOV } SOV = { country_event = { id = krcw_proxy.313 days = 10 } } }
+		if = { limit = { country_exists = FRA } FRA = { country_event = { id = krcw_proxy.314 days = 20 } } }
+		krcw_tension_up_small = yes
+		custom_effect_tooltip = krcw_proxy_tt
+		random_country = { news_event = { id = krcw_proxy.101 days = 1 } }
+	}
+	option = {
+		name = krcw_proxy_1_b
+		ai_chance = { base = 0 }
+		set_global_flag = krcw_proxy_gre_done
+		add_political_power = -100
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	id = krcw_proxy.611
+	title = krcw_proxy_611_t
+	desc = krcw_proxy_611_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_gre has_event_target = krcw_proxy_gre_rebels GRE = { has_war = yes } }
+	option = {
+		name = krcw_proxy_611_a
+		ai_chance = { base = 85 }
+		add_to_war = { targeted_alliance = GRE enemy = event_target:krcw_proxy_gre_rebels hostility_reason = asked_to_join }
+		krcw_tension_up_medium = yes
+		add_war_support = -0.03
+	}
+	option = {
+		name = krcw_proxy_611_b
+		ai_chance = { base = 15 }
+		GRE = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_resentment } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.612
+	title = krcw_proxy_612_t
+	desc = krcw_proxy_612_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_gre has_event_target = krcw_proxy_gre_rebels GRE = { has_war = yes } }
+	option = {
+		name = krcw_proxy_612_a
+		ai_chance = { base = 55 }
+		add_to_war = { targeted_alliance = GRE enemy = event_target:krcw_proxy_gre_rebels hostility_reason = asked_to_join }
+		krcw_tension_up_medium = yes
+		add_war_support = -0.03
+	}
+	option = {
+		name = krcw_proxy_612_b
+		ai_chance = { base = 45 }
+		GRE = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_resentment } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.613
+	title = krcw_proxy_613_t
+	desc = krcw_proxy_613_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_gre has_event_target = krcw_proxy_gre_rebels GRE = { has_war = yes } }
+	option = {
+		name = krcw_proxy_613_a
+		ai_chance = { base = 55 }
+		add_to_war = { targeted_alliance = GRE enemy = event_target:krcw_proxy_gre_rebels hostility_reason = asked_to_join }
+		krcw_tension_up_medium = yes
+		add_war_support = -0.03
+	}
+	option = {
+		name = krcw_proxy_613_b
+		ai_chance = { base = 45 }
+		GRE = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_resentment } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.614
+	title = krcw_proxy_614_t
+	desc = krcw_proxy_614_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_gre has_event_target = krcw_proxy_gre_rebels GRE = { has_war = yes } }
+	option = {
+		name = krcw_proxy_614_a
+		ai_chance = { base = 55 }
+		add_to_war = { targeted_alliance = GRE enemy = event_target:krcw_proxy_gre_rebels hostility_reason = asked_to_join }
+		krcw_tension_up_medium = yes
+		add_war_support = -0.03
+	}
+	option = {
+		name = krcw_proxy_614_b
+		ai_chance = { base = 45 }
+		GRE = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_resentment } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.615
+	title = krcw_proxy_615_t
+	desc = krcw_proxy_615_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_gre has_event_target = krcw_proxy_gre_rebels GRE = { has_war = yes } }
+	option = {
+		name = krcw_proxy_615_a
+		ai_chance = { base = 55 }
+		add_to_war = { targeted_alliance = GRE enemy = event_target:krcw_proxy_gre_rebels hostility_reason = asked_to_join }
+		krcw_tension_up_medium = yes
+		add_war_support = -0.03
+	}
+	option = {
+		name = krcw_proxy_615_b
+		ai_chance = { base = 45 }
+		GRE = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_resentment } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.711
+	title = krcw_proxy_711_t
+	desc = krcw_proxy_711_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	option = {
+		name = krcw_proxy_711_a
+		annex_country = { target = event_target:krcw_proxy_gre_rebels transfer_troops = yes }
+		add_stability = 0.05
+		add_war_support = 0.03
+		clr_global_flag = krcw_proxy_gre
+		add_to_variable = { global.krcw_proxy_active = -1 }
+		clamp_variable = { var = global.krcw_proxy_active min = 0 max = 5 }
+		random_country = { news_event = { id = krcw_proxy.715 days = 1 } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.712
+	title = krcw_proxy_712_t
+	desc = krcw_proxy_712_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	option = {
+		name = krcw_proxy_712_a
+		annex_country = { target = event_target:krcw_proxy_gre_rebels transfer_troops = yes }
+		set_politics = { ruling_party = trotskyism elections_allowed = no }
+		if = { limit = { NOT = { has_character = GRE_krcw_velouchiotis } } recruit_character = GRE_krcw_velouchiotis }
+		promote_character = GRE_krcw_velouchiotis
+		load_focus_tree = { tree = krcw_ti_minor_tree keep_completed = no }
+		add_popularity = { ideology = trotskyism popularity = 0.25 }
+		set_cosmetic_tag = KRCW_GRE_REB
+		if = { limit = { is_subject = yes } overlord = { end_puppet = PREV } }
+		if = { limit = { is_in_faction = yes } leave_faction = yes }
+		clr_global_flag = krcw_proxy_gre
+		add_to_variable = { global.krcw_proxy_active = -1 }
+		clamp_variable = { var = global.krcw_proxy_active min = 0 max = 5 }
+		krcw_tension_up_large = yes
+		if = { limit = { country_exists = FRA } FRA = { country_event = { id = krcw_proxy.801 days = 14 } } }
+		random_country = { news_event = { id = krcw_proxy.716 days = 1 } }
+	}
+}
+
+news_event = {
+	id = krcw_proxy.715
+	title = krcw_proxy_711_t
+	desc = krcw_proxy_711_d
+	picture = GFX_news_event_generic_rally_n
+	major = yes
+	is_triggered_only = yes
+	option = { name = krcw_proxy_715_a }
+}
+
+news_event = {
+	id = krcw_proxy.716
+	title = krcw_proxy_712_t
+	desc = krcw_proxy_712_d
+	picture = GFX_news_event_generic_rally_n
+	major = yes
+	is_triggered_only = yes
+	option = { name = krcw_proxy_716_a }
+}
+
+country_event = {
+	id = krcw_proxy.801
+	title = krcw_proxy_801_t
+	desc = krcw_proxy_801_d
+	picture = GFX_report_event_generic_sign_treaty1
+	is_triggered_only = yes
+	trigger = { country_exists = GRE GRE = { is_in_faction = no } }
+	option = {
+		name = krcw_proxy_801_a
+		ai_chance = { base = 90 }
+		add_to_faction = GRE
+	}
+	option = {
+		name = krcw_proxy_801_b
+		ai_chance = { base = 10 }
+	}
+}
+
+news_event = {
+	id = krcw_proxy.101
+	title = krcw_proxy_101_t
+	desc = krcw_proxy_101_d
+	picture = GFX_news_event_generic_rally_n
+	major = yes
+	is_triggered_only = yes
+	option = { name = krcw_proxy_101_a }
+}
+
+country_event = {
+	id = krcw_proxy.321
+	title = krcw_proxy_321_t
+	desc = krcw_proxy_321_d
+	picture = GFX_report_event_generic_parliament
+	trigger = {
+		tag = PER
+		has_war = no
+		date > 1949.12.7
+		NOT = { has_global_flag = krcw_proxy_per_stage1 }
+		NOT = { has_global_flag = krcw_proxy_per_done }
+		check_variable = { global.krcw_proxy_active < 2 }
+		NOT = { has_global_flag = krcw_proxy_cooldown }
+		OR = { NOT = { has_variable = global.krcw_tension } check_variable = { global.krcw_tension > 45 } }
+	}
+	mean_time_to_happen = { days = 162 }
+	fire_only_once = yes
+	option = {
+		name = krcw_proxy_321_a
+		ai_chance = { base = 70 }
+		set_global_flag = krcw_proxy_per_stage1
+		add_political_power = 25
+		add_stability = -0.03
+		custom_effect_tooltip = krcw_proxy_stage_tt
+		country_event = { id = krcw_proxy.322 days = 30 random_days = 20 }
+	}
+	option = {
+		name = krcw_proxy_321_b
+		ai_chance = { base = 30 }
+		set_global_flag = krcw_proxy_per_stage1
+		add_political_power = -40
+		custom_effect_tooltip = krcw_proxy_stage_tt
+		country_event = { id = krcw_proxy.322 days = 67 random_days = 40 }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.322
+	title = krcw_proxy_322_t
+	desc = krcw_proxy_322_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	option = {
+		name = krcw_proxy_322_a
+		set_global_flag = krcw_proxy_per_stage2
+		add_stability = -0.03
+		krcw_tension_up_small = yes
+	}
+}
+
+country_event = {
+	id = krcw_proxy.323
+	title = krcw_proxy_323_t
+	desc = krcw_proxy_323_d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_per }
+	option = {
+		name = krcw_proxy_323_a
+		ai_chance = { base = 90 }
+		add_equipment_to_stockpile = { type = infantry_equipment amount = -2500 }
+		add_equipment_to_stockpile = { type = artillery_equipment amount = -120 }
+		add_equipment_to_stockpile = { type = support_equipment amount = -150 }
+		PER = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 2500 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 120 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 150 }
+		}
+		PER = { add_timed_idea = { idea = krcw_proxy_mission_sov days = 365 } army_experience = 10 }
+		custom_effect_tooltip = krcw_proxy_arms_tt
+		krcw_tension_up_small = yes
+	}
+	option = {
+		name = krcw_proxy_323_b
+		ai_chance = { base = 0 }
+		if = {
+			limit = { is_in_faction_with = PER }
+			add_to_war = { targeted_alliance = PER enemy = event_target:krcw_proxy_per_rebels hostility_reason = asked_to_join }
+		}
+		krcw_tension_up_large = yes
+		add_war_support = -0.05
+	}
+}
+
+country_event = {
+	id = krcw_proxy.324
+	title = krcw_proxy_324_t
+	desc = krcw_proxy_324_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_per }
+	option = {
+		name = krcw_proxy_324_a
+		ai_chance = { base = 90 }
+		if = { limit = { country_exists = FRA FRA = { has_war = no } } FRA = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		if = { limit = { country_exists = ENG ENG = { has_war = no } } ENG = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		if = { limit = { country_exists = WCA WCA = { has_war = no } } WCA = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		if = { limit = { country_exists = CHI CHI = { has_war = no } } CHI = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		event_target:krcw_proxy_per_rebels = {
+			if = { limit = { country_exists = FRA } FRA = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+			if = { limit = { country_exists = ENG } ENG = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 400 } } }
+			if = { limit = { country_exists = WCA } WCA = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+			if = { limit = { country_exists = CHI } CHI = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+		}
+		add_equipment_to_stockpile = { type = infantry_equipment amount = -2500 }
+		add_equipment_to_stockpile = { type = artillery_equipment amount = -120 }
+		add_equipment_to_stockpile = { type = support_equipment amount = -150 }
+		event_target:krcw_proxy_per_rebels = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 2500 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 120 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 150 }
+		}
+		custom_effect_tooltip = krcw_proxy_brigade_tt
+		custom_effect_tooltip = krcw_proxy_arms_tt
+		krcw_tension_up_small = yes
+	}
+	option = {
+		name = krcw_proxy_324_b
+		ai_chance = { base = 10 }
+		add_equipment_to_stockpile = { type = infantry_equipment amount = -2500 }
+		add_equipment_to_stockpile = { type = artillery_equipment amount = -120 }
+		add_equipment_to_stockpile = { type = support_equipment amount = -150 }
+		event_target:krcw_proxy_per_rebels = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 2500 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 120 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 150 }
+		}
+		custom_effect_tooltip = krcw_proxy_arms_tt
+	}
+}
+
+country_event = {
+	id = krcw_proxy.2
+	title = krcw_proxy_2_t
+	desc = krcw_proxy_2_d
+	picture = GFX_report_event_generic_rally
+	trigger = {
+		tag = PER
+		has_war = no
+		has_global_flag = krcw_proxy_per_stage2
+		NOT = { has_global_flag = krcw_proxy_per_done }
+	}
+	mean_time_to_happen = { days = 20 }
+	fire_only_once = yes
+	option = {
+		name = krcw_proxy_2_a
+		ai_chance = { base = 100 }
+		set_global_flag = krcw_proxy_per_done
+		set_global_flag = krcw_proxy_per
+		add_to_variable = { global.krcw_proxy_active = 1 }
+		set_global_flag = { flag = krcw_proxy_cooldown days = 300 value = 1 }
+		add_popularity = { ideology = trotskyism popularity = 0.15 }
+		start_civil_war = {
+			ideology = trotskyism
+			# 0.35 rebels were crushed before any bloc could intervene; KR uses 0.5 for its Greek rising
+			size = 0.45
+			# no fleet: a rebel navy let the losing side hold out on islands and the war never ended
+			navy_ratio = 0
+			# a fixed, contiguous mainland block the rebels' patron can reach (proxy_prelude.REBELS)
+			capital = 413
+			states = { 413 1327 1096 1503 }
+			save_global_event_target_as = krcw_proxy_per_rebels
+			# CWIC sets CIVIL_WAR_INVOLVEMENT_MIN_TENSION = 0 (IC_Defines.lua), so the engine may pull
+			# other powers into any civil war, and the revolter could be offered a faction seat. Keep the
+			# rebels out of every faction so the war stays a proxy war (and can receive volunteers).
+			set_rule = { can_join_factions = no }
+			# the rebels' own name and flag: the revolter copies the host's cosmetic tag otherwise, and
+			# both sides of the Persian war were called the Imperial State of Iran
+			set_cosmetic_tag = KRCW_PER_REB
+		}
+		# two years before the war is settled one way or the other (krcw_proxy.7xx)
+		set_global_flag = { flag = krcw_proxy_per_clock days = 730 value = 1 }
+		# a year of guerrilla resilience so the war lasts long enough for outside help to matter
+		# (TFR gives a losing civil-war side a defence buff for the same reason)
+		event_target:krcw_proxy_per_rebels = { add_timed_idea = { idea = krcw_proxy_insurgency days = 365 } }
+		# a belligerent movement in the ceasefire regime (patch_un.py / geneva.py), not an ordinary state
+		event_target:krcw_proxy_per_rebels = { add_ideas = unrecognized_state }
+		# the rebels' own leader and portrait (proxy_prelude.LEADERS); without one the engine invents a nameless leader
+		event_target:krcw_proxy_per_rebels = {
+			set_politics = { ruling_party = trotskyism elections_allowed = no }
+			if = { limit = { NOT = { has_character = PER_krcw_soltanzadeh } } recruit_character = PER_krcw_soltanzadeh }
+			promote_character = PER_krcw_soltanzadeh
+		}
+		# each side asks its patron for troops
+		if = { limit = { country_exists = SOV } SOV = { country_event = { id = krcw_proxy.323 days = 10 } } }
+		if = { limit = { country_exists = ENG } ENG = { country_event = { id = krcw_proxy.324 days = 20 } } }
+		krcw_tension_up_small = yes
+		custom_effect_tooltip = krcw_proxy_tt
+		random_country = { news_event = { id = krcw_proxy.102 days = 1 } }
+	}
+	option = {
+		name = krcw_proxy_2_b
+		ai_chance = { base = 0 }
+		set_global_flag = krcw_proxy_per_done
+		add_political_power = -100
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	id = krcw_proxy.621
+	title = krcw_proxy_621_t
+	desc = krcw_proxy_621_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_per has_event_target = krcw_proxy_per_rebels PER = { has_war = yes } }
+	option = {
+		name = krcw_proxy_621_a
+		ai_chance = { base = 85 }
+		add_to_war = { targeted_alliance = PER enemy = event_target:krcw_proxy_per_rebels hostility_reason = asked_to_join }
+		krcw_tension_up_medium = yes
+		add_war_support = -0.03
+	}
+	option = {
+		name = krcw_proxy_621_b
+		ai_chance = { base = 15 }
+		PER = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_resentment } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.622
+	title = krcw_proxy_622_t
+	desc = krcw_proxy_622_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_per has_event_target = krcw_proxy_per_rebels PER = { has_war = yes } }
+	option = {
+		name = krcw_proxy_622_a
+		ai_chance = { base = 55 }
+		add_to_war = { targeted_alliance = PER enemy = event_target:krcw_proxy_per_rebels hostility_reason = asked_to_join }
+		krcw_tension_up_medium = yes
+		add_war_support = -0.03
+	}
+	option = {
+		name = krcw_proxy_622_b
+		ai_chance = { base = 45 }
+		PER = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_resentment } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.623
+	title = krcw_proxy_623_t
+	desc = krcw_proxy_623_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_per has_event_target = krcw_proxy_per_rebels PER = { has_war = yes } }
+	option = {
+		name = krcw_proxy_623_a
+		ai_chance = { base = 55 }
+		add_to_war = { targeted_alliance = PER enemy = event_target:krcw_proxy_per_rebels hostility_reason = asked_to_join }
+		krcw_tension_up_medium = yes
+		add_war_support = -0.03
+	}
+	option = {
+		name = krcw_proxy_623_b
+		ai_chance = { base = 45 }
+		PER = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_resentment } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.624
+	title = krcw_proxy_624_t
+	desc = krcw_proxy_624_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_per has_event_target = krcw_proxy_per_rebels PER = { has_war = yes } }
+	option = {
+		name = krcw_proxy_624_a
+		ai_chance = { base = 55 }
+		add_to_war = { targeted_alliance = PER enemy = event_target:krcw_proxy_per_rebels hostility_reason = asked_to_join }
+		krcw_tension_up_medium = yes
+		add_war_support = -0.03
+	}
+	option = {
+		name = krcw_proxy_624_b
+		ai_chance = { base = 45 }
+		PER = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_resentment } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.721
+	title = krcw_proxy_721_t
+	desc = krcw_proxy_721_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	option = {
+		name = krcw_proxy_721_a
+		annex_country = { target = event_target:krcw_proxy_per_rebels transfer_troops = yes }
+		add_stability = 0.05
+		add_war_support = 0.03
+		clr_global_flag = krcw_proxy_per
+		add_to_variable = { global.krcw_proxy_active = -1 }
+		clamp_variable = { var = global.krcw_proxy_active min = 0 max = 5 }
+		random_country = { news_event = { id = krcw_proxy.725 days = 1 } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.722
+	title = krcw_proxy_722_t
+	desc = krcw_proxy_722_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	option = {
+		name = krcw_proxy_722_a
+		annex_country = { target = event_target:krcw_proxy_per_rebels transfer_troops = yes }
+		set_politics = { ruling_party = trotskyism elections_allowed = no }
+		if = { limit = { NOT = { has_character = PER_krcw_soltanzadeh } } recruit_character = PER_krcw_soltanzadeh }
+		promote_character = PER_krcw_soltanzadeh
+		load_focus_tree = { tree = krcw_ti_minor_tree keep_completed = no }
+		add_popularity = { ideology = trotskyism popularity = 0.25 }
+		set_cosmetic_tag = KRCW_PER_REB
+		if = { limit = { is_subject = yes } overlord = { end_puppet = PREV } }
+		if = { limit = { is_in_faction = yes } leave_faction = yes }
+		clr_global_flag = krcw_proxy_per
+		add_to_variable = { global.krcw_proxy_active = -1 }
+		clamp_variable = { var = global.krcw_proxy_active min = 0 max = 5 }
+		krcw_tension_up_large = yes
+		if = { limit = { country_exists = FRA } FRA = { country_event = { id = krcw_proxy.802 days = 14 } } }
+		random_country = { news_event = { id = krcw_proxy.726 days = 1 } }
+	}
+}
+
+news_event = {
+	id = krcw_proxy.725
+	title = krcw_proxy_721_t
+	desc = krcw_proxy_721_d
+	picture = GFX_news_event_generic_rally_n
+	major = yes
+	is_triggered_only = yes
+	option = { name = krcw_proxy_725_a }
+}
+
+news_event = {
+	id = krcw_proxy.726
+	title = krcw_proxy_722_t
+	desc = krcw_proxy_722_d
+	picture = GFX_news_event_generic_rally_n
+	major = yes
+	is_triggered_only = yes
+	option = { name = krcw_proxy_726_a }
+}
+
+country_event = {
+	id = krcw_proxy.802
+	title = krcw_proxy_802_t
+	desc = krcw_proxy_802_d
+	picture = GFX_report_event_generic_sign_treaty1
+	is_triggered_only = yes
+	trigger = { country_exists = PER PER = { is_in_faction = no } }
+	option = {
+		name = krcw_proxy_802_a
+		ai_chance = { base = 90 }
+		add_to_faction = PER
+	}
+	option = {
+		name = krcw_proxy_802_b
+		ai_chance = { base = 10 }
+	}
+}
+
+news_event = {
+	id = krcw_proxy.102
+	title = krcw_proxy_102_t
+	desc = krcw_proxy_102_d
+	picture = GFX_news_event_generic_rally_n
+	major = yes
+	is_triggered_only = yes
+	option = { name = krcw_proxy_102_a }
+}
+
+country_event = {
+	id = krcw_proxy.331
+	title = krcw_proxy_331_t
+	desc = krcw_proxy_331_d
+	picture = GFX_report_event_generic_parliament
+	trigger = {
+		tag = PHI
+		has_war = no
+		date > 1949.12.7
+		NOT = { has_global_flag = krcw_proxy_phi_stage1 }
+		NOT = { has_global_flag = krcw_proxy_phi_done }
+		check_variable = { global.krcw_proxy_active < 2 }
+		NOT = { has_global_flag = krcw_proxy_cooldown }
+		OR = { NOT = { has_variable = global.krcw_tension } check_variable = { global.krcw_tension > 45 } }
+	}
+	mean_time_to_happen = { days = 162 }
+	fire_only_once = yes
+	option = {
+		name = krcw_proxy_331_a
+		ai_chance = { base = 70 }
+		set_global_flag = krcw_proxy_phi_stage1
+		add_political_power = 25
+		add_stability = -0.03
+		custom_effect_tooltip = krcw_proxy_stage_tt
+		country_event = { id = krcw_proxy.332 days = 30 random_days = 20 }
+	}
+	option = {
+		name = krcw_proxy_331_b
+		ai_chance = { base = 30 }
+		set_global_flag = krcw_proxy_phi_stage1
+		add_political_power = -40
+		custom_effect_tooltip = krcw_proxy_stage_tt
+		country_event = { id = krcw_proxy.332 days = 67 random_days = 40 }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.332
+	title = krcw_proxy_332_t
+	desc = krcw_proxy_332_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	option = {
+		name = krcw_proxy_332_a
+		set_global_flag = krcw_proxy_phi_stage2
+		add_stability = -0.03
+		krcw_tension_up_small = yes
+	}
+}
+
+country_event = {
+	id = krcw_proxy.333
+	title = krcw_proxy_333_t
+	desc = krcw_proxy_333_d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_phi }
+	option = {
+		name = krcw_proxy_333_a
+		ai_chance = { base = 90 }
+		add_equipment_to_stockpile = { type = infantry_equipment amount = -2500 }
+		add_equipment_to_stockpile = { type = artillery_equipment amount = -120 }
+		add_equipment_to_stockpile = { type = support_equipment amount = -150 }
+		PHI = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 2500 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 120 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 150 }
+		}
+		PHI = { add_timed_idea = { idea = krcw_proxy_mission_usa days = 365 } army_experience = 10 }
+		custom_effect_tooltip = krcw_proxy_arms_tt
+		krcw_tension_up_small = yes
+	}
+	option = {
+		name = krcw_proxy_333_b
+		ai_chance = { base = 0 }
+		if = {
+			limit = { is_in_faction_with = PHI }
+			add_to_war = { targeted_alliance = PHI enemy = event_target:krcw_proxy_phi_rebels hostility_reason = asked_to_join }
+		}
+		krcw_tension_up_large = yes
+		add_war_support = -0.05
+	}
+}
+
+country_event = {
+	id = krcw_proxy.334
+	title = krcw_proxy_334_t
+	desc = krcw_proxy_334_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_phi }
+	option = {
+		name = krcw_proxy_334_a
+		ai_chance = { base = 90 }
+		if = { limit = { country_exists = FRA FRA = { has_war = no } } FRA = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		if = { limit = { country_exists = ENG ENG = { has_war = no } } ENG = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		if = { limit = { country_exists = WCA WCA = { has_war = no } } WCA = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		if = { limit = { country_exists = CHI CHI = { has_war = no } } CHI = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		event_target:krcw_proxy_phi_rebels = {
+			if = { limit = { country_exists = FRA } FRA = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+			if = { limit = { country_exists = ENG } ENG = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+			if = { limit = { country_exists = WCA } WCA = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+			if = { limit = { country_exists = CHI } CHI = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 400 } } }
+		}
+		add_equipment_to_stockpile = { type = infantry_equipment amount = -2500 }
+		add_equipment_to_stockpile = { type = artillery_equipment amount = -120 }
+		add_equipment_to_stockpile = { type = support_equipment amount = -150 }
+		event_target:krcw_proxy_phi_rebels = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 2500 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 120 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 150 }
+		}
+		custom_effect_tooltip = krcw_proxy_brigade_tt
+		custom_effect_tooltip = krcw_proxy_arms_tt
+		krcw_tension_up_small = yes
+	}
+	option = {
+		name = krcw_proxy_334_b
+		ai_chance = { base = 10 }
+		add_equipment_to_stockpile = { type = infantry_equipment amount = -2500 }
+		add_equipment_to_stockpile = { type = artillery_equipment amount = -120 }
+		add_equipment_to_stockpile = { type = support_equipment amount = -150 }
+		event_target:krcw_proxy_phi_rebels = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 2500 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 120 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 150 }
+		}
+		custom_effect_tooltip = krcw_proxy_arms_tt
+	}
+}
+
+country_event = {
+	id = krcw_proxy.3
+	title = krcw_proxy_3_t
+	desc = krcw_proxy_3_d
+	picture = GFX_report_event_generic_rally
+	trigger = {
+		tag = PHI
+		has_war = no
+		has_global_flag = krcw_proxy_phi_stage2
+		NOT = { has_global_flag = krcw_proxy_phi_done }
+	}
+	mean_time_to_happen = { days = 20 }
+	fire_only_once = yes
+	option = {
+		name = krcw_proxy_3_a
+		ai_chance = { base = 100 }
+		set_global_flag = krcw_proxy_phi_done
+		set_global_flag = krcw_proxy_phi
+		add_to_variable = { global.krcw_proxy_active = 1 }
+		set_global_flag = { flag = krcw_proxy_cooldown days = 300 value = 1 }
+		add_popularity = { ideology = trotskyism popularity = 0.15 }
+		start_civil_war = {
+			ideology = trotskyism
+			# 0.35 rebels were crushed before any bloc could intervene; KR uses 0.5 for its Greek rising
+			size = 0.45
+			# no fleet: a rebel navy let the losing side hold out on islands and the war never ended
+			navy_ratio = 0
+			# a fixed, contiguous mainland block the rebels' patron can reach (proxy_prelude.REBELS)
+			capital = 1952
+			states = { 1952 872 1949 1953 1948 }
+			save_global_event_target_as = krcw_proxy_phi_rebels
+			# CWIC sets CIVIL_WAR_INVOLVEMENT_MIN_TENSION = 0 (IC_Defines.lua), so the engine may pull
+			# other powers into any civil war, and the revolter could be offered a faction seat. Keep the
+			# rebels out of every faction so the war stays a proxy war (and can receive volunteers).
+			set_rule = { can_join_factions = no }
+			# the rebels' own name and flag: the revolter copies the host's cosmetic tag otherwise, and
+			# both sides of the Persian war were called the Imperial State of Iran
+			set_cosmetic_tag = KRCW_PHI_REB
+		}
+		# two years before the war is settled one way or the other (krcw_proxy.7xx)
+		set_global_flag = { flag = krcw_proxy_phi_clock days = 730 value = 1 }
+		# a year of guerrilla resilience so the war lasts long enough for outside help to matter
+		# (TFR gives a losing civil-war side a defence buff for the same reason)
+		event_target:krcw_proxy_phi_rebels = { add_timed_idea = { idea = krcw_proxy_insurgency days = 365 } }
+		# a belligerent movement in the ceasefire regime (patch_un.py / geneva.py), not an ordinary state
+		event_target:krcw_proxy_phi_rebels = { add_ideas = unrecognized_state }
+		# the rebels' own leader and portrait (proxy_prelude.LEADERS); without one the engine invents a nameless leader
+		event_target:krcw_proxy_phi_rebels = {
+			set_politics = { ruling_party = trotskyism elections_allowed = no }
+			if = { limit = { NOT = { has_character = PHI_krcw_evangelista } } recruit_character = PHI_krcw_evangelista }
+			promote_character = PHI_krcw_evangelista
+		}
+		# each side asks its patron for troops
+		if = { limit = { country_exists = USA } USA = { country_event = { id = krcw_proxy.333 days = 10 } } }
+		if = { limit = { country_exists = CHI } CHI = { country_event = { id = krcw_proxy.334 days = 20 } } }
+		krcw_tension_up_small = yes
+		custom_effect_tooltip = krcw_proxy_tt
+		random_country = { news_event = { id = krcw_proxy.103 days = 1 } }
+	}
+	option = {
+		name = krcw_proxy_3_b
+		ai_chance = { base = 0 }
+		set_global_flag = krcw_proxy_phi_done
+		add_political_power = -100
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	id = krcw_proxy.631
+	title = krcw_proxy_631_t
+	desc = krcw_proxy_631_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_phi has_event_target = krcw_proxy_phi_rebels PHI = { has_war = yes } }
+	option = {
+		name = krcw_proxy_631_a
+		ai_chance = { base = 85 }
+		add_to_war = { targeted_alliance = PHI enemy = event_target:krcw_proxy_phi_rebels hostility_reason = asked_to_join }
+		krcw_tension_up_medium = yes
+		add_war_support = -0.03
+	}
+	option = {
+		name = krcw_proxy_631_b
+		ai_chance = { base = 15 }
+		PHI = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_resentment } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.731
+	title = krcw_proxy_731_t
+	desc = krcw_proxy_731_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	option = {
+		name = krcw_proxy_731_a
+		annex_country = { target = event_target:krcw_proxy_phi_rebels transfer_troops = yes }
+		add_stability = 0.05
+		add_war_support = 0.03
+		clr_global_flag = krcw_proxy_phi
+		add_to_variable = { global.krcw_proxy_active = -1 }
+		clamp_variable = { var = global.krcw_proxy_active min = 0 max = 5 }
+		random_country = { news_event = { id = krcw_proxy.735 days = 1 } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.732
+	title = krcw_proxy_732_t
+	desc = krcw_proxy_732_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	option = {
+		name = krcw_proxy_732_a
+		annex_country = { target = event_target:krcw_proxy_phi_rebels transfer_troops = yes }
+		set_politics = { ruling_party = trotskyism elections_allowed = no }
+		if = { limit = { NOT = { has_character = PHI_krcw_evangelista } } recruit_character = PHI_krcw_evangelista }
+		promote_character = PHI_krcw_evangelista
+		load_focus_tree = { tree = krcw_ti_minor_tree keep_completed = no }
+		add_popularity = { ideology = trotskyism popularity = 0.25 }
+		set_cosmetic_tag = KRCW_PHI_REB
+		if = { limit = { is_subject = yes } overlord = { end_puppet = PREV } }
+		if = { limit = { is_in_faction = yes } leave_faction = yes }
+		clr_global_flag = krcw_proxy_phi
+		add_to_variable = { global.krcw_proxy_active = -1 }
+		clamp_variable = { var = global.krcw_proxy_active min = 0 max = 5 }
+		krcw_tension_up_large = yes
+		if = { limit = { country_exists = FRA } FRA = { country_event = { id = krcw_proxy.803 days = 14 } } }
+		random_country = { news_event = { id = krcw_proxy.736 days = 1 } }
+	}
+}
+
+news_event = {
+	id = krcw_proxy.735
+	title = krcw_proxy_731_t
+	desc = krcw_proxy_731_d
+	picture = GFX_news_event_generic_rally_n
+	major = yes
+	is_triggered_only = yes
+	option = { name = krcw_proxy_735_a }
+}
+
+news_event = {
+	id = krcw_proxy.736
+	title = krcw_proxy_732_t
+	desc = krcw_proxy_732_d
+	picture = GFX_news_event_generic_rally_n
+	major = yes
+	is_triggered_only = yes
+	option = { name = krcw_proxy_736_a }
+}
+
+country_event = {
+	id = krcw_proxy.803
+	title = krcw_proxy_803_t
+	desc = krcw_proxy_803_d
+	picture = GFX_report_event_generic_sign_treaty1
+	is_triggered_only = yes
+	trigger = { country_exists = PHI PHI = { is_in_faction = no } }
+	option = {
+		name = krcw_proxy_803_a
+		ai_chance = { base = 90 }
+		add_to_faction = PHI
+	}
+	option = {
+		name = krcw_proxy_803_b
+		ai_chance = { base = 10 }
+	}
+}
+
+news_event = {
+	id = krcw_proxy.103
+	title = krcw_proxy_103_t
+	desc = krcw_proxy_103_d
+	picture = GFX_news_event_generic_rally_n
+	major = yes
+	is_triggered_only = yes
+	option = { name = krcw_proxy_103_a }
+}
+
+country_event = {
+	id = krcw_proxy.341
+	title = krcw_proxy_341_t
+	desc = krcw_proxy_341_d
+	picture = GFX_report_event_generic_parliament
+	trigger = {
+		tag = BRM
+		has_war = no
+		date > 1950.5.10
+		NOT = { has_global_flag = krcw_proxy_brm_stage1 }
+		NOT = { has_global_flag = krcw_proxy_brm_done }
+		check_variable = { global.krcw_proxy_active < 2 }
+		NOT = { has_global_flag = krcw_proxy_cooldown }
+		OR = { NOT = { has_variable = global.krcw_tension } check_variable = { global.krcw_tension > 45 } }
+	}
+	mean_time_to_happen = { days = 162 }
+	fire_only_once = yes
+	option = {
+		name = krcw_proxy_341_a
+		ai_chance = { base = 70 }
+		set_global_flag = krcw_proxy_brm_stage1
+		add_political_power = 25
+		add_stability = -0.03
+		custom_effect_tooltip = krcw_proxy_stage_tt
+		country_event = { id = krcw_proxy.342 days = 30 random_days = 20 }
+	}
+	option = {
+		name = krcw_proxy_341_b
+		ai_chance = { base = 30 }
+		set_global_flag = krcw_proxy_brm_stage1
+		add_political_power = -40
+		custom_effect_tooltip = krcw_proxy_stage_tt
+		country_event = { id = krcw_proxy.342 days = 67 random_days = 40 }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.342
+	title = krcw_proxy_342_t
+	desc = krcw_proxy_342_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	option = {
+		name = krcw_proxy_342_a
+		set_global_flag = krcw_proxy_brm_stage2
+		add_stability = -0.03
+		krcw_tension_up_small = yes
+	}
+}
+
+country_event = {
+	id = krcw_proxy.343
+	title = krcw_proxy_343_t
+	desc = krcw_proxy_343_d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_brm }
+	option = {
+		name = krcw_proxy_343_a
+		ai_chance = { base = 90 }
+		add_equipment_to_stockpile = { type = infantry_equipment amount = -2500 }
+		add_equipment_to_stockpile = { type = artillery_equipment amount = -120 }
+		add_equipment_to_stockpile = { type = support_equipment amount = -150 }
+		BRM = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 2500 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 120 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 150 }
+		}
+		BRM = { add_timed_idea = { idea = krcw_proxy_mission_chi days = 365 } army_experience = 10 }
+		custom_effect_tooltip = krcw_proxy_arms_tt
+		krcw_tension_up_small = yes
+	}
+	option = {
+		name = krcw_proxy_343_b
+		ai_chance = { base = 0 }
+		if = {
+			limit = { is_in_faction_with = BRM }
+			add_to_war = { targeted_alliance = BRM enemy = event_target:krcw_proxy_brm_rebels hostility_reason = asked_to_join }
+		}
+		krcw_tension_up_large = yes
+		add_war_support = -0.05
+	}
+}
+
+country_event = {
+	id = krcw_proxy.344
+	title = krcw_proxy_344_t
+	desc = krcw_proxy_344_d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_brm }
+	option = {
+		name = krcw_proxy_344_a
+		ai_chance = { base = 90 }
+		add_equipment_to_stockpile = { type = infantry_equipment amount = -2500 }
+		add_equipment_to_stockpile = { type = artillery_equipment amount = -120 }
+		add_equipment_to_stockpile = { type = support_equipment amount = -150 }
+		event_target:krcw_proxy_brm_rebels = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 2500 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 120 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 150 }
+		}
+		event_target:krcw_proxy_brm_rebels = { add_timed_idea = { idea = krcw_proxy_mission_sov days = 365 } army_experience = 10 }
+		custom_effect_tooltip = krcw_proxy_arms_tt
+		krcw_tension_up_small = yes
+	}
+	option = {
+		name = krcw_proxy_344_b
+		ai_chance = { base = 5 }
+		add_political_power = 25
+	}
+}
+
+country_event = {
+	id = krcw_proxy.4
+	title = krcw_proxy_4_t
+	desc = krcw_proxy_4_d
+	picture = GFX_report_event_generic_rally
+	trigger = {
+		tag = BRM
+		has_war = no
+		has_global_flag = krcw_proxy_brm_stage2
+		NOT = { has_global_flag = krcw_proxy_brm_done }
+	}
+	mean_time_to_happen = { days = 20 }
+	fire_only_once = yes
+	option = {
+		name = krcw_proxy_4_a
+		ai_chance = { base = 100 }
+		set_global_flag = krcw_proxy_brm_done
+		set_global_flag = krcw_proxy_brm
+		add_to_variable = { global.krcw_proxy_active = 1 }
+		set_global_flag = { flag = krcw_proxy_cooldown days = 300 value = 1 }
+		add_popularity = { ideology = nationalist popularity = 0.15 }
+		start_civil_war = {
+			ideology = nationalist
+			# 0.35 rebels were crushed before any bloc could intervene; KR uses 0.5 for its Greek rising
+			size = 0.45
+			# no fleet: a rebel navy let the losing side hold out on islands and the war never ended
+			navy_ratio = 0
+			# a fixed, contiguous mainland block the rebels' patron can reach (proxy_prelude.REBELS)
+			capital = 1996
+			states = { 1996 787 1265 1264 }
+			save_global_event_target_as = krcw_proxy_brm_rebels
+			# CWIC sets CIVIL_WAR_INVOLVEMENT_MIN_TENSION = 0 (IC_Defines.lua), so the engine may pull
+			# other powers into any civil war, and the revolter could be offered a faction seat. Keep the
+			# rebels out of every faction so the war stays a proxy war (and can receive volunteers).
+			set_rule = { can_join_factions = no }
+			# the rebels' own name and flag: the revolter copies the host's cosmetic tag otherwise, and
+			# both sides of the Persian war were called the Imperial State of Iran
+			set_cosmetic_tag = KRCW_BRM_REB
+		}
+		# two years before the war is settled one way or the other (krcw_proxy.7xx)
+		set_global_flag = { flag = krcw_proxy_brm_clock days = 730 value = 1 }
+		# a year of guerrilla resilience so the war lasts long enough for outside help to matter
+		# (TFR gives a losing civil-war side a defence buff for the same reason)
+		event_target:krcw_proxy_brm_rebels = { add_timed_idea = { idea = krcw_proxy_insurgency days = 365 } }
+		# a belligerent movement in the ceasefire regime (patch_un.py / geneva.py), not an ordinary state
+		event_target:krcw_proxy_brm_rebels = { add_ideas = unrecognized_state }
+		# the rebels' own leader and portrait (proxy_prelude.LEADERS); without one the engine invents a nameless leader
+		event_target:krcw_proxy_brm_rebels = {
+			set_politics = { ruling_party = nationalist elections_allowed = no }
+			if = { limit = { NOT = { has_character = SHA_krcw_shwe_thaik } } recruit_character = SHA_krcw_shwe_thaik }
+			promote_character = SHA_krcw_shwe_thaik
+		}
+		# each side asks its patron for troops
+		if = { limit = { country_exists = CHI } CHI = { country_event = { id = krcw_proxy.343 days = 10 } } }
+		if = { limit = { country_exists = SOV } SOV = { country_event = { id = krcw_proxy.344 days = 20 } } }
+		krcw_tension_up_small = yes
+		custom_effect_tooltip = krcw_proxy_tt
+		random_country = { news_event = { id = krcw_proxy.104 days = 1 } }
+	}
+	option = {
+		name = krcw_proxy_4_b
+		ai_chance = { base = 0 }
+		set_global_flag = krcw_proxy_brm_done
+		add_political_power = -100
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	id = krcw_proxy.641
+	title = krcw_proxy_641_t
+	desc = krcw_proxy_641_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_brm has_event_target = krcw_proxy_brm_rebels BRM = { has_war = yes } }
+	option = {
+		name = krcw_proxy_641_a
+		ai_chance = { base = 85 }
+		add_to_war = { targeted_alliance = BRM enemy = event_target:krcw_proxy_brm_rebels hostility_reason = asked_to_join }
+		krcw_tension_up_medium = yes
+		add_war_support = -0.03
+	}
+	option = {
+		name = krcw_proxy_641_b
+		ai_chance = { base = 15 }
+		BRM = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_resentment } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.741
+	title = krcw_proxy_741_t
+	desc = krcw_proxy_741_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	option = {
+		name = krcw_proxy_741_a
+		annex_country = { target = event_target:krcw_proxy_brm_rebels transfer_troops = yes }
+		add_stability = 0.05
+		add_war_support = 0.03
+		clr_global_flag = krcw_proxy_brm
+		add_to_variable = { global.krcw_proxy_active = -1 }
+		clamp_variable = { var = global.krcw_proxy_active min = 0 max = 5 }
+		random_country = { news_event = { id = krcw_proxy.745 days = 1 } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.742
+	title = krcw_proxy_742_t
+	desc = krcw_proxy_742_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	option = {
+		name = krcw_proxy_742_a
+		annex_country = { target = event_target:krcw_proxy_brm_rebels transfer_troops = no }
+		1996 = { add_core_of = SHA }
+		787 = { add_core_of = SHA }
+		1265 = { add_core_of = SHA }
+		1264 = { add_core_of = SHA }
+		release = SHA
+		SHA = {
+			set_cosmetic_tag = KRCW_BRM_REB
+			set_politics = { ruling_party = nationalist elections_allowed = no }
+			if = { limit = { NOT = { has_character = SHA_krcw_shwe_thaik } } recruit_character = SHA_krcw_shwe_thaik }
+			promote_character = SHA_krcw_shwe_thaik
+			load_focus_tree = { tree = krcw_nonaligned_tree keep_completed = no }
+		}
+		if = { limit = { country_exists = SOV } SOV = { country_event = { id = krcw_proxy.804 days = 7 } } }
+		add_stability = -0.10
+		clr_global_flag = krcw_proxy_brm
+		add_to_variable = { global.krcw_proxy_active = -1 }
+		clamp_variable = { var = global.krcw_proxy_active min = 0 max = 5 }
+		krcw_tension_up_medium = yes
+		random_country = { news_event = { id = krcw_proxy.746 days = 1 } }
+	}
+}
+
+news_event = {
+	id = krcw_proxy.745
+	title = krcw_proxy_741_t
+	desc = krcw_proxy_741_d
+	picture = GFX_news_event_generic_rally_n
+	major = yes
+	is_triggered_only = yes
+	option = { name = krcw_proxy_745_a }
+}
+
+news_event = {
+	id = krcw_proxy.746
+	title = krcw_proxy_742_t
+	desc = krcw_proxy_742_d
+	picture = GFX_news_event_generic_rally_n
+	major = yes
+	is_triggered_only = yes
+	option = { name = krcw_proxy_746_a }
+}
+
+country_event = {
+	id = krcw_proxy.804
+	title = krcw_proxy_804_t
+	desc = krcw_proxy_804_d
+	picture = GFX_report_event_generic_sign_treaty1
+	is_triggered_only = yes
+	trigger = { country_exists = SHA SHA = { is_in_faction = no } }
+	option = {
+		name = krcw_proxy_804_a
+		ai_chance = { base = 90 }
+		add_to_faction = SHA
+	}
+	option = {
+		name = krcw_proxy_804_b
+		ai_chance = { base = 10 }
+	}
+}
+
+news_event = {
+	id = krcw_proxy.104
+	title = krcw_proxy_104_t
+	desc = krcw_proxy_104_d
+	picture = GFX_news_event_generic_rally_n
+	major = yes
+	is_triggered_only = yes
+	option = { name = krcw_proxy_104_a }
+}
+
+country_event = {
+	id = krcw_proxy.351
+	title = krcw_proxy_351_t
+	desc = krcw_proxy_351_d
+	picture = GFX_report_event_generic_parliament
+	trigger = {
+		tag = MEX
+		has_war = no
+		date > 1950.10.12
+		NOT = { has_global_flag = krcw_proxy_mex_stage1 }
+		NOT = { has_global_flag = krcw_proxy_mex_done }
+		check_variable = { global.krcw_proxy_active < 2 }
+		NOT = { has_global_flag = krcw_proxy_cooldown }
+		OR = { NOT = { has_variable = global.krcw_tension } check_variable = { global.krcw_tension > 45 } }
+	}
+	mean_time_to_happen = { days = 162 }
+	fire_only_once = yes
+	option = {
+		name = krcw_proxy_351_a
+		ai_chance = { base = 70 }
+		set_global_flag = krcw_proxy_mex_stage1
+		add_political_power = 25
+		add_stability = -0.03
+		custom_effect_tooltip = krcw_proxy_stage_tt
+		country_event = { id = krcw_proxy.352 days = 30 random_days = 20 }
+	}
+	option = {
+		name = krcw_proxy_351_b
+		ai_chance = { base = 30 }
+		set_global_flag = krcw_proxy_mex_stage1
+		add_political_power = -40
+		custom_effect_tooltip = krcw_proxy_stage_tt
+		country_event = { id = krcw_proxy.352 days = 67 random_days = 40 }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.352
+	title = krcw_proxy_352_t
+	desc = krcw_proxy_352_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	option = {
+		name = krcw_proxy_352_a
+		set_global_flag = krcw_proxy_mex_stage2
+		add_stability = -0.03
+		krcw_tension_up_small = yes
+	}
+}
+
+country_event = {
+	id = krcw_proxy.353
+	title = krcw_proxy_353_t
+	desc = krcw_proxy_353_d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_mex }
+	option = {
+		name = krcw_proxy_353_a
+		ai_chance = { base = 90 }
+		add_equipment_to_stockpile = { type = infantry_equipment amount = -2500 }
+		add_equipment_to_stockpile = { type = artillery_equipment amount = -120 }
+		add_equipment_to_stockpile = { type = support_equipment amount = -150 }
+		MEX = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 2500 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 120 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 150 }
+		}
+		MEX = { add_timed_idea = { idea = krcw_proxy_mission_usa days = 365 } army_experience = 10 }
+		custom_effect_tooltip = krcw_proxy_arms_tt
+		krcw_tension_up_small = yes
+	}
+	option = {
+		name = krcw_proxy_353_b
+		ai_chance = { base = 0 }
+		if = {
+			limit = { is_in_faction_with = MEX }
+			add_to_war = { targeted_alliance = MEX enemy = event_target:krcw_proxy_mex_rebels hostility_reason = asked_to_join }
+		}
+		krcw_tension_up_large = yes
+		add_war_support = -0.05
+	}
+}
+
+country_event = {
+	id = krcw_proxy.354
+	title = krcw_proxy_354_t
+	desc = krcw_proxy_354_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_mex }
+	option = {
+		name = krcw_proxy_354_a
+		ai_chance = { base = 90 }
+		if = { limit = { country_exists = FRA FRA = { has_war = no } } FRA = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		if = { limit = { country_exists = ENG ENG = { has_war = no } } ENG = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		if = { limit = { country_exists = WCA WCA = { has_war = no } } WCA = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		if = { limit = { country_exists = CHI CHI = { has_war = no } } CHI = {
+			if = { limit = { NOT = { has_idea = krcw_volunteer_mobilisation } } add_ideas = krcw_volunteer_mobilisation }
+			set_country_flag = krcw_volunteers_sent
+		} }
+		event_target:krcw_proxy_mex_rebels = {
+			if = { limit = { country_exists = FRA } FRA = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+			if = { limit = { country_exists = ENG } ENG = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+			if = { limit = { country_exists = WCA } WCA = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 400 } } }
+			if = { limit = { country_exists = CHI } CHI = { add_ai_strategy = { type = send_volunteers_desire id = PREV value = 200 } } }
+		}
+		add_equipment_to_stockpile = { type = infantry_equipment amount = -2500 }
+		add_equipment_to_stockpile = { type = artillery_equipment amount = -120 }
+		add_equipment_to_stockpile = { type = support_equipment amount = -150 }
+		event_target:krcw_proxy_mex_rebels = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 2500 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 120 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 150 }
+		}
+		custom_effect_tooltip = krcw_proxy_brigade_tt
+		custom_effect_tooltip = krcw_proxy_arms_tt
+		krcw_tension_up_small = yes
+	}
+	option = {
+		name = krcw_proxy_354_b
+		ai_chance = { base = 10 }
+		add_equipment_to_stockpile = { type = infantry_equipment amount = -2500 }
+		add_equipment_to_stockpile = { type = artillery_equipment amount = -120 }
+		add_equipment_to_stockpile = { type = support_equipment amount = -150 }
+		event_target:krcw_proxy_mex_rebels = {
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 2500 }
+			add_equipment_to_stockpile = { type = artillery_equipment amount = 120 }
+			add_equipment_to_stockpile = { type = support_equipment amount = 150 }
+		}
+		custom_effect_tooltip = krcw_proxy_arms_tt
+	}
+}
+
+country_event = {
+	id = krcw_proxy.5
+	title = krcw_proxy_5_t
+	desc = krcw_proxy_5_d
+	picture = GFX_report_event_generic_rally
+	trigger = {
+		tag = MEX
+		has_war = no
+		has_global_flag = krcw_proxy_mex_stage2
+		NOT = { has_global_flag = krcw_proxy_mex_done }
+	}
+	mean_time_to_happen = { days = 20 }
+	fire_only_once = yes
+	option = {
+		name = krcw_proxy_5_a
+		ai_chance = { base = 100 }
+		set_global_flag = krcw_proxy_mex_done
+		set_global_flag = krcw_proxy_mex
+		add_to_variable = { global.krcw_proxy_active = 1 }
+		set_global_flag = { flag = krcw_proxy_cooldown days = 300 value = 1 }
+		add_popularity = { ideology = trotskyism popularity = 0.15 }
+		start_civil_war = {
+			ideology = trotskyism
+			# 0.35 rebels were crushed before any bloc could intervene; KR uses 0.5 for its Greek rising
+			size = 0.45
+			# no fleet: a rebel navy let the losing side hold out on islands and the war never ended
+			navy_ratio = 0
+			# a fixed, contiguous mainland block the rebels' patron can reach (proxy_prelude.REBELS)
+			capital = 1058
+			states = { 1058 485 }
+			save_global_event_target_as = krcw_proxy_mex_rebels
+			# CWIC sets CIVIL_WAR_INVOLVEMENT_MIN_TENSION = 0 (IC_Defines.lua), so the engine may pull
+			# other powers into any civil war, and the revolter could be offered a faction seat. Keep the
+			# rebels out of every faction so the war stays a proxy war (and can receive volunteers).
+			set_rule = { can_join_factions = no }
+			# the rebels' own name and flag: the revolter copies the host's cosmetic tag otherwise, and
+			# both sides of the Persian war were called the Imperial State of Iran
+			set_cosmetic_tag = KRCW_MEX_REB
+		}
+		# two years before the war is settled one way or the other (krcw_proxy.7xx)
+		set_global_flag = { flag = krcw_proxy_mex_clock days = 730 value = 1 }
+		# a year of guerrilla resilience so the war lasts long enough for outside help to matter
+		# (TFR gives a losing civil-war side a defence buff for the same reason)
+		event_target:krcw_proxy_mex_rebels = { add_timed_idea = { idea = krcw_proxy_insurgency days = 365 } }
+		# a belligerent movement in the ceasefire regime (patch_un.py / geneva.py), not an ordinary state
+		event_target:krcw_proxy_mex_rebels = { add_ideas = unrecognized_state }
+		# the rebels' own leader and portrait (proxy_prelude.LEADERS); without one the engine invents a nameless leader
+		event_target:krcw_proxy_mex_rebels = {
+			set_politics = { ruling_party = trotskyism elections_allowed = no }
+			if = { limit = { NOT = { has_character = MEX_krcw_lombardo } } recruit_character = MEX_krcw_lombardo }
+			promote_character = MEX_krcw_lombardo
+		}
+		# each side asks its patron for troops
+		if = { limit = { country_exists = USA } USA = { country_event = { id = krcw_proxy.353 days = 10 } } }
+		if = { limit = { country_exists = WCA } WCA = { country_event = { id = krcw_proxy.354 days = 20 } } }
+		krcw_tension_up_small = yes
+		custom_effect_tooltip = krcw_proxy_tt
+		random_country = { news_event = { id = krcw_proxy.105 days = 1 } }
+	}
+	option = {
+		name = krcw_proxy_5_b
+		ai_chance = { base = 0 }
+		set_global_flag = krcw_proxy_mex_done
+		add_political_power = -100
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	id = krcw_proxy.651
+	title = krcw_proxy_651_t
+	desc = krcw_proxy_651_d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	trigger = { has_global_flag = krcw_proxy_mex has_event_target = krcw_proxy_mex_rebels MEX = { has_war = yes } }
+	option = {
+		name = krcw_proxy_651_a
+		ai_chance = { base = 85 }
+		add_to_war = { targeted_alliance = MEX enemy = event_target:krcw_proxy_mex_rebels hostility_reason = asked_to_join }
+		krcw_tension_up_medium = yes
+		add_war_support = -0.03
+	}
+	option = {
+		name = krcw_proxy_651_b
+		ai_chance = { base = 15 }
+		MEX = { add_opinion_modifier = { target = ROOT modifier = krcw_vol_resentment } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.751
+	title = krcw_proxy_751_t
+	desc = krcw_proxy_751_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	option = {
+		name = krcw_proxy_751_a
+		annex_country = { target = event_target:krcw_proxy_mex_rebels transfer_troops = yes }
+		add_stability = 0.05
+		add_war_support = 0.03
+		clr_global_flag = krcw_proxy_mex
+		add_to_variable = { global.krcw_proxy_active = -1 }
+		clamp_variable = { var = global.krcw_proxy_active min = 0 max = 5 }
+		random_country = { news_event = { id = krcw_proxy.755 days = 1 } }
+	}
+}
+
+country_event = {
+	id = krcw_proxy.752
+	title = krcw_proxy_752_t
+	desc = krcw_proxy_752_d
+	picture = GFX_report_event_generic_rally
+	is_triggered_only = yes
+	option = {
+		name = krcw_proxy_752_a
+		annex_country = { target = event_target:krcw_proxy_mex_rebels transfer_troops = yes }
+		set_politics = { ruling_party = trotskyism elections_allowed = no }
+		if = { limit = { NOT = { has_character = MEX_krcw_lombardo } } recruit_character = MEX_krcw_lombardo }
+		promote_character = MEX_krcw_lombardo
+		set_country_flag = krcw_mex_left_turn
+		add_popularity = { ideology = trotskyism popularity = 0.25 }
+		set_cosmetic_tag = KRCW_MEX_REB
+		if = { limit = { is_subject = yes } overlord = { end_puppet = PREV } }
+		if = { limit = { is_in_faction = yes } leave_faction = yes }
+		clr_global_flag = krcw_proxy_mex
+		add_to_variable = { global.krcw_proxy_active = -1 }
+		clamp_variable = { var = global.krcw_proxy_active min = 0 max = 5 }
+		krcw_tension_up_large = yes
+		if = { limit = { country_exists = FRA } FRA = { country_event = { id = krcw_proxy.805 days = 14 } } }
+		random_country = { news_event = { id = krcw_proxy.756 days = 1 } }
+	}
+}
+
+news_event = {
+	id = krcw_proxy.755
+	title = krcw_proxy_751_t
+	desc = krcw_proxy_751_d
+	picture = GFX_news_event_generic_rally_n
+	major = yes
+	is_triggered_only = yes
+	option = { name = krcw_proxy_755_a }
+}
+
+news_event = {
+	id = krcw_proxy.756
+	title = krcw_proxy_752_t
+	desc = krcw_proxy_752_d
+	picture = GFX_news_event_generic_rally_n
+	major = yes
+	is_triggered_only = yes
+	option = { name = krcw_proxy_756_a }
+}
+
+country_event = {
+	id = krcw_proxy.805
+	title = krcw_proxy_805_t
+	desc = krcw_proxy_805_d
+	picture = GFX_report_event_generic_sign_treaty1
+	is_triggered_only = yes
+	trigger = { country_exists = MEX MEX = { is_in_faction = no } }
+	option = {
+		name = krcw_proxy_805_a
+		ai_chance = { base = 90 }
+		add_to_faction = MEX
+	}
+	option = {
+		name = krcw_proxy_805_b
+		ai_chance = { base = 10 }
+	}
+}
+
+news_event = {
+	id = krcw_proxy.105
+	title = krcw_proxy_105_t
+	desc = krcw_proxy_105_d
+	picture = GFX_news_event_generic_rally_n
+	major = yes
+	is_triggered_only = yes
+	option = { name = krcw_proxy_105_a }
+}

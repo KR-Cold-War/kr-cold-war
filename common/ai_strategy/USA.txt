@@ -1,0 +1,488 @@
+# KRCW (build/patch_residue.py): 15 CWIC AI strategies gated while KRCW_active
+######BEFRIEND########
+# This will prompt USA to try and support countries who are fighting against extremist elements.
+# Should improve alt-history situations like democratic Germany fighting the USSR etc.
+USA_protect_against_extremism = { # Reverse strategy
+	reversed = yes
+
+	enable_reverse = {
+		USA = {
+			has_government = democratic
+		}
+	}
+
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		NOT = { tag = USA }
+		NOT = { has_government = communism }
+		NOT = { has_government = fascism }
+		OR = {
+			capital_scope = {
+				is_on_continent = europe # lets avoid smaller conflicts elsewhere
+			}
+			AND = {
+				num_of_civilian_factories > 10
+				is_subject = no
+			}
+		}
+		any_enemy_country = {
+			NOT = { tag = USA }
+			OR = {
+				has_government = communism
+				has_government = fascism
+			}
+		}
+	}
+
+	abort = {
+		OR = {
+			has_war = no
+			OR = {
+				has_government = communism
+				has_government = fascism
+			}
+			USA = {
+				OR = {
+					NOT = {	has_government = democratic }
+					has_war_with = ROOT
+				}
+			}
+		}
+	}
+
+	ai_strategy = {
+		type = support
+		id = "USA"
+		value = 100
+	}
+}
+########CONQUER#############
+USA_gang_up_SOV_with_NATO = {
+	allowed = {
+		tag = USA
+	}
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		tag = USA
+		date > 1949.1.1
+	}
+	abort = { always = no }
+	# help fronts in europe & africa
+	ai_strategy = {
+		type = area_priority
+		value = 100
+		id = europe
+	}
+	ai_strategy = {
+		type = area_priority
+		value = 100
+		id = asia
+	}
+	ai_strategy = {
+		type = area_priority
+		value = 20
+		id = africa
+	}
+}
+########################################################################
+# FORWARD DEPLOYMENT (NATO leader): prioritise the central European front and
+# Korea in peacetime. Yields automatically to USA_defend_the_coasts, which sets
+# strongly negative overseas area_priority when the homeland is threatened.
+USA_forward_deployment = {
+	allowed = { tag = USA }
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		tag = USA
+		date > 1949.1.1
+		NOT = {
+			any_neighbor_country = { has_war_with = ROOT }
+		}
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = { type = area_priority id = europe value = 150 }
+	ai_strategy = { type = area_priority id = korea  value = 100 }
+	ai_strategy = { type = area_priority id = asia   value = 60 }
+}
+########################################################################
+# COLD WAR STANCE vs the Eastern Bloc.
+# NOTE: this intentionally does NOT use "prepare_for_war". prepare_for_war
+# orders the AI to mass troops on the TARGET'S BORDER; the USA shares no land
+# border with SOV/DDR/PRC, so the border/front planner dereferenced a null
+# border on an AI worker thread -> EXCEPTION_ACCESS_VIOLATION CTD (this was the
+# old SOV_is_bad / DDR_is_bad / PRC_is_bad crash). Use diplomatic hostility
+# (antagonize) + containment instead; actual troop positioning in Europe is
+# handled by USA_gang_up_SOV_with_NATO and the unit-buffer strategies below.
+########################################################################
+USA_cold_war_stance = {
+	allowed = { tag = USA }
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		tag = USA
+		date > 1949.1.1
+	}
+	abort = { always = no }
+	ai_strategy = { type = antagonize id = SOV value = 120 }
+	ai_strategy = { type = contain   id = SOV value = 120 }
+	ai_strategy = { type = consider_weak id = SOV value = -50 }
+}
+USA_cold_war_stance_DDR = {
+	allowed = { tag = USA }
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		tag = USA
+		country_exists = DDR
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = { type = antagonize id = DDR value = 100 }
+	ai_strategy = { type = contain   id = DDR value = 100 }
+}
+USA_cold_war_stance_PRC = {
+	allowed = { tag = USA }
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		tag = USA
+		country_exists = PRC
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = { type = antagonize id = PRC value = 100 }
+	ai_strategy = { type = contain   id = PRC value = 100 }
+}
+# antagonize
+# build_ship
+# build_army
+USA_build_peacetime_army = {
+	allowed = { tag = USA }
+	enable = { NOT = { has_global_flag = KRCW_active }  
+		date > 1949.1.1
+		has_war = no
+		has_army_manpower = { size < 540000 }
+	}
+	abort_when_not_enabled = yes
+	abort = { always = no }
+	ai_strategy = { type = build_army id = motorized value = 100 }
+	ai_strategy = { type = build_army id = infantry value = 90 }
+	ai_strategy = { type = force_build_armies value = 90 }
+}
+USA_build_wartime_army = {
+	allowed = { tag = USA }
+	enable = { NOT = { has_global_flag = KRCW_active }  
+		date > 1949.1.1
+		has_war = yes
+		has_army_manpower = { size < 2000000 }
+	}
+	abort_when_not_enabled = yes
+	abort = { always = no }
+	ai_strategy = { type = build_army id = motorized value = 100 }
+	ai_strategy = { type = build_army id = infantry value = 90 }
+	ai_strategy = { type = force_build_armies value = 90 }
+}
+USA_division_production = {
+	allowed = { original_tag = USA }
+	# (was enable date>1959 AND abort date>1959 - contradictory, so it never ran.)
+	enable = { NOT = { has_global_flag = KRCW_active }  always = yes }
+	abort = { always = no }
+	# USA fields the modern Division-86 mix - templates in common/ai_templates/templates_USA.txt.
+	# These ids are USA-only roles defined there, so they don't disturb other countries.
+	ai_strategy = { type = role_ratio id = usa_infantry value = 50 }
+	ai_strategy = { type = role_ratio id = usa_mech     value = 40 }
+	ai_strategy = { type = role_ratio id = usa_armor    value = 30 }
+	ai_strategy = { type = role_ratio id = usa_marine   value = 4 }
+	ai_strategy = { type = role_ratio id = usa_airborne value = 4 }
+	ai_strategy = { type = role_ratio id = usa_mountain value = 3 }
+}
+########unit_ratio##########
+USA_unit_production = {
+	allowed = {
+		original_tag = USA
+	}
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		always = yes
+	}
+	abort = {
+		always = no
+	}
+	
+	ai_strategy = {
+		type = role_ratio
+		id = garrison
+		value = 5
+	}
+
+	# Old garrison system against resistance
+	# ai_strategy = { 
+	# 	type = role_ratio
+	# 	id = suppression
+	# 	value = 3
+	# }
+
+	
+	
+	#Air unit factors
+	ai_strategy = {
+		type = unit_ratio
+		id = fighter
+		value = 40
+	}
+	
+	ai_strategy = {
+		type = unit_ratio
+		id = cas
+		value = 2 #because doctrine this = 15
+	}
+	
+	ai_strategy = {
+		type = unit_ratio
+		id = tactical_bomber
+		value = 5
+	}
+	
+	ai_strategy = {
+		type = unit_ratio
+		id = strategic_bomber
+		value = -50 # we can add a strategy later to increase this once Germany is beaten
+	}
+	
+	ai_strategy = {
+		type = unit_ratio
+		id = naval_bomber
+		value = 4
+	}
+	
+	
+	# Naval unit factors
+	ai_strategy = {
+		type = unit_ratio
+		id = capital_ship
+		value = 1
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = carrier
+		value = 1
+	}
+	ai_strategy = {
+		type = unit_ratio
+		id = submarine
+		value = 30 
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = screen_ship
+		value = 20
+	}
+
+	ai_strategy = {
+		type = unit_ratio
+		id = convoy
+		value = 20
+	}
+	
+	ai_strategy = {
+		type = equipment_production_factor
+		id = fighter
+		value = 25
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = tactical_bomber
+		value = -20
+	}
+
+	ai_strategy = {
+		type = equipment_production_factor
+		id = naval_bomber
+		value = -100
+	}
+	
+	ai_strategy = {
+		type = equipment_production_factor
+		id = infantry
+		value = 30
+	}
+	
+	ai_strategy = {
+		type = equipment_production_factor
+		id = artillery
+		value = 36
+	}
+	
+	ai_strategy = {
+		type = equipment_production_factor
+		id = armor
+		value = 5
+	}
+}	
+#########build_building##########
+# research_tech
+# garrison
+######PROTECT##########
+
+# USA should put some buffer units in Europe and ENG to help with invasions
+USA_unit_buffer_for_europe = {
+	allowed = {
+		tag = USA
+	}
+	
+	abort_when_not_enabled = yes
+	
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		always = yes
+	}
+	abort = { always = no }
+	ai_strategy = {
+		type = put_unit_buffers
+		
+		order_id = 2
+		
+		# south england
+		states = { 
+			127
+		}
+		
+		ratio = 0.05
+		
+		area = europe
+		
+		subtract_invasions_from_need = no
+	}
+	
+	ai_strategy = {
+		type = put_unit_buffers
+		
+		order_id = 2
+		
+		# West Germany, Fulda
+		states = { 
+			959
+			55
+		}
+		
+		ratio = 0.2
+		area = europe
+		
+		subtract_invasions_from_need = no
+	}
+}	
+# influence
+# alliance
+########ignore#######
+
+USA_ignore_neighbours = {
+	allowed = { tag = USA }
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		NOT = { 
+			OR = {
+				has_war_with = MEX
+				has_war_with = CAN
+			}
+		}
+	}
+	abort = {
+		OR = {
+			has_war_with = MEX
+			has_war_with = CAN
+		}
+	}
+	
+	ai_strategy = {
+		type = ignore
+		id = "CAN"			
+		value = 1000
+	}
+	
+	ai_strategy = {
+		type = ignore
+		id = "MEX"			
+		value = 1000
+	}
+
+}
+# invade
+
+USA_Dont_Invade_China = {
+	allowed = {
+		original_tag = USA
+	}	
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		has_global_flag = korean_war
+	}
+ 
+	abort = {
+		OR = {
+			has_global_flag = Operation_Firebird 
+			has_global_flag = War_Against_the_Dragon 
+		}
+	}
+ 	ai_strategy = {
+		type = area_priority
+		id = korea
+		value = 5000
+	}  
+}
+
+USA_defend_the_coasts = { #This AI Strategy should keep the USA at bay in case of severe loss. All production goes to homeland defense
+    allowed = { tag = USA }
+    enable = { NOT = { has_global_flag = KRCW_active } 
+        any_neighbor_country = {
+            has_war_with = ROOT
+        }
+        alliance_naval_strength_ratio < 1.0
+        any_enemy_country = {
+            strength_ratio = { tag = USA ratio = 0.5 }
+        }
+    }
+    abort_when_not_enabled = yes
+	abort = { always = no }
+    ai_strategy = { type = garrison value = 60 } #Additive to the Garrison default. Should be around 80% of available troops for garrison
+    ai_strategy = { type = area_priority id = pacific value = -1000 }
+    ai_strategy = { type = area_priority id = europe value = -1000 }
+    ai_strategy = { type = area_priority id = south_america value = -1000 }
+    ai_strategy = { type = area_priority id = asia value = -1000 }
+    ai_strategy = { type = area_priority id = middle_east value = -1000 }
+    ai_strategy = { type = area_priority id = africa value = -1000 }
+    ai_strategy = { type = area_priority id = oceania value = -1000 }
+    ai_strategy = { type = area_priority id = north_america value = 100000 }
+    ai_strategy = { type = area_priority id = united_states_coasts value = 100000 } #America Must Stand Strong
+    ai_strategy = {
+        type = put_unit_buffers
+        ratio = 0.40
+        states = {
+            716
+			610
+			1556
+			609
+			614
+			597
+			598
+			613
+			596
+			595
+			592
+			594
+			591
+        }
+        subtract_fronts_from_need = no
+        subtract_invasions_from_need = no
+    }
+}
+USA_attack_china = {
+    allowed = { tag = USA }
+    enable = { NOT = { has_global_flag = KRCW_active } 
+        has_war_with = PRC
+    }
+    abort_when_not_enabled = yes
+	abort = { always = no }
+    ai_strategy = { type = invade id = "PRC" value = 4000 }
+    ai_strategy = { type = area_priority id = chinese_coast value = 100000 } #This should mega focus here
+    ai_strategy = { type = strike_force_home_base id = 76 } #Okinawa Base - Should be useful in keeping control
+
+    ai_strategy = {
+        type = put_unit_buffers
+        ratio = 0.01
+        states = {
+            526
+			1206
+			996
+			629
+			632
+        }
+        subtract_invasions_from_need = no
+        subtract_fronts_from_need = no
+    }
+}

@@ -1,0 +1,311 @@
+scripted_gui = {
+	krcw_dev_topbar_button = {
+		context_type = player_context
+		window_name = "krcw_dev_topbar_button"
+		parent_window_name = "after_intel_agency_button"
+		visible = { has_global_flag = KRCW_active }
+		effects = {
+			krcw_dev_open_click = {
+				ROOT = {
+					set_temp_variable = { krcw_tx = 1 }
+					subtract_from_temp_variable = { krcw_tx = krcw_show_dev }
+					close_all_windows = yes
+					set_variable = { krcw_show_gv = 0 }
+					set_variable = { krcw_show_dev = krcw_tx }
+				}
+			}
+		}
+	}
+	krcw_dev_window = {
+		context_type = player_context
+		window_name = "krcw_dev_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_dev = 1 } has_variable = krcw_dev_edu }
+		effects = {
+			krcw_dev_close_click = { set_variable = { krcw_show_dev = 0 } }
+			krcw_dev_tab_0_click = { set_variable = { krcw_dev_page = 0 } set_variable = { krcw_dev_rank_open = 0 } }
+			krcw_dev_tab_1_click = { set_variable = { krcw_dev_page = 1 } set_variable = { krcw_dev_rank_open = 0 } }
+			krcw_dev_tab_2_click = { set_variable = { krcw_dev_page = 2 } set_variable = { krcw_dev_rank_open = 0 } }
+			krcw_dev_tab_3_click = { set_variable = { krcw_dev_page = 3 } set_variable = { krcw_dev_rank_open = 0 } }
+		}
+		triggers = {
+			krcw_dev_tab_0_click_enabled = { NOT = { check_variable = { krcw_dev_page = 0 } } }
+			krcw_dev_tab_1_click_enabled = { NOT = { check_variable = { krcw_dev_page = 1 } } }
+			krcw_dev_tab_2_click_enabled = { NOT = { check_variable = { krcw_dev_page = 2 } } }
+			krcw_dev_tab_3_click_enabled = { NOT = { check_variable = { krcw_dev_page = 3 } } }
+		}
+	}
+	krcw_dev_page_overview = {
+		context_type = player_context
+		window_name = "krcw_dev_page_overview"
+		parent_scripted_gui = "krcw_dev_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_dev = 1 } check_variable = { krcw_dev_page = 0 } NOT = { check_variable = { krcw_dev_rank_open = 1 } } }
+		effects = {
+			krcw_dev_plan_0_click = { krcw_dev_set_plan_0 = yes }
+			krcw_dev_plan_1_click = { krcw_dev_set_plan_1 = yes }
+			krcw_dev_plan_2_click = { krcw_dev_set_plan_2 = yes }
+			krcw_dev_plan_3_click = { krcw_dev_set_plan_3 = yes }
+			krcw_dev_plan_4_click = { krcw_dev_set_plan_4 = yes }
+			krcw_dev_rank_open_click = { krcw_dev_rankings = yes set_variable = { krcw_dev_rank_open = 1 } }
+		}
+		triggers = {
+			krcw_dev_plan_0_click_enabled = { krcw_dev_can_plan_0 = yes }
+			krcw_dev_plan_1_click_enabled = { krcw_dev_can_plan_1 = yes }
+			krcw_dev_plan_2_click_enabled = { krcw_dev_can_plan_2 = yes }
+			krcw_dev_plan_3_click_enabled = { krcw_dev_can_plan_3 = yes }
+			krcw_dev_plan_4_click_enabled = { krcw_dev_can_plan_4 = yes }
+		}
+		properties = {
+			krcw_dev_bar_econ = { frame = krcw_dev_f_econ }
+			krcw_dev_bar_edu = { frame = krcw_dev_f_edu }
+			krcw_dev_bar_wel = { frame = krcw_dev_f_wel }
+		}
+	}
+	krcw_dev_page_rank = {
+		context_type = player_context
+		window_name = "krcw_dev_page_rank"
+		parent_scripted_gui = "krcw_dev_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_dev = 1 } check_variable = { krcw_dev_page = 0 } check_variable = { krcw_dev_rank_open = 1 } }
+		effects = {
+			krcw_dev_rank_close_click = { set_variable = { krcw_dev_rank_open = 0 } }
+			krcw_dev_rank_kind_gdp_click = { set_variable = { krcw_dev_rank_kind = 0 } }
+			krcw_dev_rank_kind_gdppc_click = { set_variable = { krcw_dev_rank_kind = 1 } }
+			krcw_dev_rank_kind_pop_click = { set_variable = { krcw_dev_rank_kind = 2 } }
+			krcw_dev_rank_kind_econ_click = { set_variable = { krcw_dev_rank_kind = 3 } }
+			krcw_dev_rank_kind_edu_click = { set_variable = { krcw_dev_rank_kind = 4 } }
+			krcw_dev_rank_kind_wel_click = { set_variable = { krcw_dev_rank_kind = 5 } }
+			krcw_dev_rank_kind_fac_click = { set_variable = { krcw_dev_rank_kind = 6 } }
+		}
+		triggers = {
+			krcw_dev_rank_kind_gdp_click_enabled = { NOT = { check_variable = { krcw_dev_rank_kind = 0 } } }
+			krcw_dev_rank_kind_gdppc_click_enabled = { NOT = { check_variable = { krcw_dev_rank_kind = 1 } } }
+			krcw_dev_rank_kind_pop_click_enabled = { NOT = { check_variable = { krcw_dev_rank_kind = 2 } } }
+			krcw_dev_rank_kind_econ_click_enabled = { NOT = { check_variable = { krcw_dev_rank_kind = 3 } } }
+			krcw_dev_rank_kind_edu_click_enabled = { NOT = { check_variable = { krcw_dev_rank_kind = 4 } } }
+			krcw_dev_rank_kind_wel_click_enabled = { NOT = { check_variable = { krcw_dev_rank_kind = 5 } } }
+			krcw_dev_rank_kind_fac_click_enabled = { NOT = { check_variable = { krcw_dev_rank_kind = 6 } } }
+		}
+	}
+	krcw_dev_page_rank_gdp = {
+		context_type = player_context
+		window_name = "krcw_dev_page_rank_gdp"
+		parent_scripted_gui = "krcw_dev_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_dev = 1 } check_variable = { krcw_dev_page = 0 } check_variable = { krcw_dev_rank_open = 1 } check_variable = { krcw_dev_rank_kind = 0 } }
+		dynamic_lists = {
+			krcw_dev_rank_gdp_grid_a = {
+				array = global.krcw_dev_rank_gdp_a
+				change_scope = yes
+				entry_container = krcw_dev_rank_gdp_entry
+			}
+			krcw_dev_rank_gdp_grid_b = {
+				array = global.krcw_dev_rank_gdp_b
+				change_scope = yes
+				entry_container = krcw_dev_rank_gdp_entry
+			}
+		}
+		properties = {
+			krcw_dev_rank_gdp_flag = { image = "[THIS.GetFlag]" }
+		}
+	}
+	krcw_dev_page_rank_gdppc = {
+		context_type = player_context
+		window_name = "krcw_dev_page_rank_gdppc"
+		parent_scripted_gui = "krcw_dev_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_dev = 1 } check_variable = { krcw_dev_page = 0 } check_variable = { krcw_dev_rank_open = 1 } check_variable = { krcw_dev_rank_kind = 1 } }
+		dynamic_lists = {
+			krcw_dev_rank_gdppc_grid_a = {
+				array = global.krcw_dev_rank_gdppc_a
+				change_scope = yes
+				entry_container = krcw_dev_rank_gdppc_entry
+			}
+			krcw_dev_rank_gdppc_grid_b = {
+				array = global.krcw_dev_rank_gdppc_b
+				change_scope = yes
+				entry_container = krcw_dev_rank_gdppc_entry
+			}
+		}
+		properties = {
+			krcw_dev_rank_gdppc_flag = { image = "[THIS.GetFlag]" }
+		}
+	}
+	krcw_dev_page_rank_pop = {
+		context_type = player_context
+		window_name = "krcw_dev_page_rank_pop"
+		parent_scripted_gui = "krcw_dev_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_dev = 1 } check_variable = { krcw_dev_page = 0 } check_variable = { krcw_dev_rank_open = 1 } check_variable = { krcw_dev_rank_kind = 2 } }
+		dynamic_lists = {
+			krcw_dev_rank_pop_grid_a = {
+				array = global.krcw_dev_rank_pop_a
+				change_scope = yes
+				entry_container = krcw_dev_rank_pop_entry
+			}
+			krcw_dev_rank_pop_grid_b = {
+				array = global.krcw_dev_rank_pop_b
+				change_scope = yes
+				entry_container = krcw_dev_rank_pop_entry
+			}
+		}
+		properties = {
+			krcw_dev_rank_pop_flag = { image = "[THIS.GetFlag]" }
+		}
+	}
+	krcw_dev_page_rank_econ = {
+		context_type = player_context
+		window_name = "krcw_dev_page_rank_econ"
+		parent_scripted_gui = "krcw_dev_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_dev = 1 } check_variable = { krcw_dev_page = 0 } check_variable = { krcw_dev_rank_open = 1 } check_variable = { krcw_dev_rank_kind = 3 } }
+		dynamic_lists = {
+			krcw_dev_rank_econ_grid_a = {
+				array = global.krcw_dev_rank_econ_a
+				change_scope = yes
+				entry_container = krcw_dev_rank_econ_entry
+			}
+			krcw_dev_rank_econ_grid_b = {
+				array = global.krcw_dev_rank_econ_b
+				change_scope = yes
+				entry_container = krcw_dev_rank_econ_entry
+			}
+		}
+		properties = {
+			krcw_dev_rank_econ_flag = { image = "[THIS.GetFlag]" }
+		}
+	}
+	krcw_dev_page_rank_edu = {
+		context_type = player_context
+		window_name = "krcw_dev_page_rank_edu"
+		parent_scripted_gui = "krcw_dev_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_dev = 1 } check_variable = { krcw_dev_page = 0 } check_variable = { krcw_dev_rank_open = 1 } check_variable = { krcw_dev_rank_kind = 4 } }
+		dynamic_lists = {
+			krcw_dev_rank_edu_grid_a = {
+				array = global.krcw_dev_rank_edu_a
+				change_scope = yes
+				entry_container = krcw_dev_rank_edu_entry
+			}
+			krcw_dev_rank_edu_grid_b = {
+				array = global.krcw_dev_rank_edu_b
+				change_scope = yes
+				entry_container = krcw_dev_rank_edu_entry
+			}
+		}
+		properties = {
+			krcw_dev_rank_edu_flag = { image = "[THIS.GetFlag]" }
+		}
+	}
+	krcw_dev_page_rank_wel = {
+		context_type = player_context
+		window_name = "krcw_dev_page_rank_wel"
+		parent_scripted_gui = "krcw_dev_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_dev = 1 } check_variable = { krcw_dev_page = 0 } check_variable = { krcw_dev_rank_open = 1 } check_variable = { krcw_dev_rank_kind = 5 } }
+		dynamic_lists = {
+			krcw_dev_rank_wel_grid_a = {
+				array = global.krcw_dev_rank_wel_a
+				change_scope = yes
+				entry_container = krcw_dev_rank_wel_entry
+			}
+			krcw_dev_rank_wel_grid_b = {
+				array = global.krcw_dev_rank_wel_b
+				change_scope = yes
+				entry_container = krcw_dev_rank_wel_entry
+			}
+		}
+		properties = {
+			krcw_dev_rank_wel_flag = { image = "[THIS.GetFlag]" }
+		}
+	}
+	krcw_dev_page_rank_fac = {
+		context_type = player_context
+		window_name = "krcw_dev_page_rank_fac"
+		parent_scripted_gui = "krcw_dev_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_dev = 1 } check_variable = { krcw_dev_page = 0 } check_variable = { krcw_dev_rank_open = 1 } check_variable = { krcw_dev_rank_kind = 6 } }
+		dynamic_lists = {
+			krcw_dev_rank_fac_grid_a = {
+				array = global.krcw_dev_rank_fac_a
+				change_scope = yes
+				entry_container = krcw_dev_rank_fac_entry
+			}
+			krcw_dev_rank_fac_grid_b = {
+				array = global.krcw_dev_rank_fac_b
+				change_scope = yes
+				entry_container = krcw_dev_rank_fac_entry
+			}
+		}
+		properties = {
+			krcw_dev_rank_fac_flag = { image = "[THIS.GetFlag]" }
+		}
+	}
+	krcw_dev_page_economy = {
+		context_type = player_context
+		window_name = "krcw_dev_page_economy"
+		parent_scripted_gui = "krcw_dev_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_dev = 1 } check_variable = { krcw_dev_page = 1 } }
+	}
+	krcw_dev_page_projects = {
+		context_type = player_context
+		window_name = "krcw_dev_page_projects"
+		parent_scripted_gui = "krcw_dev_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_dev = 1 } check_variable = { krcw_dev_page = 2 } }
+		effects = {
+			krcw_dev_start_develop_click = { krcw_dev_start_develop = yes }
+			krcw_dev_start_literacy_click = { krcw_dev_start_literacy = yes }
+			krcw_dev_start_university_click = { krcw_dev_start_university = yes }
+			krcw_dev_start_housing_click = { krcw_dev_start_housing = yes }
+			krcw_dev_start_health_click = { krcw_dev_start_health = yes }
+			krcw_dev_start_rail_click = { krcw_dev_start_rail = yes }
+			krcw_dev_start_goods_click = { krcw_dev_start_goods = yes }
+			krcw_dev_start_reform_click = { krcw_dev_start_reform = yes }
+			krcw_dev_start_special_click = { krcw_dev_start_special = yes }
+		}
+		triggers = {
+			krcw_dev_start_develop_click_enabled = { krcw_dev_can_develop = yes }
+			krcw_dev_start_literacy_click_enabled = { krcw_dev_can_literacy = yes }
+			krcw_dev_start_university_click_enabled = { krcw_dev_can_university = yes }
+			krcw_dev_start_housing_click_enabled = { krcw_dev_can_housing = yes }
+			krcw_dev_start_health_click_enabled = { krcw_dev_can_health = yes }
+			krcw_dev_start_rail_click_enabled = { krcw_dev_can_rail = yes }
+			krcw_dev_start_goods_click_enabled = { krcw_dev_can_goods = yes }
+			krcw_dev_start_reform_click_enabled = { krcw_dev_can_reform = yes }
+			krcw_dev_start_special_click_enabled = { krcw_dev_can_special = yes }
+			krcw_dev_row_develop_running_visible = { check_variable = { krcw_dev_p_develop > 0 } }
+			krcw_dev_row_literacy_running_visible = { check_variable = { krcw_dev_p_literacy > 0 } }
+			krcw_dev_row_university_running_visible = { check_variable = { krcw_dev_p_university > 0 } }
+			krcw_dev_row_housing_running_visible = { check_variable = { krcw_dev_p_housing > 0 } }
+			krcw_dev_row_health_running_visible = { check_variable = { krcw_dev_p_health > 0 } }
+			krcw_dev_row_rail_running_visible = { check_variable = { krcw_dev_p_rail > 0 } }
+			krcw_dev_row_goods_running_visible = { check_variable = { krcw_dev_p_goods > 0 } }
+			krcw_dev_row_reform_running_visible = { check_variable = { krcw_dev_p_reform > 0 } }
+			krcw_dev_row_special_running_visible = { check_variable = { krcw_dev_p_special > 0 } }
+		}
+	}
+	krcw_dev_page_help = {
+		context_type = player_context
+		window_name = "krcw_dev_page_help"
+		parent_scripted_gui = "krcw_dev_window"
+		visible = { has_global_flag = KRCW_active check_variable = { krcw_show_dev = 1 } check_variable = { krcw_dev_page = 3 } }
+		effects = {
+			krcw_dev_help_next_click = { if = { limit = { check_variable = { krcw_dev_help_page < 4 } } add_to_variable = { krcw_dev_help_page = 1 } } else = { set_variable = { krcw_dev_help_page = 0 } } }
+			krcw_dev_help_prev_click = { if = { limit = { check_variable = { krcw_dev_help_page > 0 } } subtract_from_variable = { krcw_dev_help_page = 1 } } else = { set_variable = { krcw_dev_help_page = 4 } } }
+		}
+		triggers = {
+			krcw_dev_help_t0_visible = { check_variable = { krcw_dev_help_page = 0 } }
+			krcw_dev_help_b0_visible = { check_variable = { krcw_dev_help_page = 0 } }
+			krcw_dev_help_n0_visible = { check_variable = { krcw_dev_help_page = 0 } }
+			krcw_dev_help_t1_visible = { check_variable = { krcw_dev_help_page = 1 } }
+			krcw_dev_help_b1_visible = { check_variable = { krcw_dev_help_page = 1 } }
+			krcw_dev_help_n1_visible = { check_variable = { krcw_dev_help_page = 1 } }
+			krcw_dev_help_t2_visible = { check_variable = { krcw_dev_help_page = 2 } }
+			krcw_dev_help_b2_visible = { check_variable = { krcw_dev_help_page = 2 } }
+			krcw_dev_help_n2_visible = { check_variable = { krcw_dev_help_page = 2 } }
+			krcw_dev_help_t3_visible = { check_variable = { krcw_dev_help_page = 3 } }
+			krcw_dev_help_b3_visible = { check_variable = { krcw_dev_help_page = 3 } }
+			krcw_dev_help_n3_visible = { check_variable = { krcw_dev_help_page = 3 } }
+			krcw_dev_help_t4_visible = { check_variable = { krcw_dev_help_page = 4 } }
+			krcw_dev_help_b4_visible = { check_variable = { krcw_dev_help_page = 4 } }
+			krcw_dev_help_n4_visible = { check_variable = { krcw_dev_help_page = 4 } }
+		}
+	}
+	krcw_dev_diplo = {
+		context_type = selected_country_context
+		parent_window_token = selected_country_view_diplomacy
+		window_name = "krcw_dev_diplo"
+		visible = { has_global_flag = KRCW_active has_variable = krcw_dev_edu }
+	}
+}

@@ -1,0 +1,667 @@
+# krcw: paced
+add_namespace = krcw_ita2
+
+country_event = {
+	id = krcw_ita2.1
+	title = krcw_ita2_1_t
+	desc = {
+		text = krcw_ita2_1_d0
+		trigger = {
+			has_global_flag = KRCW_fra2_statutes_binding
+		}
+	}
+	desc = {
+		text = krcw_ita2_1_d1
+		trigger = {
+			has_global_flag = KRCW_fra2_statutes_covenant
+		}
+	}
+	desc = {
+		text = krcw_ita2_1_d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_ita_congress
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+	}
+	option = {
+		name = krcw_ita2_1.a
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 has_global_flag = KRCW_fra2_statutes_binding }
+			modifier = { factor = 1.3 has_stability > 0.55 }
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_ita2_arbitration
+		add_stability = 0.02
+		country_event = { id = krcw_ita2.2 days = 30 }
+	}
+	option = {
+		name = krcw_ita2_1.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 has_war_support > 0.4 }
+			modifier = { factor = 1.5 has_global_flag = KRCW_fra2_italy_suspended }
+		}
+		set_country_flag = krcw_ita2_defied
+		add_war_support = 0.03
+		add_political_power = 25
+		if = { limit = { country_exists = FRA } add_opinion_modifier = { target = FRA modifier = krcw_eu_secretariat_slight } }
+		country_event = { id = krcw_ita2.3 days = 25 }
+	}
+}
+
+country_event = {
+	id = krcw_ita2.2
+	title = krcw_ita2_2_t
+	desc = {
+		text = krcw_ita2_2_d0
+		trigger = {
+			has_country_flag = krcw_ita2_yug_attends
+		}
+	}
+	desc = {
+		text = krcw_ita2_2_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_conference2
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+	}
+	immediate = {
+		random_list = {
+			50 = { modifier = { factor = 0.5 NOT = { country_exists = YUG } } set_country_flag = krcw_ita2_yug_attends }
+			50 = { modifier = { factor = 1.4 krcw_high_tension = yes } set_country_flag = krcw_ita2_yug_boycotts }
+		}
+	}
+	option = {
+		name = krcw_ita2_2.a
+		ai_chance = {
+			base = 50
+		}
+		add_political_power = 25
+		country_event = { id = krcw_ita2.4 days = 30 }
+	}
+	option = {
+		name = krcw_ita2_2.b
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_ita2_yug_attends }
+		}
+		set_country_flag = krcw_ita2_freeport_offer
+		add_stability = 0.02
+		country_event = { id = krcw_ita2.4 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_ita2.3
+	title = krcw_ita2_3_t
+	desc = krcw_ita2_3_d
+	picture = GFX_krcw_eu_ita_army
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+	}
+	option = {
+		name = krcw_ita2_3.a
+		ai_chance = {
+			base = 55
+		}
+		set_country_flag = krcw_ita2_regularised
+		army_experience = 10
+		country_event = { id = krcw_ita2.4 days = 30 }
+	}
+	option = {
+		name = krcw_ita2_3.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 has_war_support > 0.45 }
+		}
+		set_country_flag = krcw_ita2_militia
+		add_ideas = krcw_ita2_gorizia_volunteers
+		krcw_tension_up_small = yes
+		country_event = { id = krcw_ita2.4 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_ita2.4
+	title = krcw_ita2_4_t
+	desc = {
+		text = krcw_ita2_4_d0
+		trigger = {
+			has_country_flag = krcw_ita2_defied
+		}
+	}
+	desc = {
+		text = krcw_ita2_4_d1
+		trigger = {
+			has_country_flag = krcw_ita2_yug_boycotts
+		}
+	}
+	desc = {
+		text = krcw_ita2_4_d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_ita_crowd
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+	}
+	option = {
+		name = krcw_ita2_4.a
+		trigger = {
+			NOT = { has_country_flag = krcw_ita2_defied }
+		}
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 has_country_flag = krcw_ita2_arbitration }
+		}
+		set_country_flag = krcw_ita2_trieste_court
+		add_stability = 0.02
+	}
+	option = {
+		name = krcw_ita2_4.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.6 has_country_flag = krcw_ita2_defied }
+			modifier = { factor = 1.5 has_country_flag = krcw_ita2_yug_boycotts }
+		}
+		set_country_flag = krcw_ita2_trieste_army
+		add_war_support = 0.03
+		krcw_tension_up_small = yes
+		if = { limit = { country_exists = YUG } YUG = { add_opinion_modifier = { target = ROOT modifier = krcw_ti_border_grievance } } }
+	}
+}
+
+country_event = {
+	id = krcw_ita2.5
+	title = krcw_ita2_5_t
+	desc = {
+		text = krcw_ita2_5_d0
+		trigger = {
+			has_country_flag = krcw_ita2_yug_reinforced
+		}
+	}
+	desc = {
+		text = krcw_ita2_5_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_ita_army
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+	}
+	immediate = {
+		random_list = {
+			55 = { set_country_flag = krcw_ita2_yug_protested }
+			45 = { modifier = { factor = 1.4 krcw_high_tension = yes } modifier = { factor = 0.3 NOT = { country_exists = YUG } } set_country_flag = krcw_ita2_yug_reinforced }
+		}
+	}
+	option = {
+		name = krcw_ita2_5.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_ita2_yug_reinforced }
+		}
+		add_stability = 0.02
+		add_war_support = -0.02
+		set_country_flag = krcw_ita2_isonzo_withdrawn
+		country_event = { id = krcw_ita2.6 days = 30 }
+	}
+	option = {
+		name = krcw_ita2_5.b
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_war_support > 0.5 }
+		}
+		add_war_support = 0.04
+		army_experience = 10
+		krcw_tension_up_small = yes
+		if = { limit = { country_exists = YUG } YUG = { add_opinion_modifier = { target = ROOT modifier = krcw_ti_border_grievance } } }
+		country_event = { id = krcw_ita2.6 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_ita2.6
+	title = krcw_ita2_6_t
+	desc = {
+		text = krcw_ita2_6_d0
+		trigger = {
+			has_country_flag = krcw_ita2_trieste_army
+		}
+	}
+	desc = {
+		text = krcw_ita2_6_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_ita_congress
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+	}
+	option = {
+		name = krcw_ita2_6.a
+		trigger = {
+			OR = { has_country_flag = krcw_ita2_trieste_army has_country_flag = krcw_ita2_defied }
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_ita2_militia }
+			modifier = { factor = 0.5 krcw_route_historical = yes }
+		}
+		if = { limit = { has_government = trotskyism } if = { limit = { NOT = { has_character = ITA_krcw_parri } } recruit_character = ITA_krcw_parri } promote_character = ITA_krcw_parri }
+		set_party_name = { ideology = trotskyism name = krcw_ita2_party_partisan long_name = krcw_ita2_party_partisan_long }
+		add_war_support = 0.05
+		army_experience = 15
+		set_country_flag = krcw_ita2_parri_line
+	}
+	option = {
+		name = krcw_ita2_6.b
+		trigger = {
+			OR = { has_country_flag = krcw_ita2_trieste_court has_country_flag = krcw_ita2_paris_backed }
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_ita2_paris_backed }
+			modifier = { factor = 0.5 krcw_route_historical = yes }
+		}
+		if = { limit = { has_government = trotskyism } if = { limit = { NOT = { has_character = ITA_krcw_matteotti } } recruit_character = ITA_krcw_matteotti } promote_character = ITA_krcw_matteotti }
+		set_party_name = { ideology = trotskyism name = krcw_ita2_party_procedure long_name = krcw_ita2_party_procedure_long }
+		add_stability = 0.05
+		add_political_power = 25
+		set_country_flag = krcw_ita2_matteotti_line
+	}
+	option = {
+		name = krcw_ita2_6.c
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		add_political_power = 50
+		add_stability = 0.01
+		set_country_flag = krcw_ita2_di_vittorio_stays
+	}
+}
+
+country_event = {
+	id = krcw_ita2.7
+	title = krcw_ita2_7_t
+	desc = krcw_ita2_7_d
+	picture = GFX_krcw_eu_conference3
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = FRA
+	}
+	option = {
+		name = krcw_ita2_7.a
+		ai_chance = {
+			base = 60
+			modifier = { factor = 1.4 has_country_flag = krcw_fra2_road_communes_open }
+		}
+		add_political_power = -15
+		ITA = { set_country_flag = krcw_ita2_paris_backed country_event = { id = krcw_ita2.8 days = 5 } }
+	}
+	option = {
+		name = krcw_ita2_7.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 has_country_flag = krcw_fra2_road_centre_open }
+		}
+		add_political_power = 15
+		ITA = { set_country_flag = krcw_ita2_paris_deferred country_event = { id = krcw_ita2.8 days = 5 } }
+	}
+}
+
+country_event = {
+	id = krcw_ita2.8
+	title = krcw_ita2_8_t
+	desc = {
+		text = krcw_ita2_8_d0
+		trigger = {
+			has_country_flag = krcw_ita2_paris_backed
+		}
+	}
+	desc = {
+		text = krcw_ita2_8_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_ita_milan
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+	}
+	option = {
+		name = krcw_ita2_8.a
+		ai_chance = {
+			base = 60
+		}
+		add_stability = 0.02
+		country_event = { id = krcw_ita2.6 days = 20 }
+	}
+	option = {
+		name = krcw_ita2_8.b
+		trigger = {
+			has_country_flag = krcw_ita2_paris_deferred
+		}
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 25
+		add_stability = -0.01
+		if = { limit = { country_exists = FRA } add_opinion_modifier = { target = FRA modifier = krcw_eu_secretariat_slight } }
+		country_event = { id = krcw_ita2.6 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_ita2.10
+	title = krcw_ita2_10_t
+	desc = krcw_ita2_10_d
+	picture = GFX_krcw_eu_farming
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+	}
+	option = {
+		name = krcw_ita2_10.a
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_ita2_leagues_first
+		add_stability = 0.01
+		country_event = { id = krcw_ita2.11 days = 30 }
+	}
+	option = {
+		name = krcw_ita2_10.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 has_country_flag = krcw_ita2_matteotti_line }
+		}
+		set_country_flag = krcw_ita2_parish_first
+		add_political_power = -15
+		country_event = { id = krcw_ita2.12 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_ita2.11
+	title = krcw_ita2_11_t
+	desc = krcw_ita2_11_d
+	picture = GFX_krcw_eu_workers
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+	}
+	option = {
+		name = krcw_ita2_11.a
+		ai_chance = {
+			base = 55
+			modifier = { factor = 1.5 has_country_flag = krcw_ita2_parri_line }
+		}
+		set_country_flag = krcw_ita2_want_collective
+		add_popularity = { ideology = trotskyism popularity = 0.02 }
+		country_event = { id = krcw_ita2.13 days = 30 }
+	}
+	option = {
+		name = krcw_ita2_11.b
+		ai_chance = {
+			base = 45
+		}
+		set_country_flag = krcw_ita2_want_coop
+		add_stability = 0.01
+		country_event = { id = krcw_ita2.14 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_ita2.12
+	title = krcw_ita2_12_t
+	desc = krcw_ita2_12_d
+	picture = GFX_krcw_eu_church
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+	}
+	option = {
+		name = krcw_ita2_12.a
+		ai_chance = {
+			base = 55
+		}
+		set_country_flag = krcw_ita2_want_coop
+		set_country_flag = krcw_ita2_church_deal
+		add_popularity = { ideology = Christian_Democratic popularity = 0.03 }
+		add_stability = 0.02
+		country_event = { id = krcw_ita2.14 days = 30 }
+	}
+	option = {
+		name = krcw_ita2_12.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 has_country_flag = krcw_ita2_parri_line }
+		}
+		set_country_flag = krcw_ita2_want_collective
+		add_stability = -0.03
+		add_political_power = 25
+		country_event = { id = krcw_ita2.13 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_ita2.13
+	title = krcw_ita2_13_t
+	desc = krcw_ita2_13_d
+	picture = GFX_krcw_eu_riot1
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+	}
+	option = {
+		name = krcw_ita2_13.a
+		ai_chance = {
+			base = 60
+		}
+		set_country_flag = krcw_ita2_land_ready
+		add_political_power = -25
+		army_experience = 5
+	}
+	option = {
+		name = krcw_ita2_13.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 has_country_flag = krcw_ita2_parri_line }
+		}
+		set_country_flag = krcw_ita2_land_ready
+		set_country_flag = krcw_ita2_leagues_armed
+		add_stability = -0.03
+		add_manpower = 5000
+	}
+}
+
+country_event = {
+	id = krcw_ita2.14
+	title = krcw_ita2_14_t
+	desc = krcw_ita2_14_d
+	picture = GFX_krcw_eu_ita_congress
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+	}
+	option = {
+		name = krcw_ita2_14.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_ita2_church_deal }
+		}
+		set_country_flag = krcw_ita2_land_ready
+		add_popularity = { ideology = Christian_Democratic popularity = 0.02 }
+		add_stability = 0.02
+	}
+	option = {
+		name = krcw_ita2_14.b
+		ai_chance = {
+			base = 50
+		}
+		set_country_flag = krcw_ita2_land_ready
+		add_political_power = 50
+	}
+}
+
+country_event = {
+	id = krcw_ita2.15
+	title = krcw_ita2_15_t
+	desc = {
+		text = krcw_ita2_15_d0
+		trigger = {
+			has_country_flag = krcw_ita2_leagues_armed
+		}
+	}
+	desc = {
+		text = krcw_ita2_15_d1
+		trigger = {
+			has_country_flag = krcw_ita2_church_deal
+		}
+	}
+	desc = {
+		text = krcw_ita2_15_d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_ita_congress
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+	}
+	option = {
+		name = krcw_ita2_15.a
+		trigger = {
+			NOT = { has_country_flag = krcw_ita2_want_coop }
+		}
+		ai_chance = {
+			base = 1
+		}
+		set_country_flag = krcw_ita2_law_collective
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_ita2_15.b
+		trigger = {
+			has_country_flag = krcw_ita2_want_coop
+		}
+		ai_chance = {
+			base = 1
+		}
+		set_country_flag = krcw_ita2_law_coop
+		add_stability = 0.02
+	}
+}
+
+country_event = {
+	id = krcw_ita2.16
+	title = krcw_ita2_16_t
+	desc = {
+		text = krcw_ita2_16_d0
+		trigger = {
+			has_country_flag = krcw_ita2_harvest_good
+		}
+	}
+	desc = {
+		text = krcw_ita2_16_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_farming
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+	}
+	immediate = {
+		random_list = {
+			60 = { modifier = { factor = 1.3 has_stability > 0.6 } modifier = { factor = 0.7 has_country_flag = krcw_ita2_leagues_armed } set_country_flag = krcw_ita2_harvest_good add_stability = 0.02 }
+			40 = { set_country_flag = krcw_ita2_harvest_poor add_stability = -0.02 }
+		}
+	}
+	option = {
+		name = krcw_ita2_16.a
+		ai_chance = {
+			base = 55
+		}
+		add_political_power = 25
+		country_event = { id = krcw_ita2.17 days = 30 }
+	}
+	option = {
+		name = krcw_ita2_16.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 2 has_country_flag = krcw_ita2_harvest_poor }
+		}
+		add_political_power = -25
+		add_stability = 0.02
+		country_event = { id = krcw_ita2.17 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_ita2.17
+	title = krcw_ita2_17_t
+	desc = krcw_ita2_17_d
+	picture = GFX_krcw_eu_econ_policy
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+	}
+	option = {
+		name = krcw_ita2_17.a
+		ai_chance = {
+			base = 50
+		}
+		set_country_flag = krcw_ita2_fund_ready
+		set_country_flag = krcw_ita2_fund_federations
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_ita2_17.b
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_ita2_harvest_poor }
+		}
+		set_country_flag = krcw_ita2_fund_ready
+		set_country_flag = krcw_ita2_fund_communes
+		add_stability = 0.02
+	}
+}

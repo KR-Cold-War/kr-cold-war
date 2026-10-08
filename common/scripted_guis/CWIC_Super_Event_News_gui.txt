@@ -1,0 +1,40 @@
+# KRCW (build/patch_residue.py): 1 OTL country GUIs hidden while KRCW_active
+scripted_gui = {
+
+
+	# Latest News window: dynamic list of the last 10 super events.
+	CWIC_News_Window = {
+		context_type = player_context
+		window_name = "CWIC_News_Window"
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = CWIC_News_Open
+		}
+
+		effects = {
+			CWIC_news_close_click = {
+				clr_country_flag = CWIC_News_Open
+			}
+			CWIC_news_entry_button_click = {
+				set_variable = { CWIC_se_reopen = CWIC_se_view }
+				CWIC_Reopen_SE_By_Id = yes
+			}
+		}
+
+		properties = {
+			CWIC_news_entry_img = {
+				image = "[get_se_list_texture]"
+			}
+		}
+
+		dynamic_lists = {
+			CWIC_news_gridbox = {
+				array = CWIC_se_log
+				change_scope = no
+				value = CWIC_se_view
+				index = CWIC_se_view_index
+				entry_container = "CWIC_news_entry"
+			}
+		}
+	}
+}

@@ -1,0 +1,1844 @@
+# krcw: paced
+add_namespace = krcw_sov2
+
+country_event = {
+	id = krcw_sov2.1
+	title = krcw_sov2_1_t
+	desc = krcw_sov2_1_d
+	picture = GFX_krcw_eu_savinkov_memoirs_c
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+		NOT = { has_global_flag = KRCW_savinkov_dead }
+		OR = { has_completed_focus = krcw_sov_question_of_succession date > 1950.12.15 }
+	}
+	mean_time_to_happen = {
+		days = 54
+	}
+	immediate = {
+		set_country_flag = krcw_sov2_chancery_set
+		add_ideas = krcw_sov_the_sickroom
+	}
+	option = {
+		name = krcw_sov2_1.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mil } }
+			modifier = { factor = 1.3 has_completed_focus = krcw_sov_council_of_state }
+		}
+		set_country_flag = krcw_sov2_chancery_council
+		if = { limit = { NOT = { has_variable = krcw_sov_civ } } set_variable = { krcw_sov_civ = 0 } }
+		add_to_variable = { krcw_sov_civ = 10 }
+		clamp_variable = { var = krcw_sov_civ min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_civ_10_tt
+		country_event = { id = krcw_sov2.2 days = 20 }
+	}
+	option = {
+		name = krcw_sov2_1.b
+		ai_chance = {
+			base = 50
+			modifier = { factor = 2 krcw_route_historical = yes }
+			modifier = { factor = 1.5 check_variable = { krcw_sov_mil > krcw_sov_civ } }
+		}
+		set_country_flag = krcw_sov2_chancery_army
+		if = { limit = { NOT = { has_variable = krcw_sov_mil } } set_variable = { krcw_sov_mil = 0 } }
+		add_to_variable = { krcw_sov_mil = 10 }
+		clamp_variable = { var = krcw_sov_mil min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mil_10_tt
+		country_event = { id = krcw_sov2.3 days = 20 }
+	}
+	option = {
+		name = krcw_sov2_1.c
+		ai_chance = {
+			base = 10
+			modifier = { factor = 0.1 krcw_route_historical = yes }
+			modifier = { factor = 2 check_variable = { krcw_sov_mon > krcw_sov_civ } }
+		}
+		set_country_flag = krcw_sov2_chancery_court
+		if = { limit = { NOT = { has_variable = krcw_sov_mon } } set_variable = { krcw_sov_mon = 0 } }
+		add_to_variable = { krcw_sov_mon = 10 }
+		clamp_variable = { var = krcw_sov_mon min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mon_10_tt
+		country_event = { id = krcw_sov2.4 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.2
+	title = krcw_sov2_2_t
+	desc = krcw_sov2_2_d
+	picture = GFX_krcw_eu_rus_duma
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_sov2_2.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mil } }
+		}
+		if = { limit = { NOT = { has_variable = krcw_sov_civ } } set_variable = { krcw_sov_civ = 0 } }
+		add_to_variable = { krcw_sov_civ = 5 }
+		clamp_variable = { var = krcw_sov_civ min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_civ_5_tt
+		add_stability = 0.02
+		set_country_flag = krcw_sov2_protocol_public
+	}
+	option = {
+		name = krcw_sov2_2.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		add_political_power = 25
+		if = { limit = { NOT = { has_variable = krcw_sov_mil } } set_variable = { krcw_sov_mil = 0 } }
+		add_to_variable = { krcw_sov_mil = 5 }
+		clamp_variable = { var = krcw_sov_mil min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mil_5_tt
+	}
+}
+
+country_event = {
+	id = krcw_sov2.3
+	title = krcw_sov2_3_t
+	desc = krcw_sov2_3_d
+	picture = GFX_krcw_eu_rus_generals
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_sov2_3.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		if = { limit = { NOT = { has_variable = krcw_sov_mil } } set_variable = { krcw_sov_mil = 0 } }
+		add_to_variable = { krcw_sov_mil = 10 }
+		clamp_variable = { var = krcw_sov_mil min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mil_10_tt
+		if = { limit = { NOT = { has_variable = krcw_sov_ext } } set_variable = { krcw_sov_ext = 0 } }
+		subtract_from_variable = { krcw_sov_ext = 5 }
+		clamp_variable = { var = krcw_sov_ext min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov2_drop_ext_5_tt
+		add_stability = -0.02
+	}
+	option = {
+		name = krcw_sov2_3.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mil } }
+		}
+		if = { limit = { NOT = { has_variable = krcw_sov_civ } } set_variable = { krcw_sov_civ = 0 } }
+		add_to_variable = { krcw_sov_civ = 5 }
+		clamp_variable = { var = krcw_sov_civ min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_civ_5_tt
+		add_political_power = -25
+	}
+}
+
+country_event = {
+	id = krcw_sov2.4
+	title = krcw_sov2_4_t
+	desc = krcw_sov2_4_d
+	picture = GFX_krcw_eu_rus_orthodox
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_sov2_4.a
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0.2 krcw_route_historical = yes }
+			modifier = { factor = 2 check_variable = { krcw_sov_mon > krcw_sov_civ } }
+		}
+		if = { limit = { NOT = { has_variable = krcw_sov_mon } } set_variable = { krcw_sov_mon = 0 } }
+		add_to_variable = { krcw_sov_mon = 10 }
+		clamp_variable = { var = krcw_sov_mon min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mon_10_tt
+		add_popularity = { ideology = monarchism popularity = 0.02 }
+	}
+	option = {
+		name = krcw_sov2_4.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		if = { limit = { NOT = { has_variable = krcw_sov_mon } } set_variable = { krcw_sov_mon = 0 } }
+		subtract_from_variable = { krcw_sov_mon = 5 }
+		clamp_variable = { var = krcw_sov_mon min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov2_drop_mon_5_tt
+		if = { limit = { NOT = { has_variable = krcw_sov_civ } } set_variable = { krcw_sov_civ = 0 } }
+		add_to_variable = { krcw_sov_civ = 5 }
+		clamp_variable = { var = krcw_sov_civ min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_civ_5_tt
+		add_stability = -0.01
+	}
+}
+
+country_event = {
+	id = krcw_sov2.5
+	title = krcw_sov2_5_t
+	desc = {
+		text = krcw_sov2_5_d0
+		trigger = {
+			has_country_flag = krcw_sov2_chancery_army
+		}
+	}
+	desc = {
+		text = krcw_sov2_5_d1
+		trigger = {
+			has_country_flag = krcw_sov2_chancery_council
+		}
+	}
+	desc = {
+		text = krcw_sov2_5_d2
+		trigger = {
+			has_country_flag = krcw_sov2_chancery_court
+		}
+	}
+	desc = {
+		text = krcw_sov2_5_d3
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_arrests
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+		has_global_flag = KRCW_savinkov_dead
+		NOT = { has_global_flag = KRCW_russian_succession_over }
+	}
+	mean_time_to_happen = {
+		days = 10
+	}
+	immediate = {
+		if = { limit = { has_idea = krcw_sov_the_sickroom } remove_ideas = krcw_sov_the_sickroom }
+	}
+	option = {
+		name = krcw_sov2_5.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 check_variable = { krcw_sov_mil > krcw_sov_ext } }
+			modifier = { factor = 1.5 has_country_flag = krcw_sov2_chancery_army }
+			modifier = { factor = 0.5 check_variable = { krcw_sov_ext > krcw_sov_mil } }
+		}
+		set_country_flag = krcw_sov2_raid
+		add_political_power = -25
+		country_event = { id = krcw_sov2.6 days = 20 }
+	}
+	option = {
+		name = krcw_sov2_5.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 has_country_flag = krcw_sov2_chancery_council }
+			modifier = { factor = 1.3 has_stability > 0.5 }
+		}
+		set_country_flag = krcw_sov2_triumvirate
+		add_stability = 0.03
+		if = { limit = { NOT = { has_variable = krcw_sov_civ } } set_variable = { krcw_sov_civ = 0 } }
+		add_to_variable = { krcw_sov_civ = 5 }
+		clamp_variable = { var = krcw_sov_civ min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_civ_5_tt
+		country_event = { id = krcw_sov2.7 days = 20 }
+	}
+	option = {
+		name = krcw_sov2_5.c
+		trigger = {
+			OR = { has_country_flag = krcw_sov2_chancery_court check_variable = { krcw_sov_mon > 24 } }
+		}
+		ai_chance = {
+			base = 20
+			modifier = { factor = 0.1 krcw_route_historical = yes }
+			modifier = { factor = 2 has_country_flag = krcw_sov2_chancery_court }
+		}
+		set_country_flag = krcw_sov2_sobor
+		if = { limit = { NOT = { has_variable = krcw_sov_mon } } set_variable = { krcw_sov_mon = 0 } }
+		add_to_variable = { krcw_sov_mon = 15 }
+		clamp_variable = { var = krcw_sov_mon min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mon_15_tt
+		add_stability = -0.03
+		country_event = { id = krcw_sov2.7 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.6
+	title = krcw_sov2_6_t
+	desc = {
+		text = krcw_sov2_6_d0
+		trigger = {
+			has_country_flag = krcw_sov2_leagues_broken
+		}
+	}
+	desc = {
+		text = krcw_sov2_6_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_arrests
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	immediate = {
+		random_list = {
+			60 = {
+				modifier = { factor = 1.5 check_variable = { krcw_sov_mil > krcw_sov_ext } }
+				modifier = { factor = 1.3 has_stability > 0.5 }
+				modifier = { factor = 1.3 has_completed_focus = krcw_sov_the_okhrana }
+				modifier = { factor = 0.6 check_variable = { krcw_sov_ext > 39 } }
+				set_country_flag = krcw_sov2_leagues_broken
+			}
+			40 = {
+				modifier = { factor = 1.5 check_variable = { krcw_sov_ext > 34 } }
+				modifier = { factor = 1.3 has_stability < 0.4 }
+				set_country_flag = krcw_sov2_leagues_fight
+			}
+		}
+		country_event = { id = krcw_sov2.8 days = 90 }
+	}
+	option = {
+		name = krcw_sov2_6.a
+		trigger = {
+			has_country_flag = krcw_sov2_leagues_broken
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mil } }
+		}
+		if = { limit = { NOT = { has_variable = krcw_sov_ext } } set_variable = { krcw_sov_ext = 0 } }
+		subtract_from_variable = { krcw_sov_ext = 15 }
+		clamp_variable = { var = krcw_sov_ext min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov2_drop_ext_15_tt
+		if = { limit = { NOT = { has_variable = krcw_sov_civ } } set_variable = { krcw_sov_civ = 0 } }
+		add_to_variable = { krcw_sov_civ = 5 }
+		clamp_variable = { var = krcw_sov_civ min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_civ_5_tt
+		add_stability = -0.02
+	}
+	option = {
+		name = krcw_sov2_6.b
+		trigger = {
+			has_country_flag = krcw_sov2_leagues_broken
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		if = { limit = { NOT = { has_variable = krcw_sov_ext } } set_variable = { krcw_sov_ext = 0 } }
+		subtract_from_variable = { krcw_sov_ext = 10 }
+		clamp_variable = { var = krcw_sov_ext min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov2_drop_ext_10_tt
+		if = { limit = { NOT = { has_variable = krcw_sov_mil } } set_variable = { krcw_sov_mil = 0 } }
+		add_to_variable = { krcw_sov_mil = 5 }
+		clamp_variable = { var = krcw_sov_mil min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mil_5_tt
+		add_political_power = 50
+	}
+	option = {
+		name = krcw_sov2_6.c
+		trigger = {
+			has_country_flag = krcw_sov2_leagues_fight
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+			modifier = { factor = 1.5 has_country_flag = krcw_sov2_chancery_army }
+		}
+		if = { limit = { NOT = { has_variable = krcw_sov_mil } } set_variable = { krcw_sov_mil = 0 } }
+		add_to_variable = { krcw_sov_mil = 15 }
+		clamp_variable = { var = krcw_sov_mil min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mil_15_tt
+		if = { limit = { NOT = { has_variable = krcw_sov_ext } } set_variable = { krcw_sov_ext = 0 } }
+		subtract_from_variable = { krcw_sov_ext = 10 }
+		clamp_variable = { var = krcw_sov_ext min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov2_drop_ext_10_tt
+		add_stability = -0.05
+	}
+	option = {
+		name = krcw_sov2_6.d
+		trigger = {
+			has_country_flag = krcw_sov2_leagues_fight
+		}
+		ai_chance = {
+			base = 15
+			modifier = { factor = 0.2 krcw_route_historical = yes }
+		}
+		if = { limit = { NOT = { has_variable = krcw_sov_ext } } set_variable = { krcw_sov_ext = 0 } }
+		add_to_variable = { krcw_sov_ext = 10 }
+		clamp_variable = { var = krcw_sov_ext min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_ext_10_tt
+		add_war_support = 0.03
+		add_stability = -0.02
+	}
+}
+
+country_event = {
+	id = krcw_sov2.7
+	title = krcw_sov2_7_t
+	desc = {
+		text = krcw_sov2_7_d0
+		trigger = {
+			has_country_flag = krcw_sov2_triumvirate_held
+			has_country_flag = krcw_sov2_sobor
+		}
+	}
+	desc = {
+		text = krcw_sov2_7_d1
+		trigger = {
+			has_country_flag = krcw_sov2_triumvirate_held
+		}
+	}
+	desc = {
+		text = krcw_sov2_7_d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_meeting
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	immediate = {
+		random_list = {
+			55 = {
+				modifier = { factor = 1.4 has_stability > 0.5 }
+				modifier = { factor = 1.3 has_country_flag = krcw_sov2_protocol_public }
+				modifier = { factor = 0.6 has_country_flag = krcw_sov2_sobor }
+				set_country_flag = krcw_sov2_triumvirate_held
+			}
+			45 = {
+				modifier = { factor = 1.5 check_variable = { krcw_sov_ext > krcw_sov_civ } }
+				modifier = { factor = 1.3 has_country_flag = krcw_sov2_sobor }
+				set_country_flag = krcw_sov2_triumvirate_split
+			}
+		}
+		country_event = { id = krcw_sov2.8 days = 90 }
+	}
+	option = {
+		name = krcw_sov2_7.a
+		trigger = {
+			has_country_flag = krcw_sov2_triumvirate_held
+		}
+		ai_chance = {
+			base = 50
+		}
+		if = { limit = { NOT = { has_variable = krcw_sov_civ } } set_variable = { krcw_sov_civ = 0 } }
+		add_to_variable = { krcw_sov_civ = 5 }
+		clamp_variable = { var = krcw_sov_civ min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_civ_5_tt
+		if = { limit = { NOT = { has_variable = krcw_sov_mil } } set_variable = { krcw_sov_mil = 0 } }
+		add_to_variable = { krcw_sov_mil = 5 }
+		clamp_variable = { var = krcw_sov_mil min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mil_5_tt
+		add_stability = 0.03
+	}
+	option = {
+		name = krcw_sov2_7.b
+		trigger = {
+			has_country_flag = krcw_sov2_triumvirate_held
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 krcw_route_historical = yes }
+		}
+		if = { limit = { NOT = { has_variable = krcw_sov_mil } } set_variable = { krcw_sov_mil = 0 } }
+		add_to_variable = { krcw_sov_mil = 5 }
+		clamp_variable = { var = krcw_sov_mil min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mil_5_tt
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_sov2_7.c
+		trigger = {
+			has_country_flag = krcw_sov2_triumvirate_split
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mil } }
+		}
+		if = { limit = { NOT = { has_variable = krcw_sov_civ } } set_variable = { krcw_sov_civ = 0 } }
+		add_to_variable = { krcw_sov_civ = 10 }
+		clamp_variable = { var = krcw_sov_civ min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_civ_10_tt
+		add_stability = -0.03
+	}
+	option = {
+		name = krcw_sov2_7.d
+		trigger = {
+			has_country_flag = krcw_sov2_triumvirate_split
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 2 krcw_route_historical = yes }
+		}
+		if = { limit = { NOT = { has_variable = krcw_sov_mil } } set_variable = { krcw_sov_mil = 0 } }
+		add_to_variable = { krcw_sov_mil = 10 }
+		clamp_variable = { var = krcw_sov_mil min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mil_10_tt
+		add_political_power = -25
+	}
+}
+
+country_event = {
+	id = krcw_sov2.8
+	title = krcw_sov2_8_t
+	desc = {
+		text = krcw_sov2_8_d0
+		trigger = {
+			has_country_flag = krcw_sov2_leagues_broken
+		}
+	}
+	desc = {
+		text = krcw_sov2_8_d1
+		trigger = {
+			has_country_flag = krcw_sov2_leagues_fight
+		}
+	}
+	desc = {
+		text = krcw_sov2_8_d2
+		trigger = {
+			has_country_flag = krcw_sov2_triumvirate_split
+		}
+	}
+	desc = {
+		text = krcw_sov2_8_d3
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_zemsky_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+		NOT = { has_global_flag = KRCW_russian_succession_over }
+	}
+	immediate = {
+		set_country_flag = krcw_sov2_campaign
+	}
+	option = {
+		name = krcw_sov2_8.a
+		ai_chance = {
+			base = 50
+			modifier = { factor = 2 krcw_route_historical = yes }
+			modifier = { factor = 1.5 has_completed_focus = krcw_sov_groom_the_general_staff }
+			modifier = { factor = 1.3 has_completed_focus = krcw_sov_the_guards_hold_moscow }
+		}
+		set_country_flag = krcw_sov2_pact_army
+		if = { limit = { NOT = { has_variable = krcw_sov_mil } } set_variable = { krcw_sov_mil = 0 } }
+		add_to_variable = { krcw_sov_mil = 15 }
+		clamp_variable = { var = krcw_sov_mil min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mil_15_tt
+		add_political_power = -25
+	}
+	option = {
+		name = krcw_sov2_8.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 1.5 has_completed_focus = krcw_sov_patronise_the_academicians }
+			modifier = { factor = 1.3 has_completed_focus = krcw_sov_the_directorate_charter }
+			modifier = { factor = 1.3 has_country_flag = krcw_sov2_triumvirate_held }
+		}
+		set_country_flag = krcw_sov2_pact_civil
+		if = { limit = { NOT = { has_variable = krcw_sov_civ } } set_variable = { krcw_sov_civ = 0 } }
+		add_to_variable = { krcw_sov_civ = 15 }
+		clamp_variable = { var = krcw_sov_civ min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_civ_15_tt
+		add_political_power = -25
+	}
+	option = {
+		name = krcw_sov2_8.c
+		trigger = {
+			check_variable = { krcw_sov_mon > 19 }
+		}
+		ai_chance = {
+			base = 15
+			modifier = { factor = 0.1 krcw_route_historical = yes }
+			modifier = { factor = 2 has_completed_focus = krcw_sov_throne_and_altar }
+			modifier = { factor = 1.5 has_country_flag = krcw_sov2_sobor }
+		}
+		set_country_flag = krcw_sov2_pact_crown
+		if = { limit = { NOT = { has_variable = krcw_sov_mon } } set_variable = { krcw_sov_mon = 0 } }
+		add_to_variable = { krcw_sov_mon = 15 }
+		clamp_variable = { var = krcw_sov_mon min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mon_15_tt
+		add_stability = -0.02
+	}
+	option = {
+		name = krcw_sov2_8.d
+		trigger = {
+			OR = { has_country_flag = krcw_sov2_leagues_fight check_variable = { krcw_sov_ext > 29 } }
+		}
+		ai_chance = {
+			base = 10
+			modifier = { factor = 0 krcw_route_historical = yes }
+			modifier = { factor = 0 has_completed_focus = krcw_sov_disband_the_veterans_leagues }
+		}
+		set_country_flag = krcw_sov2_pact_leagues
+		if = { limit = { NOT = { has_variable = krcw_sov_ext } } set_variable = { krcw_sov_ext = 0 } }
+		add_to_variable = { krcw_sov_ext = 15 }
+		clamp_variable = { var = krcw_sov_ext min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_ext_15_tt
+		add_war_support = 0.03
+		add_stability = -0.03
+	}
+}
+
+country_event = {
+	id = krcw_sov2.9
+	title = krcw_sov2_9_t
+	desc = {
+		text = krcw_sov2_9_d0
+		trigger = {
+			has_country_flag = krcw_sov_outcome_military
+			has_country_flag = krcw_sov2_losers_resist
+		}
+	}
+	desc = {
+		text = krcw_sov2_9_d1
+		trigger = {
+			has_country_flag = krcw_sov_outcome_civilian
+			has_country_flag = krcw_sov2_losers_resist
+		}
+	}
+	desc = {
+		text = krcw_sov2_9_d2
+		trigger = {
+			has_country_flag = krcw_sov_outcome_monarchist
+			has_country_flag = krcw_sov2_losers_resist
+		}
+	}
+	desc = {
+		text = krcw_sov2_9_d3
+		trigger = {
+			has_country_flag = krcw_sov_outcome_extremist
+			has_country_flag = krcw_sov2_losers_resist
+		}
+	}
+	desc = {
+		text = krcw_sov2_9_d4
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_kremlin3
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+		has_global_flag = KRCW_russian_succession_over
+		has_country_flag = krcw_sov2_campaign
+	}
+	mean_time_to_happen = {
+		days = 10
+	}
+	immediate = {
+		set_country_flag = krcw_sov2_regency_done
+		random_list = {
+			55 = {
+				modifier = { factor = 1.5 has_stability > 0.5 }
+				modifier = { factor = 1.3 has_country_flag = krcw_sov2_leagues_broken }
+				modifier = { factor = 1.3 has_country_flag = krcw_sov2_triumvirate_held }
+				modifier = { factor = 0.6 has_country_flag = krcw_sov_outcome_monarchist }
+				modifier = { factor = 0.6 has_country_flag = krcw_sov_outcome_extremist }
+			}
+			45 = {
+				modifier = { factor = 1.5 has_stability < 0.4 }
+				modifier = { factor = 1.4 has_country_flag = krcw_sov2_leagues_fight }
+				modifier = { factor = 1.3 has_country_flag = krcw_sov2_triumvirate_split }
+				set_country_flag = krcw_sov2_losers_resist
+			}
+		}
+	}
+	option = {
+		name = krcw_sov2_9.a
+		trigger = {
+			has_country_flag = krcw_sov2_losers_resist
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_sov_outcome_extremist }
+		}
+		add_stability = 0.03
+		add_political_power = -25
+		set_country_flag = krcw_sov2_exiled_losers
+	}
+	option = {
+		name = krcw_sov2_9.b
+		trigger = {
+			has_country_flag = krcw_sov2_losers_resist
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_sov_outcome_civilian }
+		}
+		add_political_power = -50
+		add_stability = 0.05
+	}
+	option = {
+		name = krcw_sov2_9.c
+		trigger = {
+			NOT = { has_country_flag = krcw_sov2_losers_resist }
+		}
+		ai_chance = {
+			base = 60
+		}
+		add_political_power = 50
+		if = { limit = { has_country_flag = krcw_sov2_pact_army } army_experience = 20 }
+		if = { limit = { has_country_flag = krcw_sov2_pact_civil } add_tech_bonus = { name = krcw_sov2_bloc_plan bonus = 0.5 uses = 1 category = industry } }
+		if = { limit = { has_country_flag = krcw_sov2_pact_crown } add_popularity = { ideology = monarchism popularity = 0.03 } }
+		if = { limit = { has_country_flag = krcw_sov2_pact_leagues } add_war_support = 0.03 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.20
+	title = krcw_sov2_20_t
+	desc = krcw_sov2_20_d
+	picture = GFX_krcw_eu_rus_duma
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+		has_completed_focus = krcw_sov_the_ukrainian_question
+	}
+	mean_time_to_happen = {
+		days = 27
+	}
+	option = {
+		name = krcw_sov2_20.a
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 has_country_flag = krcw_sov_road_federal }
+			modifier = { factor = 1.5 has_idea = krcw_sov_statute_of_peoples }
+			modifier = { factor = 0.4 has_country_flag = krcw_sov_road_russify }
+		}
+		add_ideas = krcw_sov_ukrainian_faculty
+		add_stability = 0.03
+		set_country_flag = krcw_sov2_ukr_faculty
+		country_event = { id = krcw_sov2.21 days = 20 }
+	}
+	option = {
+		name = krcw_sov2_20.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 has_country_flag = krcw_sov_road_russify }
+			modifier = { factor = 1.5 has_idea = krcw_sov_governors_general }
+			modifier = { factor = 0.3 has_country_flag = krcw_sov_road_federal }
+		}
+		add_political_power = 25
+		add_stability = -0.03
+		set_country_flag = krcw_sov2_ukr_closed
+		country_event = { id = krcw_sov2.22 days = 20 }
+	}
+	option = {
+		name = krcw_sov2_20.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 1.5 has_country_flag = krcw_sov_road_bargains }
+		}
+		add_political_power = 50
+		add_stability = -0.01
+		set_country_flag = krcw_sov2_ukr_governor
+		country_event = { id = krcw_sov2.21 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.21
+	title = krcw_sov2_21_t
+	desc = {
+		text = krcw_sov2_21_d0
+		trigger = {
+			has_country_flag = krcw_sov2_ukr_calm
+		}
+	}
+	desc = {
+		text = krcw_sov2_21_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_academy_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	immediate = {
+		random_list = {
+			60 = {
+				modifier = { factor = 1.4 has_stability > 0.5 }
+				modifier = { factor = 1.3 has_country_flag = krcw_sov2_ukr_faculty }
+				set_country_flag = krcw_sov2_ukr_calm
+			}
+			40 = {
+				modifier = { factor = 1.3 has_stability < 0.4 }
+				modifier = { factor = 1.3 has_country_flag = krcw_sov2_ukr_governor }
+				set_country_flag = krcw_sov2_ukr_journal
+			}
+		}
+	}
+	option = {
+		name = krcw_sov2_21.a
+		trigger = {
+			has_country_flag = krcw_sov2_ukr_calm
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_sov_road_federal }
+		}
+		add_stability = 0.03
+		add_political_power = -25
+		set_country_flag = krcw_sov2_ukr_expanded
+		country_event = { id = krcw_sov2.23 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_21.b
+		trigger = {
+			has_country_flag = krcw_sov2_ukr_calm
+		}
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 25
+		country_event = { id = krcw_sov2.23 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_21.c
+		trigger = {
+			has_country_flag = krcw_sov2_ukr_journal
+		}
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 has_country_flag = krcw_sov_road_russify }
+		}
+		if = { limit = { has_idea = krcw_sov_ukrainian_faculty } remove_ideas = krcw_sov_ukrainian_faculty }
+		add_ideas = krcw_sov_russified_ukraine
+		add_stability = -0.03
+		add_political_power = 25
+		clr_country_flag = krcw_sov2_ukr_faculty
+		set_country_flag = krcw_sov2_ukr_russified
+		country_event = { id = krcw_sov2.23 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_21.d
+		trigger = {
+			has_country_flag = krcw_sov2_ukr_journal
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mil } }
+		}
+		add_stability = 0.02
+		add_political_power = -25
+		country_event = { id = krcw_sov2.23 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.22
+	title = krcw_sov2_22_t
+	desc = {
+		text = krcw_sov2_22_d0
+		trigger = {
+			has_country_flag = krcw_sov2_ukr_resist
+		}
+	}
+	desc = {
+		text = krcw_sov2_22_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_arrests
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	immediate = {
+		random_list = {
+			45 = {
+				modifier = { factor = 1.5 has_stability < 0.4 }
+				modifier = { factor = 1.3 has_idea = krcw_sov_governors_general }
+				set_country_flag = krcw_sov2_ukr_resist
+			}
+			55 = {
+				modifier = { factor = 1.4 has_stability > 0.6 }
+				modifier = { factor = 1.3 has_completed_focus = krcw_sov_the_okhrana }
+			}
+		}
+	}
+	option = {
+		name = krcw_sov2_22.a
+		trigger = {
+			has_country_flag = krcw_sov2_ukr_resist
+		}
+		ai_chance = {
+			base = 45
+			modifier = { factor = 2 has_country_flag = krcw_sov_road_russify }
+		}
+		add_ideas = krcw_sov_russified_ukraine
+		add_stability = -0.04
+		add_war_support = 0.03
+		set_country_flag = krcw_sov2_ukr_russified
+		country_event = { id = krcw_sov2.23 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_22.b
+		trigger = {
+			has_country_flag = krcw_sov2_ukr_resist
+		}
+		ai_chance = {
+			base = 35
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mil } }
+		}
+		add_political_power = -25
+		add_stability = 0.02
+		add_ideas = krcw_sov_ukrainian_faculty
+		clr_country_flag = krcw_sov2_ukr_closed
+		set_country_flag = krcw_sov2_ukr_faculty
+		country_event = { id = krcw_sov2.23 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_22.c
+		trigger = {
+			NOT = { has_country_flag = krcw_sov2_ukr_resist }
+		}
+		ai_chance = {
+			base = 50
+		}
+		add_ideas = krcw_sov_russified_ukraine
+		add_political_power = 25
+		set_country_flag = krcw_sov2_ukr_russified
+		country_event = { id = krcw_sov2.23 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.23
+	title = krcw_sov2_23_t
+	desc = krcw_sov2_23_d
+	picture = GFX_krcw_eu_rus_orthodox
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_sov2_23.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 has_country_flag = krcw_sov_road_federal }
+			modifier = { factor = 1.5 has_country_flag = krcw_sov2_ukr_faculty }
+			modifier = { factor = 0.3 has_idea = krcw_sov_governors_general }
+		}
+		add_stability = 0.03
+		add_political_power = -25
+		set_country_flag = krcw_sov2_geo_church
+		country_event = { id = krcw_sov2.24 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_23.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 1.5 check_variable = { krcw_sov_mon > krcw_sov_civ } }
+			modifier = { factor = 1.3 has_completed_focus = krcw_sov_the_patriarchate }
+		}
+		add_stability = 0.02
+		add_political_power = 25
+		country_event = { id = krcw_sov2.24 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_23.c
+		ai_chance = {
+			base = 20
+			modifier = { factor = 2 has_country_flag = krcw_sov_road_russify }
+			modifier = { factor = 0.3 has_country_flag = krcw_sov_road_federal }
+		}
+		add_stability = -0.03
+		add_political_power = 25
+		set_country_flag = krcw_sov2_geo_refused
+		country_event = { id = krcw_sov2.24 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.24
+	title = krcw_sov2_24_t
+	desc = {
+		text = krcw_sov2_24_d0
+		trigger = {
+			has_country_flag = krcw_sov2_ukr_russified
+		}
+	}
+	desc = {
+		text = krcw_sov2_24_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_crowd
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = krcw_sov2_24.a
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 has_country_flag = krcw_sov_road_russify }
+			modifier = { factor = 1.5 has_idea = krcw_sov_cossack_hosts }
+			modifier = { factor = 0.4 has_country_flag = krcw_sov2_ukr_faculty }
+		}
+		add_manpower = 40000
+		add_war_support = 0.03
+		add_stability = -0.02
+		set_country_flag = krcw_sov2_cossack_police
+		country_event = { id = krcw_sov2.26 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_24.b
+		ai_chance = {
+			base = 35
+			modifier = { factor = 2 has_country_flag = krcw_sov2_ukr_faculty }
+			modifier = { factor = 1.5 has_country_flag = krcw_sov_road_federal }
+			modifier = { factor = 0.2 has_idea = krcw_sov_russified_ukraine }
+		}
+		add_ideas = krcw_sov_ukrainian_land_council
+		add_stability = 0.05
+		add_political_power = -50
+		set_country_flag = krcw_sov2_land_council
+		country_event = { id = krcw_sov2.25 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_24.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 1.5 has_idea = krcw_sov_governors_general }
+			modifier = { factor = 1.5 has_country_flag = krcw_sov2_ukr_russified }
+		}
+		add_political_power = 25
+		add_stability = -0.01
+		set_country_flag = krcw_sov2_direct_rule
+		country_event = { id = krcw_sov2.26 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.25
+	title = krcw_sov2_25_t
+	desc = {
+		text = krcw_sov2_25_d0
+		trigger = {
+			has_country_flag = krcw_sov2_council_works
+		}
+	}
+	desc = {
+		text = krcw_sov2_25_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_land_reform
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	immediate = {
+		random_list = {
+			55 = {
+				modifier = { factor = 1.4 has_stability > 0.5 }
+				set_country_flag = krcw_sov2_council_works
+			}
+			45 = {
+				modifier = { factor = 1.4 has_stability < 0.4 }
+				modifier = { factor = 1.3 check_variable = { krcw_sov_mon > krcw_sov_civ } }
+				set_country_flag = krcw_sov2_council_overreach
+			}
+		}
+	}
+	option = {
+		name = krcw_sov2_25.a
+		trigger = {
+			has_country_flag = krcw_sov2_council_works
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_sov_road_federal }
+		}
+		add_stability = 0.04
+		add_political_power = -25
+		set_country_flag = krcw_sov2_settled
+		set_country_flag = krcw_sov2_await_border
+		country_event = { id = krcw_sov2.27 days = 54 }
+	}
+	option = {
+		name = krcw_sov2_25.b
+		trigger = {
+			has_country_flag = krcw_sov2_council_works
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 check_variable = { krcw_sov_mil > krcw_sov_civ } }
+		}
+		add_political_power = 25
+		add_stability = -0.01
+		set_country_flag = krcw_sov2_await_border
+		country_event = { id = krcw_sov2.27 days = 54 }
+	}
+	option = {
+		name = krcw_sov2_25.c
+		trigger = {
+			has_country_flag = krcw_sov2_council_overreach
+		}
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 has_idea = krcw_sov_governors_general }
+		}
+		if = { limit = { has_idea = krcw_sov_ukrainian_land_council } remove_ideas = krcw_sov_ukrainian_land_council }
+		add_stability = -0.04
+		add_political_power = 25
+		set_country_flag = krcw_sov2_direct_rule
+		country_event = { id = krcw_sov2.26 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_25.d
+		trigger = {
+			has_country_flag = krcw_sov2_council_overreach
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mil } }
+		}
+		add_political_power = -25
+		add_stability = 0.02
+		set_country_flag = krcw_sov2_settled
+		set_country_flag = krcw_sov2_await_border
+		country_event = { id = krcw_sov2.27 days = 54 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.26
+	title = krcw_sov2_26_t
+	desc = {
+		text = krcw_sov2_26_d0
+		trigger = {
+			has_country_flag = krcw_sov2_cossacks_loyal
+			has_country_flag = krcw_sov2_cossack_police
+		}
+	}
+	desc = {
+		text = krcw_sov2_26_d1
+		trigger = {
+			has_country_flag = krcw_sov2_cossacks_loyal
+		}
+	}
+	desc = {
+		text = krcw_sov2_26_d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_army3
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	immediate = {
+		random_list = {
+			55 = {
+				modifier = { factor = 1.5 has_idea = krcw_sov_cossack_hosts }
+				modifier = { factor = 1.3 has_stability > 0.5 }
+				modifier = { factor = 0.6 has_country_flag = krcw_sov2_direct_rule }
+				set_country_flag = krcw_sov2_cossacks_loyal
+			}
+			45 = {
+				modifier = { factor = 1.4 has_idea = krcw_sov_russified_ukraine }
+				modifier = { factor = 1.3 has_stability < 0.4 }
+				set_country_flag = krcw_sov2_cossacks_excess
+			}
+		}
+	}
+	option = {
+		name = krcw_sov2_26.a
+		trigger = {
+			has_country_flag = krcw_sov2_cossacks_loyal
+		}
+		ai_chance = {
+			base = 55
+		}
+		add_stability = 0.03
+		army_experience = 10
+		set_country_flag = krcw_sov2_settled
+		set_country_flag = krcw_sov2_await_border
+		country_event = { id = krcw_sov2.27 days = 54 }
+	}
+	option = {
+		name = krcw_sov2_26.b
+		trigger = {
+			has_country_flag = krcw_sov2_cossacks_excess
+		}
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mil } }
+		}
+		add_stability = 0.02
+		add_political_power = -25
+		add_manpower = -15000
+		set_country_flag = krcw_sov2_await_border
+		country_event = { id = krcw_sov2.27 days = 54 }
+	}
+	option = {
+		name = krcw_sov2_26.c
+		trigger = {
+			has_country_flag = krcw_sov2_cossacks_excess
+		}
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 has_country_flag = krcw_sov_road_russify }
+		}
+		add_stability = -0.04
+		add_war_support = 0.03
+		add_political_power = 25
+		set_country_flag = krcw_sov2_ukr_bitter
+		set_country_flag = krcw_sov2_await_border
+		country_event = { id = krcw_sov2.27 days = 54 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.27
+	title = krcw_sov2_27_t
+	desc = {
+		text = krcw_sov2_27_d0
+		trigger = {
+			has_country_flag = krcw_sov2_border_holds
+			has_country_flag = krcw_sov2_land_council
+		}
+	}
+	desc = {
+		text = krcw_sov2_27_d1
+		trigger = {
+			has_country_flag = krcw_sov2_border_holds
+		}
+	}
+	desc = {
+		text = krcw_sov2_27_d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_border
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	immediate = {
+		set_country_flag = krcw_sov2_nat_done
+		random_list = {
+			50 = {
+				modifier = { factor = 1.6 has_country_flag = krcw_sov2_settled }
+				modifier = { factor = 1.3 has_completed_focus = krcw_sov_the_kiev_faculties }
+				modifier = { factor = 1.3 has_completed_focus = krcw_sov_the_cossack_frontier_line }
+				modifier = { factor = 1.2 has_completed_focus = krcw_sov_the_georgian_exarchate }
+				modifier = { factor = 0.6 has_country_flag = krcw_sov2_ukr_bitter }
+				modifier = { factor = 1.3 has_stability > 0.5 }
+				set_country_flag = krcw_sov2_border_holds
+			}
+			40 = {
+				modifier = { factor = 1.5 has_country_flag = krcw_sov2_ukr_bitter }
+				modifier = { factor = 1.3 has_country_flag = krcw_sov2_geo_refused }
+				modifier = { factor = 1.3 has_stability < 0.4 }
+				set_country_flag = krcw_sov2_border_breaks
+			}
+		}
+	}
+	option = {
+		name = krcw_sov2_27.a
+		trigger = {
+			has_country_flag = krcw_sov2_border_holds
+		}
+		ai_chance = {
+			base = 50
+		}
+		add_stability = 0.03
+		add_to_variable = { global.krcw_ma_crisis = -3 }
+		clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+		custom_effect_tooltip = krcw_ma_crisis_tt
+	}
+	option = {
+		name = krcw_sov2_27.b
+		trigger = {
+			has_country_flag = krcw_sov2_border_holds
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 check_variable = { krcw_sov_mil > krcw_sov_civ } }
+		}
+		army_experience = 10
+		add_war_support = 0.02
+		add_to_variable = { global.krcw_ma_crisis = -2 }
+		clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+		custom_effect_tooltip = krcw_ma_crisis_tt
+	}
+	option = {
+		name = krcw_sov2_27.c
+		trigger = {
+			has_country_flag = krcw_sov2_border_breaks
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 check_variable = { krcw_sov_mil > krcw_sov_civ } }
+		}
+		add_stability = -0.03
+		add_war_support = 0.03
+		add_manpower = -20000
+		army_experience = 15
+		add_to_variable = { global.krcw_ma_crisis = 2 }
+		clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+		custom_effect_tooltip = krcw_ma_crisis_tt
+	}
+	option = {
+		name = krcw_sov2_27.d
+		trigger = {
+			has_country_flag = krcw_sov2_border_breaks
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mil } }
+		}
+		add_stability = 0.01
+		add_political_power = -50
+		add_to_variable = { global.krcw_ma_crisis = 1 }
+		clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+		custom_effect_tooltip = krcw_ma_crisis_tt
+	}
+}
+
+country_event = {
+	id = krcw_sov2.40
+	title = krcw_sov2_40_t
+	desc = krcw_sov2_40_d
+	picture = GFX_krcw_eu_rus_industry
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+		has_completed_focus = krcw_sov_nizhny_tagil_wagon_works
+	}
+	mean_time_to_happen = {
+		days = 40
+	}
+	option = {
+		name = krcw_sov2_40.a
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 has_completed_focus = krcw_sov_audit_the_trusts }
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mon } }
+			modifier = { factor = 0.4 has_idea = krcw_sov_baron_trusts }
+		}
+		add_political_power = -25
+		set_country_flag = krcw_sov2_trust_court
+		country_event = { id = krcw_sov2.41 days = 20 }
+	}
+	option = {
+		name = krcw_sov2_40.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 has_idea = krcw_sov_baron_trusts }
+			modifier = { factor = 1.5 check_variable = { krcw_sov_mon > krcw_sov_civ } }
+			modifier = { factor = 1.3 has_completed_focus = krcw_sov_leave_the_profits_to_the_boards }
+		}
+		add_political_power = 25
+		add_stability = 0.02
+		if = { limit = { NOT = { has_variable = krcw_sov_mon } } set_variable = { krcw_sov_mon = 0 } }
+		add_to_variable = { krcw_sov_mon = 5 }
+		clamp_variable = { var = krcw_sov_mon min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov_tree_bid_mon_5_tt
+		set_country_flag = krcw_sov2_trust_deal
+		country_event = { id = krcw_sov2.42 days = 20 }
+	}
+	option = {
+		name = krcw_sov2_40.c
+		ai_chance = {
+			base = 15
+			modifier = { factor = 1.5 check_variable = { krcw_sov_ext > krcw_sov_civ } }
+			modifier = { factor = 1.5 has_country_flag = krcw_sov_outcome_extremist }
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = -50
+		add_stability = -0.03
+		add_war_support = 0.02
+		set_country_flag = krcw_sov2_trust_seized
+		country_event = { id = krcw_sov2.43 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.41
+	title = krcw_sov2_41_t
+	desc = {
+		text = krcw_sov2_41_d0
+		trigger = {
+			has_country_flag = krcw_sov2_court_for_state
+		}
+	}
+	desc = {
+		text = krcw_sov2_41_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_court
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	immediate = {
+		random_list = {
+			55 = {
+				modifier = { factor = 1.5 has_completed_focus = krcw_sov_audit_the_trusts }
+				modifier = { factor = 1.3 has_idea = krcw_sov_arbitration_courts }
+				modifier = { factor = 1.3 check_variable = { krcw_sov_civ > krcw_sov_mon } }
+				modifier = { factor = 0.6 has_idea = krcw_sov_baron_trusts }
+				set_country_flag = krcw_sov2_court_for_state
+			}
+			45 = {
+				modifier = { factor = 1.5 has_idea = krcw_sov_baron_trusts }
+				modifier = { factor = 1.3 check_variable = { krcw_sov_mon > krcw_sov_civ } }
+				set_country_flag = krcw_sov2_court_for_trust
+			}
+		}
+	}
+	option = {
+		name = krcw_sov2_41.a
+		trigger = {
+			has_country_flag = krcw_sov2_court_for_state
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mon } }
+		}
+		add_ideas = krcw_sov_industrial_committee
+		add_political_power = -25
+		set_country_flag = krcw_sov2_committee
+		country_event = { id = krcw_sov2.44 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_41.b
+		trigger = {
+			has_country_flag = krcw_sov2_court_for_state
+		}
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 25
+		add_stability = 0.02
+		country_event = { id = krcw_sov2.44 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_41.c
+		trigger = {
+			has_country_flag = krcw_sov2_court_for_trust
+		}
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 check_variable = { krcw_sov_mon > krcw_sov_civ } }
+		}
+		add_political_power = 25
+		add_stability = -0.02
+		set_country_flag = krcw_sov2_trust_deal
+		country_event = { id = krcw_sov2.42 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_41.d
+		trigger = {
+			has_country_flag = krcw_sov2_court_for_trust
+		}
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mon } }
+		}
+		add_tech_bonus = { name = krcw_sov2_legal_order bonus = 0.5 uses = 1 category = industry }
+		add_political_power = -25
+		set_country_flag = krcw_sov2_court_stands
+		country_event = { id = krcw_sov2.44 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.42
+	title = krcw_sov2_42_t
+	desc = {
+		text = krcw_sov2_42_d0
+		trigger = {
+			has_country_flag = krcw_sov2_barons_pay
+		}
+	}
+	desc = {
+		text = krcw_sov2_42_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_meeting
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	immediate = {
+		random_list = {
+			60 = {
+				modifier = { factor = 1.4 has_idea = krcw_sov_baron_trusts }
+				modifier = { factor = 1.3 check_variable = { krcw_sov_mon > 19 } }
+				set_country_flag = krcw_sov2_barons_pay
+			}
+			40 = {
+				modifier = { factor = 1.4 check_variable = { krcw_sov_mon > krcw_sov_civ } }
+				modifier = { factor = 1.3 has_stability < 0.4 }
+				set_country_flag = krcw_sov2_barons_refuse
+			}
+		}
+	}
+	option = {
+		name = krcw_sov2_42.a
+		trigger = {
+			has_country_flag = krcw_sov2_barons_pay
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 check_variable = { krcw_sov_mon > krcw_sov_civ } }
+		}
+		653 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+		} }
+		add_political_power = 25
+		add_stability = 0.02
+		set_country_flag = krcw_sov2_barons_bound
+		country_event = { id = krcw_sov2.44 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_42.b
+		trigger = {
+			has_country_flag = krcw_sov2_barons_pay
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mon } }
+		}
+		add_political_power = -25
+		add_ideas = krcw_sov_industrial_committee
+		set_country_flag = krcw_sov2_committee
+		country_event = { id = krcw_sov2.44 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_42.c
+		trigger = {
+			has_country_flag = krcw_sov2_barons_refuse
+			NOT = { has_country_flag = krcw_sov2_trust_court }
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mon } }
+		}
+		add_political_power = -25
+		set_country_flag = krcw_sov2_trust_court
+		country_event = { id = krcw_sov2.41 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_42.d
+		trigger = {
+			has_country_flag = krcw_sov2_barons_refuse
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 check_variable = { krcw_sov_ext > krcw_sov_mon } }
+		}
+		add_political_power = 25
+		add_stability = -0.03
+		if = { limit = { NOT = { has_variable = krcw_sov_mon } } set_variable = { krcw_sov_mon = 0 } }
+		subtract_from_variable = { krcw_sov_mon = 5 }
+		clamp_variable = { var = krcw_sov_mon min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov2_drop_mon_5_tt
+		country_event = { id = krcw_sov2.44 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.43
+	title = krcw_sov2_43_t
+	desc = krcw_sov2_43_d
+	picture = GFX_krcw_eu_rus_trial
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_sov2_43.a
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 check_variable = { krcw_sov_ext > krcw_sov_mon } }
+		}
+		add_ideas = krcw_sov_industrial_committee
+		add_political_power = -50
+		add_stability = -0.02
+		if = { limit = { NOT = { has_variable = krcw_sov_mon } } set_variable = { krcw_sov_mon = 0 } }
+		subtract_from_variable = { krcw_sov_mon = 10 }
+		clamp_variable = { var = krcw_sov_mon min = 0 max = 100 }
+		custom_effect_tooltip = krcw_sov2_drop_mon_10_tt
+		set_country_flag = krcw_sov2_committee
+		country_event = { id = krcw_sov2.44 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_43.b
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_ext } }
+		}
+		add_political_power = 25
+		add_stability = 0.02
+		set_country_flag = krcw_sov2_court_stands
+		country_event = { id = krcw_sov2.44 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.44
+	title = krcw_sov2_44_t
+	desc = {
+		text = krcw_sov2_44_d0
+		trigger = {
+			has_country_flag = krcw_sov2_order_strain
+		}
+	}
+	desc = {
+		text = krcw_sov2_44_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_industry
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	immediate = {
+		random_list = {
+			50 = {
+				modifier = { factor = 1.5 has_war_support > 0.6 }
+				modifier = { factor = 1.4 has_country_flag = krcw_sov2_trust_seized }
+				modifier = { factor = 1.3 has_completed_focus = krcw_sov_enlarge_the_tank_armies }
+				set_country_flag = krcw_sov2_order_strain
+			}
+			50 = {
+				modifier = { factor = 1.4 has_country_flag = krcw_sov2_committee }
+				modifier = { factor = 1.3 has_stability > 0.6 }
+			}
+		}
+	}
+	option = {
+		name = krcw_sov2_44.a
+		trigger = {
+			has_country_flag = krcw_sov2_order_strain
+		}
+		ai_chance = {
+			base = 45
+			modifier = { factor = 1.5 check_variable = { krcw_sov_mil > krcw_sov_civ } }
+			modifier = { factor = 1.5 has_completed_focus = krcw_sov_the_supreme_defence_council }
+		}
+		army_experience = 15
+		add_war_support = 0.03
+		add_stability = -0.03
+		set_country_flag = krcw_sov2_arms_first
+		country_event = { id = krcw_sov2.45 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_44.b
+		trigger = {
+			has_country_flag = krcw_sov2_order_strain
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 2 has_country_flag = krcw_sov2_committee }
+			modifier = { factor = 1.5 check_variable = { krcw_sov_civ > krcw_sov_mil } }
+			modifier = { factor = 1.3 has_country_flag = krcw_sov2_court_stands }
+		}
+		add_political_power = 25
+		add_stability = 0.02
+		add_war_support = -0.02
+		set_country_flag = krcw_sov2_contract_first
+		country_event = { id = krcw_sov2.45 days = 30 }
+	}
+	option = {
+		name = krcw_sov2_44.c
+		trigger = {
+			NOT = { has_country_flag = krcw_sov2_order_strain }
+		}
+		ai_chance = {
+			base = 50
+		}
+		add_political_power = -50
+		653 = { if = {
+			limit = { is_owned_by = ROOT }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+		} }
+		country_event = { id = krcw_sov2.45 days = 30 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.45
+	title = krcw_sov2_45_t
+	desc = {
+		text = krcw_sov2_45_d0
+		trigger = {
+			has_country_flag = krcw_sov2_system_works
+		}
+	}
+	desc = {
+		text = krcw_sov2_45_d1
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_industry
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	immediate = {
+		random_list = {
+			55 = {
+				modifier = { factor = 1.5 has_country_flag = krcw_sov2_contract_first }
+				modifier = { factor = 1.4 has_idea = krcw_sov_industrial_committee }
+				modifier = { factor = 1.3 has_stability > 0.5 }
+				set_country_flag = krcw_sov2_system_works
+			}
+			45 = {
+				modifier = { factor = 1.5 has_country_flag = krcw_sov2_arms_first }
+				modifier = { factor = 1.3 has_idea = krcw_sov_baron_trusts }
+				set_country_flag = krcw_sov2_system_strain
+			}
+		}
+	}
+	option = {
+		name = krcw_sov2_45.a
+		trigger = {
+			has_country_flag = krcw_sov2_system_works
+		}
+		ai_chance = {
+			base = 50
+			modifier = { factor = 1.5 has_country_flag = krcw_sov2_committee }
+		}
+		add_political_power = 50
+		add_stability = 0.03
+		set_country_flag = krcw_sov2_ind_settled
+		country_event = { id = krcw_sov2.46 days = 20 }
+	}
+	option = {
+		name = krcw_sov2_45.b
+		trigger = {
+			has_country_flag = krcw_sov2_system_works
+		}
+		ai_chance = {
+			base = 40
+		}
+		add_political_power = 25
+		set_country_flag = krcw_sov2_ind_settled
+		country_event = { id = krcw_sov2.46 days = 20 }
+	}
+	option = {
+		name = krcw_sov2_45.c
+		trigger = {
+			has_country_flag = krcw_sov2_system_strain
+		}
+		ai_chance = {
+			base = 45
+			modifier = { factor = 2 has_idea = krcw_sov_baron_trusts }
+			modifier = { factor = 1.5 check_variable = { krcw_sov_mon > krcw_sov_civ } }
+		}
+		if = { limit = { has_idea = krcw_sov_industrial_committee } remove_ideas = krcw_sov_industrial_committee }
+		if = { limit = { NOT = { has_idea = krcw_sov_ural_syndicate } } add_ideas = krcw_sov_ural_syndicate }
+		add_political_power = 25
+		set_country_flag = krcw_sov2_syndicate
+		country_event = { id = krcw_sov2.46 days = 20 }
+	}
+	option = {
+		name = krcw_sov2_45.d
+		trigger = {
+			has_country_flag = krcw_sov2_system_strain
+		}
+		ai_chance = {
+			base = 40
+			modifier = { factor = 1.5 check_variable = { krcw_sov_ext > krcw_sov_mon } }
+		}
+		add_political_power = -25
+		add_stability = -0.02
+		add_war_support = 0.02
+		set_country_flag = krcw_sov2_ind_settled
+		country_event = { id = krcw_sov2.46 days = 20 }
+	}
+}
+
+country_event = {
+	id = krcw_sov2.46
+	title = krcw_sov2_46_t
+	desc = {
+		text = krcw_sov2_46_d0
+		trigger = {
+			has_country_flag = krcw_sov2_committee
+		}
+	}
+	desc = {
+		text = krcw_sov2_46_d1
+		trigger = {
+			has_country_flag = krcw_sov2_syndicate
+		}
+	}
+	desc = {
+		text = krcw_sov2_46_d2
+		trigger = {
+			always = yes
+		}
+	}
+	picture = GFX_krcw_eu_rus_table_c
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = SOV
+	}
+	option = {
+		name = krcw_sov2_46.a
+		ai_chance = {
+			base = 1
+		}
+		add_political_power = 50
+		if = { limit = { has_country_flag = krcw_sov2_committee } add_tech_bonus = { name = krcw_sov2_planned_output bonus = 0.5 uses = 2 category = industry } }
+		if = { limit = { has_country_flag = krcw_sov2_syndicate } add_stability = 0.03 }
+		set_country_flag = krcw_sov2_trusts_done
+		add_to_variable = { global.krcw_ma_crisis = -2 }
+		clamp_variable = { var = global.krcw_ma_crisis min = 0 max = 100 }
+		custom_effect_tooltip = krcw_ma_crisis_tt
+	}
+}

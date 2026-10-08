@@ -1,0 +1,100 @@
+# KRCW (build/patch_residue.py): 3 OTL events dropped while KRCW_active
+add_namespace = swf
+news_event = {	#lbj_63
+	id = swf.1000 
+ immediate = { }
+	title = swf.1000.t
+	desc = swf.1000.d
+
+	picture = GFX_news_assasination
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = USA
+		date > 1963.11.21
+		date < 1964.3.6
+		NOT = { has_global_flag = november_1963 }
+		has_global_flag = nixon_60
+	}
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = swf.1000.a
+		trigger = {
+			tag = USA
+		}
+		set_global_flag = november_1963
+		set_country_flag = henry_cabot_lodge_iii_63
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Henry Cabot Lodge Jr"
+			picture = "Henry_Cabot_Lodge_Jr_65.dds"
+			ideology = republican
+		}
+	}
+	option = {
+		name = swf.1000.b
+		trigger = {
+			NOT = { tag = USA }
+		}
+	}
+}news_event = {	#
+	id = swf.1011 
+ immediate = { }
+	title = swf.1011.t
+	desc = swf.101.d
+	picture = GFX_news_assasination
+
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		tag = USA
+		date > 1963.11.21
+		date < 1964.3.6
+		NOT = { has_global_flag = november_1963 }
+		has_global_flag = jfk_60
+
+	}
+
+	is_triggered_only = yes
+
+	fire_only_once = no
+
+
+	option = {
+		name = swf.1011.a
+		trigger = {
+			tag = USA
+		}
+		set_global_flag = november_1963
+		set_country_flag = lbj_63
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Lyndon B. Johnson"
+			picture = "Lyndon_B_Johnson_61.dds"
+			ideology = new_deal_democrat
+		}
+	}
+	option = {
+		name = swf.1011.b
+		trigger = {
+			NOT = { tag = USA }
+		}
+	}
+}country_event = {
+	id = swf.102 
+ immediate = { }
+	title = swf.102.t
+	desc = swf.102.d
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		date > 1966.12.12
+		date < 1968.1.1
+	}
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = swf.102.a
+		add_stability = -0.03
+		set_country_flag = mlk_dead
+	}
+}

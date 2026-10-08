@@ -1,0 +1,57 @@
+# KRCW (build/patch_residue.py): 4 CWIC AI strategies gated while KRCW_active
+# NOTE: the Italy (Italy_avoid_korea_war, ITA_ignore_France) blocks that used to be
+# at the top of this file were duplicates of the ones in ITA.txt and have been removed.
+
+BRM_ignore_PRC = {
+	allowed = { tag = BRM }
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		tag = BRM
+	}
+	abort = {
+		has_war_with = PRC
+	}
+	
+	ai_strategy = {
+		type = front_unit_request
+		tag = "PRC"			
+		value = -1000
+	}
+}
+BRM_focus_on_BCP = {
+	allowed = { tag = BRM }
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		tag = BRM
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = front_unit_request
+		tag = "BCP"			
+		value = 1000
+	}
+}
+BRM_focus_on_KAY = {
+	allowed = { tag = BRM }
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		tag = BRM
+	}
+	abort_when_not_enabled = yes
+	
+	ai_strategy = {
+		type = front_unit_request
+		tag = "KAY"			
+		value = 1000
+	}
+}
+BRM_focus_on_MNL = {
+	allowed = { tag = BRM }
+	enable = { NOT = { has_global_flag = KRCW_active } 
+		tag = BRM
+	}
+	abort_when_not_enabled = yes
+	
+	ai_strategy = {
+		type = front_unit_request
+		tag = "MNL"			
+		value = 1000
+	}
+}

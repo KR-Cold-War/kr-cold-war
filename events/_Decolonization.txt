@@ -1,0 +1,4179 @@
+# KRCW (build/patch_residue.py): 93 OTL events dropped while KRCW_active
+add_namespace = decolonization
+add_namespace = newsdecolonization
+add_namespace = colonial
+add_namespace = indochina_decolonisation
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = indochina_decolonisation.1
+	immediate = {
+	}
+	picture = GFX_LaosandCambodia
+	title = {
+		text = indochina_decolonisation.1.t
+		trigger = {
+			tag = LOS
+		}
+	}
+	title = {
+		text = indochina_decolonisation.2.t
+		trigger = {
+			tag = CAM
+		}
+	}
+	title = {
+		text = indochina_decolonisation.4.t
+		trigger = {
+			tag = VIE
+		}
+	}
+	title = {
+		text = indochina_decolonisation.5.t
+		trigger = {
+			tag = VIN
+		}
+	}
+	title = {
+		text = indochina_decolonisation.3.t
+		trigger = {
+			NOT = {
+				OR = {
+					tag = LOS
+					tag = VIN
+					tag = CAM
+					tag = VIE
+				}
+			}
+		}
+	}
+	desc = {
+		text = indochina_decolonisation.1.d
+		trigger = {
+			tag = LOS
+		}
+	}
+	desc = {
+		text = indochina_decolonisation.2.d
+		trigger = {
+			tag = CAM
+		}
+	}
+	desc = {
+		text = indochina_decolonisation.4.d
+		trigger = {
+			tag = VIE
+		}
+	}
+	desc = {
+		text = indochina_decolonisation.5.d
+		trigger = {
+			tag = VIN
+		}
+	}
+	desc = {
+		text = indochina_decolonisation.3.d
+		trigger = {
+			NOT = {
+				OR = {
+					tag = LOS
+					tag = VIN
+					tag = CAM
+					tag = VIE
+				}
+			}
+		}
+	}
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = indochina_decolonisation.1.a
+		trigger = {
+			tag = LOS
+		}
+	}
+	option = {
+		name = indochina_decolonisation.2.a
+		trigger = {
+			tag = CAM
+		}
+	}
+	option = {
+		name = indochina_decolonisation.4.a
+		trigger = {
+			tag = VIE
+		}
+	}
+	option = {
+		name = indochina_decolonisation.5.a
+		trigger = {
+			tag = VIN
+		}
+	}
+	option = {
+		name = indochina_decolonisation.3.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = LOS
+					tag = VIN
+					tag = CAM
+					tag = VIE
+				}
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = colonial.1
+	immediate = {
+	}
+	title = colonial.1.t
+	desc = colonial.1.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.1.a
+		#FRA = {
+		#	dismantle_faction = yes
+		#}
+		CMR = {
+			add_ideas = un_member
+			create_country_leader = {
+				name = "Ahmadou Ahidjo"
+				picture = "Ahmadou_Ahidjo_60s.dds"
+				ideology = black_conservatism
+			}
+			clr_country_flag = UN_Mandate
+			set_popularities = {
+				communism = 20
+				socialist = 20
+				liberal = 20
+				conservative = 40
+			}
+			set_politics = {
+				ruling_party = conservative
+				elections_allowed = no
+			}
+			conversion_to_rentier = yes
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = CMR_1960
+			news_event = news.1828
+		}
+		set_autonomy = {
+			target = CMR
+			autonomy_state = autonomy_free
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } } #OG french West Africa decolonization, no longer triggered
+	id = colonial.3
+	immediate = {
+	}
+	title = colonial.3.t
+	desc = colonial.3.d
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.1.a
+		release = MAD
+		every_owned_state = {
+			remove_core_of = SEN
+		}
+		272 = {
+			add_core_of = SEN
+		}
+		1378 = {
+			add_core_of = SEN
+		}
+		1379 = {
+			add_core_of = SEN
+		}
+		1377 = {
+			add_core_of = SEN
+		}
+		1376 = {
+			add_core_of = SEN
+		}
+		every_owned_state = {
+			remove_core_of = RCG
+		}
+		1057 = {
+			add_core_of = RCG
+		}
+		1420 = {
+			add_core_of = RCG
+		}
+		769 = {
+			add_core_of = RCG
+		}
+		1421 = {
+			add_core_of = RCG
+		}
+		819 = {
+			add_core_of = RCG
+		}
+		1419 = {
+			add_core_of = RCG
+		}
+		release = RCG
+		release = SEN
+		release = MRT
+		release = IVO
+		release = VOL
+		release = DAH
+		release = MLI
+		release = NGR
+		release = CHA
+		release = GAB
+		release = CAR
+		SEN = {
+			conversion_to_rentier = yes
+			set_popularities = {
+				maoism = 0
+				communism = 1
+				trotskyism = 0
+				socialist = 93
+				Social_Democratic = 0
+				
+				democratic = 0
+				Social_Liberalism = 9
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 0
+				Christian_Democratic = 0
+				conservative = 0
+				
+				neutrality = 0
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+			
+			set_politics = {
+				ruling_party = socialist
+				last_election = "1960.1.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			
+			create_country_leader = {
+				name = "Léopold Sédar Senghor"
+				picture = "Leopold_Sedar_Senghor_60s.dds"
+				ideology = african_socialism
+			}
+			
+			set_party_name = {
+				ideology = neutrality
+				long_name = "Senegal - Military Junta"
+				name = "SEN-MJ"
+			}
+			
+			create_country_leader = {
+				name = "Jean Alfred Diallo"
+				picture = "Jean_Alfred_Diallo_60s.dds"
+				ideology = military_junta
+			}
+			
+			drop_cosmetic_tag = yes
+		}
+		RCG = {
+			conversion_to_rentier = yes
+			drop_cosmetic_tag = yes
+			set_popularities = {
+				maoism = 19
+				communism = 0
+				trotskyism = 0
+				socialist = 15
+				Social_Democratic = 4
+			
+				democratic = 0
+				Social_Liberalism = 0
+				liberal = 0
+				centrist = 0
+	
+				Liberal_Conservatism = 0
+				Christian_Democratic = 0
+				conservative = 60
+	
+				neutrality = 2
+				nationalist = 0
+				monarchism = 0
+				fascism = 0
+	
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+			
+			set_politics = {
+				ruling_party = conservative
+				last_election = "1960.8.15"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			
+			set_party_name = {
+				ideology = neutrality
+				name = "ROC-MJ"
+				long_name = "Republic of the Congo - Military Junta"
+			}
+			
+			create_country_leader = {
+				name = "Alfred Raoul"
+				picture = "Alfred_Raoul_60s.dds"
+				ideology = military_junta
+			}
+		}
+	}
+}
+
+#Manage - French Cameroons
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = colonial.2
+	immediate = {
+	}
+	title = colonial.2.t
+	desc = colonial.2.d
+	is_triggered_only = yes
+	option = {
+		FRA = {
+			dismantle_faction = yes
+		}
+		name = colonial.2.a
+		CMR = {
+			conversion_to_rentier = yes
+			drop_cosmetic_tag = yes
+			add_ideas = un_member
+			create_country_leader = {
+				name = "Ahmadou Ahidjo"
+				picture = "Ahmadou_Ahidjo_60s.dds"
+				ideology = pan_africanism
+			}
+			add_popularity = {
+				ideology = nationalist
+				popularity = 0.9
+			}
+			set_politics = {
+				ruling_party = nationalist
+				last_election = "1960.1.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+		}
+		set_autonomy = {
+			target = CMR
+			autonomy_state = autonomy_free
+		}
+		remove_from_faction = CMR
+	}
+	option = {
+		name = colonial.2.b
+	}
+}
+
+#Northern British Cameroons - Mandate Expired
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.2
+	immediate = {
+	}
+	title = decolonization.2.t
+	desc = decolonization.2.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		NGA = {
+			set_country_flag = NGA_has_north_cameroon
+		}
+		1106 = {
+			remove_core_of = BCR
+		}
+		if = {
+			limit = {
+				country_exists = NGA
+				country_exists = CMR
+			}
+			NGA = {
+				transfer_state = 1106
+			}
+		}
+		if = {
+			limit = {
+				country_exists = NGA
+				NOT = {
+					country_exists = CMR
+				}
+			}
+			NGA = {
+				transfer_state = 1105
+				transfer_state = 1106
+			}
+		}
+		if = {
+			limit = {
+				country_exists = CMR
+				NOT = {
+					country_exists = NGA
+				}
+			}
+			CMR = {
+				transfer_state = 1105
+				transfer_state = 1106
+			}
+		}
+	}
+	option = {
+		name = decolonization.2.a
+	}
+}
+
+#French Togoland - Mandate Expired
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.3
+	immediate = {
+	}
+	title = decolonization.3.t
+	desc = decolonization.3.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.3.a
+		TOG = {
+			add_ideas = un_member
+			conversion_to_rentier = yes
+			set_autonomy = {
+				target = TOG
+				autonomy_state = autonomy_free
+			}
+			FRA = {
+				remove_from_faction = TOG
+			}
+			drop_cosmetic_tag = yes
+			
+			set_popularities = {
+				conservative = 40
+				nationalist = 60
+			}
+			set_politics = {
+				ruling_party = nationalist
+				last_election = "1960.1.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = "Togo - Military Junta"
+				name = "TOG-MJ"
+			}
+			create_country_leader = {
+				name = "Emmanuel Bodjollé"
+				picture = "Emmanuel_Bodjolle.dds"
+				desc = POLITICS_EMMANUEL_BODJOLLE_DESC
+				ideology = military_junta
+			}
+			news_event = news.1811
+		}
+	}
+}
+
+#British Togoland - Mandate Expired
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.4
+	immediate = {
+	}
+	title = decolonization.4.t
+	desc = decolonization.4.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.4.a
+		GHA = {
+			annex_country = {
+				target = BTG
+				transfer_troops = yes
+			}
+		}
+		BTG = {
+			drop_cosmetic_tag = yes
+		}
+	}
+}
+
+#Nauru - Mandate Expired
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.5
+	immediate = {
+	}
+	title = decolonization.5.t
+	desc = decolonization.5.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.5.a
+		release = NAU
+		NAU = {
+			conversion_to_rentier = yes
+			add_ideas = un_member
+		}
+	}
+}
+
+#Ruanda-Urundi - Mandate Expired
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.6
+	immediate = {
+	}
+	title = decolonization.6.t
+	desc = decolonization.6.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.6.a
+		RWA = {
+			drop_cosmetic_tag = yes
+			add_ideas = un_member
+			conversion_to_rentier = yes
+		}
+		BRD = {
+			add_ideas = un_member
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = BRD_MON
+			conversion_to_rentier = yes
+		}
+		set_province_name = {
+			id = 2220
+			name = "Bujumbura"
+		}
+		set_autonomy = {
+			target = RWA
+			autonomy_state = autonomy_free
+		}
+		set_autonomy = {
+			target = BRD
+			autonomy_state = autonomy_free
+		}
+		RWA = {
+			set_party_name = {
+				ideology = neutrality
+				long_name = "Rwandan Armed Forces"
+				name = "FAR"
+			}
+		}
+		news_event = news.1890
+	}
+}
+
+#Belgian Congo - Planned Decolonization
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.7
+	immediate = {
+	}
+	title = decolonization.7.t
+	desc = decolonization.7.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.7.a
+		add_ideas = {
+			un_member
+		}
+		conversion_to_rentier = yes
+		retire_character = DOC_emile_janssens
+		remove_ideas = idea_force_publique
+		
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = DOC_ROTC
+		
+		set_popularities = {
+			maoism = 0
+			communism = 0
+			trotskyism = 0
+			socialist = 15
+			Social_Democratic = 40
+			
+			democratic = 0
+			Social_Liberalism = 0
+			liberal = 0
+			centrist = 0
+			
+			Liberal_Conservatism = 15
+			Christian_Democratic = 15
+			conservative = 0
+			
+			neutrality = 0
+			nationalist = 15
+			monarchism = 0
+			fascism = 0
+			
+			islamism = 0
+			radical_shiaism = 0
+			Salafism = 0
+		}
+		
+		set_politics = {
+			ruling_party = Social_Democratic
+			last_election = "1960.5.22"
+			election_frequency = 60
+			elections_allowed = no
+		}
+		
+		set_party_name = { 
+			ideology = neutrality
+			long_name = "Congolese National Army" 
+			name = "CNA"
+		}
+	
+		create_country_leader = {
+			name = "Joseph-Désiré Mobutu"
+			picture = "Joseph-Desire_Mobutu_60s.dds"
+			desc = "POLITICS_JDMOBUTU_DESC"
+			ideology = military_junta
+			traits = {
+				ruthless_political_cut_throat
+			}
+		}
+		create_country_leader = {
+			name = "Patrice Lumumba"
+			picture = "Patrice_Lumumba_60s.dds"
+			desc = POLITICS_LAMUMBA_DESC
+			ideology = lumumbism
+				traits = {
+					boldy_resistant_to_belgian_imperialism
+					humanist_egalitarian
+					vehemently_against_tribalism
+					isolated_political_maverick
+				}
+		}
+		news_event = news.1882
+		
+		init_influence = yes
+		set_variable = { var = domestic_influence_amount value = 1500 }
+		add_to_array = { influence_array = BEL.id }
+		add_to_array = { influence_array_val = 500 }
+		add_to_array = { influence_array = USA.id }
+		add_to_array = { influence_array_val = 400 }
+		add_to_array = { influence_array = SOV.id }
+		add_to_array = { influence_array_val = 200 }
+		add_to_array = { influence_array = PRC.id }
+		add_to_array = { influence_array_val = 50 }
+	}
+}
+
+#Tanganyika - Mandate Expired
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.8
+	immediate = {
+	}
+	title = decolonization.8.t
+	desc = decolonization.8.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_autonomy = {
+			target = TZN
+			autonomy_state = autonomy_free
+		}
+		TZN = {
+			conversion_to_rentier = yes
+			add_ideas = un_member
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = TNK
+			create_country_leader = {
+				name = "Julius Nyerere"
+				picture = "Julius_Nyerere_60s.dds"
+				desc = POLITICS_JULIUS_NYERERE_DESC
+				ideology = ujamaa
+				traits = {
+					ujamaa_theorist
+					international_affairs_expert
+					believer_in_african_democracy
+					former_teacher
+				}
+			}
+			set_popularities = {
+				socialist = 70
+				nationalist = 30
+			}
+			set_politics = {
+				ruling_party = socialist
+				elections_allowed = no
+			}
+		}
+		news_event = news.1954
+	}
+	option = {
+		name = decolonization.8.a
+	}
+}
+
+#Papua and New Guinea - Mandate Expired
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.9
+	immediate = {
+	}
+	title = decolonization.9.t
+	desc = decolonization.9.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.9.a
+		release = PNG
+		PNG = {
+			conversion_to_rentier = yes
+			add_ideas = un_member
+		}
+	}
+}
+
+#The Malayan Question
+country_event = {
+	id = decolonization.10
+	immediate = {
+	}
+	title = decolonization.10.t
+	desc = decolonization.10.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		NOT = { has_global_flag = MAL_EMERGENCY_MLA_Victory }	# no Malaysia Plan once the MNLA holds the peninsula
+		country_exists = MAL
+	}
+	#Malaysia Plan
+	option = {
+		name = decolonization.10.a
+		ai_chance = {
+			factor = 99
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+		}
+		MAL = {
+			drop_cosmetic_tag = yes
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = SWK
+						is_core_of = NBO
+						is_core_of = SGP
+					}
+					OR = {
+						is_owned_by = ENG	# the plan only pools British and dominion territory, never a third party's
+						is_owned_by = SWK
+						is_owned_by = NBO
+						is_owned_by = SGP
+						is_owned_by = MAL
+					}
+				}
+				MAL = {
+					transfer_state = PREV
+				}
+			}
+			if = {
+				limit = {
+					711 = {
+						is_core_of = SGP
+					}
+				}
+				711 = {
+					add_core_of = MAL
+				}
+			}
+			if = {
+				limit = {
+					712 = {
+						is_core_of = SGP
+					}
+				}
+				712 = {
+					add_core_of = MAL
+				}
+			}
+		}
+		hidden_effect = {
+			news_event = {
+				id = Malaysia.0
+				hours = 3
+				random_hours = 6
+			}
+		}
+	}
+	#North Borneo Plan
+	option = {
+		name = decolonization.10.b
+		ai_chance = {
+			factor = 1
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+		set_autonomy = {
+			target = BRU
+			autonomy_state = autonomy_free
+		}
+		MAL = {
+			drop_cosmetic_tag = yes
+			if = {
+				limit = {
+					SGP = {
+						controls_state = 336
+					}
+				}
+				transfer_state = 336
+			}
+			if = {
+				limit = {
+					711 = {
+						is_core_of = SGP
+					}
+				}
+				MAL = {
+					transfer_state = 711
+				}
+				711 = {
+					add_core_of = MAL
+				}
+			}
+			if = {
+				limit = {
+					712 = {
+						is_core_of = SGP
+					}
+				}
+				MAL = {
+					transfer_state = 712
+				}
+				712 = {
+					add_core_of = MAL
+				}
+			}
+		}
+		BRU = {
+			conversion_to_rentier = yes
+			set_cosmetic_tag = NBR
+			set_politics = {
+				ruling_party = socialist
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.9
+			}
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = SWK
+						is_core_of = NBO
+					}
+				}
+				BRU = {
+					transfer_state = PREV
+					PREV = {
+						add_core_of = BRU
+						remove_core_of = MAL
+					}
+				}
+			}
+		}
+	}
+}
+
+#Malaya Independence Act
+country_event = {
+	id = decolonization.11
+	immediate = {
+	}
+	title = decolonization.11.t
+	desc = decolonization.11.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		NOT = { has_global_flag = MAL_EMERGENCY_MLA_Victory }	# an MLA-run Malaya has no British independence act to grant
+	}
+	option = {
+		name = decolonization.11.a
+		set_autonomy = {
+			target = MAL
+			autonomy_state = autonomy_free
+		}
+		diplomatic_relation = {
+			country = MAL
+			relation = guarantee
+			active = no
+		}
+		MAL = {
+			diplomatic_relation = {
+				country = ENG
+				relation = guarantee
+				active = no
+			}
+			remove_ideas = MAL_idea_Dominion
+			conversion_to_rentier = yes
+			add_ideas = un_member
+			add_popularity = {
+				ideology = conservative
+				popularity = 1
+			}
+			set_politics = {
+				ruling_party = conservative
+				last_election = "1957.8.31"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			retire_country_leader = yes
+			add_country_leader_role = {
+				character = MAL_Tunku_Abdul_Rahman
+				promote_leader = yes
+				country_leader = {
+					ideology = conservatism
+				}
+			}
+			if = {
+				limit = {
+					1128 = { is_owned_by = ENG }	# only Britain's own Straits Settlements are handed over
+				}
+				MAL = {
+					transfer_state = 1128
+				}
+			}
+			if = {
+				limit = {
+					924 = { is_owned_by = ENG }
+				}
+				MAL = {
+					transfer_state = 924
+				}
+			}
+		}
+	}
+}
+
+#Guyana Independence Act 26 May 1966
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.12
+	immediate = {
+	}
+	title = decolonization.12.t
+	desc = decolonization.12.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.12.a
+		release = GYA
+		GYA = {
+			conversion_to_rentier = yes
+			add_ideas = un_member
+		}
+		news_event = news.2059
+	}
+}
+
+#Belize Act
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.13
+	immediate = {
+	}
+	title = decolonization.13.t
+	desc = decolonization.13.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.13.a
+		release = BLZ
+		BLZ = {
+			conversion_to_rentier = yes
+			add_ideas = un_member
+		}
+	}
+}
+
+#Kingdom of Lesotho Act
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.14
+	immediate = {
+	}
+	title = decolonization.14.t
+	desc = decolonization.14.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		news_event = news.1715
+	}
+	option = {
+		name = decolonization.14.a
+		release = LES
+		LES = {
+			conversion_to_rentier = yes
+			add_ideas = un_member
+		}
+	}
+}
+
+#British-Trucial Sheikhdoms Treaty Expired
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.16
+	immediate = {
+	}
+	title = decolonization.16.t
+	desc = decolonization.16.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.16.a
+		if = {
+			limit = {
+				UAE = {
+					is_subject_of = ROOT
+				}
+			}
+			set_autonomy = {
+				target = UAE
+				autonomy_state = autonomy_free
+			}
+			UAE = {
+				conversion_to_rentier = yes
+				add_ideas = un_member
+				drop_cosmetic_tag = yes
+			}
+		}
+		if = {
+			limit = {
+				QAT = {
+					is_subject_of = ROOT
+				}
+			}
+			set_autonomy = {
+				target = QAT
+				autonomy_state = autonomy_free
+			}
+			QAT = {
+				add_ideas = un_member
+				drop_cosmetic_tag = yes
+			}
+		}
+		if = {
+			limit = {
+				BHR = {
+					is_subject_of = ROOT
+				}
+			}
+			set_autonomy = {
+				target = BHR
+				autonomy_state = autonomy_free
+			}
+			BHR = {
+				add_ideas = un_member
+				drop_cosmetic_tag = yes
+			}
+		}
+	}
+}
+
+#Aden Emergency
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.17
+	immediate = {
+	}
+	title = decolonization.17.t
+	desc = decolonization.17.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.17.a
+		DRY = {
+			set_cosmetic_tag = DRY_ENG_FED
+			conversion_to_rentier = yes
+			transfer_state = 659
+			set_capital = {
+				state = 659
+			}
+		}
+		set_global_flag = Aden_Emergency
+	}
+}
+
+#Malta Independence Act
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.18
+	immediate = {
+	}
+	title = decolonization.18.t
+	desc = decolonization.18.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.18.a
+		ai_chance = {
+			factor = 100
+		}
+		release = MLT
+		MLT = {
+			add_ideas = un_member
+		}
+	}
+	option = {
+		name = decolonization.18.b
+		ai_chance = {
+			factor = 0
+		}
+		set_global_flag = overseas_territory_malta
+		add_political_power = -150
+		116 = {
+			add_core_of = ROOT
+		}
+	}
+}
+
+#Bahamas Independence Act
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.19
+	immediate = {
+	}
+	title = decolonization.19.t
+	desc = decolonization.19.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.19.a
+		release = BAH
+		BAH = {
+			conversion_to_rentier = yes
+			add_ideas = un_member
+		}
+	}
+}
+
+#London-Zurich Agreements
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.20
+	immediate = {
+	}
+	title = decolonization.20.t
+	desc = decolonization.20.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.20.a
+		ai_chance = {
+			factor = 100
+		}
+		CYP = {
+			transfer_state = 183
+			transfer_state = 912
+		}
+		915 = {
+			remove_core_of = CYP
+			remove_core_of = NCY
+		}
+	}
+	option = {
+		name = decolonization.20.b
+		ai_chance = {
+			factor = 0
+		}
+		random_list = {
+			75 = {
+				custom_effect_tooltip = "Chaos & Separatism"
+				add_political_power = -100
+				NCY = {
+					transfer_state = 912
+					drop_cosmetic_tag = yes
+				}
+				CYP = {
+					transfer_state = 183
+					transfer_state = 915
+				}
+			}
+			25 = {
+				custom_effect_tooltip = "Status-Quo"
+				add_political_power = -50
+			}
+		}
+	}
+}
+
+#Botswana Independence Act
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.21
+	immediate = {
+	}
+	title = decolonization.21.t
+	desc = decolonization.21.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_autonomy = {
+			target = BOT
+			autonomy_state = autonomy_free
+		}
+		BOT = {
+			conversion_to_rentier = yes
+			add_ideas = un_member
+			drop_cosmetic_tag = yes
+			set_popularities = {
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 14
+				Social_Democratic = 0
+				
+				democratic = 0
+				Social_Liberalism = 0
+				liberal = 0
+				centrist = 0
+				
+				Liberal_Conservatism = 0
+				Christian_Democratic = 0
+				conservative = 81
+				
+				neutrality = 0
+				nationalist = 5
+				monarchism = 0
+				fascism = 0
+				
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+			
+			set_politics = {
+				ruling_party = conservative
+				last_election = "1965.4.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			
+			set_party_name = { 
+				ideology = neutrality
+				long_name = "Motswana Junta"
+				name = "BOT-MJ"
+			}
+			create_country_leader = {
+				name = "Mompati Merafhe"
+				picture = "Mompati_Merafhe.dds"
+				ideology = military_junta
+			}
+		}
+		news_event = news.1727
+	}
+	option = {
+		name = decolonization.19.a
+	}
+}
+
+#Zambia Independence Act
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.22
+	immediate = {
+	}
+	title = decolonization.22.t
+	desc = decolonization.22.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.22.a
+		set_autonomy = {
+			target = ZAM
+			autonomy_state = autonomy_free
+		}
+		set_autonomy = {
+			target = BAR
+			autonomy_state = autonomy_free
+		}
+		BAR = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = BAR_ZAM
+		}
+		ZAM = {
+			conversion_to_rentier = yes
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = BAR
+					autonomous_state = autonomy_protectorate
+					freedom_level = 0.1
+				}
+				else = {
+					puppet = BAR
+				}
+			}
+			add_ideas = un_member
+			drop_cosmetic_tag = yes
+			set_politics = {
+				ruling_party = socialist
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 100
+			}
+			1440 = {
+				set_state_name = Kabwe
+			}
+			set_province_name = {
+				id = 15186
+				name = "Kabwe"
+			}
+			set_province_name = {
+				id = 13617
+				name = "Chipata"
+			}
+			1194 = {
+				set_state_name = Chipata
+			}
+		}
+		news_event = news.1755
+	}
+}
+
+#Malawi Independence Act
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.23
+	immediate = {
+	}
+	title = decolonization.23.t
+	desc = decolonization.23.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.23.a
+		set_autonomy = {
+			target = MLW
+			autonomy_state = autonomy_free
+		}
+		MLW = {
+			conversion_to_rentier = yes
+			add_ideas = un_member
+			drop_cosmetic_tag = yes
+			set_popularities = {
+				maoism = 0
+				communism = 0
+				trotskyism = 0
+				socialist = 3
+				Social_Democratic = 0
+			
+				democratic = 0
+				Social_Liberalism = 0
+				liberal = 0
+				centrist = 0
+			
+				Liberal_Conservatism = 0
+				Christian_Democratic = 0
+				conservative = 94
+			
+				neutrality = 0
+				nationalist = 3
+				monarchism = 0
+				fascism = 0
+			
+				islamism = 0
+				radical_shiaism = 0
+				Salafism = 0
+			}
+			
+			set_politics = {
+				ruling_party = conservative
+				last_election = "1964.1.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			
+			set_party_name = {
+				ideology = neutrality
+				long_name = "Malawi Congress Party"
+				name = "MCP"
+			}
+			
+			create_country_leader = {
+				name = "Gwanda Chakuamba"
+				picture = "Gwanda_Chakuamba_00s.dds"
+				ideology = reactionary
+			}
+			news_event = news.1735
+		}
+	}
+}
+
+#The State of Somaliland
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.24
+	immediate = {
+	}
+	title = decolonization.24.t
+	desc = decolonization.24.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = decolonization.24.a
+		set_autonomy = {
+			target = SML
+			autonomy_state = autonomy_free
+		}
+		SML = {
+			conversion_to_rentier = yes
+			set_cosmetic_tag = SML_1960
+		}
+	}
+}
+
+#west indies federation
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.25
+	immediate = {
+	}
+	title = decolonization.25.t2
+	desc = decolonization.25.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_autonomy = {
+			target = BAD
+			autonomous_state = autonomy_colony
+			freedom_level = 0.1
+		}
+		BAD = {
+			conversion_to_rentier = yes
+			transfer_state = 1163
+			transfer_state = 689
+			transfer_state = 1520
+			transfer_state = 1521
+			transfer_state = 693
+			transfer_state = 1243
+			transfer_state = 1224
+			transfer_state = 1221
+			transfer_state = 1219
+			transfer_state = 1220
+			transfer_state = 692
+			transfer_state = 691
+			transfer_state = 1222
+		}
+	}
+	option = {
+		name = decolonization.25.a2
+		news_event = wifnews.1
+	}
+}
+
+#cabo verde
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.26
+	immediate = {
+	}
+	title = decolonization.26.t2
+	desc = decolonization.26.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		release = CVD
+		CVD = {
+			add_ideas = un_member
+			conversion_to_rentier = yes
+		}
+	}
+	option = {
+		name = decolonization.26.a2
+		news_event = newsdecolonization.26
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newsdecolonization.26
+	immediate = {
+	}
+	title = newsdecolonization.26.t2
+	desc = newsdecolonization.26.d
+	major = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = newsdecolonization.26.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.27
+	immediate = {
+	}
+	title = decolonization.27.t2
+	desc = decolonization.27.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		release = SAO
+		SAO = {
+			conversion_to_rentier = yes
+			add_ideas = un_member
+		}
+	}
+	option = {
+		name = decolonization.27.a2
+		news_event = newsdecolonization.27
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newsdecolonization.27
+	immediate = {
+	}
+	title = newsdecolonization.27.t2
+	desc = newsdecolonization.27.d
+	major = yes
+
+	is_triggered_only = yes
+	option = {
+		name = newsdecolonization.27.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.28
+	immediate = {
+	}
+	title = decolonization.28.t2
+	desc = decolonization.28.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		release = MAU
+		MAU = {
+			add_ideas = un_member
+			conversion_to_rentier = yes
+		}
+	}
+	option = {
+		name = decolonization.28.a2
+		news_event = newsdecolonization.28
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newsdecolonization.28
+	immediate = {
+	}
+	title = newsdecolonization.28.t2
+	desc = newsdecolonization.28.d
+	major = yes
+	
+	is_triggered_only = yes
+	option = {
+		name = newsdecolonization.28.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.29
+	immediate = {
+	}
+	title = decolonization.29.t2
+	desc = decolonization.29.d
+	is_triggered_only = yes
+	
+	immediate = {
+		release = COM
+		news_event = newsdecolonization.29
+		COM = {
+			add_ideas = un_member
+			conversion_to_rentier = yes
+		}
+	}
+	option = {
+		name = decolonization.29.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newsdecolonization.29
+	immediate = {
+	}
+	title = newsdecolonization.29.t2
+	desc = newsdecolonization.29.d
+	major = yes
+	
+	is_triggered_only = yes
+	option = {
+		name = newsdecolonization.29.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.30
+	immediate = {
+	}
+	title = decolonization.30.t2
+	desc = decolonization.30.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		release = SEY
+		news_event = newsdecolonization.30
+		SEY = {
+			add_ideas = un_member
+			conversion_to_rentier = yes
+		}
+	}
+	option = {
+		name = decolonization.30.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newsdecolonization.30
+	immediate = {
+	}
+	title = newsdecolonization.30.t2
+	desc = newsdecolonization.30.d
+	major = yes
+	
+	is_triggered_only = yes
+	option = {
+		name = newsdecolonization.30.a2
+	}
+}
+
+#South African Republic
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.31
+	immediate = {
+	}
+	title = decolonization.31.t2
+	desc = decolonization.30.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		SAF = {
+			add_ideas = un_member
+			drop_cosmetic_tag = yes
+			conversion_to_rentier = yes
+		}
+		set_autonomy = {
+			target = SAF
+			autonomy_state = autonomy_free
+		}
+	}
+	option = {
+		name = decolonization.31.a2
+	}
+}
+
+#sierra Leone
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.32
+	immediate = {
+	}
+	title = decolonization.32.t2
+	desc = decolonization.32.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_autonomy = {
+			target = SIE
+			autonomy_state = autonomy_free
+		}
+		release = SIE
+		SIE = {
+			add_ideas = un_member
+			conversion_to_rentier = yes
+		}
+	}
+	option = {
+		name = decolonization.32.a2
+	}
+}
+
+#the gambia
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.33
+	immediate = {
+	}
+	title = decolonization.33.t2
+	desc = decolonization.33.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		release = GAM
+		set_autonomy = {
+			target = GAM
+			autonomy_state = autonomy_free
+		}
+		GAM = {
+			add_ideas = un_member
+			conversion_to_rentier = yes
+		}
+	}
+	option = {
+		name = decolonization.33.a2
+	}
+}
+
+#end of somali mandate
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.34
+	immediate = {
+	}
+	title = decolonization.34.t2
+	desc = decolonization.34.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_autonomy = {
+			target = SOM
+			autonomy_state = autonomy_free
+		}
+		SOM = {
+			conversion_to_rentier = yes
+			add_ideas = un_member
+			drop_cosmetic_tag = yes
+			clr_country_flag = UN_Mandate
+			transfer_state = 954
+			transfer_state = 269
+			set_popularities = {
+				nationalist = 100
+			}
+			set_politics = {
+				ruling_party = nationalist
+				last_election = "1959.6.1"
+				election_frequency = 60
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Aden Adde"
+				picture = "Aden_Adde.dds"
+				ideology = nationalist_ideology
+			}
+			country_event = som.4
+		}
+	}
+	option = {
+		name = decolonization.34.a2
+	}
+}
+
+#ugandan name change and falesafe decolonization
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.35
+	immediate = {
+	}
+	title = decolonization.35.t2
+	desc = decolonization.35.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		UGA = {
+			conversion_to_rentier = yes
+			add_ideas = un_member
+			set_popularities = {
+				socialist = 40
+				Social_Liberalism = 20
+				Christian_Democratic = 20
+				monarchism = 20
+			}
+			set_party_name = { 
+				ideology = neutrality
+				long_name = "Uganda - Military Junta" 
+				name = "UGA-MJ"
+			}
+			news_event = news.1924
+		}
+		ENG = {
+			set_autonomy = {
+				target = UGA
+				autonomy_state = autonomy_free
+			}
+		}
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = UGA_1963
+	}
+	option = {
+		name = decolonization.35.a2
+	}
+}
+
+#equatoguinean independence failsafe
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.36
+	immediate = {
+	}
+	title = decolonization.36.t2
+	desc = decolonization.36.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_autonomy = {
+			target = EQG
+			autonomy_state = autonomy_free
+		}
+		EQG = {
+			add_ideas = un_member
+			drop_cosmetic_tag = yes
+			conversion_to_rentier = yes
+		}
+		news_event = news.1903
+	}
+	option = {
+		name = decolonization.36.a2
+	}
+}
+
+#tripolitania and Fezzan failsafe
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.37
+	immediate = {
+	}
+	title = decolonization.37.t2
+	desc = decolonization.37.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		LBA = {
+			transfer_state = 775
+			transfer_state = 662
+			transfer_state = 448
+			transfer_state = 661
+			drop_cosmetic_tag = yes
+			conversion_to_rentier = yes
+		}
+	}
+	option = {
+		name = decolonization.37.a2
+	}
+}
+
+#kuwait decolonization
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.38
+	immediate = {
+	}
+	title = decolonization.38.t2
+	desc = decolonization.38.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_autonomy = {
+			target = KUW
+			autonomy_state = autonomy_free
+		}
+		KUW = {
+			add_ideas = un_member
+			drop_cosmetic_tag = yes
+			conversion_to_rentier = yes
+		}
+	}
+	option = {
+		name = decolonization.38.a2
+	}
+}
+
+#rhodesian failsafe decolonization
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.39
+	immediate = {
+	}
+	title = decolonization.39.t2
+	desc = rho.2.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		ENG = {
+			add_ideas = un_member
+			set_autonomy = {
+				target = ZIM
+				autonomy_state = autonomy_free
+			}
+		}
+		set_cosmetic_tag = RHO
+		conversion_to_rentier = yes
+		set_popularities = { 
+			democratic = 0
+			communism = 0
+			fascism = 0
+			nationalist = 0
+			monarchism = 0
+			neutrality = 0
+			islamism = 0
+			radical_shiaism = 0
+			Social_Democratic = 0
+			Social_Liberalism = 0
+			Salafism = 0
+			Liberal_Conservatism = 0
+			conservative = 60.2 
+			Christian_Democratic = 0
+			socialist = 0
+			centrist = 39.8 
+			liberal = 0
+			trotskyism = 0
+			maoism = 0
+			
+
+		}
+	
+		set_politics = {
+			ruling_party = conservative
+			last_election = "1965.4.10"
+			election_frequency = 60
+			elections_allowed = no
+		}
+		set_party_name = {
+			ideology = conservative
+			long_name = "Rhodesian Front"
+			name = "RF"
+		}
+		create_country_leader = {
+			name = "Ian Smith"
+			desc = "POLITICS_IAN_SMITH_DESC"
+			picture = "Ian_Smith_60s.dds"
+			ideology = national_conservatism
+			traits = {
+				paternal_figure
+				hatred_of_communism
+				totally_composed
+				inflexible_white_supremacist
+			}
+		}
+		remove_ideas = {
+			closed_economy
+		}
+		add_ideas = {
+			export_focus
+		}
+		
+		set_cosmetic_tag = RHO
+	}
+	option = {
+		name = decolonization.39.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.40
+	immediate = {
+	}
+	title = decolonization.40.t2
+	desc = decolonization.40.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		HOL = {
+			add_state_core = 695
+			add_state_core = 1162
+			add_state_core = 1270
+		}
+	}
+	option = {
+		name = decolonization.40.a2
+		news_event = newsdecolonization.40
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newsdecolonization.40
+	immediate = {
+	}
+	title = newsdecolonization.40.t2
+	desc = decolonization.40.d
+	major = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = newsdecolonization.40.a2
+	}
+}
+
+#Nigerian decolonization
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.41
+	immediate = {
+	}
+	title = decolonization.41.t2
+	desc = decolonization.41.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_autonomy = {
+			target = NGA
+			autonomy_state = autonomy_free
+		}
+		NGA = {
+			hidden_effect = {
+				news_event = newsdecolonization.41
+				conversion_to_rentier = yes
+				add_ideas = un_member
+				set_province_name = {
+					id = 14318
+					name = "Calabar"
+				}
+				drop_cosmetic_tag = yes
+				set_cosmetic_tag = NGA_FED
+				set_politics = {
+					ruling_party = nationalist
+					elections_allowed = no
+				}
+				add_popularity = {
+					ideology = nationalist
+					popularity = 0.3
+				}
+				add_popularity = {
+					ideology = neutrality
+					popularity = -0.5
+				}
+				create_country_leader = {
+					name = "Abubakar Tafawa Balewa"
+					picture = "Abubakar_Tafawa_Balewa_60s.dds"
+					desc = "POLITICS_ABUBAKAR_TAFAWA_BALEWA_DESC"
+					ideology = nationalist_ideology
+					traits = {
+						Islamic_Scholar
+						Hausa_Fulani_favortist
+						foreign_diplomacy_enthusiast
+						humble_and_modest
+					}
+				}
+				
+				set_party_name = {
+					ideology = conservative
+					long_name = "United Middle Belt Congress"
+					name = "UMBC"
+				}
+				
+				create_country_leader = {
+					name = "Joseph Sarwuan Tarka"
+					picture = "Joseph_Sarwuan_Tarka_60s.dds"
+					ideology = national_conservatism
+				}
+				
+				set_party_name = {
+					ideology = nationalist
+					long_name = "Northern People's Party - Coalition"
+					name = "NPC/NCNC"
+				}
+				
+				set_party_name = {
+					ideology = neutrality
+					long_name = "Nigerian Military Junta"
+					name = "N-MJ"
+				}
+				
+				remove_unit_leader = 48272
+				remove_unit_leader = 39332
+				remove_unit_leader = 16485
+				create_field_marshal = {
+					name = "Johnson Aguiyi Ironsi"
+					portrait_path = "gfx/leaders/NGA/Johnson_Aguiyi_Ironsi.dds"
+					id = 97179
+					traits = {
+						career_officer
+						politically_connected
+					}
+					skill = 2
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 1
+					logistics_skill = 1
+				}
+				create_field_marshal = {
+					name = "Mohammed Shuwa"
+					portrait_path = "gfx/leaders/NGA/Generals/Mohammed_Shuwa.dds"
+					traits = {
+					}
+					skill = 2
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 1
+					logistics_skill = 1
+				}
+				create_corps_commander = {
+					name = "Murtala Mohammed"
+					portrait_path = "gfx/leaders/NGA/Murtala_Mohammed_70s.dds"
+					id = 24244
+					traits = {
+						urban_assault_specialist
+						media_personality
+						career_officer
+						politically_connected
+					}
+					skill = 2
+					attack_skill = 2
+					defense_skill = 1
+					planning_skill = 2
+					logistics_skill = 1
+				}
+				create_corps_commander = {
+					name = "Olusegun Obasanjo"
+					portrait_path = "gfx/leaders/NGA/Olusegun_Obasanjo_70s.dds"
+					id = 23944
+					traits = {
+						panzer_leader
+						trait_engineer
+						media_personality
+						career_officer
+						politically_connected
+					}
+					skill = 2
+					attack_skill = 2
+					defense_skill = 1
+					planning_skill = 2
+					logistics_skill = 1
+				}
+				create_corps_commander = {
+					name = "Benjamin 'Black Scorpion' Adekunle"
+					portrait_path = "gfx/leaders/NGA/Generals/Benjamin_Adekunle.dds"
+					traits = {
+						commando
+						ambusher
+						naval_invader
+						panzer_leader
+						infantry_officer
+						career_officer
+					}
+					skill = 3
+					attack_skill = 3
+					defense_skill = 3
+					planning_skill = 2
+					logistics_skill = 2
+				}
+				create_corps_commander = {
+					name = "Robert Adeyinka Adebayo"
+					portrait_path = "gfx/leaders/NGA/Generals/Robert_Adeyinka_Adebayo.dds"
+					traits = {
+					}
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
+				}
+				create_corps_commander = {
+					name = "Babafemi Ogundipe"
+					portrait_path = "gfx/leaders/NGA/Generals/Babafemi_Ogundipe.dds"
+					traits = {
+						politically_connected
+					}
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
+				}
+				create_corps_commander = {
+					name = "Humphrey Chukwuka"
+					id = 23577
+					portrait_path = "gfx/leaders/NGA/Generals/Humphrey_Chukwuka.dds"
+					traits = {
+						politically_connected
+					}
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
+				}
+				create_corps_commander = {
+					name = "Theophilus Danjuma"
+					portrait_path = "gfx/leaders/NGA/Generals/Theophilus_Danjuma.dds"
+					traits = {
+						politically_connected
+						media_personality
+					}
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
+				}
+				create_corps_commander = {
+					name = "C. Odumegwu 'Emeka' Ojukwu"
+					portrait_path = "gfx/leaders/NGA/Odumegwu_Ojukwu.dds"
+					id = 17714
+					traits = {
+						career_officer
+					}
+					skill = 2
+					attack_skill = 2
+					defense_skill = 3
+					planning_skill = 2
+					logistics_skill = 2
+				}
+				create_corps_commander = {
+					name = "Hassan Usman Katsina"
+					portrait_path = "gfx/leaders/NGA/Generals/Hassan_Katsina.dds"
+					id = 87038
+					traits = {
+						desert_fox
+						politically_connected
+						media_personality
+					}
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
+				}
+				create_corps_commander = {
+					name = "Ibrahim Babangida"
+					portrait_path = "gfx/leaders/NGA/Generals/Ibrahim_Babangida.dds"
+					id = 15320
+					traits = {
+						politically_connected
+					}
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
+				}
+				create_corps_commander = {
+					name = "David Ejoor"
+					portrait_path = "gfx/leaders/NGA/Generals/David_Ejoor.dds"
+					traits = {
+					}
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
+				}
+				create_corps_commander = {
+					name = "Sani Abacha"
+					portrait_path = "gfx/leaders/NGA/Generals/Sani_Abacha.dds"
+					traits = {
+						career_officer
+						politically_connected
+					}
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
+				}
+				create_corps_commander = {
+					name = "Chukwuma 'Kaduna' Nzeogwu"
+					portrait_path = "gfx/leaders/NGA/Chukwuma_Kaduna_Nzeogwu.dds"
+					id = 72415
+					traits = {
+						career_officer
+						politically_connected
+					}
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
+				}
+				create_corps_commander = {
+					name = "Joseph Garba"
+					portrait_path = "gfx/leaders/NGA/Generals/Joseph_Garba.dds"
+					traits = {
+					}
+					skill = 1
+					attack_skill = 1
+					defense_skill = 1
+					planning_skill = 1
+					logistics_skill = 1
+				}
+				create_corps_commander = {
+					name = "Yakubu 'Jack' Gowon"
+					portrait_path = "gfx/leaders/NGA/Generals/Yakubu_Gowon.dds"
+					id = 85446
+					traits = {
+						career_officer
+					}
+					skill = 2
+					attack_skill = 2
+					defense_skill = 2
+					planning_skill = 2
+					logistics_skill = 1
+				}
+				#recruit_character = NGA_joesph_edet_akinwale_wey	#Use Set Nationality
+			}
+		}
+	}
+	option = {
+		name = decolonization.41.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newsdecolonization.41
+	immediate = {
+	}
+	title = newsdecolonization.41.t2
+	desc = newsdecolonization.41.d
+	picture = GFX_nigerianindependence
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = newsdecolonization.41.a2
+	}
+}
+
+#the Madrid Accords
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.42
+	immediate = {
+	}
+	title = decolonization.42.t2
+	desc = decolonization.42.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_global_flag = west_sahara_war
+		MRT = {
+			transfer_state = 1364
+			transfer_state = 1363
+			set_country_flag = west_sahara_war_mrt
+		}
+		MOR = {
+			transfer_state = 699
+			transfer_state = 1001
+			set_country_flag = west_sahara_war_mor
+		}
+		699 = {
+			remove_core_of = MRT
+		}
+		1001 = {
+			remove_core_of = MRT
+		}
+	}
+	option = {
+		name = decolonization.42.a2
+		news_event = newsdecolonization.42
+	}
+}
+
+#Sudanese Independence
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.44
+	immediate = {
+	}
+	title = decolonization.44.t2
+	desc = decolonization.44.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_autonomy = {
+			target = SUD
+			autonomy_state = autonomy_free
+		}
+		SUD = {
+			conversion_to_rentier = yes
+			add_ideas = un_member
+		}
+		hidden_effect = {
+			set_province_name = {
+				id = 8103
+				name = "Marawi"
+			}
+			set_province_name = {
+				id = 15558
+				name = "Sawakin"
+			}
+			set_province_name = {
+				id = 10784
+				name = "Al-Damir"
+			}
+			set_province_name = {
+				id = 13521
+				name = "Halfa al-Jadidah"
+			}
+			set_province_name = {
+				id = 12862
+				name = "Al-Qadarif"
+			}
+			set_province_name = {
+				id = 13516
+				name = "Al-Fashir"
+			}
+			set_province_name = {
+				id = 5060
+				name = "Al-Junaynah"
+			}
+			set_province_name = {
+				id = 15549
+				name = "Khartoum Bahri"
+			}
+			set_province_name = {
+				id = 15533
+				name = "Al-Ubbayid"
+			}
+			set_province_name = {
+				id = 15537
+				name = "Wad Madani"
+			}
+			set_province_name = {
+				id = 10795
+				name = "Al-Duwaym"
+			}
+			set_province_name = {
+				id = 1914
+				name = "Sannar"
+			}
+			set_province_name = {
+				id = 15532
+				name = "Kusti"
+			}
+			set_province_name = {
+				id = 15521
+				name = "Al-Damazin"
+			}
+			set_province_name = {
+				id = 8084
+				name = "Al-Nahud"
+			}
+			set_province_name = {
+				id = 13506
+				name = "Al-Mijlad"
+			}
+			SUD = {
+				drop_cosmetic_tag = yes
+				
+				set_popularities = {
+					neutrality = 63
+					Liberal_Conservatism = 37
+					Liberal_Conservatism = 37
+					neutrality = 63
+				}
+				
+				set_politics = {
+					ruling_party = neutrality
+					last_election = "1955.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+				
+				set_party_name = {
+					ideology = neutrality
+					long_name = "The Sovereignty Council"
+					name = "SUD-SC"
+				}
+				
+				create_country_leader = {
+					name = "Sovereignty Council"
+					picture = "Sovereignty_Council.dds"
+					ideology = military_junta
+				}
+			}
+		}
+	}
+	option = {
+		name = decolonization.44.a2
+		news_event = Sudan.1
+	}
+}
+
+#Southern British Cameroons - Mandate Expired
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.43
+	immediate = {
+	}
+	title = decolonization.43.t2
+	desc = decolonization.43.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					country_exists = CMR
+				}
+				CMR = {
+					transfer_state = 1105
+				}
+				1105 = {
+					add_core_of = PREV
+				}
+			}
+			BCR = {
+				set_cosmetic_tag = BCR_ambazonia
+				set_politics = {
+					ruling_party = nationalist
+					last_election = "1945.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+				set_popularities = {
+					nationalist = 100
+				}
+				set_party_name = {
+					ideology = nationalist
+					long_name = "Ambazonian Congress"
+					name = "A-C"
+				}
+			}
+		}
+	}
+	option = {
+		name = decolonization.43.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newsdecolonization.42
+	immediate = {
+	}
+	title = newsdecolonization.42.t2
+	desc = newsdecolonization.42.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = newsdecolonization.42.a2
+	}
+}
+
+#Dominica
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.45
+	immediate = {
+	}
+	title = decolonization.45.t2
+	desc = decolonization.45.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		DMN = {
+			add_ideas = un_member
+			conversion_to_rentier = yes
+		}
+		set_autonomy = {
+			target = DMN
+			autonomy_state = autonomy_free
+		}
+	}
+	option = {
+		name = decolonization.45.a2
+		news_event = newsdecolonization.45
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newsdecolonization.45
+	immediate = {
+	}
+	title = newsdecolonization.45.t2
+	desc = newsdecolonization.45.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = newsdecolonization.45.a2
+	}
+}
+
+#St Lucia
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.46
+	immediate = {
+	}
+	title = decolonization.46.t2
+	desc = decolonization.46.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		STL = {
+			add_ideas = un_member
+			conversion_to_rentier = yes
+		}
+		set_autonomy = {
+			target = STL
+			autonomy_state = autonomy_free
+		}
+	}
+	option = {
+		name = decolonization.46.a2
+		news_event = newsdecolonization.46
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newsdecolonization.46
+	immediate = {
+	}
+	title = newsdecolonization.46.t2
+	desc = newsdecolonization.46.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = newsdecolonization.46.a2
+	}
+}
+
+#Saint Vincent and the Grenadines
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.47
+	immediate = {
+	}
+	title = decolonization.47.t2
+	desc = decolonization.47.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		SVI = {
+			add_ideas = un_member
+			conversion_to_rentier = yes
+		}
+		set_autonomy = {
+			target = SVI
+			autonomy_state = autonomy_free
+		}
+	}
+	option = {
+		name = decolonization.47.a2
+		news_event = newsdecolonization.47
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newsdecolonization.47
+	immediate = {
+	}
+	title = newsdecolonization.47.t2
+	desc = newsdecolonization.47.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = newsdecolonization.47.a2
+	}
+}
+
+#Grenada
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.48
+	immediate = {
+	}
+	title = decolonization.48.t2
+	desc = decolonization.48.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		GND = {
+			add_ideas = un_member
+		}
+		set_autonomy = {
+			target = GND
+			autonomy_state = autonomy_free
+		}
+	}
+	option = {
+		name = decolonization.48.a2
+		news_event = newsdecolonization.48
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newsdecolonization.48
+	immediate = {
+	}
+	title = newsdecolonization.48.t2
+	desc = newsdecolonization.48.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = newsdecolonization.48.a2
+	}
+}
+
+#Jamaica
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newsdecolonization.49
+	immediate = {
+	}
+	title = newsdecolonization.49.t2
+	desc = newsdecolonization.49.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = newsdecolonization.49.a2
+	}
+}
+
+#Trinidad and Tobago
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newsdecolonization.50
+	immediate = {
+	}
+	title = newsdecolonization.50.t2
+	desc = newsdecolonization.50.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = newsdecolonization.50.a2
+	}
+}
+
+#Swaziland
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.52
+	immediate = {
+	}
+	title = decolonization.52.t2
+	desc = decolonization.52.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		ENG = {
+			set_autonomy = {
+				target = SWA
+				autonomy_state = autonomy_free
+			}
+		}
+		drop_cosmetic_tag = yes
+		conversion_to_rentier = yes
+		news_event = news.1723
+	}
+	option = {
+		name = decolonization.52.a2
+	}
+}
+
+#Morocco failsafe
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.55
+	immediate = {
+	}
+	title = decolonization.55.t2
+	desc = decolonization.55.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		FRA = {
+			set_autonomy = {
+				target = MOR
+				autonomy_state = autonomy_free
+			}
+		}
+		drop_cosmetic_tag = yes
+		add_ideas = un_member
+	}
+	option = {
+		name = decolonization.55.a2
+	}
+}
+
+#Suriname
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.56
+	immediate = {
+	}
+	title = decolonization.56.t2
+	desc = decolonization.56.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		release = SUR
+		7 = {
+			add_to_array = {
+				culture = Surinamers
+			}
+		}
+		1506 = {
+			add_to_array = {
+				culture = Surinamers
+			}
+		}
+		1271 = {
+			add_to_array = {
+				culture = Surinamers
+			}
+		}
+		SUR = {
+			conversion_to_rentier = yes
+		}
+		custom_effect_tooltip = surinamedecolonization
+	}
+	option = {
+		name = decolonization.56.a2
+		news_event = news.2067
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = newsdecolonization.57
+	immediate = {
+	}
+	title = newsdecolonization.57.t2
+	desc = newsdecolonization.57.d
+	picture = GFX_surinameindependence
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = newsdecolonization.57.a2
+	}
+}
+
+#MAL Gerald Templar Appointed - 1952
+#country_event = {
+#	id = decolonization.58
+#	immediate = {
+#		log = "[GetDateText]: [Root.GetTag]: id = decolonization.58"
+#	}
+#	# title = "Gerald Templar Appointed High Commissioner for Malaya"
+#	# desc = decolonization.58.d
+#	
+#	is_triggered_only = yes
+#	fire_only_once = yes
+#	hidden = yes
+#	
+#	immediate = {
+#		# name = "Let’s See if He Can Turn Things Around."
+#		
+#		MAL = {
+#			retire_character = MAL_Henry_Gurney
+#			add_country_leader_role = {
+#				character = MAL_Gerald_Templer
+#				promote_leader = yes
+#				country_leader = {
+#					ideology = colonial_regime
+#				}
+#			}
+#			conversion_to_rentier = yes
+#		}
+#	}
+#}
+#
+##MAL Donald MacGillivray Appointed - 1954
+#country_event = {
+#	id = decolonization.59
+#	immediate = {
+#		log = "[GetDateText]: [Root.GetTag]: id = decolonization.59"
+#	}
+#	# title = "Donald MacGillivray Appointed High Commissioner for Malaya"
+#	# desc = decolonization.59.d
+#	
+#	is_triggered_only = yes
+#	fire_only_once = yes
+#	hidden = yes
+#	
+#	immediate = {
+#		# name = "Malaya Remains in Good Hands."
+#		
+#		MAL = {
+#			remove_country_leader_role = {
+#				character = MAL_Gerald_Templer
+#				ideology = colonial_regime
+#			}
+#			add_country_leader_role = {
+#				character = MAL_Donald_MacGillivray
+#				promote_leader = yes
+#				country_leader = {
+#					ideology = colonial_regime
+#				}
+#			}
+#		}
+#	}
+#}
+
+#SWK Duncan Stewart Appointed - 1949
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.60
+	immediate = {
+	}
+	# title = "Duncan Stewart Appointed High Commissioner for Sarawak"
+	# desc = decolonization.60.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+	
+	immediate = {
+		# name = "A Seasoned Officer."
+		
+		SWK = {
+			retire_character = SWK_Charles_Arden_Clarke
+			add_country_leader_role = {
+				character = SWK_Duncan_Stewart
+				promote_leader = yes
+				country_leader = {
+					ideology = colonial_regime
+				}
+			}
+		}
+	}
+}
+
+#SWK Duncan Stewart Assassinated, Anthony Abell Appointed - 1949
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.61
+	immediate = {
+	}
+	# title = "Duncan Stewart Has Been Assassinated!"
+	# desc = decolonization.61.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+	
+	immediate = {
+		# name = "Those Damned Nationalists."
+		
+		SWK = {
+			retire_character = SWK_Duncan_Stewart
+			add_country_leader_role = {
+				character = SWK_Anthony_Abell
+				promote_leader = yes
+				country_leader = {
+					ideology = colonial_regime
+				}
+			}
+		}
+	}
+}
+
+#SWK Alexander Waddell Appointed - 1959
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.62
+	immediate = {
+	}
+	# title = "Alexander Waddell Appointed High Commissioner for Sarawak"
+	# desc = decolonization.62.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+	
+	immediate = {
+		# name = "Goodluck to Him."
+		
+		SWK = {
+			retire_character = SWK_Anthony_Abell
+			add_country_leader_role = {
+				character = SWK_Alexander_Waddell
+				promote_leader = yes
+				country_leader = {
+					ideology = colonial_regime
+				}
+			}
+		}
+	}
+}
+
+#NBO Ralph Hone Appointed - 1950
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.63
+	immediate = {
+	}
+	# title = "Ralph Hone Appointed High Commissioner for North Borneo"
+	# desc = decolonization.63.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+	
+	immediate = {
+		# name = "A Man Fit for the Job."
+		
+		NBO = {
+			retire_character = NBO_Edward_Twining
+			add_country_leader_role = {
+				character = NBO_Ralph_Hone
+				promote_leader = yes
+				country_leader = {
+					ideology = colonial_regime
+				}
+			}
+		}
+	}
+}
+
+#NBO Roland Evelyn Turnbull - 1954
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.64
+	immediate = {
+	}
+	# title = "Roland Evelyn Turnbull Appointed High Commissioner for North Borneo"
+	# desc = decolonization.64.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+	
+	immediate = {
+		# name = "We Wish Him Luck."
+		
+		NBO = {
+			retire_character = NBO_Ralph_Hone
+			add_country_leader_role = {
+				character = NBO_Roland_Evelyn_Turnbull
+				promote_leader = yes
+				country_leader = {
+					ideology = colonial_regime
+				}
+			}
+		}
+	}
+}
+
+#NBO William Goode - 1959
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.65
+	immediate = {
+	}
+	# title = "William Goode Appointed High Commissioner for North Borneo"
+	# desc = decolonization.65.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+	
+	immediate = {
+		# name = "Mr. Worldwide."
+		
+		NBO = {
+			retire_character = NBO_Roland_Evelyn_Turnbull
+			add_country_leader_role = {
+				character = NBO_William_Goode
+				promote_leader = yes
+				country_leader = {
+					ideology = colonial_regime
+				}
+			}
+		}
+	}
+}
+
+#SGP John Fearns Nicoll - 1952.11.15
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.66
+	immediate = {
+	}
+	# title = "John Fearns Nicoll Appointed Governor of Singapore"
+	# desc = decolonization.66.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+	
+	immediate = {
+		SGP = {
+			retire_character = SGP_Franklin_Gimson
+			add_country_leader_role = {
+				character = SGP_John_Fearns_Nicoll
+				promote_leader = yes
+				country_leader = {
+					ideology = colonial_regime
+				}
+			}
+		}
+	}
+}
+
+#SGP Robert Black - 1955.06.30
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.67
+	immediate = {
+	}
+	# title = "Robert Black Appointed Governor of Singapore"
+	# desc = decolonization.67.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+	
+	immediate = {
+		SGP = {
+			retire_character = SGP_John_Fearns_Nicoll
+			add_country_leader_role = {
+				character = SGP_Robert_Black
+				promote_leader = yes
+				country_leader = {
+					ideology = colonial_regime
+				}
+			}
+		}
+	}
+}
+
+#SGP William Goode - 1957.12.09
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.68
+	immediate = {
+	}
+	# title = "William Goode Appointed Governor of Singapore"
+	# desc = decolonization.68.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+	
+	immediate = {
+		SGP = {
+			retire_character = SGP_Robert_Black
+			add_country_leader_role = {
+				character = SGP_William_Goode
+				promote_leader = yes
+				country_leader = {
+					ideology = colonial_regime
+				}
+			}
+		}
+	}
+}
+
+#SGP Autonomy/Lee Kuan Yew - 1959.6.9
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.69
+	immediate = {
+	}
+	# title = "Loosening Our Grip on Singapore"
+	# desc = decolonization.69.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	hidden = yes
+	
+	immediate = {
+		hidden_effect = {
+			news_event = {
+				id = decolonization.70
+				hours = 3
+				random_hours = 6
+			}
+		}
+	}
+	option = {
+		name = decolonization.69.a
+		set_autonomy = {
+			target = SGP
+			autonomy_state = autonomy_protectorate
+			end_wars = no
+			end_civil_wars = no
+		}
+		SGP = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = SGP_STATE
+			retire_character = SGP_William_Goode
+			
+			add_country_leader_role = {
+				character = SGP_Lee_Kuan_Yew
+				promote_leader = yes
+				country_leader = {
+					ideology = national_conservatism
+					expire = "1990.11.28"
+				}
+			}
+			set_politics = {
+				ruling_party = conservative
+				last_election = "1959.6.8"
+				elections_allowed = no
+			}
+			hidden_effect = {
+				set_popularities = {
+					conservative = 100
+				}
+				leave_faction = yes
+			}
+		}
+	}
+}
+
+#SGP Autonomy/Lee Kuan Yew NEWS
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.70
+	immediate = {
+	}
+	title = decolonization.70.t
+	desc = decolonization.70.d
+	picture = GFX_SGP_Autonomy
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	major = yes
+	
+	option = {
+		name = decolonization.70.a
+	}
+}
+
+#French Community in Africa
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.71
+	immediate = {
+	}
+	title = decolonization.71.t
+	desc = decolonization.71.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	#hidden = yes
+	
+	immediate = {
+		#set_faction_name = "French Community"
+		complete_national_focus = FRA_Promise_African_freedom
+		#West Africa
+		every_owned_state = {
+			remove_core_of = SEN
+		}
+		272 = {
+			add_core_of = SEN
+		}
+		1378 = {
+			add_core_of = SEN
+		}
+		1379 = {
+			add_core_of = SEN
+		}
+		1377 = {
+			add_core_of = SEN
+		}
+		1376 = {
+			add_core_of = SEN
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = SEN
+				autonomous_state = autonomy_protectorate
+				freedom_level = 0.1
+			}
+			else = {
+				puppet = SEN
+			}
+		}
+		SEN = {
+			release = MRT
+			release = IVO
+			release = VOL
+			release = DAH
+			release = MLI
+			release = NGR
+			release = GNA
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = SEN_FRA
+			conversion_to_rentier = yes
+			add_ideas = {
+				export_focus
+				un_member
+			}
+			set_popularities = {
+				communism = 10
+				socialist = 70
+				Liberal_Conservatism = 20
+			}
+			set_politics = {
+				ruling_party = socialist
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Léopold Sédar Senghor"
+				picture = "Leopold_Sedar_Senghor_60s.dds"
+				ideology = african_socialism
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = "Senegal - Military Junta"
+				name = "SEN-MJ"
+			}
+			create_country_leader = {
+				name = "Jean Alfred Diallo"
+				picture = "Jean_Alfred_Diallo_60s.dds"
+				ideology = military_junta
+			}
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = MLI
+				autonomous_state = autonomy_protectorate
+				freedom_level = 0.1
+			}
+			set_autonomy = {
+				target = MRT
+				autonomous_state = autonomy_protectorate
+				freedom_level = 0.1
+			}
+			set_autonomy = {
+				target = IVO
+				autonomous_state = autonomy_protectorate
+				freedom_level = 0.1
+			}
+			set_autonomy = {
+				target = VOL
+				autonomous_state = autonomy_protectorate
+				freedom_level = 0.1
+			}
+			set_autonomy = {
+				target = DAH
+				autonomous_state = autonomy_protectorate
+				freedom_level = 0.1
+			}
+			set_autonomy = {
+				target = NGR
+				autonomous_state = autonomy_protectorate
+				freedom_level = 0.1
+			}
+			else = {
+				puppet = MLI
+				puppet = MRT
+				puppet = IVO
+				puppet = VOL
+				puppet = DAH
+				puppet = NGR
+			}
+		}
+		set_autonomy = {
+			target = GNA
+			autonomy_state = autonomy_free
+		}
+		GNA = {
+			conversion_to_rentier = yes
+			drop_cosmetic_tag = yes
+			leave_faction = yes
+		}
+		MLI = {
+			drop_cosmetic_tag = yes
+			conversion_to_rentier = yes
+			set_cosmetic_tag = SUD_REP
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes
+			set_popularities = {
+				socialist = 50
+				conservative = 25
+				nationalist = 25
+			}
+			set_politics = {
+				ruling_party = socialist
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Modibo Keïta"
+				picture = "Modibo_Keita_60s.dds"
+				ideology = african_socialism
+			}
+		}
+		MRT = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = MRT_FRA
+			conversion_to_rentier = yes
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes
+			set_popularities = {
+				socialist = 20
+				conservative = 20
+				nationalist = 20
+				neutrality = 40
+			}
+			set_politics = {
+				ruling_party = neutrality
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Henri Joseph Marie Bernard"
+				picture = "Henri_Joseph_Marie_Bernard_60s.dds"
+				ideology = colonial_regime
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = "Colonial Mauritanian Commission"
+				name = "CMC"
+			}
+		}
+		IVO = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = IVO_FRA
+			conversion_to_rentier = yes
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes
+			set_popularities = {
+				communism = 20
+				nationalist = 20
+				conservative = 60
+			}	
+			set_politics = {
+				ruling_party = conservative
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Félix Houphouët-Boigny"
+				picture = "Felix_Houphouet_Boigny_70s.dds" #liberal_nationalism
+				desc = POLITICS_FELIX_HOUPHOUET_BOIGNY_DESC
+				ideology = black_conservatism
+			}
+		}
+		VOL = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = VOL_VOLTA_FRA
+			conversion_to_rentier = yes
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes
+			set_popularities = {
+				socialist = 20
+				centrist = 20
+				Liberal_Conservatism = 20
+				nationalist = 40
+
+			}
+			set_politics = {
+				ruling_party = nationalist
+				last_election = "1960.8.5"
+				election_frequency = 48
+				elections_allowed = no
+			}
+		}
+		DAH = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = DAH_FRA
+			conversion_to_rentier = yes
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes
+			set_popularities = {
+				democratic = 50
+				Social_Liberalism = 25
+				centrist = 25
+			}
+			set_politics = {
+				ruling_party = democratic
+				last_election = "1960.1.1"
+				election_frequency = 48
+				elections_allowed = yes
+			}
+		}
+		NGR = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = NGR_FRA
+			conversion_to_rentier = yes
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes
+			set_popularities = {
+				socialist = 20
+				Social_Democratic = 20
+				Liberal_Conservatism = 20
+				nationalist = 40
+			}
+			set_politics = {
+				ruling_party = nationalist
+				elections_allowed = no
+			}
+		}
+		#Equatorial Africa
+		every_owned_state = {
+			remove_core_of = RCG
+		}
+		1057 = {
+			add_core_of = RCG
+		}
+		1420 = {
+			add_core_of = RCG
+		}
+		769 = {
+			add_core_of = RCG
+		}
+		1421 = {
+			add_core_of = RCG
+		}
+		819 = {
+			add_core_of = RCG
+		}
+		1419 = {
+			add_core_of = RCG
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = RCG
+				autonomous_state = autonomy_protectorate
+				freedom_level = 0.1
+			}
+			else = {
+				puppet = RCG
+			}
+		}
+		RCG = {
+			release = CHA
+			release = GAB
+			release = CAR
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = RCG_FRA
+			conversion_to_rentier = yes
+			add_ideas = {
+				export_focus
+				un_member
+			}
+			set_popularities = {
+				socialist = 25
+				democratic = 25
+				conservative = 50
+			}
+			set_politics = {
+				ruling_party = conservative
+				last_election = "1960.8.15"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			set_party_name = {
+				ideology = conservative
+				name = "UDDIA"
+				long_name = "Democratic Union for the Defense of African Interests"
+			}
+			create_country_leader = {
+				name = "Fulbert Youlou"
+				picture = "Fulbert_Youlou_60s.dds"
+				desc = POLITICS_FULBERT_YOULOU_DESC
+				ideology = black_conservatism
+				traits = { 
+					roman_catholic_preist 
+					quintessential_afro_francophile 
+					nonesensically_kleptocratic 
+				}
+			}
+			set_party_name = {
+				ideology = maoism
+				name = "MNR"
+				long_name = "National Movement of the Revolution"
+			}
+			create_country_leader = {
+				name = "Alphonse Massamba-Debat"
+				picture = "Alphonse_Massamba_Debat_60s.dds"
+				desc = POLITICS_ALPHONSE_MASSAMBA_DEBAT_DESC
+				ideology = scientific_socialism
+			}
+			set_party_name = {
+				ideology = communism
+				name = "PCT"
+				long_name = "Congolese Party of Labour"
+			}
+			create_country_leader = {
+				name = "Marien Ngouabi"
+				picture = "Marien_Ngouabi_70s.dds"
+				desc = POLITICS_MARIEN_NGOUABI_DESC
+				ideology = marxism_leninism
+			}
+			create_country_leader = {
+				name = "Jean-Félix Tchicaya"
+				picture = "Jean_Felix_Tchicaya_70s.dds"
+				ideology = progressive
+			}
+			set_party_name = {
+				ideology = socialist
+				name = "MSA"
+				long_name = "African Socialist Movement"
+			}
+			create_country_leader = {
+				name = "Amadou Lamine-Guèye"
+				picture = "Amadou_Lamine-Gueye_60s.dds"
+				ideology = african_socialism
+			}
+			set_party_name = {
+				ideology = neutrality
+				name = "ROC-MJ"
+				long_name = "Republic of the Congo - Military Junta"
+			}
+			set_party_name = {
+				ideology = trotskyism
+				name = "ROC-MJ"
+				long_name = "Republic of the Congo - Military Junta"
+			}
+			create_country_leader = {
+				name = "Alfred Raoul"
+				picture = "Alfred_Raoul_60s.dds"
+				desc = POLITICS_ALFRED_RAOUL_DESC
+				ideology = left_wing_dictatorship
+			}
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = CHA
+				autonomous_state = autonomy_protectorate
+				freedom_level = 0.1
+			}
+			set_autonomy = {
+				target = CAR
+				autonomous_state = autonomy_protectorate
+				freedom_level = 0.1
+			}
+			set_autonomy = {
+				target = GAB
+				autonomous_state = autonomy_protectorate
+				freedom_level = 0.1
+			}
+			set_autonomy = {
+				target = MAD
+				autonomous_state = autonomy_protectorate
+				freedom_level = 0.1
+			}
+			else = {
+				puppet = CHA
+				puppet = CAR
+				puppet = GAB
+				puppet = MAD
+			}
+		}
+		CHA = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = CHA_FRA
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes
+			conversion_to_rentier = yes
+			set_popularities = {
+				centrist = 11
+				conservative = 22
+				nationalist = 67
+			}
+			set_politics = {
+				ruling_party = nationalist
+				last_election = "1945.1.1"
+				election_frequency = 48
+				elections_allowed = no
+			}
+		}
+		CAR = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = CAR_FRA
+			conversion_to_rentier = yes
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes
+			set_popularities = { 
+				democratic = 25
+				Social_Liberalism = 25
+				nationalist = 50
+			}
+			set_politics = {
+				ruling_party = nationalist
+				elections_allowed = no
+			}
+		}
+		GAB = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = GAB_FRA
+			conversion_to_rentier = yes
+			set_temp_variable = { percent_change = 5 }
+			set_temp_variable = { tag_index = FRA.id }
+			set_temp_variable = { influence_target = THIS.id }
+			change_influence_percentage = yes
+			set_popularities = {
+				communism = 25
+				nationalist = 25
+				conservative = 50
+			}
+			set_politics = {
+				ruling_party = conservative
+				elections_allowed = no
+			}
+		}
+		release = MAD
+		MAD = {
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = MAD_FRA
+			conversion_to_rentier = yes
+			set_popularities = {
+				socialist = 20
+				Social_Liberalism = 20
+				nationalist = 20
+				Social_Democratic = 40
+			}
+			set_politics = {
+				ruling_party = Social_Democratic
+				elections_allowed = no
+			}
+		}
+		news_event = news.1858
+	}
+	option = {
+		name = decolonization.71.a
+	}
+}
+
+#Madagascar June 26, 1960
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.72
+	immediate = {
+	}
+	title = decolonization.72.t
+	desc = decolonization.72.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	#hidden = yes
+	
+	immediate = {
+		FRA = {
+			set_autonomy = {
+				target = MAD
+				autonomy_state = autonomy_free
+			}
+		}
+		leave_faction = yes
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = MAD_REP
+		conversion_to_rentier = yes
+		news_event = news.1859
+	}
+	option = {
+		name = decolonization.72.a
+	}
+}
+
+#Ivory Coast Independence 1960.8.7
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.73
+	immediate = {
+	}
+	title = decolonization.73.t
+	desc = decolonization.73.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	#hidden = yes
+	
+	immediate = {
+		FRA = {
+			set_autonomy = {
+				target = IVO
+				autonomy_state = autonomy_free
+			}
+		}
+		leave_faction = yes
+		drop_cosmetic_tag = yes
+		conversion_to_rentier = yes
+		news_event = news.1860
+	}
+	option = {
+		name = decolonization.73.a
+	}
+}
+
+#Mauritania Independence November 28th, 1960
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.74
+	immediate = {
+	}
+	title = decolonization.74.t
+	desc = decolonization.74.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	#hidden = yes
+	
+	immediate = {
+		FRA = {
+			set_autonomy = {
+				target = MRT
+				autonomy_state = autonomy_free
+			}
+		}
+		leave_faction = yes
+		conversion_to_rentier = yes
+		drop_cosmetic_tag = yes
+		set_popularities = { 
+			nationalist = 20
+			conservative = 20
+			centrist = 20
+			socialist = 40
+		}
+		set_politics = {
+			ruling_party = socialist
+			elections_allowed = no
+		}
+		news_event = news.1861
+	}
+	option = {
+		name = decolonization.74.a
+	}
+}
+
+#Independence of Mali Federation (its formation and dissolution is in Mali event file) 1960.6.20
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.75
+	immediate = {
+	}
+	title = decolonization.75.t
+	desc = decolonization.75.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	#hidden = yes
+	
+	immediate = {
+		FRA = {
+			set_autonomy = {
+				target = MLI
+				autonomy_state = autonomy_free
+			}
+		}
+		leave_faction = yes
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = MLI_FED
+		conversion_to_rentier = yes
+		news_event = news.1862
+	}
+	option = {
+		name = decolonization.75.a
+	}
+}
+
+#Independence of Upper Volta/Burkina Faso 1960.08.05
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.76
+	immediate = {
+	}
+	title = decolonization.76.t
+	desc = decolonization.76.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	#hidden = yes
+	
+	immediate = {
+		FRA = {
+			set_autonomy = {
+				target = VOL
+				autonomy_state = autonomy_free
+			}
+		}
+		conversion_to_rentier = yes
+		leave_faction = yes
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = VOL_VOLTA
+		news_event = news.1863
+	}
+	option = {
+		name = decolonization.76.a
+	}
+}
+
+#Independence Dahomey/Benin 1960.08.01
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.77
+	immediate = {
+	}
+	title = decolonization.77.t
+	desc = decolonization.77.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	#hidden = yes
+	
+	immediate = {
+		FRA = {
+			set_autonomy = {
+				target = DAH
+				autonomy_state = autonomy_free
+			}
+		}
+		conversion_to_rentier = yes
+		leave_faction = yes
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = DAH_DAH
+		news_event = news.1864
+	}
+	option = {
+		name = decolonization.77.a
+	}
+}
+
+#Independence the Niger 1960.08.03
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.78
+	immediate = {
+	}
+	title = decolonization.78.t
+	desc = decolonization.78.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	#hidden = yes
+	
+	immediate = {
+		FRA = {
+			set_autonomy = {
+				target = NGR
+				autonomy_state = autonomy_free
+			}
+		}
+		conversion_to_rentier = yes
+		leave_faction = yes
+		drop_cosmetic_tag = yes
+		news_event = news.1865
+	}
+	option = {
+		name = decolonization.78.a
+	}
+}
+
+#Independence Chad 1960.08.11
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.79
+	immediate = {
+	}
+	title = decolonization.79.t
+	desc = decolonization.79.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	#hidden = yes
+	
+	immediate = {
+		FRA = {
+			set_autonomy = {
+				target = CHA
+				autonomy_state = autonomy_free
+			}
+		}
+		conversion_to_rentier = yes
+		leave_faction = yes
+		drop_cosmetic_tag = yes
+		news_event = news.1866
+	}
+	option = {
+		name = decolonization.79.a
+	}
+}
+
+#Independence the Central African Republic 1960.08.13
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.80
+	immediate = {
+	}
+	title = decolonization.80.t
+	desc = decolonization.80.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	#hidden = yes
+	
+	immediate = {
+		FRA = {
+			set_autonomy = {
+				target = CAR
+				autonomy_state = autonomy_free
+			}
+		}
+		conversion_to_rentier = yes
+		leave_faction = yes
+		drop_cosmetic_tag = yes
+		news_event = news.1867
+	}
+	option = {
+		name = decolonization.80.a
+	}
+}
+
+#Independence the Gabon 1960.8.17
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.81
+	immediate = {
+	}
+	title = decolonization.81.t
+	desc = decolonization.81.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	#hidden = yes
+	
+	immediate = {
+		FRA = {
+			set_autonomy = {
+				target = GAB
+				autonomy_state = autonomy_free
+			}
+		}
+		conversion_to_rentier = yes
+		leave_faction = yes
+		drop_cosmetic_tag = yes
+		news_event = news.1868
+	}
+	option = {
+		name = decolonization.81.a
+	}
+}
+
+#Independence the Republic of the Congo 
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.82
+	immediate = {
+	}
+	title = decolonization.82.t
+	desc = decolonization.82.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	#hidden = yes
+	
+	immediate = {
+		FRA = {
+			set_autonomy = {
+				target = RCG
+				autonomy_state = autonomy_free
+			}
+		}
+		conversion_to_rentier = yes
+		leave_faction = yes
+		drop_cosmetic_tag = yes
+		news_event = news.1869
+	}
+	option = {
+		name = decolonization.82.a
+	}
+}
+#1963.12.10 Zanzibar Independence
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.83
+	immediate = {
+	}
+	title = decolonization.83.t
+	desc = decolonization.83.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		ENG = {
+			set_autonomy = {
+				target = ZAZ
+				autonomy_state = autonomy_free
+			}
+		}
+		drop_cosmetic_tag = yes
+		news_event = news.1939
+	}
+	option = {
+		name = decolonization.83.a
+	}
+}
+
+#1977.6.27 Djibouti Independence
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = decolonization.84
+	immediate = {
+	}
+	title = decolonization.84.t
+	desc = decolonization.84.d
+	#hidden = yes
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		release = DJI
+		set_autonomy = {
+			target = DJI
+			autonomy_state = autonomy_free
+		}
+		news_event = news.1960
+	}
+	option = {
+		name = decolonization.84.a
+	}
+}

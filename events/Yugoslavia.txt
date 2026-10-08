@@ -1,0 +1,3154 @@
+# KRCW (build/patch_residue.py): 124 OTL events dropped while KRCW_active
+#####################
+# Yugoslavia Events
+#####################
+add_namespace = yug
+add_namespace = cominplot
+add_namespace = YUG_INTEGRATION
+add_namespace = YUG_GREEK_CIVIL_WAR
+add_namespace = YUG_1950s
+add_namespace = YUG_NATO
+add_namespace = yug_annex
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_GREEK_CIVIL_WAR.1
+	immediate = {
+	}
+	title = YUG_GREEK_CIVIL_WAR.1.t2
+	desc = YUG_GREEK_CIVIL_WAR.1.d
+	picture = GFX_YUG_GREEK_CIVIL_WAR_1
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = YUG_GREEK_CIVIL_WAR.1.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_INTEGRATION.1
+	immediate = {
+	}
+	title = YUG_INTEGRATION.1.t2
+	desc = YUG_INTEGRATION.1.d
+	picture = GFX_YUG_INTEGRATION_1
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = YUG_INTEGRATION.1.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_INTEGRATION.2
+	immediate = {
+	}
+	title = YUG_INTEGRATION.2.t2
+	desc = YUG_INTEGRATION.2.d
+	picture = GFX_YUG_INTEGRATION_2
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = YUG_INTEGRATION.2.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_INTEGRATION.3
+	immediate = {
+	}
+	title = YUG_INTEGRATION.3.t2
+	desc = YUG_INTEGRATION.3.d
+	picture = GFX_YUG_INTEGRATION_3
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = YUG_INTEGRATION.3.a2
+	}
+}
+
+#tito grows old 1970
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.1000
+	immediate = {
+	}
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_country_leader_portrait = {
+			ideology = trotskyism
+			portrait = GFX_Tito_old
+		}
+	}
+}
+
+#Tito grows old 1962
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.1001
+	immediate = {
+	}
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		set_country_leader_portrait = {
+			ideology = trotskyism
+			portrait = GFX_Tito_62
+		}
+	}
+}
+
+#Titos Death Hidden Trigger
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.3
+	immediate = {
+	}
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes	
+	immediate = {
+		#news_event = news.1024
+		hidden_effect = {
+			retire_character = YUG_josip_broz_tito_old
+		}
+		retire_character = YUG_josip_broz_tito
+		set_country_flag = tito_dead
+		country_event = YUG.79
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cominplot.1
+	immediate = {
+	}
+	title = cominplot.1.t2
+	desc = cominplot.1.d
+	is_triggered_only = yes
+	option = {
+		name = cominplot.1.a2
+		add_popularity = {
+			ideology = communism
+			popularity = 0.03
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cominplot.2
+	immediate = {
+	}
+	title = cominplot.2.t2
+	desc = cominplot.2.d
+	is_triggered_only = yes
+	fire_only_once = yes	
+	option = {
+		name = cominplot.2.a2
+		news_event = {
+			id = cominplot.3
+			days = 1
+		}
+		retire_character = YUG_josip_broz_tito
+		set_country_flag = YUG_tito_assasination
+		promote_character = {
+			character = YUG_ivan_gosnjak
+			ideology = titoism
+		}
+		mark_focus_tree_layout_dirty = yes
+		hidden_effect = {
+			YUG = {
+				country_event = {
+					id = cominplot.5
+					days = 5
+				}
+			}	
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cominplot.3
+	immediate = {
+	}
+	title = cominplot.3.t2
+	desc = cominplot.3.d
+	picture = GFX_news_event_tito_dead
+	is_triggered_only = yes
+	fire_only_once = yes	
+	major = yes
+	option = {
+		name = cominplot.3.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cominplot.4
+	immediate = {
+	}
+	title = cominplot.4.t2
+	desc = cominplot.4.d
+	is_triggered_only = yes
+	fire_only_once = yes	
+	immediate = {
+		YUG = {
+			set_country_flag = rankovic_dead
+		}
+	}
+	option = {
+		name = cominplot.4.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cominplot.5
+	immediate = {
+	}
+	title = cominplot.5.t2
+	desc = cominplot.5.d
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = cominplot.5.a2
+		SOV = {
+			puppet = YUG
+			set_autonomy = {
+			    target = YUG
+			    autonomous_state = autonomy_easternbloc
+			    end_wars = no
+			    end_civil_wars = no
+			}
+		}		
+		set_politics = {
+			ruling_party = communism
+		    elections_allowed = no
+		}		
+		add_popularity = {
+		    ideology = communism
+		    popularity = 0.5
+		}			
+		create_country_leader = {
+			name = "Vlado Dapcevic"
+			picture = "Vlado_Dapcevic.dds"
+			ideology = marxism_leninism
+		}	
+		hidden_effect = {
+			load_focus_tree = generic	
+		}
+		news_event = {
+			id = cominplot.6
+			days = 1
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cominplot.6
+	immediate = {
+	}
+	title = cominplot.6.t2
+	desc = cominplot.6.d
+	picture = GFX_morocco_car_bomb
+	is_triggered_only = yes
+	fire_only_once = yes	
+	major = yes
+	option = {
+		name = cominplot.6.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cominplot.7
+	immediate = {
+	}
+	title = cominplot.7.t 
+	desc = cominplot.7.d
+	picture = GFX_YUG_1950s_2
+	is_triggered_only = yes
+	option = {
+		name = cominplot.7.a		
+	}	
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cominplot.8
+	immediate = {
+	}
+	title = cominplot.8.t 
+	desc = cominplot.8.d
+	picture = GFX_YUG_1950s_2
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = cominplot.8.a		
+	}	
+	option = {
+		name = cominplot.8.b
+		YUG = {
+			country_event = {
+				id = cominplot.9
+				days = 2
+			}
+		}		
+	}		
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cominplot.9
+	immediate = {
+	}
+	title = cominplot.9.t 
+	desc = cominplot.9.d
+	picture = GFX_YUG_1950s_2
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = cominplot.9.a		
+	}	
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cominplot.10
+	immediate = {
+	}
+	title = cominplot.10.t 
+	desc = cominplot.10.d
+	picture = GFX_YUG_1950s_2
+	is_triggered_only = yes
+	option = {
+		name = cominplot.10.a		
+	}	
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cominplot.11
+	immediate = {
+	}
+	title = cominplot.11.t 
+	desc = cominplot.11.d
+	picture = GFX_YUG_1950s_2
+	is_triggered_only = yes
+	option = {
+		name = cominplot.11.a		
+	}	
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = cominplot.12
+	immediate = {
+	}
+	title = cominplot.12.t 
+	desc = cominplot.12.d
+	picture = GFX_YUG_1950s_2
+	is_triggered_only = yes
+	option = {
+		name = cominplot.12.a	
+		complete_national_focus = YUG_tempo_appointed_president
+	
+	}	
+	option = {
+		name = cominplot.12.b	
+		complete_national_focus = YUG_gosnjak_refuses_to_lose_ground
+	
+	}	
+	option = {
+		name = cominplot.12.c	
+		complete_national_focus = YUG_dSilas_appointed_president
+	}			
+}
+
+# Collective Presidency
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.4
+	immediate = {
+	}
+	title = yug.4.t
+	desc = yug.4.d
+	is_triggered_only = yes
+	option = {
+		# Only those who can be trusted
+		name = yug.4.a
+		ai_chance = {
+			factor = 33
+		}
+	}
+	option = {
+		# Hand-Pick the Members
+		name = yug.4.b
+		ai_chance = {
+			factor = 33
+		}
+		add_ideas = {
+			YUG_corruption_scandals
+		}
+		add_political_power = 250
+		hidden_effect = {
+			country_event = yug.5
+		}
+	}
+	option = {
+		# Let the republics pick them
+		name = yug.4.c
+		ai_chance = {
+			factor = 34
+		}
+		add_ideas = {
+			YUG_corruption_scandals
+		}
+		add_political_power = 200
+		hidden_effect = {
+			country_event = yug.5
+		}
+	}
+}
+
+# Corruption Scandals
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.5
+	immediate = {
+	}
+	title = yug.5.t
+	desc = yug.5.d
+	is_triggered_only = yes
+	option = {
+		# Investigate further
+		name = yug.5.a
+		ai_chance = {
+			factor = 5
+		}
+		remove_ideas = YUG_corruption_scandals
+		add_ideas = {
+			YUG_arrested_ministers
+		}
+	}
+	option = {
+		# We can't risk it getting public
+		name = yug.5.b
+		ai_chance = {
+			factor = 5
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = corruption_scandals
+					}
+				}
+			}
+			set_country_flag = corruption_scandals
+		}
+	}
+}
+
+# Corruption Scandals, hidden trigger for new event
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.6
+	immediate = {
+	}
+	hidden = yes
+	is_triggered_only = yes
+	immediate = {
+		country_event = yug.5
+	}
+	option = {
+	}
+}
+
+# Tito's Successor
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.7
+	immediate = {
+	}
+	title = yug.7.t
+	desc = yug.7.d
+	is_triggered_only = yes
+	option = {
+		# Appoint Vice President
+		name = yug.7.a
+		ai_chance = {
+			factor = 5
+		}
+		effect_tooltip = {
+			create_country_leader = {
+				name = "Lazar Koliševski"
+				picture = "Lazar_Kolisevski.dds"
+				ideology = stalinism
+			}
+		}
+	}
+	option = {
+		# Appoint Head of SR Croatia
+		name = yug.7.b
+		ai_chance = {
+			factor = 5
+		}
+		create_country_leader = {
+			name = "Ante Markovic"
+			picture = "Portrait_Yugoslavia_Ante_Markovic.dds"
+			ideology = stalinism
+		}
+	}
+	option = {
+		# Appoint Head of SR Serbia
+		name = yug.7.c
+		ai_chance = {
+			factor = 5
+		}
+		create_country_leader = {
+			name = "Ivan Stambolic"
+			picture = "Ivan_Stambolic.dds"
+			ideology = stalinism
+		}
+	}
+}
+
+# Purge the Gouvernment
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.8
+	immediate = {
+	}
+	title = yug.8.t
+	desc = yug.8.d
+	is_triggered_only = yes
+	option = {
+		# Whatever is necessary
+		name = yug.8.a
+	}
+}
+
+# Suez Crisis
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.9
+	immediate = {
+	}
+	title = yug.9.t
+	desc = yug.9.d
+	is_triggered_only = yes
+	option = {
+		# Support Egypt
+		name = yug.9.a
+		ai_chance = {
+			factor = 5
+		}
+		add_opinion_modifier = {
+			target = ENG
+			modifier = YUG_Suez_Crisis_hurting_opinion
+		}
+		add_opinion_modifier = {
+			target = EGY
+			modifier = YUG_Suez_Crisis_improve_opinion
+		}
+	}
+	option = {
+		# Stay out
+		name = yug.9.b
+		ai_chance = {
+			factor = 5
+		}
+		add_opinion_modifier = {
+			target = EGY
+			modifier = YUG_Suez_Crisis_hurting_opinion
+		}
+		add_opinion_modifier = {
+			target = ENG
+			modifier = YUG_Suez_Crisis_improve_opinion
+		}
+	}
+}
+
+# The Afghan Question
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.10
+	immediate = {
+	}
+	title = yug.10.t
+	desc = yug.10.d
+	is_triggered_only = yes
+	option = {
+		# Allow him to join
+		name = yug.10.a
+		ai_chance = {
+			factor = 5
+		}
+		YUG = {
+			add_to_faction = AFG
+		}
+	}
+	option = {
+		# We cannot risk it
+		name = yug.10.b
+		ai_chance = {
+			factor = 5
+		}
+		add_opinion_modifier = {
+			target = AFG
+			modifier = YUG_Afghan_Question_hurting_opinion
+		}
+	}
+}
+
+# Croatia Declares Independence
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.11
+	immediate = {
+	}
+	title = yug.11.t
+	desc = yug.11.d
+	is_triggered_only = yes
+	option = {
+		# We cant let them leave
+		name = yug.11.a
+		set_politics = {
+			ruling_party = monarchism
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Peter II"
+			picture = "Peter_II.dds"
+			expire = "1988.5.5"
+			ideology = monarchist
+		}
+		set_cosmetic_tag = SERBIA
+		release = CRO
+		release = BOS
+		release = TRS
+		CRO = {
+			set_politics = {
+				ruling_party = fascism
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Andrija Artukov"
+				picture = "Andrija_Artukov.dds"
+				expire = "1988.5.5"
+				ideology = neo_nazism
+			}
+		}
+		TRS = {
+			set_cosmetic_tag = TRS_YUG
+			create_country_leader = {
+				name = "Josip Broz Tito"
+				picture = "gfx/leaders/YUG/Josip_Broz_Tito_70s.dds"
+				expire = "1988.5.5"
+				ideology = titoism
+			}
+			add_popularity = {
+				ideology = trotskyism
+				popularity = 0.5
+			}
+			set_party_name = {
+				ideology = trotskyism
+				long_name = "Vlada Jugoslovenske Spasenja"
+				name = "VJS"
+			}
+			set_politics = {
+				ruling_party = trotskyism
+				elections_allowed = no
+			}
+		}
+	}
+}
+
+# Serbia Declares Independence
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.12
+	immediate = {
+	}
+	title = yug.12.t
+	desc = yug.12.d
+	is_triggered_only = yes
+	option = {
+		# We cant let them leave
+		name = yug.12.a
+		retire_country_leader = yes
+		set_politics = {
+			ruling_party = fascism
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Andrija Artukov"
+			picture = "Andrija_Artukov.dds"
+			expire = "1988.5.5"
+			ideology = neo_nazism
+		}
+		set_cosmetic_tag = CROATIA
+		release = SER
+		release = SRP
+		release = MAC
+		SER = {
+			set_politics = {
+				ruling_party = monarchism
+				elections_allowed = no
+			}
+			create_country_leader = {
+				name = "Peter II"
+				picture = "Peter_II.dds"
+				expire = "1988.5.5"
+				ideology = monarchist
+			}
+		}
+	}
+}
+
+# Radical Coup
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.13
+	immediate = {
+	}
+	title = yug.13.t
+	desc = yug.13.d
+	is_triggered_only = yes
+	option = {
+		name = yug.13.a
+		add_stability = -0.1
+	}
+}
+
+# The Bled Agreement
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.14
+	immediate = {
+	}
+	title = yug.14.t
+	desc = yug.14.d
+	is_triggered_only = yes
+	option = {
+		name = yug.14.a
+		add_political_power = 150
+	}
+}
+
+# Pressure Bulgaria
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.15
+	immediate = {
+	}
+	title = yug.15.t
+	desc = yug.15.d
+	is_triggered_only = yes
+	option = {
+		name = yug.15.a
+		BUL = {
+			country_event = yug.16
+		}
+	}
+}
+
+# Yugoslavia Wants to Unite
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.16
+	immediate = {
+	}
+	title = yug.16.t
+	desc = yug.16.d
+	is_triggered_only = yes
+	option = {
+		name = yug.16.a
+		ai_chance = {
+			factor = 20
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+		YUG = {
+			annex_country = {
+				target = ROOT
+			}
+		}
+	}
+	option = {
+		name = yug.16.b
+		ai_chance = {
+			factor = 80
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes
+			}
+		}
+		add_opinion_modifier = {
+			target = ROOT
+			modifier = YUG_not_uniting_opinion
+		}
+		YUG = {
+			create_wargoal = {
+				type = annex_everything
+				target = ROOT
+			}
+		}
+	}
+}
+
+# Pressure Albania
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.17
+	immediate = {
+	}
+	title = yug.17.t
+	desc = yug.17.d
+	is_triggered_only = yes
+	option = {
+		name = yug.17.a
+		ALB = {
+			country_event = yug.16
+		}
+	}
+}
+
+# Pressure Romania
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.18
+	immediate = {
+	}
+	title = yug.18.t
+	desc = yug.18.d
+	is_triggered_only = yes
+	option = {
+		name = yug.18.a
+		ROM = {
+			country_event = yug.16
+		}
+	}
+}
+
+# Yugoslavia Wants to Unite
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.19
+	immediate = {
+	}
+	title = yug.19.t
+	desc = yug.19.d
+	is_triggered_only = yes
+	option = {
+		name = yug.19.a
+		ai_chance = {
+			factor = 40
+			modifier = {
+				factor = 0
+				is_historical_focus_on = yes
+			}
+		}
+		YUG = {
+			annex_country = {
+				target = ROOT
+			}
+		}
+	}
+	option = {
+		name = yug.19.b
+		ai_chance = {
+			factor = 60
+			modifier = {
+				factor = 100
+				is_historical_focus_on = yes
+			}
+		}
+		add_opinion_modifier = {
+			target = ROOT
+			modifier = YUG_not_uniting_opinion
+		}
+	}
+}
+
+# Proclaim the Balkan Federation
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.20
+	immediate = {
+	}
+	title = yug.20.t
+	desc = yug.20.d
+	picture = GFX_balkan_fed
+	is_triggered_only = yes
+	option = {
+		name = yug.20.a
+		trigger = {
+			tag = YUG
+		}
+	}
+	option = {
+		name = yug.20.b
+		trigger = {
+			NOT = {
+				tag = YUG
+			}
+			has_government = communism
+		}
+	}
+	option = {
+		name = yug.20.c
+		trigger = {
+			NOT = {
+				tag = YUG
+				has_government = communism
+			}
+		}
+	}
+}
+
+# A Romanian puppet
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.21
+	immediate = {
+	}
+	title = yug.21.t
+	desc = yug.21.d
+	is_triggered_only = yes
+	option = {
+		name = yug.21.a
+		create_wargoal = {
+			target = ROM
+			type = puppet_wargoal_focus
+		}
+	}
+}
+
+# Invite Greece
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.22
+	immediate = {
+	}
+	title = yug.22.t
+	desc = yug.22.d
+	is_triggered_only = yes
+	option = {
+		name = yug.22.a
+		GRE = {
+			country_event = yug.19
+		}
+	}
+}
+
+# Destroy the Rebellion
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.23
+	immediate = {
+	}
+	title = yug.23.t
+	desc = yug.23.d
+	is_triggered_only = yes
+	option = {
+		name = yug.23.a
+		add_manpower = 25000
+	}
+}
+
+# Bandung Conference
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.24
+	immediate = {
+	}
+	title = yug.24.t
+	desc = yug.24.d
+	is_triggered_only = yes
+	option = {
+		name = yug.24.a
+		RAJ = {
+			country_event = yug.25
+		}
+		INO = {
+			country_event = yug.25
+		}
+		EGY = {
+			country_event = yug.25
+		}
+	}
+}
+
+# Join Non-aligned Movement
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.25
+	immediate = {
+	}
+	title = yug.25.t
+	desc = yug.25.d
+	is_triggered_only = yes
+	option = {
+		name = yug.25.a
+		ai_chance = {
+			factor = 5
+		}
+		YUG = {
+			add_to_faction = ROOT
+		}
+	}
+	option = {
+		name = yug.25.a
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+# North African Expansion
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.26
+	immediate = {
+	}
+	title = yug.26.t
+	desc = yug.26.d
+	is_triggered_only = yes
+	option = {
+		name = yug.26.a
+		TUN = {
+			country_event = yug.25
+		}
+		LBA = {
+			country_event = yug.25
+		}
+		MOR = {
+			country_event = yug.25
+		}
+	}
+}
+
+# Middle East Expansion
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.27
+	immediate = {
+	}
+	title = yug.27.t
+	desc = yug.27.d
+	is_triggered_only = yes
+	option = {
+		name = yug.27.a
+		IRQ = {
+			country_event = yug.25
+		}
+		SAU = {
+			country_event = yug.25
+		}
+		JOR = {
+			country_event = yug.25
+		}
+		SYR = {
+			country_event = yug.25
+		}
+	}
+}
+
+# Middle East Expansion
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.28
+	immediate = {
+	}
+	title = yug.28.t
+	desc = yug.28.d
+	is_triggered_only = yes
+	option = {
+		name = yug.28.a
+		CAM = {
+			country_event = yug.25
+		}
+		BHU = {
+			country_event = yug.25
+		}
+		NEP = {
+			country_event = yug.25
+		}
+		MAL = {
+			country_event = yug.25
+		}
+	}
+}
+
+#Elections
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.29
+	immediate = {
+	}
+	title = yug.29.t2
+	desc = yug.29.d2
+	is_triggered_only = yes
+	option = {
+		name = yug.29.a2
+		set_politics = {
+			ruling_party = trotskyism
+			elections_allowed = yes
+		}
+		add_popularity = {
+			ideology = trotskyism
+			popularity = 0.05
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+	option = {
+		name = yug.29.b2
+		set_politics = {
+			ruling_party = liberal
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Juraj Krnjevic"
+			picture = "Juraj_Krnjevic.dds"
+			expire = "1988.12.14"
+			ideology = libertarianism
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.1
+		}
+		ai_chance = {
+			factor = 20
+		}
+	}
+	option = {
+		name = yug.29.c2
+		set_politics = {
+			ruling_party = nationalist
+			elections_allowed = yes
+		}
+		create_country_leader = {
+			name = "Milan Stojadinovic"
+			picture = "Milan_Stojadinovic.dds"
+			expire = "1962.3.26"
+			ideology = nationalist_ideology
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = 0.2
+		}
+		ai_chance = {
+			factor = 33
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+#Communism
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.30
+	immediate = {
+	}
+	title = yug.30.t2
+	desc = yug.30.d
+	picture = GFX_report_event_tito_speech
+	is_triggered_only = yes
+	option = {
+		name = yug.30.a2
+		set_politics = {
+			ruling_party = communism
+			elections_allowed = yes
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.31
+	immediate = {
+	}
+	title = yug.31.t2
+	desc = yug.31.d
+	is_triggered_only = yes
+	option = {
+		name = yug.31.a2
+		ai_chance = {
+			factor = 80
+		}
+	}
+	option = {
+		name = yug.31.b2
+		ai_chance = {
+			factor = 20
+		}
+		declare_war_on = {
+			target = BUL
+			type = annex_everything
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.32
+	immediate = {
+	}
+	title = yug.32.t2
+	desc = yug.32.d
+	picture = GFX_roosevelt_tito
+	is_triggered_only = yes
+	option = {
+		name = yug.32.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.33
+	immediate = {
+	}
+	title = yug.33.t2
+	desc = yug.33.d
+	picture = GFX_report_event_cazin_rebellion
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = yug.33.a2
+		country_event = {
+			id = yug.34
+			days = 30
+		}
+		hidden_effect = {
+			set_temp_variable = {
+				yug_temp_opinion = 3
+			}
+			subtract_from_variable = {
+				yug_bosnian_opinion = 3
+			}
+			clamp_variable = {
+				var = yug_croatian_opinion
+				min = 0
+				max = 100
+			}
+		}
+		custom_effect_tooltip = YUG_localisation_bosnian_opinion_negative
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.34
+	immediate = {
+	}
+	title = yug.34.t2
+	desc = yug.34.d
+	picture = GFX_report_event_cazin_rebellion
+	is_triggered_only = yes
+	option = {
+		name = yug.34.a2
+		add_stability = -0.05
+		add_war_support = -0.02
+		add_political_power = -50
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug.35
+	immediate = {
+	}
+	title = yug.35.t2
+	desc = yug.35.d
+	picture = GFX_yug_six_cong
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = yug.35.a2
+		set_party_name = {
+			ideology = trotskyism
+			long_name = "Savez komunista Jugoslavije"
+			name = "SKJ"
+		}
+	}
+}
+
+add_namespace = Informbiro
+add_namespace = Yug_1950s
+add_namespace = AntiSovYug
+add_namespace = Diljas
+add_namespace = YUG_NATO
+add_namespace = YUG_50s
+add_namespace = HungarianRevYug
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Informbiro.1
+	immediate = {
+	}
+	title = Informbiro.1.t2
+	desc = Informbiro.1.d
+	picture = GFX_Informbiro_1
+	is_triggered_only = yes
+	option = {
+		name = Informbiro.1.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Yug_1950s.1
+	immediate = {
+	}
+	title = Yug_1950s.1.t2
+	desc = Yug_1950s.1.d
+	picture = GFX_Yug_1950s_1
+	is_triggered_only = yes
+	option = {
+		name = Yug_1950s.1.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = AntiSovYug.1
+	immediate = {
+	}
+	title = AntiSovYug.1.t2
+	desc = AntiSovYug.1.d
+	picture = GFX_AntiSovYug_1
+	is_triggered_only = yes
+	option = {
+		name = AntiSovYug.1.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Diljas.1
+	immediate = {
+	}
+	title = Diljas.1.t2
+	desc = Diljas.1.d
+	picture = GFX_Diljas_1
+	is_triggered_only = yes
+	fire_only_once = yes		
+	major = yes
+	option = {
+		name = Diljas.1.a2
+		YUG = {
+			country_event = {
+				id = Diljas.4
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Diljas.2
+	immediate = {
+	}
+	title = Diljas.2.t2
+	desc = Diljas.2.d
+	picture = GFX_Diljas_2
+	is_triggered_only = yes
+	fire_only_once = yes		
+	major = yes
+	option = {
+		name = Diljas.2.a2
+		YUG = {
+		    mark_focus_tree_layout_dirty = yes		
+			set_country_flag = YUG_djilas_accepted
+			clr_country_flag = YUG_djilas_purged_flag
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Diljas.3
+	immediate = {
+	}
+	title = Diljas.3.t2
+	desc = Diljas.3.d
+	picture = GFX_Diljas_3
+	is_triggered_only = yes
+	fire_only_once = yes		
+	major = yes
+	option = {
+		name = Diljas.3.a2
+		hidden_effect = {
+			YUG = {
+		 	    mark_focus_tree_layout_dirty = yes					
+				set_country_flag = YUG_djilas_purged_flag
+				clr_country_flag = YUG_djilas_accepted
+				country_event = {
+					id = diljas.5
+					days = 200
+				}
+			}		
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Diljas.4
+	immediate = {
+	}
+	title = Diljas.4.t2
+	desc = Diljas.4.d
+	picture = GFX_Diljas_4
+	is_triggered_only = yes
+	fire_only_once = yes		
+	option = {
+		name = Diljas.4.a2
+		YUG = {
+			country_event = {
+				id = diljas.3
+				days = 3
+			}
+		}
+	}
+	option = {
+		name = Diljas.4.b
+		YUG = {
+			country_event = {
+				id = diljas.2
+				days = 3
+			}
+		}
+	}	
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Diljas.5
+	immediate = {
+	}
+	title = Diljas.5.t
+	desc = Diljas.5.d
+	picture = GFX_Diljas_4
+	is_triggered_only = yes
+	fire_only_once = yes		
+	option = {
+		name = Diljas.5.a
+		add_political_power = -25
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_1950s.2
+	immediate = {
+	}
+	title = YUG_1950s.2.t2
+	desc = YUG_1950s.2.d
+	picture = GFX_YUG_1950s_2
+	is_triggered_only = yes
+	option = {
+		name = YUG_1950s.2.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_1950s.3
+	immediate = {
+	}
+	title = YUG_1950s.3.t
+	desc = YUG_1950s.3.d
+	picture = GFX_Hungary_10
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = YUG_1950s.3.a			
+		add_timed_idea = {
+			idea = drought
+			days = 60
+		}
+		set_variable = { THIS.idea_len_@token:DDR_idea_first_five_year_plan = 60 }
+		set_variable = { THIS.idea_date_@token:DDR_idea_first_five_year_plan = global.num_days }	
+		add_stability = -0.15
+		set_temp_variable = { yug_tempvar = -5 }
+		YUG_change_rof_var = yes							
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_1950s.4
+	immediate = {
+	}
+	title = YUG_1950s.4.t
+	desc = YUG_1950s.4.d
+	picture = GFX_KRD_Aftermath_Famine
+	is_triggered_only = yes
+	fire_only_once = yes	
+	option = {
+		name = YUG_1950s.4.a
+		add_timed_idea = {
+			idea = drought
+			days = 240
+		}
+		set_variable = { THIS.idea_len_@token:DDR_idea_first_five_year_plan = 240 }
+		set_variable = { THIS.idea_date_@token:DDR_idea_first_five_year_plan = global.num_days }	
+		add_stability = -0.2
+		set_temp_variable = { yug_tempvar = -55 }
+		YUG_change_rof_var = yes						
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_1950s.5
+	immediate = {
+	}
+	title = YUG_1950s.5.t
+	desc = YUG_1950s.5.d
+	picture = GFX_YUG_1950s_1
+	is_triggered_only = yes
+	fire_only_once = yes	
+	option = {
+		name = YUG_1950s.5.a
+		add_stability = -0.05
+		set_temp_variable = { yug_tempvar = -10 }
+		YUG_change_rof_var = yes						
+	}
+}
+
+#startup event
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_1950s.6
+	immediate = {
+	}
+	title = YUG_1950s.6.t
+	desc = YUG_1950s.6.d
+	picture = GFX_YUG_1950s_1
+	is_triggered_only = yes
+	fire_only_once = yes	
+	option = {
+		name = YUG_1950s.6.a
+		remove_dynamic_modifier = {
+			modifier = YUG_Informbiro_Food_Stability_dynamicmodifier
+		}	
+		remove_dynamic_modifier = {
+			modifier = YUG_Informbiro_Military_Readyness_dynamicmodifier
+		}					
+		remove_dynamic_modifier = {
+			modifier = YUG_Informbiro_Internal_Security_dynamicmodifier
+		}	
+		set_country_flag = YUG_informbiroover			
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_1950s.7
+	immediate = {
+	}
+	title = YUG_1950s.7.t
+	desc = YUG_1950s.7.d
+	picture = GFX_report_BCR_Negotiations_of_berlin
+	is_triggered_only = yes
+	option = {
+		name = YUG_1950s.7.a		
+		diplomatic_relation = {
+		    country = YUG
+		    relation = non_aggression_pact
+		    active = yes
+		}
+		YUG = {
+			country_event = {
+				id = YUG_1950s.9
+			}
+		}	
+	}
+	option = {
+		name = YUG_1950s.7.b		
+	}	
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_1950s.8
+	immediate = {
+	}
+	title = YUG_1950s.8.t
+	desc = YUG_1950s.8.d
+	picture = GFX_report_BCR_Negotiations_of_berlin
+	is_triggered_only = yes
+	option = {
+		name = YUG_1950s.8.a		
+		diplomatic_relation = {
+		    country = YUG
+		    relation = guarantee
+		    active = yes
+		}
+		YUG = {
+			diplomatic_relation = {
+			    country = ROOT
+			    relation = guarantee
+			    active = yes
+			}		
+			country_event = {
+				id = YUG_1950s.9
+			}
+		}	
+	}
+	option = {
+		name = YUG_1950s.8.b		
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_1950s.9
+	immediate = {
+	}
+	title = YUG_1950s.9.t 
+	desc = YUG_1950s.9.d
+	picture = GFX_report_BCR_Negotiations_of_berlin
+	is_triggered_only = yes
+	option = {
+		name = YUG_1950s.9.a		
+	}	
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_1950s.10
+	immediate = {
+	}
+	title = YUG_1950s.10.t 
+	desc = YUG_1950s.10.d
+	picture = GFX_SOV_WGR.2
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = YUG_1950s.10.a		
+		45 = {
+			add_manpower = -25000
+		}
+		1496 = {
+			add_manpower = -15000
+		}
+		1479 = {
+			add_manpower = 4000
+		}
+		1478 = {
+			add_manpower = 5000
+		}
+		1150 = {
+			add_manpower = 15000
+		}
+		51 = {
+			add_manpower = 9900
+		}
+		1354 = {
+			add_manpower = 5900
+		}
+		YUG = {
+			country_event = {
+				id = YUG_1950s.11
+				days = 30
+			}
+		}
+	}	
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_1950s.11
+	immediate = {
+	}
+	title = YUG_1950s.11.t 
+	desc = YUG_1950s.11.d
+	picture = GFX_YUG_NATO_1
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = YUG_1950s.11.a	
+		45 = {
+			add_manpower = 16500
+		}
+		1496 = {
+			add_manpower = 12000
+		}
+		1500 = {
+			add_manpower = -4000
+		}
+		104 = {
+			add_manpower = -5000
+		}
+		1487 = {
+			add_manpower = -4500
+		}
+		1185 = {
+			add_manpower = -9000
+		}
+		1499 = {
+			add_manpower = -6000
+		}			
+	}	
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_1950s.12
+	immediate = {
+	}
+	title = YUG_1950s.12.t 
+	desc = YUG_1950s.12.d
+	picture = GFX_Informbiro_1
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = YUG_1950s.12.a	
+		add_popularity = {
+			ideology = social_democratic
+			popularity = -0.1
+		}		
+		add_popularity = {
+			ideology = centrist
+			popularity = -0.1
+		}		
+		add_popularity = {
+			ideology = liberal_conservatism
+			popularity = -0.1
+		}																
+		add_popularity = {
+			ideology = liberal
+			popularity = -0.1
+		}	
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.1
+		}				
+	}	
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_NATO.1
+	immediate = {
+	}
+	title = YUG_NATO.1.t2
+	desc = YUG_NATO.1.d
+	picture = GFX_YUG_NATO_1
+	is_triggered_only = yes
+	option = {
+		name = YUG_NATO.1.a2
+		YUG = {
+			transfer_state = 756
+			add_ideas = nato_member
+		}
+		756 = {
+			set_demilitarized_zone = no
+		}
+		news_event = YUG_NATO.2
+	}
+	option = {
+		name = YUG_NATO.1.b2
+		YUG = {
+			country_event = YUG_NATO.3
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_NATO.3
+	immediate = {
+	}
+	title = YUG_NATO.3.t2
+	desc = YUG_NATO.3.d
+	picture = GFX_YUG_NATO_3
+	is_triggered_only = yes
+	option = {
+		name = YUG_NATO.3.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HungarianRevYug.1
+	immediate = {
+	}
+	title = HungarianRevYug.1.t2
+	desc = HungarianRevYug.1.d
+	picture = GFX_HungarianRevYug_1
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = HungarianRevYug.1.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HungarianRevYug.2
+	immediate = {
+	}
+	title = HungarianRevYug.2.t2
+	desc = HungarianRevYug.2.d
+	picture = GFX_HungarianRevYug_2
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = HungarianRevYug.2.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_NATO.2
+	immediate = {
+	}
+	title = YUG_NATO.2.t2
+	desc = YUG_NATO.2.d
+	picture = GFX_YUG_NATO_2
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = YUG_NATO.2.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG_50s.1
+	immediate = {
+	}
+	title = YUG_50s.1.t2
+	desc = YUG_50s.1.d
+	picture = GFX_YUG_50s_1
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = YUG_50s.1.a2
+	}
+}
+
+#####Yugoslavia Balkan annexation events
+#####Bulgaria event id prefix: 1 Albania prefix: 2
+#SOV - Yugoslavia wants Bulgaria
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug_annex.1
+	immediate = {
+	}
+	title = yug_annex.1.t2
+	desc = yug_annex.1.d
+	picture = GFX_YUG_NATO_3
+	is_triggered_only = yes
+	option = {
+		name = yug_annex.1.a2
+		ai_chance = {
+			factor = 1
+		}
+		BUL = {
+			country_event = {
+				id = yug_annex.10
+				days = 1
+			}
+		}
+	}
+	option = {
+		name = yug_annex.1.b2
+		ai_chance = {
+			factor = 9
+		}
+		YUG = {
+			country_event = {
+				id = yug_annex.13
+				days = 1
+			}
+		}
+	}
+}
+
+#BUL - Yugoslavia wants Bulgaria (SOV accepted)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug_annex.10
+	immediate = {
+	}
+	title = yug_annex.10.t2
+	desc = yug_annex.10.d
+	picture = YUG_NATO_1YUG_NATO_1
+	is_triggered_only = yes
+	option = {
+		name = yug_annex.10.a2
+		ai_chance = {
+			factor = 3
+		}
+		YUG = {
+			set_country_flag = YUG_BUL_wants_integration
+		}
+	}
+	option = {
+		name = yug_annex.10.b2
+		ai_chance = {
+			factor = 1
+		}
+		YUG = {
+			country_event = {
+				id = yug_annex.12
+				days = 1
+			}
+		}
+	}
+}
+
+#YUG - Demands accepted
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug_annex.11
+	immediate = {
+	}
+	title = yug_annex.11.t2
+	desc = yug_annex.11.d
+	picture = GFX_YUG_1950s_2
+	is_triggered_only = yes
+	option = {
+		name = yug_annex.11.a2
+		annex_country = {
+			target = BUL
+			transfer_troops = yes
+		}
+		every_owned_state = {
+			limit = {
+				is_core_of = BUL
+			}
+			add_core_of = YUG
+		}
+		hidden_effect = {
+			news_event = YUG_INTEGRATION.3
+		}
+	}
+}
+
+#YUG - SOV accepted, BUL refused
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug_annex.12
+	immediate = {
+	}
+	title = yug_annex.12.t2
+	desc = yug_annex.12.d
+	picture = GFX_YUG_NATO_3
+	is_triggered_only = yes
+	option = {
+		name = yug_annex.12.a2
+		create_wargoal = {
+			type = annex_everything
+			target = BUL
+		}
+	}
+	option = {
+		name = yug_annex.12.b2
+		add_political_power = -25
+	}
+}
+
+#YUG - SOV refused
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug_annex.13
+	immediate = {
+	}
+	title = yug_annex.13.t2
+	desc = yug_annex.13.d
+	picture = GFX_YUG_NATO_3
+	is_triggered_only = yes
+	option = {
+		name = yug_annex.13.a2
+		create_wargoal = {
+			type = annex_everything
+			target = BUL
+		}
+	}
+	option = {
+		name = yug_annex.13.b2
+		add_political_power = -25
+	}
+}
+
+#BUL - SOV refused
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug_annex.14
+	immediate = {
+	}
+	title = yug_annex.14.t2
+	desc = yug_annex.14.d
+	is_triggered_only = yes
+	picture = GFX_AFG_War_32
+	option = {
+		name = yug_annex.14.a2
+		add_political_power = 50
+	}
+}
+
+#SOV - Yugoslavia wants Albania
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug_annex.2
+	immediate = {
+	}
+	title = yug_annex.2.t2
+	desc = yug_annex.2.d
+	picture = GFX_YUG_NATO_3
+	is_triggered_only = yes
+	option = {
+		name = yug_annex.2.a2
+		ai_chance = {
+			factor = 1
+		}
+		ALB = {
+			country_event = {
+				id = yug_annex.20
+				days = 1
+			}
+		}
+	}
+	option = {
+		name = yug_annex.2.b2
+		ai_chance = {
+			factor = 9
+		}
+		YUG = {
+			country_event = {
+				id = yug_annex.23
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug_annex.25
+	immediate = {
+	}
+	title = yug_annex.25.t
+	desc = yug_annex.25.d
+	picture = GFX_YUG_NATO_3
+	is_triggered_only = yes
+	option = {
+		name = yug_annex.25.a
+		retire_character = ALB_enver_hoxha
+		ai_chance = {
+			factor = 3
+		}	
+		YUG = {
+			country_event = {
+				id = yug_annex.21
+				days = 1
+			}
+		}			
+	}
+	option = {
+		name = yug_annex.25.b
+		ai_chance = {
+			factor = 1
+		}	
+		YUG = {
+			country_event = {
+				id = yug_annex.23
+				days = 1
+			}
+		}
+	}
+}
+
+#ALB - Yugoslavia wants Albania (SOV accepted)
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug_annex.20
+	immediate = {
+	}
+	title = yug_annex.20.t2
+	desc = yug_annex.20.d
+	is_triggered_only = yes
+	picture = YUG_NATO_1
+	option = {
+		name = yug_annex.20.a2
+		ai_chance = {
+			factor = 3
+		}
+		YUG = {
+			country_event = {
+				id = yug_annex.21
+				days = 1
+			}
+		}
+	}
+	option = {
+		name = yug_annex.20.b2
+		ai_chance = {
+			factor = 1
+		}
+		YUG = {
+			country_event = {
+				id = yug_annex.22
+				days = 1
+			}
+		}
+	}
+}
+
+#YUG - Coup Success
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug_annex.21
+	immediate = {
+	}
+	title = yug_annex.21.t2
+	desc = yug_annex.21.d
+	picture = GFX_YUG_1950s_2
+	is_triggered_only = yes
+	option = {
+		name = yug_annex.21.a2
+		set_country_flag = YUG_alb_couped
+	}
+}
+
+#YUG - Hoxha Coup Failure
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug_annex.22
+	immediate = {
+	}
+	title = yug_annex.22.t2
+	desc = yug_annex.22.d
+	picture = GFX_YUG_NATO_3
+	is_triggered_only = yes
+	option = {
+		name = yug_annex.22.a2
+		create_wargoal = {
+			type = annex_everything
+			target = ALB
+		}
+	}
+	option = {
+		name = yug_annex.22.b2
+		add_political_power = -25
+	}
+}
+
+#YUG - SOV refused ALB
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug_annex.23
+	immediate = {
+	}
+	title = yug_annex.23.t2
+	desc = yug_annex.23.d
+	picture = GFX_YUG_NATO_3
+	is_triggered_only = yes
+	option = {
+		name = yug_annex.23.a2
+		create_wargoal = {
+			type = annex_everything
+			target = ALB
+		}
+	}
+	option = {
+		name = yug_annex.23.b2
+		add_political_power = -25
+	}
+}
+
+#ALB - SOV refused
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = yug_annex.24
+	immediate = {
+	}
+	title = yug_annex.24.t2
+	desc = yug_annex.24.d
+	picture = GFX_AFG_War_32
+	is_triggered_only = yes
+	option = {
+		name = yug_annex.24.a2
+		add_political_power = 50
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.51
+	immediate = {
+	}
+	title = YUG.51.t2
+	desc = YUG.51.d
+	picture = GFX_Ole_Miss_Riot
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = YUG.51.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.52
+	immediate = {
+	}
+	title = YUG.52.t2
+	desc = YUG.52.d
+	picture = GFX_islam_brotherhood_rioting
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = YUG.52.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.53
+	immediate = {
+	}
+	title = YUG.53.t2
+	desc = YUG.53.d
+	picture = GFX_Soviet_Nuclear_Test_1
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = YUG.53.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.54
+	immediate = {
+	}
+	title = YUG.54.t2
+	desc = YUG.54.d
+	picture = GFX_nuclear_war_destroyed
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = YUG.54.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.55
+	immediate = {
+	}
+	title = YUG.55.t2
+	desc = YUG.55.d
+	picture = GFX_news_event_tito_dead
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = YUG.55.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.56
+	immediate = {
+	}
+	title = YUG.56.t2
+	desc = YUG.56.d
+	picture = GFX_news_event_tito_dead
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = YUG.56.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.57
+	immediate = {
+	}
+	title = YUG.57.t2
+	desc = YUG.57.d
+	picture = GFX_roosevelt_tito
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = YUG.57.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.58
+	immediate = {
+	}
+	title = YUG.58.t2
+	desc = YUG.58.d
+	picture = GFX_ENG_nuclear_4
+	is_triggered_only = yes
+	option = {
+		name = YUG.58.a2
+		news_event = YUG.53
+	}
+	option = {
+		name = YUG.58.b2
+		news_event = YUG.53
+	}
+	option = {
+		name = YUG.58.c2
+		news_event = YUG.59
+		every_country = {
+			limit = {
+				has_idea = nato_member
+			}
+			add_opinion_modifier = {
+				target = YUG
+				modifier = medium_decrease
+			}
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.59
+	immediate = {
+	}
+	title = YUG.59.t2
+	desc = YUG.59.d
+	picture = GFX_Soviet_Nuclear_Test_1
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = YUG.59.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.60
+	immediate = {
+	}
+	title = YUG.60.t2
+	desc = YUG.60.d
+	picture = GFX_Afghan_Cabinet_Meeting
+	is_triggered_only = yes
+	option = {
+		name = YUG.60.a2
+		YUG = {
+			complete_national_focus = YUG_60s_Listen_to_Military_Intelligence
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+	option = {
+		name = YUG.60.b2
+		YUG = {
+			complete_national_focus = YUG_60s_Ignore_The_Army's_Advice
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.61
+	immediate = {
+	}
+	title = YUG.61.t2
+	desc = YUG.61.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.61.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.62
+	immediate = {
+	}
+	title = YUG.62.t
+	desc = YUG.62.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.62.a
+		hidden_effect = {
+			1492 = {
+				add_dynamic_modifier = {
+					modifier = YUG_modifier_autonomy
+				}
+			}
+			1491 = {
+				add_dynamic_modifier = {
+					modifier = YUG_modifier_autonomy
+				}
+			}
+			103 = {
+				add_dynamic_modifier = {
+					modifier = YUG_modifier_autonomy
+				}
+			}
+		}
+		custom_effect_tooltip = YUG_localisation_autonomy_rsk_dalmatia
+		hidden_effect = {
+			set_temp_variable = {
+				yug_temp_opinion = 40
+			}
+			subtract_from_variable = {
+				yug_croatian_opinion = 40
+			}
+			clamp_variable = {
+				var = yug_croatian_opinion
+				min = 0
+				max = 100
+			}
+		}
+		custom_effect_tooltip = YUG_localisation_croatian_opinion_negative
+		hidden_effect = {
+			set_temp_variable = {
+				yug_temp_opinion = 1
+			}
+			subtract_from_variable = {
+				yug_croatian_impact = 1
+			}
+		}
+		custom_effect_tooltip = YUG_localisation_croatian_impact_negative
+		set_temp_variable = {
+			yug_temp_opinion = 20
+		}
+		add_to_variable = {
+			yug_serbian_opinion = 20
+		}
+		clamp_variable = {
+			var = yug_serbian_opinion
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = YUG_localisation_serbian_opinion_positive
+		hidden_effect = {
+			set_temp_variable = {
+				yug_temp_opinion = 1
+			}
+			add_to_variable = {
+				yug_serbian_impact = 1
+			}
+		}
+		custom_effect_tooltip = YUG_localisation_serbian_impact_positive
+		yug_increase_federalisation = yes
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = YUG.62.b
+		hidden_effect = {
+			set_temp_variable = {
+				yug_temp_opinion = 15
+			}
+			subtract_from_variable = {
+				yug_serbian_opinion = 15
+			}
+			clamp_variable = {
+				var = yug_serbian_opinion
+				min = 0
+				max = 100
+			}
+		}
+		custom_effect_tooltip = YUG_localisation_serbian_opinion_negative
+		hidden_effect = {
+			set_temp_variable = {
+				yug_temp_opinion = 10
+			}
+			add_to_variable = {
+				yug_croatian_opinion = 10
+			}
+			clamp_variable = {
+				var = yug_croatian_opinion
+				min = 0
+				max = 100
+			}
+		}
+		custom_effect_tooltip = YUG_localisation_croatian_opinion_positive
+		ai_chance = {
+			factor = 90
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.63
+	immediate = {
+	}
+	title = YUG.63.t
+	desc = YUG.63.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.63.a
+		build_railway = {
+			level = 1
+			path = {
+				11564
+				15660
+				15667
+			}
+			start_province = 11564
+			target_province = 15667
+		}
+		yug_decrease_federalisation = yes
+		ai_chance = {
+			factor = 70
+		}
+	}
+	option = {
+		name = YUG.63.b
+		build_railway = {
+			level = 1
+			path = {
+				15667
+				15660
+				3601
+				6611
+				984
+				3974
+				3924
+			}
+			start_province = 15667
+			target_province = 3924
+		}
+		build_railway = {
+			level = 1
+			path = {
+				11564
+				15660
+			}
+			start_province = 11564
+			target_province = 15660
+		}
+		hidden_effect = {
+			set_temp_variable = {
+				yug_temp_opinion = 5
+			}
+			add_to_variable = {
+				yug_croatian_opinion = 5
+			}
+			clamp_variable = {
+				var = yug_croatian_opinion
+				min = 0
+				max = 100
+			}
+		}
+		custom_effect_tooltip = YUG_localisation_croatian_opinion_positive
+		add_to_variable = {
+			tooltip = adjust_money_tt
+			currentMoney = -25
+		}
+		ai_chance = {
+			factor = 30
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.64
+	immediate = {
+	}
+	title = YUG.64.t
+	desc = YUG.64.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.64.a
+		YUG = {
+			complete_national_focus = YUG_a_plan_of_production
+		}
+		set_country_flag = YUG_oil_crisis_a_plan_of_production
+		ai_chance = {
+			factor = 70
+		}
+	}
+	option = {
+		name = YUG.64.b
+		YUG = {
+			complete_national_focus = YUG_an_unorthodox_approach
+		}
+		set_country_flag = YUG_oil_crisis_a_plan_of_innovation
+		ai_chance = {
+			factor = 30
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.65
+	immediate = {
+	}
+	title = YUG.65.t
+	desc = YUG.65.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.65.a
+		if = {
+			limit = {
+				has_idea = YUG_croatian_spring_1
+			}
+			swap_ideas = {
+				remove_idea = YUG_idea_croatian_spring_1
+				add_idea = YUG_idea_croatian_spring_2
+			}
+		}
+		else = {
+			add_ideas = YUG_idea_croatian_spring_2
+		}
+		hidden_effect = {
+			country_event = {
+				id = YUG.66
+				days = 25
+			}
+			country_event = {
+				id = YUG.67
+				days = 35
+			}
+			country_event = {
+				id = YUG.68
+				days = 95
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.66
+	immediate = {
+	}
+	title = YUG.66.t
+	desc = YUG.66.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.66.a
+		add_stability = -0.05
+		swap_ideas = {
+			remove_idea = YUG_idea_croatian_spring_2
+			add_idea = YUG_idea_croatian_spring_3
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.67
+	immediate = {
+	}
+	title = YUG.67.t
+	desc = YUG.67.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.67.a
+		add_political_power = -100
+		swap_ideas = {
+			add_idea = YUG_idea_cultural_societies_bad
+			remove_idea = YUG_idea_cultural_societies_mid
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.68
+	immediate = {
+	}
+	title = YUG.68.t
+	desc = YUG.68.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.68.a
+		add_political_power = 100
+		ai_chance = {
+			factor = 95
+		}
+	}
+	option = {
+		name = YUG.68.b
+		add_political_power = -100
+		YUG_drift_to_the_east = yes
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.69
+	immediate = {
+	}
+	title = YUG.69.t
+	desc = YUG.69.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.69.a
+		add_political_power = 50
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.70
+	immediate = {
+	}
+	title = YUG.70.t
+	desc = YUG.70.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.70.a
+		ai_chance = {
+			factor = 0
+		}
+	}
+	option = {
+		name = YUG.70.b
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.79
+	immediate = {
+	}
+	title = YUG.79.t
+	desc = YUG.79.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.79.a
+		promote_character = {
+			character = YUG_lazar_kolisevski
+			ideology = titoism
+		}
+		country_event = {
+			id = YUG.80
+			days = 11
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.80
+	immediate = {
+	}
+	title = YUG.80.t
+	desc = YUG.80.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.80.a
+		retire_character = YUG_lazar_kolisevski
+		promote_character = {
+			character = YUG_cvijetin_mijatovic
+			ideology = titoism
+		}
+		country_event = {
+			id = YUG.81
+			days = 365
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.81
+	immediate = {
+	}
+	title = YUG.81.t
+	desc = YUG.81.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.81.a
+		retire_character = YUG_cvijetin_mijatovic
+		promote_character = {
+			character = YUG_sergej_kraigher
+			ideology = titoism
+		}
+		country_event = {
+			id = YUG.82
+			days = 365
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.82
+	immediate = {
+	}
+	title = YUG.82.t
+	desc = YUG.82.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.82.a
+		retire_character = YUG_sergej_kraigher
+		promote_character = {
+			character = YUG_petar_stambolic
+			ideology = titoism
+		}
+		country_event = {
+			id = YUG.83
+			days = 365
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.83
+	immediate = {
+	}
+	title = YUG.83.t
+	desc = YUG.83.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.83.a
+		retire_character = YUG_petar_stambolic
+		promote_character = {
+			character = YUG_miko_spiljak
+			ideology = titoism
+		}
+		country_event = {
+			id = YUG.84
+			days = 365
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.84
+	immediate = {
+	}
+	title = YUG.84.t
+	desc = YUG.83.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.84.a
+		retire_character = YUG_miko_spiljak
+		promote_character = {
+			character = YUG_veselin_djuranovic
+			ideology = titoism
+		}
+		country_event = {
+			id = YUG.85
+			days = 365
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.85
+	immediate = {
+	}
+	title = YUG.85.t
+	desc = YUG.83.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.85.a
+		retire_character = YUG_veselin_djuranovic
+		promote_character = {
+			character = YUG_radovan_vlajkovic
+			ideology = titoism
+		}
+		country_event = {
+			id = YUG.86
+			days = 365
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.86
+	immediate = {
+	}
+	title = YUG.86.t
+	desc = YUG.83.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.86.a
+		retire_character = YUG_radovan_vlajkovic
+		promote_character = {
+			character = YUG_sinan_hasani
+			ideology = titoism
+		}
+		country_event = {
+			id = YUG.87
+			days = 365
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.87
+	immediate = {
+	}
+	title = YUG.87.t
+	desc = YUG.83.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.87.a
+		retire_character = YUG_sinan_hasani
+		promote_character = {
+			character = YUG_lazar_mojsov
+			ideology = titoism
+		}
+		country_event = {
+			id = YUG.88
+			days = 365
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.88
+	immediate = {
+	}
+	title = YUG.88.t
+	desc = YUG.83.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.88.a
+		retire_character = YUG_lazar_mojsov
+		promote_character = {
+			character = YUG_raif_dizdarevic
+			ideology = titoism
+		}
+		country_event = {
+			id = YUG.89
+			days = 365
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.89
+	immediate = {
+	}
+	title = YUG.89.t
+	desc = YUG.83.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.89.a
+		retire_character = YUG_raif_dizdarevic
+		promote_character = {
+			character = YUG_janez_drnovsek
+			ideology = titoism
+		}
+		country_event = {
+			id = YUG.90
+			days = 365
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.90
+	immediate = {
+	}
+	title = YUG.90.t
+	desc = YUG.83.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.90.a
+		retire_character = YUG_janez_drnovsek
+		promote_character = {
+			character = YUG_borisav_jovic
+			ideology = titoism
+		}
+		country_event = {
+			id = YUG.91
+			days = 365
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.91
+	immediate = {
+	}
+	title = YUG.91.t
+	desc = YUG.83.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.91.a
+		retire_character = YUG_borisav_jovic
+		promote_character = {
+			character = YUG_sejdo_bajramovic
+			ideology = titoism
+		}
+		country_event = {
+			id = YUG.92
+			days = 56
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.92
+	immediate = {
+	}
+	title = YUG.92.t
+	desc = YUG.83.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.92.a
+		retire_character = YUG_sejdo_bajramovic
+		promote_character = {
+			character = YUG_stjepan_mesic
+			ideology = titoism
+		}
+		country_event = {
+			id = YUG.93
+			days = 365
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = YUG.93
+	immediate = {
+	}
+	title = YUG.93.t
+	desc = YUG.83.d
+	picture = GFX_Yugov_1
+	is_triggered_only = yes
+	option = {
+		name = YUG.93.a
+		retire_character = YUG_stjepan_mesic
+		promote_character = {
+			character = YUG_branko_kostic
+			ideology = titoism
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}

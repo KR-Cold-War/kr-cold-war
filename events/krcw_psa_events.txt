@@ -1,0 +1,152 @@
+add_namespace = krcw_psa
+
+country_event = {
+	id = krcw_psa.30
+	title = krcw_psa_30_t
+	desc = krcw_psa_30_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_psa_30.a
+		ai_chance = {
+			base = 50
+		}
+		set_country_flag = krcw_psa_junta_succession
+		add_war_support = 0.03
+		add_political_power = 50
+	}
+	option = {
+		name = krcw_psa_30.b
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_psa_naval_succession
+		navy_experience = 20
+		add_political_power = 25
+	}
+	option = {
+		name = krcw_psa_30.c
+		ai_chance = {
+			base = 25
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_psa_civilian_road
+		add_stability = 0.04
+		add_popularity = { ideology = liberal popularity = 0.05 }
+	}
+}
+
+country_event = {
+	id = krcw_psa.32
+	title = krcw_psa_32_t
+	desc = krcw_psa_32_d
+	picture = GFX_report_event_generic_parliament
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+		has_country_flag = krcw_psa_republic_road
+	}
+	option = {
+		name = krcw_psa_32.a
+		ai_chance = {
+			base = 60
+		}
+		add_stability = 0.06
+		add_political_power = -25
+		add_popularity = { ideology = liberal popularity = 0.08 }
+		if = { limit = { has_idea = krcw_psa_proconsul } remove_ideas = krcw_psa_proconsul }
+		add_to_variable = { krcw_psa_lean_ti = 8 }
+		clamp_variable = { var = krcw_psa_lean_ti min = 0 max = 100 }
+		clamp_variable = { var = krcw_psa_lean_ma min = 0 max = 100 }
+		custom_effect_tooltip = krcw_psa_lean_ti_focus_tt
+	}
+	option = {
+		name = krcw_psa_32.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_political_power = 75
+		add_stability = 0.02
+		add_war_support = 0.03
+	}
+}
+
+country_event = {
+	id = krcw_psa.34
+	title = krcw_psa_34_t
+	desc = krcw_psa_34_d
+	picture = GFX_report_event_ast_navy
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_psa_34.a
+		ai_chance = {
+			base = 70
+		}
+		navy_experience = 15
+		add_political_power = 25
+		if = { limit = { country_exists = HWI } HWI = { add_opinion_modifier = { target = ROOT modifier = krcw_us_old_comrades } } }
+	}
+	option = {
+		name = krcw_psa_34.b
+		ai_chance = {
+			base = 30
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		add_war_support = 0.03
+		if = { limit = { country_exists = HWI } HWI = { add_opinion_modifier = { target = ROOT modifier = krcw_us_arms_conduit } } }
+	}
+}
+
+country_event = {
+	id = krcw_psa.36
+	title = krcw_psa_36_t
+	desc = krcw_psa_36_d
+	picture = GFX_report_event_generic_military_parade
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = {
+		tag = PSA
+	}
+	option = {
+		name = krcw_psa_36.a
+		ai_chance = {
+			base = 60
+		}
+		set_country_flag = krcw_psa_presidio_rule
+		add_popularity = { ideology = neutrality popularity = 0.3 }
+		set_politics = { ruling_party = neutrality elections_allowed = no }
+		promote_character = PSA_krcw_macarthur
+		if = { limit = { has_idea = krcw_psa_proconsul } remove_ideas = krcw_psa_proconsul }
+		add_ideas = krcw_psa_military_council
+		add_stability = -0.05
+		add_political_power = 50
+	}
+	option = {
+		name = krcw_psa_36.b
+		ai_chance = {
+			base = 40
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		set_country_flag = krcw_psa_presidio_rule
+		add_popularity = { ideology = neutrality popularity = 0.3 }
+		set_politics = { ruling_party = neutrality elections_allowed = no }
+		promote_character = PSA_krcw_macarthur
+		if = { limit = { has_idea = krcw_psa_proconsul } remove_ideas = krcw_psa_proconsul }
+		add_ideas = krcw_psa_military_council
+		set_country_flag = krcw_psa_warren_arrested
+		add_stability = -0.1
+		add_war_support = 0.05
+		add_political_power = 100
+	}
+}

@@ -1,0 +1,60 @@
+# KRCW (build/patch_residue.py): 2 OTL events dropped while KRCW_active
+#Coded by Starwarsfan541
+add_namespace = insurgency
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = insurgency.1256
+ immediate = { }
+	title = insurgency.1256.t2
+	desc = insurgency_1256_desc
+	picture = GFX_Guinea_Bissau_War_Start
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = insurgency.1256.a2
+		set_global_flag = Portuguese_Colonial_War_GNB
+		set_variable = { SOV.paigc_funding = 10 }
+		set_variable = { YUG.paigc_funding = 4 }
+		set_variable = { GNA.paigc_funding = 2 }
+		set_variable = { SEN.paigc_funding = 1 }
+		set_variable = { PRC.paigc_funding = 1 }
+		set_variable = { POR.victory_points = 500 }
+		set_variable = { GNB.victory_points = 500 }
+		GNA = {
+			774 = {
+				set_state_flag = PAIGC_Camp
+				set_variable = { PAIGC_Camp_level = 2 }
+			}
+		}
+		SEN = {
+			272 = {
+				set_state_flag = PAIGC_Camp
+				set_variable = { PAIGC_Camp_level = 4 }
+			}
+		}
+		GNB = {
+			transfer_state = 1284
+			transfer_state = 1282
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = insurgency.1257 
+ immediate = { }
+	title = insurgency.1257.t2
+	desc = insurgency_1257_desc
+	picture = GFX_Portuguese_Colonial_War_1
+
+	is_triggered_only = yes
+	immediate = {
+		set_country_flag = GNB_War_Notif
+	}
+	option = {
+		name = insurgency.1257.a2
+	}
+}

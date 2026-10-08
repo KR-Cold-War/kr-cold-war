@@ -1,0 +1,236 @@
+# KRCW (build/patch_residue.py): 10 OTL decision categories hidden while KRCW_active
+sov_generic_decisions = {
+	icon = generic_propaganda
+
+	allowed = {
+		original_tag = SOV
+	}
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = SOV
+	}
+
+	priority = {
+		base = 1000
+		modifier = {
+			add = 10
+		}
+	}
+}
+SOV_Sino_Soviet_War = {
+	icon = generic_propaganda
+
+	allowed = {
+		original_tag = SOV
+	}
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		tag = SOV
+		OR = {
+			# is_debug = yes
+		    has_global_flag = PRC_WAR_USA_USSR
+		}
+	}
+
+	priority = {
+		base = 1000
+		modifier = {
+			add = 10
+		}
+	}
+}
+SOV_WW3_decisions = {
+	icon = generic_propaganda
+
+	allowed = {
+		original_tag = SOV
+	}
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = SOV
+	}
+
+	priority = {
+		base = 1000
+		modifier = {
+			add = 10
+		}
+	}
+}
+sov_ustinov_decisions = {
+	icon = generic_propaganda
+
+	allowed = {
+		original_tag = SOV
+	}
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = SOV
+		has_country_leader = {
+			name = "Dmitry Ustinov"
+			ruling_only = yes
+		}
+	}
+
+	priority = {
+		base = 10
+		modifier = {
+			add = 1000
+		}
+	}
+}
+sov_kaganovich_decisions = {
+	icon = generic_propaganda
+
+	allowed = {
+		original_tag = SOV
+	}
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_leader = {
+			name = "Lazar Kaganovich"
+			ruling_only = yes
+		}
+	}
+
+	priority = {
+		base = 10
+		modifier = {
+			add = 10
+		}
+	}
+}
+sov_post_stalin_decisions = {
+	icon = generic_propaganda
+
+	allowed = {
+		original_tag = SOV
+	}
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_completed_focus = SOV_Stalin_Establish_the_Malenkov_Khrushchev_and_Beria_Troika
+	}
+
+	priority = {
+		base = 10
+		modifier = {
+			add = 10
+		}
+	}
+}
+Khrushchev_Plan_Decisions = {
+	icon = generic_propaganda
+
+	allowed = {
+		original_tag = SOV
+	}
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_completed_focus = SOV_khrushchev_wins_virgin_lands_campaign_starts_otl
+	}
+
+	priority = {
+		base = 10
+		modifier = {
+			add = 10000
+		}
+	}
+	highlight_states = {
+		highlight_state_targets  = {
+			state = 652 
+			state = 651 
+			state = 572 
+			state = 583 
+			state = 582
+			state = 403
+			state = 576
+			state = 590
+			state = 573
+			state = 571 
+			state = 570
+			state = 40
+			state = 569
+		}
+	}
+}
+Malenkov_Plan_Decisions = {
+	icon = generic_propaganda
+
+	allowed = {
+		original_tag = SOV
+	}
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_completed_focus = SOV_accept_malenkovmolotovvoroshilov_agricultural_plan
+	}
+
+	priority = {
+		base = 10
+		modifier = {
+			add = 10
+		}
+	}
+	highlight_states = {
+		highlight_state_targets  = {
+			state = 256
+			state = 401
+			state = 252
+			state = 253
+			state = 248
+			state = 254
+			state = 244
+			state = 247
+			state = 242
+			state = 223
+			state = 205
+			state = 222
+			state = 224
+		}
+	}
+}
+sov_andropov_decisions = {
+	icon = generic_propaganda
+
+	allowed = {
+		original_tag = SOV
+	}
+	
+	scripted_gui = SOV_andropov_gui
+	visible_when_empty = no
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_country_leader = {
+			name = "Yuri Andropov"
+			ruling_only = yes
+		}
+		has_completed_focus = SOV_Address_Accumulated_Problems
+	}
+
+	priority = {
+		base = 10
+		modifier = {
+			add = 10
+		}
+	}
+}
+sov_khrushchev_fate = {
+	icon = GFX_sov_cpsu
+
+	allowed = {
+		original_tag = SOV
+	}
+	
+	visible_when_empty = no
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_completed_focus = SOV_bulganin_union
+		NOT = { has_completed_focus = SOV_pr_take_mea_again_cornman }  
+	}
+
+	priority = {
+		base = 2000
+		modifier = {
+			add = 10
+		}
+	}
+}

@@ -1,0 +1,118 @@
+# KRCW (build/patch_residue.py): 2 OTL events dropped while KRCW_active
+add_namespace = IMF
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = IMF.1 
+ immediate = { }
+	title = IMF.1.t
+	desc = IMF_desc_1
+	picture = GFX_IMF_Generic_Event
+
+	is_triggered_only = yes
+
+	option = {
+		name = IMF.1.a
+		imf_pulse_event_effect = yes
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = IMF.1.b
+		add_stability = -0.03
+		add_political_power = -25
+		ai_chance = {
+			factor = 0
+		}
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = IMF.2 
+ immediate = { }
+	title = IMF.2.t
+	desc = IMF_desc_2
+	picture = GFX_IMF_Generic_Event
+
+	is_triggered_only = yes
+
+	option = {
+		name = IMF.2.a
+		set_country_flag = IMF_SAP_ENACTED
+	hidden_effect = {
+		remove_ideas = policy_taxrate_temp_1
+
+		remove_ideas = policy_taxrate_temp_2
+		remove_ideas = policy_taxrate_temp_3
+		remove_ideas = policy_taxrate_temp_4
+		remove_ideas = policy_taxrate_temp_5
+
+
+		remove_ideas = policy_welfare_temp_0
+		remove_ideas = policy_welfare_temp_2
+		remove_ideas = policy_welfare_temp_3
+		remove_ideas = policy_welfare_temp_4
+		remove_ideas = policy_welfare_temp_5
+
+
+		remove_ideas = policy_education_temp_1
+		remove_ideas = policy_education_temp_3
+		remove_ideas = policy_education_temp_0
+		remove_ideas = policy_education_temp_4
+
+
+		remove_ideas = policy_healthcare_temp_0
+		remove_ideas = policy_healthcare_temp_2
+		remove_ideas = policy_healthcare_temp_3
+		remove_ideas = policy_healthcare_temp_4
+		remove_ideas = policy_healthcare_temp_5
+
+
+		remove_ideas = policy_services_temp_0
+		remove_ideas = policy_services_temp_2
+		remove_ideas = policy_services_temp_3
+	}
+	add_ideas = Currency_Devaluation
+	add_ideas = policy_taxrate_temp_1
+	add_ideas = policy_welfare_temp_1
+	add_ideas = policy_services_temp_1
+	add_ideas = policy_education_temp_1
+	add_ideas = policy_healthcare_temp_1
+	add_ideas = policy_union_temp_1
+	add_ideas = gen_materialist_2
+	add_ideas = free_trade
+	if = {
+		limit = {
+			has_idea = policy_women_temp_0
+		}
+		remove_ideas = policy_women_temp_0
+		add_ideas = policy_women_temp_1
+	}
+	else_if = {
+		limit = {
+			has_idea = policy_women_temp_1
+		}
+		remove_ideas = policy_women_temp_1
+		add_ideas = policy_women_temp_2
+
+	}
+	else_if = {
+		limit = {
+			has_idea = policy_women_temp_2
+		}
+		remove_ideas = policy_women_temp_2
+		add_ideas = policy_women_temp_3
+
+	}
+	else = {
+		remove_ideas = policy_women_temp_3
+		add_ideas = policy_women_temp_4
+
+	}
+
+
+		ai_chance = {
+			factor = 100
+		}
+	}
+
+}

@@ -1,0 +1,2064 @@
+# KRCW (build/patch_residue.py): 90 OTL events dropped while KRCW_active
+add_namespace = philippines
+add_namespace = Philipines_Elections
+add_namespace = HUK_insurgency_options
+add_namespace = PHI_Flavor
+add_namespace = HUK_insurgency
+add_namespace = HUK_prp
+add_namespace = PHI_Econ
+add_namespace = PHI_Army
+add_namespace = PHI_Timed
+add_namespace = PHI_Quirino
+add_namespace = PHI_Laurel
+add_namespace = PHI_Avelino
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.1 #Government Defended Manila
+ immediate = { }
+	title = HUK_insurgency.1.t
+	desc = HUK_insurgency.1.d
+	#picture =
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.1.a
+		add_stability = 0.05
+		add_war_support = 0.1
+		add_command_power = 30
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.2 #Government Lost Manila
+ immediate = { }
+	title = HUK_insurgency.2.t
+	desc = HUK_insurgency.2.d
+	#picture =
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.2.a
+		set_capital = { state = 627 }
+		add_stability = -0.15
+		add_war_support = -0.05
+		add_command_power = -50
+		complete_national_focus = PHI_The_Fall_of_the_Manila
+		add_to_variable = { refresh_PHI = 1 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.3 #Huks Captured Manila
+ immediate = { }
+	title = HUK_insurgency.3.t
+	desc = HUK_insurgency.3.d
+	#picture =
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.3.a
+		add_stability = 0.1
+		add_war_support = 0.05
+		327 = {
+			transfer_state_to = HUK
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.4 #Huks Failed To Capture Manila
+ immediate = { }
+	title = HUK_insurgency.4.t
+	desc = HUK_insurgency.4.d
+	#picture =
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.4.a
+		add_stability = -0.05
+		add_war_support = -0.05
+		add_command_power = -20
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.5 #Magsaysay Visits USA
+ immediate = { }
+	title = HUK_insurgency.5.t
+	desc = HUK_insurgency.5.d
+	#picture =
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = HUK_insurgency.5.a
+		PHI = {
+			add_opinion_modifier = {
+				target = USA
+				modifier = medium_increase
+			}
+			country_event = HUK_insurgency.61
+		}
+		add_to_variable = {
+			currentMoney = -0.03
+		}
+		set_temp_variable = {
+			x = -30
+			tooltip = adjust_money_mil_tt
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = HUK_insurgency.5.b
+		PHI = {
+			add_opinion_modifier = {
+				target = USA
+				modifier = small_increase
+			}
+			country_event = HUK_insurgency.62
+		}
+		add_to_variable = {
+			currentMoney = -0.01
+		}
+		set_temp_variable = {
+			x = -10
+			tooltip = adjust_money_mil_tt
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = {
+		name = HUK_insurgency.5.c
+		PHI = {
+			add_opinion_modifier = {
+				target = USA
+				modifier = small_decrease
+			}
+			country_event = HUK_insurgency.63
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.61 #Extended US Aid
+ immediate = { }
+	title = HUK_insurgency.6.t
+	desc = HUK_insurgency.61.d
+	#picture =
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.6.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.62 #Nominal US Aid
+ immediate = { }
+	title = HUK_insurgency.6.t
+	desc = HUK_insurgency.62.d
+	#picture =
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.6.b
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.63 #No US Aid
+ immediate = { }
+	title = HUK_insurgency.6.t
+	desc = HUK_insurgency.63.d
+	#picture =
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.6.c
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.7 #Plantations Align Government
+ immediate = { }
+	title = HUK_insurgency.7.t
+	desc = HUK_insurgency.7.d
+	#picture =
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.7.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.8 #Huk Reaction To Magsaysay
+ immediate = { }
+	title = HUK_insurgency.8.t
+	desc = HUK_insurgency.8.d
+	#picture =
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.8.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.9 #Huk Leadership Split
+ immediate = { }
+	title = HUK_insurgency.9.t
+	desc = HUK_insurgency.9.d
+	#picture =
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.9.a
+		add_political_power = -200
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.10 #Philippines Split
+	immediate = { }
+	title = HUK_insurgency.10.t
+	desc = HUK_insurgency.10.d
+	major = yes
+	#picture =
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.10.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.11	#BW Defender Victory
+ immediate = { }
+	title = HUK_insurgency.11.t
+	desc = HUK_insurgency.11.d
+	#picture =
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.11.a
+		army_experience = 5
+		add_command_power = 5
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.12	#BW Defender Defeat
+ immediate = { }
+	title = HUK_insurgency.12.t
+	desc = HUK_insurgency.12.d
+	#picture =
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.12.a
+		army_experience = 5
+		add_command_power = -5
+		add_to_variable = { refresh_PHI = 1 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.13	#BW Attacker Victory
+ immediate = { }
+	title = HUK_insurgency.13.t
+	desc = HUK_insurgency.13.d
+	#picture =
+
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			var:ROOT.defender_state = {
+				transfer_state_to = ROOT
+				remove_dynamic_modifier = { modifier = HUK_disrupted_control_modifier }
+			}
+			clear_variable = ROOT.defender_state
+			clear_variable = ROOT.attacker_state
+			if = {
+				limit = { 
+					tag = PHI
+					has_idea = phi_magsaysay_secnatdef_1
+				}
+				add_timed_idea = { idea = phi_hukraid_cooldown days = 105 }
+			}
+			else_if = {
+				limit = { 
+					tag = PHI
+				}
+				add_timed_idea = { idea = phi_hukraid_cooldown days = 135 }
+			}
+		}
+	}
+
+	option = {
+		name = HUK_insurgency.13.a
+		army_experience = 5
+		add_command_power = 5
+		add_to_variable = { refresh_PHI = 1 }
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.14	#BW Attacker Defeat
+ immediate = { }
+	title = HUK_insurgency.14.t
+	desc = HUK_insurgency.14.d
+	#picture =
+
+	is_triggered_only = yes
+
+	immediate = {
+		clear_variable = ROOT.defender_state
+		clear_variable = ROOT.attacker_state
+		if = {
+			limit = { 
+				tag = PHI
+				has_idea = phi_magsaysay_secnatdef_1
+			}
+			add_timed_idea = { idea = phi_hukraid_cooldown days = 60 }
+		}
+		else_if = {
+			limit = { 
+				tag = PHI
+			}
+			add_timed_idea = { idea = phi_hukraid_cooldown days = 90 }
+		}
+	}
+
+	option = {
+		name = HUK_insurgency.14.a
+		army_experience = 5
+		add_command_power = -5
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.15 #huk politburo arrested
+ immediate = { }
+	title = HUK_insurgency.15.t
+	desc = HUK_insurgency.15.d
+	#picture =
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.15.a
+		remove_ideas = huk_strong_command_chain
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.16 #ramos relieved by magsaysay
+ immediate = { }
+	title = HUK_insurgency.16.t
+	desc = HUK_insurgency.16.d
+	#picture =
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.16.a
+		retire_character = PHI_alberto_ramos
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.17 #Danger Signals from Manila
+	immediate = { }
+	title = HUK_insurgency.17.t
+	desc = HUK_insurgency.17.d
+	picture = GFX_HUK_insurgency.17
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.17.a ##HISTORICAL
+		custom_effect_tooltip = historical_choice_tt
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = 999
+				is_historical_focus_on = yes
+			}
+		}
+	}
+	option = {
+		name = HUK_insurgency.17.b
+		set_country_flag = HUK_Escape_Plan
+		add_political_power = -100
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.18 #Operation Against the Red Secretariat October 18, 1950
+	immediate = { }
+	title = HUK_insurgency.18.t
+	desc = HUK_insurgency.18.d
+	picture = GFX_HUK_insurgency.18
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.18.a
+		trigger = {
+			has_country_flag = HUK_Escape_Plan
+		}
+		hidden_effect = {
+			country_event = {
+				id = HUK_insurgency.19
+				hours = 12
+			}
+		}
+	}
+	option = {
+		name = HUK_insurgency.18.b ##HISTORICAL
+		trigger = {
+			NOT = { has_country_flag = HUK_Escape_Plan }
+		}
+		custom_effect_tooltip = historical_choice_tt
+		hidden_effect = {
+			country_event = {
+				id = HUK_insurgency.20
+				hours = 12
+			}
+			PHI = {
+				country_event = {
+					id = HUK_insurgency.24
+					hours = 12
+				}
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.19 #The Party Survives the Net
+	immediate = { }
+	title = HUK_insurgency.19.t
+	desc = HUK_insurgency.19.d
+	picture = GFX_HUK_insurgency.19
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.19.a
+		add_political_power = 50
+		add_stability = 0.05
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.20 #The Arrest of the Central Committee
+	immediate = { }
+	title = HUK_insurgency.20.t
+	desc = HUK_insurgency.20.d
+	picture = GFX_HUK_insurgency.20
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.20.a
+		swap_ideas = {
+			remove_idea = huk_loss_of_support
+			add_idea = huk_loss_of_support2
+		}
+		add_political_power = -200
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.21 #Security Crisis in the Capital
+	immediate = { }
+	title = HUK_insurgency.21.t
+	desc = HUK_insurgency.21.d
+	picture = GFX_HUK_insurgency.21
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = HUK_insurgency.21.a ##HISTORICAL
+		set_country_flag = PHI_HUK_Expanded_Surveilence
+		effect_tooltip = {
+			country_event = HUK_insurgency.23
+		}
+		add_command_power = -20
+		add_political_power = -25
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -1000
+		}
+		custom_effect_tooltip = historical_choice_tt
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = 999
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 3
+				has_country_flag = magsaysay_secnatdef
+			}
+		}
+	}
+	option = {
+		ai_chance = {
+			base = 1
+		}
+		name = HUK_insurgency.21.b
+		add_political_power = 50
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.22 #Habeas Corpus
+	immediate = { }
+	title = HUK_insurgency.22.t
+	desc = HUK_insurgency.22.d
+	picture = GFX_HUK_insurgency.22
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.22.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		has_country_flag = PHI_HUK_Expanded_Surveilence
+	}
+	id = HUK_insurgency.23 #The Manila Anti-Communist Operation
+	immediate = { }
+	title = HUK_insurgency.23.t
+	desc = HUK_insurgency.23.d
+	picture = GFX_HUK_insurgency.23
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = HUK_insurgency.23.a ##HISTORICAL
+		add_political_power = -50
+		hidden_effect = {
+			HUK = {
+				country_event = { 
+					id = HUK_insurgency.18
+					hours = 1
+				}
+			}
+		}
+		custom_effect_tooltip = historical_choice_tt
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = 999
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				factor = 5
+				has_country_flag = magsaysay_secnatdef
+			}
+		}
+	}
+	option = {
+		name = HUK_insurgency.23.b
+		add_stability = 0.05
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.24 #The Capture of José Lava and the PKP Secretariat
+	immediate = { }
+	title = HUK_insurgency.24.t
+	desc = HUK_insurgency.24.d
+	picture = GFX_HUK_insurgency.24
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.24.a
+		add_stability = 0.1
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency.25 #Unrest in the Southern Archipelago
+	immediate = { }
+	title = HUK_insurgency.25.t
+	desc = HUK_insurgency.25.d
+	picture = GFX_HUK_insurgency.25
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUK_insurgency.25.a
+	}
+}
+# Philippines victory
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = philippines.2 
+ immediate = { }
+	title = philippines.2.t
+	desc = philippines.2.d
+	picture = GFX_news_event_001
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = philippines.2.a
+		trigger = {
+			NOT = {
+			tag = PHI
+			}
+		}
+	}
+	option = {
+		name = philippines.2.b
+		trigger = {
+		TAG = PHI
+		}
+	}
+
+}
+# CPH victory
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = philippines.3 
+ immediate = { }
+	title = philippines.3.t
+	desc = philippines.3.d
+	picture = GFX_news_event_001
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = philippines.3.a
+	}
+
+
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Philipines_Elections.1 
+ immediate = { }
+	title = Philipines_Elections.1.t
+	desc = Philipines_Elections.1.d
+	picture = GFX_Philipines_Elections.1
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			complete_national_focus = PHI_The_Elections_of_1949
+		}
+	}
+
+
+	option = {
+		name = Philipines_Elections.1.a
+		complete_national_focus = PHI_Laurel_Victory
+		set_politics = {
+			ruling_party = nationalist
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Jose P. Laurel"
+			picture = "Jose_P_Laurel_50s.dds"
+			expire = "1970.1.1"
+			ideology = nationalist_ideology
+			traits = {
+				#
+			}
+		}
+		ai_chance = {
+			factor = 70
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = PHI_1949_elections
+						option = PHI_QUIRINO
+					}
+					has_game_rule = {
+						rule = PHI_1949_elections
+						option = PHI_AVELINO
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Philipines_Elections.1.b
+		complete_national_focus = PHI_Quirino_Victory
+
+		set_politics = {
+			ruling_party = liberal
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = PHI_1949_elections
+						option = PHI_LAUREL
+					}
+					has_game_rule = {
+						rule = PHI_1949_elections
+						option = PHI_AVELINO
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Philipines_Elections.1.c
+		complete_national_focus = PHI_Avelino_Victory
+
+		set_politics = {
+			ruling_party = Social_Democratic
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = PHI_1949_elections
+						option = PHI_QUIRINO
+					}
+					has_game_rule = {
+						rule = PHI_1949_elections
+						option = PHI_LAUREL
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Philipines_Elections.2 
+ immediate = { }
+	title = Philipines_Elections.2.t
+	desc = Philipines_Elections.2.d
+	picture = GFX_Philipines_Elections.2
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			complete_national_focus = PHI_Elections_of_1953
+		}
+	}
+
+
+	option = {
+		name = Philipines_Elections.2.a
+		complete_national_focus = PHI_Ramon_Magsaysay
+		set_politics = {
+			ruling_party = nationalist
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Ramon Magsaysay"
+			picture = "Ramon_Magsaysay_50s.dds"
+			expire = "1970.1.1"
+			ideology = nationalist_ideology
+			traits = {
+				#
+			}
+		}
+		ai_chance = {
+			factor = 70
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+			modifier = {
+				has_game_rule = {
+					rule = PHI_1953_elections
+					option = PHI_QUIRINO
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Philipines_Elections.2.b
+		complete_national_focus = PHI_Quirino_Victory_53
+
+		set_politics = {
+			ruling_party = liberal
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				has_game_rule = {
+					rule = PHI_1953_elections
+					option = PHI_MAGSAYSAY
+				}
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Philipines_Elections.3 
+ immediate = { }
+	title = Philipines_Elections.3.t2
+	desc = {
+		text = Philipines_Elections.3.d.a
+		trigger = {
+			has_country_flag = Ramon_Survive
+		}
+	}
+	desc = {
+		text = Philipines_Elections.3.d.b
+		trigger = {
+			NOT = { has_country_flag = Ramon_Survive }
+		}
+	}
+	picture = GFX_Philipines_Elections.3
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	immediate = {
+		hidden_effect = {
+			complete_national_focus = PHI_Election_of_1957
+		}
+	}
+
+
+	option = {
+		trigger = {
+			NOT = { has_country_flag = Ramon_Survive }
+		}
+		name = Philipines_Elections.3.a
+		complete_national_focus = PHI_Carlos_Garcia_Victory
+		set_politics = {
+			ruling_party = nationalist
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Carlos P. Garcia"
+			desc = "POLITICS_CARLOS_P_GARCIA_DESC"
+			picture = "Carlos_P_Garcia_50s.dds"
+			ideology = nationalist_ideology
+		}
+		ai_chance = {
+			factor = 70
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 1
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = PHI_1957_elections
+						option = PHI_YULO
+					}
+					has_game_rule = {
+						rule = PHI_1957_elections
+						option = PHI_MANAHAN
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		trigger = {
+			has_country_flag = Ramon_Survive
+		}
+		name = Philipines_Elections.3.d
+		complete_national_focus = PHI_Carlos_Garcia_Victory
+		set_politics = {
+			ruling_party = nationalist
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Ramon Magsaysay"
+			picture = "Ramon_Magsaysay_60s.dds"
+			expire = "1970.1.1"
+			ideology = nationalist_ideology
+			traits = {
+				#
+			}
+		}
+		ai_chance = {
+			factor = 70
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = PHI_1957_elections
+						option = PHI_YULO
+					}
+					has_game_rule = {
+						rule = PHI_1957_elections
+						option = PHI_MANAHAN
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Philipines_Elections.3.b
+		complete_national_focus = PHI_Jose_Yulo_Victory
+		create_country_leader = {
+			name = "Jose Yulo"
+			picture = "Jose_Yulo_50s.dds"
+			ideology = progressive
+		}
+		set_politics = {
+			ruling_party = liberal
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = PHI_1957_elections
+						option = PHI_GARCIA
+					}
+					has_game_rule = {
+						rule = PHI_1957_elections
+						option = PHI_MANAHAN
+					}
+					has_game_rule = {
+						rule = PHI_1957_elections
+						option = PHI_MAGSAYSAY
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Philipines_Elections.3.c
+		complete_national_focus = PHI_Manuel_Manahan_Victory
+
+		set_politics = {
+			ruling_party = Social_Liberalism
+
+			election_frequency = 48
+			elections_allowed = no
+		}
+		create_country_leader = {
+			name = "Manuel Manahan"
+			picture = "Manuel_Manahan_50s.dds"
+			ideology = social_liberal
+		}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = PHI_1957_elections
+						option = PHI_GARCIA
+					}
+					has_game_rule = {
+						rule = PHI_1957_elections
+						option = PHI_YULO
+					}
+					
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+news_event = {
+	id = PHI_Flavor.1 
+ immediate = { }
+	title = PHI_Flavor.1.t2
+	desc = PHI_Flavor.1.d
+	picture = GFX_Ramon_Magsaysay_1
+
+	is_triggered_only = yes
+	major = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		NOT = { has_country_flag = phi_events_two }
+	}
+
+	option = {
+		name = PHI_Flavor.1.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Flavor.2
+ immediate = { }
+	title = "PHI_Flavor.2.t"
+	desc = PHI_Flavor.2.d
+	#picture = 
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = PHI_Flavor.2.a
+		set_province_name = {
+			id = 10265
+			name = "Manila"
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_prp.1	#6th Congress Election
+	immediate = { }
+	title = HUK_prp.1.t
+	desc = HUK_prp.1.d
+	picture = GFX_HUK_prp.1
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = HUK_prp.1.a
+		
+	}
+	option = {
+		name = HUK_prp.1.b
+		trigger = { has_character = HUK_guillermo_capadocia }
+		promote_character = HUK_guillermo_capadocia
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_prp.2	#Denounce the Southern Rump State
+	immediate = { }
+	title = HUK_prp.2.t
+	desc = HUK_prp.2.d
+	picture = GFX_HUK_prp.2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = HUK_prp.2.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_prp.3	#Revolutionary Hero Cult
+	immediate = { }
+	title = HUK_prp.3.t
+	desc = HUK_prp.3.d
+	picture = GFX_HUK_prp.3
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = HUK_prp.3.a
+		
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_prp.4	#How to kill catholics 101
+	immediate = { }
+	title = HUK_prp.4.t
+	desc = HUK_prp.4.d
+	picture = GFX_HUK_prp.4
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = HUK_prp.4.a
+		
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_prp.5	#Capital
+	immediate = { }
+	title = HUK_prp.5.t
+	desc = HUK_prp.5.d
+	picture = GFX_HUK_prp.5
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = HUK_prp.5.a
+		set_capital = { state = 327 }
+		set_province_name = { id = 10265 name = "Manila" }
+	}
+	
+	option = {
+		name = HUK_prp.5.b
+		set_capital = { state = 327 }
+		set_province_name = { id = 10265 name = "Quezon" }
+	}
+	
+	option = {
+		name = HUK_prp.5.c
+		set_capital = { state = 1955 }
+		set_victory_points = {
+			province = 12253
+			value = 5
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_prp.6	#Combining Trade Unions and Syndicates
+	immediate = { }
+	title = HUK_prp.6.t
+	desc = HUK_prp.6.d
+	picture = GFX_HUK_prp.6
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = HUK_prp.6.a
+		
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_prp.7	#Quezon Cult
+	immediate = { }
+	title = HUK_prp.7.t
+	desc = HUK_prp.7.d
+	picture = GFX_HUK_prp.7
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = HUK_prp.7.a
+		add_stability = 0.1
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.1
+		}
+		add_popularity = {
+			ideology = conservative
+			popularity = 0.05
+		}
+		add_popularity = {
+			ideology = Social_Democratic
+			popularity = 0.20
+		}
+	}
+	option = {
+		name = HUK_prp.7.b
+		add_stability = -0.1
+		set_province_name = { id = 10265 name = "Pedro Abad Santos City" }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_prp.8	#Rename Quezon to Evangelista
+	immediate = { }
+	title = HUK_prp.8.t
+	desc = HUK_prp.8.d
+	picture = GFX_HUK_prp.8
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = HUK_prp.8.a
+		1957 = { set_state_name = Evangelista }
+	}
+}
+###legacy huk insurgency events###
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency_options.1 
+ immediate = { }
+	title = HUK_insurgency_options.1.t2
+	desc = HUK_insurgency_options.1.d
+	picture = GFX_huks_insurgency_1
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = HUK_insurgency_options.1.a2
+		var:current_country_state_decision = {
+			set_state_flag = insurgency_infilitrated
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency_options.2 
+ immediate = { }
+	title = HUK_insurgency_options.2.t2
+	desc = HUK_insurgency_options.2.d
+	picture = GFX_huks_insurgency_2
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = HUK_insurgency_options.2.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency_options.3 
+ immediate = { }
+	title = HUK_insurgency_options.3.t2
+	desc = HUK_insurgency_options.3.d
+	picture = GFX_huks_insurgency_3
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = HUK_insurgency_options.3.a2
+		army_experience = 5
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency_options.4 
+ immediate = { }
+	title = HUK_insurgency_options.4.t2
+	desc = HUK_insurgency_options.4.d
+	picture = GFX_huks_insurgency_4
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = HUK_insurgency_options.4.a2
+		add_manpower = -100
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency_options.5 
+ immediate = { }
+	title = HUK_insurgency_options.5.t2
+	desc = HUK_insurgency_options.5.d
+	picture = GFX_huks_insurgency_5
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = HUK_insurgency_options.5.a2
+		air_experience = 5
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency_options.6 
+ immediate = { }
+	title = HUK_insurgency_options.6.t2
+	desc = HUK_insurgency_options.6.d
+	picture = GFX_huks_insurgency_6
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = HUK_insurgency_options.6.a2
+		add_equipment_to_stockpile = {
+			type = jet_light_equipment
+			amount = -1
+		}
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency_options.10 
+ immediate = { }
+	title = HUK_insurgency_options.10.t2
+	desc = HUK_insurgency_options.10.d
+	picture = GFX_huks_insurgency_10
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = HUK_insurgency_options.10.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUK_insurgency_options.11 
+ immediate = { }
+	title = HUK_insurgency_options.11.t2
+	desc = HUK_insurgency_options.11.d
+	picture = GFX_huks_insurgency_11
+
+	is_triggered_only = yes
+	major = yes
+
+
+	option = {
+		name = HUK_insurgency_options.11.a2
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Army.1 #Reorg and Post-war roles of PHI army
+	immediate = { }
+	title = PHI_Army.1.t
+	desc = PHI_Army.1.d
+	picture = GFX_PHI_Army.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Army.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Army.2 #Air Force
+	immediate = { }
+	title = PHI_Army.2.t
+	desc = PHI_Army.2.d
+	picture = GFX_PHI_Army.2
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Army.2.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Army.3 #Navy
+	immediate = { }
+	title = PHI_Army.3.t
+	desc = PHI_Army.3.d
+	picture = GFX_PHI_Army.3
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Army.3.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Army.4 #Constabulary
+	immediate = { }
+	title = PHI_Army.4.t
+	desc = PHI_Army.4.d
+	picture = GFX_PHI_Army.4
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Army.4.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Timed.1 #United Nations
+	immediate = { }
+	title = PHI_Timed.1.t
+	desc = PHI_Timed.1.d
+	picture = GFX_PHI_Timed.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Timed.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Timed.2 #Capital Expansion
+	immediate = { }
+	title = PHI_Timed.2.t
+	desc = PHI_Timed.2.d
+	picture = GFX_PHI_Timed.2
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Timed.2.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Timed.3 #January Assassination Plot
+	immediate = { }
+	title = PHI_Timed.3.t
+	desc = PHI_Timed.3.d
+	picture = GFX_PHI_Timed.3
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Timed.3.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Timed.4 #Padilla Incident
+	immediate = { }
+	title = PHI_Timed.4.t
+	desc = PHI_Timed.4.d
+	picture = GFX_PHI_Timed.4
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Timed.4.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Timed.5 #Clemency and Reconcilation
+	immediate = { }
+	title = PHI_Timed.5.t
+	desc = PHI_Timed.5.d
+	picture = GFX_PHI_Timed.5
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Timed.5.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		has_country_leader = {
+			name = "Ramon Magsaysay"
+			ruling_only = yes
+		}
+	}
+	id = PHI_Timed.6 #Flight from Cebu
+	immediate = { }
+	title = PHI_Timed.6.t
+	desc = PHI_Timed.6.d
+	picture = GFX_PHI_Timed.6
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Timed.6.a
+		news_event = {
+			id = PHI_Timed.100
+			hours = 5
+		}
+		kill_country_leader = yes
+		ai_chance = {
+			factor = 25
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = PHI_Magsaysay_Flight_to_Cebu
+						option = DEFAULT
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	
+	option = {
+		name = PHI_Timed.6.b
+		set_country_flag = Ramon_Survive
+		news_event = {
+			id = PHI_Timed.101
+			hours = 5
+		}
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 0
+				NOT = {
+					has_game_rule = {
+						rule = PHI_Magsaysay_Flight_to_Cebu
+						option = DEFAULT
+					}
+				}
+				is_historical_focus_on = yes
+			}
+			modifier = {
+				has_game_rule = {
+					rule = PHI_Magsaysay_Flight_to_Cebu
+					option = PHI_MAGSAYSAY_DEATH
+				}
+				factor = 0
+			}
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Timed.100 #Magsaysay Cebu Death World News
+	immediate = { }
+	title = PHI_Timed.100.t
+	desc = PHI_Timed.100.d
+	picture = GFX_PHI_Timed.100
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Timed.100.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Timed.101 #Magsaysay Cebu Live World News
+	immediate = { }
+	title = PHI_Timed.101.t
+	desc = PHI_Timed.101.d
+	picture = GFX_PHI_Timed.101
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Timed.101.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Quirino.1 #Quirino-Foster Agreement
+	immediate = { }
+	title = PHI_Quirino.1.t
+	desc = PHI_Quirino.1.d
+	picture = GFX_PHI_Quirino.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Quirino.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Quirino.2 #EDCOR Resettlement Program
+	immediate = { }
+	title = PHI_Quirino.2.t
+	desc = PHI_Quirino.2.d
+	picture = GFX_PHI_Quirino.2
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Quirino.2.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Quirino.100 #Baguio Conference
+	immediate = { }
+	title = PHI_Quirino.100.t
+	desc = PHI_Quirino.100.d
+	picture = GFX_PHI_Quirino.100
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Quirino.100.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.1 #Relocation of Capital
+	immediate = { }
+	title = PHI_Econ.1.t
+	desc = PHI_Econ.1.d
+	picture = GFX_PHI_Econ.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.1.a
+	}
+	option = {
+		name = PHI_Econ.1.b
+	}
+	option = {
+		name = PHI_Econ.1.c
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.2 #Romulo-Synder Agreement
+	immediate = { }
+	title = PHI_Econ.2.t
+	desc = PHI_Econ.2.d
+	picture = GFX_PHI_Econ.2
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.2.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.3 #Laurel-Langley Agreement
+	immediate = { }
+	title = PHI_Econ.3.t
+	desc = PHI_Econ.3.d
+	picture = GFX_PHI_Econ.3
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.3.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.4 #LASEDECO
+	immediate = { }
+	title = PHI_Econ.4.t
+	desc = PHI_Econ.4.d
+	picture = GFX_PHI_Econ.4
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.4.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.5 #Expansion of EDCOR Resettlement Program
+	immediate = { }
+	title = PHI_Econ.5.t
+	desc = PHI_Econ.5.d
+	picture = GFX_PHI_Econ.5
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.5.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.6 #Republic Act No. 1160
+	immediate = { }
+	title = PHI_Econ.6.t
+	desc = PHI_Econ.6.d
+	picture = GFX_PHI_Econ.6
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.6.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.7 #Land Reform Act 1955
+	immediate = { }
+	title = PHI_Econ.7.t
+	desc = PHI_Econ.7.d
+	picture = GFX_PHI_Econ.7
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.7.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.8 #The Pledge of Brotherhood
+	immediate = { }
+	title = PHI_Econ.8.t
+	desc = PHI_Econ.8.d
+	picture = GFX_PHI_Econ.8
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.8.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.9 #Republic act no. 470
+	immediate = { }
+	title = PHI_Econ.9.t
+	desc = PHI_Econ.9.d
+	picture = GFX_PHI_Econ.9
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.9.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.10 #National Auto Club
+	immediate = { }
+	title = PHI_Econ.10.t
+	desc = PHI_Econ.10.d
+	picture = GFX_PHI_Econ.10
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.10.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.11 #Jeepney
+	immediate = { }
+	title = PHI_Econ.11.t
+	desc = PHI_Econ.11.d
+	picture = GFX_PHI_Econ.11
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.11.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.12 #Quezonian Communism
+	immediate = { }
+	title = PHI_Econ.12.t
+	desc = PHI_Econ.12.d
+	picture = GFX_PHI_Econ.12
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.12.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.13 #Manila bay central national airport
+	immediate = { }
+	title = PHI_Econ.13.t
+	desc = PHI_Econ.13.d
+	picture = GFX_PHI_Econ.13
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.13.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.14 #Restoration of Tranvia
+	immediate = { }
+	title = PHI_Econ.14.t
+	desc = PHI_Econ.14.d
+	picture = GFX_PHI_Econ.14
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.14.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.15 #Founding of Trece Martires City
+	immediate = { }
+	title = PHI_Econ.15.t
+	desc = PHI_Econ.15.d
+	picture = GFX_PHI_Econ.15
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.15.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.16 #Cubi Naval Air Station Construction 
+	immediate = { }
+	title = PHI_Econ.16.t
+	desc = PHI_Econ.16.d
+	picture = GFX_PHI_Econ.16
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.16.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.17 #Restoration of Fort Santiago
+	immediate = { }
+	title = PHI_Econ.17.t
+	desc = PHI_Econ.17.d
+	picture = GFX_PHI_Econ.17
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.17.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.18 #Fort Drum and Modernization of Manila Bay Defenses
+	immediate = { }
+	title = PHI_Econ.18.t
+	desc = PHI_Econ.18.d
+	picture = GFX_PHI_Econ.18
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.18.a
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Econ.100 #International Fair World News
+	immediate = { }
+	title = PHI_Econ.100.t
+	desc = PHI_Econ.100.d
+	picture = GFX_PHI_Econ.100
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Econ.100.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Laurel.1 #Rehabilitation of the Second Republic
+	immediate = { }
+	title = PHI_Laurel.1.t
+	desc = PHI_Laurel.1.d
+	picture = GFX_PHI_Laurel.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Laurel.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Laurel.2 #Philippine Japanese Econ Reapproachment
+	immediate = { }
+	title = { 
+		text = PHI_Laurel.2.t.a
+		trigger = {
+			tag = PHI
+		}
+	}
+	title = { 
+		text = PHI_Laurel.2.t.b
+		trigger = {
+			tag = JAP
+		}
+	}
+	desc = { 
+		text = PHI_Laurel.2.d.a
+		trigger = {
+			tag = PHI
+		}
+	}
+	desc = { 
+		text = PHI_Laurel.2.d.b
+		trigger = {
+			tag = JAP
+		}
+	}
+	picture = GFX_PHI_Laurel.2
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Laurel.2.a
+		trigger = {
+			tag = PHI
+		}
+	}
+	option = {
+		name = PHI_Laurel.2.b
+		trigger = {
+			tag = JAP
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Laurel.3 #One nation one banner one language
+	immediate = { }
+	title = PHI_Laurel.3.t
+	desc = PHI_Laurel.3.d
+	picture = GFX_PHI_Laurel.3
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Laurel.3.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Avelino.1 #In power For
+	immediate = { }
+	title = PHI_Avelino.1.t
+	desc = PHI_Avelino.1.d
+	picture = GFX_PHI_Avelino.1
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Avelino.1.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Avelino.2 #Provinces against Iliteracy
+	immediate = { }
+	title = PHI_Avelino.2.t
+	desc = PHI_Avelino.2.d
+	picture = GFX_PHI_Avelino.2
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Avelino.2.a
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Avelino.3 #Moral and Discipline
+	immediate = { }
+	title = PHI_Avelino.3.t
+	desc = PHI_Avelino.3.d
+	picture = GFX_PHI_Avelino.3
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Avelino.3.a
+	}
+}

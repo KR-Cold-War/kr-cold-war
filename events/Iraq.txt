@@ -1,0 +1,501 @@
+# KRCW (build/patch_residue.py): 16 OTL events dropped while KRCW_active
+###########################
+# Iraq Events
+###########################
+
+add_namespace = iraq
+add_namespace = Iranian_Iraq
+add_namespace = irq
+add_namespace = IRQ
+add_namespace = iraqi_intifada
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = irq.1953
+ immediate = { }
+	title = irq.1953.t2
+	desc = irq.1953.d2
+
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Surrender and offer territory
+	option = {
+		name = irq.1953.a2
+		#complete_national_focus = IRQ_Constitutional_Union_Victory
+		ai_chance = {
+			factor = 80
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = IRQ_1953_elections
+						option = IRQ_UNITED_POPULAR_FRONT
+					}
+					has_game_rule = {
+						rule = IRQ_1953_elections
+						option = IRQ_ISTIQLAL
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = irq.1953.b2
+		#complete_national_focus = IRQ_United_Popular_Front
+		ai_chance = {
+			factor = 50
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = IRQ_1953_elections
+						option = IRQ_CONSTITUTIONAL_UNION
+					}
+					has_game_rule = {
+						rule = IRQ_1953_elections
+						option = IRQ_ISTIQLAL
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = irq.1953.c2
+		#complete_national_focus = IRQ_Istiqlal_Victory
+		ai_chance = {
+			factor = 1
+			modifier = {
+				EGY = { has_completed_focus = EGY_Arrest_the_Free_Officers }
+				factor = 1000
+				#has_game_rule = {
+				#	rule = IRQ_ai_behavior
+				#	option = DEFAULT
+				#}
+			}
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = IRQ_1953_elections
+						option = IRQ_CONSTITUTIONAL_UNION
+					}
+					has_game_rule = {
+						rule = IRQ_1953_elections
+						option = IRQ_UNITED_POPULAR_FRONT
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+#Surrender when Israel has taken too much land in Iraq
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Iranian_Iraq.2
+ immediate = { }
+	title = Iranian_Iraq.2.t2
+	desc = Iranian_Iraq.2.d2
+	picture = GFX_report_event_soviet_tanks_snow
+
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Surrender and offer territory
+	option = {
+		name = Iranian_Iraq.2.a2
+		IRQ = {
+			create_faction_from_template = { template = faction_template_generic name = "CENTO" }
+			add_to_faction = PER
+		}
+	}
+	option = {
+		name = Iranian_Iraq.2.b2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iraq.1
+ immediate = { }
+	title = iraq.1.t
+	desc = iraq.1.d
+	picture = GFX_report_event_soviet_tanks_snow
+
+
+	is_triggered_only = yes
+
+	fire_only_once = yes
+
+	#Surrender and offer territory
+	option = {
+		name = iraq.1.a
+
+		ISR = {
+			country_event = iraq.2
+		}
+		custom_effect_tooltip = iraq.1.a_tt
+		effect_tooltip = {
+			ISR = {
+				white_peace = {
+					tag = IRQ
+					message = IRQ_agree_peace
+				}
+			}
+
+		}
+	}
+}
+
+#Israel response to Iraq surrender
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iraq.2
+ immediate = { }
+	title = iraq.2.t
+	desc = iraq.2.d
+	picture = GFX_report_event_finnish_soldiers_snow
+
+	is_triggered_only = yes
+
+	#Accept surrender
+	option = {
+		name = iraq.2.a
+
+		white_peace = IRQ
+	}
+}
+
+
+
+
+###############################################################################
+
+add_namespace = swfs
+add_namespace = ARF
+add_namespace = free_officer
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = free_officer.2
+ immediate = { }
+	title = free_officer.2.t2
+	desc = free_officer.2.d
+	picture = GFX_july_revolution_irq
+
+	is_triggered_only = yes
+
+	option = {
+		name = free_officer.2.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = free_officer.3
+ immediate = { }
+	title = free_officer.3.t2
+	desc = free_officer.3.d
+	picture = GFX_hashemite_iraq
+
+	is_triggered_only = yes
+
+	option = {
+		name = free_officer.3.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = free_officer.4
+ immediate = { }
+	title = free_officer.4.t2
+	desc = free_officer.4.d
+	picture = GFX_end_of_arab_federation
+
+	is_triggered_only = yes
+
+	option = {
+		name = free_officer.4.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iraqi_intifada.1
+ immediate = { }
+	title = iraqi_intifada.1.t2
+	desc = iraqi_intifada.1.d
+	picture = GFX_iraqi_intifada
+
+	is_triggered_only = yes
+
+	option = {
+		name = iraqi_intifada.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = iraqi_intifada.2
+ immediate = { }
+	title = iraqi_intifada.2.t2
+	desc = iraqi_intifada.2.d
+	picture = GFX_iraqi_intifada
+
+	is_triggered_only = yes
+
+	option = {
+		name = iraqi_intifada.2.a2
+	}
+}
+
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = swfs.2
+ immediate = { }
+	title = swfs.2.t2
+	desc = swfs.2.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = swfs.2.a2
+		july_14th_super_event = yes
+		news_event = free_officer.2
+		if = {
+			limit = {
+				has_subject = JOR
+			}
+			end_puppet = JOR
+			JOR = { drop_cosmetic_tag = yes }
+			news_event = { id = free_officer.4 days = 10 }
+		}
+		drop_cosmetic_tag = yes
+		clr_country_flag = CWIC_HOG_UI_ENABLED
+		set_country_flag = fall_of_the_monarchy
+		load_focus_tree = IRQ_Qasim
+		set_country_flag = focus_tree_60_reset
+		set_politics = { ruling_party = neutrality elections_allowed = no }
+		add_timed_idea = { idea = IRQ_free_officer_era_drift days = 365 }
+		set_variable = { THIS.idea_len_@token:IRQ_free_officer_era_drift = 365 }
+		set_variable = { THIS.idea_date_@token:IRQ_free_officer_era_drift = global.num_days }
+		ai_chance = {
+			factor = 80
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 10
+			}
+			modifier = {
+				has_game_rule = {
+					rule = IRQ_kurdish_question
+					option = IRQ_SUPPORT_KURDS
+				}
+				factor = 0
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			has_completed_focus = IRQ_social_stability
+		}
+		ai_chance = {
+			factor = 20
+			
+		}
+		name = swfs.2.b2
+		news_event = free_officer.3
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = swfs.5
+ immediate = { }
+	title = swfs.5.t2
+	desc = swfs.5.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = swfs.5.a2
+		IRQ = { annex_country = { target = KUW } }
+		ai_chance = {
+			factor = 80
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 20
+		}
+		name = swfs.5.b2
+		IRQ = { create_wargoal = { type = annex_everything target = KUW } }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = ARF.1
+ immediate = { }
+	title = ARF.1.t2
+	desc = ARF.1.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = ARF.1.a2
+		FROM = {
+			set_cosmetic_tag = ARF
+			annex_country = { target = ROOT transfer_troops = yes }
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 0
+		}
+		name = ARF.1.b2
+
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = swfs.1250
+ immediate = { }
+	title = swfs.1250.t2
+	desc = swfs.1250.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = swfs.1250.a2
+		PER = { annex_country = { target = KUW } }
+		ai_chance = {
+			factor = 80
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 20
+		}
+		name = swfs.1250.b2
+		KUW = {
+			add_stability = -0.25
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = IRQ.1500
+ immediate = { }
+	title = IRQ.1500.t2
+	desc = IRQ.1500.d2
+
+	is_triggered_only = yes
+
+	option = {
+		name = IRQ.1500.a2
+		FROM = {
+			set_cosmetic_tag = IMP_IRQ
+			annex_country = { target = PER transfer_troops = yes }
+			create_country_leader = {
+				name = "Mohammad Reza Pahlavi"
+				desc = "POLITICS_REZA_SHAH_PAHLAVI_DESC"
+				picture = "Mohammad_Reza_Pahlavi_60s.dds"
+				expire = "1965.1.1"
+				ideology = monarchist
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 0
+		}
+		name = IRQ.1500.b2
+
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = IRQ.1752
+ immediate = { }
+	title = IRQ.1752.t2
+	desc = IRQ.1752.d2
+
+	is_triggered_only = yes
+
+	immediate = {
+		349 = { add_core_of = IRQ }
+		350 = { add_core_of = IRQ }
+		352 = { add_core_of = IRQ }
+		353 = { add_core_of = IRQ }
+	}
+	option = {
+		name = IRQ.1752.a2
+		IRQ = { transfer_state = 349 }
+		IRQ = { transfer_state = 350 }
+		IRQ = { transfer_state = 352 }
+		IRQ = { transfer_state = 353 }
+		ai_chance = {
+			factor = 80
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 20
+		}
+		name = IRQ.1752.b2
+		IRQ = { create_wargoal = { type = annex_everything target = TUR } }
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = IRQ.1751
+ immediate = { }
+	title = IRQ.1751.t2
+	desc = IRQ.1751.d2
+
+	is_triggered_only = yes
+	immediate = {
+		778 = { add_core_of = IRQ }
+		421 = { add_core_of = IRQ }
+		413 = { add_core_of = IRQ }
+	}
+	option = {
+		name = IRQ.1751.a2
+		IRQ = { transfer_state = 778 }
+		IRQ = { transfer_state = 421 }
+		IRQ = { transfer_state = 413 }
+
+
+		ai_chance = {
+			factor = 80
+		}
+	}
+
+	option = {
+		ai_chance = {
+			factor = 20
+		}
+		name = IRQ.1751.b2
+		IRQ = { create_wargoal = { type = annex_everything target = PER } }
+	}
+}

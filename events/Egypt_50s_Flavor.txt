@@ -1,0 +1,762 @@
+# KRCW (build/patch_residue.py): 29 OTL events dropped while KRCW_active
+add_namespace = farouk_gang
+add_namespace = Free_Officer_Coup
+add_namespace = free_officer_fail
+add_namespace = sudan_part
+add_namespace = nasser_execution
+add_namespace = Sudan
+add_namespace = abolish_mon_egy
+add_namespace = egy_trial
+add_namespace = egy_rioting
+add_namespace = aswan
+add_namespace = black_saturday
+add_namespace = egypt_suez
+add_namespace = RCC_Crisis
+add_namespace = egy_elect
+add_namespace = UAR_annex
+add_namespace = sudan_egy
+add_namespace = farouk_exiled
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sudan_egy.1
+	immediate = { }
+	title = sudan_egy.1.t2
+	desc = sudan_egy.1.d2
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = sudan_egy.1.a2
+		EGY = { set_country_flag = england_sudan_yes }
+		ai_chance = {
+			factor = 85
+			#modifier = {
+			#	factor = 1000
+			#	has_game_rule = {
+			#		rule = EGY_ai_behavior
+			#		option = FAROUK
+			#	}
+			#}
+		}
+	}
+	option = {
+		name = sudan_egy.1.b2
+			news_event = Sudan.1
+			ENG = {
+				set_autonomy = {
+					target = SUD
+					autonomy_state = autonomy_free
+				}
+			}
+			SUD = {
+				drop_cosmetic_tag = yes
+				set_politics = {
+
+
+
+					ruling_party = neutrality
+					last_election = "1945.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+					set_popularities = {
+						democratic = 0
+						communism = 0
+						fascism = 0
+						nationalist = 0
+						monarchism = 0
+						neutrality = 63
+						islamism = 0
+						radical_shiaism = 0
+
+						Social_Democratic = 0
+						Social_Liberalism = 0
+						Salafism = 0
+
+						Liberal_Conservatism = 37
+
+						conservative = 0
+						Christian_Democratic = 0
+						socialist = 0
+						centrist = 0
+						liberal = 0
+						trotskyism = 0
+						maoism = 0
+
+
+					}
+					create_country_leader = {
+						name = "Ibrahim Abboud"
+						picture = "Ibrahim_Abboud_60s.dds"
+						ideology = military_junta
+					}
+				}
+		ai_chance = {
+			factor = 15
+			modifier = {
+				factor = 0
+				OR = {
+					has_game_rule = {
+						rule = EGY_fate_of_sudan
+						option = EGYPTIAN_SUDAN
+					}
+					has_game_rule = {
+						rule = EGY_fate_of_sudan
+						option = DIVIDED_SUDAN
+					}
+				}
+			}
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = farouk_gang.1
+	immediate = { }
+	title = farouk_gang.1.t2
+	desc = farouk_gang.1.d
+	picture = GFX_farouk_car
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = farouk_gang.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = farouk_gang.2
+	immediate = { }
+	title = farouk_gang.2.t2
+	desc = farouk_gang.2.d
+	picture = GFX_ghali_affair
+	major = yes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = farouk_gang.2.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = farouk_gang.3
+	immediate = { }
+	title = farouk_gang.3.t2
+	desc = farouk_gang.3.d
+	picture = GFX_farouk_france
+	major = yes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = farouk_gang.3.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = farouk_gang.4
+	immediate = { }
+	title = farouk_gang.4.t2
+	desc = farouk_gang.4.d
+	picture = GFX_farouk_france
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = farouk_gang.4.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = farouk_gang.5
+	immediate = { }
+	title = farouk_gang.5.t2
+	desc = farouk_gang.5.d
+	picture = GFX_farouk_france
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = farouk_gang.5.a2
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Fawzia I"
+			picture = "Fawzia_I_50s.dds"
+			ideology = monarchist
+			traits = {
+				popular_queen
+			}
+		}
+	}
+
+	option = {
+		name = farouk_gang.5.b2
+		retire_country_leader = yes
+		create_country_leader = {
+			name = "Muhammad Abdel I"
+			desc = "pol_muhammad_abdel"
+			picture = "Muhammad_Abdel_Moneim_50s.dds"
+			ideology = monarchist
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = farouk_gang.6
+	immediate = { }
+	title = farouk_gang.6.t2
+	desc = farouk_gang.6.d
+	picture = GFX_FRA_Failed_Putsch
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = farouk_gang.6.a2
+		news_event = { id = farouk_gang.7 days = 1 }
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = farouk_gang.7
+	immediate = { }
+	title = farouk_gang.7.t2
+	desc = farouk_gang.7.d
+	picture = GFX_kmt_burma
+	major = yes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = farouk_gang.7.a2
+	}
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = farouk_gang.8
+	immediate = { }
+	title = farouk_gang.8.t2
+	desc = farouk_gang.8.d
+	picture = GFX_farouk_france
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = farouk_gang.8.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = farouk_gang.9
+	immediate = { }
+	title = farouk_gang.9.t2
+	desc = farouk_gang.9.d
+	picture = GFX_farouk_grave
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = farouk_gang.9.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = farouk_gang.10
+	immediate = { }
+	title = farouk_gang.10.t2
+	desc = farouk_gang.10.d
+	picture = GFX_news_event_naguib_rihani
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+
+	option = {
+		name = farouk_gang.10.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Free_Officer_Coup.1
+	immediate = { }
+	title = Free_Officer_Coup.1.t2
+	desc = Free_Officer_Coup.1.d
+	picture = GFX_free_officer_coup
+	major = yes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = Free_Officer_Coup.1.a2
+		set_global_flag = egypt_free_officer_coup
+		hidden_effect = {
+			PRC = {
+				mark_focus_tree_layout_dirty = yes
+			}
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = free_officer_fail.1
+	immediate = { }
+	title = free_officer_fail.1.t2
+	desc = free_officer_fail.1.d
+	picture = GFX_egy_coup_fail
+	major = yes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = free_officer_fail.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = sudan_part.1
+	immediate = { }
+	title = sudan_part.1.t2
+	desc = sudan_part.1.d
+	picture = GFX_partition_of_Egypt
+	major = yes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = sudan_part.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = nasser_execution.1
+	immediate = { }
+	title = nasser_execution.1.t2
+	desc = nasser_execution.1.d
+	picture = GFX_nasser_Execution
+	major = yes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = nasser_execution.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Sudan.1
+	immediate = { }
+	title = Sudan.1.t2
+	desc = Sudan.1.d
+	picture = GFX_indep_sudan
+	major = yes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = Sudan.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = abolish_mon_egy.1
+	immediate = { }
+	title = abolish_mon_egy.1.t2
+	desc = abolish_mon_egy.1.d
+	picture = GFX_egy_end_of_an_era
+	major = yes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = abolish_mon_egy.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egy_trial.1
+	immediate = { }
+	title = egy_trial.1.t2
+	desc = egy_trial.1.d
+	picture = GFX_royalist_egy_purge
+	major = yes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = egy_trial.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egy_trial.2
+	immediate = { }
+	title = egy_trial.2.t2
+	desc = egy_trial.2.d
+	picture = GFX_royalist_egy_purge
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = egy_trial.2.a2
+		news_event = { id = egy_trial.3 days = 1 }
+	}
+	option = {
+		name = egy_trial.2.b2
+		news_event = { id = egy_trial.4 days = 1 }
+	}
+	option = {
+		name = egy_trial.2.c2
+		news_event = { id = egy_trial.5 days = 1 }
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egy_trial.3
+	immediate = { }
+	title = egy_trial.3.t2
+	desc = egy_trial.3.d
+	picture = GFX_egy_end_of_an_era
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = egy_trial.3.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egy_trial.4
+	immediate = { }
+	title = egy_trial.4.t2
+	desc = egy_trial.4.d
+	picture = GFX_El_Al_Flight_402
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = egy_trial.4.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egy_trial.5
+	immediate = { }
+	title = egy_trial.5.t2
+	desc = egy_trial.5.d
+	picture = GFX_generic_sc_ruling
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = egy_trial.5.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egy_rioting.1
+	immediate = { }
+	title = egy_rioting.1.t2
+	desc = egy_rioting.1.d
+	picture = GFX_islam_brotherhood_rioting
+	major = yes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = egy_rioting.1.a2
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = aswan.1
+	immediate = { }
+	title = aswan.1.t2
+	desc = egy_suez_funding.1.d
+	picture = GFX_aswan_construction
+	major = yes
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = aswan.1.a2
+	}
+}
+news_event = {
+	id = black_saturday.1
+	immediate = { }
+	title = black_saturday.1.t2
+	desc = black_saturday.1.d
+	picture = GFX_black_saturday
+	is_triggered_only = yes
+	fire_only_once = yes
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		NOT = { has_country_flag = black_saturday_1 }
+	}
+
+	major = yes
+	option = {
+		name = black_saturday.1.a2
+		set_country_flag = black_saturday_1
+		if = {
+			limit = {
+				tag = EGY
+			}
+			complete_national_focus = EGY_Black_Saturday
+		}
+	}
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = farouk_exiled.1
+	immediate = { }
+	title = farouk_exiled.1.t2
+	desc = farouk_exiled.1.d
+	picture = GFX_exile_of_king_farouk
+	is_triggered_only = yes
+
+	major = yes
+	option = {
+		name = farouk_exiled.1.a2
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = RCC_Crisis.1
+	immediate = { }
+	title = RCC_Crisis.1.t2
+	desc = RCC_Crisis.1.d
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = RCC_Crisis.1.a2
+		complete_national_focus = EGY_Nasser_Consolidates_Power
+		set_politics = {
+			ruling_party = nationalist
+		}
+		retire_country_leader = yes
+		promote_character = EGY_Gamal_Abdel_Nasser
+
+		ai_chance = {
+			factor = 80
+			modifier = {
+				factor = 1000
+				is_historical_focus_on = yes
+				#has_game_rule = {
+				#	rule = EGY_ai_behavior
+				#	option = UAR_HISTORICAL
+				#}
+			}
+		}
+	}
+	option = {
+		name = RCC_Crisis.1.b2
+		complete_national_focus = EGY_Naguib_Consolidates_Power
+		hidden_effect = {
+			set_cosmetic_tag = EGY_REP
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				factor = 0
+				AND = {
+					is_historical_focus_on = yes
+					has_game_rule = {
+						rule = EGY_revolution_aftermath
+						option = DEFAULT
+					}
+				}
+				#factor = 1000
+				#OR = {
+					#has_game_rule = {
+					#	rule = EGY_ai_behavior
+					#	option = DEMOCRATIC
+					#}
+					#has_game_rule = {
+					#	rule = EGY_ai_behavior
+					#	option = ISLAMIC
+					#}
+				#}
+			}
+		}
+	}
+	option = {
+		name = RCC_Crisis.1.c2
+		complete_national_focus = EGY_Kahlid_Mohieddin_Coup
+		set_politics = {
+			ruling_party = communism
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = communism
+			popularity = 0.1
+		}
+		create_country_leader = {
+			name = "Kahlid Mohieddin"
+			picture = "Kahlid_Mohieddin_50s.dds"
+			ideology = marxism_leninism
+		}
+		drop_cosmetic_tag = yes
+		hidden_effect = {
+		set_cosmetic_tag = EGY_RED
+		}
+		ai_chance = {
+			factor = 10
+			modifier = {
+				OR = {
+					AND = {
+						has_game_rule = {
+							rule = EGY_revolution_aftermath
+							option = DEFAULT
+						}
+						is_historical_focus_on = yes
+					}
+					has_game_rule = {
+						rule = EGY_revolution_aftermath
+						option = HISTORICAL
+					}
+					has_game_rule = {
+						rule = EGY_revolution_aftermath
+						option = EGY_Naguib
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egy_elect.1
+	immediate = { }
+	title = egy_elect.1.t2
+	desc = egy_elect.1.d2
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = egy_elect.1.a2
+		complete_national_focus = EGY_Naguib_Victory
+		ai_chance = {
+			factor = 34
+			modifier = {
+				factor = 1000
+				#has_game_rule = {
+				#	rule = EGY_ai_behavior
+				#	option = DEMOCRATIC
+				#}
+			}
+			modifier = {
+				factor = -1000
+				#has_game_rule = {
+				#	rule = EGY_ai_behavior
+				#	option = ISLAMIC
+				#}
+			}
+		}
+	}
+	option = {
+		name = egy_elect.1.b2
+		complete_national_focus = EGY_Hassan_al_Hudaybi
+		complete_national_focus = EGY_Ilkwhan_Victory
+		set_politics = {
+			ruling_party = islamism
+			elections_allowed = yes
+		}
+		add_popularity = {
+			ideology = islamism
+			popularity = 0.3
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = egy_elect.1.c2
+		complete_national_focus = EGY_Ilkwhan_Victory
+		complete_national_focus = EGY_Sayyid_Qutb
+		set_politics = {
+			ruling_party = Salafism
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = Salafism
+			popularity = 0.3
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+
+	option = {
+		name = egy_elect.1.d3
+		complete_national_focus = EGY_wafd_victory
+		set_politics = {
+			ruling_party = liberal
+			elections_allowed = yes
+		}
+		add_popularity = {
+			ideology = liberal
+			popularity = 0.2
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = egypt_suez.1
+	immediate = { }
+	title = egypt_suez.1.t2
+	desc = egypt_suez.1.d2
+
+	is_triggered_only = yes
+
+
+	option = {
+		name = egypt_suez.1.a2
+		EGY = {
+			transfer_state = 743
+		}
+		ai_chance = {
+			factor = 65
+		}
+	}
+	option = {
+		name = egypt_suez.1.b2
+		set_global_flag = negotiaiton_fail_suez
+		ai_chance = {
+			factor = 35
+		}
+	}
+
+}

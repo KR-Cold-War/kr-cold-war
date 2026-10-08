@@ -1,0 +1,42 @@
+# KRCW (build/patch_residue.py): 4 OTL decision categories hidden while KRCW_active
+UK_Economy_category = {
+    allowed = {
+		original_tag = ENG
+	}
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		always = yes
+	}
+}
+UK_Foreign_Policy_category = {
+	allowed = {
+		original_tag = ENG 
+	}
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		always = yes 
+	}
+}
+UK_Politics_category = {
+
+	allowed = {
+		original_tag = ENG 
+	}
+
+	visible = { NOT = { has_global_flag = KRCW_active } always = yes}
+}
+UK_rivarly_category = {
+	allowed = {
+		original_tag = ENG 
+		NOT = {
+			has_idea = ENG_rivarly_navy_won
+		}
+		NOT = {
+			has_idea = ENG_rivarly_army_won
+		}
+	}
+
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		has_completed_focus = UK_60s_Inter_Service_Rivalry
+	}
+}

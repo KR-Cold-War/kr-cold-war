@@ -1,0 +1,722 @@
+# KRCW (build/patch_residue.py): 25 OTL decisions hidden while KRCW_active
+soviet_international_detente_category = {
+    Italian_Ports = {
+        available = { NOT = { has_global_flag = KRCW_active } 
+            has_country_flag = ECSC_Ports_Soviet
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+            has_country_flag = ECSC_Ports_Soviet
+        }
+
+        fire_only_once = yes 
+
+        cost = 50
+
+        complete_effect = {
+
+            custom_effect_tooltip = ECSC_Ports_Cost_TT
+
+            ITA = {
+                country_event = SOV_Beria_Struggle.23
+            }
+        }
+    }
+    France_Ports = {
+        available = { NOT = { has_global_flag = KRCW_active } 
+            has_country_flag = ECSC_Ports_Soviet
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+            has_country_flag = ECSC_Ports_Soviet
+        }
+
+        fire_only_once = yes 
+        cost = 50
+
+        complete_effect = {
+
+            custom_effect_tooltip = ECSC_Ports_Cost_TT
+
+            FRA = {
+                country_event = SOV_Beria_Struggle.22
+            }
+        }
+    }
+    Demilitarizing_Germany = {
+        available = { NOT = { has_global_flag = KRCW_active } 
+            tag = SOV 
+            NOT = {
+                has_global_flag = Demilitarize_Germany_no
+            }
+            has_global_flag = Demilitarize_Germany_yes_3
+            has_global_flag = Demilitarize_Germany_yes_2
+            has_global_flag = Demilitarize_Germany_yes_1
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+            tag = SOV 
+            NOT = {
+                has_global_flag = Demilitarize_Germany_no
+            }
+            has_global_flag = Demilitarize_Germany_yes_3
+            has_global_flag = Demilitarize_Germany_yes_2
+            has_global_flag = Demilitarize_Germany_yes_1
+        }
+
+        fire_only_once = yes 
+
+        cost = 25 
+
+        complete_effect = {
+            58 = {
+                set_demilitarized_zone = yes 
+            }
+            59 = {
+                set_demilitarized_zone = yes 
+            }
+            56 = {
+                set_demilitarized_zone = yes 
+            }
+            55 = {
+                set_demilitarized_zone = yes 
+            }
+            959 = {
+                set_demilitarized_zone = yes 
+            }
+            1353 = {
+                set_demilitarized_zone = yes 
+            }
+            1352 = {
+                set_demilitarized_zone = yes 
+            }
+            60 = {
+                set_demilitarized_zone = yes 
+            }
+            1351 = {
+                set_demilitarized_zone = yes 
+            }
+            1349 = {
+                set_demilitarized_zone = yes 
+            }
+            1347 = {
+                set_demilitarized_zone = yes 
+            }
+            61 = {
+                set_demilitarized_zone = yes 
+            }
+        }
+    }
+    Deutschemark_Unification = {
+        available = { NOT = { has_global_flag = KRCW_active } 
+            tag = SOV 
+            NOT = {
+                has_global_flag = Unified_Rejected
+            }
+        }
+        visible = { NOT = { has_global_flag = KRCW_active } 
+            tag = SOV 
+            NOT = {
+                has_global_flag = Unified_Rejected
+            }
+            has_completed_focus = BERMAL_Propose_Unified_Deutschemark_Zone
+        }
+
+            fire_only_once = yes    
+    
+        cost = 150
+
+        complete_effect = {
+
+            custom_effect_tooltip = Merging_Chances_TT
+
+            hidden_effect = {
+                random_list = {
+
+                    10 = {
+                        DDR = {
+                            add_ideas = recently_merged_deutschemark
+                            }
+                        WGR = {
+                            add_ideas = recently_merged_deutschemark
+                        }
+                    }
+                    50 = {
+                        DDR = {
+                            add_ideas = recently_merged_deutschemark
+
+                            add_timed_idea = {
+                                idea = DDR_Failure
+                                days = 1500
+                            }
+                            set_variable = { THIS.idea_len_@token:DDR_Failure = 1500 }
+                            set_variable = { THIS.idea_date_@token:DDR_Failure = global.num_days }
+                        }
+                        WGR = {
+
+                            add_ideas = recently_merged_deutschemark
+
+                            add_timed_idea = {
+                                idea = WGR_Failure
+                                days = 1500
+                            }
+                            set_variable = { THIS.idea_len_@token:WGR_Failure = 1500 }
+                            set_variable = { THIS.idea_date_@token:WGR_Failure = global.num_days }
+                        }
+                    }
+                    10 = {
+                        DDR = {
+                            add_timed_idea = {
+                                idea = DDR_Failure
+                                days = 1500
+                            }
+                            set_variable = { THIS.idea_len_@token:DDR_Failure = 1500 }
+                            set_variable = { THIS.idea_date_@token:DDR_Failure = global.num_days }
+                        }
+                        WGR = {
+                            add_timed_idea = {
+                                idea = WGR_Failure
+                                days = 1500
+                            }
+                            set_variable = { THIS.idea_len_@token:WGR_Failure = 1500 }
+                            set_variable = { THIS.idea_date_@token:WGR_Failure = global.num_days }
+                        }
+                    }
+                    15 = {
+                        DDR = {
+                            add_ideas = recently_merged_deutschemark
+                            add_timed_idea = {
+                                idea = DDR_Failure
+                                days = 1500
+                            }
+                            set_variable = { THIS.idea_len_@token:DDR_Failure = 1500 }
+                            set_variable = { THIS.idea_date_@token:DDR_Failure = global.num_days }
+                        }
+                        WGR = {
+                            add_ideas = recently_merged_deutschemark
+                        }
+                    }
+                    15 = {
+                        DDR = {
+                            add_ideas = recently_merged_deutschemark
+                        }
+                        WGR = {
+                            add_ideas = recently_merged_deutschemark
+                            add_timed_idea = {
+                                idea = WGR_Failure
+                                days = 1500
+                            }
+                            set_variable = { THIS.idea_len_@token:WGR_Failure = 1500 }
+                            set_variable = { THIS.idea_date_@token:WGR_Failure = global.num_days }
+                        }
+                    }
+                }
+             }
+        }
+    }
+
+
+    asian_tour_abroad = {
+
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } has_country_flag = Soviet_Detente_Asian}
+        
+            days_re_enable = 1500   
+    
+        cost = 10
+            days_remove = 15
+
+            remove_effect = {
+                add_threat = -2
+            }
+        }
+
+        japan_state_visit = {
+
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } has_country_flag = Soviet_Detente_Asian}
+
+            days_re_enable = 1500   
+    
+            complete_effect = {
+                JAP = {
+                    country_event = SOV_Beria_Struggle.12
+                }
+            }
+        }
+
+        chinese_state_visit = {
+
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } has_country_flag = Soviet_Detente_Asian}
+
+            days_re_enable = 1500   
+    
+            complete_effect = {
+                PRC = {
+                    country_event = SOV_Beria_Struggle.12
+                }
+            }
+        }
+
+        vietnamese_visit = {
+
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } has_country_flag = Soviet_Detente_Asian}
+
+            days_re_enable = 1500   
+    
+            complete_effect = {
+                VIN = {
+                    country_event = SOV_Beria_Struggle.12
+                }
+            }
+        }
+
+        indian_state_visit = {
+
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } has_country_flag = Soviet_Detente_Asian}
+
+            days_re_enable = 1500   
+    
+            complete_effect = {
+                RAJ = {
+                    country_event = SOV_Beria_Struggle.12
+                }
+            }
+        }
+        indonesian_state_visit = {
+
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } has_country_flag = Soviet_Detente_Asian}
+
+            days_re_enable = 1500   
+    
+            complete_effect = {
+                INO = {
+                    country_event = SOV_Beria_Struggle.12
+                }
+            }
+        }
+        investing_in_germany = {
+
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } 
+                has_country_flag = Investing_Europea_Soviet
+            }
+
+            
+            days_re_enable = 1500   
+    
+
+            complete_effect = {
+                custom_effect_tooltip = Investing_target_country_SOV_TT
+                WGR = {
+                    country_event = SOV_Beria_Struggle.100
+                }
+            }
+        }
+        investing_in_france = {
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } 
+                has_country_flag = Investing_Europea_Soviet
+            }
+
+            
+            days_re_enable = 1500   
+    
+
+            complete_effect = {
+                custom_effect_tooltip = Investing_target_country_SOV_TT
+                FRA = {
+                    country_event = SOV_Beria_Struggle.100
+                }
+            }
+        }
+        investing_in_uk = {
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } 
+                has_country_flag = Investing_Europea_Soviet
+            }
+
+            days_re_enable = 1500   
+
+            complete_effect = {
+                custom_effect_tooltip = Investing_target_country_SOV_TT
+                ENG = {
+                    country_event = SOV_Beria_Struggle.100
+                }
+            }
+        }
+        investing_in_belgium = {
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } 
+                has_country_flag = Investing_Europea_Soviet
+            }
+
+            
+            days_re_enable = 1500   
+    
+
+            complete_effect = {
+                custom_effect_tooltip = Investing_target_country_SOV_TT
+                BEL = {
+                    country_event = SOV_Beria_Struggle.100
+                }
+            }
+        }
+        investing_in_italy = {
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } 
+                has_country_flag = Investing_Europea_Soviet
+            }
+
+            
+            days_re_enable = 1500   
+    
+
+            complete_effect = {
+                custom_effect_tooltip = Investing_target_country_SOV_TT
+                ITA = {
+                    country_event = SOV_Beria_Struggle.100
+                }
+            }
+        }
+        investing_in_romania = {
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } 
+                has_country_flag = Investing_Europea_Soviet
+            }
+
+            
+            days_re_enable = 1500   
+    
+
+            complete_effect = {
+                custom_effect_tooltip = Investing_target_country_SOV_TT
+                ROM = {
+                    country_event = SOV_Beria_Struggle.100
+                }
+            }
+        }
+        investing_in_east_germany = {
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } 
+                has_country_flag = Investing_Europea_Soviet
+            }
+
+            
+            days_re_enable = 1500   
+    
+
+            complete_effect = {
+                custom_effect_tooltip = Investing_target_country_SOV_TT
+                DDR = {
+                    country_event = SOV_Beria_Struggle.100
+                }
+            }
+        }
+        investing_in_poland = {
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } 
+                has_country_flag = Investing_Europea_Soviet
+            }
+
+            
+            days_re_enable = 1500   
+    
+            complete_effect = {
+                custom_effect_tooltip = Investing_target_country_SOV_TT
+                POL = {
+                    country_event = SOV_Beria_Struggle.100
+                }
+            }
+        }
+        investing_in_hungary = {
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } 
+                has_country_flag = Investing_Europea_Soviet
+            }
+
+            
+            days_re_enable = 1500   
+    
+
+            complete_effect = {
+                custom_effect_tooltip = Investing_target_country_SOV_TT
+                HUN = {
+                    country_event = SOV_Beria_Struggle.100
+                }
+            }
+        }
+        investing_in_yugoslavia = {
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } 
+                has_country_flag = Investing_Europea_Soviet
+            }
+
+            
+            days_re_enable = 1500   
+    
+
+            complete_effect = {
+                custom_effect_tooltip = Investing_target_country_SOV_TT
+                YUG = {
+                    country_event = SOV_Beria_Struggle.100
+                }
+            }
+        }
+        investing_in_india = {
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+                has_country_flag = indian_investment
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } 
+                has_country_flag = indian_investment
+                tag = SOV
+            }
+
+            
+            days_re_enable = 1500   
+    
+
+            complete_effect = {
+                custom_effect_tooltip = spend_2000_billion_now
+                RAJ = {
+                    country_event = SOV_Beria_Struggle.101
+                }
+            }
+        }
+
+        halt_PCI = {
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } has_country_flag = Soviet_Halt_European}
+
+            fire_only_once = yes 
+
+            cost = 100
+
+            complete_effect = {
+
+                custom_effect_tooltip = Europe_Halting_Zealous_TT
+
+                hidden_effect = {
+
+                    add_threat = -1 
+
+                    random_list = {
+
+                        
+
+                        80 = {
+                            ITA = {
+                                add_popularity = {
+                                    ideology = communism
+                                    popularity = 0.03
+                                }
+                            }
+                        }
+                        20 = {
+                            ITA = {
+                                add_popularity = {
+                                    ideology = maoism
+                                    popularity = 0.01
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        halt_KPD = {
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } has_country_flag = Soviet_Halt_European}
+
+            cost = 100
+
+            fire_only_once = yes 
+
+            complete_effect = {
+
+                custom_effect_tooltip = Europe_Halting_Zealous_TT
+
+                hidden_effect = {
+
+                    add_threat = -1 
+
+                    random_list = {
+
+                        
+
+                        80 = {
+                            WGR = {
+                                add_popularity = {
+                                    ideology = communism
+                                    popularity = 0.03
+                                }
+                            }
+                        }
+                        20 = {
+                            WGR = {
+                                add_popularity = {
+                                    ideology = maoism
+                                    popularity = 0.01
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    
+        halt_Lowlands = {
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } 
+                SOV = {has_completed_focus = BERMAL_Halt_Zealous_Communist_Parties}
+            }
+
+            cost = 100
+
+
+            fire_only_once = yes 
+
+
+            complete_effect = {
+
+                custom_effect_tooltip = Europe_Halting_Zealous_TT
+
+                hidden_effect = {
+
+                    add_threat = -1
+
+                random_list = {
+
+                    
+
+                    80 = {
+                        BEL = {
+                            add_popularity = {
+							    ideology = communism
+							    popularity = 0.03
+						    }
+                        }
+                        HOL = {
+                            add_popularity = {
+							    ideology = communism
+							    popularity = 0.03
+						    }
+                        }
+                        LUX = {
+                            add_popularity = {
+							    ideology = communism
+							    popularity = 0.03
+						    }
+                        }
+                    }
+                    20 = {
+                        BEL = {
+                            add_popularity = {
+							    ideology = maoism
+							    popularity = 0.01
+						    }
+                        }
+                        HOL = {
+                            add_popularity = {
+							    ideology = maoism
+							    popularity = 0.01
+						    }
+                        }
+                        LUX = {
+                            add_popularity = {
+							    ideology = maoism
+							    popularity = 0.01
+						    }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+        halt_PCF = {
+            available = { NOT = { has_global_flag = KRCW_active } 
+                tag = SOV 
+            }
+            visible = { NOT = { has_global_flag = KRCW_active } has_country_flag = Soviet_Halt_European}
+
+            cost = 100 
+
+            fire_only_once = yes 
+
+
+            complete_effect = {
+
+                custom_effect_tooltip = Europe_Halting_Zealous_TT
+
+                hidden_effect = {
+
+                    add_threat = -1 
+
+                    random_list = {
+
+                        
+
+                        80 = {
+                            FRA = {
+                                add_popularity = {
+                                    ideology = communism
+                                    popularity = 0.03
+                                }
+                            }
+                        }
+                        20 = {
+                            FRA = {
+                                add_popularity = {
+                                    ideology = maoism
+                                    popularity = 0.01
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }        
+
+}

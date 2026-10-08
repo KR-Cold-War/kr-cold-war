@@ -1,0 +1,206 @@
+# KRCW (build/patch_residue.py): 9 OTL events dropped while KRCW_active
+add_namespace = goa
+
+########BETTER GOA WAR CODED BY HIGUYSCD32
+#EDITED BY SWF541 1/23/2022
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = goa.1   ########indian troops mobilize near the goa border 
+ immediate = { }
+	title = goa.1.t2
+	desc = goa.1.d
+	picture = GFX_goa_preparation_for_invasion
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+    option = {
+      name = goa.1.a2
+      POR = {
+        country_event = { days = 1 id = goa.2 } 
+      }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = goa.2   ########Portugal get notified about indian troops moving near the border 
+ immediate = { }
+	title = goa.2.t2
+	desc = goa.2.d
+	picture = GFX_goa_preparation_for_invasion
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+    option = {
+      name = goa.2.a2
+		ai_chance = {
+			factor = 100
+		}
+    hidden_effect = {
+    RAJ = {
+	country_event = { days = 1 id = goa.3 } 
+                }
+            }
+        }
+    }
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = goa.3   ########india starts invading 
+ immediate = { }
+	title = goa.3.t2
+	desc = goa.3.d
+	picture = GFX_goa_invasion
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+    option = {
+      name = goa.3.a2
+      ai_chance = {
+        factor = 100
+      }
+ 			start_border_war = {
+				change_state_after_war = no
+				attacker = {
+					state = 425
+					num_provinces = 4
+					on_win = goa.4
+					on_lose = goa.5
+					on_cancel = Indochina_War.4
+				}
+				defender = {
+					state = 321
+					num_provinces = 1
+					on_win = goa.6
+					on_lose = goa.7
+					on_cancel = Indochina_War.4
+				}
+			}     
+        
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }            ######india wins
+id = goa.4 
+ immediate = { }
+title = goa.4.t2
+desc = goa.4.d
+picture = GFX_goa_invasion
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+    option = {
+      name = goa.4.a2
+		ai_chance = {
+			factor = 100
+		}
+    hidden_effect = {
+    RAJ = {
+    transfer_state = 321
+    transfer_state = 879
+}
+                    }
+                }
+            }
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }            ######portugal wins
+id = goa.5 
+ immediate = { }
+title = goa.5.t2
+desc = goa.5.d
+picture = GFX_goa_invasion
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+    option = {
+      name = goa.5.a2
+    add_political_power = -100
+    add_stability = -0.05
+        }
+    }
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }            ######portugal gets informed that they won
+id = goa.6 
+ immediate = { }
+title = goa.6.t2
+desc = goa.6.d
+picture = GFX_goa_invasion
+
+	fire_only_once = yes
+
+	is_triggered_only = yes
+
+    option = {
+      name = goa.6.a2
+    add_political_power = 100
+    add_stability = 0.05
+     news_event = { days = 1 id = goa.9 } 
+
+   }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }            ######portugal gets informed that they Lost
+id = goa.7 
+ immediate = { }
+title = goa.7.t2
+desc = goa.7.d
+picture = GFX_goa_negotiations
+
+    fire_only_once = yes
+
+    is_triggered_only = yes
+
+    option = {
+      name = goa.7.a2
+    add_political_power = -100
+    add_stability = -0.05
+     news_event = { days = 1 id = goa.8 } 
+
+   }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  #india wins goa war news event
+id = goa.8 
+ immediate = { }
+title = goa.8.t2
+desc = goa.8.d
+picture = GFX_goa_war_news
+
+major = yes
+
+is_triggered_only = yes
+
+    option = {
+      name = goa.8.a2
+    }
+}
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }  #portugal wins goa war news event
+id = goa.9 
+ immediate = { }
+title = goa.9.t2
+desc = goa.9.d
+picture = GFX_goa_war_news
+
+major = yes
+
+is_triggered_only = yes
+
+    option = {
+      name = goa.9.a2
+    }
+}

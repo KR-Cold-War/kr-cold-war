@@ -1,0 +1,92 @@
+# KRCW (build/patch_residue.py): 4 OTL events dropped while KRCW_active
+add_namespace = Nagaland_Unrest
+
+#NAGALAND STATE ID IS 1276
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Nagaland_Unrest.1
+ immediate = { }
+	title = Nagaland_Unrest.1.t
+	desc = Nagaland_Unrest.1.d
+	picture = GFX_Nagaland_Unrest_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = Nagaland_Unrest.1.a
+        country_event = Nagaland_Unrest.2
+	}
+	option = {
+		name = Nagaland_Unrest.1.b
+        country_event = Nagaland_Unrest.4
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Nagaland_Unrest.2
+ immediate = { }
+	title = Nagaland_Unrest.2.t
+	desc = Nagaland_Unrest.2.d
+	picture = GFX_Nagaland_Unrest_2
+
+	is_triggered_only = yes
+
+	option = {
+		name = Nagaland_Unrest.2.a
+        country_event = {
+            id = Nagaland_Unrest.3
+            days = 3650
+        }
+        add_manpower = -150000
+        add_stability = -0.04
+        1276 = {
+            add_dynamic_modifier = {
+                modifier = nagaland_agitation
+            }
+            remove_core_of = RAJ
+        }
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Nagaland_Unrest.3
+ immediate = { }
+	title = Nagaland_Unrest.3.t
+	desc = Nagaland_Unrest.3.d
+	picture = GFX_Nagaland_Unrest_3
+
+	is_triggered_only = yes
+
+	option = {
+		name = Nagaland_Unrest.3.a
+        country_event = {
+            id = Nagaland_Unrest.3
+            days = 3650
+        }
+        add_manpower = 150000
+        1276 = {
+            remove_dynamic_modifier = {
+                modifier = nagaland_agitation
+            }
+            add_core_of = RAJ
+        }
+	}
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Nagaland_Unrest.4
+ immediate = { }
+	title = Nagaland_Unrest.4.t
+	desc = Nagaland_Unrest.4.d
+	picture = GFX_Nagaland_Unrest_4
+
+	is_triggered_only = yes
+
+	option = {
+		name = Nagaland_Unrest.4.a
+        1276 = {
+            add_dynamic_modifier = {
+                modifier = autonomous_state
+            }
+            remove_core_of = RAJ
+        }
+	}
+}

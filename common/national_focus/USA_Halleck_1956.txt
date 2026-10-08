@@ -1,0 +1,476 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = USA_Halleck_1956
+	country = {
+		factor = 0
+		modifier = {
+			add = 0
+			tag = USA
+		}
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	default = no
+	shared_focus = USA_50s_The_CIA
+	shared_focus = USA_50s_The_State_Department
+	shared_focus = USA_50s_The_American_Armed_Forces
+	focus = {
+		id = USA_HALLECK56_The_Halleck_Administration_1956
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_usa_halleck_administration
+		cost = 5
+		x = 5
+		y = 0
+		completion_reward = {
+			add_political_power = 200
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Push_for_Corporate_Tax_Curts
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_bag_of_money
+		cost = 10
+		prerequisite = {
+			focus = USA_HALLECK56_The_Halleck_Administration_1956
+		}
+		x = 3
+		y = 1
+		completion_reward = {
+			add_timed_idea = {
+				idea = tax_break
+				days = 1250
+			}
+			set_variable = { THIS.idea_len_@token:tax_break = 1250 }
+			set_variable = { THIS.idea_date_@token:tax_break = global.num_days }
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Establish_NASA
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_unknown
+		cost = 5
+		prerequisite = {
+			focus = USA_HALLECK56_Push_for_Corporate_Tax_Curts
+		}
+		x = 1
+		y = 2
+		completion_reward = {
+			set_country_flag = nasa_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = nasa
+			}
+			custom_effect_tooltip = usa.e56.4
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Propose_Reducing_Farm_Subsidies
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = USA_HALLECK56_The_Halleck_Administration_1956
+		}
+		x = 7
+		y = 1
+		completion_reward = {
+			set_country_flag = Cut_Farm_Subsidies_vote
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Civil_Rights_Act_of_1957
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_generic_political_pressure
+		cost = 5
+		prerequisite = {
+			focus = USA_HALLECK56_Push_for_Corporate_Tax_Curts
+		}
+		prerequisite = {
+			focus = USA_HALLECK56_Propose_Reducing_Farm_Subsidies
+		}
+		x = 5
+		y = 2
+		completion_reward = {
+			set_country_flag = civil_rights_act_if_1957
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_civil_rights_1957
+			}
+			custom_effect_tooltip = usa.e56.2
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Deploy_the_Army_to_Little_Rock
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_unknown
+		cost = 5
+		prerequisite = {
+			focus = USA_HALLECK56_Civil_Rights_Act_of_1957
+		}
+		prerequisite = {
+			focus = USA_HALLECK56_Establish_NASA
+		}
+		x = 3
+		y = 3
+		completion_reward = {
+			news_event = little_rock.1
+			add_political_power = 100
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_National_Defense_Education_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_generic_scientific_exchange
+		cost = 5
+		prerequisite = {
+			focus = USA_HALLECK56_Deploy_the_Army_to_Little_Rock
+		}
+		x = 2
+		y = 4
+		completion_reward = {
+			set_country_flag = National_Defense_Education_Act_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = National_Defense_Education_Act
+			}
+			custom_effect_tooltip = usa.e56.8
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Price_Anderson_Nuclear_Industries_Indemnity_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_generic_political_pressure
+		cost = 5
+		prerequisite = {
+			focus = USA_HALLECK56_Propose_Reducing_Farm_Subsidies
+		}
+		x = 9
+		y = 2
+		completion_reward = {
+			set_country_flag = Price_Anderson_Nuclear_Industries_Indemnity_Act_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Price_Anderson_Nuclear_Industries_Indemnity_Act
+			}
+			custom_effect_tooltip = usa.e56.3
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Establish_ARPA
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_unknown
+		cost = 5
+		prerequisite = {
+			focus = USA_HALLECK56_Price_Anderson_Nuclear_Industries_Indemnity_Act
+		}
+		prerequisite = {
+			focus = USA_HALLECK56_Civil_Rights_Act_of_1957
+		}
+		x = 7
+		y = 3
+		completion_reward = {
+			set_country_flag = arpa_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = ARPA
+			}
+			custom_effect_tooltip = usa.e56.5
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Federal_Aviation_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_generic_air_production
+		cost = 5
+		prerequisite = {
+			focus = USA_HALLECK56_Establish_ARPA
+		}
+		prerequisite = {
+			focus = USA_HALLECK56_Deploy_the_Army_to_Little_Rock
+		}
+		x = 5
+		y = 4
+		completion_reward = {
+			set_country_flag = Federal_Aviation_Act_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_federal_aviation
+			}
+			custom_effect_tooltip = usa.e56.6
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Transportation_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_generic_political_pressure
+		cost = 5
+		prerequisite = {
+			focus = USA_HALLECK56_Establish_ARPA
+		}
+		x = 8
+		y = 4
+		completion_reward = {
+			set_country_flag = Transportation_Act_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_transportation_act
+			}
+			custom_effect_tooltip = usa.e56.7
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Narcotics_Manufacturing_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_generic_political_pressure
+		cost = 5
+		prerequisite = {
+			focus = USA_HALLECK56_Transportation_Act
+		}
+		prerequisite = {
+			focus = USA_HALLECK56_Federal_Aviation_Act
+		}
+		x = 7
+		y = 5
+		completion_reward = {
+			set_country_flag = Narcotics_Manufacturing_Act_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = Narcotics_Manufacturing_Act
+			}
+			custom_effect_tooltip = usa.e56.9
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Reduce_the_National_Debt
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_bag_of_money
+		cost = 10
+		prerequisite = {
+			focus = USA_HALLECK56_Narcotics_Manufacturing_Act
+		}
+		x = 9
+		y = 6
+		completion_reward = {
+			add_timed_idea = {
+				idea = tax_increase
+				days = 1250
+			}
+			set_variable = { THIS.idea_len_@token:tax_increase = 1250 }
+			set_variable = { THIS.idea_date_@token:tax_increase = global.num_days }
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Landrum_Griffin_ACt
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_generic_political_pressure
+		cost = 5
+		prerequisite = {
+			focus = USA_HALLECK56_The_Airport_Construction_Act
+		}
+		prerequisite = {
+			focus = USA_HALLECK56_The_Explorers_Program
+		}
+		x = 4
+		y = 8
+		completion_reward = {
+			set_country_flag = Landrum_Griffin_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = landrum_griffin_act
+			}
+			custom_effect_tooltip = usa.e56.14
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Department_of_Defense_Reorganization_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_generic_defence
+		cost = 5
+		prerequisite = {
+			focus = USA_HALLECK56_National_Defense_Education_Act
+		}
+		prerequisite = {
+			focus = USA_HALLECK56_Federal_Aviation_Act
+		}
+		x = 3
+		y = 5
+		completion_reward = {
+			set_country_flag = Department_of_Defense_Reorganization_Act_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_dod_reorganization
+			}
+			custom_effect_tooltip = usa.e56.10
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Admission_of_Alaska_and_Hawaii
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_unknown
+		cost = 5
+		prerequisite = {
+			focus = USA_HALLECK56_Department_of_Defense_Reorganization_Act
+		}
+		x = 1
+		y = 6
+		completion_reward = {
+			set_country_flag = Admission_of_Alaska_and_Hawaii_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_statehood_expansion
+			}
+			custom_effect_tooltip = usa.e56.11
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_The_Airport_Construction_Act
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_generic_air_production
+		cost = 5
+		prerequisite = {
+			focus = USA_HALLECK56_Admission_of_Alaska_and_Hawaii
+		}
+		prerequisite = {
+			focus = USA_Rally_the_Conservative_Coalition
+		}
+		x = 3
+		y = 7
+		completion_reward = {
+			set_country_flag = Airport_Construction_Act_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_airport_construction
+			}
+			custom_effect_tooltip = usa.e56.13
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_The_Explorers_Program
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_unknown
+		cost = 5
+		prerequisite = {
+			focus = USA_Rally_the_Conservative_Coalition
+		}
+		prerequisite = {
+			focus = USA_HALLECK56_Reduce_the_National_Debt
+		}
+		x = 7
+		y = 7
+		completion_reward = {
+			# 2026-07-05: was add_tech_bonus category = space_research (tree deleted)
+			add_breakthrough_points = {
+				specialization = specialization_space
+				value = 1
+			}
+			# 2026-07-05: was add_tech_bonus category = space_research (tree deleted)
+			add_breakthrough_points = {
+				specialization = specialization_space
+				value = 1
+			}
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Civil_Rights_Act_of_1960
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_goal_generic_political_pressure
+		cost = 5
+		prerequisite = {
+			focus = USA_HALLECK56_Landrum_Griffin_ACt
+		}
+		prerequisite = {
+			focus = USA_HALLECK56_Strengthen_Unemployment_Protections
+		}
+		x = 5
+		y = 9
+		completion_reward = {
+			set_country_flag = civil_rights_act_of_1960_vote
+			custom_effect_tooltip = usa_act_if_passed_tt
+			effect_tooltip = {
+				add_ideas = usa_civil_rights_1960
+			}
+			custom_effect_tooltip = usa.e56.15
+		}
+	}
+	focus = {
+		id = USA_Rally_the_Conservative_Coalition
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = USA_HALLECK56_Narcotics_Manufacturing_Act
+		}
+		prerequisite = {
+			focus = USA_HALLECK56_Department_of_Defense_Reorganization_Act
+		}
+		x = 5
+		y = 6
+		completion_reward = {
+			news_event = Halleck.1
+			custom_effect_tooltip = GOP_PVI_BONUS_TT
+			add_to_variable = {
+				focus_adjustment_USA = -0.04
+			}
+		}
+	}
+	focus = {
+		id = USA_HALLECK56_Strengthen_Unemployment_Protections
+		completion_reward = {
+		}
+		text_icon = USA_focus_style
+		icon = GFX_unknown
+		cost = 10
+		prerequisite = {
+			focus = USA_HALLECK56_The_Explorers_Program
+		}
+		x = 6
+		y = 8
+		completion_reward = {
+			add_timed_idea = {
+				idea = fight_unemployment
+				days = 950
+			}
+			set_variable = { THIS.idea_len_@token:fight_unemployment = 950 }
+			set_variable = { THIS.idea_date_@token:fight_unemployment = global.num_days }
+		}
+	}
+}

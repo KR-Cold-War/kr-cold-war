@@ -1,0 +1,122 @@
+# KRCW (build/patch_residue.py): 8 OTL decision categories hidden while KRCW_active
+CWIC_decision_categories_CWIC_bop_JAP_GHQ = {
+	allowed = {
+		tag = JAP
+		NOT = { has_global_flag = San_Francisco_Peace_Treaty }
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		tag = JAP
+		NOT = { has_global_flag = San_Francisco_Peace_Treaty }
+	}
+	available = {
+		tag = JAP
+		NOT = { has_global_flag = San_Francisco_Peace_Treaty }
+	}	
+}
+
+JAP_SF_Treaty_Category = {  
+	priority = 100
+	allowed = { original_tag = JAP }
+	
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = JAP
+		has_country_flag = JAP_Dulles_visits_Japan
+	}
+	
+	visible_when_empty = yes
+}
+
+JAP_Anpo_Protests_Category = {
+	priority = 100
+	allowed = {
+		original_tag = JAP
+	}
+	
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = JAP
+		has_completed_focus = JAP_US_Japan_Defence_Treaty
+		has_country_flag = JAP_Anpo_Protests_Category
+	}
+	
+	visible_when_empty = yes
+}
+
+JAP_National_Projects_Category = {
+	
+	picture = GFX_JAP_National_Projects_Category
+	priority = 70
+	allowed = {
+		original_tag = JAP
+	}
+	
+	available = {
+		has_completed_focus = JAP_Relax_Export_Regulations
+	}
+	
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = JAP
+		has_completed_focus = JAP_Relax_Export_Regulations
+	}
+	
+	visible_when_empty = yes
+}
+
+JAP_National_Radicalism_Category = {
+	priority = 70
+	allowed = {
+		original_tag = JAP
+	}
+	
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = JAP
+	}
+	
+	visible_when_empty = yes
+
+	scripted_gui = JAP_National_Radicalism_GUI
+}
+
+JAP_Keiretsu_Category = {
+	priority = 70
+	picture = GFX_JAP_Keiretsu_Category
+
+	allowed = {
+		original_tag = JAP
+	}
+	
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = JAP
+		has_completed_focus = JAP_Reverse_Course
+	}
+	
+	visible_when_empty = no
+
+}
+
+JAP_The_Income_Doubling_Plan_Category = {
+	priority = 100
+	scripted_gui = CWIC_GUI_JAP_The_Income_Doubling_Plan_Category
+	allowed = {
+		original_tag = JAP
+	}
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		original_tag = JAP
+		has_completed_focus = JAP_The_Income_Doubling_Plan
+	}
+	visible_when_empty = yes
+}
+
+CWIC_decision_categories_JAP_Liberal_Democratic_Party = {
+	priority = 70
+  	icon = GFX_JAP_desicion_category_ldp
+	scripted_gui = CWIC_GUI_JAP_Liberal_Democratic_Party
+	priority = 7
+	visible = { NOT = { has_global_flag = KRCW_active } 
+		tag = JAP
+		has_country_flag = JAP_Liberal_Democratic_Party_deci_cat
+	}
+	allowed = {
+	    original_tag = JAP
+	}
+	visible_when_empty = yes
+}

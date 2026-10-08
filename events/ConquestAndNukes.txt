@@ -1,0 +1,458 @@
+# KRCW (build/patch_residue.py): 8 OTL events dropped while KRCW_active
+add_namespace = Conquestandnukes
+add_namespace = conquest
+#Helsinki (USSR)
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = conquest.1 
+ immediate = { }
+	title = conquest.1.t
+	desc = conquest.1.d
+	picture = GFX_news_event_helsinki_falls_to_ussr
+
+	major = yes
+	is_triggered_only = yes
+
+	immediate = {
+		set_global_flag = conquest_helsinki_ussr
+	}
+
+	option = {
+		name = conquest.1.a
+		trigger = {
+			NOT = {
+				TAG = SOV
+				TAG = FIN
+			}
+		}
+	}
+	option = {
+		name = conquest.1.b
+		trigger = { TAG = SOV }
+	}
+	option = {
+		name = conquest.1.c
+		trigger = { TAG = FIN }
+	}
+}# The Fall of Seoul
+news_event = {
+	id = conquest.100 
+ immediate = { }
+	title = conquest.100.t
+	desc = conquest.100.d
+	picture = GFX_first_Battle_of_Seoul
+
+	major = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		750 = { is_controlled_by = KPA }
+		750 = { is_owned_by = KOR }
+		NOT = { has_global_flag = first_fall_of_seoul }
+	}
+
+	immediate = {
+		set_global_flag = first_fall_of_seoul
+	}
+
+	mean_time_to_happen = {
+		days = 2
+	}
+
+	option = {
+		name = conquest.100.a
+		trigger = {
+			NOT = {
+				TAG = KOR
+				TAG = KPA
+				TAG = USA
+				TAG = SOV
+				TAG = PRC
+			}
+		}
+	}
+	option = {
+		name = conquest.100.b
+		trigger = {
+			OR = {
+				TAG = KOR
+				TAG = USA
+			}
+		}
+	}
+	option = {
+		name = conquest.100.c
+		trigger = {
+			OR = {
+				TAG = PRC
+				TAG = KPA
+				TAG = SOV
+			}
+		}
+	}
+}# The Second Battle of Seoul
+news_event = {
+	id = conquest.101 
+ immediate = { }
+	title = conquest.101.t
+	desc = conquest.101.d
+	picture = GFX_second_Battle_of_Seoul
+
+	major = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		750 = { is_controlled_by = KOR }
+		750 = { is_owned_by = KOR }
+		has_global_flag = first_fall_of_seoul
+		NOT = { has_global_flag = second_battle_of_seoul }
+	}
+
+	immediate = {
+		set_global_flag = second_battle_of_seoul
+		hidden_effect = {
+			if = {
+				limit = {
+					tag = USA
+				}
+				country_event = MacArthur_Dismissal.1
+			}		
+		}
+
+	}
+
+	mean_time_to_happen = {
+		days = 2
+	}
+
+	option = {
+		name = conquest.101.a
+		trigger = {
+			NOT = {
+				TAG = KOR
+				TAG = KPA
+				TAG = USA
+				TAG = SOV
+				TAG = PRC
+			}
+		}
+	}
+	option = {
+		name = conquest.101.b
+		trigger = {
+			OR = {
+				TAG = KOR
+				TAG = USA
+			}
+		}
+	}
+	option = {
+		name = conquest.101.c
+		trigger = {
+			OR = {
+				TAG = PRC
+				TAG = KPA
+				TAG = SOV
+			}
+		}
+	}
+}# The Third Battle of Seoul
+news_event = {
+	id = conquest.102 
+ immediate = { }
+	title = conquest.102.t
+	desc = conquest.102.d
+	picture = GFX_third_Battle_of_seoul
+
+	major = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		750 = { is_controlled_by = KPA }
+		750 = { is_owned_by = KOR }
+		has_global_flag = second_battle_of_seoul
+		NOT = { has_global_flag = third_battle_of_seoul }
+	}
+
+	immediate = {
+		set_global_flag = third_battle_of_seoul
+	}
+
+	mean_time_to_happen = {
+		days = 2
+	}
+
+	option = {
+		name = conquest.102.a
+		trigger = {
+			NOT = {
+				TAG = KOR
+				TAG = KPA
+				TAG = USA
+				TAG = SOV
+				TAG = PRC
+			}
+		}
+	}
+	option = {
+		name = conquest.102.b
+		trigger = {
+			OR = {
+				TAG = KOR
+				TAG = USA
+			}
+		}
+	}
+	option = {
+		name = conquest.102.c
+		trigger = {
+			OR = {
+				TAG = PRC
+				TAG = KPA
+				TAG = SOV
+			}
+		}
+	}
+}# Operation Ripper
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = conquest.103 
+ immediate = { }
+	title = conquest.103.t
+	desc = conquest.103.d
+	picture = GFX_Operation_Ripper
+
+	major = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = conquest.103.a
+		trigger = {
+			NOT = {
+				TAG = KOR
+				TAG = KPA
+				TAG = USA
+				TAG = SOV
+				TAG = PRC
+			}
+		}
+	}
+	option = {
+		name = conquest.103.b
+		trigger = {
+			OR = {
+				TAG = KOR
+				TAG = USA
+			}
+		}
+	}
+	option = {
+		name = conquest.103.c
+		trigger = {
+			OR = {
+				TAG = PRC
+				TAG = KPA
+				TAG = SOV
+			}
+		}
+	}
+}
+# The Fall of Pusan
+news_event = {
+	id = conquest.104 
+ immediate = { }
+	title = conquest.104.t
+	desc = conquest.104.d
+	picture = GFX_fall_of_pusan
+
+	major = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		751 = { is_controlled_by = KPA }
+		751 = { is_owned_by = KOR }
+		has_idea = korean_war
+		NOT = { has_global_flag = fall_of_pusan }
+	}
+
+	immediate = {
+		set_global_flag = fall_of_pusan
+	}
+
+	mean_time_to_happen = {
+		days = 2
+	}
+
+	option = {
+		name = conquest.104.a
+		trigger = {
+			NOT = {
+				TAG = KOR
+				TAG = KPA
+				TAG = USA
+				TAG = SOV
+				TAG = PRC
+			}
+		}
+	}
+	option = {
+		name = conquest.104.b
+		trigger = {
+			OR = {
+				TAG = KOR
+				TAG = USA
+			}
+		}
+	}
+	option = {
+		name = conquest.104.c
+		trigger = {
+			OR = {
+				TAG = PRC
+				TAG = KPA
+				TAG = SOV
+			}
+		}
+	}
+}
+# The Fall of Pyeongyang
+news_event = {
+	id = conquest.105 
+ immediate = { }
+	title = conquest.105.t
+	desc = conquest.105.d
+	picture = GFX_fall_of_pyeongyang
+
+	major = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		745 = { is_controlled_by = KOR }
+		745 = { is_owned_by = KPA }
+		has_idea = korean_war
+		NOT = { has_global_flag = fall_of_pyeongyang }
+	}
+
+	immediate = {
+		set_global_flag = fall_of_pyeongyang
+	}
+
+	mean_time_to_happen = {
+		days = 2
+	}
+
+	option = {
+		name = conquest.105.a
+		trigger = {
+			NOT = {
+				TAG = KOR
+				TAG = KPA
+				TAG = USA
+				TAG = SOV
+				TAG = PRC
+			}
+		}
+	}
+	option = {
+		name = conquest.105.b
+		trigger = {
+			OR = {
+				TAG = KOR
+				TAG = USA
+			}
+		}
+	}
+	option = {
+		name = conquest.105.c
+		trigger = {
+			OR = {
+				TAG = KPA
+				TAG = SOV
+			}
+		}
+	}
+	option = {
+		name = conquest.105.d
+		trigger = {
+			tag = PRC
+		}
+	}
+}
+# Coalition Forces Approach the Yalu River
+news_event = {
+	id = conquest.106 
+ immediate = { }
+	title = conquest.106.t
+	desc = conquest.106.d
+	picture = GFX_china_crosses_yalu
+	major = yes
+
+	trigger = { NOT = { has_global_flag = KRCW_active } 
+		NOT = { has_global_flag = korean_war_china_can_intervene }
+		has_idea = korean_war
+		OR = {
+			AND = {
+				745 = { is_controlled_by = KOR }
+				745 = { is_owned_by = KPA }
+			}
+			AND = {
+				747 = { is_controlled_by = KOR }
+				747 = { is_owned_by = KPA }
+			}
+			AND = {
+				1205 = { is_controlled_by = KOR }
+				1205 = { is_owned_by = KPA }
+			}
+			AND = {
+				527 = { is_controlled_by = KOR }
+				527 = { is_owned_by = KPA }
+			}
+			KOR = { num_occupied_states > 4 }
+		}
+	}
+
+	mean_time_to_happen = {
+		days = 2
+	}
+
+	immediate = {
+		set_global_flag = korean_war_china_can_intervene
+		set_variable = {
+			PRC.Volunteer_Allowance^KPA = 20
+		}
+		PRC = {
+			declare_war_on = { target = KOR type = annex_everything }
+		}
+		KPA = {
+			add_to_faction = PRC
+		}
+	}
+
+	option = {
+		name = conquest.106.1.a
+		trigger = {
+			OR = {
+				TAG = USA
+				TAG = KOR
+			}
+		}
+	}
+	option = {
+		name = conquest.106.1.b
+		trigger = {
+			NOT = {
+				TAG = KPA
+				TAG = USA
+				TAG = PRC
+			}
+		}
+	}
+	option = {
+		name = conquest.106.1.c
+		trigger = {
+			TAG = KPA
+		}
+	}
+	option = {
+		name = conquest.106.1.d
+		trigger = {
+			TAG = PRC
+		}
+	}
+}

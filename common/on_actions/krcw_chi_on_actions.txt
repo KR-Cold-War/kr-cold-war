@@ -1,0 +1,45 @@
+# krcw: paced
+# KRCW China-side scheduled events (owned by china agent)
+on_actions = {
+	on_startup = {
+		effect = {
+			# There is no Communist China in this timeline. CWIC's civil-war missions and
+			# KMT decisions key off PRC and CCW_Over - close them off at load.
+			set_global_flag = CCW_Over
+			if = {
+				limit = { country_exists = PRC }
+				CHI = { annex_country = { target = PRC transfer_troops = no } }
+			}
+			CHI = {
+				# The Nanjing rump government's generals were folded into the Revolutionary
+				# Army after 1946; CWIC's warlord-loyalty missions (rebellion when loyalty
+				# < 0.26, uninitialised = 0) must not fire.
+				set_country_flag = SHX_INTEGRATED
+				set_country_flag = QMC_INTEGRATED
+				set_country_flag = HUN_INTEGRATED
+				set_country_flag = GUX_INTEGRATED
+				set_country_flag = YUN_INTEGRATED
+				set_country_flag = XIK_INTEGRATED
+				set_variable = { SHX_Warlord_Loyalty = 1 }
+				set_variable = { QMC_Warlord_Loyalty = 1 }
+				set_variable = { HUN_Warlord_Loyalty = 1 }
+				set_variable = { GUX_Warlord_Loyalty = 1 }
+				set_variable = { YUN_Warlord_Loyalty = 1 }
+				set_variable = { XIK_Warlord_Loyalty = 1 }
+				country_event = { id = krcw_chi.1 days = 2 }
+				set_variable = { krcw_chi_warlords_done = 0 }
+				recruit_character = CHI_krcw_song_qingling
+				recruit_character = CHI_krcw_li_jishen
+				recruit_character = CHI_krcw_deng_yanda
+				recruit_character = CHI_krcw_chen_gongbo
+				country_event = { id = krcw_chi.21 days = 507 random_days = 84 }
+				country_event = { id = krcw_chi.22 days = 569 random_days = 25 }
+				country_event = { id = krcw_chi.33 days = 1373 random_days = 50 }
+				country_event = { id = krcw_chi.53 days = 738 random_days = 126 }
+			}
+			TIB = {
+				if = { limit = { NOT = { has_variable = krcw_revolt_progress } } set_variable = { krcw_revolt_progress = 0 } }
+			}
+		}
+	}
+}

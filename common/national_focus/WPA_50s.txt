@@ -1,0 +1,123 @@
+# KRCW (build/patch_residue.py): 1 CWIC focus trees weighted 0 while KRCW_active
+focus_tree = {
+	id = WPA_50s
+	country = {
+		factor = 0
+		modifier = {
+			add = 50
+			tag = WPA
+		}
+
+		modifier = { factor = 0 has_global_flag = KRCW_active }
+	}
+	focus = {
+		id = WPA_the_crown_set_foot_in_the_nusantara
+		icon = GFX_The_Crown_Set_Foot_In_Nusantara
+		cost = 0
+		x = 7
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		cancelable = no
+		completion_reward = {
+		}
+		mutually_exclusive = { focus = WPA_the_unchained_jewels_of_asia }
+	}
+
+	focus = {
+		id = WPA_the_unchained_jewels_of_asia
+		icon = GFX_Jewels_of_Asia_Unchained
+		cost = 0
+		x = 10
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+			add_ideas = WPA_The_Jewels_of_Asia
+			give_guarantee = INS
+			give_military_access = INS
+		}
+		mutually_exclusive = { focus = WPA_the_crown_set_foot_in_the_nusantara }
+	}
+
+	focus = {
+		id = WPA_the_roundtable_conference
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		news_event = dutch_east_indies_war.1
+	    }
+		relative_position_id = WPA_the_unchained_jewels_of_asia
+		prerequisite = { focus = WPA_the_unchained_jewels_of_asia }
+	}
+
+	focus = {
+		id = WPA_netherlands_biggest_disgrace
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		}
+		mutually_exclusive = { focus = WPA_victorious_crown }
+		relative_position_id = WPA_the_roundtable_conference
+		prerequisite = { focus = WPA_the_roundtable_conference }
+	}
+
+	focus = {
+		id = WPA_prepare_to_transfer_authority_to_the_republic_of_indonesia
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		}
+		relative_position_id = WPA_netherlands_biggest_disgrace
+		
+		prerequisite = { focus = WPA_netherlands_biggest_disgrace }
+	}
+
+	focus = {
+		id = WPA_victorious_crown
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		}
+		mutually_exclusive = { focus = WPA_netherlands_biggest_disgrace }
+		relative_position_id = WPA_the_roundtable_conference
+		prerequisite = { focus = WPA_the_roundtable_conference }
+	}
+
+	focus = {
+		id = WPA_prepare_the_transition_government_in_indonesia
+		icon = GFX_goal_generic_political_pressure
+		cost = 2
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+		}
+		relative_position_id = WPA_victorious_crown
+		prerequisite = { focus = WPA_victorious_crown }
+	}
+}

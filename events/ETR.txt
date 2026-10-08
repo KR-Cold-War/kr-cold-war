@@ -1,0 +1,279 @@
+# KRCW (build/patch_residue.py): 13 OTL events dropped while KRCW_active
+add_namespace = ETR
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ETR.1
+    immediate = { }
+    title = ETR.1.t
+    desc = ETR.1.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = ETR.1.a
+
+        ETR = {
+            country_event = {
+                id = ETR.2
+                hours = 12
+            }
+        }
+    }
+    option = {
+        name = ETR.1.b
+
+        ETR = {
+            country_event = {
+                id = ETR.3
+                hours = 12
+            }
+        }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ETR.2
+    immediate = { }
+    title = ETR.2.t
+    desc = ETR.2.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = ETR.2.a
+        if = {
+            limit = {
+                has_tech = infantry_equip_2
+            }
+            add_equipment_to_stockpile = {
+                type = infantry_equipment_1
+                amount = 2000
+                producer = PRC
+            }
+        }
+        else = {
+            add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = 2000
+                producer = PRC
+            }
+        }
+        division_template = {
+            name = "PLA Militia"
+            division_names_group = generic_militia_independent
+        
+            regiments = {
+                infantry = { x = 0 y = 0 }
+                infantry = { x = 0 y = 1 }
+                infantry = { x = 0 y = 2 }
+                infantry = { x = 0 y = 3 }
+                infantry = { x = 0 y = 4 }
+            }
+            support = {
+
+            }
+        }
+
+        618 = {
+            create_unit = {
+                division = "name = \"1. PLA Militia\" division_template = \"PLA Militia\" start_experience_factor = 1"
+				owner = ETR
+            }
+
+            create_unit = {
+                division = "name = \"2. PLA Militia\"  division_template = \"PLA Militia\" start_experience_factor = 1"
+                owner = ETR
+            }
+        }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ETR.3
+    immediate = { }
+    title = ETR.3.t
+    desc = ETR.3.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = ETR.3.a
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ETR.4
+    immediate = { }
+    title = ETR.4.t
+    desc = ETR.4.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = ETR.4.a
+
+        SIK = {
+            country_event = {
+            id = ETR.6
+            hours = 12
+            }
+        }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ETR.5
+    immediate = { }
+    title = ETR.3.t
+    desc = ETR.3.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = ETR.5.a
+
+        SIK = {
+            country_event = {
+            id = ETR.7
+            hours = 12
+            }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ETR.6
+    immediate = { }
+    title = ETR.6.t
+    desc = ETR.6.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = ETR.6.a
+
+        complete_national_focus = ETR_Massud_Sabri
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ETR.7
+    immediate = { }
+    title = ETR.7.t
+    desc = ETR.7.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = ETR.7.a
+
+        complete_national_focus = ETR_CCP
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ETR.8
+    immediate = { }
+    title = ETR.8.t
+    desc = ETR.8.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = ETR.8
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ETR.9
+    immediate = { }
+    title = ETR.9.t
+    desc = ETR.9.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = ETR.9.a
+
+        complete_national_focus = ETR_3_Districts
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ETR.10
+    immediate = { }
+    title = ETR.10.t
+    desc = ETR.10.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = ETR.10.a
+
+        SIK = {
+            country_event = {
+                id = ETR.11
+                hours = 12
+            }
+        }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ETR.11
+    immediate = { }
+    title = ETR.11.t
+    desc = ETR.11.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = ETR.11.a
+
+        country_event = {
+            id = ETR.12
+            hours = 12
+        }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ETR.12
+    immediate = { }
+    title = ETR.12.t
+    desc = ETR.12.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = ETR.12.a
+
+        country_event = {
+            id = ETR.13
+            hours = 12
+        }
+    }
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+    id = ETR.13
+    immediate = { }
+    title = ETR.3.t
+    desc = ETR.3.d
+    is_triggered_only = yes
+    fire_only_once = yes
+    option = {
+        name = ETR.3.a
+
+        complete_national_focus = ETR_Civil_War
+    }
+}
+
+
+
+
+
+
+
+
+

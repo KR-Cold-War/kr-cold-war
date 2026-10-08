@@ -1,0 +1,282 @@
+# KRCW (build/patch_residue.py): 12 OTL events dropped while KRCW_active
+add_namespace = VIE_Humanity
+add_namespace = PHI_Humanity
+add_namespace = BRU_Humanity
+add_namespace = HUM
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUM.1
+	immediate = { }
+	title = HUM.1.t
+	desc = HUM.1.d
+	picture = GFX_HUM_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = HUM.1.a
+		complete_national_focus = HUM_Maintain_the_Monarchy
+	}
+
+	option = {
+		name = HUM.1.b
+		complete_national_focus = HUM_Support_Republican_Movement
+		set_country_flag = HUM_REP
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = HUM.2
+	immediate = { }
+	title = HUM.2.t
+	desc = HUM.2.d
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = HUM.2.a
+		add_manpower = 500
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_0
+			amount = 100
+			producer = VIE
+		}
+		add_to_variable = {
+			currentMoney = 0.005
+		}
+		set_temp_variable = {
+				x = 5
+				tooltip = adjust_money_mil_tt
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = VIE_Humanity.1
+	immediate = { }
+	title = VIE_Humanity.1.t
+	desc = VIE_Humanity.1.d
+	picture = GFX_VIE_Humanity_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = VIE_Humanity.1.a
+		HUM = {
+			hidden_effect = { keep_current_politics = yes }
+			country_event = VIE_Humanity.2
+		}
+		set_autonomy = {
+			target = HUM
+			autonomous_state = autonomous_state
+			end_wars = no
+			end_civil_wars = no
+		}
+		ai_chance = {
+			base = 40
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = VIE_Humanity.1.b
+		HUM = {
+			country_event = VIE_Humanity.4
+		}
+		ai_chance = {
+			base = 60
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+		}
+	}
+}
+ 
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = VIE_Humanity.2
+	immediate = { }
+	title = VIE_Humanity.2.t
+	desc = VIE_Humanity.2.d
+	picture = GFX_VIE_Humanity_1
+	is_triggered_only = yes
+
+	option = {
+		name = VIE_Humanity.2.a
+		news_event = VIE_Humanity.3
+		hidden_effect = {
+			VIE = {
+				news_event = VIE_Humanity.3
+			}
+		}
+	}
+}
+
+
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = VIE_Humanity.3
+	immediate = { }
+	title = VIE_Humanity.3.t
+	desc = VIE_Humanity.3.d
+	picture = GFX_VIE_Humanity_3
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = VIE_Humanity.3.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = VIE_Humanity.4
+	immediate = { }
+	title = VIE_Humanity.4.t
+	desc = VIE_Humanity.4.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = VIE_Humanity.4.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Humanity.1
+	immediate = { }
+	title = PHI_Humanity.1.t
+	desc = PHI_Humanity.1.d
+	picture = GFX_PHI_Humanity_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Humanity.1.a
+		HUM = {
+			country_event = PHI_Humanity.2
+		}
+		ai_chance = {
+			base = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = PHI_Humanity.1.b
+		HUM = {
+			country_event = PHI_Humanity.3
+		}
+		ai_chance = {
+			base = 90
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Humanity.2
+	immediate = { }
+	title = PHI_Humanity.2.t
+	desc = PHI_Humanity.2.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Humanity.2.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PHI_Humanity.3
+	immediate = { }
+	title = PHI_Humanity.3.t
+	desc = PHI_Humanity.3.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = PHI_Humanity.3.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = BRU_Humanity.1
+	immediate = { }
+	title = BRU_Humanity.1.t
+	desc = BRU_Humanity.1.d
+	picture = GFX_BRU_Humanity_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = BRU_Humanity.1.a
+		HUM = {
+			country_event = BRU_Humanity.2
+		}
+		ai_chance = {
+			base = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = BRU_Humanity.1.b
+		HUM = {
+			country_event = BRU_Humanity.3
+		}
+		ai_chance = {
+			base = 90
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 100
+			}
+		}
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = BRU_Humanity.2
+	immediate = { }
+	title = BRU_Humanity.2.t
+	desc = BRU_Humanity.2.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = BRU_Humanity.2.a
+	}
+}
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = BRU_Humanity.3
+	immediate = { }
+	title = BRU_Humanity.3.t
+	desc = BRU_Humanity.3.d
+
+	is_triggered_only = yes
+
+	option = {
+		name = BRU_Humanity.3.a
+	}
+}

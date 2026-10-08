@@ -1,0 +1,48 @@
+# KRCW (build/patch_residue.py): 1 OTL events dropped while KRCW_active
+add_namespace = dry
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = dry.1 
+ immediate = {
+	hidden_effect = {
+		ENG = {
+			set_autonomy = {
+				target = DRY
+				autonomy_state = autonomy_free
+			}
+		}
+	}
+ }
+	title = dry.1.t
+	desc = dry.1.d
+	picture = GFX_report_event_brazil_election_1955
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+
+	option = {
+		name = dry.1.a
+		drop_cosmetic_tag = yes
+		set_politics = {
+			ruling_party = communism
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = communism
+			popularity = +0.70
+		}
+		add_popularity = {
+			ideology = nationalist
+			popularity = +0.30
+		}
+		SOV = {
+			add_to_array = { sphere_tag_list = DRY.id }
+		}
+		set_country_flag = Is_In_Sphere
+		set_variable = {
+			Sphere_Leader = SOV.id
+			}
+	}
+}

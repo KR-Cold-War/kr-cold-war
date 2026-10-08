@@ -1,0 +1,419 @@
+# krcw: paced
+# krcw: x-coords doubled for icon clearance
+focus_tree = {
+	id = krcw_aus_tree
+	continuous_focus_position = { x = 50 y = 970 }
+	country = {
+		factor = 0
+		modifier = { add = 5000 tag = AUS }
+	}
+	default = no
+	reset_on_civilwar = no
+	focus = {
+		id = krcw_aus_the_salzburg_republic
+		icon = GFX_focus_generic_vote
+		x = 10
+		y = 0
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_ideas = krcw_aus_divided_country
+			add_political_power = 75
+			add_stability = 0.02
+		}
+	}
+	focus = {
+		id = krcw_aus_the_achensee_station
+		icon = GFX_focus_generic_hydroelectric_energy
+		x = 2
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_aus_the_salzburg_republic }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			153 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			153 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_aus_the_linz_works
+		icon = GFX_focus_generic_industry_2
+		x = 0
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_aus_the_achensee_station }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1192 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_aus_the_ranshofen_aluminium
+		icon = GFX_focus_generic_aluminum
+		x = 4
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_aus_the_achensee_station }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_resource = { type = aluminium amount = 6 state = 1192 }
+			1192 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = arms_factory level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_aus_the_erzberg
+		icon = GFX_focus_generic_mineral_prospecting
+		x = 0
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_aus_the_linz_works }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			if = { limit = { 758 = { is_owned_by = ROOT } } add_resource = { type = steel amount = 4 state = 758 } }
+			758 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+		}
+	}
+	focus = {
+		id = krcw_aus_the_paris_plan
+		icon = GFX_focus_generic_treaty
+		x = 4
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_aus_the_ranshofen_aluminium }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			add_tech_bonus = { name = krcw_aus_paris_plan bonus = 0.5 uses = 1 category = industry }
+			if = { limit = { country_exists = FRA } FRA = { add_opinion_modifier = { target = ROOT modifier = krcw_wgr_good_neighbour } } }
+		}
+	}
+	focus = {
+		id = krcw_aus_hold_the_enns
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 8
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_aus_the_salzburg_republic }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			1192 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = bunker level = 2 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			} }
+			758 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = bunker level = 1 province = { all_provinces = yes limit_to_border = yes } instant_build = yes }
+			} }
+			add_war_support = 0.02
+		}
+	}
+	focus = {
+		id = krcw_aus_the_mountain_divisions
+		icon = GFX_goal_generic_army_doctrines
+		x = 6
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_aus_hold_the_enns }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			army_experience = 15
+			add_tech_bonus = { name = krcw_aus_mountain_war bonus = 0.5 uses = 1 category = land_doctrine }
+		}
+	}
+	focus = {
+		id = krcw_aus_the_workers_militia
+		icon = GFX_goal_generic_allies_build_infantry
+		x = 10
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_aus_hold_the_enns }
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_manpower = 8000
+			add_war_support = 0.03
+			add_equipment_to_stockpile = { type = infantry_equipment amount = 1500 }
+		}
+	}
+	focus = {
+		id = krcw_aus_the_cabinet_in_salzburg
+		icon = GFX_focus_generic_little_entente
+		x = 16
+		y = 1
+		cost = 5
+		prerequisite = { focus = krcw_aus_the_salzburg_republic }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+		}
+	}
+	focus = {
+		id = krcw_aus_adlers_coalition
+		icon = GFX_focus_generic_socialist_science
+		x = 14
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_aus_the_cabinet_in_salzburg }
+		mutually_exclusive = { focus = krcw_aus_renners_grand_coalition focus = krcw_aus_the_council_republic }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 12
+		}
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.04
+			add_popularity = { ideology = socialist popularity = 0.05 }
+		}
+	}
+	focus = {
+		id = krcw_aus_renners_grand_coalition
+		icon = GFX_focus_generic_vote
+		x = 16
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_aus_the_cabinet_in_salzburg }
+		mutually_exclusive = { focus = krcw_aus_adlers_coalition focus = krcw_aus_the_council_republic }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 8
+		}
+		completion_reward = {
+			set_politics = { ruling_party = Social_Democratic elections_allowed = yes }
+			add_popularity = { ideology = Social_Democratic popularity = 0.15 }
+			if = { limit = { NOT = { has_character = AUS_krcw_renner } } recruit_character = AUS_krcw_renner }
+			promote_character = AUS_krcw_renner
+			set_party_name = { ideology = Social_Democratic name = krcw_aus_party_sdap long_name = krcw_aus_party_sdap_long }
+			add_stability = 0.06
+			krcw_detente_up_small = yes
+		}
+	}
+	focus = {
+		id = krcw_aus_the_council_republic
+		icon = GFX_focus_generic_self_management
+		x = 18
+		y = 2
+		cost = 5
+		prerequisite = { focus = krcw_aus_the_cabinet_in_salzburg }
+		mutually_exclusive = { focus = krcw_aus_adlers_coalition focus = krcw_aus_renners_grand_coalition }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 6
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			set_politics = { ruling_party = trotskyism elections_allowed = no }
+			add_popularity = { ideology = trotskyism popularity = 0.15 }
+			if = { limit = { NOT = { has_character = AUS_krcw_klahr } } recruit_character = AUS_krcw_klahr }
+			promote_character = AUS_krcw_klahr
+			set_party_name = { ideology = trotskyism name = krcw_aus_party_councils long_name = krcw_aus_party_councils_long }
+			add_ideas = krcw_aus_council_republic
+			add_war_support = 0.03
+		}
+	}
+	focus = {
+		id = krcw_aus_the_vienna_question
+		icon = GFX_goal_generic_dangerous_deal
+		x = 16
+		y = 3
+		cost = 5
+		prerequisite = { focus = krcw_aus_adlers_coalition focus = krcw_aus_renners_grand_coalition focus = krcw_aus_the_council_republic }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_political_power = 25
+			set_country_flag = krcw_aus_vienna_question
+		}
+	}
+	focus = {
+		id = krcw_aus_a_german_austria
+		icon = GFX_focus_generic_soldier_salute
+		x = 14
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_aus_the_vienna_question }
+		mutually_exclusive = { focus = krcw_aus_salzburg_is_enough focus = krcw_aus_vienna_will_be_free }
+		available = {
+			custom_trigger_tooltip = { tooltip = krcw_aus_not_councils_tt NOT = { has_completed_focus = krcw_aus_the_council_republic } }
+			country_exists = WGR
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 5
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_political_power = 25
+			add_popularity = { ideology = Social_Democratic popularity = 0.05 }
+			set_country_flag = krcw_aus_union_road
+			WGR = { set_country_flag = krcw_wgr_pushed_union add_opinion_modifier = { target = ROOT modifier = krcw_wgr_good_neighbour } }
+		}
+	}
+	focus = {
+		id = krcw_aus_salzburg_is_enough
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 16
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_aus_the_vienna_question }
+		mutually_exclusive = { focus = krcw_aus_a_german_austria focus = krcw_aus_vienna_will_be_free }
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 14
+		}
+		completion_reward = {
+			if = { limit = { has_idea = krcw_aus_divided_country } remove_ideas = krcw_aus_divided_country }
+			add_ideas = krcw_aus_salzburg_capital
+			add_stability = 0.04
+			krcw_detente_up_small = yes
+			set_country_flag = krcw_aus_divided_road
+		}
+	}
+	focus = {
+		id = krcw_aus_vienna_will_be_free
+		icon = GFX_goal_generic_major_war
+		x = 18
+		y = 4
+		cost = 5
+		prerequisite = { focus = krcw_aus_the_vienna_question }
+		mutually_exclusive = { focus = krcw_aus_a_german_austria focus = krcw_aus_salzburg_is_enough }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 6
+			modifier = { factor = 0 krcw_route_historical = yes }
+		}
+		completion_reward = {
+			add_war_support = 0.05
+			krcw_tension_up_small = yes
+			set_country_flag = krcw_aus_vienna_road
+			if = { limit = { country_exists = SOV } SOV = { add_opinion_modifier = { target = ROOT modifier = krcw_ma_wayward_member } } }
+		}
+	}
+	focus = {
+		id = krcw_aus_prepare_the_referendum
+		icon = GFX_focus_generic_vote
+		x = 14
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_aus_a_german_austria }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 8
+		}
+		completion_reward = {
+			add_political_power = -25
+			set_country_flag = krcw_aus_referendum_ready
+			custom_effect_tooltip = krcw_aus_referendum_tt
+			country_event = { id = krcw_aus.10 days = 20 }
+		}
+	}
+	focus = {
+		id = krcw_aus_build_the_capital
+		icon = GFX_focus_generic_industry_3
+		x = 16
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_aus_salzburg_is_enough }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			4 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_building_construction = { type = infrastructure level = 1 instant_build = yes }
+			} }
+			4 = { if = {
+				limit = { is_owned_by = ROOT }
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = { type = industrial_complex level = 1 instant_build = yes }
+			} }
+			add_stability = 0.03
+		}
+	}
+	focus = {
+		id = krcw_aus_the_vienna_underground
+		icon = GFX_goal_generic_propaganda
+		x = 18
+		y = 5
+		cost = 5
+		prerequisite = { focus = krcw_aus_vienna_will_be_free }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 8
+		}
+		completion_reward = {
+			set_country_flag = krcw_aus_underground
+			add_political_power = -25
+			krcw_tension_up_small = yes
+			custom_effect_tooltip = krcw_aus_underground_tt
+		}
+	}
+	focus = {
+		id = krcw_aus_vienna_s_hour
+		icon = GFX_focus_generic_attack_austria
+		x = 18
+		y = 6
+		cost = 5
+		prerequisite = { focus = krcw_aus_the_vienna_underground }
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			army_experience = 15
+			set_country_flag = krcw_aus_war_plan
+			custom_effect_tooltip = krcw_aus_war_plan_tt
+		}
+	}
+}

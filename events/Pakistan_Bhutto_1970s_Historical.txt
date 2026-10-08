@@ -1,0 +1,632 @@
+# KRCW (build/patch_residue.py): 22 OTL events dropped while KRCW_active
+
+#PAK_Democratic_1975_Elections
+
+add_namespace = Bhutto_70s
+
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.1    
+    immediate = { }	
+	title = Bhutto_70s.1.t
+	desc = Bhutto_70s.1.d
+	picture = GFX_Bhutto_70s_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.1.a
+        country_event = {
+            id = Bhutto_70s.2
+            days = 15
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.2
+    immediate = { }	
+	title = Bhutto_70s.2.t
+	desc = Bhutto_70s.2.d
+	picture = GFX_Bhutto_70s_2
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.2.a
+        country_event = {
+            id = Bhutto_70s.3
+            days = 60
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.3
+    immediate = { }	
+	title = Bhutto_70s.3.t
+	desc = Bhutto_70s.3.d
+	picture = GFX_Bhutto_70s_3
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.3.a
+        news_event = {
+            id = Bhutto_70s.4
+            days = 2
+        }
+        news_event = {
+            id = Bhutto_70s.5
+            days = 5
+        }
+        country_event = {
+            id = Bhutto_70s.6
+            days = 10
+        }
+        country_event = {
+            id = Bhutto_70s.7
+            days = 20
+        }
+    }
+}
+news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.4
+ immediate = { }
+	title = Bhutto_70s.4.t
+	desc = Bhutto_70s.4.d
+	picture = GFX_Bhutto_70s_4
+
+	is_triggered_only = yes
+	major = yes
+
+    immediate = {
+        if = {
+            limit = {
+                tag = PAK
+            }
+            hidden_effect = {
+				PAK = {
+					add_opinion_modifier = {
+						target = LBA
+						modifier = large_increase
+					}
+                    add_ideas = Libyan_Oil_Subsidies
+				}
+				LBA = {
+					add_opinion_modifier = {
+						target = PAK
+						modifier = large_increase
+					}
+                    add_ideas = South_Asian_Guest_Workers
+                    add_ideas = Pakistani_Advisors
+				}
+            }
+        }
+    }
+    option = {
+        trigger = {
+            OR = {
+                tag = LBA
+                tag = PAK
+            }
+        }
+        name = Bhutto_70s.4.a
+    }
+    option = {
+        trigger = {
+            NOT = { tag = LBA }
+            NOT = { tag = PAK }
+        }
+        name = Bhutto_70s.4.b
+    }
+}news_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.5
+ immediate = { }
+	title = Bhutto_70s.5.t
+	desc = Bhutto_70s.5.d
+	picture = GFX_Bhutto_70s_5
+
+	is_triggered_only = yes
+	major = yes
+
+    immediate = {
+        if = {
+            limit = {
+                tag = PAK
+            }
+            hidden_effect = {
+				PAK = {
+					add_opinion_modifier = {
+						target = ISR
+						modifier = large_decrease
+					}
+				}
+				ISR = {
+					add_opinion_modifier = {
+						target = PAK
+						modifier = large_decrease
+					}
+				}
+				PAK = {
+					add_opinion_modifier = {
+						target = RAJ
+						modifier = medium_decrease
+					}
+				}
+				RAJ = {
+					add_opinion_modifier = {
+						target = PAK
+						modifier = medium_decrease
+					}
+				}
+            }
+        }
+    }
+    option = {
+        trigger = {
+            OR = {
+                tag = LBA
+                tag = PAK
+                tag = SAU
+                tag = SYR
+                tag = EGY
+                tag = IRQ
+                tag = QAT
+                tag = YEM
+                tag = BHR
+            }
+        }
+        name = Bhutto_70s.5.a
+    }
+    option = {
+        trigger = {
+            OR = {
+                tag = RAJ
+                tag = ISR
+            }
+        }
+        name = Bhutto_70s.5.b
+    }
+    option = {
+        trigger = {
+            NOT = { tag = LBA }
+            NOT = { tag = PAK }
+            NOT = { tag = RAJ }
+            NOT = { tag = ISR }
+            NOT = { tag = LBA }
+            NOT = { tag = PAK }
+            NOT = { tag = SAU }
+            NOT = { tag = SYR }
+            NOT = { tag = EGY }
+            NOT = { tag = IRQ }
+            NOT = { tag = QAT }
+            NOT = { tag = YEM }
+            NOT = { tag = BHR }
+        }
+        name = Bhutto_70s.5.c
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.6
+    immediate = { }	
+	title = Bhutto_70s.6.t
+	desc = Bhutto_70s.6.d
+	picture = GFX_Bhutto_70s_6
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.6.a
+        add_timed_idea = {
+            idea = Gulf_Economic_Subsidies
+            days = 1825
+        }
+        set_variable = { THIS.idea_len_@token:Gulf_Economic_Subsidies = 1825 }
+        set_variable = { THIS.idea_date_@token:Gulf_Economic_Subsidies = global.num_days }
+        SAU = {
+            add_timed_idea = {
+                idea = Pakistani_Advisors
+                days = 1825
+            }
+            set_variable = { THIS.idea_len_@token:Pakistani_Advisors = 1825 }
+            set_variable = { THIS.idea_date_@token:Pakistani_Advisors = global.num_days }
+        }
+        OMA = {
+            add_timed_idea = {
+                idea = Pakistani_Advisors
+                days = 1825
+            }
+            set_variable = { THIS.idea_len_@token:Pakistani_Advisors = 1825 }
+            set_variable = { THIS.idea_date_@token:Pakistani_Advisors = global.num_days }
+        }
+        UAE = {
+            add_timed_idea = {
+                idea = Pakistani_Advisors
+                days = 1825
+            }
+            set_variable = { THIS.idea_len_@token:Pakistani_Advisors = 1825 }
+            set_variable = { THIS.idea_date_@token:Pakistani_Advisors = global.num_days }
+        }
+        KUW = {
+            add_timed_idea = {
+                idea = Pakistani_Advisors
+                days = 1825
+            }
+            set_variable = { THIS.idea_len_@token:Pakistani_Advisors = 1825 }
+            set_variable = { THIS.idea_date_@token:Pakistani_Advisors = global.num_days }
+        }
+    }
+}
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.7
+    immediate = { }	
+	title = Bhutto_70s.7.t
+	desc = Bhutto_70s.7.d
+	picture = GFX_Bhutto_70s_7
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.7.a
+        add_timed_idea = {
+            idea = Hosted_OIC_Conference
+            days = 1825
+        }
+        set_variable = { THIS.idea_len_@token:Hosted_OIC_Conference = 1825 }
+        set_variable = { THIS.idea_date_@token:Hosted_OIC_Conference = global.num_days }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.8
+    immediate = { }	
+	title = Bhutto_70s.8.t
+	desc = Bhutto_70s.8.d
+	picture = GFX_Bhutto_70s_8
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.8.a
+        add_timed_idea = {
+            idea = Betrayed_Pashtunistan
+            days = 1825
+        }
+        set_variable = { THIS.idea_len_@token:Betrayed_Pashtunistan = 1825 }
+        set_variable = { THIS.idea_date_@token:Betrayed_Pashtunistan = global.num_days }
+        PAK = {
+            add_opinion_modifier = {
+                target = AFG
+                modifier = large_increase
+            }
+        }
+        AFG = {
+            add_opinion_modifier = {
+                target = PAK
+                modifier = large_increase
+            }
+        }
+    }
+    option = {
+        name = Bhutto_70s.8.b
+        PAK = {
+            add_opinion_modifier = {
+                target = AFG
+                modifier = medium_decrease
+            }
+        }
+        AFG = {
+            add_opinion_modifier = {
+                target = PAK
+                modifier = medium_decrease
+            }
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.9
+    immediate = { }	
+	title = Bhutto_70s.9.t
+	desc = Bhutto_70s.9.d
+	picture = GFX_Bhutto_70s_9
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.9.a
+        country_event = {
+            id = Bhutto_70s.10
+            days = 60
+        }
+    }
+ 	option = {
+		name = Bhutto_70s.9.b
+    }
+}   country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.10
+    immediate = { }	
+	title = Bhutto_70s.10.t
+	desc = Bhutto_70s.10.d
+	picture = GFX_Bhutto_70s_10
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.10.a
+        country_event = {
+            id = Bhutto_70s.11
+            days = 60
+        }
+    }
+ 	option = {
+		name = Bhutto_70s.10.b
+    }
+}   country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.11
+    immediate = { }	
+	title = Bhutto_70s.11.t
+	desc = Bhutto_70s.11.d
+	picture = GFX_Bhutto_70s_11
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.11.a
+        country_event = {
+            id = Bhutto_70s.12
+            days = 180
+        }
+        add_equipment_to_stockpile = {
+            type = infantry_equipment
+            amount = -500
+        }
+        add_equipment_to_stockpile = {
+            type = support_equipment
+            amount = -100
+        }
+    }
+ 	option = {
+		name = Bhutto_70s.11.b
+    }
+}   
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.12
+    immediate = { }	
+	title = Bhutto_70s.12.t
+	desc = Bhutto_70s.12.d
+	picture = GFX_Bhutto_70s_12
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.12.a
+        random_list = {
+            85 = {
+                AFG = {
+                    country_event = {
+                        id = Bhutto_70s.13
+                        days = 60
+                    }
+                }
+            }
+            15 = {
+                AFG = {
+                    country_event = {
+                        id = Bhutto_70s.14
+                        days = 60
+                    }
+                }
+            }
+        }
+    }
+	option = {
+		name = Bhutto_70s.12.b
+        random_list = {
+            15 = {
+                AFG = {
+                    country_event = {
+                        id = Bhutto_70s.13
+                        days = 60
+                    }
+                }
+            }
+            85 = {
+                AFG = {
+                    country_event = {
+                        id = Bhutto_70s.14
+                        days = 60
+                    }
+                }
+            }
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.13
+    immediate = { }	
+	title = Bhutto_70s.13.t
+	desc = Bhutto_70s.13.d
+	picture = GFX_Bhutto_70s_13
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.13.a
+        add_timed_idea = {
+            idea = Rural_Revolts
+            days = 1825
+        }
+        set_variable = { THIS.idea_len_@token:Rural_Revolts = 1825 }
+        set_variable = { THIS.idea_date_@token:Rural_Revolts = global.num_days }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.14
+    immediate = { }	
+	title = Bhutto_70s.14.t
+	desc = Bhutto_70s.14.d
+	picture = GFX_Bhutto_70s_14
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.14.a
+        add_timed_idea = {
+            idea = Crushed_Rural_Revolts
+            days = 1825
+        }
+        set_variable = { THIS.idea_len_@token:Crushed_Rural_Revolts = 1825 }
+        set_variable = { THIS.idea_date_@token:Crushed_Rural_Revolts = global.num_days }
+        PAK = {
+            add_opinion_modifier = {
+                target = AFG
+                modifier = large_decrease
+            }
+        }
+        AFG = {
+            add_opinion_modifier = {
+                target = PAK
+                modifier = large_decrease
+            }
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.15
+    immediate = { }	
+	title = Bhutto_70s.15.t
+	desc = Bhutto_70s.15.d
+	picture = GFX_Bhutto_70s_15
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.15.a
+        complete_national_focus = PAK_70s_Accept_Major_Reforms
+    }
+	option = {
+		name = Bhutto_70s.15.b
+        complete_national_focus = PAK_70s_Army_Asserts_Independence
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.16
+    immediate = { }	
+	title = Bhutto_70s.16.t
+	desc = Bhutto_70s.16.d
+	picture = GFX_Bhutto_70s_16
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.16.a
+        #a number of officers will be removed, some added
+        #Awaiting info
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.17
+    immediate = { }	
+	title = Bhutto_70s.17.t
+	desc = Bhutto_70s.17.d
+	picture = GFX_Bhutto_70s_17
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.17.a
+        country_event = {
+            id = Bhutto_70s.18
+            days = 60
+        }
+    }
+	option = {
+		name = Bhutto_70s.17.b
+        country_event = {
+            id = Bhutto_70s.19
+            days = 60
+        }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.18
+    immediate = { }	
+	title = Bhutto_70s.18.t
+	desc = Bhutto_70s.18.d
+	picture = GFX_Bhutto_70s_18
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.18.a
+        add_timed_idea = {
+            idea = Coup_Plot_Crushed
+            days = 1095
+        }
+        set_variable = { THIS.idea_len_@token:Coup_Plot_Crushed = 1095 }
+        set_variable = { THIS.idea_date_@token:Coup_Plot_Crushed = global.num_days }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.19
+    immediate = { }	
+	title = Bhutto_70s.19.t
+	desc = Bhutto_70s.19.d
+	picture = GFX_Bhutto_70s_19
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.19.a
+        add_timed_idea = {
+            idea = Coup_Plot_Crushed
+            days = 730
+        }
+        set_variable = { THIS.idea_len_@token:Coup_Plot_Crushed = 730 }
+        set_variable = { THIS.idea_date_@token:Coup_Plot_Crushed = global.num_days }
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = Bhutto_70s.20
+    immediate = { }	
+	title = Bhutto_70s.20.t
+	desc = Bhutto_70s.20.d
+	picture = GFX_Bhutto_70s_20
+
+	is_triggered_only = yes
+
+	option = {
+		name = Bhutto_70s.20.a
+    }
+}add_namespace = PAK_Afghan_War
+country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Afghan_War.10   
+    immediate = { }	
+	title = PAK_Afghan_War.10.t
+	desc = PAK_Afghan_War.10.d
+	picture = GFX_PAK_Afghan_War_10
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Afghan_War.10.a
+    }
+}country_event = {
+	trigger = { NOT = { has_global_flag = KRCW_active } }
+	id = PAK_Afghan_War.11   
+    immediate = { }	
+	title = PAK_Afghan_War.11.t
+	desc = PAK_Afghan_War.11.d
+	picture = GFX_PAK_Afghan_War_11
+
+	is_triggered_only = yes
+
+	option = {
+		name = PAK_Afghan_War.11.a
+    }
+}

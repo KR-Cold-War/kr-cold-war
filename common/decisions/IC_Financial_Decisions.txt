@@ -1,0 +1,258 @@
+# KRCW (build/patch_residue.py): 4 OTL decisions hidden while KRCW_active
+economy_decisions_reenable = {
+	unhide_economy_decisions = {
+	
+		visible = { has_country_flag = hide_economic_decisions }
+		complete_effect = { clr_country_flag = hide_economic_decisions }
+	}
+}
+economy_decisions = {
+	convert_to_rentier = {	#Average Development of 1 with more then 50% Agriculture+RGO Income
+		visible = { 
+			check_variable = { economic_x_axis < 18 }
+			check_variable = { economic_x_axis > 24 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = average_development_1_TT
+				OR = {
+					check_variable = {
+						average_development > 1
+					}
+					check_variable = {
+						average_development = 1
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = Economic_Diversification_Lacking_Req_TT
+				check_variable = { Rentier_Economic_Check > 0.7 }
+				check_variable = { Rentier_Economic_Check = 0.7 }
+			}
+		}
+		complete_effect = {
+			conversion_to_rentier = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	convert_to_normal_economic_axis_system = {	#Average Development of 1 with less then 50% Agriculture+RGO Income
+		visible = { 
+			check_variable = { economic_x_axis < 18 }
+			check_variable = { economic_x_axis > 25 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = average_development_1_TT
+				OR = {
+					check_variable = {
+						average_development > 1
+					}
+					check_variable = {
+						average_development = 1
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = Economic_Diversification_Req_TT
+				check_variable = { Rentier_Economic_Check < 0.6 }
+			}
+			
+		}
+		complete_effect = {
+			conversion_to_normal_axis = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	convert_to_petrostate = {	#Average Development of 3 with Oil Dominant Economy
+		visible = { 
+			check_variable = { economic_x_axis = 24 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = average_development_3_TT
+				OR = {
+					check_variable = {
+						average_development > 3
+					}
+					check_variable = {
+						average_development = 3
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = Oil_Export_Petrostate_Req_TT
+				check_variable = { oilExport > 75 }
+			}
+		}
+		complete_effect = {
+			convert_to_petrostate = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	SOV_Reperation_Payments = {
+	
+		icon = paid
+
+		allowed = {
+			tag = HUN
+		}
+		
+		available = { NOT = { has_global_flag = KRCW_active } 
+			num_of_civilian_factories_available_for_projects > 4
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_country_flag = Loan_Repayment_Enabled
+			OR = {
+				has_idea = soviet_reparations
+				has_idea = soviet_reparations2
+				has_idea = soviet_reparations3
+				has_idea = soviet_reparations4
+			}
+
+		}
+		
+		modifier = {
+			civilian_factory_use = 5
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+		days_remove = 180
+		remove_effect = {
+			if = {
+				limit = {
+					has_idea = soviet_reparations
+				}
+				remove_ideas = soviet_reparations
+				add_ideas = soviet_reparations2
+			}
+			else_if = {
+				limit = {
+					has_idea = soviet_reparations2
+				}
+				remove_ideas = soviet_reparations2
+				add_ideas = soviet_reparations3
+			}
+			else_if = {
+				limit = {
+					has_idea = soviet_reparations3
+				}
+				remove_ideas = soviet_reparations3
+				add_ideas = soviet_reparations4
+			}
+			else = {
+				remove_ideas = soviet_reparations4
+			}
+		}
+		
+	}
+
+####Pan European Union Membership Application###
+
+	PAEU.1 = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			capital_scope = { is_on_continent = europe }
+
+			NOT = {
+				has_global_flag = European_Waiting
+			}
+			NOT = {
+				has_dynamic_modifier = {
+					modifier = federation_european_union
+				}
+			}
+			SOV = {
+				has_dynamic_modifier = {
+					modifier = federation_european_union
+				}
+			}
+		}
+
+		cost = 150
+
+		complete_effect = {
+			every_country = {
+				limit = {
+					has_dynamic_modifier = {
+						modifier = federation_european_union
+					}
+				}
+				country_event = SOV_Beria_Struggle.37
+			}
+			set_global_flag = { flag = European_Waiting value = 1 days = 30 }
+			set_country_flag = PAEU_2_Follow_Up
+
+			custom_effect_tooltip = EU_Waiting_TT
+		}
+	}
+	PAEU.2 = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+		
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			capital_scope = { is_on_continent = europe }
+			NOT = {
+				has_dynamic_modifier = {
+					modifier = federation_european_union
+				}
+			}
+			SOV = {
+				has_dynamic_modifier = {
+					modifier = federation_european_union
+				}
+			}
+
+			has_country_flag = PAEU_2_Follow_Up
+
+			NOT = {
+				has_global_flag = European_Waiting
+			}
+			check_variable = {
+				global.federation_european_union_entrance > 1
+			}
+		}
+
+		cost = 150
+
+		complete_effect = {
+			every_country = {
+				limit = {
+					has_dynamic_modifier = {
+						modifier = federation_european_union
+					}
+				}
+				country_event = SOV_Beria_Struggle.35
+			}
+			add_dynamic_modifier = {
+				modifier = federation_european_union
+			}
+
+			set_variable = { global.federation_european_union_entrance = 0 }
+		}
+	}
+	PAEU.3 = {
+	available = { NOT = { has_global_flag = KRCW_active } }
+
+		visible = { NOT = { has_global_flag = KRCW_active } 
+			has_dynamic_modifier = {
+				modifier = federation_european_union
+			}
+		}
+
+		cost = 300
+
+		complete_effect = {
+			remove_dynamic_modifier = {
+				modifier = federation_european_union 
+			}
+		}
+	}	
+}

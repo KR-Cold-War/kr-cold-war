@@ -1,0 +1,99 @@
+# KRCW (build/patch_residue.py): 3 OTL decisions hidden while KRCW_active
+ethiopian_decisions_0 = {
+		independence_of_church = {
+
+		icon = GFX_decision_ethiopia
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+                original_tag = ETH
+                has_completed_focus = ETH_50s_independence_of_the_Tewahedo_Church
+                has_government = monarchism
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+                original_tag = ETH
+                date < 1960.1.1
+		}
+
+		fire_only_once = yes
+
+
+		cost = 100
+
+		complete_effect = {
+			custom_effect_tooltip = eth5060.tt.1
+			add_stability = 0.1
+			add_timed_idea = {
+				idea = ideological_fanaticism_focus
+				days = 1820
+			}
+			set_variable = { THIS.idea_len_@token:ideological_fanaticism_focus = 1820 }
+			set_variable = { THIS.idea_date_@token:ideological_fanaticism_focus = global.num_days }
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+		prepare_for_famine_relief = {
+
+		icon = GFX_decision_ethiopia
+		modifier = {
+            civilian_factory_use = 5
+        }
+		days_remove = 364
+		available = { NOT = { has_global_flag = KRCW_active } 
+                original_tag = ETH
+                NOT = {
+					has_idea = famine
+				}
+				has_government = monarchism
+				has_war = no
+				has_political_power > 800
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+                original_tag = ETH
+                date < 1960.1.1
+		}
+
+		fire_only_once = yes
+
+
+		cost = 800
+
+		complete_effect = {
+			add_stability = 0.1
+			set_country_flag = prepared_famine_relief
+			custom_effect_tooltip = eth60.tt.4
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	provide_famine_relief = {
+
+		icon = GFX_decision_ethiopia
+
+		available = { NOT = { has_global_flag = KRCW_active } 
+                original_tag = ETH
+                has_government = monarchism
+				has_war = no
+				has_country_flag = prepared_famine_relief
+		}
+		visible = { NOT = { has_global_flag = KRCW_active } 
+                original_tag = ETH
+                has_idea = famine
+				date < 1960.1.1
+		}
+
+		fire_only_once = yes
+
+
+		cost = 5
+
+		complete_effect = {
+			remove_ideas = famine
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}
